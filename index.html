@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPARROW-AI-TECH | Inovace a Bezpečnost pro Vaši Digitální Éru</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-active { border-color: #0d9488; color: #0d9488; background-color: #f0fdfa; }
+        .service-content { display: none; }
+        .service-content.active { display: block; }
+        .process-step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -2.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 2rem;
+        }
+        @media (max-width: 1023px) {
+            .process-step { margin-bottom: 2.5rem; }
+            .process-step:not(:last-child)::after {
+                content: '↓';
+                right: 50%;
+                top: auto;
+                bottom: -2.5rem;
+                transform: translateX(50%);
+            }
+        }
+        .gemini-output p { margin-bottom: 0.5rem; }
+        .gemini-output h4 { font-weight: 600; color: #0d9488; margin-top: 1rem; margin-bottom: 0.25rem; }
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 1rem;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: #6b7280;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+        .article-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .article-content-modal h3, .nis2-modal-content h3 {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            font-weight: 600;
+            color: #0d9488; /* teal-700 */
+            margin-bottom: 1rem;
+        }
+         .article-content-modal h4, .nis2-modal-content h4 {
+            font-size: 1.25rem; /* text-xl */
+            line-height: 1.75rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            color: #0f766e; /* teal-600 */
+            margin-top: 1.5rem; /* mt-6 */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        .article-content-modal p, .nis2-modal-content p:not(.form-field-status) {
+            margin-bottom: 1rem; /* mb-4 */
+            line-height: 1.625; /* leading-relaxed */
+            color: #4b5563; /* text-stone-600 */
+        }
+        .article-content-modal ul {
+            list-style-type: disc;
+            margin-left: 1.5rem; /* ml-6 */
+            margin-bottom: 1rem; /* mb-4 */
+            color: #4b5563; /* text-stone-600 */
+        }
+        .article-content-modal li {
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        .article-content-modal strong {
+            font-weight: 600; /* font-semibold */
+            color: #374151; /* text-stone-700 */
+        }
+        .nis2-scenario {
+            background-color: #f0fdfa; /* teal-50 */
+            border-left: 4px solid #0d9488; /* teal-600 */
+            padding: 1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.25rem;
+        }
+        .nis2-scenario p { margin-bottom: 0.5rem; }
+        .nis2-scenario strong { color: #047857; } /* teal-800 */
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.75rem; /* mb-3 for each item */
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: 1rem; /* w-4 */
+            height: 1rem; /* h-4 */
+            margin-right: 0.5rem; /* mr-2 */
+            border-color: #d1d5db; /* border-stone-300 */
+            border-radius: 0.25rem; /* rounded */
+            color: #0d9488; /* text-teal-600 */
+            focus:ring-orange-500;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <header id="header" class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-teal-700 tracking-wider">SPARROW-AI-TECH</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="text-stone-600 hover:text-teal-700 transition-colors">Služby</a>
+                <a href="#articles" class="text-stone-600 hover:text-teal-700 transition-colors">Články</a>
+                <a href="#about" class="text-stone-600 hover:text-teal-700 transition-colors">O nás</a>
+                <a href="#contact" class="text-stone-600 hover:text-teal-700 transition-colors">Kontakt</a>
+            </nav>
+            <a href="#contact" class="hidden md:inline-block bg-teal-600 text-white px-5 py-2 rounded-lg hover:bg-teal-700 transition-all shadow">Konzultace zdarma</a>
+            <button id="mobile-menu-button" class="md:hidden text-stone-700 focus:outline-none">
+                <span class="text-3xl">☰</span>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <a href="#services" class="block text-center py-3 px-6 text-stone-600 hover:bg-teal-50">Služby</a>
+            <a href="#articles" class="block text-center py-3 px-6 text-stone-600 hover:bg-teal-50">Články</a>
+            <a href="#about" class="block text-center py-3 px-6 text-stone-600 hover:bg-teal-50">O nás</a>
+            <a href="#contact" class="block text-center py-3 px-6 text-stone-600 hover:bg-teal-50">Kontakt</a>
+            <a href="#contact" class="block text-center py-4 px-6 bg-teal-600 text-white font-semibold hover:bg-teal-700">Konzultace zdarma</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="w-full min-h-screen flex items-center bg-white pt-20">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight mb-4">
+                    Inovace a bezpečnost <br class="hidden md:block" /> pro vaši <span class="text-teal-700">digitální éru</span>
+                </h1>
+                <p class="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 mb-8">
+                    Specializujeme se na implementaci AI agentů, kybernetickou bezpečnost a modernizaci IT. Pomáháme firmám růst, inovovat a chránit jejich digitální aktiva.
+                </p>
+                <a href="#contact" class="bg-teal-600 text-white text-lg px-8 py-4 rounded-lg hover:bg-teal-700 transition-all shadow-lg transform hover:scale-105">
+                    Domluvit si konzultaci zdarma
+                </a>
+            </div>
+        </section>
+
+        <section id="services" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-stone-800">Naše expertíza</h2>
+                    <p class="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">Poskytujeme komplexní IT služby, které vaši firmu posunou vpřed. Kliknutím na službu zobrazíte podrobnosti.</p>
+                </div>
+
+                <div class="max-w-5xl mx-auto">
+                    <div class="flex flex-wrap justify-center border-b-2 border-stone-200 mb-8">
+                        <button class="service-tab tab-active" data-target="ai">🤖 AI Agenti</button>
+                        <button class="service-tab" data-target="security">🛡️ Kyberbezpečnost</button>
+                        <button class="service-tab" data-target="linux">🐧 Správa Linuxu</button>
+                        <button class="service-tab" data-target="software">💻 Vývoj softwaru</button>
+                        <button class="service-tab" data-target="modernization">🚀 Modernizace IT</button>
+                    </div>
+
+                    <div id="service-content-area" class="bg-white p-8 md:p-12 rounded-xl shadow-md transition-all duration-300">
+                        <div id="ai" class="service-content active">
+                            <h3 class="text-2xl font-bold text-teal-700 mb-4">Implementace AI agentů</h3>
+                            <p class="text-stone-600 mb-4">Automatizujte procesy a zvyšte efektivitu s inteligentními AI agenty na míru. Pomůžeme vám od analýzy potřeb přes návrh až po nasazení řešení, které optimalizuje zákaznickou podporu, personalizuje marketing a analyzuje data pro lepší rozhodování.</p>
+                            <ul class="list-disc list-inside text-stone-600 space-y-2 mb-6">
+                                <li>Analýza a návrh AI strategie</li>
+                                <li>Vývoj a integrace chatbotů a voicebotů (VUI)</li>
+                                <li>Automatizace interních procesů</li>
+                                <li>Podpora a neustálé vylepšování</li>
+                            </ul>
+                            <div class="mt-8 p-6 bg-teal-50 rounded-lg">
+                                <h4 class="text-xl font-semibold text-teal-700 mb-3">✨ Váš AI Nápadník</h4>
+                                <p class="text-stone-600 mb-4">Popište váš obchodní problém nebo oblast, kterou chcete vylepšit, a my vám navrhneme možné AI řešení!</p>
+                                <div class="mb-4">
+                                    <label for="business-problem-input" class="block mb-2 text-sm font-medium text-stone-700">Váš problém / oblast:</label>
+                                    <textarea id="business-problem-input" rows="3" class="bg-white border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5" placeholder="Např. 'Zlepšení zákaznické podpory' nebo 'Optimalizace skladových zásob'"></textarea>
+                                </div>
+                                <button id="generate-ai-ideas-button" class="w-full sm:w-auto bg-teal-600 text-white px-6 py-2.5 rounded-lg hover:bg-teal-700 transition-all shadow flex items-center justify-center">
+                                    <span class="mr-2">Navrhnout AI řešení</span>
+                                    <svg id="button-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                    </svg>
+                                </button>
+                                <div id="loading-indicator" class="hidden mt-4 text-sm text-stone-600 flex items-center">
+                                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-teal-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                      </svg>
+                                    Generuji nápady...
+                                </div>
+                                <div id="ai-ideas-output" class="mt-6 text-stone-700 gemini-output"></div>
+                            </div>
+                        </div>
+                        <div id="security" class="service-content">
+                            <h3 class="text-2xl font-bold text-teal-700 mb-4">Kybernetická bezpečnost</h3>
+                            <p class="text-stone-600 mb-4">Ochráníme vaše data a systémy před hrozbami a zajistíme soulad s legislativou, jako je NIS2 a GDPR. Provedeme bezpečnostní audit, navrhneme robustní strategii a implementujeme nejmodernější technologie pro ochranu vaší firmy.</p>
+                            <ul class="list-disc list-inside text-stone-600 space-y-2">
+                                <li>Bezpečnostní audity a penetrační testování</li>
+                                <li>Návrh a implementace bezpečnostních politik</li>
+                                <li>Ochrana proti malware, ransomware a phishingu</li>
+                                <li>Školení zaměstnanců a zajištění souladu s legislativou (NIS2, GDPR)</li>
+                                <li>Řešení pro incident handling (např. SPARROW SIEM)</li>
+                            </ul>
+                            <div class="mt-8">
+                                <h4 class="text-xl font-semibold text-teal-700 mb-3">Jak vám můžeme pomoci s NIS2?</h4>
+                                <div class="nis2-scenario text-sm">
+                                    <p><strong>Vy (Uživatel):</strong> "Potřebujeme splnit požadavky zákona o kybernetické bezpečnosti (ZoKB) a nové směrnice NIS2. Jak nám v SPARROW-AI-TECH můžete pomoci?"</p>
+                                    <p><strong>My (SPARROW-AI-TECH):</strong> "Rozumíme, NIS2 přináší nové výzvy. V SPARROW-AI-TECH vám nabízíme komplexní podporu. Začneme vstupní konzultací k posouzení vaší aktuální připravenosti. Následně můžeme provést detailní analýzu zranitelností a dopadovou analýzu (BIA). Na základě zjištění navrhneme a implementujeme potřebná bezpečnostní opatření – technická i organizační. To zahrnuje například nasazení pokročilých bezpečnostních technologií, jako je náš SPARROW SIEM pro efektivní detekci a reakci na incidenty, nastavení procesů pro řízení rizik, business continuity plánování a školení vašich zaměstnanců. Naším cílem je nejen zajistit váš soulad s NIS2, ale především reálně posílit vaši kybernetickou odolnost."</p>
+                                </div>
+                                <button id="open-nis2-modal-button" class="mt-4 w-full sm:w-auto bg-orange-500 text-white px-6 py-2.5 rounded-lg hover:bg-orange-600 transition-all shadow flex items-center justify-center">
+                                    <span class="mr-2">Mám zájem o konzultaci k NIS2</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="linux" class="service-content">
+                            <h3 class="text-2xl font-bold text-teal-700 mb-4">Správa Linuxových infrastruktur</h3>
+                            <p class="text-stone-600 mb-4">Zajišťujeme spolehlivou, výkonnou a bezpečnou správu vašich Linuxových serverů a systémů. Naši experti se postarají o instalaci, konfiguraci, monitoring, optimalizaci výkonu a automatizaci, abyste se mohli soustředit na své podnikání.</p>
+                             <ul class="list-disc list-inside text-stone-600 space-y-2">
+                                <li>Instalace, konfigurace a správa serverů</li>
+                                <li>Optimalizace výkonu a 24/7 monitoring</li>
+                                <li>Zabezpečení systémů a automatizace správy</li>
+                                <li>Podpora pro kontejnerizaci (Docker, Kubernetes)</li>
+                            </ul>
+                        </div>
+                        <div id="software" class="service-content">
+                            <h3 class="text-2xl font-bold text-teal-700 mb-4">Vývoj softwaru na míru</h3>
+                            <p class="text-stone-600 mb-4">Tvoříme softwarová řešení přesně podle vašich potřeb a cílů. Ať už potřebujete komplexní webovou aplikaci, interní systém nebo mobilní aplikaci, náš tým vás provede celým procesem od prvotního nápadu až po finální produkt a jeho následný rozvoj.</p>
+                            <ul class="list-disc list-inside text-stone-600 space-y-2">
+                                <li>Webové a mobilní aplikace</li>
+                                <li>Interní firemní systémy a API</li>
+                                <li>Integrace existujících systémů</li>
+                                <li>Agilní vývoj a transparentní komunikace</li>
+                            </ul>
+                        </div>
+                        <div id="modernization" class="service-content">
+                            <h3 class="text-2xl font-bold text-teal-700 mb-4">Modernizace IT</h3>
+                            <p class="text-stone-600 mb-4">Přeměníme vaši stávající IT infrastrukturu na moderní, flexibilní a škálovatelné řešení. Provedeme audit, navrhneme strategii modernizace (např. migrace do cloudu) a zajistíme hladký přechod, který sníží náklady a zvýší vaši konkurenceschopnost.</p>
+                            <ul class="list-disc list-inside text-stone-600 space-y-2">
+                                <li>Audit a analýza stávající infrastruktury</li>
+                                <li>Strategie migrace do cloudu (AWS, Azure, Google Cloud)</li>
+                                <li>Optimalizace a automatizace IT procesů</li>
+                                <li>Implementace nových a efektivnějších technologií</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="articles" class="py-20 md:py-32 bg-stone-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-stone-800">Naše postřehy a články</h2>
+                    <p class="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">Přečtěte si o nejnovějších trendech a technologiích v oblasti AI a IT.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="article-card bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-teal-700 mb-3">Konverzační AI Widgety a VUI: Revoluce v Zákaznické Interakci</h3>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            V dnešní digitální éře je klíčem k úspěchu efektivní komunikace a zákaznická zkušenost na špičkové úrovni. Právě zde přicházejí ke slovu konverzační AI widgety...
+                        </p>
+                        <button class="read-more-button text-teal-600 hover:text-teal-700 font-semibold flex items-center" data-article="vui-revolution">
+                            Číst více <span class="ml-2">→</span>
+                        </button>
+                    </div>
+                    <div class="article-card bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-teal-700 mb-3">Budoucnost Kybernetické Bezpečnosti v Éře AI (Již brzy)</h3>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Jak umělá inteligence mění paradigma kybernetické bezpečnosti? Prozkoumejte nové hrozby a inovativní obranné strategie...
+                        </p>
+                        <button class="read-more-button text-gray-400 cursor-not-allowed flex items-center" disabled>
+                            Číst více <span class="ml-2">→</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-stone-800">Váš spolehlivý partner v digitálním světě</h2>
+                    <p class="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">Naší misí je poskytovat inovativní a bezpečná IT řešení, která pomáhají našim klientům uspět.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="bg-stone-50 p-8 rounded-xl text-center">
+                        <div class="text-4xl mb-4">💡</div>
+                        <h3 class="text-xl font-semibold mb-2">Expertíza a inovace</h3>
+                        <p class="text-stone-600">Sledujeme nejnovější trendy v AI a kyberbezpečnosti, abychom vám přinášeli ta nejlepší řešení.</p>
+                    </div>
+                    <div class="bg-stone-50 p-8 rounded-xl text-center">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <h3 class="text-xl font-semibold mb-2">Řešení na míru</h3>
+                        <p class="text-stone-600">Přistupujeme individuálně k potřebám každého klienta a navrhujeme řešení, která skutečně fungují.</p>
+                    </div>
+                    <div class="bg-stone-50 p-8 rounded-xl text-center">
+                        <div class="text-4xl mb-4">🤝</div>
+                        <h3 class="text-xl font-semibold mb-2">Partnerský přístup</h3>
+                        <p class="text-stone-600">Stavíme na dlouhodobých vztazích a transparentní komunikaci. Jsme tu pro vás na každém kroku.</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-20">
+                     <h3 class="text-2xl md:text-3xl font-bold text-stone-800 mb-8">Náš proces implementace</h3>
+                     <div class="relative flex flex-col lg:flex-row justify-between items-center max-w-4xl mx-auto text-center">
+                        <div class="process-step relative flex-1 mb-10 lg:mb-0">
+                           <div class="text-3xl font-bold text-teal-600 mb-2">1</div>
+                           <h4 class="font-semibold">Konzultace & Analýza</h4>
+                        </div>
+                        <div class="process-step relative flex-1 mb-10 lg:mb-0">
+                           <div class="text-3xl font-bold text-teal-600 mb-2">2</div>
+                           <h4 class="font-semibold">Návrh řešení</h4>
+                        </div>
+                        <div class="process-step relative flex-1 mb-10 lg:mb-0">
+                           <div class="text-3xl font-bold text-teal-600 mb-2">3</div>
+                           <h4 class="font-semibold">Vývoj & Testování</h4>
+                        </div>
+                        <div class="process-step relative flex-1">
+                           <div class="text-3xl font-bold text-teal-600 mb-2">4</div>
+                           <h4 class="font-semibold">Nasazení & Podpora</h4>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-stone-800">Kontaktujte nás</h2>
+                    <p class="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">Máte dotaz nebo zájem o naše služby? Vyplňte formulář a my se vám co nejdříve ozveme.</p>
+                </div>
+                <div class="max-w-xl mx-auto bg-white p-8 md:p-12 rounded-xl shadow-lg">
+                    <form id="contact-form">
+                        <div class="mb-5">
+                            <label for="name" class="block mb-2 text-sm font-medium text-stone-700">Jméno a příjmení</label>
+                            <input type="text" id="name" name="name" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5" placeholder="Jan Novák" required>
+                        </div>
+                        <div class="mb-5">
+                            <label for="email" class="block mb-2 text-sm font-medium text-stone-700">Váš email</label>
+                            <input type="email" id="email" name="email" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5" placeholder="vas.email@firma.cz" required>
+                        </div>
+                         <div class="mb-5">
+                            <label for="message" class="block mb-2 text-sm font-medium text-stone-700">Vaše zpráva</label>
+                            <textarea id="message" name="message" rows="4" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5" placeholder="Dobrý den, měl bych zájem o konzultaci ohledně..."></textarea>
+                        </div>
+                        <div class="flex items-start mb-5">
+                            <div class="flex items-center h-5">
+                                <input id="terms" name="terms" type="checkbox" value="" class="w-4 h-4 border border-stone-300 rounded bg-stone-50 focus:ring-3 focus:ring-teal-300" required>
+                            </div>
+                            <label for="terms" class="ms-2 text-sm font-medium text-stone-600">Souhlasím se <a href="#" class="text-teal-600 hover:underline">zpracováním osobních údajů</a>.</label>
+                        </div>
+                        <button type="submit" class="w-full text-white bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-base px-5 py-3 text-center transition-all">Odeslat zprávu</button>
+                        <p id="form-status" class="mt-4 text-sm text-center"></p>
+                    </form>
+                    <div class="text-center mt-8 text-stone-600">
+                        <p>Nebo nám zavolejte: <a href="https://signal.me/#eu/-i6EcG8dz6FtV6U2yytXPe4UESGjNMxGTw4Xf8AWbR3b5dD3lyBKd53IEKi5AJ6N" class="text-teal-700 font-semibold">+420/776/168/749</a></p>
+                        <p>Email: <a href="mailto:sparesparrow@protonmail.ch" class="text-teal-700 font-semibold">sparesparrow@protonmail.ch</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-800 text-stone-300 py-10">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; <span id="current-year"></span> SPARROW-AI-TECH. Všechna práva vyhrazena.</p>
+            <div class="mt-4 space-x-6">
+                <a href="#" class="hover:text-white transition-colors text-sm">Zásady ochrany osobních údajů</a>
+                <a href="#" class="hover:text-white transition-colors text-sm">Obchodní podmínky</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="article-modal-overlay" class="modal-overlay">
+        <div id="article-modal-content" class="modal-content article-content-modal">
+            <button id="article-modal-close-button" class="modal-close-button">&times;</button>
+            <div id="article-modal-body"></div>
+        </div>
+    </div>
+
+    <div id="nis2-modal-overlay" class="modal-overlay">
+        <div id="nis2-modal-content" class="modal-content nis2-modal-content">
+            <button id="nis2-modal-close-button" class="modal-close-button">&times;</button>
+            <h3>Poptávka konzultace k NIS2</h3>
+            <p>Prosím, vyplňte kontaktní údaje a označte oblasti, které vás zajímají. Ozveme se vám co nejdříve.</p>
+            <form id="nis2-consultation-form" class="mt-4">
+                <div class="grid md:grid-cols-2 gap-x-6">
+                    <div class="mb-4">
+                        <label for="nis2-company-name" class="block mb-1 text-sm font-medium text-stone-700">Název firmy</label>
+                        <input type="text" id="nis2-company-name" name="nis2-company-name" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="nis2-contact-person" class="block mb-1 text-sm font-medium text-stone-700">Kontaktní osoba</label>
+                        <input type="text" id="nis2-contact-person" name="nis2-contact-person" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="nis2-email" class="block mb-1 text-sm font-medium text-stone-700">Email</label>
+                        <input type="email" id="nis2-email" name="nis2-email" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="nis2-phone" class="block mb-1 text-sm font-medium text-stone-700">Telefon (volitelné)</label>
+                        <input type="tel" id="nis2-phone" name="nis2-phone" class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
+                    </div>
+                </div>
+
+                <div class="mb-6 mt-2">
+                    <label class="block mb-2 text-sm font-medium text-stone-700">Označte oblasti vašeho zájmu:</label>
+                    <div class="checkbox-grid">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-scope-check" name="nis2_interest" value="scope_check">
+                            <label for="nis2-scope-check" class="text-sm text-stone-600">Zjištění dopadu NIS2/ZoKB na naši organizaci</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-registration" name="nis2_interest" value="registration">
+                            <label for="nis2-registration" class="text-sm text-stone-600">Registrace u NÚKIB a související povinnosti</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-isms" name="nis2_interest" value="isms">
+                            <label for="nis2-isms" class="text-sm text-stone-600">Zavedení / Revize ISMS</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-risk-management" name="nis2_interest" value="risk_management">
+                            <label for="nis2-risk-management" class="text-sm text-stone-600">Analýza a řízení rizik kyber. bezpečnosti</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-incident-handling" name="nis2_interest" value="incident_handling">
+                            <label for="nis2-incident-handling" class="text-sm text-stone-600">Zvládání kyber. bezpečnostních incidentů</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-business-continuity" name="nis2_interest" value="business_continuity">
+                            <label for="nis2-business-continuity" class="text-sm text-stone-600">Plánování kontinuity činností (BCM/DRP)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-supply-chain" name="nis2_interest" value="supply_chain">
+                            <label for="nis2-supply-chain" class="text-sm text-stone-600">Zabezpečení dodavatelského řetězce</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-technical-security" name="nis2_interest" value="technical_security">
+                            <label for="nis2-technical-security" class="text-sm text-stone-600">Návrh/implementace technických opatření</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-vulnerability-assessment" name="nis2_interest" value="vulnerability_assessment">
+                            <label for="nis2-vulnerability-assessment" class="text-sm text-stone-600">Analýza zranitelností / Penetrační testy</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-bia" name="nis2_interest" value="bia">
+                            <label for="nis2-bia" class="text-sm text-stone-600">Provedení dopadové analýzy (BIA)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-training" name="nis2_interest" value="training">
+                            <label for="nis2-training" class="text-sm text-stone-600">Školení zaměstnanců v kyber. bezpečnosti</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-governance" name="nis2_interest" value="governance">
+                            <label for="nis2-governance" class="text-sm text-stone-600">Nastavení procesů a odpovědností vedení</label>
+                        </div>
+                         <div class="checkbox-item">
+                            <input type="checkbox" id="nis2-siem-solutions" name="nis2_interest" value="siem_solutions">
+                            <label for="nis2-siem-solutions" class="text-sm text-stone-600">Konzultace k bezpečnostním technologiím (SIEM, EDR)</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="w-full text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-base px-5 py-3 text-center transition-all">Odeslat poptávku konzultace</button>
+                <p id="nis2-form-status" class="mt-3 text-sm text-center form-field-status"></p>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        const articlesData = {
+            "vui-revolution": {
+                title: "Konverzační AI Widgety a VUI: Revoluce v Zákaznické Interakci",
+                content: `
+                    <p>V dnešní digitální éře je klíčem k úspěchu efektivní komunikace a zákaznická zkušenost na špičkové úrovni. Právě zde přicházejí ke slovu konverzační AI widgety, které představují moderní a intuitivní způsob interakce uživatelů s digitálními systémy prostřednictvím hlasových příkazů a odpovědí. Odborně se jedná o Voice User Interface (VUI).</p>
+                    <h4>Proč byste měli zvážit implementaci takového řešení?</h4>
+                    <p>Konverzační AI agenti dokáží vylepšit zákaznické interakce tím, že například provedou návštěvníky webu katalogem produktů, odpoví na dotazy v reálném čase a zvýší jistotu nákupu. Když zákazník déle setrvá na stránce produktu, asistent s podporou AI může proaktivně zahájit chat, což snižuje váhání a zvyšuje konverze. VUI také významně snižuje kognitivní zátěž uživatele ve srovnání s tradičními vizuálními rozhraními, neboť využívá naši přirozenou schopnost komunikovat řečí. Umožňuje tak efektivnější multitasking, například při zkoumání funkcí produktu během kontroly jiných systémů nebo při rychlém získávání informací během schůzek s dodavateli.</p>
+                    <h4>Technické pozadí</h4>
+                    <p>Z technického hlediska konverzační AI widget či VUI systém typicky zahrnuje klíčové komponenty jako rozpoznávání řeči (ASR), porozumění přirozenému jazyku (NLU), správu dialogu, generování přirozeného jazyka (NLG) a syntézu textu na řeč (TTS). Pro implementaci na webových stránkách je nezbytné zvážit frontendové komponenty (zpracování hlasu, zpětná vazba), backendové služby (převod řeči na text, rozpoznání záměru, správa kontextu, generování odpovědí) a integrační vrstvu (API endpointy, WebSocket připojení, správa stavu).</p>
+                    <h4>Příklady z praxe</h4>
+                    <p>Jedním z příkladů, jak lze konverzační AI integrovat, je <strong>ElevenLabs Conversational AI widget</strong>. Ten umožňuje přidat hlasové schopnosti vašim agentům na webu, v mobilních aplikacích nebo telefonii během několika minut. Poskytuje real-time API s nízkou latencí, plnou konfigurovatelností a plynulou škálovatelností. Implementace na platformách jako Webflow, Framer nebo WordPress je přímočará a spočívá ve vložení poskytnutého embed kódu, obsahujícího &lt;script&gt; a &lt;div&gt; snippety. ElevenLabs také poskytuje JavaScript SDK pro vývoj v čistém JavaScriptu nebo jako základ pro specifické frameworky. Toto SDK umožňuje inicializovat konverzaci, pracovat s ID agenta nebo podepsanou URL, registrovat zpětná volání pro různé události (připojení, zprávy, chyby) a ovládat relaci (ukončení, nastavení hlasitosti).</p>
+                    <p>Jiný pohled na zjednodušení implementace nabízí řešení jako <strong>ChatSimple's Voice AI Solution</strong>, které popisuje transformaci statických webů na interaktivní konverzace s AI agenty. Klíčové vlastnosti zahrnují proaktivní zapojení návštěvníků, reálnou inteligenci pro navigaci a poskytování relevantního obsahu a podporu pro různé hlasy a jazyky. Zdůrazňuje se, že budování kompletní VUI infrastruktury od nuly je časově i finančně náročné, a proto řešení, která zjednodušují proces implementace bez nutnosti hlubokých technických znalostí, přinášejí významnou hodnotu.</p>
+                    <h4>SPARROW-AI-TECH a konverzační AI</h4>
+                    <p>V SPARROW-AI-TECH vnímáme konverzační AI widgety a technologie VUI jako nedílnou součást moderní digitální transformace. Naše expertíza v oblasti implementace AI agentů na míru, vývoje webových aplikací a softwaru obecně a optimalizace zákaznických procesů nám umožňuje integrovat a zprovoznit inteligentní řešení, která posouvají vaši firmu vpřed a přinášejí reálnou hodnotu.</p>
+                    <p>Ať už potřebujete automatizovat rutinní úkoly, zlepšit rozhodovací procesy, zvýšit produktivitu nebo personalizovat služby pro lepší zákaznickou zkušenost, konverzační AI widget může být tím pravým nástrojem.</p>
+                    <p>Přemýšlíte, jak může konverzační AI vylepšit právě vaše podnikání? Kontaktujte nás pro nezávaznou konzultaci a objevte, jak může inteligentní automatizace a AI agenti od SPARROW-AI-TECH transformovat vaše digitální interakce a zefektivnit vaše procesy. Jsme připraveni vám pomoci.</p>
+                `
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            document.querySelectorAll('#mobile-menu a, nav a[href^="#"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (link.getAttribute('href').startsWith('#')) {
+                        mobileMenu.classList.add('hidden');
+                        const targetElement = document.querySelector(link.getAttribute('href'));
+                        if (targetElement) {
+                             e.preventDefault();
+                             targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            const serviceTabs = document.querySelectorAll('.service-tab');
+            const serviceContents = document.querySelectorAll('.service-content');
+            
+            serviceTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetId = tab.dataset.target;
+
+                    serviceTabs.forEach(t => t.classList.remove('tab-active', 'bg-teal-50'));
+                    tab.classList.add('tab-active', 'bg-teal-50');
+
+                    serviceContents.forEach(content => {
+                        if (content.id === targetId) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+                });
+            });
+            
+            let lastScrollTop = 0;
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.style.top = '-120px'; 
+                } else {
+                    header.style.top = '0';
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }, false);
+
+            const generateAiIdeasButton = document.getElementById('generate-ai-ideas-button');
+            const businessProblemInput = document.getElementById('business-problem-input');
+            const aiIdeasOutput = document.getElementById('ai-ideas-output');
+            const loadingIndicator = document.getElementById('loading-indicator');
+
+            if (generateAiIdeasButton) {
+                generateAiIdeasButton.addEventListener('click', async () => {
+                    const userPrompt = businessProblemInput.value.trim();
+                    if (!userPrompt) {
+                        aiIdeasOutput.innerHTML = '<p class="text-red-600">Prosím, zadejte popis vašeho problému nebo oblasti.</p>';
+                        return;
+                    }
+
+                    loadingIndicator.classList.remove('hidden');
+                    aiIdeasOutput.innerHTML = '';
+                    generateAiIdeasButton.disabled = true;
+
+                    const apiKey = ""; 
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    
+                    const fullPrompt = `Jako expert na umělou inteligenci a obchodní strategii navrhni 2-3 konkrétní a inovativní nápady na AI agenty, které by mohly řešit následující obchodní problém nebo oblast: "${userPrompt}". Pro každý nápad uveď: 1. Název AI agenta (kreativní a výstižný). 2. Stručný popis funkcionality (jak by agent fungoval). 3. Klíčové přínosy pro firmu (jak by pomohl). Formátuj odpověď přehledně, ideálně s nadpisy pro každý nápad.`;
+
+                    let chatHistory = [{ role: "user", parts: [{ text: fullPrompt }] }];
+                    const payload = { contents: chatHistory };
+
+                    try {
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            console.error('API Error:', errorData);
+                            throw new Error(`Chyba API: ${response.status} ${response.statusText}. Podrobnosti: ${errorData?.error?.message || 'Neznámá chyba'}`);
+                        }
+
+                        const result = await response.json();
+                        
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            let text = result.candidates[0].content.parts[0].text;
+                            text = text.replace(/\*\*(.*?)\*\*/g, '<h4>$1</h4>') 
+                                       .replace(/\*(.*?)\*/g, '<strong>$1</strong>') 
+                                       .replace(/\n/g, '<br>'); 
+                            aiIdeasOutput.innerHTML = `<div class="p-4 bg-white rounded-md shadow">${text}</div>`;
+                        } else {
+                            aiIdeasOutput.innerHTML = '<p class="text-orange-600">Nepodařilo se získat návrhy. Zkuste to prosím znovu.</p>';
+                            console.error('Unexpected API response structure:', result);
+                        }
+
+                    } catch (error) {
+                        console.error('Fetch Error:', error);
+                        aiIdeasOutput.innerHTML = `<p class="text-red-600">Došlo k chybě při komunikaci s AI. Zkuste to prosím později. Detail: ${error.message}</p>`;
+                    } finally {
+                        loadingIndicator.classList.add('hidden');
+                        generateAiIdeasButton.disabled = false;
+                    }
+                });
+            }
+
+            const contactForm = document.getElementById('contact-form');
+            const formStatus = document.getElementById('form-status');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    formStatus.textContent = 'Odesílám zprávu...';
+                    formStatus.className = 'mt-4 text-sm text-center text-blue-600';
+
+                    setTimeout(() => {
+                        formStatus.textContent = 'Zpráva byla úspěšně odeslána! Brzy se vám ozveme.';
+                        formStatus.className = 'mt-4 text-sm text-center text-green-600';
+                        contactForm.reset();
+                    }, 1500);
+                });
+            }
+
+            const articleModalOverlay = document.getElementById('article-modal-overlay');
+            const articleModalBody = document.getElementById('article-modal-body');
+            const articleModalCloseButton = document.getElementById('article-modal-close-button');
+            const readMoreButtons = document.querySelectorAll('.read-more-button');
+
+            readMoreButtons.forEach(button => {
+                if (button.dataset.article && articlesData[button.dataset.article]) {
+                    button.addEventListener('click', () => {
+                        const articleId = button.dataset.article;
+                        const article = articlesData[articleId];
+                        if (article) {
+                            articleModalBody.innerHTML = `<h3>${article.title}</h3>${article.content}`;
+                            articleModalOverlay.classList.add('active');
+                        }
+                    });
+                }
+            });
+
+            function closeModal(modalOverlay) {
+                if (modalOverlay) {
+                    modalOverlay.classList.remove('active');
+                }
+            }
+
+            if (articleModalCloseButton) {
+                articleModalCloseButton.addEventListener('click', () => closeModal(articleModalOverlay));
+            }
+            if (articleModalOverlay) {
+                articleModalOverlay.addEventListener('click', (event) => {
+                    if (event.target === articleModalOverlay) closeModal(articleModalOverlay);
+                });
+            }
+
+            // NIS2 Modal Logic
+            const nis2ModalOverlay = document.getElementById('nis2-modal-overlay');
+            const openNis2ModalButton = document.getElementById('open-nis2-modal-button');
+            const nis2ModalCloseButton = document.getElementById('nis2-modal-close-button');
+            const nis2ConsultationForm = document.getElementById('nis2-consultation-form');
+            const nis2FormStatus = document.getElementById('nis2-form-status');
+
+            if (openNis2ModalButton) {
+                openNis2ModalButton.addEventListener('click', () => {
+                    if (nis2ModalOverlay) nis2ModalOverlay.classList.add('active');
+                });
+            }
+            if (nis2ModalCloseButton) {
+                nis2ModalCloseButton.addEventListener('click', () => closeModal(nis2ModalOverlay));
+            }
+            if (nis2ModalOverlay) {
+                nis2ModalOverlay.addEventListener('click', (event) => {
+                    if (event.target === nis2ModalOverlay) closeModal(nis2ModalOverlay);
+                });
+            }
+            if (nis2ConsultationForm) {
+                nis2ConsultationForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    nis2FormStatus.textContent = 'Odesílám poptávku...';
+                    nis2FormStatus.className = 'mt-3 text-sm text-center text-blue-600 form-field-status';
+                    
+                    // Simulace odeslání
+                    // Zde byste v reálné aplikaci sbírali data z checkboxů
+                    // const selectedInterests = [];
+                    // document.querySelectorAll('input[name="nis2_interest"]:checked').forEach((checkbox) => {
+                    //    selectedInterests.push(checkbox.value);
+                    // });
+                    // console.log('Selected NIS2 Interests:', selectedInterests);
+                    // console.log('Company Name:', document.getElementById('nis2-company-name').value);
+                    
+                    setTimeout(() => {
+                        nis2FormStatus.textContent = 'Poptávka byla úspěšně odeslána. Děkujeme, brzy se vám ozveme!';
+                        nis2FormStatus.className = 'mt-3 text-sm text-center text-green-600 form-field-status';
+                        nis2ConsultationForm.reset();
+                        setTimeout(() => closeModal(nis2ModalOverlay), 3000); // Zavřít modal po 3 sekundách
+                    }, 1500);
+                });
+            }
+
+
+            // Konceptuální Custom Agent Logic (customAgentLogic.js)
+            let userProfile = { segment: 'new_user', interactionHistory: [] }; 
+            
+            function sendUserMessageToOptimizer(userInput) {
+                if (typeof userProfile === 'undefined') { 
+                    userProfile = { segment: 'new_user', interactionHistory: [] };
+                }
+                userProfile.interactionHistory.push({ speaker: 'user', text: userInput });
+                let processedInput = userInput;
+                let immediateAction = null;
+
+                if (userInput.toLowerCase().includes("technický problém") || userInput.toLowerCase().includes("nefunguje")) {
+                    processedInput = `Uživatel hlásí technický problém: ${userInput}`;
+                    immediateAction = "Nabídnout spojení s technickou podporou.";
+                }
+                console.log("Processed input (conceptual):", processedInput);
+                if (immediateAction) {
+                    console.log("Optimizer Action:", immediateAction);
+                }
+            }
+        });
+    </script>
+    <elevenlabs-convai agent-id="agent_01jwpatrdff2dsns5d56n0ardm"></elevenlabs-convai>
+    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+</body>
+</html>
