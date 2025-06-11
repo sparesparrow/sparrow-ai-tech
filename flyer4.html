@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angebot für E-Scooter Betreiber - SPARROW Fachkräfte</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!--
+    Chosen Palette: Vibrant & Professional
+    #0B2D48 (Deep Blue), #00A99D (Teal), #F37021 (Orange), #F1F1F1 (Light Gray), #FFFFFF (White)
+    CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+        }
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 2rem auto;
+            background-color: white;
+        }
+        .main-content {
+             background-color: white;
+        }
+        .process-step {
+            border-color: #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        .process-step:hover {
+            border-color: #00A99D;
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        @media print {
+            body, .a4-container {
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                background-color: white;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+    <div class="a4-container shadow-lg">
+        <header class="p-10 bg-white">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-4xl font-extrabold text-[#0B2D48]">SPARROW Fachkräfte</h1>
+                    <p class="text-xl text-[#00A99D] font-semibold tracking-tight">Die operative Brigade für Ihre Flotte.</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right text-sm text-gray-600">
+                        <p class="font-bold">Vojtěch Špaček, Gründer & CEO</p>
+                        <p>vojtech.spacek@sparrow-fachkraefte.de</p>
+                        <p>+420 XXX XXX XXX</p>
+                    </div>
+                    <img src="https://placehold.co/80x80/0B2D48/FFFFFF?text=VS" alt="Foto von Vojtěch Špaček" class="rounded-full h-20 w-20 border-2 border-[#00A99D]">
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content px-10 pb-10">
+            <h2 class="text-3xl font-bold text-[#0B2D48] mb-4 text-center">Maximieren Sie die Betriebszeit Ihrer E-Scooter-Flotte.</h2>
+            <p class="text-lg text-gray-700 mb-10 text-center max-w-4xl mx-auto">Jede Minute, die ein E-Scooter nicht verfügbar ist, bedeutet entgangenen Umsatz. Wir liefern die zuverlässige operative Kraft, damit Ihre Flotte auf der Straße bleibt und Geld verdient.</p>
+
+            <div class="bg-gray-50 p-8 rounded-lg mb-10">
+                <h3 class="text-2xl font-bold text-center text-[#0B2D48] mb-6">Unser Weg zum Erfolg in 3 Schritten</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="process-step bg-white p-6 rounded-lg border-2">
+                        <div class="text-4xl text-[#00A99D] font-bold mb-2">1</div>
+                        <h4 class="font-bold text-lg mb-1">Analyse</h4>
+                        <p class="text-sm text-gray-600">Wir analysieren Ihren spezifischen Bedarf und Ihre operativen Hot-Zones.</p>
+                    </div>
+                     <div class="process-step bg-white p-6 rounded-lg border-2">
+                        <div class="text-4xl text-[#00A99D] font-bold mb-2">2</div>
+                        <h4 class="font-bold text-lg mb-1">Team-Setup</h4>
+                        <p class="text-sm text-gray-600">Wir stellen ein geschultes und motiviertes Team für Sie zusammen.</p>
+                    </div>
+                     <div class="process-step bg-white p-6 rounded-lg border-2">
+                        <div class="text-4xl text-[#00A99D] font-bold mb-2">3</div>
+                        <h4 class="font-bold text-lg mb-1">Einsatz</h4>
+                        <p class="text-sm text-gray-600">Ihr neues Team startet und optimiert den Flottenbetrieb ab Tag eins.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+                <div class="lg:col-span-3 space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#0B2D48] mb-4">Ihr direkter Nutzen:</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start bg-white p-4 rounded-md border">
+                                <span class="text-2xl text-green-500 mr-3">✓</span>
+                                <div><strong class="font-semibold">Höhere Flottenverfügbarkeit:</strong> Mehr einsatzbereite Scooter bedeuten direkt höhere Einnahmen.</div>
+                            </div>
+                            <div class="flex items-start bg-white p-4 rounded-md border">
+                                <span class="text-2xl text-green-500 mr-3">✓</span>
+                                <div><strong class="font-semibold">Reduzierte Ausfallzeiten:</strong> Schnelle Wartung und Batteriewechsel minimieren die Zeit, in der Scooter offline sind.</div>
+                            </div>
+                            <div class="flex items-start bg-white p-4 rounded-md border">
+                                <span class="text-2xl text-green-500 mr-3">✓</span>
+                                <div><strong class="font-semibold">Flexible Personalkosten:</strong> Skalieren Sie Ihr Team je nach Saison und Bedarf, ohne hohe Fixkosten.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#0B2D48] mb-4">Unsere Kern-Dienstleistungen:</h3>
+                        <div class="space-y-2">
+                             <div class="p-4 bg-white border-l-4 border-gray-300 rounded-md"><p><strong class="font-semibold text-[#0B2D48]">🔋 Juicing & Swapping:</strong> Effizientes Einsammeln, Laden und Austauschen von Akkus.</p></div>
+                             <div class="p-4 bg-white border-l-4 border-gray-300 rounded-md"><p><strong class="font-semibold text-[#0B2D48]">🔧 Wartung & Reparatur:</strong> Schnelle Behebung von Defekten und regelmäßige Checks.</p></div>
+                             <div class="p-4 bg-white border-l-4 border-gray-300 rounded-md"><p><strong class="font-semibold text-[#0B2D48]">📍 Redeployment:</strong> Strategische Umverteilung der Scooter in Hot-Zones.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 border-t pt-8">
+                 <h3 class="text-center text-gray-500 font-semibold mb-4">Vertraut von führenden Anbietern</h3>
+                 <div class="flex justify-center items-center space-x-8 grayscale opacity-60">
+                     <span class="text-2xl font-bold">LOGO 1</span>
+                     <span class="text-2xl font-bold">LOGO 2</span>
+                     <span class="text-2xl font-bold">LOGO 3</span>
+                 </div>
+            </div>
+
+            <div class="mt-10 text-center bg-[#0B2D48] text-white p-8 rounded-lg">
+                <h3 class="text-3xl font-bold">Optimieren Sie jetzt Ihren Flottenbetrieb.</h3>
+                <p class="mt-2 mb-6 text-lg max-w-2xl mx-auto">Lassen Sie uns in einem unverbindlichen 15-minütigen Gespräch analysieren, wie wir Ihre operativen Kosten senken und die Effizienz Ihrer Flotte steigern können.</p>
+                <a href="[Ihr Calendly-Link]" target="_blank" class="no-print inline-block bg-[#F37021] hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors text-lg shadow-md">
+                    Kostenlose Analyse buchen
+                </a>
+                <p class="print-only hidden text-lg font-semibold mt-4">Buchen Sie Ihre Analyse: [Ihr Calendly-Link]</p>
+                <p class="text-sm mt-4 text-gray-300 no-print">Oder fordern Sie jetzt unsere <a href="mailto:vojtech.spacek@sparrow-fachkraefte.de?subject=Anfrage%20Broschüre" class="underline hover:text-white">unverbindliche Broschüre</a> an.</p>
+            </div>
+
+        </main>
+
+        <footer class="mt-auto p-6 text-center text-xs text-gray-500 bg-white border-t">
+            <p>SPARROW Fachkräfte | Vojtěch Špaček | IČO: XXXXXXXX | www.sparrow-fachkraefte.de</p>
+            <p>Dieses Dokument ist vertraulich und nur für den adressierten Empfänger bestimmt.</p>
+        </footer>
+
+    </div>
+</body>
+</html>

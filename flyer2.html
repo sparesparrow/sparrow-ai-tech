@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angebot - SPARROW-AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!--
+    Chosen Palette: Vibrant & Professional
+    #0B2D48 (Deep Blue), #00A99D (Teal), #F37021 (Orange), #F1F1F1 (Light Gray), #FFFFFF (White)
+    CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+        }
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 2rem auto;
+            background-color: white;
+        }
+        .main-content {
+             background-color: white;
+        }
+        .service-card {
+            border-color: #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            border-color: #0B2D48;
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        @media print {
+            body, .a4-container {
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                background-color: white;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+    <div class="a4-container shadow-lg">
+        <header class="p-10 bg-white">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-4xl font-extrabold text-[#0B2D48]">SPARROW-AI</h1>
+                    <p class="text-xl text-gray-600 font-semibold tracking-tight">Ihr Partner für Technologie & Sicherheit.</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right text-sm text-gray-600">
+                        <p class="font-bold">Vojtěch Špaček, Gründer & CEO</p>
+                        <p>vojtech.spacek@sparrow-ai.de</p>
+                        <p>+420 XXX XXX XXX</p>
+                    </div>
+                    <img src="https://placehold.co/80x80/00A99D/FFFFFF?text=VS" alt="Foto von Vojtěch Špaček" class="rounded-full h-20 w-20 border-2 border-[#0B2D48]">
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content px-10 pb-10">
+            <h2 class="text-3xl font-bold text-[#0B2D48] mb-4 text-center">Transformieren Sie Ihr Unternehmen mit maßgeschneiderter Technologie.</h2>
+            <p class="text-lg text-gray-700 mb-10 text-center max-w-4xl mx-auto">Von der Absicherung Ihrer Systeme gegen Cyber-Bedrohungen bis zur Entwicklung intelligenter KI-Lösungen – wir schaffen die technologische Grundlage für Ihren Erfolg und Ihre Wettbewerbsfähigkeit.</p>
+
+            <h3 class="text-2xl font-bold text-center text-[#0B2D48] mb-6">Unsere Kernkompetenzen</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+                <div class="service-card bg-white p-5 rounded-lg border-2">
+                    <h4 class="font-bold text-lg mb-2 text-[#0B2D48]">🛡️ Cyber Security & NIS2</h4>
+                    <p class="text-sm text-gray-600">Penetrationstests, Sicherheitsrichtlinien, SIEM-Systeme und umfassende Beratung zur NIS2-Richtlinie.</p>
+                </div>
+                 <div class="service-card bg-white p-5 rounded-lg border-2">
+                    <h4 class="font-bold text-lg mb-2 text-[#0B2D48]">🤖 Entwicklung & KI</h4>
+                    <p class="text-sm text-gray-600">Maßgeschneiderte Web-/Mobilanwendungen, Systemintegration und Implementierung von KI-Agenten zur Prozessautomatisierung.</p>
+                </div>
+                 <div class="service-card bg-white p-5 rounded-lg border-2">
+                    <h4 class="font-bold text-lg mb-2 text-[#0B2D48]">⚙️ IT-Management & Hardware</h4>
+                    <p class="text-sm text-gray-600">Effiziente Linux-Serververwaltung, Migrationen und Entwicklung von Embedded Systems (ESP32, Raspberry Pi).</p>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-8 rounded-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#0B2D48] mb-4">Unser Technologie-Versprechen:</h3>
+                         <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-xl text-[#00A99D] mr-3 mt-1">✓</span><div><strong class="font-semibold">Sicherheit an erster Stelle:</strong> Wir bauen robuste und sichere Systeme, die den aktuellen gesetzlichen Anforderungen (NIS2) entsprechen.</div></li>
+                            <li class="flex items-start"><span class="text-xl text-[#00A99D] mr-3 mt-1">✓</span><div><strong class="font-semibold">Maßgeschneiderte Lösungen:</strong> Keine Standardsoftware. Wir entwickeln genau das, was Ihr Unternehmen benötigt, um effizienter zu arbeiten.</div></li>
+                            <li class="flex items-start"><span class="text-xl text-[#00A99D] mr-3 mt-1">✓</span><div><strong class="font-semibold">Zukunftsorientiert:</strong> Wir implementieren KI und Automatisierung, um Sie für die Herausforderungen von morgen zu rüsten.</div></li>
+                        </ul>
+                    </div>
+                    <div class="text-center">
+                         <h4 class="font-semibold text-gray-600 mb-2">Auszug der Technologien:</h4>
+                         <div class="flex flex-wrap justify-center gap-2">
+                             <span class="bg-gray-200 text-gray-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Linux</span>
+                             <span class="bg-gray-200 text-gray-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Qt/QML</span>
+                             <span class="bg-gray-200 text-gray-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Python</span>
+                             <span class="bg-gray-200 text-gray-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">AI Agents</span>
+                             <span class="bg-gray-200 text-gray-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">ESP32</span>
+                             <span class="bg-gray-200 text-gray-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Docker</span>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="mt-10 text-center bg-[#0B2D48] text-white p-8 rounded-lg">
+                <h3 class="text-3xl font-bold">Sind Sie bereit für den nächsten technologischen Schritt?</h3>
+                <p class="mt-2 mb-6 text-lg max-w-2xl mx-auto">Lassen Sie uns in einer kostenlosen Erstberatung analysieren, wo Ihre größten technologischen Potenziale liegen und wie wir diese gemeinsam heben können.</p>
+                <a href="[Ihr Calendly-Link]" target="_blank" class="no-print inline-block bg-[#F37021] hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors text-lg shadow-md">
+                    Kostenlose Erstberatung buchen
+                </a>
+                <p class="print-only hidden text-lg font-semibold mt-4">Buchen Sie Ihre Beratung: [Ihr Calendly-Link]</p>
+            </div>
+        </main>
+
+        <footer class="mt-auto p-6 text-center text-xs text-gray-500 bg-white border-t">
+            <p>SPARROW-AI | Ein Service von SPARROW-AI-TECH | Vojtěch Špaček | IČO: XXXXXXXX | www.sparrow-ai.de</p>
+            <p>Dieses Dokument ist vertraulich und nur für den adressierten Empfänger bestimmt.</p>
+        </footer>
+    </div>
+</body>
+</html>

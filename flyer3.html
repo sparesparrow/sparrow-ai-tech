@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angebot - SPARROW Fachkräfte</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!--
+    Chosen Palette: Vibrant & Professional
+    #0B2D48 (Deep Blue), #00A99D (Teal), #F37021 (Orange), #F1F1F1 (Light Gray), #FFFFFF (White)
+    CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+        }
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 2rem auto;
+            background-color: white;
+        }
+        .main-content {
+             background-color: white;
+        }
+        .process-step {
+            border-color: #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        .process-step:hover {
+            border-color: #00A99D;
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        @media print {
+            body, .a4-container {
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                background-color: white;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+    <div class="a4-container shadow-lg">
+        <header class="p-10 bg-white">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-4xl font-extrabold text-[#00A99D]">SPARROW Fachkräfte</h1>
+                    <p class="text-xl text-[#0B2D48] font-semibold tracking-tight">a.k.a. Montajack Sparrow</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right text-sm text-gray-600">
+                        <p class="font-bold">Vojtěch Špaček, Geschäftsführer</p>
+                        <p>vojtech.spacek@sparrow-fachkraefte.de</p>
+                        <p>+420 XXX XXX XXX</p>
+                    </div>
+                    <img src="https://placehold.co/80x80/0B2D48/FFFFFF?text=VS" alt="Foto von Vojtěch Špaček" class="rounded-full h-20 w-20 border-2 border-[#00A99D]">
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content px-10 pb-10">
+            <h2 class="text-3xl font-bold text-[#0B2D48] mb-4 text-center">Flexible und zuverlässige Arbeitskräfte für Ihr Unternehmen</h2>
+            <p class="text-lg text-gray-700 mb-10 text-center max-w-4xl mx-auto">Benötigen Sie kurzfristig motivierte Arbeitskräfte für Ihre Projekte? SPARROW Fachkräfte ist Ihr Partner für flexible Personallösungen. Wir kümmern uns um alles Administrative, damit Sie sich auf Ihr Kerngeschäft konzentrieren können.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
+                <div>
+                    <h3 class="text-2xl font-bold text-[#0B2D48] mb-4">Ihre Vorteile auf einen Blick:</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start"><span class="text-2xl text-green-500 mr-3 mt-1">✓</span><div><strong class="font-semibold">Schnelle Verfügbarkeit:</strong> Unsere Mitarbeiter können oft innerhalb weniger Tage bei Ihnen starten.</div></div>
+                        <div class="flex items-start"><span class="text-2xl text-green-500 mr-3 mt-1">✓</span><div><strong class="font-semibold">Geprüfte Kandidaten:</strong> Wir stellen sicher, dass unsere Arbeitskräfte motiviert und zuverlässig sind.</div></div>
+                        <div class="flex items-start"><span class="text-2xl text-green-500 mr-3 mt-1">✓</span><div><strong class="font-semibold">Volle Flexibilität:</strong> Egal ob für ein kurzfristiges Projekt oder zur langfristigen Unterstützung – wir passen uns Ihrem Bedarf an.</div></div>
+                         <div class="flex items-start"><span class="text-2xl text-green-500 mr-3 mt-1">✓</span><div><strong class="font-semibold">Kein administrativer Aufwand:</strong> Wir übernehmen alle vertraglichen und rechtlichen Angelegenheiten. Sie erhalten eine einfache Rechnung für die geleisteten Stunden.</div></div>
+                    </div>
+                </div>
+                 <div>
+                    <h3 class="text-2xl font-bold text-[#0B2D48] mb-4">Ideal für Branchen wie:</h3>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-gray-50 rounded-md border-l-4 border-gray-300"><p><strong>🏗️ Bau & Handwerk:</strong> Montage, Demontage, Pflasterarbeiten, Hilfsarbeiten.</p></div>
+                        <div class="p-3 bg-gray-50 rounded-md border-l-4 border-gray-300"><p><strong>🔧 Service & Wartung:</strong> Mikromobilität, Smart-Home-Systeme, Elektronik.</p></div>
+                        <div class="p-3 bg-gray-50 rounded-md border-l-4 border-gray-300"><p><strong>🧹 Reinigung & Facility:</strong> Spezialreinigung, Fensterreinigung, Poolwartung.</p></div>
+                        <div class="p-3 bg-gray-50 rounded-md border-l-4 border-gray-300"><p><strong>📦 Lager & Logistik:</strong> Allgemeine Hilfsarbeiten in Produktion und Lager.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white py-8 rounded-lg">
+                <h3 class="text-2xl font-bold text-center text-[#0B2D48] mb-6">Unser unkomplizierter Prozess</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="process-step bg-white p-6 rounded-lg border-2">
+                        <div class="text-4xl text-[#00A99D] font-bold mb-2">1</div>
+                        <h4 class="font-bold text-lg mb-1">Bedarfsanalyse</h4>
+                        <p class="text-sm text-gray-600">Wir besprechen Ihren genauen Bedarf und die Anforderungen an die Arbeitskräfte.</p>
+                    </div>
+                     <div class="process-step bg-white p-6 rounded-lg border-2">
+                        <div class="text-4xl text-[#00A99D] font-bold mb-2">2</div>
+                        <h4 class="font-bold text-lg mb-1">Sorgfältige Auswahl</h4>
+                        <p class="text-sm text-gray-600">Wir wählen die passenden Kandidaten aus unserem geprüften Pool aus.</p>
+                    </div>
+                     <div class="process-step bg-white p-6 rounded-lg border-2">
+                        <div class="text-4xl text-[#00A99D] font-bold mb-2">3</div>
+                        <h4 class="font-bold text-lg mb-1">Schneller Einsatz</h4>
+                        <p class="text-sm text-gray-600">Das ausgewählte Personal startet pünktlich und einsatzbereit bei Ihnen vor Ort.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 text-center bg-[#00A99D] text-white p-8 rounded-lg">
+                <h3 class="text-3xl font-bold">Nächster Schritt?</h3>
+                <p class="mt-2 mb-6 text-lg max-w-2xl mx-auto">Lassen Sie uns in einem unverbindlichen 15-minütigen Gespräch herausfinden, wie wir Sie konkret unterstützen können.</p>
+                <a href="[Ihr Calendly-Link]" target="_blank" class="no-print inline-block bg-[#F37021] hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors text-lg shadow-md">
+                    Gespräch vereinbaren
+                </a>
+                <p class="print-only hidden text-lg font-semibold mt-4">Vereinbaren Sie Ihr Gespräch: [Ihr Calendly-Link]</p>
+            </div>
+        </main>
+
+        <footer class="mt-auto p-6 text-center text-xs text-gray-500 bg-white border-t">
+            <p>SPARROW Fachkräfte | Vojtěch Špaček | IČO: XXXXXXXX | www.sparrow-fachkraefte.de</p>
+            <p>Dieses Dokument ist vertraulich und nur für den adressierten Empfänger bestimmt.</p>
+        </footer>
+    </div>
+</body>
+</html>
