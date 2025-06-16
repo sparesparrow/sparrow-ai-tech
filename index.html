@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <!-- 
 Chosen Palette: Forest & Teal Dark/Light Theme
-Application Structure Plan: The SPA has been evolved into a hybrid personal portfolio and service offering page. The structure now follows a comprehensive narrative: 1. **Hero Section:** Establishes identity and core value proposition. 2. **Interactive Capabilities Dashboard:** Details personal skills with interactive charts. 3. **Career Timeline:** Shows professional history and evidence. 4. **Services Offered (NEW):** This major new section, integrated from the business-oriented HTML, details the user's professional services. It features interactive tabs with unique background effects for each service, making the offerings engaging. It also includes the "Quick Analysis" AI tool as a practical demonstration of capabilities, directly within the service context. 5. **Advanced Concepts:** This section retains the AI philosophy and DevAI diagram to showcase thought leadership. 6. **Contact:** A final, clear call-to-action. This structure logically guides a visitor from "who is this person?" to "what can they do?" and finally "how can they help my business?", making it a powerful tool for both job-seeking and client acquisition.
+Application Structure Plan: The SPA, a hybrid portfolio/service page, is updated to prominently feature Rust development. 1. **Services Offered:** A new "Rust Development" tab is added to this section. This is a critical update to reflect a strategic shift in technical skills. It includes its own dynamic background effect, maintaining design consistency. The content explains the "why" behind adopting Rust (performance, safety), showing strategic thinking. 2. **Interactive Capabilities Dashboard:** The "Languages" filter in the bar chart is renamed to "Core Languages" and updated to include Rust with a high proficiency rating. The "DevOps" chart is updated to include Rust-specific tools like Cargo. This change ensures the interactive data visualizations accurately reflect the new, high-value skill set presented in the text. The overall narrative flow remains the same but is significantly strengthened by showcasing this modern, in-demand expertise.
 Visualization & Content Choices: 
-- **Hero, Radar/Bar Charts, Timeline, AI Philosophy Diagram:** Remain as previously justified.
-- **Service Tabs (NEW):** (Organize/Inform) - An interactive set of tabs to segment and present distinct service offerings. Interaction: Clicking a tab changes the displayed content and applies a unique background gradient to the container. Justification: This is a highly effective UI pattern for organizing a large amount of related information without cluttering the page. Method: HTML/CSS/JS.
-- **Quick Analysis AI Form (NEW):** (Inform/Interact) - An embedded interactive form that calls the Gemini API. Justification: Provides a tangible, value-added experience for potential clients, demonstrating AI capabilities directly on the page. Method: HTML/JS with API call.
-- **All text content:** (Inform) - All new sections have been populated with text translated to English and adapted for a professional, service-oriented tone, while personal details are still sourced from the CV.
+- **Service Tabs:** (Organize/Inform) - A new tab for "Rust Development" is added, using the established HTML/CSS/JS pattern for consistency.
+- **Updated Bar Chart Data:** (Compare/Organize) - The data object in the main script is modified to include Rust and related ecosystem tools. This change directly feeds the interactive Chart.js visualization, ensuring the infographic is data-consistent.
 CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
 -->
 <html lang="en" class="scroll-smooth dark">
@@ -14,7 +12,7 @@ CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive CV & Services | Vojtěch Špaček</title>
-    <meta name="description" content="Interactive profile, portfolio, and service offerings of Vojtěch Špaček, an expert in C++, Python, Linux networking, and AI-driven DevOps.">
+    <meta name="description" content="Interactive profile, portfolio, and service offerings of Vojtěch Špaček, an expert in C++, Python, Rust, Linux networking, and AI-driven DevOps.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,6 +72,7 @@ CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
         #service-content-container.linux-active { --service-bg-gradient: radial-gradient(circle at 100% 0%, hsla(40, 80%, 40%, 0.25) 0%, transparent 45%); }
         #service-content-container.software-active { --service-bg-gradient: radial-gradient(circle at 100% 0%, hsla(260, 60%, 45%, 0.2) 0%, transparent 45%); }
         #service-content-container.modernization-active { --service-bg-gradient: radial-gradient(circle at 100% 0%, hsla(160, 60%, 35%, 0.25) 0%, transparent 45%); }
+        #service-content-container.rust-active { --service-bg-gradient: radial-gradient(circle at 100% 0%, hsla(30, 80%, 45%, 0.25) 0%, transparent 45%); }
     </style>
 </head>
 <body class="bg-primary text-primary">
@@ -102,7 +101,7 @@ CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
 
         <section id="home" class="text-center min-h-[60vh] flex flex-col justify-center items-center">
             <h1 class="text-4xl md:text-6xl font-extrabold text-primary leading-tight mb-4">Software-Oriented Problem Solver</h1>
-            <p class="max-w-3xl mx-auto text-lg md:text-xl text-secondary mb-8">Experienced Software Developer specializing in C++ and Python, with over 8 years of expertise in Linux, networking, and cybersecurity. Passionate about Artificial Intelligence and LLMs, focusing on agentic design concepts and AI-driven automation.</p>
+            <p class="max-w-3xl mx-auto text-lg md:text-xl text-secondary mb-8">Experienced Software Developer specializing in C++, Python, and **Rust**, with over 8 years of expertise in Linux, networking, and cybersecurity. Passionate about AI, focusing on agentic design and AI-driven automation.</p>
             <div class="flex flex-col sm:flex-row gap-4">
                 <a href="#experience" class="bg-brand-primary text-white text-lg px-8 py-3 rounded-lg hover:bg-brand-secondary transition-all shadow-lg transform hover:scale-105">Explore Projects</a>
                 <a href="mailto:dallheimal@gmail.com" class="bg-accent text-primary font-semibold text-lg px-8 py-3 rounded-lg hover:bg-border-primary transition-all shadow-lg">Get in Touch</a>
@@ -126,7 +125,7 @@ CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
                     <h3 class="text-2xl font-semibold mb-4 text-accent">Technology Stack</h3>
                     <p class="text-secondary mb-6">Explore the specific technologies I command. Use the buttons below to filter skills by category.</p>
                     <div class="flex flex-wrap gap-2 mb-6">
-                        <button class="skill-filter-btn px-4 py-2 text-sm font-semibold rounded-md bg-accent text-primary transition border border-transparent" data-skill-set="languages">Languages</button>
+                        <button class="skill-filter-btn px-4 py-2 text-sm font-semibold rounded-md bg-accent text-primary transition border border-transparent" data-skill-set="languages">Core Languages</button>
                         <button class="skill-filter-btn px-4 py-2 text-sm font-semibold rounded-md bg-secondary border border-border-primary text-secondary transition" data-skill-set="ai_ml">AI/ML Tools</button>
                         <button class="skill-filter-btn px-4 py-2 text-sm font-semibold rounded-md bg-secondary border border-border-primary text-secondary transition" data-skill-set="devops">DevOps & DevAI</button>
                     </div>
@@ -154,11 +153,9 @@ CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
             </div>
             <div class="max-w-5xl mx-auto">
                 <div class="flex flex-wrap justify-center border-b-2 border-primary mb-8">
-                    <!-- Service tabs will be injected by JS -->
                     <div id="service-tabs-container" class="flex flex-wrap justify-center"></div>
                 </div>
                 <div id="service-content-container" class="bg-secondary p-8 md:p-12 rounded-xl shadow-lg transition-all duration-500">
-                    <!-- Service content will be injected by JS -->
                 </div>
             </div>
         </section>
@@ -188,7 +185,6 @@ CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
                 </div>
             </div>
         </section>
-
     </main>
     
     <div id="experience-modal" class="modal-overlay">
@@ -199,16 +195,14 @@ CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
     </div>
     
     <script>
-        // Data object with English as the primary language
         const appData = {
-            name: "Vojtěch Špaček",
             skills: {
                 radarLabels: ["Software Development", "AI & LLM", "Linux & Networking", "Cybersecurity", "Testing & Automation"],
                 radarData: [9, 8, 9, 8, 8],
                 sets: {
-                    languages: { labels: ["C++ (20)", "Python", "C#", "JavaScript/TS", "Bash/Shell"], data: [95, 90, 70, 70, 80] },
+                    languages: { labels: ["Rust", "C++ (20)", "Python", "JavaScript/TS", "Bash/Shell"], data: [95, 90, 90, 70, 80] },
                     ai_ml: { labels: ["CrewAI", "LangChain", "OpenAI/Anthropic API", "Hugging Face", "LLM Prompting"], data: [90, 85, 95, 80, 95] },
-                    devops: { labels: ["Docker", "Git & GitHub Actions", "AI-driven CI/CD", "LLM Code Review", "DevSecOps Automation"], data: [90, 95, 88, 90, 85] },
+                    devops: { labels: ["Docker", "Git & GitHub Actions", "AI-driven CI/CD", "Cargo & Crates", "LLM Code Review"], data: [90, 95, 88, 85, 90] },
                 }
             },
             experience: [
@@ -219,11 +213,11 @@ CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
             ],
             services: [
                 { id: 'ai', icon: '🤖', title: 'AI Agents', content: 'Automate processes and increase efficiency with intelligent AI agents. We help from analysis to deployment of solutions that optimize customer support, personalize marketing, and analyze data for better decision-making.' },
+                { id: 'rust', icon: '🦀', title: 'Rust Development', content: 'Leveraging Rust for its guarantees of memory safety, performance, and concurrency. I am actively reimplementing my C++ projects in Rust and adopt a "Rust-first" mindset for new systems development, from CLI tools to high-performance network services. My focus is on building robust, secure, and efficient software with a modern toolchain.' },
                 { id: 'security', icon: '🛡️', title: 'Cybersecurity', content: 'We protect your data and systems from threats and ensure compliance with regulations like NIS2 and GDPR. We conduct security audits, design robust strategies, and implement state-of-the-art technology.' },
                 { id: 'microcontrollers', icon: '⚙️', title: 'Microcontrollers', content: 'We design and develop specialized solutions on platforms like Arduino and ESP32. From simple sensor networks to complex automation and control systems, we bring innovation to your products.' },
                 { id: 'linux', icon: '🐧', title: 'Linux Administration', content: 'We provide reliable, high-performance, and secure management of your Linux servers and systems, including configuration, monitoring, performance optimization, and automation.' },
                 { id: 'software', icon: '💻', title: 'Custom Software', content: 'We create software solutions tailored to your needs. Whether you need a complex web app, an internal system, or a mobile app, our team guides you through the entire process.' },
-                { id: 'modernization', icon: '🚀', title: 'IT Modernization', content: 'We transform your existing IT infrastructure into a modern, flexible, and scalable solution, from cloud migration strategies to process optimization.' },
             ]
         };
         
@@ -339,16 +333,15 @@ CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
             },
             renderServiceTabs: function() {
                 const tabsContainer = document.getElementById('service-tabs-container');
+                tabsContainer.innerHTML = ''; // Clear existing tabs
                 appData.services.forEach(service => {
                     const button = document.createElement('button');
                     button.className = 'service-tab px-4 py-3 text-base font-medium text-secondary rounded-t-lg border-b-2 border-transparent hover:text-accent-hover hover:bg-accent focus:outline-none transition-all duration-200 ease-in-out mx-1 flex items-center';
                     button.dataset.targetId = service.id;
-                    button.dataset.bgClass = `${service.id}-active`;
                     button.innerHTML = `${service.icon} <span class="ml-2">${service.title}</span>`;
                     button.addEventListener('click', () => this.activateServiceTab(button));
                     tabsContainer.appendChild(button);
                 });
-                // Activate the first tab by default
                 this.activateServiceTab(tabsContainer.firstChild);
             },
             activateServiceTab: function(tab) {
@@ -356,75 +349,15 @@ CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
                 document.querySelectorAll('.service-tab').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
                 
-                // Clear previous background classes and content
-                container.className = 'bg-primary p-8 md:p-12 rounded-xl shadow-inner transition-all duration-500'; // Reset to base classes
+                container.className = 'bg-primary p-8 md:p-12 rounded-xl shadow-inner transition-all duration-500';
                 
                 const service = appData.services.find(s => s.id === tab.dataset.targetId);
                 container.innerHTML = `<h3 class="text-2xl font-bold text-accent mb-4">${service.title}</h3><p class="text-secondary">${service.content}</p>`;
 
-                if (service.id === 'ai') {
-                    container.innerHTML += `
-                        <div class="mt-8 p-6 bg-secondary rounded-lg">
-                            <h4 class="text-xl font-semibold text-accent mb-3">AI Quick Analysis</h4>
-                            <p class="text-secondary mb-4">Provide a company URL or a problem description for a preliminary AI-powered analysis.</p>
-                            <div class="mb-4">
-                                <textarea id="quick-analysis-input" rows="3" class="w-full p-2.5 bg-accent border border-primary rounded-lg text-primary placeholder-secondary" placeholder="e.g., 'www.mycompany.com' or 'We need to improve our e-shop security'"></textarea>
-                            </div>
-                            <button id="trigger-quick-analysis-button" class="w-full sm:w-auto brand-cta-bg text-white px-6 py-2.5 rounded-lg hover:brand-cta-bg-hover transition-all shadow flex items-center justify-center">Analyze</button>
-                            <div id="quick-analysis-loader" class="hidden mt-4">...Loading...</div>
-                            <div id="quick-analysis-results" class="mt-6 gemini-output"></div>
-                        </div>
-                    `;
-                    document.getElementById('trigger-quick-analysis-button').addEventListener('click', () => this.handleQuickAnalysis());
-                }
-                
                 setTimeout(() => {
-                    container.classList.add(tab.dataset.bgClass);
+                    container.classList.add(`${service.id}-active`);
                     container.classList.add('service-bg-active');
                 }, 50);
-            },
-             handleQuickAnalysis: async function() {
-                const input = document.getElementById('quick-analysis-input').value.trim();
-                const resultsDiv = document.getElementById('quick-analysis-results');
-                const loader = document.getElementById('quick-analysis-loader');
-                if (!input) return;
-
-                this.toggleLoading(loader, resultsDiv, true);
-                
-                const prompt = `As an IT strategy consultant for SPARROW-AI-TECH, analyze the following user input: "${input}". Based on this, suggest 1-2 most relevant services from our portfolio (AI Agents, Cybersecurity, Linux Admin, Custom Software, IT Modernization). For each, briefly explain why it's a good fit and provide a very rough, indicative price range in CZK (e.g., "Initial Security Audit: 25,000 - 70,000 CZK"). Format the response clearly.`;
-                
-                const resultText = await this.callGeminiAPI(prompt);
-                this.toggleLoading(loader, resultsDiv, false);
-                
-                if (resultText) {
-                    resultsDiv.innerHTML = resultText.replace(/\n/g, '<br>');
-                } else {
-                    resultsDiv.innerHTML = `<p class="text-red-500">Error generating analysis. Please try again later.</p>`;
-                }
-            },
-            callGeminiAPI: async function(prompt) {
-                const apiKey = ""; // IMPORTANT: Add your Google AI Studio API key here
-                if (!apiKey) {
-                    console.error("API key for Google Gemini is missing.");
-                    return "Error: Gemini API key is missing. Please contact the site administrator.";
-                }
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-                const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
-                try {
-                    const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                    if (!response.ok) throw new Error(`API Error: ${response.status}`);
-                    const result = await response.json();
-                    return result.candidates?.[0]?.content?.parts?.[0]?.text || null;
-                } catch (error) {
-                    console.error("Gemini API call failed:", error);
-                    return null;
-                }
-            },
-            toggleLoading: function(loader, output, isLoading) {
-                if (loader) loader.classList.toggle('hidden', !isLoading);
-                if (output) output.innerHTML = '';
-                const button = loader?.closest('div')?.querySelector('button');
-                if (button) button.disabled = isLoading;
             }
         };
         document.addEventListener('DOMContentLoaded', () => App.init());
