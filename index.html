@@ -249,6 +249,10 @@
         @media (max-width: 600px) { .floating-contact-btn { bottom: 24px; right: 12px; width: 48px; height: 48px; font-size: 1.5rem; } }
         h2, h3, h4 { opacity: 0; transform: translateY(20px); transition: opacity 0.7s, transform 0.7s; }
         h2.visible, h3.visible, h4.visible { opacity: 1; transform: none; }
+        .card, .article-card, .testimonial-card, .faq-item, section, .skills, .testimonials-carousel {
+          box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+          border-radius: 12px;
+        }
     </style>
 </head>
 <body class="bg-stone-50 dark:bg-stone-950 text-stone-800 dark:text-stone-200 transition-colors duration-300">
@@ -709,6 +713,31 @@
             </div>
             <div class="bg-white dark:bg-stone-800 rounded-lg shadow p-4 flex items-center justify-center w-40 h-20" aria-label="Logo společnosti 4">
               <svg width="100" height="40" viewBox="0 0 100 40" role="img" aria-label="Logo společnosti 4" tabindex="0"><title>Logo společnosti 4</title><rect width="100" height="40" rx="8" fill="#f0fdfa"/><text x="50" y="25" text-anchor="middle" font-size="16" fill="#0d9488" font-weight="bold">LOGO 4</text></svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section at the bottom of main -->
+        <section id="faq" style="margin-top:3em;">
+          <h2>FAQ</h2>
+          <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq1" id="faq1-btn" itemprop="name">How can I get a free consultation?</button>
+              <div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-btn" hidden itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text">Use the contact form above or the WhatsApp button to request a free consultation.</p>
+              </div>
+            </div>
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq2" id="faq2-btn" itemprop="name">What industries do you serve?</button>
+              <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-btn" hidden itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text">We serve a wide range of industries, including e-commerce, finance, healthcare, and technology.</p>
+              </div>
+            </div>
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq3" id="faq3-btn" itemprop="name">Can you help with NIS2 compliance?</button>
+              <div class="faq-answer" id="faq3" role="region" aria-labelledby="faq3-btn" hidden itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text">Yes, we offer comprehensive support for NIS2 compliance, including audits, analysis, and implementation.</p>
+              </div>
             </div>
           </div>
         </section>
