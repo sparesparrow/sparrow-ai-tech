@@ -220,6 +220,33 @@
         .dark .testimonial-card blockquote { border-left-color: #14b8a6; }
         .testimonial-card .author-info { min-height: 40px; }
         .benefit-icon { width: 3rem; height: 3rem; margin-bottom: 1rem; } /* For SVG icons */
+        .animated-hero-bg {
+          background: linear-gradient(270deg, #f0fdfa, #e0e7ef, #f0fdfa, #e0e7ef);
+          background-size: 400% 400%;
+          animation: gradientMove 12s ease infinite;
+        }
+        @keyframes gradientMove {
+          0% {background-position:0% 50%}
+          50% {background-position:100% 50%}
+          100% {background-position:0% 50%}
+        }
+        .testimonials-carousel {
+          position: relative; max-width: 700px; margin: 0 auto;
+        }
+        .testimonial-slide { display: none; }
+        .testimonial-slide.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .carousel-controls { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; }
+        .carousel-btn { background: #0d9488; color: #fff; border: none; border-radius: 50%; width: 2.5rem; height: 2.5rem; font-size: 1.5rem; cursor: pointer; transition: background 0.2s; }
+        .carousel-btn:focus { outline: 2px solid #fff; background: #14b8a6; }
+        .floating-contact-btn {
+          position: fixed; bottom: 90px; right: 24px; z-index: 10001;
+          background: #25d366; color: #fff; border-radius: 50%; width: 56px; height: 56px;
+          display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+          font-size: 2rem; transition: background 0.2s;
+        }
+        .floating-contact-btn:focus, .floating-contact-btn:hover { background: #128c7e; }
+        @media (max-width: 600px) { .floating-contact-btn { bottom: 24px; right: 12px; width: 48px; height: 48px; font-size: 1.5rem; } }
     </style>
 </head>
 <body class="bg-stone-50 dark:bg-stone-950 text-stone-800 dark:text-stone-200 transition-colors duration-300">
@@ -538,25 +565,32 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-stone-800 dark:text-white" data-translate-key="references_title">Reference</h2>
                     <p class="text-lg text-stone-600 dark:text-stone-300 mt-2 max-w-2xl mx-auto" data-translate-key="references_subtitle">Spokojenost našich klientů je pro nás nejvyšší prioritou.</p>
                 </div>
-                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <div class="testimonial-card bg-white dark:bg-stone-800 p-8 rounded-xl shadow-lg">
-                        <blockquote class="text-stone-600 dark:text-stone-300 mb-4">
-                            <p>&nbsp;</p> 
-                        </blockquote>
-                        <div class="author-info">
-                            <p class="text-right font-semibold text-teal-700 dark:text-teal-400">&nbsp;</p>
-                            <p class="text-right text-sm text-stone-500 dark:text-stone-400">&nbsp;</p>
-                        </div>
+                <div class="testimonials-carousel" role="region" aria-label="Reference carousel">
+                  <div class="testimonial-slide active" tabindex="0" aria-label="Testimonial 1">
+                    <blockquote class="text-stone-600 dark:text-stone-300 mb-4">"SPARROW-AI-TECH nám pomohli s implementací AI agenta, který zefektivnil naši zákaznickou podporu o 40 %. Skvělá spolupráce!"</blockquote>
+                    <div class="author-info">
+                      <p class="text-right font-semibold text-teal-700 dark:text-teal-400">Jan Novák</p>
+                      <p class="text-right text-sm text-stone-500 dark:text-stone-400">CEO, ExampleCorp</p>
                     </div>
-                    <div class="testimonial-card bg-white dark:bg-stone-800 p-8 rounded-xl shadow-lg">
-                        <blockquote class="text-stone-600 dark:text-stone-300 mb-4">
-                             <p>&nbsp;</p>
-                        </blockquote>
-                        <div class="author-info">
-                            <p class="text-right font-semibold text-teal-700 dark:text-teal-400">&nbsp;</p>
-                            <p class="text-right text-sm text-stone-500 dark:text-stone-400">&nbsp;</p>
-                        </div>
+                  </div>
+                  <div class="testimonial-slide" tabindex="0" aria-label="Testimonial 2">
+                    <blockquote class="text-stone-600 dark:text-stone-300 mb-4">"Díky SPARROW-AI-TECH jsme splnili požadavky NIS2 a zvýšili bezpečnost našich systémů. Doporučuji!"</blockquote>
+                    <div class="author-info">
+                      <p class="text-right font-semibold text-teal-700 dark:text-teal-400">Petra Svobodová</p>
+                      <p class="text-right text-sm text-stone-500 dark:text-stone-400">IT Manager, SecureIT</p>
                     </div>
+                  </div>
+                  <div class="testimonial-slide" tabindex="0" aria-label="Testimonial 3">
+                    <blockquote class="text-stone-600 dark:text-stone-300 mb-4">"Oceňuji individuální přístup a rychlou komunikaci. Modernizace IT infrastruktury proběhla hladce a bez výpadků."</blockquote>
+                    <div class="author-info">
+                      <p class="text-right font-semibold text-teal-700 dark:text-teal-400">Martin Dvořák</p>
+                      <p class="text-right text-sm text-stone-500 dark:text-stone-400">CTO, TechFlow</p>
+                    </div>
+                  </div>
+                  <div class="carousel-controls" role="group" aria-label="Carousel controls">
+                    <button class="carousel-btn" id="carousel-prev" aria-label="Předchozí reference" tabindex="0">&#8592;</button>
+                    <button class="carousel-btn" id="carousel-next" aria-label="Další reference" tabindex="0">&#8594;</button>
+                  </div>
                 </div>
                  <div class="text-center mt-12">
                     <p class="text-stone-500 dark:text-stone-400 italic" data-translate-key="references_more_coming_soon">Další reference budou brzy doplněny.</p>
@@ -797,5 +831,50 @@
     </div>
     
     <script src="site.js"></script>
+    <script>
+    // Modal focus trap and Esc support
+    function trapFocus(modal) {
+      const focusable = modal.querySelectorAll('a, button, textarea, input, select, [tabindex]:not([tabindex="-1"])');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      modal.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+          } else {
+            if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+          }
+        }
+        if (e.key === 'Escape') {
+          modal.classList.remove('active');
+        }
+      });
+      setTimeout(() => first && first.focus(), 10);
+    }
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+      modal.addEventListener('transitionend', function() {
+        if (modal.classList.contains('active')) trapFocus(modal);
+      });
+    });
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) modal.classList.remove('active');
+      });
+    });
+    document.querySelectorAll('.modal-close-button').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const modal = btn.closest('.modal-overlay');
+        modal.classList.remove('active');
+      });
+    });
+    // Fade-in animation for modals
+    const style = document.createElement('style');
+    style.textContent = `.modal-overlay { opacity:0; transition:opacity 0.3s; } .modal-overlay.active { opacity:1; }`;
+    document.head.appendChild(style);
+    </script>
+    <!-- Floating WhatsApp contact button (before </body>) -->
+    <a href="https://wa.me/420776168749" class="floating-contact-btn" aria-label="Kontaktujte nás přes WhatsApp" target="_blank" rel="noopener">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.65.87 5.1 2.36 7.13L4 29l7.13-2.36A11.93 11.93 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 21.5c-2.1 0-4.09-.65-5.74-1.77l-.41-.26-4.24 1.41 1.41-4.24-.26-.41A9.47 9.47 0 0 1 6.5 15c0-5.24 4.26-9.5 9.5-9.5s9.5 4.26 9.5 9.5-4.26 9.5-9.5 9.5zm5.13-7.36c-.28-.14-1.65-.81-1.9-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.44-2.25-1.4-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.51.14-.17.18-.29.28-.48.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.54-.45-.47-.62-.48-.16-.01-.34-.01-.52-.01-.18 0-.48.07-.73.34-.25.27-.97.95-.97 2.3s.99 2.67 1.13 2.86c.14.18 1.95 2.98 4.74 4.06.66.23 1.18.37 1.58.47.66.17 1.26.15 1.73.09.53-.08 1.65-.67 1.89-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.18-.53-.32z"/></svg>
+    </a>
 </body>
 </html>
