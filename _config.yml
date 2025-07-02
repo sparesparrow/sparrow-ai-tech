@@ -1,0 +1,12 @@
+# The title of your site
+title: Sparrow AI Tech
+
+# A short description of your site
+description: Custom AI/ML Solutions, Cybersecurity & IT Services
+
+# The theme to use for your Jekyll site
+theme: jekyll-theme-minimal
+
+# Optional: Add plugins like jekyll-seo-tag for better SEO
+plugins:
+  - jekyll-seo-tag
