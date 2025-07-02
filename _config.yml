@@ -5,7 +5,7 @@ title: Sparrow AI Tech
 description: Custom AI/ML Solutions, Cybersecurity & IT Services
 
 # The theme to use for your Jekyll site
-theme: jekyll-theme-minimal
+theme: jekyll-theme-hacker
 
 # Optional: Add plugins like jekyll-seo-tag for better SEO
 plugins:
