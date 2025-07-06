@@ -11,9 +11,9 @@ const prevBtn = document.getElementById('carousel-prev');
 const nextBtn = document.getElementById('carousel-next');
 function showTestimonial(idx) {
   slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === idx);
-    slide.setAttribute('tabindex', i === idx ? '0' : '-1');
-    slide.setAttribute('aria-hidden', i !== idx);
+    slide?.classList.toggle('active', i === idx);
+    slide?.setAttribute('tabindex', i === idx ? '0' : '-1');
+    slide?.setAttribute('aria-hidden', i !== idx);
   });
 }
 if (prevBtn && nextBtn && slides.length) {
@@ -27,11 +27,13 @@ if (prevBtn && nextBtn && slides.length) {
     showTestimonial(currentTestimonial);
     nextBtn.focus();
   });
-  // Keyboard navigation
-  document.querySelector('.testimonials-carousel').addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') prevBtn.click();
-    if (e.key === 'ArrowRight') nextBtn.click();
-  });
+  const carousel = document.querySelector('.testimonials-carousel');
+  if (carousel) {
+    carousel.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') prevBtn.click();
+      if (e.key === 'ArrowRight') nextBtn.click();
+    });
+  }
   showTestimonial(currentTestimonial);
 }
 
@@ -76,15 +78,19 @@ function getCurrentLang() {
   return localStorage.getItem('language') || 'cs';
 }
 
-document.getElementById('site-lang-switcher').addEventListener('change', function(e) {
-  const lang = e.target.value;
-  localStorage.setItem('language', lang);
-  location.reload();
-});
+const siteLangSwitcher = document.getElementById('site-lang-switcher');
+if (siteLangSwitcher) {
+  siteLangSwitcher.addEventListener('change', function(e) {
+    const lang = e.target.value;
+    localStorage.setItem('language', lang);
+    location.reload();
+  });
+}
 
 window.addEventListener('DOMContentLoaded', async () => {
   const lang = getCurrentLang();
-  document.getElementById('site-lang-switcher').value = lang;
+  const siteLangSwitcher = document.getElementById('site-lang-switcher');
+  if (siteLangSwitcher) siteLangSwitcher.value = lang;
   await applyTranslations(lang);
   // ... existing code ...
 });
@@ -108,9 +114,11 @@ async function loadArticle(articleKey) {
 
 function renderMarkdownInModal(md) {
   if (window.marked) {
-    document.getElementById('article-modal-body').innerHTML = window.marked.parse(md);
+    const modalBody = document.getElementById('article-modal-body');
+    if (modalBody) modalBody.innerHTML = window.marked.parse(md);
   } else {
-    document.getElementById('article-modal-body').innerText = md;
+    const modalBody = document.getElementById('article-modal-body');
+    if (modalBody) modalBody.innerText = md;
   }
 }
 
@@ -120,7 +128,8 @@ function setupArticleButtons() {
     btn.addEventListener('click', function() {
       const articleKey = btn.getAttribute('data-article-key');
       loadArticle(articleKey);
-      document.getElementById('article-modal-overlay').classList.add('active');
+      const modal = document.getElementById('article-modal-overlay');
+      if (modal) modal.classList.add('active');
     });
   });
 }
