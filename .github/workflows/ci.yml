@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies (if package.json exists)
+        run: |
+          if [ -f package.json ]; then npm install; fi
+      - name: Lint JavaScript (if ESLint config exists)
+        run: |
+          if [ -f package.json ] && [ -f .eslintrc.js ]; then npx eslint .; else echo "No ESLint config found, skipping JS lint."; fi
+      - name: Lint HTML (if htmlhint config exists)
+        run: |
+          if [ -f .htmlhintrc ]; then npx htmlhint "**/*.html"; else echo "No HTMLHint config found, skipping HTML lint."; fi
+      - name: Lint CSS (if stylelint config exists)
+        run: |
+          if [ -f .stylelintrc ]; then npx stylelint "**/*.css"; else echo "No Stylelint config found, skipping CSS lint."; fi
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 
