@@ -253,7 +253,7 @@
           box-shadow: 0 4px 16px rgba(0,0,0,0.08);
           border-radius: 12px;
         }
-        // Timeline styles
+        /* Timeline styles */
         .timeline-list {
           list-style: none;
           margin: 0;
@@ -806,6 +806,59 @@
             </li>
           </ol>
         </section>
+
+        <!-- Why MCP? Why This Stack? Section -->
+        <section id="why-mcp" class="my-12">
+          <h2 class="text-2xl font-bold mb-4" data-translate-key="why_mcp_title">Proč MCP? Proč tento stack?</h2>
+          <p class="mb-4 text-stone-600 dark:text-stone-300" data-translate-key="why_mcp_intro">
+            Vývoj agentních AI systémů přináší nové výzvy – zejména tzv. "prompt rot", kdy se důležité prompty ztrácejí, nejsou verzované a brání efektivní spolupráci. MCP (Model Context Protocol) je otevřený standard, který řeší tuto fragmentaci a umožňuje interoperabilitu mezi nástroji, agenty a vývojáři.
+          </p>
+          <ul class="list-disc list-inside mb-4 text-stone-600 dark:text-stone-300">
+            <li data-translate-key="why_mcp_point1"><strong>Architektonické inovace:</strong> MutablePrompt umožňuje konverzi promptů mezi formáty (JSON, MDC, PGAI, šablony) bez zásahu do jádra serveru. Modularita a přepis do Rustu zajišťují výkon, bezpečnost a dlouhodobou udržitelnost.</li>
+            <li data-translate-key="why_mcp_point2"><strong>Otevřené standardy a komunita:</strong> Všechny projekty jsou open-source (MIT licence), s důrazem na dokumentaci, kontejnerizaci a automatizované CI/CD. Aktivní zapojení do MCP komunity a viditelnost na specializovaných platformách.</li>
+            <li data-translate-key="why_mcp_point3"><strong>Strategická doporučení:</strong> Důraz na stabilitu, urychlení Rust přepisu, formální prezentace toolchainu jako jednotného stacku a posílení komunitní angažovanosti.</li>
+          </ul>
+          <a href="#" id="read-full-analysis-link" class="text-teal-700 dark:text-teal-400 underline" data-translate-key="why_mcp_read_full">Přečtěte si celou analýzu</a>
+        </section>
+
+        <!-- MCP Ecosystem Section -->
+        <section id="mcp-ecosystem" class="my-12">
+          <h2 class="text-2xl font-bold mb-4" data-translate-key="mcp_ecosystem_title">MCP Ekosystém: Otevřený Stack pro Agentní AI</h2>
+          <p class="mb-6 text-stone-600 dark:text-stone-300" data-translate-key="mcp_ecosystem_intro">
+            Naše open-source projekty tvoří ucelený ekosystém pro vývoj agentních AI systémů na bázi Model Context Protocolu (MCP). Každý nástroj řeší klíčovou výzvu v oblasti správy promptů, orchestrací projektů a návrhu workflow. Všechny projekty jsou dostupné na GitHubu a vítáme příspěvky komunity.
+          </p>
+          <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h3 class="font-semibold text-teal-700 dark:text-teal-400 mb-2" data-translate-key="mcp_prompts_title">mcp-prompts</h3>
+              <p class="mb-2 text-stone-600 dark:text-stone-300" data-translate-key="mcp_prompts_desc">Server pro správu promptů a šablon s verzováním, více úložišti (souborový systém, PostgreSQL, MDC) a rozhraním MutablePrompt pro konverzi mezi formáty. Řeší problém "prompt rot" a je základním stavebním kamenem MLOps pro AI agenty.</p>
+              <a href="https://github.com/sparesparrow/mcp-prompts" target="_blank" rel="noopener" class="text-teal-700 dark:text-teal-400 underline">GitHub</a>
+            </div>
+            <div>
+              <h3 class="font-semibold text-teal-700 dark:text-teal-400 mb-2" data-translate-key="mcp_prompts_rs_title">mcp-prompts-rs</h3>
+              <p class="mb-2 text-stone-600 dark:text-stone-300" data-translate-key="mcp_prompts_rs_desc">Výkonný přepis mcp-prompts v jazyce Rust pro vyšší stabilitu, bezpečnost a škálovatelnost. Zaměřeno na produkční nasazení a budoucí rozšíření.</p>
+              <a href="https://github.com/sparesparrow/mcp-prompts-rs" target="_blank" rel="noopener" class="text-teal-700 dark:text-teal-400 underline">GitHub</a>
+            </div>
+            <div>
+              <h3 class="font-semibold text-teal-700 dark:text-teal-400 mb-2" data-translate-key="mcp_project_orchestrator_title">mcp-project-orchestrator</h3>
+              <p class="mb-2 text-stone-600 dark:text-stone-300" data-translate-key="mcp_project_orchestrator_desc">Automatizuje zakládání nových MCP projektů, správu šablon a generování diagramů. Umožňuje agentům vytvářet projekty na základě požadavků uživatele.</p>
+              <a href="https://github.com/sparesparrow/mcp-project-orchestrator" target="_blank" rel="noopener" class="text-teal-700 dark:text-teal-400 underline">GitHub</a>
+            </div>
+            <div>
+              <h3 class="font-semibold text-teal-700 dark:text-teal-400 mb-2" data-translate-key="mcp_router_title">mcp-router</h3>
+              <p class="mb-2 text-stone-600 dark:text-stone-300" data-translate-key="mcp_router_desc">Návrhář workflow a router pro agentní systémy. Umožňuje navrhovat, monitorovat a řídit komplexní agentní workflow v rámci MCP ekosystému.</p>
+              <a href="https://github.com/sparesparrow/mcp-router" target="_blank" rel="noopener" class="text-teal-700 dark:text-teal-400 underline">GitHub</a>
+            </div>
+            <div>
+              <h3 class="font-semibold text-teal-700 dark:text-teal-400 mb-2" data-translate-key="mcp_prompts_catalog_title">mcp-prompts-catalog</h3>
+              <p class="mb-2 text-stone-600 dark:text-stone-300" data-translate-key="mcp_prompts_catalog_desc">Standardizovaný katalog promptů v JSON formátu, oddělený od serverové logiky. Umožňuje sdílení a verzování obsahu napříč implementacemi.</p>
+              <a href="https://github.com/sparesparrow/mcp-prompts-catalog" target="_blank" rel="noopener" class="text-teal-700 dark:text-teal-400 underline">GitHub</a>
+            </div>
+          </div>
+          <div class="flex justify-center mb-6">
+            <img src="/mcp-ecosystem-diagram.png" alt="MCP Ekosystém Diagram" style="max-width:100%;height:auto;" />
+          </div>
+          <p class="text-center text-stone-500 dark:text-stone-400" data-translate-key="mcp_ecosystem_contrib">Chcete se zapojit? Přispějte na GitHubu nebo nám napište!</p>
+        </section>
     </main>
 
     <footer class="bg-stone-800 dark:bg-black text-stone-300 dark:text-stone-400 py-10" itemscope itemtype="https://schema.org/Organization">
@@ -814,6 +867,7 @@
             <div class="mt-4 space-x-6">
                 <a href="#zasady-ochrany-udaju" class="hover:text-white dark:hover:text-teal-400 transition-colors text-sm legal-link" data-modal-id="privacy-policy-modal-overlay" data-translate-key="footer_privacy_policy">Zásady ochrany osobních údajů</a>
                 <a href="#obchodni-podminky" class="hover:text-white dark:hover:text-teal-400 transition-colors text-sm legal-link" data-modal-id="terms-conditions-modal-overlay" data-translate-key="footer_terms_conditions">Obchodní podmínky</a>
+                <a href="https://github.com/sparesparrow" target="_blank" rel="noopener" class="hover:text-white dark:hover:text-teal-400 transition-colors text-sm" data-translate-key="footer_contribute">Přispějte / Contribute</a>
             </div>
             <div class="mt-4 text-sm" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
                 <span itemprop="streetAddress">[Doplňte adresu sídla]</span>,
@@ -926,6 +980,16 @@
         </div>
     </div>
     
+    <div id="full-analysis-modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="full-analysis-modal-title" tabindex="-1">
+      <div id="full-analysis-modal-content" class="modal-content article-content-modal" role="document">
+        <button class="modal-close-button" aria-label="Close modal">&times;</button>
+        <div id="full-analysis-modal-body">
+          <h2 id="full-analysis-modal-title" class="main-title" data-translate-key="full_analysis_title">Plná analýza MCP ekosystému</h2>
+          <p class="text-center text-stone-500 dark:text-stone-400" data-translate-key="loading_full_analysis">Načítání analýzy...</p>
+        </div>
+      </div>
+    </div>
+    
     <script src="site.js"></script>
     <script>
     // Modal focus trap and Esc support
@@ -967,6 +1031,59 @@
     const style = document.createElement('style');
     style.textContent = `.modal-overlay { opacity:0; transition:opacity 0.3s; } .modal-overlay.active { opacity:1; }`;
     document.head.appendChild(style);
+    // Full Analysis Modal logic
+    const fullAnalysisLink = document.getElementById('read-full-analysis-link');
+    const fullAnalysisModal = document.getElementById('full-analysis-modal-overlay');
+    const fullAnalysisBody = document.getElementById('full-analysis-modal-body');
+    if (fullAnalysisLink && fullAnalysisModal && fullAnalysisBody) {
+      fullAnalysisLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        fullAnalysisModal.classList.add('active');
+        fullAnalysisBody.innerHTML = '<h2 id="full-analysis-modal-title" class="main-title">' + (window.translations?.full_analysis_title || 'Plná analýza MCP ekosystému') + '</h2>' +
+          '<p class="text-center text-stone-500 dark:text-stone-400">' + (window.translations?.loading_full_analysis || 'Načítání analýzy...') + '</p>';
+        // Try to load the analysis in the selected language, fallback to English
+        const lang = (window.siteLang || document.documentElement.lang || 'cs').toLowerCase();
+        let file = 'articles/mcp-contributions.' + lang + '.md';
+        if (lang !== 'en' && lang !== 'cs') file = 'articles/mcp-contributions.en.md';
+        fetch(file).then(r => {
+          if (!r.ok) throw new Error('not found');
+          return r.text();
+        }).then(md => {
+          // Simple markdown to HTML (headings, paragraphs, lists)
+          let html = md
+            .replace(/^# (.*)$/gm, '<h2>$1</h2>')
+            .replace(/^## (.*)$/gm, '<h3>$1</h3>')
+            .replace(/^\*\*([^*]+)\*\*/gm, '<strong>$1</strong>')
+            .replace(/^\* (.*)$/gm, '<li>$1</li>')
+            .replace(/\n\n/g, '</p><p>')
+            .replace(/^\s*\n/gm, '')
+            .replace(/\n/g, '<br>');
+          html = '<h2 id="full-analysis-modal-title" class="main-title">' + (window.translations?.full_analysis_title || 'Plná analýza MCP ekosystému') + '</h2>' +
+            '<div class="article-content-modal">' + html + '</div>';
+          fullAnalysisBody.innerHTML = html;
+        }).catch(() => {
+          // Fallback to English if not found
+          if (lang !== 'en') {
+            fetch('articles/mcp-contributions.en.md').then(r => r.text()).then(md => {
+              let html = md
+                .replace(/^# (.*)$/gm, '<h2>$1</h2>')
+                .replace(/^## (.*)$/gm, '<h3>$1</h3>')
+                .replace(/^\*\*([^*]+)\*\*/gm, '<strong>$1</strong>')
+                .replace(/^\* (.*)$/gm, '<li>$1</li>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/^\s*\n/gm, '')
+                .replace(/\n/g, '<br>');
+              html = '<h2 id="full-analysis-modal-title" class="main-title">' + (window.translations?.full_analysis_title || 'Full Analysis of the MCP Ecosystem') + '</h2>' +
+                '<div class="article-content-modal">' + html + '</div>';
+              fullAnalysisBody.innerHTML = html;
+            });
+          } else {
+            fullAnalysisBody.innerHTML = '<h2 id="full-analysis-modal-title" class="main-title">' + (window.translations?.full_analysis_title || 'Full Analysis of the MCP Ecosystem') + '</h2>' +
+              '<p class="text-center text-stone-500 dark:text-stone-400">' + (window.translations?.full_analysis_not_found || 'Analysis not available.') + '</p>';
+          }
+        });
+      });
+    }
     </script>
     <!-- Floating WhatsApp contact button (before </body>) -->
     <a href="https://wa.me/420776168749" class="floating-contact-btn" aria-label="Kontaktujte nás přes WhatsApp" target="_blank" rel="noopener">

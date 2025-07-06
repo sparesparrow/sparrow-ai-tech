@@ -33,3 +33,94 @@ if (prevBtn && nextBtn && slides.length) {
   });
   showTestimonial(currentTestimonial);
 }
+
+// Multilingual support and dynamic content loading
+async function loadTranslations(lang) {
+  try {
+    const res = await fetch(`languages/${lang}.json`);
+    if (!res.ok) throw new Error('Missing translation file');
+    return await res.json();
+  } catch {
+    if (lang !== 'en') return loadTranslations('en');
+    return {};
+  }
+}
+
+function setHtmlLang(lang) {
+  document.documentElement.lang = lang;
+}
+
+function updateMetaTags(lang, translations) {
+  // Example: update title and description
+  if (translations.page_title) document.title = translations.page_title;
+  if (translations.page_description) {
+    let desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute('content', translations.page_description);
+  }
+  // Add more meta updates as needed
+}
+
+async function applyTranslations(lang) {
+  const translations = await loadTranslations(lang);
+  document.querySelectorAll('[data-translate-key]').forEach(el => {
+    const key = el.getAttribute('data-translate-key');
+    if (translations[key]) el.innerHTML = translations[key];
+  });
+  setHtmlLang(lang);
+  updateMetaTags(lang, translations);
+}
+
+function getCurrentLang() {
+  return localStorage.getItem('language') || 'cs';
+}
+
+document.getElementById('site-lang-switcher').addEventListener('change', function(e) {
+  const lang = e.target.value;
+  localStorage.setItem('language', lang);
+  location.reload();
+});
+
+window.addEventListener('DOMContentLoaded', async () => {
+  const lang = getCurrentLang();
+  document.getElementById('site-lang-switcher').value = lang;
+  await applyTranslations(lang);
+  // ... existing code ...
+});
+
+// Article modal dynamic loading
+async function loadArticle(articleKey) {
+  const lang = getCurrentLang();
+  let path = `articles/${articleKey}.${lang === 'cs' ? 'cs.md' : 'md'}`;
+  let res = await fetch(path);
+  if (!res.ok && lang !== 'en') {
+    path = `articles/${articleKey}.md`;
+    res = await fetch(path);
+  }
+  if (res.ok) {
+    const md = await res.text();
+    renderMarkdownInModal(md);
+  } else {
+    renderMarkdownInModal('This article is not yet available in your language.');
+  }
+}
+
+function renderMarkdownInModal(md) {
+  // Use a markdown renderer like marked.js
+  if (window.marked) {
+    document.getElementById('article-modal-body').innerHTML = window.marked.parse(md);
+  } else {
+    document.getElementById('article-modal-body').innerText = md;
+  }
+}
+
+// Attach to all read-more buttons
+function setupArticleButtons() {
+  document.querySelectorAll('.read-more-button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const articleKey = btn.getAttribute('data-article-key');
+      loadArticle(articleKey);
+      document.getElementById('article-modal-overlay').classList.add('active');
+    });
+  });
+}
+window.addEventListener('DOMContentLoaded', setupArticleButtons);
