@@ -1,4 +1,5 @@
 // JavaScript for /sparrow-ai-tech/index.html modularized
+// All logic is attached after DOMContentLoaded for safety.
 // Place all logic from the previous inline <script> here, including App object and event listeners.
 // For brevity, you can copy the entire App object and its initialization from the original HTML.
 // Also include the back-to-top button logic and any other scripts that were inline.
@@ -40,7 +41,8 @@ async function loadTranslations(lang) {
     const res = await fetch(`languages/${lang}.json`);
     if (!res.ok) throw new Error('Missing translation file');
     return await res.json();
-  } catch {
+  } catch (e) {
+    console.error('Translation load error:', e);
     if (lang !== 'en') return loadTranslations('en');
     return {};
   }
@@ -105,7 +107,6 @@ async function loadArticle(articleKey) {
 }
 
 function renderMarkdownInModal(md) {
-  // Use a markdown renderer like marked.js
   if (window.marked) {
     document.getElementById('article-modal-body').innerHTML = window.marked.parse(md);
   } else {
