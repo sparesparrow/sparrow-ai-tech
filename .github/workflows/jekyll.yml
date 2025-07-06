@@ -50,7 +50,20 @@ jobs:
           JEKYLL_ENV: production
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
-        uses: actions/upload-pages-artifact@v3
+        run: |
+          echo ::group::Archive artifact
+          tar --ignore-failed-read \
+            --dereference --hard-dereference \
+            --directory "$INPUT_PATH" \
+            -cvf "$RUNNER_TEMP/artifact.tar" \
+            --exclude=.git \
+            --exclude=.github \
+            .
+          echo ::endgroup::
+        shell: /usr/bin/sh -e {0}
+        env:
+          GITHUB_PAGES: true
+          INPUT_PATH: .
 
   # Deployment job
   deploy:
