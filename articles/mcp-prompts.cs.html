@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/your-repo-name/assets/css/style.css?v=d1f29d3efbb7a4e7dcc91993c99fe432d8f18cb6">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/your-repo-name/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>mcp-prompts: Řešení prompt rotu a pohon nové generace AI vývoje | Sparrow AI Tech</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="mcp-prompts: Řešení prompt rotu a pohon nové generace AI vývoje" />
+<meta name="author" content="Sparrow AI Tech" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Custom AI/ML Solutions, Cybersecurity &amp; IT Services" />
+<meta property="og:description" content="Custom AI/ML Solutions, Cybersecurity &amp; IT Services" />
+<link rel="canonical" href="http://localhost:4000/your-repo-name/articles/mcp-prompts.cs.html" />
+<meta property="og:url" content="http://localhost:4000/your-repo-name/articles/mcp-prompts.cs.html" />
+<meta property="og:site_name" content="Sparrow AI Tech" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="mcp-prompts: Řešení prompt rotu a pohon nové generace AI vývoje" />
+<meta name="twitter:site" content="@sparrowaitech" />
+<meta name="twitter:creator" content="@Sparrow AI Tech" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Sparrow AI Tech"},"description":"Custom AI/ML Solutions, Cybersecurity &amp; IT Services","headline":"mcp-prompts: Řešení prompt rotu a pohon nové generace AI vývoje","url":"http://localhost:4000/your-repo-name/articles/mcp-prompts.cs.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="a-title" href="/your-repo-name/">
+          <h1>Sparrow AI Tech</h1>
+        </a>
+        <h2>Custom AI/ML Solutions, Cybersecurity & IT Services</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/sparesparrow/sparrow-ai-tech" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1 id="mcp-prompts-řešení-prompt-rotu-a-pohon-nové-generace-ai-vývoje">mcp-prompts: Řešení prompt rotu a pohon nové generace AI vývoje</h1>
+
+<p><strong>Klíčová slova:</strong> mcp-prompts, Model Context Protocol, správa promptů, LLM, open source, MLOps, agentní workflow, Rust, TypeScript, sparesparrow</p>
+
+<hr />
+
+<h2 id="úvod">Úvod</h2>
+
+<p>Jak se velké jazykové modely (LLM) stávají středobodem moderního softwaru, potřeba robustní, udržitelné a kolaborativní správy promptů je větší než kdy dříve. Projekt mcp-prompts, vytvořený sparesparrowem, je základní open-source server pro ekosystém Model Context Protocol (MCP), navržený k řešení narůstajícího problému “prompt rotu” a poskytující škálovatelný, budoucnosti odolný základ pro AI-driven vývojové workflow.</p>
+
+<p><a href="https://github.com/sparesparrow/mcp-prompts">Zobrazit repozitář mcp-prompts na GitHubu</a></p>
+
+<hr />
+
+<h2 id="problém-prompt-rot-ve-vývoji-ai">Problém: Prompt rot ve vývoji AI</h2>
+
+<p>V éře LLM jsou prompty stejně důležité jako kód. Týmy však často bojují s “prompt rotem”: prompty roztroušené po kódu, ztracené v chatech nebo pohřbené v dokumentech. To vede k:</p>
+<ul>
+  <li><strong>Chybějící verzování:</strong> Není možné sledovat změny nebo se vrátit k funkčním promptům.</li>
+  <li><strong>Obtížné testování:</strong> Prompty je těžké izolovat a validovat.</li>
+  <li><strong>Bezpečnostní rizika:</strong> Citlivé prompty mohou být sdíleny nebezpečně.</li>
+  <li><strong>Neefektivní spolupráce:</strong> Dobré prompty je těžké objevit a znovu použít.</li>
+</ul>
+
+<p>mcp-prompts tyto problémy přímo řeší tím, že poskytuje jediný zdroj pravdy pro všechny prompty, šablony a metadata, přináší DevOps disciplínu do světa prompt engineeringu [<a href="https://github.com/sparesparrow/mcp-prompts">5</a>].</p>
+
+<hr />
+
+<h2 id="klíčové-funkce-a-architektura">Klíčové funkce a architektura</h2>
+
+<h3 id="1-centralizovaná-správa-promptů">1. Centralizovaná správa promptů</h3>
+<ul>
+  <li><strong>CRUD operace:</strong> Přidávejte, aktualizujte, vypisujte a mažte prompty přes čisté API.</li>
+  <li><strong>Verzování:</strong> Git-like historie pro každý prompt, umožňující dohledatelnost a návrat zpět.</li>
+  <li><strong>Tagování &amp; metadata:</strong> Organizujte prompty pro snadné vyhledání a opětovné použití.</li>
+</ul>
+
+<h3 id="2-flexibilní-úložiště">2. Flexibilní úložiště</h3>
+<ul>
+  <li><strong>File Adapter:</strong> Ukládání promptů jako JSON soubory – jednoduché, čitelné a vhodné pro Git.</li>
+  <li><strong>PostgreSQL Adapter:</strong> Podnikové, škálovatelné úložiště pro produkční použití.</li>
+  <li><strong>MDC Adapter:</strong> Přímá kompatibilita s .mdc formátem Cursor IDE pro bezproblémové workflow vývojářů.</li>
+</ul>
+
+<h3 id="3-rozhraní-mutableprompt">3. Rozhraní MutablePrompt</h3>
+<p>Unikátní abstrakce umožňující převod promptů mezi více formáty:</p>
+<ul>
+  <li><strong>JSON:</strong> Interní standard pro serverové operace.</li>
+  <li><strong>MDC:</strong> Pro integraci s IDE.</li>
+  <li><strong>PGAI:</strong> Pro vektorové/semantické vyhledávání v Postgres AI.</li>
+  <li><strong>Šablona:</strong> Dynamické, proměnné formáty pro šablonovací systémy.</li>
+</ul>
+
+<p>Tento adapter/bridge vzor zajišťuje, že mcp-prompts může růst s novými formáty a nástroji, čímž je vaše prompt infrastruktura odolná do budoucna.</p>
+
+<h3 id="4-vývojářská-zkušenost">4. Vývojářská zkušenost</h3>
+<ul>
+  <li><strong>Snadná instalace:</strong> Dostupné přes npm (<code class="language-plaintext highlighter-rouge">@sparesparrow/mcp-prompts</code>) a Docker Hub (<code class="language-plaintext highlighter-rouge">sparesparrow/mcp-prompts</code>).</li>
+  <li><strong>Rychlý start:</strong> Spusťte pomocí <code class="language-plaintext highlighter-rouge">npx</code>, globální npm instalace nebo jako Docker kontejner.</li>
+  <li><strong>Jasná dokumentace:</strong> Kopírovatelné konfigurace pro integraci s Claude Desktop, Playbooks a dalšími.</li>
+  <li><strong>Transparentní údržba:</strong> Otevřená komunikace o stabilitě a doporučených verzích, budování důvěry uživatelů [<a href="https://www.npmjs.com/package/@sparesparrow/mcp-prompts">6</a>].</li>
+</ul>
+
+<hr />
+
+<h2 id="strategická-hodnota-mlops-pro-prompty">Strategická hodnota: MLOps pro prompty</h2>
+
+<p>mcp-prompts povyšuje správu promptů na disciplínu první třídy, podobně jako je správa zdrojového kódu nebo registrů modelů pro ML. Umožňuje:</p>
+<ul>
+  <li><strong>Governance:</strong> Sledování, audit a zabezpečení používání promptů.</li>
+  <li><strong>Spolupráce:</strong> Sdílení a opětovné použití nejlepších promptů napříč týmy.</li>
+  <li><strong>Škálovatelnost:</strong> Přechod z lokálního úložiště na cloudové databáze podle potřeby.</li>
+  <li><strong>Integrace:</strong> Zapojení do agentních workflow, orchestrátorů a routerů pro end-to-end automatizaci [<a href="https://playbooks.com/mcp/sparesparrow-prompt-manager">8</a>].</li>
+</ul>
+
+<hr />
+
+<h2 id="vývoj-od-typescriptu-k-rustu-a-dál">Vývoj: Od TypeScriptu k Rustu a dál</h2>
+
+<p>Projekt se rychle vyvíjí:</p>
+<ul>
+  <li><strong>mcp-prompts-rs:</strong> Vysoce výkonný přepis v Rustu, využívající bezpečnost paměti a souběžnost pro produkční nasazení [<a href="https://github.com/sparesparrow/mcp-prompts-rs">15</a>].</li>
+  <li><strong>mcp-prompts-catalog:</strong> Odděluje obsah promptů od serverové logiky, umožňuje nezávislé aktualizace a širší integraci v ekosystému [<a href="https://github.com/sparesparrow/mcp-prompts-catalog">7</a>].</li>
+</ul>
+
+<p>Tento modulární přístup staví mcp-prompts jako platformu, nikoli jen nástroj, připravený na další vlnu AI vývoje.</p>
+
+<hr />
+
+<h2 id="dopad-a-uznání-komunity">Dopad a uznání komunity</h2>
+
+<ul>
+  <li><strong>Adopce:</strong> Uvedeno na MCP server hubech jako Glama.ai a Playbooks.com [<a href="https://glama.ai/mcp/servers/@sparesparrow/mcp-prompts">9</a>], [<a href="https://playbooks.com/mcp/sparesparrow-prompt-manager">8</a>].</li>
+  <li><strong>Organické objevení:</strong> Doporučeno v komunitních fórech a technických blozích [<a href="https://www.reddit.com/r/ClaudeAI/comments/1jd3zdb/i_just_use_api_for_system_prompt_alternatives/">27</a>].</li>
+  <li><strong>Open Source:</strong> MIT licence, robustní CI/CD, kontejnerizace a osvědčené dokumentační postupy.</li>
+</ul>
+
+<hr />
+
+<h2 id="začínáme">Začínáme</h2>
+
+<ol>
+  <li><strong>Instalace přes npm:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx <span class="nt">-y</span> @sparesparrow/mcp-prompts
+<span class="c"># nebo</span>
+npm <span class="nb">install</span> <span class="nt">-g</span> @sparesparrow/mcp-prompts
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Spuštění s Dockerem:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-p</span> 8080:8080 sparesparrow/mcp-prompts:1.2.22
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Konfigurace klienta:</strong>
+    <ul>
+      <li>Viz oficiální README pro příklady integrace s Claude Desktop, Playbooks a dalšími.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="závěr">Závěr</h2>
+
+<p>mcp-prompts je víc než prompt server – je to základní platforma pro agentní éru AI. Řešením prompt rotu, umožněním spolupráce a přijetím rozšiřitelnosti umožňuje týmům stavět, škálovat a udržovat inteligentní systémy s důvěrou.</p>
+
+<p><strong>Prozkoumejte projekt:</strong> <a href="https://github.com/sparesparrow/mcp-prompts">https://github.com/sparesparrow/mcp-prompts</a></p>
+
+<hr />
+
+<p><em>Reference:</em></p>
+<ol>
+  <li><a href="https://github.com/sparesparrow/mcp-prompts">mcp-prompts GitHub</a></li>
+  <li><a href="https://www.npmjs.com/package/@sparesparrow/mcp-prompts">mcp-prompts npm</a></li>
+  <li><a href="https://github.com/sparesparrow/mcp-prompts-catalog">mcp-prompts-catalog</a></li>
+  <li><a href="https://github.com/sparesparrow/mcp-prompts-rs">mcp-prompts-rs</a></li>
+  <li><a href="https://playbooks.com/mcp/sparesparrow-prompt-manager">Playbooks MCP Server</a></li>
+  <li><a href="https://glama.ai/mcp/servers/@sparesparrow/mcp-prompts">Glama MCP Server</a></li>
+  <li><a href="https://www.reddit.com/r/ClaudeAI/comments/1jd3zdb/i_just_use_api_for_system_prompt_alternatives/">Reddit Community Mention</a></li>
+</ol>
+
+<p>&lt;/rewritten_file&gt;</p>
+
+      </section>
+    </div>
+  </body>
+</html>

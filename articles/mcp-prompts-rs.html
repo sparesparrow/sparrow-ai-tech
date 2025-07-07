@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/your-repo-name/assets/css/style.css?v=d1f29d3efbb7a4e7dcc91993c99fe432d8f18cb6">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/your-repo-name/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>mcp-prompts-rs: High-Performance Prompt Management for the Agentic AI Era | Sparrow AI Tech</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="mcp-prompts-rs: High-Performance Prompt Management for the Agentic AI Era" />
+<meta name="author" content="Sparrow AI Tech" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Custom AI/ML Solutions, Cybersecurity &amp; IT Services" />
+<meta property="og:description" content="Custom AI/ML Solutions, Cybersecurity &amp; IT Services" />
+<link rel="canonical" href="http://localhost:4000/your-repo-name/articles/mcp-prompts-rs.html" />
+<meta property="og:url" content="http://localhost:4000/your-repo-name/articles/mcp-prompts-rs.html" />
+<meta property="og:site_name" content="Sparrow AI Tech" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="mcp-prompts-rs: High-Performance Prompt Management for the Agentic AI Era" />
+<meta name="twitter:site" content="@sparrowaitech" />
+<meta name="twitter:creator" content="@Sparrow AI Tech" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Sparrow AI Tech"},"description":"Custom AI/ML Solutions, Cybersecurity &amp; IT Services","headline":"mcp-prompts-rs: High-Performance Prompt Management for the Agentic AI Era","url":"http://localhost:4000/your-repo-name/articles/mcp-prompts-rs.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="a-title" href="/your-repo-name/">
+          <h1>Sparrow AI Tech</h1>
+        </a>
+        <h2>Custom AI/ML Solutions, Cybersecurity & IT Services</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/sparesparrow/sparrow-ai-tech" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1 id="mcp-prompts-rs-high-performance-prompt-management-for-the-agentic-ai-era">mcp-prompts-rs: High-Performance Prompt Management for the Agentic AI Era</h1>
+
+<p><strong>Keywords:</strong> mcp-prompts-rs, Rust, Model Context Protocol, prompt management, LLM, open source, MLOps, agentic workflows, sparesparrow</p>
+
+<hr />
+
+<h2 id="introduction">Introduction</h2>
+
+<p>As the Model Context Protocol (MCP) ecosystem matures, the need for robust, scalable, and high-performance infrastructure to manage prompts and templates becomes paramount. Enter <strong>mcp-prompts-rs</strong>—a complete rewrite of the original mcp-prompts server in Rust, designed by sparesparrow to deliver production-grade reliability, speed, and safety for the next generation of AI development workflows.</p>
+
+<p><a href="https://github.com/sparesparrow/mcp-prompts-rs">View the mcp-prompts-rs repository on GitHub</a></p>
+
+<hr />
+
+<h2 id="motivation-why-rewrite-in-rust">Motivation: Why Rewrite in Rust?</h2>
+
+<p>The original <a href="https://github.com/sparesparrow/mcp-prompts">mcp-prompts</a> server, written in TypeScript, established itself as a cornerstone of the MCP ecosystem by solving the critical problem of “prompt rot”—the fragmentation and loss of valuable prompts across codebases and teams. However, as adoption grew and the demands of real-world deployments increased, several limitations of the Node.js/TypeScript stack became apparent:</p>
+
+<ul>
+  <li><strong>Performance:</strong> Node.js, while fast for many use cases, can struggle with high concurrency and low-latency requirements typical of large-scale AI workflows.</li>
+  <li><strong>Memory Safety:</strong> JavaScript’s dynamic nature can lead to subtle bugs and runtime errors, especially in long-running server applications.</li>
+  <li><strong>Concurrency:</strong> Rust’s async ecosystem (Tokio, Actix, Axum) offers superior handling of concurrent requests, crucial for serving multiple AI agents and clients in parallel.</li>
+  <li><strong>Production Reliability:</strong> Rust’s strict compile-time checks and zero-cost abstractions make it ideal for building robust, maintainable infrastructure.</li>
+</ul>
+
+<p>By rewriting mcp-prompts in Rust, sparesparrow leverages these advantages to create a future-proof, high-performance backbone for prompt management in the MCP ecosystem [<a href="https://github.com/sparesparrow/mcp-prompts-rs">15</a>].</p>
+
+<hr />
+
+<h2 id="architecture-and-core-features">Architecture and Core Features</h2>
+
+<h3 id="1-modern-rust-foundation">1. Modern Rust Foundation</h3>
+<ul>
+  <li><strong>Async-First Design:</strong> Built on top of Rust’s async runtime (likely Tokio), enabling efficient, non-blocking I/O and high concurrency.</li>
+  <li><strong>RESTful API with SSE:</strong> Implements a REST API and Server-Sent Events (SSE) for real-time updates, ensuring feature parity with the TypeScript version and seamless integration with MCP clients.</li>
+  <li><strong>Modular Codebase:</strong> Core logic is organized into dedicated modules (e.g., <code class="language-plaintext highlighter-rouge">src/prompt/</code>, <code class="language-plaintext highlighter-rouge">src/template/</code>), following Rust best practices for maintainability and extensibility.</li>
+</ul>
+
+<h3 id="2-flexible-storage-backends">2. Flexible Storage Backends</h3>
+<ul>
+  <li><strong>File System Adapter:</strong> Prompts and templates can be stored as JSON files, supporting local development and Git-based workflows.</li>
+  <li><strong>PostgreSQL Adapter:</strong> Enterprise-grade, scalable storage for production deployments, leveraging Rust’s mature database ecosystem.</li>
+  <li><strong>Extensible Format Support:</strong> The architecture is designed to support additional formats (e.g., MDC for Cursor IDE, PGAI for vector search) as the ecosystem evolves.</li>
+</ul>
+
+<h3 id="3-the-mutableprompt-model-rust-edition">3. The MutablePrompt Model (Rust Edition)</h3>
+<ul>
+  <li><strong>Format Conversion:</strong> Re-implements the innovative MutablePrompt interface from the TypeScript version, enabling on-the-fly conversion between JSON, template, and (in future) other formats.</li>
+  <li><strong>Adapter Pattern:</strong> Clean separation between storage logic and application logic, making it easy to add new formats or backends without touching core code.</li>
+</ul>
+
+<h3 id="4-developer-experience">4. Developer Experience</h3>
+<ul>
+  <li><strong>Containerization:</strong> Distributed as a Docker image for easy deployment in any environment.</li>
+  <li><strong>Clear Documentation:</strong> Follows the tradition of sparesparrow’s projects with thorough README files, usage guides, and integration examples.</li>
+  <li><strong>CI/CD Ready:</strong> Built with robust automation and testing in mind, ensuring reliability with every release.</li>
+</ul>
+
+<hr />
+
+<h2 id="advantages-over-the-typescript-version">Advantages Over the TypeScript Version</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>mcp-prompts (TypeScript)</th>
+      <th>mcp-prompts-rs (Rust)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Language</td>
+      <td>TypeScript (Node.js)</td>
+      <td>Rust</td>
+    </tr>
+    <tr>
+      <td>Performance</td>
+      <td>Good</td>
+      <td>Excellent (native, async)</td>
+    </tr>
+    <tr>
+      <td>Memory Safety</td>
+      <td>Dynamic, GC</td>
+      <td>Compile-time, no GC</td>
+    </tr>
+    <tr>
+      <td>Concurrency</td>
+      <td>Event loop</td>
+      <td>True async, multi-threaded</td>
+    </tr>
+    <tr>
+      <td>Storage Backends</td>
+      <td>File, PostgreSQL, MDC</td>
+      <td>File, PostgreSQL (MDC planned)</td>
+    </tr>
+    <tr>
+      <td>Format Flexibility</td>
+      <td>MutablePrompt interface</td>
+      <td>Modular, adapter-based</td>
+    </tr>
+    <tr>
+      <td>API</td>
+      <td>REST, SSE, MCP Tools</td>
+      <td>REST, SSE, MCP Tools</td>
+    </tr>
+    <tr>
+      <td>Containerization</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Stability</td>
+      <td>Mature, some issues</td>
+      <td>In development, high potential</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>Performance &amp; Scalability:</strong> Rust’s zero-cost abstractions and async runtime enable mcp-prompts-rs to handle more requests with lower latency and resource usage.</li>
+  <li><strong>Reliability:</strong> Rust’s strict type system and memory safety guarantees reduce runtime errors and crashes.</li>
+  <li><strong>Future-Proofing:</strong> The modular, adapter-based architecture makes it easy to add new features and formats as the MCP ecosystem grows.</li>
+</ul>
+
+<hr />
+
+<h2 id="role-in-the-mcp-ecosystem">Role in the MCP Ecosystem</h2>
+
+<p>mcp-prompts-rs is not just a rewrite—it is the next evolutionary step for prompt management in the MCP world. It serves as:</p>
+<ul>
+  <li><strong>A Reference Implementation:</strong> Demonstrates best practices for building high-performance, extensible MCP servers in Rust.</li>
+  <li><strong>A Platform for Growth:</strong> Its modular design and robust foundation make it the ideal base for future features, such as advanced search, analytics, and integration with orchestration and routing tools.</li>
+  <li><strong>A Community Anchor:</strong> By providing a reliable, open-source, MIT-licensed server, mcp-prompts-rs encourages adoption, contribution, and innovation across the MCP and LLM developer communities.</li>
+</ul>
+
+<hr />
+
+<h2 id="getting-started">Getting Started</h2>
+
+<ol>
+  <li><strong>Clone the Repository:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/sparesparrow/mcp-prompts-rs.git
+<span class="nb">cd </span>mcp-prompts-rs
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Build and Run:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cargo build <span class="nt">--release</span>
+cargo run <span class="nt">--release</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Docker Deployment:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-p</span> 8080:8080 sparesparrow/mcp-prompts-rs:latest
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Configure Storage:</strong>
+    <ul>
+      <li>See the README for details on configuring file or PostgreSQL backends.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>mcp-prompts-rs represents a major leap forward for prompt management in the agentic AI era. By combining the proven features of the original mcp-prompts server with the power and safety of Rust, it sets a new standard for reliability, performance, and extensibility in the MCP ecosystem.</p>
+
+<p><strong>Explore the project:</strong> <a href="https://github.com/sparesparrow/mcp-prompts-rs">https://github.com/sparesparrow/mcp-prompts-rs</a></p>
+
+<hr />
+
+<p><em>References:</em></p>
+<ol>
+  <li><a href="https://github.com/sparesparrow/mcp-prompts-rs">mcp-prompts-rs GitHub</a></li>
+  <li><a href="https://github.com/sparesparrow/mcp-prompts">mcp-prompts GitHub</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Model_Context_Protocol">Model Context Protocol - Wikipedia</a></li>
+  <li><a href="https://aws.amazon.com/blogs/machine-learning/unlocking-the-power-of-model-context-protocol-mcp-on-aws/">Unlocking the power of Model Context Protocol (MCP) on AWS</a></li>
+  <li><a href="https://glama.ai/mcp/servers/@sparesparrow/mcp-prompts">MCP Prompts Server - Glama</a></li>
+  <li><a href="https://playbooks.com/mcp/sparesparrow-prompt-manager">Prompt Manager MCP server for AI agents - Playbooks</a></li>
+</ol>
+
+      </section>
+    </div>
+  </body>
+</html>

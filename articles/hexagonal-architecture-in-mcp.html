@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/your-repo-name/assets/css/style.css?v=d1f29d3efbb7a4e7dcc91993c99fe432d8f18cb6">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/your-repo-name/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Hexagonal Architecture in MCP: Building Flexible and Maintainable AI Systems | Sparrow AI Tech</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Hexagonal Architecture in MCP: Building Flexible and Maintainable AI Systems" />
+<meta name="author" content="Sparrow AI Tech" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Custom AI/ML Solutions, Cybersecurity &amp; IT Services" />
+<meta property="og:description" content="Custom AI/ML Solutions, Cybersecurity &amp; IT Services" />
+<link rel="canonical" href="http://localhost:4000/your-repo-name/articles/hexagonal-architecture-in-mcp.html" />
+<meta property="og:url" content="http://localhost:4000/your-repo-name/articles/hexagonal-architecture-in-mcp.html" />
+<meta property="og:site_name" content="Sparrow AI Tech" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Hexagonal Architecture in MCP: Building Flexible and Maintainable AI Systems" />
+<meta name="twitter:site" content="@sparrowaitech" />
+<meta name="twitter:creator" content="@Sparrow AI Tech" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Sparrow AI Tech"},"description":"Custom AI/ML Solutions, Cybersecurity &amp; IT Services","headline":"Hexagonal Architecture in MCP: Building Flexible and Maintainable AI Systems","url":"http://localhost:4000/your-repo-name/articles/hexagonal-architecture-in-mcp.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="a-title" href="/your-repo-name/">
+          <h1>Sparrow AI Tech</h1>
+        </a>
+        <h2>Custom AI/ML Solutions, Cybersecurity & IT Services</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/sparesparrow/sparrow-ai-tech" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1 id="hexagonal-architecture-in-mcp-building-flexible-and-maintainable-ai-systems">Hexagonal Architecture in MCP: Building Flexible and Maintainable AI Systems</h1>
+
+<p><strong>Keywords:</strong> hexagonal architecture, ports and adapters, MCP, Model Context Protocol, software architecture, AI workflow, maintainability, extensibility, open source</p>
+
+<hr />
+
+<h2 id="what-is-hexagonal-architecture">What is Hexagonal Architecture?</h2>
+
+<p>Hexagonal architecture, also known as the <strong>Ports and Adapters</strong> pattern, is a software design approach that emphasizes separation of concerns, testability, and flexibility. Instead of structuring your application around technical layers (like controllers, services, repositories), you organize it around the core business logic (the “domain”) and define clear boundaries for how external systems interact with it.</p>
+
+<h3 id="key-concepts">Key Concepts:</h3>
+<ul>
+  <li><strong>Core Domain:</strong> The heart of your application, containing business rules and logic.</li>
+  <li><strong>Ports:</strong> Interfaces that define how the core communicates with the outside world (e.g., APIs, databases, UIs).</li>
+  <li><strong>Adapters:</strong> Implementations of ports that connect the core to specific technologies (e.g., REST API, file storage, Postgres, third-party services).</li>
+</ul>
+
+<hr />
+
+<h2 id="why-use-hexagonal-architecture-in-mcp">Why Use Hexagonal Architecture in MCP?</h2>
+
+<p>The Model Context Protocol (MCP) is designed for extensibility, maintainability, and integration with diverse AI tools and workflows. Hexagonal architecture is a perfect fit for MCP because:</p>
+
+<ul>
+  <li><strong>Decouples Business Logic from Technology:</strong> The core MCP logic (prompt management, semantic search, workflow orchestration) is isolated from frameworks and infrastructure.</li>
+  <li><strong>Easy to Add/Replace Adapters:</strong> Want to switch from file storage to Postgres, or add a new REST API? Just implement a new adapter—no changes to the core.</li>
+  <li><strong>Testability:</strong> The core can be tested in isolation using mock ports, ensuring robust and reliable code.</li>
+  <li><strong>Future-Proof:</strong> As new AI tools and protocols emerge, you can integrate them by adding adapters, not rewriting your core.</li>
+</ul>
+
+<hr />
+
+<h2 id="example-hexagonal-architecture-in-mcp">Example: Hexagonal Architecture in MCP</h2>
+
+<p>Let’s break down how MCP leverages this pattern:</p>
+
+<h3 id="1-core-domain">1. <strong>Core Domain</strong></h3>
+<ul>
+  <li>Entities: Prompt, Template, Category, User</li>
+  <li>Use Cases: CreatePrompt, SearchPrompts, ManageTemplates, etc.</li>
+</ul>
+
+<h3 id="2-ports-interfaces">2. <strong>Ports (Interfaces)</strong></h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">PromptRepositoryPort</code>: Interface for storing/retrieving prompts</li>
+  <li><code class="language-plaintext highlighter-rouge">TemplateEnginePort</code>: Interface for rendering templates</li>
+  <li><code class="language-plaintext highlighter-rouge">UserAuthPort</code>: Interface for authentication/authorization</li>
+</ul>
+
+<h3 id="3-adapters">3. <strong>Adapters</strong></h3>
+<ul>
+  <li><strong>Primary (Driving):</strong> REST API, MCP protocol, CLI</li>
+  <li><strong>Secondary (Driven):</strong> FileStorageAdapter, PostgresAdapter, EtaTemplatingAdapter, ElevenLabsAdapter</li>
+</ul>
+
+<p><strong>Diagram:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         [ REST API ]      [ MCP Protocol ]      [ CLI ]
+               |                  |                |
+           [ Primary Adapters (Ports) ]
+               |                  |                |
+           +------------------------------------------+
+           |           Core Domain (MCP)              |
+           +------------------------------------------+
+               |                  |                |
+      [ FileStorage ]   [ Postgres ]   [ Eta Templating ]
+      [ ElevenLabs ]    [ ... ]        [ ... ]
+           (Secondary Adapters)
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="benefits-for-ai-and-open-source-projects">Benefits for AI and Open Source Projects</h2>
+
+<ul>
+  <li><strong>Maintainability:</strong> Isolate changes to specific adapters or the core.</li>
+  <li><strong>Extensibility:</strong> Add new integrations (e.g., new AI APIs, databases) with minimal effort.</li>
+  <li><strong>Community Contributions:</strong> Clear boundaries make it easier for contributors to add features or adapters.</li>
+  <li><strong>Scalability:</strong> Swap out implementations as your project grows (e.g., move from local file storage to cloud database).</li>
+</ul>
+
+<hr />
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Adopting hexagonal architecture in MCP and similar AI projects leads to cleaner, more maintainable, and future-proof codebases. It empowers teams to innovate rapidly, integrate with new tools, and scale their solutions without technical debt.</p>
+
+<hr />
+
+<p><strong>Want to learn more?</strong></p>
+<ul>
+  <li><a href="https://github.com/sparesparrow/mcp-prompts">MCP GitHub Repository</a></li>
+  <li><a href="https://alistair.cockburn.us/hexagonal-architecture/">Hexagonal Architecture Explained (Alistair Cockburn)</a></li>
+</ul>
+
+      </section>
+    </div>
+  </body>
+</html>
