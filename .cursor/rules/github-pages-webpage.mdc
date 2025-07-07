@@ -1,0 +1,17 @@
+---
+description: Best practices for writing web pages for GitHub Pages deployment
+---
+# Writing Web Pages for GitHub Pages Deploy
+
+When creating or editing web pages for deployment on GitHub Pages, follow these best practices:
+
+- Use only static HTML, CSS, JS, and supported Jekyll features (Markdown, Liquid, YAML front matter).
+- Do not use server-side code (PHP, Python, etc.)—GitHub Pages only supports static content and Jekyll.
+- Place content in appropriate directories (e.g., `_posts/` for blog posts, `_layouts/` for layouts, `_includes/` for snippets).
+- Use relative URLs or the Jekyll `relative_url` filter for links and assets to ensure correct paths after deployment.
+- Reference assets (images, CSS, JS) using `{{ '/path/to/asset' | relative_url }}` or `{{ site.baseurl }}`.
+- Add YAML front matter (at least `---`) to every Markdown or HTML file you want Jekyll to process.
+- Test your site locally with `bundle exec jekyll serve` before pushing to GitHub.
+- Check the [jekyll.yml](mdc:.github/workflows/jekyll.yml) workflow for build and deployment configuration.
+- For custom plugins, note that only a limited set are supported on GitHub Pages unless you use a custom Actions workflow.
+- For more, see the [GitHub Pages documentation](https://docs.github.com/en/pages) and [Jekyll documentation](https://jekyllrb.com/docs/).
