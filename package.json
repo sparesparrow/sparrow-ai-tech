@@ -29,12 +29,14 @@
     "@tippyjs/react": "^4.2.6",
     "@uiw/react-md-editor": "^4.0.7",
     "chart.js": "^4.5.0",
+    "framer-motion": "^12.23.0",
     "mermaid": "^11.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.6.3",
-    "tippy.js": "^6.3.7"
+    "tippy.js": "^6.3.7",
+    "yet-another-react-lightbox": "^3.24.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.6.0",

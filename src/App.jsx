@@ -7,6 +7,9 @@ import Infographic1 from './pages/infographics/Infographic1';
 import Infographic2 from './pages/infographics/Infographic2';
 import Infographic3 from './pages/infographics/Infographic3';
 import SPAInfographic from './pages/infographics/SPA';
+import { motion } from 'framer-motion';
+import Lightbox from 'yet-another-react-lightbox';
+import 'yet-another-react-lightbox/styles.css';
 
 const translationsMap = { cs, en };
 
@@ -186,6 +189,8 @@ const App = () => {
     const [language, setLanguage] = useState('en');
     const [content, setContent] = useState(siteData.en);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [lightboxIndex, setLightboxIndex] = useState(0);
 
     useEffect(() => {
         setContent(siteData[language]);
@@ -336,29 +341,378 @@ const App = () => {
                   )}
                 </header>
                 <main className="pt-20 md:pt-24">
-                  <section id="home" className="py-16 md:py-24">
+                  <motion.section id="home" className="py-16 md:py-24"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                  >
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                      <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-4">{content.hero.title}</h1>
-                      <p className="mt-6 text-lg text-slate-600">{content.hero.subtitle}</p>
-                      <p className="max-w-3xl mx-auto text-slate-500 mb-8">{content.hero.description}</p>
-                      <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                      <motion.h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-4"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1, duration: 0.6 }}
+                      >{content.hero.title}</motion.h1>
+                      <motion.p className="mt-6 text-lg text-slate-600"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2, duration: 0.6 }}
+                      >{content.hero.subtitle}</motion.p>
+                      <motion.p className="max-w-3xl mx-auto text-slate-500 mb-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3, duration: 0.6 }}
+                      >{content.hero.description}</motion.p>
+                      <motion.div className="mt-8 flex flex-col sm:flex-row justify-center gap-4"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.4, duration: 0.5 }}
+                      >
                         <a href="#portfolio" className="bg-sky-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-sky-700 transition-all">View the Strategy</a>
                         <a href="#tech" className="bg-white text-slate-700 font-semibold px-6 py-3 rounded-lg border border-slate-300 hover:bg-slate-100 transition-all">Explore the Tech</a>
                         <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition-all flex items-center justify-center">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
                           Download CV (PDF)
                         </a>
+                      </motion.div>
+                    </div>
+                  </motion.section>
+                  {/* Conversational AI / ElevenLabs Section */}
+                  <motion.section id="conversational-ai" className="py-20 bg-gradient-to-br from-sky-50 to-slate-100"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                  >
+                    <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+                      <div className="flex-1">
+                        <motion.h2 className="text-4xl font-bold text-sky-700 mb-4"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.1, duration: 0.6 }}
+                        >Conversational AI, Powered by ElevenLabs</motion.h2>
+                        <motion.p className="text-lg text-slate-700 mb-6"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.2, duration: 0.6 }}
+                        >
+                          Delight your customers with instant, intelligent, and personalized support—anytime, anywhere. Our integration with ElevenLabs brings advanced Conversational AI and Voice UI directly to your site.
+                        </motion.p>
+                        <ul className="space-y-3 mb-6 text-left">
+                          <li className="flex items-center"><span className="text-sky-600 mr-2">🗣️</span> Natural voice conversations (VUI)</li>
+                          <li className="flex items-center"><span className="text-sky-600 mr-2">⚡</span> 24/7 automated support</li>
+                          <li className="flex items-center"><span className="text-sky-600 mr-2">🎯</span> Personalized recommendations</li>
+                          <li className="flex items-center"><span className="text-sky-600 mr-2">📊</span> Actionable insights from every interaction</li>
+                        </ul>
+                        <a href="#contact" className="inline-block bg-sky-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-sky-700 transition">Book a Demo</a>
+                      </div>
+                      <div className="flex-1 flex justify-center">
+                        {/* Replace with a real screenshot or live widget if possible */}
+                        <img src="/assets/images/elevenlabs-widget-demo.png" alt="ElevenLabs Widget Demo" className="rounded-xl shadow-2xl w-full max-w-md" />
                       </div>
                     </div>
-                  </section>
-                  <section id="portfolio" className="py-16 md:py-24 bg-white">
+                  </motion.section>
+                  {/* Ecosystem / Infographics Section */}
+                  <motion.section id="ecosystem" className="py-20 bg-white"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                  >
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                      <div className="text-center mb-12">
+                        <motion.h2 className="text-3xl font-bold tracking-tight text-slate-900"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.1, duration: 0.6 }}
+                        >Sparrow AI & Tech Ecosystem</motion.h2>
+                        <motion.p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.2, duration: 0.6 }}
+                        >Explore the open-source tools and projects that power our platform. Hover over each card to learn more about its status and technology stack.</motion.p>
+                      </div>
+                      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {[
+                          {
+                            name: 'mcp-prompts',
+                            description: 'Core server for managing, storing, and versioning prompts and templates for LLMs.',
+                            status: 'In Migration',
+                            statusColor: 'bg-amber-100 text-amber-800',
+                            tech: ['TypeScript', 'Node.js', 'PostgreSQL', 'Docker']
+                          },
+                          {
+                            name: 'mcp-router',
+                            description: 'Routes requests between different MCP-compliant services.',
+                            status: 'Beta',
+                            statusColor: 'bg-sky-100 text-sky-800',
+                            tech: ['TypeScript', 'Node.js']
+                          },
+                          {
+                            name: 'podman-desktop-extension-mcp',
+                            description: 'Podman Desktop extension for interacting with the MCP ecosystem.',
+                            status: 'Experimental',
+                            statusColor: 'bg-rose-100 text-rose-800',
+                            tech: ['JavaScript']
+                          },
+                          {
+                            name: 'awesome-mcp-servers',
+                            description: 'Curated list of community-built MCP servers and related projects.',
+                            status: 'Stable',
+                            statusColor: 'bg-emerald-100 text-emerald-800',
+                            tech: ['Community']
+                          }
+                        ].map((project, idx) => (
+                          <div
+                            key={project.name}
+                            className={
+                              'bg-white p-6 rounded-lg border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden'
+                            }
+                          >
+                            <div className="flex justify-between items-start mb-2">
+                              <h4 className="text-lg font-bold text-slate-900">{project.name}</h4>
+                              <span className={`text-xs font-semibold px-3 py-1 rounded-full ${project.statusColor}`}>{project.status}</span>
+                            </div>
+                            <p className="mt-2 text-slate-600 text-sm group-hover:text-slate-800 transition-colors duration-300">{project.description}</p>
+                            <div className="mt-4 flex flex-wrap gap-2">
+                              {project.tech.map(t => (
+                                <span key={t} className="inline-block bg-slate-100 text-slate-600 text-xs font-medium px-2.5 py-0.5 rounded-full">{t}</span>
+                              ))}
+                            </div>
+                            <div className="absolute inset-0 bg-sky-50 opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none" />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.section>
+                  {/* Tech Comparison Section */}
+                  <motion.section id="tech-comparison" className="py-20 bg-gradient-to-br from-white to-sky-50"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                  >
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                      <div className="text-center mb-12">
+                        <motion.h2 className="text-3xl font-bold tracking-tight text-slate-900"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.1, duration: 0.6 }}
+                        >Technology Comparison</motion.h2>
+                        <motion.p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.2, duration: 0.6 }}
+                        >Why we chose our stack: performance, developer experience, and a unique brand identity. Explore the data below or view the infographic cards for a quick summary.</motion.p>
+                      </div>
+                      <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
+                        <div>
+                          <h3 className="text-xl font-semibold text-slate-900 text-center">Static Site Generator (SSG) Comparison</h3>
+                          <p className="text-center text-slate-600 mt-2">Astro is recommended for its performance and JS-native environment.</p>
+                          <div className="mt-4 chart-container" style={{ position: 'relative', width: '100%', maxWidth: 600, margin: '0 auto', height: 350, maxHeight: 400 }}>
+                            {/* Chart.js SSG Bar Chart Placeholder */}
+                            <canvas id="ssgChartHome"></canvas>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-semibold text-slate-900 text-center">CSS Framework Comparison</h3>
+                          <p className="text-center text-slate-600 mt-2">Tailwind CSS is recommended for its customization and design control.</p>
+                          <div className="mt-4 chart-container" style={{ position: 'relative', width: '100%', maxWidth: 600, margin: '0 auto', height: 350, maxHeight: 400 }}>
+                            {/* Chart.js CSS Bar Chart Placeholder */}
+                            <canvas id="cssChartHome"></canvas>
+                          </div>
+                        </div>
+                      </div>
+                      {/* Score Card Alternative */}
+                      <div className="grid md:grid-cols-2 gap-8">
+                        <div className="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center">
+                          <span className="text-5xl mb-4">🚀</span>
+                          <h4 className="text-lg font-bold text-sky-700 mb-2">Astro</h4>
+                          <p className="text-slate-600 mb-2">Dev Experience: <span className="font-bold text-sky-700">10/10</span></p>
+                          <p className="text-slate-600 mb-2">Build Performance: <span className="font-bold text-emerald-600">9/10</span></p>
+                        </div>
+                        <div className="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center">
+                          <span className="text-5xl mb-4">🎨</span>
+                          <h4 className="text-lg font-bold text-amber-700 mb-2">Tailwind CSS</h4>
+                          <p className="text-slate-600 mb-2">Customization: <span className="font-bold text-amber-600">10/10</span></p>
+                          <p className="text-slate-600 mb-2">Design Uniqueness: <span className="font-bold text-violet-600">9/10</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.section>
+                  {/* Process Steps / Timeline Section */}
+                  <motion.section id="process" className="py-20 bg-white"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                  >
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                      <div className="text-center mb-12">
+                        <motion.h2 className="text-3xl font-bold tracking-tight text-slate-900"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.1, duration: 0.6 }}
+                        >Our Process</motion.h2>
+                        <motion.p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.2, duration: 0.6 }}
+                        >From first contact to ongoing support, our process ensures clarity, quality, and results. Choose your preferred timeline style below.</motion.p>
+                      </div>
+                      {/* Horizontal Timeline */}
+                      <div className="hidden md:flex justify-between items-center mb-12 relative">
+                        {[
+                          { icon: '💬', title: 'Consultation', desc: 'We listen to your needs and analyze your goals.' },
+                          { icon: '📝', title: 'Solution Design', desc: 'We propose a tailored solution and roadmap.' },
+                          { icon: '🛠️', title: 'Development', desc: 'We build, test, and iterate with transparency.' },
+                          { icon: '🚀', title: 'Deployment & Support', desc: 'We launch, monitor, and support your solution.' }
+                        ].map((step, idx, arr) => (
+                          <div key={step.title} className="flex flex-col items-center flex-1">
+                            <div className="w-16 h-16 rounded-full bg-sky-100 flex items-center justify-center text-3xl mb-2 shadow-lg">{step.icon}</div>
+                            <h4 className="font-bold text-sky-700 mb-1">{step.title}</h4>
+                            <p className="text-slate-600 text-sm text-center mb-2">{step.desc}</p>
+                            {idx < arr.length - 1 && (
+                              <div className="absolute top-8 left-0 right-0 flex justify-between z-0">
+                                <div style={{ left: `${(idx + 1) * 25}%` }} className="h-1 w-1/4 bg-sky-200 rounded-full z-0" />
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                      {/* Vertical Stepper Alternative */}
+                      <div className="md:hidden flex flex-col gap-8">
+                        {[
+                          { icon: '💬', title: 'Consultation', desc: 'We listen to your needs and analyze your goals.' },
+                          { icon: '📝', title: 'Solution Design', desc: 'We propose a tailored solution and roadmap.' },
+                          { icon: '🛠️', title: 'Development', desc: 'We build, test, and iterate with transparency.' },
+                          { icon: '🚀', title: 'Deployment & Support', desc: 'We launch, monitor, and support your solution.' }
+                        ].map((step, idx) => (
+                          <div key={step.title} className="flex items-center gap-4">
+                            <div className="w-14 h-14 rounded-full bg-sky-100 flex items-center justify-center text-2xl shadow-lg">{step.icon}</div>
+                            <div>
+                              <h4 className="font-bold text-sky-700 mb-1">{step.title}</h4>
+                              <p className="text-slate-600 text-sm">{step.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.section>
+                  {/* Visual Library / Gallery Section */}
+                  <motion.section id="visual-library" className="py-20 bg-gradient-to-br from-slate-50 to-white"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                  >
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                      <div className="text-center mb-12">
+                        <motion.h2 className="text-3xl font-bold tracking-tight text-slate-900"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.1, duration: 0.6 }}
+                        >Visual Library & Featured Diagrams</motion.h2>
+                        <motion.p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.2, duration: 0.6 }}
+                        >Explore our architecture, UI, and process diagrams. Click any image to enlarge. Use the filter to view by category.</motion.p>
+                      </div>
+                      {/* Filter by category (future scalability) */}
+                      <div className="flex justify-center gap-4 mb-8">
+                        <button className="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold shadow hover:bg-sky-200 transition">All</button>
+                        <button className="bg-slate-100 text-slate-700 px-4 py-2 rounded-full font-semibold shadow hover:bg-slate-200 transition">Architecture</button>
+                        <button className="bg-slate-100 text-slate-700 px-4 py-2 rounded-full font-semibold shadow hover:bg-slate-200 transition">UI</button>
+                        <button className="bg-slate-100 text-slate-700 px-4 py-2 rounded-full font-semibold shadow hover:bg-slate-200 transition">Process</button>
+                      </div>
+                      {/* Masonry grid with lightbox */}
+                      <div className="columns-1 sm:columns-2 md:columns-3 gap-6 [column-fill:_balance]"><div className="flex flex-col gap-6">
+                        {[
+                          { name: 'MCP Ecosystem Diagram', src: '/assets/images/mcp-ecosystem-diagram.png', context: 'Architecture' },
+                          { name: 'UI Screenshot', src: '/assets/images/screenshot-ui.png', context: 'UI' },
+                          { name: 'Feature Screenshot', src: '/assets/images/screenshot-feature.png', context: 'UI' },
+                          { name: 'Hard-Coder Architecture', src: '/assets/images/hard-coder-architecture.png', context: 'Architecture' },
+                          { name: 'MCP Router Flow', src: '/assets/images/mcp-router-flow.png', context: 'Process' },
+                          { name: 'Project Orchestrator Diagram', src: '/assets/images/project-orchestrator-diagram.png', context: 'Architecture' }
+                        ].map((vis, idx) => (
+                          <motion.div
+                            key={idx}
+                            className="bg-white rounded-lg shadow-md p-4 mb-6 break-inside-avoid flex flex-col items-center cursor-pointer group transition-transform hover:-translate-y-1"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ delay: 0.1 * idx, duration: 0.5, ease: 'easeOut' }}
+                            onClick={() => { setLightboxIndex(idx); setLightboxOpen(true); }}
+                          >
+                            <img src={vis.src} alt={vis.name} className="w-full h-48 object-contain mb-4 rounded-lg group-hover:shadow-2xl transition-shadow duration-300" />
+                            <h4 className="text-lg font-semibold text-sky-700 mb-2">{vis.name}</h4>
+                            <p className="text-slate-600 text-sm">{vis.context}</p>
+                          </motion.div>
+                        ))}
+                      </div></div>
+                      <Lightbox
+                        open={lightboxOpen}
+                        close={() => setLightboxOpen(false)}
+                        index={lightboxIndex}
+                        slides={[
+                          { src: '/assets/images/mcp-ecosystem-diagram.png', alt: 'MCP Ecosystem Diagram' },
+                          { src: '/assets/images/screenshot-ui.png', alt: 'UI Screenshot' },
+                          { src: '/assets/images/screenshot-feature.png', alt: 'Feature Screenshot' },
+                          { src: '/assets/images/hard-coder-architecture.png', alt: 'Hard-Coder Architecture' },
+                          { src: '/assets/images/mcp-router-flow.png', alt: 'MCP Router Flow' },
+                          { src: '/assets/images/project-orchestrator-diagram.png', alt: 'Project Orchestrator Diagram' }
+                        ]}
+                        render={{
+                          slide: ({ slide }) => (
+                            <img src={slide.src} alt={slide.alt} style={{ maxHeight: '80vh', maxWidth: '90vw', margin: 'auto' }} />
+                          )
+                        }}
+                      />
+                    </div>
+                  </motion.section>
+                  <motion.section id="portfolio" className="py-16 md:py-24 bg-white"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                  >
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                       <div className="text-center">
-                        <h2 className="text-3xl font-bold tracking-tight text-slate-900">{content.portfolio.title}</h2>
+                        <motion.h2 className="text-3xl font-bold tracking-tight text-slate-900"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.1, duration: 0.6 }}
+                        >{content.portfolio.title}</motion.h2>
                       </div>
-                      <div className="mt-12 grid md:grid-cols-2 gap-8 md:gap-12">
+                      <motion.div className="mt-12 grid md:grid-cols-2 gap-8 md:gap-12"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                      >
                         {content.portfolio.projects.map((project, index) => (
-                          <div key={index} className="bg-slate-50 p-8 rounded-lg border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                          <motion.div key={index} className="bg-slate-50 p-8 rounded-lg border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ delay: 0.1 * index, duration: 0.5, ease: 'easeOut' }}
+                          >
                             <div className="flex items-center mb-2">
                               <div className="bg-sky-100 p-3 rounded-full"><span className="text-2xl">{project.icon || '💡'}</span></div>
                               <h3 className="ml-4 text-xl font-semibold text-slate-900">{project.title}</h3>
@@ -381,31 +735,61 @@ const App = () => {
                                 </a>
                               )}
                             </div>
-                          </div>
+                          </motion.div>
                         ))}
-                      </div>
+                      </motion.div>
                     </div>
-                  </section>
-                  <section id="articles" className="py-16 md:py-24">
+                  </motion.section>
+                  <motion.section id="articles" className="py-16 md:py-24"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                  >
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                      <h2 className="text-3xl font-bold tracking-tight text-slate-900 text-center mb-12">Articles & Documentation</h2>
+                      <motion.h2 className="text-3xl font-bold tracking-tight text-slate-900 text-center mb-12"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1, duration: 0.6 }}
+                      >Articles & Documentation</motion.h2>
                       {categorizedArticles.map((cat, idx) => (
-                        <div key={cat.category} className="mb-8">
+                        <motion.div key={cat.category} className="mb-8"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.1 * idx, duration: 0.5 }}
+                        >
                           <h3 className="text-2xl font-semibold text-sky-700 mb-4">{cat.category}</h3>
                           <div className="grid md:grid-cols-2 gap-4">
                             {cat.articles.map((article, i) => (
-                              <a key={i} href={article.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
+                              <motion.a key={i} href={article.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.05 * i, duration: 0.4 }}
+                              >
                                 <span className="text-sky-600 font-bold">[{article.lang.toUpperCase()}]</span> <span className="text-lg font-semibold">{article.title}</span>
-                              </a>
+                              </motion.a>
                             ))}
                           </div>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
-                  </section>
-                  <section id="infographics" className="py-16 md:py-24">
+                  </motion.section>
+                  <motion.section id="infographics" className="py-16 md:py-24"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                  >
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                      <h2 className="text-3xl font-bold tracking-tight text-slate-900 text-center mb-12">Infographics</h2>
+                      <motion.h2 className="text-3xl font-bold tracking-tight text-slate-900 text-center mb-12"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1, duration: 0.6 }}
+                      >Infographics</motion.h2>
                       <h3 className="text-xl font-semibold text-sky-700 mb-4">Interactive (React)</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                         {infographicsReact.map((info, idx) => (
@@ -424,30 +808,34 @@ const App = () => {
                         ))}
                       </div>
                     </div>
-                  </section>
-                  <section id="visual-library" className="py-16 md:py-24 bg-white">
-                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                      <h2 className="text-3xl font-bold tracking-tight text-slate-900 text-center mb-12">Visual Library</h2>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {visuals.map((vis, idx) => (
-                          <div key={idx} className="bg-slate-100 rounded-lg shadow-md p-6 flex flex-col items-center">
-                            <img src={vis.src} alt={vis.name} className="w-full h-48 object-contain mb-4" />
-                            <h4 className="text-lg font-semibold text-sky-700 mb-2">{vis.name}</h4>
-                            <p className="text-slate-600 text-sm">{vis.context}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </section>
-                  <section id="contact" className="py-16 md:py-24 bg-white">
+                  </motion.section>
+                  <motion.section id="contact" className="py-16 md:py-24 bg-white"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                  >
                     <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                      <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-4">{content.contact.title}</h2>
-                      <p className="text-slate-600 mb-8">{content.contact.description}</p>
-                      <a href="mailto:sparrow.ai.tech@gmail.com" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 duration-300 inline-block">
-                        {content.contact.button}
-                      </a>
+                      <motion.h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-4"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1, duration: 0.6 }}
+                      >{content.contact.title}</motion.h2>
+                      <motion.p className="text-slate-600 mb-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2, duration: 0.6 }}
+                      >{content.contact.description}</motion.p>
+                      <motion.a href="mailto:sparrow.ai.tech@gmail.com" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 duration-300 inline-block"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3, duration: 0.5 }}
+                      >{content.contact.button}</motion.a>
                     </div>
-                  </section>
+                  </motion.section>
                 </main>
                 <footer className="bg-slate-800 text-slate-400">
                   <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
