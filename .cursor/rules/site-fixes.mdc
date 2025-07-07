@@ -1,0 +1,41 @@
+# Site Fixes & Best Practices ([sparrow_site_fixes.md](mdc:sparrow_site_fixes.md))
+
+## 1. Configuration Consistency
+- Choose a single stack: Jekyll (recommended for GitHub Pages) or React with Vite. Do not mix both.
+- Remove unused config files for the stack you are not using (e.g., remove Jekyll files if using React, and vice versa).
+
+## 2. Directory Structure
+- Use this canonical structure:
+  - `assets/images/` for all images
+  - `assets/css/` for stylesheets
+  - `languages/` for translation files
+  - `public/` only for files that must be at the web root (e.g., favicon)
+
+## 3. Asset & Path Management
+- Reference assets using Jekyll's `relative_url` filter for portability:
+  ```html
+  <img src="{{ '/assets/images/screenshot-ui.png' | relative_url }}" alt="UI">
+  ```
+- Move favicon to the root or update references to use `{{ '/favicon.png' | relative_url }}`.
+
+## 4. Jekyll & Build Settings
+- Update `_config.yml`:
+  - Set `baseurl: "/sparrow-ai-tech"`
+  - Exclude only non-essential files from processing (see recommended list in the source file).
+  - Do not exclude the `assets` directory.
+
+## 5. Security & Testing
+- Add a Content Security Policy meta tag to your HTML head for improved security.
+- Test locally with `bundle exec jekyll serve` (Jekyll) or `npm run dev` (React).
+
+## 6. Immediate Actions
+- Create missing directories and add placeholder images to prevent 404s.
+- Fix all asset references and base URLs for your chosen stack.
+- Stick to one approach for maintainability.
+
+---
+This rule ensures your site is organized, secure, and ready for consistent deployment. See [sparrow_site_fixes.md](mdc:sparrow_site_fixes.md) for full details.
+description:
+globs:
+alwaysApply: false
+---

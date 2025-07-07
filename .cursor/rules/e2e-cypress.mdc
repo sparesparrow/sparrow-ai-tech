@@ -1,0 +1,47 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+
+# E2E Testing with Cypress for React Projects
+
+## 1. Setup
+- Ensure Cypress is installed: `npm install cypress --save-dev`
+- Initialize Cypress: `npx cypress open` (creates the Cypress folder structure)
+- For React projects, keep Cypress tests in `cypress/e2e/` (or `integration/` for older versions)
+
+## 2. Writing Tests
+- Use clear, descriptive test names and organize tests by feature/component.
+- Example test for a login component:
+  ```js
+  describe('Login Component Tests', () => {
+    it('successfully loads', () => {
+      cy.visit('/login');
+    });
+    it('allows users to log in', () => {
+      cy.get('input[name=username]').type('my_username');
+      cy.get('input[name=password]').type('my_password');
+      cy.get('button[type=submit]').click();
+      cy.contains('Welcome').should('be.visible');
+    });
+  });
+  ```
+- Place test data in `cypress/fixtures/` and custom commands in `cypress/support/`.
+
+## 3. Running & Debugging
+- Run tests locally with `npx cypress open` (GUI) or `npx cypress run` (headless/CI).
+- Use Cypress logs and screenshots to debug failures.
+
+## 4. Integrating with CI
+- Add Cypress tests to your CI pipeline to run on every build.
+- Ensure environment variables and base URLs are set correctly for CI.
+
+## 5. Best Practices
+- Keep tests independent and idempotent.
+- Use data-cy or data-testid attributes for robust selectors.
+- Regularly update and refactor tests as your UI evolves.
+- Review and refine AI-generated tests for accuracy and maintainability.
+
+---
+For more, see [How to get Cursor AI to produce E2E Cypress tests for React components](https://www.rapidevelopers.com/cursor-tutorial/how-to-get-cursor-ai-to-produce-e2e-cypress-tests-for-react-components).
