@@ -21,12 +21,12 @@
   "author": "sparesparrow",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^24.11.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.6.0",
+    "puppeteer": "^24.11.2",
     "vite": "^7.0.2"
   },
   "browserslist": {
