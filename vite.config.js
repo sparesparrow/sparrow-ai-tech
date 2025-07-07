@@ -13,5 +13,16 @@ export default defineConfig({
       "@assets": path.resolve(__dirname, "./src/assets"),
       "@languages": path.resolve(__dirname, "./src/languages")
     }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          chartjs: ['chart.js'],
+          mermaid: ['mermaid']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000 // Increase warning limit to 1000kB
   }
 }); 
