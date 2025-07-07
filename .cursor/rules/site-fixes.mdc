@@ -1,3 +1,9 @@
+---
+description: This rule ensures your site is organized, secure, and ready for consistent deployment. See [sparrow_site_fixes.md](mdc:sparrow_site_fixes.md) for full details.
+globs: 
+alwaysApply: false
+---
+
 # Site Fixes & Best Practices ([sparrow_site_fixes.md](mdc:sparrow_site_fixes.md))
 
 ## 1. Configuration Consistency
@@ -32,10 +38,3 @@
 - Create missing directories and add placeholder images to prevent 404s.
 - Fix all asset references and base URLs for your chosen stack.
 - Stick to one approach for maintainability.
-
----
-This rule ensures your site is organized, secure, and ready for consistent deployment. See [sparrow_site_fixes.md](mdc:sparrow_site_fixes.md) for full details.
-description:
-globs:
-alwaysApply: false
----

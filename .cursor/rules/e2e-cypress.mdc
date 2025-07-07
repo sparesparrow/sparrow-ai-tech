@@ -1,6 +1,6 @@
 ---
-description:
-globs:
+description: E2E Testing with Cypress for React Projects. For more, see [How to get Cursor AI to produce E2E Cypress tests for React components](https://www.rapidevelopers.com/cursor-tutorial/how-to-get-cursor-ai-to-produce-e2e-cypress-tests-for-react-components).
+globs: cypress/**
 alwaysApply: false
 ---
 
@@ -44,4 +44,3 @@ alwaysApply: false
 - Review and refine AI-generated tests for accuracy and maintainability.
 
 ---
-For more, see [How to get Cursor AI to produce E2E Cypress tests for React components](https://www.rapidevelopers.com/cursor-tutorial/how-to-get-cursor-ai-to-produce-e2e-cypress-tests-for-react-components).

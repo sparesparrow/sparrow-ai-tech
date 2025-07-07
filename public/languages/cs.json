@@ -18,5 +18,19 @@
   "why_mcp_point1": "<strong>Architektonické inovace:</strong> MutablePrompt umožňuje konverzi promptů mezi formáty (JSON, MDC, PGAI, šablony) bez zásahu do jádra serveru. Modularita a přepis do Rustu zajišťují výkon, bezpečnost a dlouhodobou udržitelnost.",
   "why_mcp_point2": "<strong>Otevřené standardy a komunita:</strong> Všechny projekty jsou open-source (MIT licence), s důrazem na dokumentaci, kontejnerizaci a automatizované CI/CD. Aktivní zapojení do MCP komunity a viditelnost na specializovaných platformách.",
   "why_mcp_point3": "<strong>Strategická doporučení:</strong> Důraz na stabilitu, urychlení Rust přepisu, formální prezentace toolchainu jako jednotného stacku a posílení komunitní angažovanosti.",
-  "why_mcp_read_full": "Přečtěte si celou analýzu"
+  "why_mcp_read_full": "Přečtěte si celou analýzu",
+  "nav": {
+    "services": "Služby",
+    "articles": "Články",
+    "about": "O nás",
+    "projects": "Projekty",
+    "references": "Reference",
+    "contact": "Kontakt",
+    "consulting": "Konzultace zdarma"
+  },
+  "hero": {
+    "title": "Inovace a bezpečnost pro vaši digitální éru",
+    "subtitle": "Specializujeme se na implementaci AI agentů, kybernetickou bezpečnost a modernizaci IT. Pomáháme firmám růst, inovovat a chránit jejich digitální aktiva.",
+    "cta": "Vyzkoušejte Rychlou Analýzu"
+  }
 } 

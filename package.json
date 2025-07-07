@@ -1,16 +1,15 @@
 {
   "name": "sparrow-ai-tech",
   "version": "0.1.0",
-  "homepage": "https://sparesparrow.github.io/sparrow-ai-tech",
   "private": true,
   "description": "SPARROW-AI-TECH: Inovace, AI agenti, kybernetická bezpečnost, modernizace IT a vývoj softwaru.",
-  "main": "App.js",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "npm run build && npx gh-pages -d dist"
+  "homepage": "https://sparesparrow.github.io/sparrow-ai-tech",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sparesparrow/sparrow-ai-tech.git"
   },
+  "author": "sparesparrow",
+  "license": "MIT",
   "keywords": [
     "react",
     "ai",
@@ -19,15 +18,17 @@
     "modernization",
     "sparrow-ai-tech"
   ],
-  "author": "sparesparrow",
-  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.6.0",
-    "puppeteer": "^24.11.2",
     "vite": "^7.0.2"
   },
   "browserslist": {
@@ -41,5 +42,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/sparesparrow/sparrow-ai-tech/issues"
   }
 }

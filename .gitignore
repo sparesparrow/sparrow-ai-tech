@@ -39,3 +39,7 @@ coverage/
 cypress/screenshots/
 cypress/videos/
 cypress/downloads/ 
+
+dist/
+build/
+_site/
