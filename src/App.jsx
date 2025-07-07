@@ -291,7 +291,7 @@ const App = () => {
     ];
 
     return (
-        <Router>
+        <Router basename="/sparrow-ai-tech/">
           <Routes>
             <Route path="/markdown-test" element={<MarkdownTest />} />
             <Route path="/infographics/1" element={<Infographic1 />} />
