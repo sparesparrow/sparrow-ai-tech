@@ -1,0 +1,41 @@
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import MarkdownViewer from './MarkdownViewer';
+
+// Mock fetch for markdown loading
+beforeEach(() => {
+  global.fetch = jest.fn((url) => {
+    if (url.endsWith('test.md')) {
+      return Promise.resolve({ ok: true, text: () => Promise.resolve('# Hello World') });
+    }
+    if (url.endsWith('bad.md')) {
+      return Promise.resolve({ ok: false });
+    }
+    return Promise.reject(new Error('Unknown URL'));
+  });
+});
+afterEach(() => {
+  jest.resetAllMocks();
+});
+
+describe('MarkdownViewer', () => {
+  it('renders markdown content', async () => {
+    render(<MarkdownViewer path="/test.md" />);
+    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    expect(await screen.findByText('Hello World')).toBeInTheDocument();
+  });
+
+  it('shows error on fetch fail', async () => {
+    render(<MarkdownViewer path="/bad.md" />);
+    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    expect(await screen.findByText(/error/i)).toBeInTheDocument();
+  });
+
+  it('applies custom className', async () => {
+    render(<MarkdownViewer path="/test.md" className="custom-class" />);
+    expect(await screen.findByText('Hello World')).toBeInTheDocument();
+    expect(screen.getByText('Hello World').closest('div')).toHaveClass('custom-class');
+  });
+
+  // Add more interaction/state tests as needed, e.g., toggling previews, tooltips, etc.
+}); 

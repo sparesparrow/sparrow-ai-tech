@@ -26,15 +26,24 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@tippyjs/react": "^4.2.6",
+    "@uiw/react-md-editor": "^4.0.7",
+    "chart.js": "^4.5.0",
+    "mermaid": "^11.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.6.3",
+    "tippy.js": "^6.3.7"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.6.0",
     "cypress": "^14.5.1",
+    "cypress-axe": "^1.6.0",
     "gh-pages": "^6.0.0",
     "serve": "^14.2.4",
-    "vite": "^7.0.2"
+    "vite": "^7.0.2",
+    "vite-plugin-static-copy": "^3.1.0"
   },
   "browserslist": {
     "production": [

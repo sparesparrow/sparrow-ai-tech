@@ -1,45 +1,78 @@
----
-description: E2E Testing with Cypress for React Projects. For more, see [How to get Cursor AI to produce E2E Cypress tests for React components](https://www.rapidevelopers.com/cursor-tutorial/how-to-get-cursor-ai-to-produce-e2e-cypress-tests-for-react-components).
-globs: cypress/**
-alwaysApply: false
----
+# E2E Testing with Cypress: Practical Guide for Markdown and Mermaid
 
-# E2E Testing with Cypress for React Projects
+## 1. File Paths
 
-## 1. Setup
-- Ensure Cypress is installed: `npm install cypress --save-dev`
-- Initialize Cypress: `npx cypress open` (creates the Cypress folder structure)
-- For React projects, keep Cypress tests in `cypress/e2e/` (or `integration/` for older versions)
-
-## 2. Writing Tests
-- Use clear, descriptive test names and organize tests by feature/component.
-- Example test for a login component:
+- Test page: `/markdown-test`
+- To test a markdown file in `/articles`:
   ```js
-  describe('Login Component Tests', () => {
-    it('successfully loads', () => {
-      cy.visit('/login');
-    });
-    it('allows users to log in', () => {
-      cy.get('input[name=username]').type('my_username');
-      cy.get('input[name=password]').type('my_password');
-      cy.get('button[type=submit]').click();
-      cy.contains('Welcome').should('be.visible');
-    });
-  });
+  cy.visit('/markdown-test?src=/articles/mcp-prompts.md')
   ```
-- Place test data in `cypress/fixtures/` and custom commands in `cypress/support/`.
+- For a file in `/dist`:
+  ```js
+  cy.visit('/markdown-test?src=/dist/human-action-README.md')
+  ```
+- For a file in `/public`:
+  ```js
+  cy.visit('/markdown-test?src=/public/your-doc.md')
+  ```
 
-## 3. Running & Debugging
-- Run tests locally with `npx cypress open` (GUI) or `npx cypress run` (headless/CI).
-- Use Cypress logs and screenshots to debug failures.
+## 2. Selectors
 
-## 4. Integrating with CI
-- Add Cypress tests to your CI pipeline to run on every build.
-- Ensure environment variables and base URLs are set correctly for CI.
+- **Markdown Content:**
+  ```js
+  cy.get('.prose')
+  ```
+- **Mermaid Diagrams:**
+  ```js
+  cy.get('.mermaid-diagram').find('svg')
+  ```
+- **Loading State:**
+  ```js
+  cy.contains('Loading')
+  ```
+- **Error State:**
+  ```js
+  cy.contains('Error')
+  ```
+- **Custom Class:**
+  ```js
+  cy.visit('/markdown-test?src=/articles/mcp-prompts.md&className=my-custom-class')
+  cy.get('.my-custom-class')
+  ```
 
-## 5. Best Practices
-- Keep tests independent and idempotent.
-- Use data-cy or data-testid attributes for robust selectors.
+## 3. General Tips
+
+- Use `cy.intercept()` to mock fetches for error/loading state tests.
+- Use `cy.get()` with more specific selectors if you add `data-cy` attributes for robustness.
+- Update selectors if you change the structure of `MarkdownViewer` or similar components.
+
+## Example Cypress Test Snippet
+```js
+it('renders markdown content', () => {
+  cy.visit('/markdown-test?src=/articles/mcp-prompts.md');
+  cy.get('.prose').should('exist');
+  cy.contains('Some expected heading or text from the markdown');
+});
+
+it('renders mermaid diagram', () => {
+  cy.visit('/markdown-test?src=/articles/mermaid-example.md');
+  cy.get('.mermaid-diagram').find('svg').should('exist');
+});
+
+it('shows error on fetch fail', () => {
+  cy.intercept('GET', '/articles/does-not-exist.md', { statusCode: 404 });
+  cy.visit('/markdown-test?src=/articles/does-not-exist.md');
+  cy.contains('Error').should('exist');
+});
+```
+
+## Summary
+- Update Cypress test file paths to match `/markdown-test?src=...`.
+- Use `.prose`, `.mermaid-diagram`, and custom classes as selectors.
+- Adjust as needed if you change your component's structure or styling.
+
+---
+
 - Regularly update and refactor tests as your UI evolves.
 - Review and refine AI-generated tests for accuracy and maintainability.
 

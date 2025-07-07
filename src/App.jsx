@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import cs from '@/languages/cs.json';
 import en from '@/languages/en.json';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MarkdownTest from './pages/MarkdownTest';
+import Infographic1 from './pages/infographics/Infographic1';
+import Infographic2 from './pages/infographics/Infographic2';
+import Infographic3 from './pages/infographics/Infographic3';
+import SPAInfographic from './pages/infographics/SPA';
 
 const translationsMap = { cs, en };
 
@@ -212,134 +218,247 @@ const App = () => {
       </svg>
     );
 
+    // 1. Define a new, richer content structure for articles, infographics, and visuals
+    const categorizedArticles = [
+      {
+        category: 'Architecture',
+        articles: [
+          { title: 'Hexagonal Architecture in MCP (EN)', url: '/articles/hexagonal-architecture-in-mcp.md', lang: 'en' },
+          { title: 'Hexagonální architektura v MCP (CS)', url: '/articles/hexagonal-architecture-in-mcp.cs.md', lang: 'cs' },
+          { title: 'Merged: Hexagonal Architecture', url: '/articles/merged/hexagonal-architecture-in-mcp.md', lang: 'en/cs' },
+        ]
+      },
+      {
+        category: 'Human & AI',
+        articles: [
+          { title: 'The Importance of Human Action in AI (EN)', url: '/articles/human-action.md', lang: 'en' },
+          { title: 'Důležitost lidského jednání v AI (CS)', url: '/articles/human-action.cs.md', lang: 'cs' },
+        ]
+      },
+      {
+        category: 'MCP Prompts',
+        articles: [
+          { title: 'Getting Started with MCP Prompts (EN)', url: '/articles/mcp-prompts.md', lang: 'en' },
+          { title: 'Začínáme s MCP Prompts (CS)', url: '/articles/mcp-prompts.cs.md', lang: 'cs' },
+          { title: 'Merged: MCP Prompts', url: '/articles/merged/mcp-prompts-and-rs.md', lang: 'en/cs' },
+        ]
+      },
+      {
+        category: 'Ecosystem & Contributions',
+        articles: [
+          { title: 'MCP Ecosystem Overview', url: '/articles/merged/mcp-ecosystem-overview.md', lang: 'en' },
+          { title: 'MCP in Practice & Contributions', url: '/articles/merged/mcp-in-practice-and-contributions.md', lang: 'en' },
+          { title: 'MCP Contributions (EN)', url: '/articles/mcp-contributions.en.md', lang: 'en' },
+          { title: 'MCP Contributions (CS)', url: '/articles/mcp-contributions.cs.md', lang: 'cs' },
+        ]
+      },
+      {
+        category: 'Workshops & Publications',
+        articles: [
+          { title: 'Andrew Ng Workshops (CS)', url: '/articles/andrew-ng-workshops.cs.md', lang: 'cs' },
+          { title: 'Andrej Karpathy Workshops (CS)', url: '/articles/andrej-karpathy-workshops.cs.md', lang: 'cs' },
+          { title: 'Dario Amodei Publications (CS)', url: '/articles/dario-amodei-publikace.cs.md', lang: 'cs' },
+          { title: 'ForwardFutureAI - Matthew Berman (CS)', url: '/articles/forwardfutureai-matthew-berman.cs.md', lang: 'cs' },
+        ]
+      },
+      {
+        category: 'Rules & Liberty',
+        articles: [
+          { title: 'Cursor Rules (EN)', url: '/articles/cursor-rules.md', lang: 'en' },
+          { title: 'Cursor Rules (CS)', url: '/articles/cursor-rules.cs.md', lang: 'cs' },
+          { title: 'Liberty (EN)', url: '/articles/liberty.md', lang: 'en' },
+        ]
+      },
+    ];
+
+    const infographicsReact = [
+      { title: 'MCP Ecosystem (React)', route: '/infographics/1', description: 'How the sparesparrow open-source toolchain revolutionizes AI agent development.' },
+      { title: 'Human-in-the-Loop AI (React)', route: '/infographics/2', description: 'The indispensable partnership between human intuition and artificial intelligence.' },
+      { title: 'Hexagonal Architecture (React)', route: '/infographics/3', description: 'How the Ports & Adapters pattern protects your application core.' },
+      { title: 'Strategic Blueprint SPA (React)', route: '/infographics/spa', description: 'Interactive, visually rich SPA: strategy, tech, ecosystem, and CI/CD pipeline.' },
+    ];
+    const infographicsHtml = [
+      { title: 'MCP Ecosystem (HTML)', url: '/infographics/1.html' },
+      { title: 'Human-in-the-Loop AI (HTML)', url: '/infographics/2.html' },
+      { title: 'Hexagonal Architecture (HTML)', url: '/infographics/3.html' },
+      { title: 'SPA Infographic (HTML)', url: '/infographics/SPA.html' },
+      { title: 'ElevenLabs Widget Demo', url: '/infographics/elevenlabs-widget.html' },
+    ];
+    const visuals = [
+      { name: 'MCP Ecosystem Diagram', src: '/assets/images/mcp-ecosystem-diagram.png', context: 'Ecosystem, Architecture' },
+      { name: 'UI Screenshot', src: '/assets/images/screenshot-ui.png', context: 'Homepage, UI' },
+      { name: 'Feature Screenshot', src: '/assets/images/screenshot-feature.png', context: 'Feature Demo' },
+    ];
+
     return (
-        <div className="bg-gray-900 text-gray-200 font-sans leading-normal tracking-normal">
-            <header className="bg-gray-900/80 backdrop-blur-sm fixed top-0 w-full z-10">
-                <div className="container mx-auto flex items-center justify-between p-4">
-                    <div className="text-2xl font-bold text-white">
-                        <a href="#home" className="hover:text-indigo-400 transition-colors duration-300">Sparrow AI</a>
+        <Router>
+          <Routes>
+            <Route path="/markdown-test" element={<MarkdownTest />} />
+            <Route path="/infographics/1" element={<Infographic1 />} />
+            <Route path="/infographics/2" element={<Infographic2 />} />
+            <Route path="/infographics/3" element={<Infographic3 />} />
+            <Route path="/infographics/spa" element={<SPAInfographic />} />
+            <Route path="/" element={
+              <div className="bg-slate-50 text-slate-800 font-sans antialiased">
+                <header className="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-slate-200">
+                  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+                    <div className="flex items-center">
+                      <span className="font-bold text-xl text-sky-600">Sparrow AI & Tech</span>
+                      <span className="hidden sm:inline-block ml-3 text-slate-500">Strategic Blueprint</span>
                     </div>
-                    <nav className="hidden md:flex items-center space-x-6">
-                        <a href="#home" className="hover:text-indigo-400 transition-colors duration-300">{content.nav.home}</a>
-                        <a href="#portfolio" className="hover:text-indigo-400 transition-colors duration-300">{content.nav.portfolio}</a>
-                        <a href="#articles" className="hover:text-indigo-400 transition-colors duration-300">{content.nav.articles}</a>
-                        <a href="#infographics" className="hover:text-indigo-400 transition-colors duration-300">{content.nav.infographics}</a>
-                        <a href="#contact" className="hover:text-indigo-400 transition-colors duration-300">{content.nav.contact}</a>
-                        <button onClick={toggleLanguage} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm">
-                            {language === 'en' ? 'Česky' : 'English'}
-                        </button>
+                    <nav className="hidden md:flex items-center space-x-8">
+                      <a href="#home" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.home}</a>
+                      <a href="#portfolio" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.portfolio}</a>
+                      <a href="#articles" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.articles}</a>
+                      <a href="#infographics" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.infographics}</a>
+                      <a href="#contact" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.contact}</a>
+                      <button onClick={toggleLanguage} className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm">
+                        {language === 'en' ? 'Česky' : 'English'}
+                      </button>
                     </nav>
                     <div className="md:hidden">
-                        <button onClick={toggleMenu} className="text-white focus:outline-none">{isMenuOpen ? <CloseIcon /> : <MenuIcon />}</button>
-                    </div>
-                </div>
-                {isMenuOpen && (
-                    <div className="md:hidden bg-gray-800">
-                        <nav className="flex flex-col items-center p-4 space-y-4">
-                            <a href="#home" onClick={toggleMenu} className="hover:text-indigo-400">{content.nav.home}</a>
-                            <a href="#portfolio" onClick={toggleMenu} className="hover:text-indigo-400">{content.nav.portfolio}</a>
-                            <a href="#articles" onClick={toggleMenu} className="hover:text-indigo-400">{content.nav.articles}</a>
-                            <a href="#infographics" onClick={toggleMenu} className="hover:text-indigo-400">{content.nav.infographics}</a>
-                            <a href="#contact" onClick={toggleMenu} className="hover:text-indigo-400">{content.nav.contact}</a>
-                            <button onClick={() => { toggleLanguage(); toggleMenu(); }} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm">
-                                {language === 'en' ? 'Česky' : 'English'}
-                            </button>
-                        </nav>
-                    </div>
-                )}
-            </header>
-
-            <main>
-                <section id="home" className="pt-24 md:pt-32 pb-16 bg-gray-900">
-                    <div className="container mx-auto px-4 text-center">
-                        <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4">{content.hero.title}</h1>
-                        <p className="text-lg md:text-xl text-indigo-300 mb-6">{content.hero.subtitle}</p>
-                        <p className="max-w-3xl mx-auto text-gray-400 mb-8">{content.hero.description}</p>
-                         <a href="https://github.com/sparesparrow/sparrow-ai-tech" target="_blank" rel="noopener noreferrer" className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 duration-300 inline-block">
-                            View on GitHub
-                        </a>
-                    </div>
-                </section>
-
-                <section id="portfolio" className="py-20 bg-gray-800">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-12">{content.portfolio.title}</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {content.portfolio.projects.map((project, index) => (
-                                <div key={index} className="bg-gray-900 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:-translate-y-2 flex flex-col">
-                                    <div className="p-6 flex-grow">
-                                        <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
-                                        <p className="text-gray-400 mb-4 flex-grow">{project.description}</p>
-                                        <div className="flex flex-wrap gap-2 mb-4">
-                                            {project.tags.map(tag => (
-                                                <span key={tag} className="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">{tag}</span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div className="p-6 bg-gray-900/50 mt-auto flex justify-end gap-4">
-                                        {project.liveUrl && (
-                                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-white bg-green-600 hover:bg-green-700 py-2 px-4 rounded-lg transition-colors duration-300">
-                                                Live Demo <ExternalLinkIcon />
-                                            </a>
-                                        )}
-                                        {project.sourceUrl && (
-                                            <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 py-2 px-4 rounded-lg transition-colors duration-300">
-                                                Source <GithubIcon />
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                <section id="articles" className="py-20 bg-gray-900">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-12">{content.articles.title}</h2>
-                        <div className="max-w-2xl mx-auto">
-                           {content.articles.list.map((article, index) => (
-                               <a key={index} href={article.url} target="_blank" rel="noopener noreferrer" className="block bg-gray-800 hover:bg-gray-700 p-6 rounded-lg shadow-md mb-4 transition-all duration-300 hover:shadow-lg">
-                                   <h3 className="text-xl font-semibold text-indigo-400">{article.title}</h3>
-                               </a>
-                           ))}
-                        </div>
-                    </div>
-                </section>
-
-                <section id="infographics" className="py-20 bg-gray-900">
-                  <div className="container mx-auto px-4">
-                    <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-12">
-                      {content.infographics.title}
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                      {content.infographics.items.map((item, idx) => (
-                        <a key={idx} href={item.url} target="_blank" rel="noopener noreferrer" className="block bg-gray-800 hover:bg-gray-700 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
-                          <h3 className="text-xl font-semibold text-indigo-400 mb-2">{item.title}</h3>
-                          <p className="text-gray-400">{item.description}</p>
-                        </a>
-                      ))}
+                      <button onClick={toggleMenu} className="text-slate-600 focus:outline-none">{isMenuOpen ? <CloseIcon /> : <MenuIcon />}</button>
                     </div>
                   </div>
-                </section>
-
-                <section id="contact" className="py-20 bg-gray-800">
-                    <div className="container mx-auto px-4 text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{content.contact.title}</h2>
-                        <p className="max-w-xl mx-auto text-gray-400 mb-8">{content.contact.description}</p>
-                        <a href="mailto:sparrow.ai.tech@gmail.com" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 duration-300 inline-block">
-                            {content.contact.button}
-                        </a>
+                  {isMenuOpen && (
+                    <div className="md:hidden bg-white/90 border-b border-slate-200">
+                      <nav className="flex flex-col items-center p-4 space-y-4">
+                        <a href="#home" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.home}</a>
+                        <a href="#portfolio" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.portfolio}</a>
+                        <a href="#articles" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.articles}</a>
+                        <a href="#infographics" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.infographics}</a>
+                        <a href="#contact" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.contact}</a>
+                        <button onClick={() => { toggleLanguage(); toggleMenu(); }} className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm">
+                          {language === 'en' ? 'Česky' : 'English'}
+                        </button>
+                      </nav>
                     </div>
-                </section>
-            </main>
-
-            <footer className="bg-gray-900 py-6">
-                <div className="container mx-auto px-4 text-center text-gray-500">
-                    <p>{content.footer.copyright}</p>
-                </div>
-            </footer>
-        </div>
+                  )}
+                </header>
+                <main className="pt-20 md:pt-24">
+                  <section id="home" className="py-16 md:py-24">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                      <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-4">{content.hero.title}</h1>
+                      <p className="mt-6 text-lg text-slate-600">{content.hero.subtitle}</p>
+                      <p className="max-w-3xl mx-auto text-slate-500 mb-8">{content.hero.description}</p>
+                      <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="#portfolio" className="bg-sky-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-sky-700 transition-all">View the Strategy</a>
+                        <a href="#tech" className="bg-white text-slate-700 font-semibold px-6 py-3 rounded-lg border border-slate-300 hover:bg-slate-100 transition-all">Explore the Tech</a>
+                        <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition-all flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                          Download CV (PDF)
+                        </a>
+                      </div>
+                    </div>
+                  </section>
+                  <section id="portfolio" className="py-16 md:py-24 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                      <div className="text-center">
+                        <h2 className="text-3xl font-bold tracking-tight text-slate-900">{content.portfolio.title}</h2>
+                      </div>
+                      <div className="mt-12 grid md:grid-cols-2 gap-8 md:gap-12">
+                        {content.portfolio.projects.map((project, index) => (
+                          <div key={index} className="bg-slate-50 p-8 rounded-lg border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                            <div className="flex items-center mb-2">
+                              <div className="bg-sky-100 p-3 rounded-full"><span className="text-2xl">{project.icon || '💡'}</span></div>
+                              <h3 className="ml-4 text-xl font-semibold text-slate-900">{project.title}</h3>
+                            </div>
+                            <p className="mt-4 text-slate-600">{project.description}</p>
+                            <div className="flex flex-wrap gap-2 mt-4">
+                              {project.tags.map(tag => (
+                                <span key={tag} className="inline-block bg-slate-100 text-slate-600 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">{tag}</span>
+                              ))}
+                            </div>
+                            <div className="mt-6 flex gap-4">
+                              {project.liveUrl && (
+                                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-white bg-green-600 hover:bg-green-700 py-2 px-4 rounded-lg transition-colors duration-300">
+                                  Live Demo <ExternalLinkIcon />
+                                </a>
+                              )}
+                              {project.sourceUrl && (
+                                <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-sky-600 hover:bg-slate-100 py-2 px-4 rounded-lg transition-colors duration-300">
+                                  Source <GithubIcon />
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+                  <section id="articles" className="py-16 md:py-24">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                      <h2 className="text-3xl font-bold tracking-tight text-slate-900 text-center mb-12">Articles & Documentation</h2>
+                      {categorizedArticles.map((cat, idx) => (
+                        <div key={cat.category} className="mb-8">
+                          <h3 className="text-2xl font-semibold text-sky-700 mb-4">{cat.category}</h3>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            {cat.articles.map((article, i) => (
+                              <a key={i} href={article.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
+                                <span className="text-sky-600 font-bold">[{article.lang.toUpperCase()}]</span> <span className="text-lg font-semibold">{article.title}</span>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                  <section id="infographics" className="py-16 md:py-24">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                      <h2 className="text-3xl font-bold tracking-tight text-slate-900 text-center mb-12">Infographics</h2>
+                      <h3 className="text-xl font-semibold text-sky-700 mb-4">Interactive (React)</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        {infographicsReact.map((info, idx) => (
+                          <a key={idx} href={info.route} className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
+                            <h4 className="text-lg font-semibold text-sky-600 mb-2">{info.title}</h4>
+                            <p className="text-slate-600">{info.description}</p>
+                          </a>
+                        ))}
+                      </div>
+                      <h3 className="text-xl font-semibold text-sky-700 mb-4">Standalone (HTML)</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {infographicsHtml.map((info, idx) => (
+                          <a key={idx} href={info.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
+                            <h4 className="text-lg font-semibold text-sky-600 mb-2">{info.title}</h4>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+                  <section id="visual-library" className="py-16 md:py-24 bg-white">
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                      <h2 className="text-3xl font-bold tracking-tight text-slate-900 text-center mb-12">Visual Library</h2>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {visuals.map((vis, idx) => (
+                          <div key={idx} className="bg-slate-100 rounded-lg shadow-md p-6 flex flex-col items-center">
+                            <img src={vis.src} alt={vis.name} className="w-full h-48 object-contain mb-4" />
+                            <h4 className="text-lg font-semibold text-sky-700 mb-2">{vis.name}</h4>
+                            <p className="text-slate-600 text-sm">{vis.context}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+                  <section id="contact" className="py-16 md:py-24 bg-white">
+                    <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                      <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-4">{content.contact.title}</h2>
+                      <p className="text-slate-600 mb-8">{content.contact.description}</p>
+                      <a href="mailto:sparrow.ai.tech@gmail.com" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 duration-300 inline-block">
+                        {content.contact.button}
+                      </a>
+                    </div>
+                  </section>
+                </main>
+                <footer className="bg-slate-800 text-slate-400">
+                  <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+                    <p>Interactive Strategic Blueprint for Sparrow AI & Tech</p>
+                    <p className="mt-2 text-sm">{content.footer.copyright}</p>
+                  </div>
+                </footer>
+              </div>
+            } />
+          </Routes>
+        </Router>
     );
 };
 

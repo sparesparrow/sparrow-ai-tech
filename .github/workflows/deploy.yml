@@ -21,6 +21,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -30,31 +36,18 @@ jobs:
           if [ -f .htmlhintrc ]; then npx htmlhint "**/*.html"; else echo "No HTMLHint config found, skipping HTML lint."; fi
           if [ -f .stylelintrc ]; then npx stylelint "**/*.css"; else echo "No Stylelint config found, skipping CSS lint."; fi
 
-  cypress:
-    runs-on: ubuntu-latest
-    needs: lint
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run build
-      - uses: cypress-io/github-action@v6
-        with:
-          start: npx serve -s dist -l 5173
-          wait-on: 'http://localhost:5173'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     needs: [lint]
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -68,5 +61,40 @@ jobs:
         with:
           name: production-dist
           path: dist/
+
+  dl-repos-docs:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - run: curl -L https://raw.githubusercontent.com/sparesparrow/human-action/main/README.md -o dist/human-action-README.md
+      - run: curl -L https://raw.githubusercontent.com/sparesparrow/mcp-prompts/main/README.md -o dist/mcp-prompts-README.md
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [dl-repos-docs]
+    environment:
+      name: github-pages
+    steps:
       - id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+
+  e2e-prod:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - uses: cypress-io/github-action@v6
+        with:
+          config: baseUrl=${{ needs.deploy.outputs.page_url }}
