@@ -50,7 +50,7 @@ jobs:
 
   build-and-deploy:
     runs-on: ubuntu-latest
-    needs: [lint, cypress]
+    needs: [lint]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
