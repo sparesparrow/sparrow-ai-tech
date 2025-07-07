@@ -24,12 +24,13 @@
   "author": "sparesparrow",
   "license": "MIT",
   "dependencies": {
+    "puppeteer": "^24.11.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "react-scripts": "^5.0.1",
-    "gh-pages": "^6.0.0"
+    "gh-pages": "^6.0.0",
+    "react-scripts": "^5.0.1"
   },
   "browserslist": {
     "production": [
@@ -43,4 +44,4 @@
       "last 1 safari version"
     ]
   }
-} 
+}

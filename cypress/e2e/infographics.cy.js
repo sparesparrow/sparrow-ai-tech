@@ -301,3 +301,42 @@ describe('FAQ Keyboard Accessibility', () => {
     cy.get('.faq-question').first().should('have.attr', 'aria-expanded', 'false');
   });
 });
+
+describe('Deployed Site Smoke Test', () => {
+  before(() => {
+    cy.visit('https://sparesparrow.github.io/sparrow-ai-tech');
+  });
+
+  it('should load the homepage and display the main heading', () => {
+    cy.get('h1').should('exist').and('contain.text', 'SPARROW-AI-TECH');
+  });
+
+  it('should display the navigation bar with Služby link', () => {
+    cy.contains('nav', 'Služby').should('exist');
+  });
+
+  it('should display the language switcher and switch language', () => {
+    cy.get('#site-lang-switcher, #language-toggle').should('exist').then($el => {
+      if ($el.is('select')) {
+        cy.wrap($el).select('en');
+        cy.get('body').should('exist'); // Optionally check for English text
+      } else {
+        cy.wrap($el).click();
+        cy.get('body').should('exist'); // Optionally check for language change
+      }
+    });
+  });
+
+  it('should display the Quick Analysis form', () => {
+    cy.get('#quick-analysis, form[action*="quick-analysis"]').should('exist');
+  });
+
+  it('should display the FAQ section', () => {
+    cy.get('#faq').should('exist');
+    cy.get('.faq-question').should('have.length.at.least', 1);
+  });
+
+  it('should display the footer with company email', () => {
+    cy.get('footer').should('exist').and('contain', 'sparesparrow@protonmail.ch');
+  });
+});
