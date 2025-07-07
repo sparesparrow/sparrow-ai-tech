@@ -1,11 +1,19 @@
 {
   "company_name_short": "SPARROW-AI-TECH",
-  "nav_services": "Services",
-  "nav_articles": "Articles",
-  "nav_about": "About Us",
-  "nav_projects": "Projects",
-  "nav_references": "References",
-  "nav_contact": "Contact",
+  "nav": {
+    "services": "Services",
+    "articles": "Articles",
+    "about": "About Us",
+    "projects": "Projects",
+    "references": "References",
+    "contact": "Contact",
+    "consulting": "Free Consultation"
+  },
+  "hero": {
+    "title": "Innovation and Security for Your Digital Era",
+    "subtitle": "We specialize in implementing AI agents, cybersecurity, and IT modernization. We help companies grow, innovate, and protect their digital assets.",
+    "cta": "Try Quick Analysis"
+  },
   "cta_free_consultation_nav": "Free Consultation",
   "cta_free_consultation_mobile": "Free Consultation",
   "hero_title_html": "Innovation & Security <br class=\"hidden md:block\" /> for your <span class=\"text-teal-700 dark:text-teal-400\">digital era</span>",
