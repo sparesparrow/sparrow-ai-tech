@@ -6,7 +6,7 @@
       "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
       "@assets/*": ["./src/assets/*"],
-      "@languages/*": ["./languages/*"]
+      "@languages/*": ["./src/languages/*"]
     }
   }
 } 

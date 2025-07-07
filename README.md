@@ -48,8 +48,8 @@ This project uses [React](https://reactjs.org/) and is deployed to GitHub Pages 
 The site will be available at the URL specified in the `homepage` field of `package.json`.
 
 ### Static Assets
-- Place all static files (like `index.html`, `favicon.ico`, images, etc.) in the `/public` directory.
-- Reference them in HTML using `%PUBLIC_URL%/asset.png` and in JS using `process.env.PUBLIC_URL + '/asset.png'`.
+- Place all static files (like images, favicon, etc.) in the `/public/assets` directory.
+- Reference them in HTML using `./assets/asset.png` and in JS using `/assets/asset.png` (Vite copies from `/public` to `/dist`).
 
 ## 🖼️ Custom Images and Icons
 - Replace `/public/favicon.png` with your logo (192x192 px PNG)
