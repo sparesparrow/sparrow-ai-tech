@@ -1,8 +1,8 @@
 # Site settings
 title: "Sparrow AI Tech"
 description: "Custom AI/ML Solutions, Cybersecurity & IT Services"
-baseurl: "/your-repo-name"
-url: "https://your-username.github.io"
+baseurl: "sparesparrow/sparrow-ai-tech"
+url: "https://sparesparrow.github.io"
 
 # Build settings
 markdown: kramdown
