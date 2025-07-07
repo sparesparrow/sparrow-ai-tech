@@ -1,0 +1,27 @@
+/* Modularized CSS for /sparrow-ai-tech/index.html */
+.skip-to-content { position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 10000; background: #0d9488; color: #fff; padding: 8px 16px; border-radius: 0 0 8px 8px; }
+.skip-to-content:focus, .skip-to-content:focus-visible { left: 0; top: 0; width: auto; height: auto; outline: 2px solid #fff; }
+:focus-visible { outline: 2px solid #0d9488 !important; outline-offset: 2px; }
+
+#play-button {
+    cursor: pointer;
+    background: #0d9488;
+    color: #fff;
+    border: none;
+    padding: 0.75em 1.5em;
+    border-radius: 0.5em;
+    font-size: 1em;
+    transition: background 0.2s, opacity 0.2s;
+}
+#play-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+#play-button.loading {
+    background: #fbbf24;
+    color: #222;
+}
+#play-button.error {
+    background: #e74c3c;
+    color: #fff;
+}
