@@ -41,35 +41,6 @@
                 "-y",
                 "@modelcontextprotocol/server-github"
             ]
-        },
-        "brave-search": { 
-            "command": "npx",
-            "args": [
-                "-y",
-                "@modelcontextprotocol/server-brave-search"
-            ],
-            "env": {
-                "BRAVE_API_KEY": "BSAMtQJYW0pPW8XC9Sz-EnNx8Pp9uvU"
-            }
-        },
-        "mcp-prompts": {
-            "command": "docker",
-            "args": [
-                "run",
-                "-d",
-                "--name",
-                "mcp-prompts",
-                "-p",
-                "3003:3003",
-                "-v",
-                "./mcp/data/prompts:/app/data",
-                "ghcr.io/sparesparrow/mcp-prompts:latest"
-            ],
-            "env": {
-                "STORAGE_TYPE": "file",
-                "PROMPTS_DIR": "./mcp/data/prompts/",
-                "LOG_LEVEL": "debug"
-            }
         }
     }
 }
