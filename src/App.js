@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import cs from '@/languages/cs.json';
+import en from '@/languages/en.json';
+
+const translationsMap = { cs, en };
 
 const App = () => {
+    const [lang, setLang] = useState("cs");
+    const translations = translationsMap[lang];
+
     const siteData = {
         en: {
             nav: {

@@ -25,7 +25,17 @@
             "args": [
                 "-y",
                 "@modelcontextprotocol/server-filesystem",
-                "./"
+                "./",
+                "--allow-all-origins",
+                "--allow-all-methods",
+                "--allow-all-headers",
+                "--allow-all-credentials",
+                "--allow-all-paths",
+                "--allow-all-domains",
+                "--allow-all-subdomains",
+                "--allow-all-protocols",
+                "--allow-all-schemes",
+                "--allow-all-ports"
             ]
         },
         "puppeteer": {

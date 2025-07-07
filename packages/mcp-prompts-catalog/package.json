@@ -1,9 +1,0 @@
-{
-  "name": "@sparesparrow/mcp-prompts-catalog",
-  "version": "0.1.0",
-  "description": "Prompt catalog for MCP Prompts.",
-  "main": "index.js",
-  "files": ["prompts", "schemas"],
-  "author": "sparesparrow",
-  "license": "MIT"
-}

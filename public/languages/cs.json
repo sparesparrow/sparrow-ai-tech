@@ -1,0 +1,36 @@
+{
+  "mcp_ecosystem_title": "MCP Ekosystém: Otevřený Stack pro Agentní AI",
+  "mcp_ecosystem_intro": "Naše open-source projekty tvoří ucelený ekosystém pro vývoj agentních AI systémů na bázi Model Context Protocolu (MCP). Každý nástroj řeší klíčovou výzvu v oblasti správy promptů, orchestrací projektů a návrhu workflow. Všechny projekty jsou dostupné na GitHubu a vítáme příspěvky komunity.",
+  "mcp_prompts_title": "mcp-prompts",
+  "mcp_prompts_desc": "Server pro správu promptů a šablon s verzováním, více úložišti (souborový systém, PostgreSQL, MDC) a rozhraním MutablePrompt pro konverzi mezi formáty. Řeší problém 'prompt rot' a je základním stavebním kamenem MLOps pro AI agenty.",
+  "mcp_prompts_rs_title": "mcp-prompts-rs",
+  "mcp_prompts_rs_desc": "Výkonný přepis mcp-prompts v jazyce Rust pro vyšší stabilitu, bezpečnost a škálovatelnost. Zaměřeno na produkční nasazení a budoucí rozšíření.",
+  "mcp_project_orchestrator_title": "mcp-project-orchestrator",
+  "mcp_project_orchestrator_desc": "Automatizuje zakládání nových MCP projektů, správu šablon a generování diagramů. Umožňuje agentům vytvářet projekty na základě požadavků uživatele.",
+  "mcp_router_title": "mcp-router",
+  "mcp_router_desc": "Návrhář workflow a router pro agentní systémy. Umožňuje navrhovat, monitorovat a řídit komplexní agentní workflow v rámci MCP ekosystému.",
+  "mcp_prompts_catalog_title": "mcp-prompts-catalog",
+  "mcp_prompts_catalog_desc": "Standardizovaný katalog promptů v JSON formátu, oddělený od serverové logiky. Umožňuje sdílení a verzování obsahu napříč implementacemi.",
+  "mcp_ecosystem_contrib": "Chcete se zapojit? Přispějte na GitHubu nebo nám napište!",
+  "footer_contribute": "Přispějte / Contribute",
+  "why_mcp_title": "Proč MCP? Proč tento stack?",
+  "why_mcp_intro": "Vývoj agentních AI systémů přináší nové výzvy – zejména tzv. 'prompt rot', kdy se důležité prompty ztrácejí, nejsou verzované a brání efektivní spolupráci. MCP (Model Context Protocol) je otevřený standard, který řeší tuto fragmentaci a umožňuje interoperabilitu mezi nástroji, agenty a vývojáři.",
+  "why_mcp_point1": "<strong>Architektonické inovace:</strong> MutablePrompt umožňuje konverzi promptů mezi formáty (JSON, MDC, PGAI, šablony) bez zásahu do jádra serveru. Modularita a přepis do Rustu zajišťují výkon, bezpečnost a dlouhodobou udržitelnost.",
+  "why_mcp_point2": "<strong>Otevřené standardy a komunita:</strong> Všechny projekty jsou open-source (MIT licence), s důrazem na dokumentaci, kontejnerizaci a automatizované CI/CD. Aktivní zapojení do MCP komunity a viditelnost na specializovaných platformách.",
+  "why_mcp_point3": "<strong>Strategická doporučení:</strong> Důraz na stabilitu, urychlení Rust přepisu, formální prezentace toolchainu jako jednotného stacku a posílení komunitní angažovanosti.",
+  "why_mcp_read_full": "Přečtěte si celou analýzu",
+  "nav": {
+    "services": "Služby",
+    "articles": "Články",
+    "about": "O nás",
+    "projects": "Projekty",
+    "references": "Reference",
+    "contact": "Kontakt",
+    "consulting": "Konzultace zdarma"
+  },
+  "hero": {
+    "title": "Inovace a bezpečnost pro vaši digitální éru",
+    "subtitle": "Specializujeme se na implementaci AI agentů, kybernetickou bezpečnost a modernizaci IT. Pomáháme firmám růst, inovovat a chránit jejich digitální aktiva.",
+    "cta": "Vyzkoušejte Rychlou Analýzu"
+  }
+} 
