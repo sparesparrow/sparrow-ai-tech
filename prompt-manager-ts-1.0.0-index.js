@@ -1,1 +1,0 @@
-/home/sparrow/mcp/releases/prompt-manager-ts-1.0.0/build/index.js

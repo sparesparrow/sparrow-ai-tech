@@ -1,1 +1,0 @@
-/home/sparrow/mcp/releases/prompt-manager-1.0.0/src/mcp_prompt_manager/__main__.py

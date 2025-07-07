@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/style.css?v=599f1355a615b3efc72eb0aa8e44f2654c13f78f">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>cursor-rules (MDC): The Standard for IDE-Integrated Prompt Engineering | Sparrow AI Tech</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="cursor-rules (MDC): The Standard for IDE-Integrated Prompt Engineering" />
+<meta name="author" content="Sparrow AI Tech" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Custom AI/ML Solutions, Cybersecurity &amp; IT Services" />
+<meta property="og:description" content="Custom AI/ML Solutions, Cybersecurity &amp; IT Services" />
+<link rel="canonical" href="http://localhost:4000/articles/cursor-rules.html" />
+<meta property="og:url" content="http://localhost:4000/articles/cursor-rules.html" />
+<meta property="og:site_name" content="Sparrow AI Tech" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="cursor-rules (MDC): The Standard for IDE-Integrated Prompt Engineering" />
+<meta name="twitter:site" content="@sparrowaitech" />
+<meta name="twitter:creator" content="@Sparrow AI Tech" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Sparrow AI Tech"},"description":"Custom AI/ML Solutions, Cybersecurity &amp; IT Services","headline":"cursor-rules (MDC): The Standard for IDE-Integrated Prompt Engineering","url":"http://localhost:4000/articles/cursor-rules.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="a-title" href="/">
+          <h1>Sparrow AI Tech</h1>
+        </a>
+        <h2>Custom AI/ML Solutions, Cybersecurity & IT Services</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/sparesparrow/sparrow-ai-tech" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1 id="cursor-rules-mdc-the-standard-for-ide-integrated-prompt-engineering">cursor-rules (MDC): The Standard for IDE-Integrated Prompt Engineering</h1>
+
+<p><strong>Keywords:</strong> cursor-rules, MDC format, Model Context Protocol, prompt engineering, LLM, IDE integration, mcp-prompts, Cursor IDE, open source</p>
+
+<hr />
+
+<h2 id="introduction">Introduction</h2>
+
+<p>As prompt engineering matures into a core discipline of AI development, the need for standardized, developer-friendly formats to manage, share, and version prompts has become critical. The <strong>cursor-rules</strong> system—centered around the Markdown-based MDC format—has emerged as a de facto standard for integrating prompt management directly into the developer workflow, especially within the Model Context Protocol (MCP) ecosystem and the popular Cursor IDE.</p>
+
+<hr />
+
+<h2 id="what-is-cursor-rules-mdc">What is cursor-rules (MDC)?</h2>
+
+<p><strong>cursor-rules</strong> refers to a convention and file format (MDC: Markdown Cursor) for storing, organizing, and sharing prompts, templates, and tool definitions in a way that is both human-readable and machine-parseable. Originally popularized by the Cursor IDE, MDC files allow developers to:</p>
+<ul>
+  <li>Define prompts and templates in a structured Markdown format.</li>
+  <li>Annotate prompts with metadata (tags, variables, descriptions).</li>
+  <li>Version and share prompt collections using standard source control tools (e.g., Git).</li>
+  <li>Enable seamless integration between IDEs, prompt servers, and LLM-powered tools.</li>
+</ul>
+
+<hr />
+
+<h2 id="architecture-and-format">Architecture and Format</h2>
+
+<h3 id="1-human-readable-machine-friendly">1. Human-Readable, Machine-Friendly</h3>
+<ul>
+  <li><strong>Markdown Foundation:</strong> Prompts are written in Markdown, making them easy to read, edit, and review in any text editor or IDE.</li>
+  <li><strong>Metadata Blocks:</strong> Each prompt or rule can include YAML frontmatter or special comment blocks for tags, variables, and descriptions.</li>
+  <li><strong>Sectioning:</strong> Prompts, templates, and tool definitions are separated by clear delimiters (e.g., <code class="language-plaintext highlighter-rouge">---</code>), supporting modular organization.</li>
+</ul>
+
+<h3 id="2-designed-for-interoperability">2. Designed for Interoperability</h3>
+<ul>
+  <li><strong>IDE Integration:</strong> The MDC format is natively supported by the Cursor IDE, enabling features like prompt autocompletion, in-editor testing, and direct invocation of LLM tools.</li>
+  <li><strong>MCP Compatibility:</strong> Tools like <a href="https://github.com/sparesparrow/mcp-prompts">mcp-prompts</a> and <a href="https://github.com/sparesparrow/mcp-prompts-rs">mcp-prompts-rs</a> implement adapters to read and write MDC files, allowing seamless synchronization between server-side prompt management and local developer workflows.</li>
+  <li><strong>Version Control:</strong> Because MDC files are plain text, they can be tracked, branched, and merged using Git, bringing DevOps best practices to prompt engineering.</li>
+</ul>
+
+<hr />
+
+<h2 id="role-in-the-mcp-ecosystem">Role in the MCP Ecosystem</h2>
+
+<p>The cursor-rules/MDC format is a linchpin for interoperability in the MCP ecosystem:</p>
+<ul>
+  <li><strong>Single Source of Truth:</strong> By storing prompts in MDC files, teams can maintain a canonical, versioned repository of all prompts and templates, reducing “prompt rot” and fragmentation [<a href="https://github.com/sparesparrow/mcp-prompts">5</a>].</li>
+  <li><strong>Adapter Pattern:</strong> MCP servers like mcp-prompts expose the MutablePrompt interface, which can convert between JSON, MDC, and other formats on demand. This enables:
+    <ul>
+      <li>IDEs to fetch prompts in MDC for editing.</li>
+      <li>LLM agents to consume prompts in JSON or PGAI formats for execution or vector search.</li>
+    </ul>
+  </li>
+  <li><strong>Workflow Automation:</strong> MDC files can define not just static prompts, but also tool schemas and workflow templates, enabling advanced agentic behaviors and multi-step LLM workflows.</li>
+</ul>
+
+<hr />
+
+<h2 id="example-anatomy-of-an-mdc-file">Example: Anatomy of an MDC File</h2>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">Summarize Document</span>
+<span class="na">tags</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">summarization</span><span class="pi">,</span> <span class="nv">LLM</span><span class="pi">]</span>
+<span class="na">description</span><span class="pi">:</span> <span class="pi">&gt;</span>
+  <span class="s">A prompt for summarizing long documents using an LLM.</span>
+<span class="na">variables</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">document_text</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s">The text to summarize</span>
+<span class="nn">---</span>
+Summarize the following document:<span class="sb">
+
+
+</span></code></pre></div></div>
+
+<p>This example shows how a prompt can be richly annotated, parameterized, and made ready for both human review and automated consumption by tools.</p>
+
+<hr />
+
+<h2 id="integration-with-mcp-prompts-and-developer-workflows">Integration with mcp-prompts and Developer Workflows</h2>
+
+<ul>
+  <li><strong>Server-Side Management:</strong> MCP servers can ingest, serve, and update MDC files, ensuring that the latest prompt versions are always available to both agents and developers.</li>
+  <li><strong>IDE Round-Trip:</strong> Developers can edit prompts in the Cursor IDE, commit changes to Git, and have those changes automatically reflected in the MCP server via the MDC adapter.</li>
+  <li><strong>Collaboration:</strong> Teams can review, comment, and iterate on prompts using standard code review tools, bringing prompt engineering into the mainstream software development lifecycle.</li>
+</ul>
+
+<hr />
+
+<h2 id="value-for-prompt-engineering-and-llm-workflows">Value for Prompt Engineering and LLM Workflows</h2>
+
+<ul>
+  <li><strong>Transparency:</strong> Prompts are no longer hidden in code or chat logs—they are first-class, documented assets.</li>
+  <li><strong>Reusability:</strong> Well-structured MDC files make it easy to discover, reuse, and adapt prompts across projects.</li>
+  <li><strong>Governance:</strong> Versioning, metadata, and access control become possible, supporting enterprise needs for auditability and compliance.</li>
+  <li><strong>Innovation:</strong> The format’s flexibility enables rapid experimentation with new prompt types, tool schemas, and workflow patterns.</li>
+</ul>
+
+<hr />
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The cursor-rules/MDC format is a foundational technology for modern prompt engineering. By bridging the gap between developer tools, prompt servers, and LLM-powered agents, it enables scalable, maintainable, and collaborative AI development workflows. As the MCP ecosystem grows, MDC is poised to remain the lingua franca for prompt management and agentic automation.</p>
+
+<p><strong>Learn more:</strong></p>
+<ul>
+  <li><a href="https://github.com/sparesparrow/mcp-prompts">mcp-prompts GitHub</a></li>
+  <li><a href="https://www.cursor.so/">Cursor IDE</a></li>
+  <li><a href="https://modelcontextprotocol.io/introduction">Model Context Protocol</a></li>
+</ul>
+
+      </section>
+    </div>
+  </body>
+</html>
