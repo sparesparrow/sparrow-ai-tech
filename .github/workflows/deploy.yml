@@ -39,10 +39,11 @@ jobs:
         with:
           node-version: '20'
       - run: npm ci
+      - run: npm run build
       - uses: cypress-io/github-action@v6
         with:
-          start: '' # No app server needed for static sites
-          wait-on: ''
+          start: npx serve -s dist -l 5173
+          wait-on: 'http://localhost:5173'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
