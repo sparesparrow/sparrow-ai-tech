@@ -40,7 +40,6 @@ jobs:
           node-version: '20'
       - run: npm ci
       - run: npm run build
-      - run: npm run dev
       - uses: cypress-io/github-action@v6
         with:
           start: npx serve -s dist -l 5173
