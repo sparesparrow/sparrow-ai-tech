@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.6.0",
+    "astro": "^5.11.0",
     "cypress": "^14.5.1",
     "cypress-axe": "^1.6.0",
     "gh-pages": "^6.0.0",

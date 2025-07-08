@@ -504,7 +504,10 @@ const ContactSection = ({ translations }) => {
   );
 };
 
-const HomePage = ({ translations, language, onLanguageChange, prompts = [] }) => {
+// Patch: Add default values for props and defensive checks for translations and translations.nav
+const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () => {}, prompts = [] }) => {
+  // Defensive: Ensure translations.nav exists and has expected keys
+  const nav = translations.nav || { services: 'Services', articles: 'Articles', about: 'About', contact: 'Contact' };
   const sections = [
     <HeroSection key="hero" translations={translations} />,
     <ServicesSection key="services" translations={translations} />,
@@ -535,11 +538,11 @@ const HomePage = ({ translations, language, onLanguageChange, prompts = [] }) =>
             <span className="hidden sm:inline-block ml-3 text-slate-500">Strategic Blueprint</span>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#hero" className="nav-link text-slate-600 hover:text-sky-600">{translations.nav?.services || 'Services'}</a>
-            <a href="#services" className="nav-link text-slate-600 hover:text-sky-600">{translations.nav?.services || 'Services'}</a>
-            <a href="#articles" className="nav-link text-slate-600 hover:text-sky-600">{translations.nav?.articles || 'Articles'}</a>
-            <a href="#about" className="nav-link text-slate-600 hover:text-sky-600">{translations.nav?.about || 'About'}</a>
-            <a href="#contact" className="nav-link text-slate-600 hover:text-sky-600">{translations.nav?.contact || 'Contact'}</a>
+            <a href="#hero" className="nav-link text-slate-600 hover:text-sky-600">{nav.services}</a>
+            <a href="#services" className="nav-link text-slate-600 hover:text-sky-600">{nav.services}</a>
+            <a href="#articles" className="nav-link text-slate-600 hover:text-sky-600">{nav.articles}</a>
+            <a href="#about" className="nav-link text-slate-600 hover:text-sky-600">{nav.about}</a>
+            <a href="#contact" className="nav-link text-slate-600 hover:text-sky-600">{nav.contact}</a>
             <button onClick={() => onLanguageChange(language === 'en' ? 'cs' : 'en')} className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm">
               {language === 'en' ? 'Česky' : 'English'}
             </button>
