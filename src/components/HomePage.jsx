@@ -40,7 +40,7 @@ const HeroSection = ({ translations }) => (
       <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight mb-4" dangerouslySetInnerHTML={{__html: translations.hero_title_html}} />
       <p className="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 mb-8">{translations.hero_subtitle}</p>
       <img
-        src="/assets/images/selected/claude4-system-card-img-003.png"
+        src="/assets/images/claude4-system-card-img-003.png"
         alt="Abstract AI system card visual, suitable for hero section"
         className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-8"
         loading="eager"
@@ -197,37 +197,37 @@ const InfographicsSection = () => {
 const ResearchHighlightsSection = () => {
   const images = [
     {
-      src: '/assets/images/selected/2212.08073v1-img-002.png',
+      src: '/assets/images/2212.08073v1-img-002.png',
       alt: 'Diagram showing the hexagonal architecture of the MCP server.',
       caption: 'MCP Server: Hexagonal Architecture Diagram',
       source: '',
     },
     {
-      src: '/assets/images/selected/2401.05566v3-img-055.png',
+      src: '/assets/images/2401.05566v3-img-055.png',
       alt: 'Benchmark results chart from MCP research.',
       caption: 'MCP Research: Benchmark Results',
       source: '',
     },
     {
-      src: '/assets/images/selected/claude4-system-card-img-008.png',
+      src: '/assets/images/claude4-system-card-img-008.png',
       alt: 'Claude 4 System Card: Benchmark Performance',
       caption: 'Claude 4 System Card: Benchmark Performance',
       source: 'https://www-cdn.anthropic.com/6be99a52cb68eb70eb9572b4cafad13df32ed995.pdf',
     },
     {
-      src: '/assets/images/selected/2401.05566v3-img-019.png',
+      src: '/assets/images/2401.05566v3-img-019.png',
       alt: 'Data flow diagram for agentic workflows.',
       caption: 'Agentic Workflow: Data Flow Diagram',
       source: '',
     },
     {
-      src: '/assets/images/selected/claude4-system-card-img-007.png',
+      src: '/assets/images/claude4-system-card-img-007.png',
       alt: 'Claude 4: Agentic Coding Workflow',
       caption: 'Claude 4: Agentic Coding Workflow',
       source: 'https://www-cdn.anthropic.com/6be99a52cb68eb70eb9572b4cafad13df32ed995.pdf',
     },
     {
-      src: '/assets/images/selected/2401.05566v3-img-008.jpg',
+      src: '/assets/images/2401.05566v3-img-008.jpg',
       alt: 'Abstract conceptual visual from MCP research.',
       caption: 'MCP Research: Conceptual Visual',
       source: '',
