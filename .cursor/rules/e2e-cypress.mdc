@@ -1,3 +1,7 @@
+---
+globs: *.cy.js,e2e.js,commands.js
+alwaysApply: false
+---
 # E2E Testing with Cypress: Practical Guide for Markdown and Mermaid
 
 ## 1. File Paths

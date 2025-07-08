@@ -5,7 +5,10 @@
             "args": [
                 "-y",
                 "@modelcontextprotocol/server-memory"
-            ]
+            ],
+            "env": {
+              "MEMORY_FILE_PATH": "${workspaceRoot}/memory.json"
+            }
         },
         "mcp-server-fetch": {
             "command": "uvx",
