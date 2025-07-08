@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import MarkdownViewer from '../components/MarkdownViewer';
 
 function useQuery() {

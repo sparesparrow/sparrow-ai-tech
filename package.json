@@ -1,34 +1,58 @@
 {
   "name": "sparrow-ai-tech",
-  "type": "module",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
-  "description": "Moderní Astro + React portfolio a technický hub",
+  "type": "module",
+  "description": "SPARROW-AI-TECH: Inovace, AI agenti, kybernetická bezpečnost, modernizace IT a vývoj softwaru.",
+  "homepage": "https://sparesparrow.github.io/sparrow-ai-tech",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sparesparrow/sparrow-ai-tech.git"
+  },
+  "author": "sparesparrow",
+  "license": "MIT",
+  "keywords": [
+    "astro",
+    "react",
+    "ai",
+    "cybersecurity",
+    "portfolio"
+  ],
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "cypress run"
   },
   "dependencies": {
-    "astro": "^4.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "@astrojs/react": "^3.5.0",
+    "@dnd-kit/core": "^6.1.0",
+    "@dnd-kit/sortable": "^8.0.0",
+    "@tippyjs/react": "^4.2.6",
+    "@uiw/react-md-editor": "^4.0.7",
+    "astro": "^4.11.0",
+    "chart.js": "^4.4.3",
+    "framer-motion": "^11.2.10",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.1",
+    "tippy.js": "^6.3.7",
+    "yet-another-react-lightbox": "^3.20.0"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.0",
-    "autoprefixer": "^10.4.0",
-    "postcss": "^8.4.0",
-    "@astrojs/react": "^3.0.0"
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "cypress": "^13.11.0",
+    "cypress-axe": "^1.5.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4"
   },
-  "keywords": [
-    "astro",
-    "react",
-    "portfolio",
-    "ai",
-    "llm"
-  ],
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.17.1"
+  },
+  "bugs": {
+    "url": "https://github.com/sparesparrow/sparrow-ai-tech/issues"
   }
-} 
+}

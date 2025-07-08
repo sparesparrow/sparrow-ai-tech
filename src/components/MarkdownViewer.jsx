@@ -1,52 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import mermaid from 'mermaid';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import MermaidPreviewLink from './MermaidPreviewLink';
 import ImagePreviewLink from './ImagePreviewLink';
 import GithubRepoTooltip from './GithubRepoTooltip';
 
-// Mermaid renderer for code blocks
-const Mermaid = ({ chart }) => {
-  const [svg, setSvg] = useState('');
-  useEffect(() => {
-    mermaid.initialize({ startOnLoad: false, theme: 'dark' });
-    mermaid.render('mermaid-svg', chart, (svgCode) => setSvg(svgCode));
-  }, [chart]);
-  return <div className="mermaid-diagram" dangerouslySetInnerHTML={{ __html: svg }} />;
-};
+// Placeholder for Mermaid diagrams (now unsupported)
+const Mermaid = () => (
+  <div className="mermaid-diagram text-red-500">Mermaid diagrams are not supported.</div>
+);
 
-const EditableMermaid = ({ initialCode }) => {
-  const [code, setCode] = useState(initialCode);
-  const [svg, setSvg] = useState('');
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    if (!code) return;
-    setError(null);
-    try {
-      mermaid.initialize({ startOnLoad: false, theme: 'dark' });
-      mermaid.render('editable-mermaid', code, (svgCode) => setSvg(svgCode));
-    } catch (e) {
-      setError('Invalid Mermaid syntax');
-      setSvg('');
-    }
-  }, [code]);
-  return (
-    <div className="my-6">
-      <textarea
-        className="w-full p-2 rounded border bg-slate-900 text-slate-100 font-mono mb-2"
-        rows={6}
-        value={code}
-        onChange={e => setCode(e.target.value)}
-        spellCheck={false}
-        aria-label="Edit Mermaid diagram"
-      />
-      {error && <div className="text-red-500 mb-2">{error}</div>}
-      <div className="mermaid-diagram border rounded bg-slate-800 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: svg }} />
-    </div>
-  );
-};
+const EditableMermaid = () => (
+  <div className="mermaid-diagram text-red-500">Editable Mermaid diagrams are not supported.</div>
+);
 
 const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
   const [content, setContent] = useState('');
@@ -86,10 +53,10 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
           },
           code({node, inline, className, children, ...props}) {
             if (className === 'language-mermaid') {
-              return <Mermaid chart={String(children).trim()} />;
+              return <Mermaid />;
             }
             if (editableDiagrams && className === 'language-mermaid-edit') {
-              return <EditableMermaid initialCode={String(children).trim()} />;
+              return <EditableMermaid />;
             }
             return <code className={className} {...props}>{children}</code>;
           },
