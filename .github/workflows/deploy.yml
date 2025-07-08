@@ -32,8 +32,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          # Cache npm packages for faster subsequent runs
-          cache: 'npm'
+          # REMOVED: `cache: 'npm'` because no package-lock.json exists
 
       - name: Install dependencies
         run: npm install
@@ -95,7 +94,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          # REMOVED: `cache: 'npm'` because no package-lock.json exists
 
       - name: Install dependencies
         run: npm install
