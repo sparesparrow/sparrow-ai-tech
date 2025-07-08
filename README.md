@@ -113,6 +113,31 @@ npx cypress open
 
 ---
 
+## Project Structure
+
+```
+/astro              # Astro integration (config, pages, tests)
+/src                # React app source (components, pages, languages)
+/public             # Static assets for deployment (articles, images, css, languages, infographics, .nojekyll, etc.)
+/articles           # Markdown articles (source, not directly deployed)
+/api                # Backend API (Express, diagrams)
+/cypress            # Cypress E2E tests
+/dist               # Build output (ignored by git)
+/node_modules       # Dependencies (ignored by git)
+README.md
+TODO.md
+.gitignore
+package.json
+vite.config.js
+astro.config.mjs
+server.js
+```
+
+- All static assets (images, CSS, infographics) are now in `/public/assets/` or `/public/infographics/`.
+- Legacy HTML files and unused assets have been removed for clarity and maintainability.
+
+---
+
 ## Contributing
 
 Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.

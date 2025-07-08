@@ -1,3 +1,4 @@
+// NOTE: Main homepage logic migrated to HomePage.jsx. This file is now for infographics/SPA only.
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
@@ -219,11 +220,11 @@ export default function SPAInfographic() {
         {/* Introduction */}
         <section id="introduction" className="py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">A Strategic Blueprint for Growth</h1>
-            <p className="mt-6 text-lg text-slate-600">This document presents an interactive visualization of the strategic plan for <span className="font-semibold text-sky-600">Sparrow AI & Tech</span>. It translates the foundational analysis and recommendations into an actionable, explorable format. The core objective is to architect and implement a professional web presence from a "blank slate," leveraging modern best practices to drive project growth, adoption, and community engagement.</p>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">Model Context Protocol: Powering Next-Gen AI Agents</h1>
+            <p className="mt-6 text-lg text-slate-600">Explore the latest breakthroughs in the <span className="font-semibold text-sky-600">Model Context Protocol (MCP)</span> ecosystem. Learn how the MCP connector, advanced tool integrations, and hybrid inference strategies are transforming agent reliability, cost, and capability. This homepage brings you the most up-to-date insights from the Anthropic API, including new agent features, RAG cost minimization, and seamless orchestration between local and frontier models.</p>
             <div className="mt-8 flex justify-center gap-4">
-              <a href="#strategy" className="bg-sky-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-sky-700 transition-all">View the Strategy</a>
-              <a href="#tech" className="bg-white text-slate-700 font-semibold px-6 py-3 rounded-lg border border-slate-300 hover:bg-slate-100 transition-all">Explore the Tech</a>
+              <a href="#strategy" className="bg-sky-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-sky-700 transition-all">See MCP Capabilities</a>
+              <a href="#tech" className="bg-white text-slate-700 font-semibold px-6 py-3 rounded-lg border border-slate-300 hover:bg-slate-100 transition-all">Hybrid Inference</a>
             </div>
           </div>
         </section>
@@ -231,38 +232,38 @@ export default function SPAInfographic() {
         <section id="strategy" className="py-16 md:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900">The Strategic Mandate</h2>
-              <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">The project's success hinges on a dual-pronged strategy designed to build a defensible brand and provide essential navigation for its community.</p>
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900">Latest MCP & Agent Capabilities</h2>
+              <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">The Anthropic API now supports code execution, the MCP connector, a Files API, and extended prompt caching. These features enable agents to execute code, connect to remote MCP servers, store and access files across sessions, and maintain context for up to 60 minutes—dramatically improving agent workflows and cost efficiency.<br/><br/>The MCP connector allows direct integration with remote MCP servers, supporting tool calls, OAuth authentication, and multi-server orchestration. This makes it easy to build agents that leverage a growing ecosystem of tools and data sources without custom infrastructure.</p>
             </div>
             <div className="mt-12 grid md:grid-cols-2 gap-8 md:gap-12">
               <div className="bg-slate-50 p-8 rounded-lg border border-slate-200">
                 <div className="flex items-center">
-                  <div className="bg-sky-100 p-3 rounded-full"><span className="text-2xl">📢</span></div>
-                  <h3 className="ml-4 text-xl font-semibold text-slate-900">Evangelize the MCP Standard</h3>
+                  <div className="bg-sky-100 p-3 rounded-full"><span className="text-2xl">🛠️</span></div>
+                  <h3 className="ml-4 text-xl font-semibold text-slate-900">MCP Connector</h3>
                 </div>
-                <p className="mt-4 text-slate-600">The primary mission is to establish the <b>Model Context Protocol (MCP)</b> as a credible, well-documented open standard. With other "Sparrow" projects causing brand confusion, MCP is the unique, defensible asset. The website must position MCP as the core identity, with the Sparrow tools serving as its reference implementations.</p>
+                <p className="mt-4 text-slate-600">Connect Claude and other LLMs to any remote MCP server instantly. The connector manages tool discovery, authentication, and error handling, letting agents use third-party tools and data with minimal setup. <b>Multiple MCP servers</b> can be orchestrated in a single request, enabling complex, multi-tool workflows.<br/><br/>See <a href="https://docs.anthropic.com/en/docs/agents-and-tools/mcp-connector" className="text-sky-600 underline" target="_blank" rel="noopener noreferrer">MCP connector docs</a>.</p>
               </div>
               <div className="bg-slate-50 p-8 rounded-lg border border-slate-200">
                 <div className="flex items-center">
-                  <div className="bg-sky-100 p-3 rounded-full"><span className="text-2xl">🧭</span></div>
-                  <h3 className="ml-4 text-xl font-semibold text-slate-900">Function as a Navigational Hub</h3>
+                  <div className="bg-sky-100 p-3 rounded-full"><span className="text-2xl">💾</span></div>
+                  <h3 className="ml-4 text-xl font-semibold text-slate-900">Files API & Prompt Caching</h3>
                 </div>
-                <p className="mt-4 text-slate-600">The ongoing migration to a multi-repository architecture creates complexity. The website must act as a vital piece of infrastructure—a "single source of truth"—that provides a clear map of the ecosystem, clarifying project statuses, locations, and purposes to reduce user friction and foster community confidence.</p>
+                <p className="mt-4 text-slate-600">Upload documents once and reference them across sessions. The Files API integrates with code execution, letting agents analyze datasets and generate reports on demand. Extended prompt caching (up to 1 hour) slashes costs and latency for long-running agent workflows.<br/><br/>Read more in the <a href="https://www.anthropic.com/news/agent-capabilities-api" className="text-sky-600 underline" target="_blank" rel="noopener noreferrer">Anthropic API news</a>.</p>
               </div>
             </div>
             <div className="mt-16 text-center">
-              <h3 className="text-2xl font-bold tracking-tight text-slate-900">MCP: High-Level Architecture</h3>
-              <p className="mt-2 max-w-2xl mx-auto text-md text-slate-600">MCP standardizes how applications provide context to language models, acting like a "USB-C port for AI."</p>
+              <h3 className="text-2xl font-bold tracking-tight text-slate-900">Hybrid Inference & Cost Minimization</h3>
+              <p className="mt-2 max-w-2xl mx-auto text-md text-slate-600">Combine local inference, RAG, and relays to frontier models over streamed HTTP to optimize for both cost and reliability. The MCP standard enables seamless switching between local and cloud models, letting you minimize LLM costs while maintaining high performance and security.</p>
               <div className="mt-8 p-6 bg-slate-100 rounded-lg max-w-4xl mx-auto">
                 <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4 text-sm font-semibold text-slate-700">
-                  <div className="diagram-box w-full md:w-1/4 p-4 bg-white rounded-lg shadow-sm text-center">Your Application</div>
+                  <div className="diagram-box w-full md:w-1/4 p-4 bg-white rounded-lg shadow-sm text-center">Local App / RAG</div>
                   <div className="diagram-arrow text-sky-500 font-bold text-2xl">&rarr;</div>
                   <div className="diagram-box w-full md:w-1/2 p-4 bg-sky-500 text-white rounded-lg shadow-lg text-center relative group">
                     MCP Server
-                    <div className="absolute hidden group-hover:block bottom-full mb-2 w-max p-2 bg-slate-800 text-white text-xs rounded-md">Manages, stores, and versions prompts and templates.</div>
+                    <div className="absolute hidden group-hover:block bottom-full mb-2 w-max p-2 bg-slate-800 text-white text-xs rounded-md">Orchestrates local and remote inference, manages context, and routes requests.</div>
                   </div>
                   <div className="diagram-arrow text-sky-500 font-bold text-2xl">&rarr;</div>
-                  <div className="diagram-box w-full md:w-1/4 p-4 bg-white rounded-lg shadow-sm text-center">AI Model (LLM)</div>
+                  <div className="diagram-box w-full md:w-1/4 p-4 bg-white rounded-lg shadow-sm text-center">Frontier Model (SSE/HTTP)</div>
                 </div>
               </div>
             </div>
@@ -272,8 +273,8 @@ export default function SPAInfographic() {
         <section id="ecosystem" className="py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900">The Sparrow AI & Tech Ecosystem</h2>
-              <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">An overview of the key projects in the multi-repository architecture. This serves as the official map for navigating the tools.</p>
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900">MCP Ecosystem Projects</h2>
+              <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">Explore the evolving landscape of MCP-compliant tools, servers, and integrations. The ecosystem is rapidly expanding, with new community and enterprise projects supporting advanced agent workflows, secure context management, and seamless tool orchestration.</p>
             </div>
             <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {ecosystemData.map(project => (
@@ -297,13 +298,13 @@ export default function SPAInfographic() {
         <section id="tech" className="py-16 md:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900">Recommended Technology Stack</h2>
-              <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">The choice of technology is driven by performance, developer experience, and the strategic need for a unique brand identity.</p>
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900">Hybrid Inference: Local + Cloud</h2>
+              <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">The future of agentic AI is hybrid: combine local inference for privacy and speed with cloud-based frontier models for advanced reasoning. MCP enables seamless orchestration, letting you route requests, manage context, and optimize for cost and performance.</p>
             </div>
             <div className="mt-12 grid lg:grid-cols-2 gap-12 items-start">
               <div>
-                <h3 className="text-xl font-semibold text-slate-900 text-center">Static Site Generator (SSG) Comparison</h3>
-                <p className="text-center text-slate-600 mt-2">Astro is recommended for its performance and JS-native environment.</p>
+                <h3 className="text-xl font-semibold text-slate-900 text-center">SSG & Agent Tooling</h3>
+                <p className="text-center text-slate-600 mt-2">Astro and Next.js are recommended for their performance and integration with modern agent workflows. Use Tailwind CSS for rapid, unique UI development.</p>
                 <div className="mt-4 chart-container" style={{ position: 'relative', width: '100%', maxWidth: 600, margin: '0 auto', height: 350, maxHeight: 400 }}>
                   <canvas ref={ssgChartRef}></canvas>
                 </div>
@@ -322,8 +323,8 @@ export default function SPAInfographic() {
         <section id="deployment" className="py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900">Automated Deployment Pipeline</h2>
-              <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">A modern, secure CI/CD workflow using GitHub Actions to automate deployment to GitHub Pages, ensuring reliability and eliminating manual errors.</p>
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900">Automated Deployment for Agents</h2>
+              <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">Deploy your MCP-powered agent site with confidence. Our CI/CD pipeline uses GitHub Actions to build, test, and deploy to GitHub Pages, ensuring your latest agent features and documentation are always live and reliable.</p>
             </div>
             <div className="mt-12 bg-slate-800 text-slate-300 rounded-lg p-6 font-mono text-sm">
               <div className="flex items-center mb-4">

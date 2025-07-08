@@ -1,12 +1,3 @@
-# Jekyll and GitHub Pages
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
-
-# Bundler and Ruby
-vendor/
-Gemfile.lock
-
 # Node.js
 node_modules/
 
@@ -43,3 +34,6 @@ cypress/downloads/
 dist/
 build/
 _site/
+
+# Astro/React static assets
+/public/infographics/

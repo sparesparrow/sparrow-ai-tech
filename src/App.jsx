@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import cs from '@/languages/cs.json';
-import en from '@/languages/en.json';
+import cs from './languages/cs.json';
+import en from './languages/en.json';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MarkdownTest from './pages/MarkdownTest';
 import Infographic1 from './pages/infographics/Infographic1';
