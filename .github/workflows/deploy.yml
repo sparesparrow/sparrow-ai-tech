@@ -64,7 +64,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages
+          # Ensure unique artifact name for every workflow run
+          name: github-pages-${{ github.run_number }}-${{ github.sha }}
           path: ./dist
 
   # Job to deploy the built site to GitHub Pages
