@@ -62,8 +62,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - run: curl -L https://raw.githubusercontent.com/sparesparrow/human-action/main/README.md -o dist/human-action-README.md
-      - run: curl -L https://raw.githubusercontent.com/sparesparrow/mcp-prompts/main/README.md -o dist/mcp-prompts-README.md
+      - uses: actions/checkout@v4
+      - name: Ensure dist directory exists
+        run: mkdir -p dist
+      - name: Download human-action README
+        run: curl -L https://raw.githubusercontent.com/sparesparrow/human-action/main/README.md -o dist/human-action-README.md
+      - name: Download mcp-prompts README
+        run: curl -L https://raw.githubusercontent.com/sparesparrow/mcp-prompts/main/README.md -o dist/mcp-prompts-README.md
 
   deploy:
     runs-on: ubuntu-latest
