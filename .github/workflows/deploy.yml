@@ -1,10 +1,8 @@
-name: Deploy static content to Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ['main']
-  release:
-    types: [created]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -12,89 +10,25 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
-
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            npm-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: |
-          if [ -f .eslintrc.js ]; then npx eslint .; else echo "No ESLint config found, skipping JS lint."; fi
-          if [ -f .htmlhintrc ]; then npx htmlhint "**/*.html"; else echo "No HTMLHint config found, skipping HTML lint."; fi
-          if [ -f .stylelintrc ]; then npx stylelint "**/*.css"; else echo "No Stylelint config found, skipping CSS lint."; fi
-
-
   build:
     runs-on: ubuntu-latest
-    needs: [lint]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            npm-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run build
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist'
-      - uses: actions/upload-artifact@v4
-        with:
-          name: production-dist
-          path: dist/
-
-  dl-repos-docs:
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - run: curl -L https://raw.githubusercontent.com/sparesparrow/human-action/main/README.md -o dist/human-action-README.md
-      - run: curl -L https://raw.githubusercontent.com/sparesparrow/mcp-prompts/main/README.md -o dist/mcp-prompts-README.md
-  
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+      - name: Install, build, and upload your site
+        uses: withastro/action@v3
+        # with:
+        #   path: . # The root location of your Astro project inside the repository. (optional)
+        #   node-version: 20 # The specific version of Node that should be used to build your site. Defaults to 20. (optional)
+        #   package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
   deploy:
+    needs: build
     runs-on: ubuntu-latest
-    needs: [dl-repos-docs]
     environment:
       name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
-    outputs:
-      page_url: ${{ steps.deployment.outputs.page_url }}
-
-  e2e-prod:
-    runs-on: ubuntu-latest
-    needs: deploy
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            npm-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - uses: cypress-io/github-action@v6
-        with:
-          config: baseUrl=${{ needs.deploy.outputs.page_url }}
