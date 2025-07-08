@@ -19,10 +19,10 @@
     "sparrow-ai-tech"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "astro dev",
     "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "build": "astro build",
+    "preview": "astro preview",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
