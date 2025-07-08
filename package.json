@@ -1,0 +1,34 @@
+{
+  "name": "sparrow-ai-tech",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Moderní Astro + React portfolio a technický hub",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "@astrojs/react": "^3.0.0"
+  },
+  "keywords": [
+    "astro",
+    "react",
+    "portfolio",
+    "ai",
+    "llm"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+} 
