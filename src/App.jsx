@@ -304,14 +304,14 @@ const App = () => {
             <Route path="/infographics/3" element={<Infographic3 />} />
             <Route path="/infographics/spa" element={<SPAInfographic />} />
             <Route path="/" element={
-              <div className="bg-slate-50 text-slate-800 font-sans antialiased">
+              <div id="app-root" className="bg-slate-50 text-slate-800 font-sans antialiased">
                 <header className="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-slate-200">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
                     <div className="flex items-center">
                       <span className="font-bold text-xl text-sky-600">Sparrow AI & Tech</span>
                       <span className="hidden sm:inline-block ml-3 text-slate-500">Strategic Blueprint</span>
                     </div>
-                    <nav className="hidden md:flex items-center space-x-8">
+                    <nav className="hidden md:flex items-center space-x-8" aria-label="Main navigation">
                       <a href="#home" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.home}</a>
                       <a href="#portfolio" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.portfolio}</a>
                       <a href="#articles" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.articles}</a>
@@ -327,7 +327,7 @@ const App = () => {
                   </div>
                   {isMenuOpen && (
                     <div className="md:hidden bg-white/90 border-b border-slate-200">
-                      <nav className="flex flex-col items-center p-4 space-y-4">
+                      <nav className="flex flex-col items-center p-4 space-y-4" aria-label="Mobile navigation">
                         <a href="#home" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.home}</a>
                         <a href="#portfolio" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.portfolio}</a>
                         <a href="#articles" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.articles}</a>

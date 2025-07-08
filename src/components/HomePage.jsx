@@ -39,6 +39,12 @@ const HeroSection = ({ translations }) => (
     <div className="container mx-auto px-6 text-center">
       <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight mb-4" dangerouslySetInnerHTML={{__html: translations.hero_title_html}} />
       <p className="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 mb-8">{translations.hero_subtitle}</p>
+      <img
+        src="/assets/images/selected/claude4-system-card-img-003.png"
+        alt="Abstract AI system card visual, suitable for hero section"
+        className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-8"
+        loading="eager"
+      />
       <button className="bg-teal-600 text-white text-lg px-8 py-4 rounded-lg hover:bg-teal-700 transition-all shadow-lg transform hover:scale-105">
         {translations.cta_quick_analysis_hero}
       </button>
@@ -85,40 +91,164 @@ const ServicesSection = ({ translations }) => {
 
 // Articles Section
 const ArticlesSection = ({ translations }) => {
-  const articles = translations.articles_list || [
-    { title: translations.article1_title, content: translations.article1_content },
-    { title: translations.article2_title, content: translations.article2_content },
+  // Example hardcoded articles by category (replace with dynamic import if needed)
+  const categories = [
+    {
+      name: 'Getting Started',
+      articles: [
+        { title: 'MCP Ecosystem Overview', url: '/articles/merged/mcp-ecosystem-overview.md' },
+        { title: 'Hexagonal Architecture in MCP', url: '/articles/merged/hexagonal-architecture-in-mcp.md' },
+      ]
+    },
+    {
+      name: 'Guides',
+      articles: [
+        { title: 'Human Action in AI', url: '/articles/human-action.md' },
+        { title: 'Liberty', url: '/articles/liberty.md' },
+      ]
+    },
+    {
+      name: 'Tutorials',
+      articles: [
+        { title: 'Getting Started with MCP Prompts', url: '/articles/mcp-prompts.md' },
+        { title: 'MCP in Practice', url: '/articles/mcp-in-practice.en.md' },
+      ]
+    },
+    {
+      name: 'Reference',
+      articles: [
+        { title: 'MCP Contributions', url: '/articles/mcp-contributions.en.md' },
+        { title: 'Cursor Rules', url: '/articles/cursor-rules.md' },
+      ]
+    }
   ];
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selected, setSelected] = useState(null);
   return (
     <section id="articles" className="py-20 md:py-32 bg-stone-100">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-stone-800">{translations.articles_title}</h2>
-          <p className="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">{translations.articles_subtitle}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-stone-800">{translations.articles_title || 'Articles & Documentation'}</h2>
+          <p className="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">{translations.articles_subtitle || 'Explore categorized articles, guides, and references.'}</p>
         </div>
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {articles.map((a, i) => (
-            <div
-              key={i}
-              className="article-card bg-white p-8 rounded-xl shadow-lg cursor-pointer hover:shadow-2xl transition"
-              onClick={() => { setSelected(a); setModalOpen(true); }}
-            >
-              <h3 className="text-xl font-bold mb-2">{a.title}</h3>
-              <p className="text-stone-600 line-clamp-3">{a.content?.slice(0, 120) || ''}{a.content?.length > 120 ? '…' : ''}</p>
+        <div className="max-w-5xl mx-auto">
+          {categories.map((cat) => (
+            <div key={cat.name} className="mb-10">
+              <h3 className="text-2xl font-semibold text-sky-700 mb-4">{cat.name}</h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                {cat.articles.map((article, i) => (
+                  <a key={i} href={article.url} target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-slate-100 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
+                    <span className="text-lg font-semibold text-sky-700">{article.title}</span>
+                  </a>
+                ))}
+              </div>
             </div>
           ))}
         </div>
-        {modalOpen && selected && (
-          <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-            <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full p-8 relative">
-              <button className="absolute top-2 right-2 text-2xl text-slate-400 hover:text-slate-700" onClick={() => setModalOpen(false)}>&times;</button>
-              <h3 className="text-2xl font-bold mb-4">{selected.title}</h3>
-              <div className="text-stone-700 whitespace-pre-line">{selected.content}</div>
+      </div>
+    </section>
+  );
+};
+
+// Infographics Section
+const InfographicsSection = () => {
+  const infographics = [
+    {
+      title: 'MCP Ecosystem',
+      description: 'How the sparesparrow open-source toolchain revolutionizes AI agent development.',
+      url: '/infographics/1.html',
+    },
+    {
+      title: 'Human-in-the-Loop AI',
+      description: 'The indispensable partnership between human intuition and artificial intelligence.',
+      url: '/infographics/2.html',
+    },
+    {
+      title: 'Hexagonal Architecture',
+      description: 'How the Ports & Adapters pattern protects your application core.',
+      url: '/infographics/3.html',
+    },
+    {
+      title: 'ElevenLabs Widget Demo',
+      description: 'Live demo of the ElevenLabs voice widget integration.',
+      url: '/infographics/elevenlabs-widget.html',
+    },
+  ];
+  return (
+    <section id="infographics" className="py-20 md:py-32 bg-white">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-sky-700">Infographics</h2>
+          <p className="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">Explore interactive and visual guides to key concepts and architectures.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          {infographics.map((info, idx) => (
+            <a key={idx} href={info.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
+              <h3 className="text-lg font-semibold text-sky-700 mb-2">{info.title}</h3>
+              <p className="text-slate-600 mb-2">{info.description}</p>
+              <span className="inline-block mt-4 text-sky-600 font-bold">View Infographic &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Research Highlights Section
+const ResearchHighlightsSection = () => {
+  const images = [
+    {
+      src: '/assets/images/selected/2212.08073v1-img-002.png',
+      alt: 'Diagram showing the hexagonal architecture of the MCP server.',
+      caption: 'MCP Server: Hexagonal Architecture Diagram',
+      source: '',
+    },
+    {
+      src: '/assets/images/selected/2401.05566v3-img-055.png',
+      alt: 'Benchmark results chart from MCP research.',
+      caption: 'MCP Research: Benchmark Results',
+      source: '',
+    },
+    {
+      src: '/assets/images/selected/claude4-system-card-img-008.png',
+      alt: 'Claude 4 System Card: Benchmark Performance',
+      caption: 'Claude 4 System Card: Benchmark Performance',
+      source: 'https://www-cdn.anthropic.com/6be99a52cb68eb70eb9572b4cafad13df32ed995.pdf',
+    },
+    {
+      src: '/assets/images/selected/2401.05566v3-img-019.png',
+      alt: 'Data flow diagram for agentic workflows.',
+      caption: 'Agentic Workflow: Data Flow Diagram',
+      source: '',
+    },
+    {
+      src: '/assets/images/selected/claude4-system-card-img-007.png',
+      alt: 'Claude 4: Agentic Coding Workflow',
+      caption: 'Claude 4: Agentic Coding Workflow',
+      source: 'https://www-cdn.anthropic.com/6be99a52cb68eb70eb9572b4cafad13df32ed995.pdf',
+    },
+    {
+      src: '/assets/images/selected/2401.05566v3-img-008.jpg',
+      alt: 'Abstract conceptual visual from MCP research.',
+      caption: 'MCP Research: Conceptual Visual',
+      source: '',
+    },
+  ];
+  return (
+    <section id="research-highlights" className="py-20 md:py-32 bg-stone-50">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-purple-700">Research Highlights</h2>
+          <p className="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">Key diagrams and benchmarks from leading AI agent research and MCP experiments.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {images.map((img, idx) => (
+            <div key={idx} className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img src={img.src} alt={img.alt} className="max-h-64 w-auto object-contain mb-4 rounded border" loading="lazy" />
+              <div className="text-sm text-stone-700 text-center mb-2">{img.caption}</div>
+              {img.source && <a href={img.source} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 underline">Source</a>}
             </div>
-          </div>
-        )}
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -512,6 +642,8 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
     <HeroSection key="hero" translations={translations} />,
     <ServicesSection key="services" translations={translations} />,
     <ArticlesSection key="articles" translations={translations} />,
+    <InfographicsSection />,
+    <ResearchHighlightsSection />,
     <PopularReposSection />,
     <EditableMermaidDemoSection />,
     <SavedDiagramsGallery />,
@@ -562,6 +694,8 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
         <PauseSeparator />
         {/* Articles Section */}
         <ArticlesSection translations={translations} />
+        <InfographicsSection />
+        <ResearchHighlightsSection />
         <PauseSeparator />
         <PromptBlock prompt={translations.prompts?.[2] || 'TODO: Add prompt 2 translation'} />
         <PauseSeparator />

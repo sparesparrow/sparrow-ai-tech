@@ -1,12 +1,13 @@
 ---
-globs: *.cy.js,e2e.js,commands.js
-alwaysApply: false
+globs:
+  - "**/*"
+alwaysApply: true
 ---
+
 # E2E Testing with Cypress: Practical Guide for Markdown and Mermaid
 
 ## 1. File Paths
-
-- Test page: `/markdown-test`
+- Test page: `/MarkdownTest` (case-sensitive, matches Astro route)
 - To test a markdown file in `/articles`:
   ```js
   cy.visit('/markdown-test?src=/articles/mcp-prompts.md')
@@ -21,7 +22,6 @@ alwaysApply: false
   ```
 
 ## 2. Selectors
-
 - **Markdown Content:**
   ```js
   cy.get('.prose')
@@ -44,8 +44,9 @@ alwaysApply: false
   cy.get('.my-custom-class')
   ```
 
-## 3. General Tips
+> **Note:** Keep selectors and class names in sync with the React component. Update this rule if the component structure or styling changes.
 
+## 3. General Tips
 - Use `cy.intercept()` to mock fetches for error/loading state tests.
 - Use `cy.get()` with more specific selectors if you add `data-cy` attributes for robustness.
 - Update selectors if you change the structure of `MarkdownViewer` or similar components.
@@ -76,8 +77,9 @@ it('shows error on fetch fail', () => {
 - Adjust as needed if you change your component's structure or styling.
 
 ---
-
 - Regularly update and refactor tests as your UI evolves.
 - Review and refine AI-generated tests for accuracy and maintainability.
 
 ---
+
+This rule is always applied to E2E Cypress tests for Markdown/Mermaid in this project.

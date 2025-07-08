@@ -12,18 +12,50 @@
 - [ ] Deploy to GitHub Pages
 - [ ] Review deployment and run manual/automated tests
 
-## Post-Cleanup
-- [ ] Review README and documentation for accuracy
-- [ ] Ensure all static assets are referenced from /public
-- [ ] Remove any remaining unused files
+## Image & Asset Management
+- [ ] Move all selected images to `public/assets/images/selected/` and ensure they are referenced in code/docs
+- [ ] Rename selected images with descriptive, SEO-friendly names (e.g., `mcp-architecture-diagram.png`)
+- [ ] Audit codebase and docs for references to unused images; update or remove as needed
+- [ ] Add/automate image optimization (compression, webp conversion) in build process
+- [ ] Remove or archive all unused images in `unused/` and subfolders
 
-## Next Steps (after deployment)
-- [ ] Review and expand test coverage (UI, i18n, navigation, etc.)
-- [ ] Gather feedback from testers
-- [ ] Iterate on UI/UX and bugfixes
-- [ ] Consider further Astro/React integration (islands, SSR, etc.)
-- [ ] Update documentation and README
+## Documentation & Onboarding
+- [ ] Update README to reflect new project structure, image usage, and goals
+- [ ] Add developer onboarding guide (setup, build, deploy, contribute)
+- [ ] Document image selection and optimization workflow
 
+## Testing & Automation
+- [ ] Fix failing Cypress E2E/component tests (404s, asset issues)
+- [ ] Add tests for PDF export and accessibility (a11y)
+- [ ] Automate build, test, and lint checks in CI (pre-commit, GitHub Actions)
+- [ ] Expand E2E Cypress tests for Markdown and Mermaid rendering
+- [ ] Add tests for error and loading states using `cy.intercept()`
+- [ ] Use data-cy attributes for robust selectors in tests
+
+## Portfolio & CV Replacement Page
+- [ ] Design and implement a static portfolio page to serve as a CV replacement
+- [ ] Showcase open-source contributions and highlight best projects
+- [ ] Develop a clear, professional visual identity (color palette, typography, logo) for "Sparrow AI Tech"
+- [ ] Ensure layout uses whitespace and structure for easy scanning of key info (projects, skills)
+- [ ] Add a prominent "Generate PDF" button for visitors to download the portfolio as a PDF
+- [ ] Style the PDF export for professional appearance and readability
+- [ ] Test the page for first-impression impact and polish
+
+## Contact & Skills Demo
+- [ ] Add clear "Contact Me" and "Try My AI Assistant" CTAs (buttons/sections)
+- [ ] Design CTAs to be visually prominent (color, size, icon)
+- [ ] Place CTAs strategically (e.g., hero section, end of services/about)
+- [ ] Integrate a voice/chatbot demo as an interactive showcase of agent workflow skills
+- [ ] Ensure contact options are easy to use and accessible
+- [ ] Add analytics or feedback mechanism for contact/demo usage
+
+## Central Hub & Management Tool
+- [ ] Build a unified dashboard for accessing repositories, documentation, and GitHub Actions
+- [ ] Create a frontend UI for managing MCP servers
+- [ ] Implement a persistent, clear navigation bar (<nav>) for switching between "Repositories", "Documentation", "MCP Dashboard", etc.
+- [ ] Ensure the hub/dashboard is fully responsive and works well on mobile devices
+- [ ] Organize dashboard content for clarity: use headings, dividers, and whitespace for easy scanning and searching
+- [ ] Test usability of the management tool and iterate on UI/UX
 
 # Ideas to explore:
 - https://dev.to/devopswithamol/automate-server-deployments-with-github-actions-ssh-p24
