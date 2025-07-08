@@ -1,0 +1,9 @@
+---
+description: Use this rule when needing to retrieve the directory tree of the codebase or when searching for location of a file.
+globs:
+alwaysApply: false
+---
+
+To obtain directory structure of the workspace without the infinite node_modules and other spam, run  `tree -I 'node_modules' -I unused -I dist -I screenshots`
+
+To check the contents of what was produced during build, check folder `dist/`  that is intentionally ignored in the above command for output brevity.
