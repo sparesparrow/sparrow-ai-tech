@@ -49,10 +49,13 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.6.0",
     "astro": "^5.11.0",
+    "autoprefixer": "^10.4.21",
     "cypress": "^14.5.1",
     "cypress-axe": "^1.6.0",
     "gh-pages": "^6.0.0",
+    "postcss": "^8.5.6",
     "serve": "^14.2.4",
+    "tailwindcss": "^4.1.11",
     "vite": "^7.0.2",
     "vite-plugin-static-copy": "^3.1.0"
   },
