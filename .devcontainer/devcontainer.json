@@ -1,0 +1,52 @@
+{
+  "name": "Astro + React DevContainer",
+  "image": "mcr.microsoft.com/devcontainers/node:20",
+  "postCreateCommand": "npm install",
+  "forwardPorts": [3000, 3001],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next",
+        "msjsdiag.vscode-react-native",
+        "cypress.vscode-cypress-support",
+        "lokalise.i18n-ally",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  },
+  "features": {},
+  "containerEnv": {
+    "NVM_DIR": "/home/node/.nvm",
+    "ANDROID_HOME": "/home/node/android-sdk",
+    "BUN_INSTALL": "/home/node/.bun",
+    "OPENAI_ORGANIZATION": "org-asqgjpWg1hSt90shKhRsqHWQ"
+  },
+  "postStartCommand": "printenv | sort | grep -E 'NVM|ANDROID|BUN|OPENAI' || true",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "tasks": [
+    {
+      "label": "Run Cypress E2E Tests",
+      "type": "shell",
+      "command": "npx cypress run",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend Checks (lint, test, build)",
+      "type": "shell",
+      "command": "npm run lint && npm run test && npm run build",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend Dev Server",
+      "type": "shell",
+      "command": "npm run dev",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+} 

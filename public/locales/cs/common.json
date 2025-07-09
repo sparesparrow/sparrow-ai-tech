@@ -1,0 +1,15 @@
+{
+  "header": {
+    "nav_projects": "Projekty",
+    "nav_about": "O nás",
+    "nav_skills": "Dovednosti",
+    "nav_contact": "Kontakt"
+  },
+  "footer": {
+    "copyright": "Copyright © 2024 Sparrow AI Tech"
+  },
+  "general": {
+    "download_pdf": "Stáhnout jako PDF",
+    "open_chatbot": "Otevřít hlasového chatbota"
+  }
+} 

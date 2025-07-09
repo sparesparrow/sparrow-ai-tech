@@ -20,3 +20,29 @@ When instructed to "proceed implementing Track A":
 - **Add any new ideas or suggestions** to `IDEAS.md` for future consideration.
 - **Mark each task in `TODO.md` with a status:** `ToDo`, `InProgress`, `Implemented`, `Tested`, `HelpNeeded`, or `Done`.
 - **If you are stuck** (e.g., on tests or dependencies), set the task status to `HelpNeeded` and proceed to the next available task.
+#!/usr/bin/env bash
+
+# Track A: Frontend & User Experience Launch Script
+```bash
+#!/usr/bin/env bash
+set -e
+
+# Activate Node/NVM if needed
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Print environment info
+node -v
+echo "BUN_INSTALL: $BUN_INSTALL"
+echo "OPENAI_ORGANIZATION: $OPENAI_ORGANIZATION"
+
+# Start frontend dev server
+echo "Starting Astro/React dev server..."
+npm run dev
+
+echo "Track A Frontend environment ready. See TODO.md for next steps."
+```
+- **Track progress** by checking off completed items in `TODO.md` as you finish them.
+- **Add any new ideas or suggestions** to `IDEAS.md` for future consideration.
+- **Mark each task in `TODO.md` with a status:** `ToDo`, `InProgress`, `Implemented`, `Tested`, `HelpNeeded`, or `Done`.
+- **If you are stuck** (e.g., on tests or dependencies), set the task status to `HelpNeeded` and proceed to the next available task.

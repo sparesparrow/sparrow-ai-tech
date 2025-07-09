@@ -115,26 +115,34 @@ npx cypress open
 
 ## Project Structure
 
-```
-/astro              # Astro integration (config, pages, tests)
-/src                # React app source (components, pages, languages)
-/public             # Static assets for deployment (articles, images, css, languages, infographics, .nojekyll, etc.)
-/articles           # Markdown articles (source, not directly deployed)
-/api                # Backend API (Express, diagrams)
-/cypress            # Cypress E2E tests
-/dist               # Build output (ignored by git)
-/node_modules       # Dependencies (ignored by git)
-README.md
-TODO.md
-.gitignore
-package.json
-vite.config.js
-astro.config.mjs
-server.js
-```
+- `src/layouts/` — Astro layouts (e.g., MainLayout.astro)
+- `src/components/` — React components (Header, Footer, etc.)
+- `src/styles/` — Global, theme, and typography CSS
+- `public/locales/` — i18n translation files (en, cs)
+- `.devcontainer/` — Devcontainer config for VS Code/remote
+- `.cursor/rules/` — IDE launch scripts and Cursor rules
 
-- All static assets (images, CSS, infographics) are now in `/public/assets/` or `/public/infographics/`.
-- Legacy HTML files and unused assets have been removed for clarity and maintainability.
+## Track A: Frontend & User Experience
+- Use `src/layouts/MainLayout.astro` for page layouts
+- Use `src/components/Header.jsx` and `Footer.jsx` for navigation and footer
+- Use `src/styles/theme.css` and `typography.css` for design system
+- Run the frontend dev server with the VS Code task or `npm run dev`
+
+## Track B: Backend, Tooling & Automation
+- Use the IDE launch script for backend checks: `@track-b-backend.mdc`
+- Run lint, test, and build with the VS Code task or `npm run lint && npm run test && npm run build`
+- E2E tests: Run with the VS Code task or `npx cypress run`
+- i18n: Add translations in `public/locales/en/common.json` and `public/locales/cs/common.json`
+
+## Devcontainer & Dockerfile
+- Preinstalled tools for Node, Astro, React, Cypress, i18n, PDF, and automation
+- Recommended VS Code extensions for full-stack workflows
+- Tasks for frontend, backend, and E2E testing
+
+## Getting Started
+1. Open in VS Code with Devcontainer support
+2. Use the provided tasks or launch scripts for your workflow
+3. See `TODO.md` for roadmap and parallel development guidance
 
 ---
 
@@ -175,3 +183,25 @@ This project is licensed under the Apache-2.0 License. See [LICENSE](LICENSE) fo
 ---
 
 > For more info, see the [live site](https://sparesparrow.github.io/sparrow-ai-tech/) or open an issue!
+
+## Development in DevContainer (VS Code Remote)
+
+This project supports development in a DevContainer, enabling both frontend (Track A) and backend (Track B) agents to work in parallel on tasks from `TODO.md`.
+
+### How to Use
+
+1. Install [VS Code](https://code.visualstudio.com/) and the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
+2. Open this project folder in VS Code.
+3. When prompted, "Reopen in Container". VS Code will build the container and install all dependencies.
+4. Both frontend and backend code can be developed and tested inside the container:
+   - **Frontend (Track A):** Work on React/Astro components, layouts, and styles in `src/`.
+   - **Backend (Track B):** Work on automation, CI/CD, API endpoints, and tests as described in `TODO.md`.
+5. The devcontainer comes pre-configured with recommended extensions for Astro, React, ESLint, Prettier, and Cypress.
+
+### Ports
+- The Astro/Vite dev server runs on port 3000 (forwarded by default).
+
+### Parallel Agent Workflow
+- Both agents can work simultaneously in the same environment, following the roadmap in `TODO.md` and the rules in `@track-a-frontend.mdc` and `@track-b-backend.mdc`.
+
+---

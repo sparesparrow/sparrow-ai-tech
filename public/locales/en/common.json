@@ -1,0 +1,15 @@
+{
+  "header": {
+    "nav_projects": "Projects",
+    "nav_about": "About",
+    "nav_skills": "Skills",
+    "nav_contact": "Contact"
+  },
+  "footer": {
+    "copyright": "Copyright © 2024 Sparrow AI Tech"
+  },
+  "general": {
+    "download_pdf": "Download as PDF",
+    "open_chatbot": "Open Voice Chatbot"
+  }
+} 

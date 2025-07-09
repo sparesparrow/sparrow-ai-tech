@@ -1,0 +1,23 @@
+---
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.jsx';
+import '../styles/global.css';
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sparrow AI Tech</title>
+  </head>
+  <body>
+    <header>
+      <Header client:load />
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <Footer client:load />
+    </footer>
+  </body>
+</html> 
