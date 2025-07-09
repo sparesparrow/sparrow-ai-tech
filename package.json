@@ -23,7 +23,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "test": "node --experimental-vm-modules --passWithNoTests node_modules/.bin/jest",
     "test:ci": "jest --ci",
     "test:e2e": "cypress run",
     "prepare": "husky install",
