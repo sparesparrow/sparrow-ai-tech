@@ -2,6 +2,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
+  darkMode: 'class', // Enable class-based dark mode
   // The `content` array is the most important part.
   // It tells Tailwind which files to scan for class names.
   // This setup is configured for an Astro project using React components.

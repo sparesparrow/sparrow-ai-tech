@@ -2,12 +2,13 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import { fileURLToPath } from 'url';
 import { join } from 'path';
+import i18n from './astro-i18n.config.mjs';
 
 export default defineConfig({
 
   base: '/sparrow-ai-tech/',
   
-  integrations: [react()],
+  integrations: [react(), i18n],
   i18n: {
     locales: ['en', 'cs'],
     defaultLocale: 'en',

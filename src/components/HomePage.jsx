@@ -14,8 +14,8 @@ import { useI18n } from '../i18n';
 
 const PauseBlock = ({ text }) => (
   <div className="my-12 flex justify-center">
-    <div className="max-w-2xl w-full bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded shadow text-yellow-900 text-center italic text-lg">
-      <span className="block mb-2 text-yellow-700 font-bold">Pause</span>
+    <div className="max-w-2xl w-full bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded shadow text-yellow-900 text-center italic text-lg dark:bg-yellow-900 dark:text-yellow-100">
+      <span className="block mb-2 text-yellow-700 font-bold dark:text-yellow-300">Pause</span>
       {text}
     </div>
   </div>
@@ -31,28 +31,28 @@ const PauseSeparator = () => (
 );
 
 const PromptBlock = ({ prompt }) => (
-  <div className="max-w-2xl mx-auto my-8 p-6 bg-slate-800 border-l-4 border-blue-500 rounded shadow-lg transition-shadow hover:shadow-2xl focus-within:shadow-2xl">
-    <p className="text-lg text-slate-100 italic whitespace-pre-line" tabIndex={0}>{prompt}</p>
+  <div className="max-w-2xl mx-auto my-8 p-6 bg-slate-800 border-l-4 border-blue-500 rounded shadow-lg transition-shadow hover:shadow-2xl focus-within:shadow-2xl dark:bg-slate-800 dark:border-blue-600 dark:hover:bg-slate-700 dark:focus-within:bg-slate-700">
+    <p className="text-lg text-slate-100 dark:text-stone-200 italic whitespace-pre-line" tabIndex={0}>{prompt}</p>
   </div>
 );
 
 // Hero Section
 const HeroSection = ({ translations }) => (
-  <section id="hero" className="w-full min-h-screen flex items-center bg-white pt-20">
+  <section id="hero" className="w-full min-h-screen flex items-center bg-white dark:bg-slate-900 pt-20 transition-colors duration-300" data-cy="hero-section">
     <div className="container mx-auto px-6 text-center">
-      <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight mb-4" dangerouslySetInnerHTML={{ __html: translations.hero_title_html }} />
-      <p className="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 mb-8">{translations.hero_subtitle}</p>
+      <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 dark:text-stone-100 leading-tight mb-4" dangerouslySetInnerHTML={{ __html: translations.hero_title_html }} />
+      <p className="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 dark:text-stone-300 mb-8">{translations.hero_subtitle}</p>
       <img
         src={`/sparrow-ai-tech/assets/images/claude4-system-card-img-003.png`}
         alt="Abstract AI system card visual, suitable for hero section"
         className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-8"
         loading="eager"
       />
-      <button className="bg-teal-600 text-white text-lg px-8 py-4 rounded-lg hover:bg-teal-700 transition-all shadow-lg transform hover:scale-105">
+      <button className="bg-teal-600 text-white text-lg px-8 py-4 rounded-lg hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-400 dark:text-stone-900 transition-all shadow-lg transform hover:scale-105 focus:ring-2 focus:ring-teal-400 dark:focus:ring-teal-600">
         {translations.cta_quick_analysis_hero}
       </button>
-      <a href="/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.md" data-cy="test-article-link">Test Article</a>
-      <a href="/sparrow-ai-tech/infographics/Infographic1.html" data-cy="test-infographic-link">Test Infographic</a>
+      <a href="/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.md" data-cy="test-article-link" className="block mt-4 text-sky-700 dark:text-sky-300 hover:underline">Test Article</a>
+      <a href="/sparrow-ai-tech/infographics/Infographic1.html" data-cy="test-infographic-link" className="block mt-2 text-sky-700 dark:text-sky-300 hover:underline">Test Infographic</a>
     </div>
   </section>
 );
@@ -69,24 +69,24 @@ const ServicesSection = ({ translations }) => {
   const [activeTab, setActiveTab] = useState(tabs[0].key);
   const active = tabs.find(tab => tab.key === activeTab);
   return (
-    <section id="services" className="py-20 md:py-32">
+    <section id="services" className="py-20 md:py-32" data-cy="services-section">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-stone-800">{translations.services_title}</h2>
-          <p className="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">{translations.services_subtitle}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-stone-800 dark:text-stone-100">{translations.services_title}</h2>
+          <p className="text-lg text-stone-600 dark:text-stone-300 mt-2 max-w-2xl mx-auto">{translations.services_subtitle}</p>
         </div>
         <div className="flex justify-center mb-8 flex-wrap gap-2">
           {tabs.map(tab => (
             <button
               key={tab.key}
-              className={`px-6 py-2 rounded-full font-semibold border transition-colors duration-200 ${activeTab === tab.key ? 'bg-sky-600 text-white border-sky-600' : 'bg-white text-sky-700 border-sky-300 hover:bg-sky-50'}`}
+              className={`px-6 py-2 rounded-full font-semibold border transition-colors duration-200 ${activeTab === tab.key ? 'bg-sky-600 text-white border-sky-600 dark:bg-sky-700 dark:text-white dark:border-sky-600' : 'bg-white text-sky-700 border-sky-300 dark:bg-slate-800 dark:text-sky-300 dark:border-slate-700 hover:bg-sky-50 dark:hover:bg-slate-700'}`}
               onClick={() => setActiveTab(tab.key)}
             >
               {tab.label}
             </button>
           ))}
         </div>
-        <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow text-lg text-stone-700 min-h-[120px]">
+        <div className="max-w-3xl mx-auto bg-white dark:bg-slate-800 p-8 rounded-xl shadow text-lg text-stone-700 dark:text-stone-200 min-h-[120px]">
           {active?.content}
         </div>
       </div>
@@ -101,8 +101,8 @@ const ArticlesSection = ({ translations }) => {
     {
       name: 'Getting Started',
       articles: [
-        { title: 'MCP Ecosystem Overview', url: '/sparrow-ai-tech/articles/merged/mcp-ecosystem-overview.md' },
-        { title: 'Hexagonal Architecture in MCP', url: '/sparrow-ai-tech/articles/merged/hexagonal-architecture-in-mcp.md' },
+        { title: 'MCP Ecosystem Overview', url: '/sparrow-ai-tech/articles/mcp-ecosystem-overview.md' },
+        { title: 'Hexagonal Architecture in MCP', url: '/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.md' },
       ]
     },
     {
@@ -128,20 +128,20 @@ const ArticlesSection = ({ translations }) => {
     }
   ];
   return (
-    <section id="articles" className="py-20 md:py-32 bg-stone-100">
+    <section id="articles" className="py-20 md:py-32 bg-stone-100 dark:bg-slate-900" data-cy="articles-section">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-stone-800">{translations.articles_title || 'Articles & Documentation'}</h2>
-          <p className="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">{translations.articles_subtitle || 'Explore categorized articles, guides, and references.'}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-stone-800 dark:text-stone-100">{translations.articles_title || 'Articles & Documentation'}</h2>
+          <p className="text-lg text-stone-600 dark:text-stone-300 mt-2 max-w-2xl mx-auto">{translations.articles_subtitle || 'Explore categorized articles, guides, and references.'}</p>
         </div>
         <div className="max-w-5xl mx-auto">
           {categories.map((cat) => (
             <div key={cat.name} className="mb-10">
-              <h3 className="text-2xl font-semibold text-sky-700 mb-4">{cat.name}</h3>
+              <h3 className="text-2xl font-semibold text-sky-700 dark:text-sky-300 mb-4">{cat.name}</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 {cat.articles.map((article, i) => (
-                  <a key={i} href={article.url.startsWith('/sparrow-ai-tech/') ? article.url : `/sparrow-ai-tech${article.url}`} target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-slate-100 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
-                    <span className="text-lg font-semibold text-sky-700">{article.title}</span>
+                  <a key={i} href={article.url} target="_blank" rel="noopener noreferrer" className="block bg-white dark:bg-slate-800 hover:bg-slate-100 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg dark:hover:bg-slate-700">
+                    <span className="text-lg font-semibold text-sky-700 dark:text-sky-300">{article.title}</span>
                   </a>
                 ))}
               </div>
@@ -178,18 +178,18 @@ const InfographicsSection = () => {
     },
   ];
   return (
-    <section id="infographics" className="py-20 md:py-32 bg-white">
+    <section id="infographics" className="py-20 md:py-32 bg-white dark:bg-slate-900" data-cy="infographics-section">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-sky-700">Infographics</h2>
-          <p className="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">Explore interactive and visual guides to key concepts and architectures.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-sky-700 dark:text-sky-300">Infographics</h2>
+          <p className="text-lg text-stone-600 dark:text-stone-300 mt-2 max-w-2xl mx-auto">Explore interactive and visual guides to key concepts and architectures.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {infographics.map((info, idx) => (
-            <a key={idx} href={info.url.startsWith('/sparrow-ai-tech/') ? info.url : `/sparrow-ai-tech${info.url}`} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
-              <h3 className="text-lg font-semibold text-sky-700 mb-2">{info.title}</h3>
-              <p className="text-slate-600 mb-2">{info.description}</p>
-              <span className="inline-block mt-4 text-sky-600 font-bold">View Infographic &rarr;</span>
+            <a key={idx} href={info.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
+              <h3 className="text-lg font-semibold text-sky-700 dark:text-sky-300 mb-2">{info.title}</h3>
+              <p className="text-slate-600 dark:text-stone-300 mb-2">{info.description}</p>
+              <span className="inline-block mt-4 text-sky-600 dark:text-sky-300 font-bold">View Infographic &rarr;</span>
             </a>
           ))}
         </div>
@@ -239,18 +239,18 @@ const ResearchHighlightsSection = () => {
     },
   ];
   return (
-    <section id="research-highlights" className="py-20 md:py-32 bg-stone-50">
+    <section id="research-highlights" className="py-20 md:py-32 bg-stone-50 dark:bg-slate-900" data-cy="research-highlights-section">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-700">Research Highlights</h2>
-          <p className="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">Key diagrams and benchmarks from leading AI agent research and MCP experiments.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-purple-700 dark:text-purple-300">Research Highlights</h2>
+          <p className="text-lg text-stone-600 dark:text-stone-300 mt-2 max-w-2xl mx-auto">Key diagrams and benchmarks from leading AI agent research and MCP experiments.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {images.map((img, idx) => (
-            <div key={idx} className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+            <div key={idx} className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-4 flex flex-col items-center">
               <img src={img.src.startsWith('http') || img.src.startsWith('/sparrow-ai-tech/') ? img.src : `/sparrow-ai-tech/${img.src.replace(/^\/+/, '')}`} alt={img.alt} className="max-h-64 w-auto object-contain mb-4 rounded border" loading="lazy" />
-              <div className="text-sm text-stone-700 text-center mb-2">{img.caption}</div>
-              {img.source && <a href={img.source} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 underline">Source</a>}
+              <div className="text-sm text-stone-700 dark:text-stone-200 text-center mb-2">{img.caption}</div>
+              {img.source && <a href={img.source} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 dark:text-blue-300 underline">Source</a>}
             </div>
           ))}
         </div>
@@ -315,24 +315,24 @@ const PopularReposSection = () => {
   }, []);
   const sorted = [...repos].sort((a, b) => sortBy === 'stars' ? b.stars - a.stars : b.forks - a.forks);
   return (
-    <section id="popular-repos" className="py-20 md:py-32 bg-slate-900">
+    <section id="popular-repos" className="py-20 md:py-32 bg-slate-900 dark:bg-slate-800" data-cy="popular-repos-section">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-sky-400">Popular GitHub Repositories</h2>
-          <p className="text-lg text-slate-300 mt-2 max-w-2xl mx-auto">Explore my most starred open-source projects.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-sky-400 dark:text-sky-300">Popular GitHub Repositories</h2>
+          <p className="text-lg text-slate-300 dark:text-stone-300 mt-2 max-w-2xl mx-auto">Explore my most starred open-source projects.</p>
           <div className="mt-4 flex justify-center gap-4">
-            <button onClick={() => setSortBy('stars')} className={`px-4 py-2 rounded ${sortBy === 'stars' ? 'bg-sky-600 text-white' : 'bg-slate-800 text-sky-300'}`}>Sort by Stars</button>
-            <button onClick={() => setSortBy('forks')} className={`px-4 py-2 rounded ${sortBy === 'forks' ? 'bg-sky-600 text-white' : 'bg-slate-800 text-sky-300'}`}>Sort by Forks</button>
+            <button onClick={() => setSortBy('stars')} className={`px-4 py-2 rounded ${sortBy === 'stars' ? 'bg-sky-600 text-white dark:bg-sky-700 dark:text-white' : 'bg-slate-800 text-sky-300 dark:bg-slate-700 dark:text-sky-300'}`}>Sort by Stars</button>
+            <button onClick={() => setSortBy('forks')} className={`px-4 py-2 rounded ${sortBy === 'forks' ? 'bg-sky-600 text-white dark:bg-sky-700 dark:text-white' : 'bg-slate-800 text-sky-300 dark:bg-slate-700 dark:text-sky-300'}`}>Sort by Forks</button>
           </div>
         </div>
-        {loading ? <div className="text-sky-300 text-center">Loading...</div> : error ? <div className="text-red-500 text-center">{error}</div> : (
+        {loading ? <div className="text-sky-300 dark:text-sky-300 text-center">Loading...</div> : error ? <div className="text-red-500 dark:text-red-500 text-center">{error}</div> : (
           <div className="flex flex-wrap justify-center gap-6">
             {sorted.map(repo => (
-              <div key={repo.url} className="bg-slate-800 rounded-xl shadow p-6 min-w-[220px] max-w-xs text-center">
+              <div key={repo.url} className="bg-slate-800 dark:bg-slate-700 rounded-xl shadow p-6 min-w-[220px] max-w-xs text-center">
                 <GithubRepoTooltip href={repo.url}>
-                  <span className="text-lg font-semibold text-sky-300 hover:underline">{repo.name}</span>
+                  <span className="text-lg font-semibold text-sky-300 dark:text-sky-300 hover:underline">{repo.name}</span>
                 </GithubRepoTooltip>
-                <div className="mt-2 text-slate-400">⭐ {repo.stars} | 🍴 {repo.forks}</div>
+                <div className="mt-2 text-slate-400 dark:text-stone-300">⭐ {repo.stars} | 🍴 {repo.forks}</div>
               </div>
             ))}
           </div>
@@ -392,20 +392,20 @@ const EditableMermaidDemoSection = () => {
     }
   };
   return (
-    <section id="editable-mermaid" className="py-20 md:py-32 bg-slate-950">
+    <section id="editable-mermaid" className="py-20 md:py-32 bg-slate-950 dark:bg-slate-900" data-cy="editable-mermaid-section">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-emerald-400">Live Editable Diagram</h2>
-          <p className="text-lg text-slate-300 mt-2 max-w-2xl mx-auto">Edit the Mermaid code below and see your diagram update instantly.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-emerald-400 dark:text-emerald-300">Live Editable Diagram</h2>
+          <p className="text-lg text-slate-300 dark:text-stone-300 mt-2 max-w-2xl mx-auto">Edit the Mermaid code below and see your diagram update instantly.</p>
           <div className="mt-4 flex justify-center gap-4">
             {EXAMPLES.map(ex => (
-              <button key={ex.label} onClick={() => handleExample(ex.label)} className={`px-4 py-2 rounded ${example === ex.label ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-emerald-300'}`}>{ex.label}</button>
+              <button key={ex.label} onClick={() => handleExample(ex.label)} className={`px-4 py-2 rounded ${example === ex.label ? 'bg-emerald-600 text-white dark:bg-emerald-700 dark:text-white' : 'bg-slate-800 text-emerald-300 dark:bg-slate-700 dark:text-emerald-300'}`}>{ex.label}</button>
             ))}
           </div>
         </div>
         <div className="max-w-2xl mx-auto">
           <textarea
-            className="w-full p-2 rounded border bg-slate-900 text-slate-100 font-mono mb-2"
+            className="w-full p-2 rounded border bg-slate-900 dark:bg-slate-800 text-slate-100 dark:text-stone-100 font-mono mb-2"
             rows={6}
             value={code}
             onChange={e => setCode(e.target.value)}
@@ -413,11 +413,13 @@ const EditableMermaidDemoSection = () => {
             aria-label="Edit Mermaid diagram"
           />
           <div className="flex gap-4 items-center mb-2">
-            <button onClick={handleSave} disabled={saving} className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 disabled:opacity-50">{saving ? 'Saving...' : 'Save Diagram'}</button>
+            <button onClick={handleSave} disabled={saving} className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 dark:bg-emerald-700 dark:text-white disabled:opacity-50">
+              {saving ? 'Saving...' : 'Save Diagram'}
+            </button>
             {toast && <span className="text-emerald-400">{toast}</span>}
           </div>
-          {error && <div className="text-red-500 mb-2">{error}</div>}
-          <div className="mermaid-diagram border rounded bg-slate-800 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: svg }} />
+          {error && <div className="text-red-500 dark:text-red-500 mb-2">{error}</div>}
+          <div className="mermaid-diagram border rounded bg-slate-800 dark:bg-slate-700 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: svg }} />
         </div>
       </div>
     </section>
@@ -483,12 +485,14 @@ const SavedDiagramsGallery = () => {
         style={style}
         {...attributes}
         {...listeners}
-        className={`bg-slate-800 p-6 rounded-xl shadow-lg relative cursor-move select-none`}
+        className={`bg-slate-800 dark:bg-slate-700 p-6 rounded-xl shadow-lg relative cursor-move select-none`}
       >
-        <button onClick={() => handleDelete(diagram.id)} disabled={deleting === diagram.id} className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 disabled:opacity-50">{deleting === diagram.id ? 'Deleting...' : 'Delete'}</button>
-        <div className="mb-2 text-slate-400 text-xs">ID: {diagram.id}</div>
-        <div className="mermaid-diagram border rounded bg-slate-900 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: window.mermaid?.render ? window.mermaid.render(`gallery-${diagram.id}`, diagram.code, () => { }) : '' }} />
-        <pre className="mt-2 text-xs text-slate-300 bg-slate-900 p-2 rounded">{diagram.code}</pre>
+        <button onClick={() => handleDelete(diagram.id)} disabled={deleting === diagram.id} className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 dark:bg-red-700 dark:text-white disabled:opacity-50">
+          {deleting === diagram.id ? 'Deleting...' : 'Delete'}
+        </button>
+        <div className="mb-2 text-slate-400 dark:text-stone-300 text-xs">ID: {diagram.id}</div>
+        <div className="mermaid-diagram border rounded bg-slate-900 dark:bg-slate-800 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: window.mermaid?.render ? window.mermaid.render(`gallery-${diagram.id}`, diagram.code, () => { }) : '' }} />
+        <pre className="mt-2 text-xs text-slate-300 dark:text-stone-300 bg-slate-900 dark:bg-slate-800 p-2 rounded">{diagram.code}</pre>
       </div>
     );
   }
@@ -503,17 +507,19 @@ const SavedDiagramsGallery = () => {
   };
 
   return (
-    <section id="saved-diagrams" className="py-20 md:py-32 bg-slate-900">
+    <section id="saved-diagrams" className="py-20 md:py-32 bg-slate-900 dark:bg-slate-800" data-cy="saved-diagrams-section">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-emerald-400">Saved Diagrams Gallery</h2>
-          <p className="text-lg text-slate-300 mt-2 max-w-2xl mx-auto">Browse and manage your saved diagrams.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-emerald-400 dark:text-emerald-300">Saved Diagrams Gallery</h2>
+          <p className="text-lg text-slate-300 dark:text-stone-300 mt-2 max-w-2xl mx-auto">Browse and manage your saved diagrams.</p>
           <div className="mt-4 flex justify-center gap-4">
-            <button onClick={handleSaveOrder} disabled={savingOrder} className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 disabled:opacity-50">{savingOrder ? 'Saving...' : 'Save Order'}</button>
+            <button onClick={handleSaveOrder} disabled={savingOrder} className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 dark:bg-emerald-700 dark:text-white disabled:opacity-50">
+              {savingOrder ? 'Saving...' : 'Save Order'}
+            </button>
             {orderToast && <span className="text-emerald-400">{orderToast}</span>}
           </div>
         </div>
-        {loading ? <div className="text-emerald-300 text-center">Loading...</div> : error ? <div className="text-red-500 text-center">{error}</div> : (
+        {loading ? <div className="text-emerald-300 dark:text-emerald-300 text-center">Loading...</div> : error ? <div className="text-red-500 dark:text-red-500 text-center">{error}</div> : (
           <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             <SortableContext items={diagrams.map(d => d.id)} strategy={verticalListSortingStrategy}>
               <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -538,25 +544,25 @@ const AboutSection = ({ translations }) => {
     translations.process_step4,
   ].filter(Boolean);
   return (
-    <section id="about" className="py-20 md:py-32 bg-white">
+    <section id="about" className="py-20 md:py-32 bg-white dark:bg-slate-900" data-cy="about-section">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-stone-800">{translations.about_title}</h2>
-          <p className="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">{translations.about_subtitle}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-stone-800 dark:text-stone-100">{translations.about_title}</h2>
+          <p className="text-lg text-stone-600 dark:text-stone-300 mt-2 max-w-2xl mx-auto">{translations.about_subtitle}</p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-          <div className="bg-stone-50 p-8 rounded-xl text-center">[{translations.about_benefit1_title}]</div>
-          <div className="bg-stone-50 p-8 rounded-xl text-center">[{translations.about_benefit2_title}]</div>
-          <div className="bg-stone-50 p-8 rounded-xl text-center">[{translations.about_benefit3_title}]</div>
+          <div className="bg-stone-50 dark:bg-slate-800 p-8 rounded-xl text-center">[{translations.about_benefit1_title}]</div>
+          <div className="bg-stone-50 dark:bg-slate-800 p-8 rounded-xl text-center">[{translations.about_benefit2_title}]</div>
+          <div className="bg-stone-50 dark:bg-slate-800 p-8 rounded-xl text-center">[{translations.about_benefit3_title}]</div>
         </div>
         {steps.length > 0 && (
           <div className="max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold text-sky-700 mb-6">{translations.process_title}</h3>
+            <h3 className="text-2xl font-bold text-sky-700 dark:text-sky-300 mb-6">{translations.process_title}</h3>
             <ol className="space-y-4">
               {steps.map((step, i) => (
                 <li key={i} className="flex items-start">
-                  <span className="w-8 h-8 flex items-center justify-center bg-sky-600 text-white rounded-full font-bold mr-4">{i + 1}</span>
-                  <span className="text-lg text-stone-700">{step}</span>
+                  <span className="w-8 h-8 flex items-center justify-center bg-sky-600 text-white rounded-full font-bold mr-4 dark:bg-sky-700 dark:text-white">{i + 1}</span>
+                  <span className="text-lg text-stone-700 dark:text-stone-200">{step}</span>
                 </li>
               ))}
             </ol>
@@ -574,19 +580,19 @@ const ContactSection = ({ translations }) => {
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
   const handleSubmit = e => { e.preventDefault(); setSubmitted(true); };
   return (
-    <section id="contact" className="py-20 md:py-32">
+    <section id="contact" className="py-20 md:py-32" data-cy="contact-section">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-stone-800">{translations.contact_title}</h2>
-          <p className="text-lg text-stone-600 mt-2 max-w-2xl mx-auto">{translations.contact_subtitle}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-stone-800 dark:text-stone-100">{translations.contact_title}</h2>
+          <p className="text-lg text-stone-600 dark:text-stone-300 mt-2 max-w-2xl mx-auto">{translations.contact_subtitle}</p>
         </div>
-        <div className="max-w-xl mx-auto bg-white p-8 md:p-12 rounded-xl shadow-lg">
+        <div className="max-w-xl mx-auto bg-white dark:bg-slate-800 p-8 md:p-12 rounded-xl shadow-lg">
           {submitted ? (
-            <div className="text-green-700 text-lg font-semibold text-center py-8">{translations.contact_success || 'Thank you for your message!'}</div>
+            <div className="text-green-700 dark:text-green-300 text-lg font-semibold text-center py-8">{translations.contact_success || 'Thank you for your message!'}</div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-stone-700 font-bold mb-2" htmlFor="name">{translations.contact_name_label}</label>
+                <label className="block text-stone-700 dark:text-stone-200 font-bold mb-2" htmlFor="name">{translations.contact_name_label}</label>
                 <input
                   type="text"
                   id="name"
@@ -594,12 +600,12 @@ const ContactSection = ({ translations }) => {
                   value={form.name}
                   onChange={handleChange}
                   placeholder={translations.contact_name_placeholder}
-                  className="w-full border border-stone-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-600"
+                  className="w-full border border-stone-300 dark:border-stone-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-600 dark:focus:ring-sky-700"
                   required
                 />
               </div>
               <div>
-                <label className="block text-stone-700 font-bold mb-2" htmlFor="email">{translations.contact_email_label}</label>
+                <label className="block text-stone-700 dark:text-stone-200 font-bold mb-2" htmlFor="email">{translations.contact_email_label}</label>
                 <input
                   type="email"
                   id="email"
@@ -607,33 +613,33 @@ const ContactSection = ({ translations }) => {
                   value={form.email}
                   onChange={handleChange}
                   placeholder={translations.contact_email_placeholder}
-                  className="w-full border border-stone-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-600"
+                  className="w-full border border-stone-300 dark:border-stone-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-600 dark:focus:ring-sky-700"
                   required
                 />
               </div>
               <div>
-                <label className="block text-stone-700 font-bold mb-2" htmlFor="message">{translations.contact_message_label}</label>
+                <label className="block text-stone-700 dark:text-stone-200 font-bold mb-2" htmlFor="message">{translations.contact_message_label}</label>
                 <textarea
                   id="message"
                   name="message"
                   value={form.message}
                   onChange={handleChange}
                   placeholder={translations.contact_message_placeholder}
-                  className="w-full border border-stone-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-600"
+                  className="w-full border border-stone-300 dark:border-stone-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-600 dark:focus:ring-sky-700"
                   rows={5}
                   required
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-sky-600 text-white font-bold py-3 rounded-lg hover:bg-sky-700 transition-colors text-lg"
+                className="w-full bg-sky-600 text-white font-bold py-3 rounded-lg hover:bg-sky-700 dark:bg-sky-700 dark:text-white transition-colors text-lg"
               >
                 {translations.contact_submit_button}
               </button>
             </form>
           )}
         </div>
-        <div className="text-center mt-8 text-stone-600">{translations.contact_info || '[Contact Info Placeholder]'}</div>
+        <div className="text-center mt-8 text-stone-600 dark:text-stone-300">{translations.contact_info || '[Contact Info Placeholder]'}</div>
       </div>
     </section>
   );
@@ -675,14 +681,14 @@ const DownloadPdfButton = () => {
       <button
         onClick={handleDownload}
         data-cy="download-pdf-btn"
-        className="fixed bottom-8 right-8 z-50 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg print:hidden disabled:opacity-60"
+        className="fixed bottom-8 right-8 z-50 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg print:hidden disabled:opacity-60 dark:bg-sky-700 dark:hover:bg-sky-600"
         aria-label="Download as PDF"
         disabled={loading}
       >
         {loading ? 'Generating PDF…' : 'Download as PDF'}
       </button>
       {error && (
-        <div className="fixed bottom-24 right-8 z-50 bg-red-600 text-white px-4 py-2 rounded shadow-lg">{error}</div>
+        <div className="fixed bottom-24 right-8 z-50 bg-red-600 text-white px-4 py-2 rounded shadow-lg dark:bg-red-700">{error}</div>
       )}
     </>
   );
@@ -720,14 +726,14 @@ const ChatbotModal = ({ open, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-end">
       <div className="fixed inset-0 bg-black bg-opacity-40" onClick={onClose} data-cy="chatbot-backdrop"></div>
-      <div className="relative bg-white w-full max-w-md m-8 rounded-xl shadow-2xl p-6 flex flex-col" data-cy="chatbot-modal">
-        <button onClick={onClose} className="absolute top-2 right-2 text-slate-400 hover:text-slate-700 text-2xl font-bold" aria-label="Close Chatbot" data-cy="chatbot-close-btn">×</button>
-        <h2 className="text-xl font-bold mb-4 text-sky-700">Voice Chatbot (ElevenLabs)</h2>
+      <div className="relative bg-white dark:bg-slate-800 w-full max-w-md m-8 rounded-xl shadow-2xl p-6 flex flex-col" data-cy="chatbot-modal">
+        <button onClick={onClose} className="absolute top-2 right-2 text-slate-400 hover:text-slate-700 text-2xl font-bold dark:text-slate-500" aria-label="Close Chatbot" data-cy="chatbot-close-btn">×</button>
+        <h2 className="text-xl font-bold mb-4 text-sky-700 dark:text-sky-300">Voice Chatbot (ElevenLabs)</h2>
         <div className="flex-1 overflow-y-auto mb-4 max-h-64">
-          {messages.length === 0 && <div className="bg-slate-100 rounded p-4 text-slate-600 text-center">Say hello to the ElevenLabs chatbot!</div>}
+          {messages.length === 0 && <div className="bg-slate-100 dark:bg-slate-700 rounded p-4 text-slate-600 dark:text-stone-300 text-center">Say hello to the ElevenLabs chatbot!</div>}
           {messages.map((msg, i) => (
             <div key={i} className={msg.from === "user" ? "text-right mb-2" : "text-left mb-2"}>
-              <span className={msg.from === "user" ? "inline-block bg-sky-100 text-sky-800 px-3 py-2 rounded-lg" : "inline-block bg-emerald-100 text-emerald-800 px-3 py-2 rounded-lg"}>
+              <span className={msg.from === "user" ? "inline-block bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-100 px-3 py-2 rounded-lg" : "inline-block bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-100 px-3 py-2 rounded-lg"}>
                 {msg.text}
               </span>
             </div>
@@ -735,7 +741,7 @@ const ChatbotModal = ({ open, onClose }) => {
         </div>
         <input
           type="text"
-          className="w-full border border-slate-300 rounded px-4 py-2 mb-2"
+          className="w-full border border-slate-300 dark:border-slate-600 rounded px-4 py-2 mb-2 bg-slate-100 dark:bg-slate-800 text-slate-100 dark:text-stone-100"
           placeholder="Type your message..."
           value={input}
           onChange={e => setInput(e.target.value)}
@@ -744,14 +750,14 @@ const ChatbotModal = ({ open, onClose }) => {
           onKeyDown={e => { if (e.key === 'Enter') handleSend(); }}
         />
         <button
-          className="w-full bg-sky-600 text-white font-bold py-2 rounded-lg mt-2 disabled:opacity-60"
+          className="w-full bg-sky-600 text-white font-bold py-2 rounded-lg mt-2 disabled:opacity-60 dark:bg-sky-700 dark:text-white"
           onClick={handleSend}
           disabled={loading || !input.trim()}
           data-cy="chatbot-send-btn"
         >
           {loading ? "Sending..." : "Send"}
         </button>
-        {error && <div className="mt-2 text-red-600 text-sm">{error}</div>}
+        {error && <div className="mt-2 text-red-600 dark:text-red-500 text-sm">{error}</div>}
       </div>
     </div>
   );
@@ -761,10 +767,10 @@ const ChatbotButton = ({ onClick }) => (
   <button
     onClick={onClick}
     data-cy="open-chatbot-btn"
-    className="fixed bottom-28 right-8 z-50 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg flex items-center gap-2 print:hidden"
+    className="fixed bottom-28 right-8 z-50 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg flex items-center gap-2 print:hidden dark:bg-emerald-700 dark:hover:bg-emerald-600"
     aria-label="Open Voice Chatbot"
   >
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 dark:text-emerald-300">
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75v1.5m0 0a6.75 6.75 0 01-6.75-6.75h1.5A5.25 5.25 0 0012 19.5a5.25 5.25 0 005.25-5.25h1.5A6.75 6.75 0 0112 20.25zm0-15v6.75m0 0a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-4.5 0v1.5a2.25 2.25 0 002.25 2.25z" />
     </svg>
     Voice Chatbot
@@ -772,12 +778,10 @@ const ChatbotButton = ({ onClick }) => (
 );
 
 // Patch: Add default values for props and defensive checks for translations and translations.nav
-const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () => { }, prompts = [] }) => {
-  const i18n = useI18n() || {};
-  const t = i18n.t || ((x) => x);
-  const currentLanguage = i18n.language || 'en';
+const HomePage = ({ prompts = [] }) => {
+  const { t, language, setLanguage } = useI18n();
   // Defensive: Ensure translations.nav exists and has expected keys
-  const nav = translations.nav || { services: 'Services', articles: 'Articles', about: 'About', contact: 'Contact' };
+  const nav = t('nav');
 
   // Helper to get divider by index (cycle if not enough)
   const getDivider = (idx) => {
@@ -787,11 +791,11 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
 
   // Sections with dividers between them
   const sections = [
-    <HeroSection key="hero" translations={translations} />,
+    <HeroSection key="hero" translations={{ hero_title_html: t('hero.title_html'), hero_subtitle: t('hero.subtitle'), cta_quick_analysis_hero: t('hero.cta_quick_analysis_hero') }} />,
     getDivider(0),
-    <ServicesSection key="services" translations={translations} />,
+    <ServicesSection key="services" translations={{ services_title: t('services.title'), services_subtitle: t('services.subtitle'), service_tab_ai: t('services.tab.ai'), service_tab_security: t('services.tab.security'), service_tab_linux: t('services.tab.linux'), service_tab_software: t('services.tab.software'), service_tab_modernization: t('services.tab.modernization'), service_tab_ai_content: t('services.tab.ai_content'), service_tab_security_content: t('services.tab.security_content'), service_tab_linux_content: t('services.tab.linux_content'), service_tab_software_content: t('services.tab.software_content'), service_tab_modernization_content: t('services.tab.modernization_content') }} />,
     getDivider(1),
-    <ArticlesSection key="articles" translations={translations} />,
+    <ArticlesSection key="articles" translations={{ articles_title: t('articles.title'), articles_subtitle: t('articles.subtitle'), articles: t('articles.articles') }} />,
     <InfographicsSection key="infographics" />,
     getDivider(2),
     <ResearchHighlightsSection key="research" />,
@@ -800,8 +804,8 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
     <EditableMermaidDemoSection key="editable-mermaid" />,
     <SavedDiagramsGallery key="saved-diagrams" />,
     getDivider(4),
-    <AboutSection key="about" translations={translations} />,
-    <ContactSection key="contact" translations={translations} />
+    <AboutSection key="about" translations={{ about_title: t('about.title'), about_subtitle: t('about.subtitle'), about_benefit1_title: t('about.benefit1_title'), about_benefit2_title: t('about.benefit2_title'), about_benefit3_title: t('about.benefit3_title'), process_title: t('about.process_title'), process_step1: t('about.process_step1'), process_step2: t('about.process_step2'), process_step3: t('about.process_step3'), process_step4: t('about.process_step4') }} />,
+    <ContactSection key="contact" translations={{ contact_title: t('contact.title'), contact_subtitle: t('contact.subtitle'), contact_name_label: t('contact.name_label'), contact_name_placeholder: t('contact.name_placeholder'), contact_email_label: t('contact.email_label'), contact_email_placeholder: t('contact.email_placeholder'), contact_message_label: t('contact.message_label'), contact_message_placeholder: t('contact.message_placeholder'), contact_submit_button: t('contact.submit_button'), contact_success: t('contact.success') }} />
   ];
 
   let content = [];
@@ -817,20 +821,20 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
   const [chatbotOpen, setChatbotOpen] = useState(false);
 
   return (
-    <div className="bg-stone-50 min-h-screen flex flex-col">
-      <header className="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-stone-200">
+    <div className="bg-stone-50 dark:bg-slate-900 min-h-screen flex flex-col">
+      <header className="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-stone-200 dark:bg-slate-800 dark:border-slate-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           <div className="flex items-center">
-            <span className="font-bold text-xl text-sky-600">Sparrow AI & Tech</span>
-            <span className="hidden sm:inline-block ml-3 text-slate-500">Strategic Blueprint</span>
+            <span className="font-bold text-xl text-sky-600 dark:text-sky-300">Sparrow AI & Tech</span>
+            <span className="hidden sm:inline-block ml-3 text-slate-500 dark:text-slate-400">Strategic Blueprint</span>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#hero" className="nav-link text-slate-600 hover:text-sky-600">{nav.services}</a>
-            <a href="#services" className="nav-link text-slate-600 hover:text-sky-600">{nav.services}</a>
-            <a href="#articles" className="nav-link text-slate-600 hover:text-sky-600">{nav.articles}</a>
-            <a href="#about" className="nav-link text-slate-600 hover:text-sky-600">{nav.about}</a>
-            <a href="#contact" className="nav-link text-slate-600 hover:text-sky-600">{nav.contact}</a>
-            <button onClick={() => onLanguageChange(language === 'en' ? 'cs' : 'en')} className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm">
+            <a href="#hero" className="nav-link text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-300">{nav.services}</a>
+            <a href="#services" className="nav-link text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-300">{nav.services}</a>
+            <a href="#articles" className="nav-link text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-300">{nav.articles}</a>
+            <a href="#about" className="nav-link text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-300">{nav.about}</a>
+            <a href="#contact" className="nav-link text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-300">{nav.contact}</a>
+            <button onClick={() => setLanguage(language === 'en' ? 'cs' : 'en')} className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm dark:bg-sky-700 dark:hover:bg-sky-600">
               {language === 'en' ? 'Česky' : 'English'}
             </button>
           </nav>
@@ -841,7 +845,7 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
           <React.Fragment key={idx}>{section}</React.Fragment>
         ))}
       </main>
-      <footer className="bg-slate-800 text-slate-400 py-8 text-center mt-12">
+      <footer className="bg-slate-800 dark:bg-slate-700 text-slate-400 dark:text-slate-300 py-8 text-center mt-12">
         <div className="max-w-7xl mx-auto px-4">
           <p>Interactive Strategic Blueprint for Sparrow AI & Tech</p>
           <p className="mt-2 text-sm">&copy; {new Date().getFullYear()} Sparrow AI Tech. All rights reserved.</p>

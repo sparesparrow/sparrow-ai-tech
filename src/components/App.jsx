@@ -1,6 +1,5 @@
 import React  , { useState, useEffect } from 'react';
-import cs from './languages/cs.json';
-import en from './languages/en.json';
+import { I18nProvider, useI18n } from '../i18n';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MarkdownTest from './pages/MarkdownTest';
 import Infographic1 from './pages/infographics/Infographic1';
@@ -12,189 +11,46 @@ import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 import { Helmet } from 'react-helmet';
 
-const translationsMap = { cs, en };
-
-const App = () => {
-    const [lang, setLang] = useState("cs");
-    const translations = translationsMap[lang];
-
-    const siteData = {
-        en: {
-            nav: {
-                home: 'Home',
-                portfolio: 'Portfolio',
-                articles: 'Articles',
-                infographics: 'Infographics',
-                contact: 'Contact',
-            },
-            hero: {
-                title: "Sparrow AI Tech",
-                subtitle: "Your Partner in IT, Cybersecurity, and AI Development",
-                description: "I offer custom IT services, cybersecurity solutions, and AI development. From hardware and software integration with microcontrollers (Arduino, PlatformIO) to creating custom AI solutions, I am here to bring your ideas to life."
-            },
-            portfolio: {
-                title: "My Projects & Services",
-                projects: [
-                    { 
-                        title: "AI & Automation Solutions", 
-                        description: "Development of custom AI models, automation scripts, and intelligent agents to streamline processes and enhance productivity. Specializing in prompt engineering and Large Language Model (LLM) integration.",
-                        tags: ["Python", "AI", "LLM", "Automation", "API"],
-                        liveUrl: null,
-                        sourceUrl: "https://github.com/sparesparrow/sparrow-ai-tech" 
-                    },
-                    { 
-                        title: "IT & Cybersecurity Consulting", 
-                        description: "Providing robust IT infrastructure support and cybersecurity strategies. Services include network security, system administration, and implementation of security best practices to protect your digital assets.",
-                        tags: ["Cybersecurity", "Networking", "Linux", "System Admin"],
-                        liveUrl: null,
-                        sourceUrl: null
-                    },
-                    { 
-                        title: "Hardware & IoT Integration", 
-                        description: "Custom hardware and software solutions using microcontrollers like Arduino and ESP32 with PlatformIO. Creating complete IoT systems from sensor integration to data processing and control.",
-                        tags: ["IoT", "Arduino", "PlatformIO", "C++", "Hardware"],
-                        liveUrl: "https://sparesparrow.github.io/cv/",
-                        sourceUrl: "https://github.com/sparesparrow" 
-                    },
-                    { 
-                        title: "Web Development", 
-                        description: "Building modern, responsive, and performant websites and web applications using technologies like React and Node.js. Focused on creating great user experiences and clean, maintainable code.",
-                        tags: ["React", "JavaScript", "HTML5", "CSS3", "Node.js"],
-                        liveUrl: "https://sparesparrow.github.io/sparrow-ai-tech/",
-                        sourceUrl: "https://github.com/sparesparrow/sparrow-ai-tech" 
-                    }
-                ]
-            },
-            articles: {
-                title: "Articles & Insights",
-                list: [
-                    { title: "Introduction to Hexagonal Architecture", url: "https://sparesparrow.github.io/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.html" },
-                    { title: "The Importance of Human Action in AI", url: "https://sparesparrow.github.io/sparrow-ai-tech/articles/human-action.html" },
-                    { title: "Getting Started with MCP Prompts", url: "https://sparesparrow.github.io/sparrow-ai-tech/articles/mcp-prompts.html" },
-                ]
-            },
-            infographics: {
-                title: "Infographics",
-                items: [
-                    {
-                        url: "/infographics/1.html",
-                        title: "MCP Ecosystem",
-                        description: "How the sparesparrow open-source toolchain revolutionizes AI agent development."
-                    },
-                    {
-                        url: "/infographics/2.html",
-                        title: "Human-in-the-Loop AI",
-                        description: "The indispensable partnership between human intuition and artificial intelligence."
-                    },
-                    {
-                        url: "/infographics/3.html",
-                        title: "Hexagonal Architecture",
-                        description: "How the Ports & Adapters pattern protects your application core."
-                    }
-                ]
-            },
-            contact: {
-                title: "Get in Touch",
-                description: "Have a project in mind or want to learn more? Let's connect.",
-                button: "Contact Me"
-            },
-            footer: {
-                copyright: `© ${new Date().getFullYear()} Sparrow AI Tech. All rights reserved.`
-            }
-        },
-        cs: {
-            nav: {
-                home: 'Domů',
-                portfolio: 'Projekty',
-                articles: 'Články',
-                infographics: 'Infografiky',
-                contact: 'Kontakt',
-            },
-            hero: {
-                title: "Sparrow AI Tech",
-                subtitle: "Váš partner pro IT, kyberbezpečnost a vývoj AI",
-                description: "Nabízím na míru šité IT služby, řešení v oblasti kybernetické bezpečnosti a vývoj umělé inteligence. Od integrace hardwaru a softwaru s mikrokontroléry (Arduino, PlatformIO) až po tvorbu vlastních AI řešení, jsem tu, abych realizoval vaše nápady."
-            },
-            portfolio: {
-                title: "Moje Projekty a Služby",
-                projects: [
-                    { 
-                        title: "AI a Automatizační Řešení", 
-                        description: "Vývoj vlastních AI modelů, automatizačních skriptů a inteligentních agentů pro zefektivnění procesů a zvýšení produktivity. Specializace na prompt engineering a integraci velkých jazykových modelů (LLM).",
-                        tags: ["Python", "AI", "LLM", "Automatizace", "API"],
-                        liveUrl: null,
-                        sourceUrl: "https://github.com/sparesparrow/sparrow-ai-tech" 
-                    },
-                    { 
-                        title: "IT a Kyberbezpečnostní Poradenství", 
-                        description: "Poskytování robustní podpory IT infrastruktury a strategií kybernetické bezpečnosti. Služby zahrnují zabezpečení sítí, správu systémů a implementaci osvědčených bezpečnostních postupů pro ochranu vašich digitálních aktiv.",
-                        tags: ["Kyberbezpečnost", "Sítě", "Linux", "Správa systémů"],
-                        liveUrl: null,
-                        sourceUrl: null
-                    },
-                    { 
-                        title: "Hardware a IoT Integrace", 
-                        description: "Zakázková hardwarová a softwarová řešení s využitím mikrokontrolérů jako Arduino a ESP32 s PlatformIO. Tvorba kompletních IoT systémů od integrace senzorů po zpracování dat a řízení.",
-                        tags: ["IoT", "Arduino", "PlatformIO", "C++", "Hardware"],
-                        liveUrl: "https://sparesparrow.github.io/cv/",
-                        sourceUrl: "https://github.com/sparesparrow" 
-                    },
-                    { 
-                        title: "Vývoj Webových Aplikací", 
-                        description: "Tvorba moderních, responzivních a výkonných webových stránek a aplikací s využitím technologií jako React a Node.js. Zaměření na skvělou uživatelskou zkušenost a čistý, udržitelný kód.",
-                        tags: ["React", "JavaScript", "HTML5", "CSS3", "Node.js"],
-                        liveUrl: "https://sparesparrow.github.io/sparrow-ai-tech/",
-                        sourceUrl: "https://github.com/sparesparrow/sparrow-ai-tech" 
-                    }
-                ]
-            },
-            articles: {
-                title: "Články a Názory",
-                list: [
-                    { title: "Úvod do hexagonální architektury", url: "https://sparesparrow.github.io/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.cs.html" },
-                    { title: "Důležitost lidského jednání v AI", url: "https://sparesparrow.github.io/sparrow-ai-tech/articles/human-action.cs.html" },
-                    { title: "Začínáme s MCP Prompts", url: "https://sparesparrow.github.io/sparrow-ai-tech/articles/mcp-prompts.cs.html" },
-                ]
-            },
-            infographics: {
-                title: "Infografiky",
-                items: [
-                    {
-                        url: "/infographics/1.html",
-                        title: "Ekosystém MCP",
-                        description: "Jak open-source nástroje sparesparrow mění vývoj AI agentů."
-                    },
-                    {
-                        url: "/infographics/2.html",
-                        title: "Člověk ve smyčce AI",
-                        description: "Nezastupitelné partnerství lidské intuice a umělé inteligence."
-                    },
-                    {
-                        url: "/infographics/3.html",
-                        title: "Hexagonální architektura",
-                        description: "Jak vzor Ports & Adapters chrání jádro vaší aplikace."
-                    }
-                ]
-            },
-            contact: {
-                title: "Spojte se se mnou",
-                description: "Máte na mysli projekt nebo se chcete dozvědět více? Pojďme se spojit.",
-                button: "Kontaktujte mě"
-            },
-            footer: {
-                copyright: `© ${new Date().getFullYear()} Sparrow AI Tech. Všechna práva vyhrazena.`
-            }
-        }
-    };
-
-    const [language, setLanguage] = useState('en');
-    const [content, setContent] = useState(siteData.en);
+const AppContent = () => {
+    const { language, setLanguage, t } = useI18n();
+    const [content, setContent] = useState(t('siteData.en'));
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [lightboxIndex, setLightboxIndex] = useState(0);
+    const [isDark, setIsDark] = useState(() => {
+      if (typeof window !== 'undefined') {
+        const theme = localStorage.getItem('theme');
+        if (theme) return theme === 'dark';
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      return true;
+    });
 
     useEffect(() => {
-        setContent(siteData[language]);
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }, [isDark]);
+
+    useEffect(() => {
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      const handler = (e) => {
+        if (!localStorage.getItem('theme')) setIsDark(e.matches);
+      };
+      mq.addEventListener ? mq.addEventListener('change', handler) : mq.addListener(handler);
+      return () => {
+        mq.removeEventListener ? mq.removeEventListener('change', handler) : mq.removeListener(handler);
+      };
+    }, []);
+
+    const toggleDark = () => setIsDark((d) => !d);
+
+    useEffect(() => {
+        setContent(t('siteData')[language]);
         document.documentElement.lang = language;
         // Dummy API call for Cypress test (delayed for Cypress stub)
         setTimeout(() => {
@@ -202,7 +58,6 @@ const App = () => {
         }, 500);
     }, [language]);
 
-    const toggleLanguage = () => setLanguage(prev => prev === 'en' ? 'cs' : 'en');
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     const MenuIcon = () => (
@@ -235,7 +90,6 @@ const App = () => {
         articles: [
           { title: 'Hexagonal Architecture in MCP (EN)', url: '/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.md', lang: 'en' },
           { title: 'Hexagonální architektura v MCP (CS)', url: '/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.cs.md', lang: 'cs' },
-          { title: 'Merged: Hexagonal Architecture', url: '/sparrow-ai-tech/articles/merged/hexagonal-architecture-in-mcp.md', lang: 'en/cs' },
         ]
       },
       {
@@ -250,14 +104,13 @@ const App = () => {
         articles: [
           { title: 'Getting Started with MCP Prompts (EN)', url: '/sparrow-ai-tech/articles/mcp-prompts.md', lang: 'en' },
           { title: 'Začínáme s MCP Prompts (CS)', url: '/sparrow-ai-tech/articles/mcp-prompts.cs.md', lang: 'cs' },
-          { title: 'Merged: MCP Prompts', url: '/sparrow-ai-tech/articles/merged/mcp-prompts-and-rs.md', lang: 'en/cs' },
         ]
       },
       {
         category: 'Ecosystem & Contributions',
         articles: [
-          { title: 'MCP Ecosystem Overview', url: '/sparrow-ai-tech/articles/merged/mcp-ecosystem-overview.md', lang: 'en' },
-          { title: 'MCP in Practice & Contributions', url: '/sparrow-ai-tech/articles/merged/mcp-in-practice-and-contributions.md', lang: 'en' },
+          { title: 'MCP Ecosystem Overview', url: '/sparrow-ai-tech/articles/mcp-ecosystem-overview.md', lang: 'en' },
+          { title: 'MCP in Practice & Contributions', url: '/sparrow-ai-tech/articles/mcp-in-practice.en.md', lang: 'en' },
           { title: 'MCP Contributions (EN)', url: '/sparrow-ai-tech/articles/mcp-contributions.en.md', lang: 'en' },
           { title: 'MCP Contributions (CS)', url: '/sparrow-ai-tech/articles/mcp-contributions.cs.md', lang: 'cs' },
         ]
@@ -318,41 +171,39 @@ const App = () => {
               <Route path="/infographics/3" element={<Infographic3 />} />
               <Route path="/infographics/spa" element={<SPAInfographic />} />
               <Route path="/" element={
-                <div id="app-root" className="bg-slate-50 text-slate-800 font-sans antialiased">
-                  <header className="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-slate-200">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+                <div id="app-root" className="min-h-screen bg-stone-50 text-stone-900 dark:bg-slate-900 dark:text-stone-100 font-sans antialiased transition-colors duration-300">
+                  <header className="bg-white/80 dark:bg-slate-800/90 shadow rounded-b-2xl px-4 py-2 flex items-center justify-between transition-colors duration-300">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
                       <div className="flex items-center">
                         <span className="font-bold text-xl text-sky-600">Sparrow AI & Tech</span>
                         <span className="hidden sm:inline-block ml-3 text-slate-500">Strategic Blueprint</span>
                       </div>
-                      <nav className="hidden md:flex items-center space-x-8" aria-label="Main navigation">
-                        <a href="#home" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.home}</a>
-                        <a href="#portfolio" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.portfolio}</a>
-                        <a href="#articles" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.articles}</a>
-                        <a href="#infographics" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.infographics}</a>
-                        <a href="#contact" className="nav-link text-slate-600 hover:text-sky-600">{content.nav.contact}</a>
-                        <button onClick={toggleLanguage} className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm">
+                      <nav data-cy="main-nav" className="hidden md:flex items-center space-x-8" aria-label="Main navigation">
+                        <a href="#home" className="nav-link text-slate-600 hover:text-sky-600">{t('nav.home')}</a>
+                        <a href="#portfolio" className="nav-link text-slate-600 hover:text-sky-600">{t('nav.portfolio')}</a>
+                        <a href="#articles" className="nav-link text-slate-600 hover:text-sky-600">{t('nav.articles')}</a>
+                        <a href="#infographics" className="nav-link text-slate-600 hover:text-sky-600">{t('nav.infographics')}</a>
+                        <a href="#contact" className="nav-link text-slate-600 hover:text-sky-600">{t('nav.contact')}</a>
+                        <button onClick={() => setLanguage(prev => prev === 'en' ? 'cs' : 'en')} data-cy="language-toggle" className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm">
                           {language === 'en' ? 'Česky' : 'English'}
+                        </button>
+                        <button
+                          onClick={toggleDark}
+                          aria-label="Toggle dark mode"
+                          className="ml-2 p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+                          data-cy="dark-mode-toggle"
+                        >
+                          {isDark ? (
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.07l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.93l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                          ) : (
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" /></svg>
+                          )}
                         </button>
                       </nav>
                       <div className="md:hidden">
-                        <button onClick={toggleMenu} className="text-slate-600 focus:outline-none">{isMenuOpen ? <CloseIcon /> : <MenuIcon />}</button>
+                        <button onClick={toggleMenu} data-cy="menu-toggle" className="text-slate-600 focus:outline-none">{isMenuOpen ? <CloseIcon /> : <MenuIcon />}</button>
                       </div>
                     </div>
-                    {isMenuOpen && (
-                      <div className="md:hidden bg-white/90 border-b border-slate-200">
-                        <nav className="flex flex-col items-center p-4 space-y-4" aria-label="Mobile navigation">
-                          <a href="#home" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.home}</a>
-                          <a href="#portfolio" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.portfolio}</a>
-                          <a href="#articles" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.articles}</a>
-                          <a href="#infographics" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.infographics}</a>
-                          <a href="#contact" onClick={toggleMenu} className="nav-link text-slate-600 hover:text-sky-600">{content.nav.contact}</a>
-                          <button onClick={() => { toggleLanguage(); toggleMenu(); }} className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm">
-                            {language === 'en' ? 'Česky' : 'English'}
-                          </button>
-                        </nav>
-                      </div>
-                    )}
                   </header>
                   <main className="pt-20 md:pt-24">
                     <motion.section id="home" className="py-16 md:py-24"
@@ -367,19 +218,19 @@ const App = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.1, duration: 0.6 }}
-                        >{content.hero.title}</motion.h1>
+                        >{t('hero.title')}</motion.h1>
                         <motion.p className="mt-6 text-lg text-slate-600"
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.2, duration: 0.6 }}
-                        >{content.hero.subtitle}</motion.p>
+                        >{t('hero.subtitle')}</motion.p>
                         <motion.p className="max-w-3xl mx-auto text-slate-500 mb-8"
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.3, duration: 0.6 }}
-                        >{content.hero.description}</motion.p>
+                        >{t('hero.description')}</motion.p>
                         <motion.div className="mt-8 flex flex-col sm:flex-row justify-center gap-4"
                           initial={{ opacity: 0, scale: 0.95 }}
                           whileInView={{ opacity: 1, scale: 1 }}
@@ -715,7 +566,7 @@ const App = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1, duration: 0.6 }}
-                          >{content.portfolio.title}</motion.h2>
+                          >{t('portfolio.title')}</motion.h2>
                         </div>
                         <motion.div className="mt-12 grid md:grid-cols-2 gap-8 md:gap-12"
                           initial={{ opacity: 0, scale: 0.95 }}
@@ -723,7 +574,7 @@ const App = () => {
                           viewport={{ once: true }}
                           transition={{ delay: 0.2, duration: 0.5 }}
                         >
-                          {content.portfolio.projects.map((project, index) => (
+                          {t('siteData')[language].portfolio.projects.map((project, index) => (
                             <motion.div key={index} className="bg-slate-50 p-8 rounded-lg border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                               initial={{ opacity: 0, y: 30 }}
                               whileInView={{ opacity: 1, y: 0 }}
@@ -838,26 +689,26 @@ const App = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.1, duration: 0.6 }}
-                        >{content.contact.title}</motion.h2>
+                        >{t('contact.title')}</motion.h2>
                         <motion.p className="text-slate-600 mb-8"
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.2, duration: 0.6 }}
-                        >{content.contact.description}</motion.p>
+                        >{t('contact.description')}</motion.p>
                         <motion.a href="mailto:sparrow.ai.tech@gmail.com" className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 duration-300 inline-block"
                           initial={{ opacity: 0, scale: 0.95 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.3, duration: 0.5 }}
-                        >{content.contact.button}</motion.a>
+                        >{t('contact.button')}</motion.a>
                       </div>
                     </motion.section>
                   </main>
                   <footer className="bg-slate-800 text-slate-400">
                     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
                       <p>Interactive Strategic Blueprint for Sparrow AI & Tech</p>
-                      <p className="mt-2 text-sm">{content.footer.copyright}</p>
+                      <p className="mt-2 text-sm">{t('footer.copyright')}</p>
                     </div>
                   </footer>
                 </div>
@@ -867,5 +718,11 @@ const App = () => {
         </>
     );
 };
+
+const App = () => (
+  <I18nProvider>
+    <AppContent />
+  </I18nProvider>
+);
 
 export default App; 

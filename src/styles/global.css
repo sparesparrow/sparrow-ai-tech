@@ -23,7 +23,7 @@
     - Add anti-aliasing for smoother font rendering.
   */
   body {
-    @apply bg-stone-50 text-stone-800 font-sans antialiased;
+    @apply bg-stone-50 text-stone-800 font-sans antialiased dark:bg-slate-900 dark:text-stone-100;
   }
 
   /*
@@ -32,7 +32,7 @@
     needing to apply utility classes every time.
   */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold text-stone-900;
+    @apply font-bold text-stone-900 dark:text-stone-100;
   }
 
   h1 {

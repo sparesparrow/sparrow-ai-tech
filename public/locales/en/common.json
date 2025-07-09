@@ -1,18 +1,22 @@
 {
-  "header": {
-    "nav_projects": "Projects",
-    "nav_skills": "Skills",
-    "nav_about": "About",
-    "nav_contact": "Contact"
+  "nav": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "articles": "Articles",
+    "infographics": "Infographics",
+    "contact": "Contact"
   },
-  "projects": {
-    "title": "My Projects"
+  "hero": {
+    "title": "Welcome to Sparrow AI Tech",
+    "subtitle": "AI solutions for the future"
   },
-  "footer": {
-    "copyright": "Copyright © 2024 Sparrow AI Tech"
+  "articles": {
+    "sectionTitle": "Featured Articles"
   },
-  "general": {
-    "download_pdf": "Download as PDF",
-    "open_chatbot": "Open Voice Chatbot"
+  "infographics": {
+    "sectionTitle": "Infographics"
+  },
+  "contact": {
+    "sectionTitle": "Contact Us"
   }
 }

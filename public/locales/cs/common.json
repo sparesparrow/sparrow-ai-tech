@@ -1,11 +1,22 @@
 {
-  "header": {
-    "nav_projects": "Projekty",
-    "nav_skills": "Dovednosti",
-    "nav_about": "O mně",
-    "nav_contact": "Kontakt"
+  "nav": {
+    "home": "Domů",
+    "portfolio": "Portfolio",
+    "articles": "Články",
+    "infographics": "Infografiky",
+    "contact": "Kontakt"
   },
-  "projects": {
-    "title": "Moje projekty"
+  "hero": {
+    "title": "Vítejte ve Sparrow AI Tech",
+    "subtitle": "AI řešení pro budoucnost"
+  },
+  "articles": {
+    "sectionTitle": "Vybrané články"
+  },
+  "infographics": {
+    "sectionTitle": "Infografiky"
+  },
+  "contact": {
+    "sectionTitle": "Kontaktujte nás"
   }
 }

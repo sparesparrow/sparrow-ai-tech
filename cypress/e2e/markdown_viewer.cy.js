@@ -109,4 +109,7 @@ describe('MarkdownViewer Component', () => {
     cy.get('.tippy-box').should('contain.text', 'stars').or('contain.text', '⭐');
     cy.get('.tippy-box').should('contain.text', 'forks').or('contain.text', '🍴');
   });
+
+  // Example: Use data-cy selectors for markdown/mermaid viewer if present
+  cy.get('[data-cy="articles-section"]').should('exist');
 });
