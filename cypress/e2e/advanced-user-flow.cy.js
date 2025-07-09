@@ -2,7 +2,7 @@
 
 describe('Advanced User Flows', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/en/');
+    cy.visitApp('/en/');
   });
 
   it('navigates through the main sections and persists state', () => {
@@ -19,14 +19,14 @@ describe('Advanced User Flows', () => {
     // Go to Infographics and open one
     cy.get('a').contains(/infographics/i).click();
     cy.url().should('include', '#infographics');
-    cy.get('a').contains(/MCP Ecosystem/i).click({force:true});
+    cy.get('a').contains(/MCP Ecosystem/i).click({ force: true });
     cy.url().should('include', '/infographics/1');
     cy.contains(/MCP Ecosystem/i);
   });
 
   it.skip('handles API/network errors gracefully', () => {
-    cy.intercept('GET', '/sparrow-ai-tech/api/some-endpoint', { statusCode: 500 }).as('getApi');
-    cy.visit('/sparrow-ai-tech/en/');
+    cy.intercept('GET', '/api/some-endpoint', { statusCode: 500 }).as('getApi');
+    cy.visitApp('/en/');
     cy.wait('@getApi');
     cy.contains(/error/i).should('be.visible');
   });
@@ -38,13 +38,13 @@ describe('Advanced User Flows', () => {
 
   it('works correctly on mobile viewport', () => {
     cy.viewport('iphone-6');
-    cy.visit('/sparrow-ai-tech/en/');
-    cy.get('button').contains(/menu/i).click({force:true});
+    cy.visitApp('/en/');
+    cy.get('button').contains(/menu/i).click({ force: true });
     cy.get('nav').should('be.visible');
   });
 
   it.skip('tests form validation and submission', () => {
-    cy.visit('/sparrow-ai-tech/en/contact');
+    cy.visitApp('/en/contact');
     cy.get('input[name="email"]').type('invalid-email');
     cy.get('form').submit();
     cy.contains(/invalid email/i).should('be.visible');

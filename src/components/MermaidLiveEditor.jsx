@@ -234,27 +234,42 @@ export default function MermaidLiveEditor() {
               onChange={e => setCode(e.target.value)}
               placeholder="Enter your Mermaid diagram code here..."
               onKeyDown={handleKeyDown}
+<<<<<<< HEAD
               data-cy="mermaid-editor-textarea"
+=======
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
             />
           </div>
           <div style={styles.controls}>
             <button
               style={{ ...styles.btn, ...styles.btnPrimary }}
               onClick={() => renderDiagram(code)}
+<<<<<<< HEAD
               data-cy="mermaid-editor-update-btn"
+=======
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
             >Update Diagram</button>
             <button
               style={{ ...styles.btn, ...styles.btnSecondary }}
               onClick={handleClear}
+<<<<<<< HEAD
               data-cy="mermaid-editor-clear-btn"
+=======
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
             >Clear</button>
             <button
               style={{ ...styles.btn, ...styles.btnSecondary, background: copied ? '#28a745' : '#6c757d' }}
               onClick={handleCopy}
+<<<<<<< HEAD
               data-cy="mermaid-editor-copy-btn"
             >{copied ? 'Copied!' : 'Copy Code'}</button>
           </div>
           {error && <div style={styles.error} data-cy="mermaid-editor-error">{error}</div>}
+=======
+            >{copied ? 'Copied!' : 'Copy Code'}</button>
+          </div>
+          {error && <div style={styles.error}>{error}</div>}
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
         </div>
         <div style={styles.panel}>
           <div style={styles.panelHeader}>🎨 Live Preview</div>
@@ -262,7 +277,10 @@ export default function MermaidLiveEditor() {
             <div
               style={styles.preview}
               dangerouslySetInnerHTML={{ __html: svg }}
+<<<<<<< HEAD
               data-cy="mermaid-editor-preview"
+=======
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
             />
           </div>
         </div>
