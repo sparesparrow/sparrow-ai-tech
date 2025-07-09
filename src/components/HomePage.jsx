@@ -4,18 +4,13 @@ import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } 
 import { CSS } from '@dnd-kit/utilities';
 import DecorativeDivider from './ui/DecorativeDivider.jsx';
 import decorativeTexts from '../data/decorativeTexts.json';
-<<<<<<< HEAD
-import { useI18n } from '../i18n';
-import ReactMarkdown from 'react-markdown';
 import Modal from './ui/Modal.jsx';
-import PropTypes from 'prop-types';
 import Card from './ui/Card.jsx';
 import PrimaryButton from './ui/PrimaryButton.jsx';
 import SecondaryButton from './ui/SecondaryButton.jsx';
 import SkeletonLoader from './ui/SkeletonLoader.jsx';
 import PortfolioProjectsTable from './PortfolioProjectsTable';
-=======
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
+import ReactMarkdown from 'react-markdown';
 
 // Example props:
 // translations: { ... } (from cs.json/en.json)
@@ -32,7 +27,6 @@ const PauseBlock = ({ text }) => (
   </div>
 );
 
-// Add PauseSeparator and PromptBlock components at the top
 const PauseSeparator = () => (
   <div className="flex items-center justify-center my-8" aria-label="Pause separator" role="separator">
     <div className="w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg animate-pulse">
@@ -51,13 +45,8 @@ const PromptBlock = ({ prompt }) => (
 const HeroSection = ({ translations }) => (
   <section id="hero" className="w-full min-h-screen flex items-center bg-white dark:bg-slate-900 pt-20 transition-colors duration-300" data-cy="hero-section">
     <div className="container mx-auto px-6 text-center">
-<<<<<<< HEAD
       <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 dark:text-stone-100 leading-tight mb-4" dangerouslySetInnerHTML={{ __html: translations.hero_title_html }} />
       <p className="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 dark:text-stone-300 mb-8">{translations.hero_subtitle}</p>
-=======
-      <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight mb-4" dangerouslySetInnerHTML={{ __html: translations.hero_title_html }} />
-      <p className="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 mb-8">{translations.hero_subtitle}</p>
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
       <img
         src={`/sparrow-ai-tech/assets/images/claude4-system-card-img-003.png`}
         alt="Abstract AI system card visual, suitable for hero section"
@@ -74,7 +63,7 @@ const HeroSection = ({ translations }) => (
             View Project TODOs
           </button>
         </a>
-        <PrimaryButton onClick={() => {}}>{translations.cta_quick_analysis_hero}</PrimaryButton>
+        <PrimaryButton onClick={() => { }}>{translations.cta_quick_analysis_hero}</PrimaryButton>
       </div>
       <a href="/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.md" data-cy="test-article-link" className="block mt-4 text-sky-700 dark:text-sky-300 hover:underline">Test Article</a>
       <a href="/sparrow-ai-tech/infographics/Infographic1.html" data-cy="test-infographic-link" className="block mt-2 text-sky-700 dark:text-sky-300 hover:underline">Test Infographic</a>
@@ -359,7 +348,6 @@ const PopularReposSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-sky-400 dark:text-sky-300">Popular GitHub Repositories</h2>
           <p className="text-lg text-slate-300 dark:text-stone-300 mt-2 max-w-2xl mx-auto">Explore my most starred open-source projects.</p>
           <div className="mt-4 flex justify-center gap-4">
-<<<<<<< HEAD
             <SecondaryButton onClick={() => setSortBy('stars')} selected={sortBy === 'stars'}>Sort by Stars</SecondaryButton>
             <SecondaryButton onClick={() => setSortBy('forks')} selected={sortBy === 'forks'}>Sort by Forks</SecondaryButton>
           </div>
@@ -376,21 +364,6 @@ const PopularReposSection = () => {
                 rel="noopener noreferrer"
                 aria-label={`View repo: ${repo.name}`}
               />
-=======
-            <button onClick={() => setSortBy('stars')} className={`px-4 py-2 rounded ${sortBy === 'stars' ? 'bg-sky-600 text-white' : 'bg-slate-800 text-sky-300'}`}>Sort by Stars</button>
-            <button onClick={() => setSortBy('forks')} className={`px-4 py-2 rounded ${sortBy === 'forks' ? 'bg-sky-600 text-white' : 'bg-slate-800 text-sky-300'}`}>Sort by Forks</button>
-          </div>
-        </div>
-        {loading ? <div className="text-sky-300 text-center">Loading...</div> : error ? <div className="text-red-500 text-center">{error}</div> : (
-          <div className="flex flex-wrap justify-center gap-6">
-            {sorted.map(repo => (
-              <div key={repo.url} className="bg-slate-800 rounded-xl shadow p-6 min-w-[220px] max-w-xs text-center">
-                <GithubRepoTooltip href={repo.url}>
-                  <span className="text-lg font-semibold text-sky-300 hover:underline">{repo.name}</span>
-                </GithubRepoTooltip>
-                <div className="mt-2 text-slate-400">⭐ {repo.stars} | 🍴 {repo.forks}</div>
-              </div>
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
             ))}
           </div>
         )}
@@ -456,11 +429,7 @@ const EditableMermaidDemoSection = () => {
           <p className="text-lg text-slate-300 dark:text-stone-300 mt-2 max-w-2xl mx-auto">Edit the Mermaid code below and see your diagram update instantly.</p>
           <div className="mt-4 flex justify-center gap-4">
             {EXAMPLES.map(ex => (
-<<<<<<< HEAD
               <button key={ex.label} onClick={() => handleExample(ex.label)} className={`px-4 py-2 rounded ${example === ex.label ? 'bg-emerald-600 text-white dark:bg-emerald-700 dark:text-white' : 'bg-slate-800 text-emerald-300 dark:bg-slate-700 dark:text-emerald-300'}`}>{ex.label}</button>
-=======
-              <button key={ex.label} onClick={() => handleExample(ex.label)} className={`px-4 py-2 rounded ${example === ex.label ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-emerald-300'}`}>{ex.label}</button>
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
             ))}
           </div>
         </div>
@@ -548,19 +517,12 @@ const SavedDiagramsGallery = () => {
         {...listeners}
         className={`bg-slate-800 dark:bg-slate-700 p-6 rounded-xl shadow-lg relative cursor-move select-none`}
       >
-<<<<<<< HEAD
         <button onClick={() => handleDelete(diagram.id)} disabled={deleting === diagram.id} className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 dark:bg-red-700 dark:text-white disabled:opacity-50">
           {deleting === diagram.id ? 'Deleting...' : 'Delete'}
         </button>
         <div className="mb-2 text-slate-400 dark:text-stone-300 text-xs">ID: {diagram.id}</div>
         <div className="mermaid-diagram border rounded bg-slate-900 dark:bg-slate-800 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: window.mermaid?.render ? window.mermaid.render(`gallery-${diagram.id}`, diagram.code, () => { }) : '' }} />
         <pre className="mt-2 text-xs text-slate-300 dark:text-stone-300 bg-slate-900 dark:bg-slate-800 p-2 rounded">{diagram.code}</pre>
-=======
-        <button onClick={() => handleDelete(diagram.id)} disabled={deleting === diagram.id} className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 disabled:opacity-50">{deleting === diagram.id ? 'Deleting...' : 'Delete'}</button>
-        <div className="mb-2 text-slate-400 text-xs">ID: {diagram.id}</div>
-        <div className="mermaid-diagram border rounded bg-slate-900 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: window.mermaid?.render ? window.mermaid.render(`gallery-${diagram.id}`, diagram.code, () => { }) : '' }} />
-        <pre className="mt-2 text-xs text-slate-300 bg-slate-900 p-2 rounded">{diagram.code}</pre>
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
       </div>
     );
   }
@@ -587,11 +549,7 @@ const SavedDiagramsGallery = () => {
             {orderToast && <span className="text-emerald-400">{orderToast}</span>}
           </div>
         </div>
-<<<<<<< HEAD
         {loading ? <SkeletonLoader type="card" count={4} /> : error ? <div className="text-red-500 dark:text-red-500 text-center">{error}</div> : (
-=======
-        {loading ? <div className="text-emerald-300 text-center">Loading...</div> : error ? <div className="text-red-500 text-center">{error}</div> : (
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
           <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             <SortableContext items={diagrams.map(d => d.id)} strategy={verticalListSortingStrategy}>
               <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -633,13 +591,8 @@ const AboutSection = ({ translations }) => {
             <ol className="space-y-4">
               {steps.map((step, i) => (
                 <li key={i} className="flex items-start">
-<<<<<<< HEAD
                   <span className="w-8 h-8 flex items-center justify-center bg-sky-600 text-white rounded-full font-bold mr-4 dark:bg-sky-700 dark:text-white">{i + 1}</span>
                   <span className="text-lg text-stone-700 dark:text-stone-200">{step}</span>
-=======
-                  <span className="w-8 h-8 flex items-center justify-center bg-sky-600 text-white rounded-full font-bold mr-4">{i + 1}</span>
-                  <span className="text-lg text-stone-700">{step}</span>
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
                 </li>
               ))}
             </ol>
@@ -719,59 +672,48 @@ const ContactSection = ({ translations }) => {
   );
 };
 
-const DownloadPdfButton = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+const DownloadPdfButton = () => (
+  <button
+    onClick={() => window.print()}
+    data-cy="download-pdf-btn"
+    className="fixed bottom-8 right-8 z-50 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg print:hidden"
+    aria-label="Download as PDF"
+  >
+    Download as PDF
+  </button>
+);
 
-  const handleDownload = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const html = document.documentElement.outerHTML;
-      const res = await fetch('/sparrow-ai-tech/api/pdf', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ html }),
-      });
-      if (!res.ok) throw new Error('Failed to generate PDF');
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'sparrow-ai-tech.pdf';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
-    } catch (e) {
-      setError('PDF download failed.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <>
-      <PrimaryButton onClick={handleDownload} data-cy="download-pdf-btn" className="fixed bottom-8 right-8 z-50 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg print:hidden disabled:opacity-60 dark:bg-sky-700 dark:hover:bg-sky-600" aria-label="Download as PDF" disabled={loading}>
-        {loading ? 'Generating PDF…' : 'Download as PDF'}
-      </PrimaryButton>
-      {error && (
-        <div className="fixed bottom-24 right-8 z-50 bg-red-600 text-white px-4 py-2 rounded shadow-lg dark:bg-red-700">{error}</div>
-      )}
-    </>
-  );
-};
+const ChatbotModal = ({ open, onClose }) => (
+  open ? (
+    <div className="fixed inset-0 z-50 flex items-end justify-end">
+      <div className="fixed inset-0 bg-black bg-opacity-40" onClick={onClose} data-cy="chatbot-backdrop"></div>
+      <div className="relative bg-white w-full max-w-md m-8 rounded-xl shadow-2xl p-6 flex flex-col" data-cy="chatbot-modal">
+        <button onClick={onClose} className="absolute top-2 right-2 text-slate-400 hover:text-slate-700 text-2xl font-bold" aria-label="Close Chatbot" data-cy="chatbot-close-btn">×</button>
+        <h2 className="text-xl font-bold mb-4 text-sky-700">Voice Chatbot (ElevenLabs)</h2>
+        <div className="flex-1 overflow-y-auto mb-4">
+          <div className="bg-slate-100 rounded p-4 text-slate-600 text-center">Coming soon: This will be a live voice chatbot powered by ElevenLabs.</div>
+        </div>
+        <input type="text" className="w-full border border-slate-300 rounded px-4 py-2 mb-2" placeholder="Type your message..." disabled />
+        <button className="w-full bg-sky-600 text-white font-bold py-2 rounded-lg mt-2 opacity-50 cursor-not-allowed" disabled data-cy="chatbot-send-btn">Send</button>
+      </div>
+    </div>
+  ) : null
+);
 
 const ChatbotButton = ({ onClick }) => (
-  <PrimaryButton onClick={onClick} data-cy="open-chatbot-btn" className="fixed bottom-28 right-8 z-50 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg flex items-center gap-2 print:hidden dark:bg-emerald-700 dark:hover:bg-emerald-600" aria-label="Open Voice Chatbot">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 dark:text-emerald-300">
+  <button
+    onClick={onClick}
+    data-cy="open-chatbot-btn"
+    className="fixed bottom-28 right-8 z-50 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg flex items-center gap-2 print:hidden"
+    aria-label="Open Voice Chatbot"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75v1.5m0 0a6.75 6.75 0 01-6.75-6.75h1.5A5.25 5.25 0 0012 19.5a5.25 5.25 0 005.25-5.25h1.5A6.75 6.75 0 0112 20.25zm0-15v6.75m0 0a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-4.5 0v1.5a2.25 2.25 0 002.25 2.25z" />
     </svg>
     Voice Chatbot
-  </PrimaryButton>
+  </button>
 );
 
-// Replace ArticleModal definition with usage of Modal
 const ArticleModal = ({ open, onClose, articleUrl, title }) => {
   const [content, setContent] = React.useState('');
   const [loading, setLoading] = React.useState(false);
@@ -806,82 +748,9 @@ const ArticleModal = ({ open, onClose, articleUrl, title }) => {
   );
 };
 
-// Refactor ChatbotModal to use Modal
-const ChatbotModal = ({ open, onClose }) => {
-  const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const handleSend = async () => {
-    if (!input.trim()) return;
-    setLoading(true);
-    setError(null);
-    setMessages((msgs) => [...msgs, { from: "user", text: input }]);
-    try {
-      const res = await fetch("/sparrow-ai-tech/api/chatbot", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input }),
-      });
-      if (!res.ok) throw new Error("Failed to get reply");
-      const data = await res.json();
-      setMessages((msgs) => [...msgs, { from: "bot", text: data.reply }]);
-      setInput("");
-    } catch (e) {
-      setError("Chatbot error. Try again later.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (!open) return null;
-  return (
-    <Modal open={open} onClose={onClose} title="Voice Chatbot (ElevenLabs)">
-      <div className="flex-1 overflow-y-auto mb-4 max-h-64">
-        {messages.length === 0 && <div className="bg-slate-100 dark:bg-slate-700 rounded p-4 text-slate-600 dark:text-stone-300 text-center">Say hello to the ElevenLabs chatbot!</div>}
-        {messages.map((msg, i) => (
-          <div key={i} className={msg.from === "user" ? "text-right mb-2" : "text-left mb-2"}>
-            <span className={msg.from === "user" ? "inline-block bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-100 px-3 py-2 rounded-lg" : "inline-block bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-100 px-3 py-2 rounded-lg"}>
-              {msg.text}
-            </span>
-          </div>
-        ))}
-      </div>
-      <input
-        type="text"
-        className="w-full border border-slate-300 dark:border-slate-600 rounded px-4 py-2 mb-2 bg-slate-100 dark:bg-slate-800 text-slate-100 dark:text-stone-100 font-mono"
-        placeholder="Type your message..."
-        value={input}
-        onChange={e => setInput(e.target.value)}
-        disabled={loading}
-        data-cy="chatbot-input"
-        onKeyDown={e => { if (e.key === 'Enter') handleSend(); }}
-      />
-      <PrimaryButton
-        className="w-full bg-sky-600 text-white font-bold py-2 rounded-lg mt-2 disabled:opacity-60 dark:bg-sky-700 dark:text-white"
-        onClick={handleSend}
-        disabled={loading || !input.trim()}
-        data-cy="chatbot-send-btn"
-      >
-        {loading ? "Sending..." : "Send"}
-      </PrimaryButton>
-      {error && <div className="mt-2 text-red-600 dark:text-red-500 text-sm">{error}</div>}
-    </Modal>
-  );
-};
-
-// Patch: Add default values for props and defensive checks for translations and translations.nav
-<<<<<<< HEAD
-const HomePage = ({ prompts = [] }) => {
-  const { t, language, setLanguage } = useI18n();
-  // Defensive: Ensure translations.nav exists and has expected keys
-  const nav = t('nav');
-=======
 const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () => { }, prompts = [] }) => {
   // Defensive: Ensure translations.nav exists and has expected keys
   const nav = translations.nav || { services: 'Services', articles: 'Articles', about: 'About', contact: 'Contact' };
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
 
   // Helper to get divider by index (cycle if not enough)
   const getDivider = (idx) => {
@@ -891,19 +760,11 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
 
   // Sections with dividers between them
   const sections = [
-<<<<<<< HEAD
-    <HeroSection key="hero" translations={{ hero_title_html: t('hero.title_html'), hero_subtitle: t('hero.subtitle'), cta_quick_analysis_hero: t('hero.cta_quick_analysis_hero') }} />,
-    getDivider(0),
-    <ServicesSection key="services" translations={{ services_title: t('services.title'), services_subtitle: t('services.subtitle'), service_tab_ai: t('services.tab.ai'), service_tab_security: t('services.tab.security'), service_tab_linux: t('services.tab.linux'), service_tab_software: t('services.tab.software'), service_tab_modernization: t('services.tab.modernization'), service_tab_ai_content: t('services.tab.ai_content'), service_tab_security_content: t('services.tab.security_content'), service_tab_linux_content: t('services.tab.linux_content'), service_tab_software_content: t('services.tab.software_content'), service_tab_modernization_content: t('services.tab.modernization_content') }} />,
-    getDivider(1),
-    <ArticlesSection key="articles" translations={{ articles_title: t('articles.title'), articles_subtitle: t('articles.subtitle'), articles: t('articles.articles') }} />,
-=======
     <HeroSection key="hero" translations={translations} />,
     getDivider(0),
     <ServicesSection key="services" translations={translations} />,
     getDivider(1),
     <ArticlesSection key="articles" translations={translations} />,
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
     <InfographicsSection key="infographics" />,
     getDivider(2),
     <ResearchHighlightsSection key="research" />,
@@ -912,9 +773,8 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
     <EditableMermaidDemoSection key="editable-mermaid" />,
     <SavedDiagramsGallery key="saved-diagrams" />,
     getDivider(4),
-<<<<<<< HEAD
-    <AboutSection key="about" translations={{ about_title: t('about.title'), about_subtitle: t('about.subtitle'), about_benefit1_title: t('about.benefit1_title'), about_benefit2_title: t('about.benefit2_title'), about_benefit3_title: t('about.benefit3_title'), process_title: t('about.process_title'), process_step1: t('about.process_step1'), process_step2: t('about.process_step2'), process_step3: t('about.process_step3'), process_step4: t('about.process_step4') }} />,
-    <ContactSection key="contact" translations={{ contact_title: t('contact.title'), contact_subtitle: t('contact.subtitle'), contact_name_label: t('contact.name_label'), contact_name_placeholder: t('contact.name_placeholder'), contact_email_label: t('contact.email_label'), contact_email_placeholder: t('contact.email_placeholder'), contact_message_label: t('contact.message_label'), contact_message_placeholder: t('contact.message_placeholder'), contact_submit_button: t('contact.submit_button'), contact_success: t('contact.success') }} />
+    <AboutSection key="about" translations={translations} />,
+    <ContactSection key="contact" translations={translations} />
   ];
 
   let content = [];
@@ -929,12 +789,6 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
 
   const [chatbotOpen, setChatbotOpen] = useState(false);
 
-=======
-    <AboutSection key="about" translations={translations} />,
-    <ContactSection key="contact" translations={translations} />
-  ];
-
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
   return (
     <div className="bg-stone-50 dark:bg-slate-900 min-h-screen flex flex-col">
       <header className="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-stone-200 dark:bg-slate-800 dark:border-slate-700">
@@ -949,17 +803,13 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
             <a href="#articles" className="nav-link text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-300">{nav.articles}</a>
             <a href="#about" className="nav-link text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-300">{nav.about}</a>
             <a href="#contact" className="nav-link text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-300">{nav.contact}</a>
-            <PrimaryButton onClick={() => setLanguage(language === 'en' ? 'cs' : 'en')} className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm dark:bg-sky-700 dark:hover:bg-sky-600">
+            <PrimaryButton onClick={() => onLanguageChange(language === 'en' ? 'cs' : 'en')} className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm dark:bg-sky-700 dark:hover:bg-sky-600">
               {language === 'en' ? 'Česky' : 'English'}
             </PrimaryButton>
           </nav>
         </div>
       </header>
-<<<<<<< HEAD
       <main className="flex-1 pt-20" role="main" aria-label="Main content">
-=======
-      <main className="flex-1 pt-20">
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
         {sections.map((section, idx) => (
           <React.Fragment key={idx}>{section}</React.Fragment>
         ))}
@@ -978,25 +828,3 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
 };
 
 export default HomePage;
-<<<<<<< HEAD
-
-PauseBlock.propTypes = { text: PropTypes.string.isRequired };
-PauseSeparator.propTypes = {};
-PromptBlock.propTypes = { prompt: PropTypes.string.isRequired };
-HeroSection.propTypes = { translations: PropTypes.object.isRequired };
-ServicesSection.propTypes = { translations: PropTypes.object.isRequired };
-ArticlesSection.propTypes = { translations: PropTypes.object.isRequired };
-InfographicsSection.propTypes = {};
-ResearchHighlightsSection.propTypes = {};
-PopularReposSection.propTypes = {};
-EditableMermaidDemoSection.propTypes = {};
-SavedDiagramsGallery.propTypes = {};
-AboutSection.propTypes = { translations: PropTypes.object.isRequired };
-ContactSection.propTypes = { translations: PropTypes.object.isRequired };
-DownloadPdfButton.propTypes = {};
-ChatbotModal.propTypes = { open: PropTypes.bool.isRequired, onClose: PropTypes.func.isRequired };
-ChatbotButton.propTypes = { onClick: PropTypes.func.isRequired };
-ArticleModal.propTypes = { open: PropTypes.bool.isRequired, onClose: PropTypes.func.isRequired, articleUrl: PropTypes.string, title: PropTypes.string };
-HomePage.propTypes = { prompts: PropTypes.array };
-=======
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
