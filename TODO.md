@@ -37,8 +37,6 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 
 ### Interactivity & Feature Implementation
 
-<<<<<<< HEAD
-=======
 ### Sprint 1: Design System & Static Page Implementation
 
 - [Implemented] 1. Implement the Design System:
@@ -71,26 +69,21 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 
 ### Sprint 2: Interactivity & Feature Implementation
 
->>>>>>> 55ce48f (feat: Implement design system, global UI components, and static homepage sections; enhance navigation and add key interactive features including PDF download and voice chatbot)
 - [Implemented] 1. Implement Functional Navigation:
   - [Implemented] Make all navigation links work, enabling smooth scrolling to page sections.
   - [Implemented] Ensure all external links (GitHub, demos) in the homepage and infographics sections are correct and open in a new tab.
-- [Implemented] 2. Develop Key Interactive Features:
-<<<<<<< HEAD
   - [Implemented] PDF Generation: Build the frontend for the "Download as PDF" feature (button POSTs to /api/pdf and downloads PDF).
   - [Implemented] Voice Chatbot: Implement the UI for the ElevenLabs chatbot (UI connects to /api/chatbot endpoint).
 - [Implemented] 3. Activate Localization:
   - [Implemented] Use the i18n function and JSON key structure provided by Track B.
   - [Implemented] Connect the language switcher UI to the i18n framework to enable language changes.
   - [Implemented] Wrap all static text in UI components with the translation function.
-=======
   - [Implemented] PDF Generation: Build the frontend for the "Download as PDF" feature (button present, triggers print for now).
   - [Implemented] Voice Chatbot: Implement the UI for the ElevenLabs chatbot (UI present, backend pending Track B handoff).
 - [HelpNeeded] 3. Activate Localization:
   - [HelpNeeded] **Dependency:** Use the i18n function and JSON key structure provided by Track B.
   - [HelpNeeded] Connect the language switcher UI to the i18n framework to enable language changes.
   - [HelpNeeded] Wrap all static text in UI components with the translation function.
->>>>>>> 55ce48f (feat: Implement design system, global UI components, and static homepage sections; enhance navigation and add key interactive features including PDF download and voice chatbot)
 
 ---
 
@@ -111,8 +104,6 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [Implemented] Add a final deploy job that uses the `actions/deploy-pages` action to deploy the `dist/` folder to GitHub Pages.
   - [ToDo] **Done when:** The pipeline successfully runs and deploys the github page.
 
-<<<<<<< HEAD
-=======
 - [Done] 1. Project & Content Cleanup:
   - [Done] Perform all file moving and standardization tasks from the "Content & Structure Cleanup" section of the original TODO list.
   - [Done] **Done when:** The project's file structure is clean and follows the agreed-upon conventions.
@@ -127,7 +118,6 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [ToDo] Define jobs for: lint, test, and build.
   - [ToDo] Add a final deploy job that uses the `actions/deploy-pages` action to deploy the `dist/` folder to GitHub Pages.
   - [ToDo] **Done when:** The pipeline successfully runs and deploys the initial empty project.
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
 - [ToDo] 4. Set Up Testing Frameworks:
   - [Done] Install and configure Cypress for E2E testing (`npx cypress init`).
   - [HelpNeeded] Install and configure Jest and Testing Library for component testing.
@@ -145,14 +135,11 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 
 ## Track A: Frontend & User Experience (Agent 1)
 
-<<<<<<< HEAD
-### Interactivity & Feature Implementation
-=======
 ### Sprint 2: Interactivity & Feature Implementation
 
 - [Implemented] 1. Implement Functional Navigation:
   - [Implemented] Make all navigation links work, enabling smooth scrolling to page sections.
-  - [ToDo] Ensure all external links (GitHub, demos) in the `<ProjectsSection>` are correct.
+  - [Implemented] Ensure all external links (GitHub, demos) in the `<ProjectsSection>` are correct.
 - [ToDo] 2. Develop Key Interactive Features:
   - [ToDo] PDF Generation: Build the frontend for the "Download as PDF" feature.
   - [ToDo] Voice Chatbot: Implement the UI for the ElevenLabs chatbot. **Dependency:** Use the API endpoint contract provided by Track B.
@@ -160,7 +147,6 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [ToDo] **Dependency:** Use the i18n function and JSON key structure provided by Track B.
   - [ToDo] Connect the language switcher UI to the i18n framework to enable language changes.
   - [ToDo] Wrap all static text in UI components with the translation function.
->>>>>>> 55ce48f (feat: Implement design system, global UI components, and static homepage sections; enhance navigation and add key interactive features including PDF download and voice chatbot)
 
 - [Implemented] 1. Implement Functional Navigation:
   - [Implemented] Make all navigation links work, enabling smooth scrolling to page sections.
