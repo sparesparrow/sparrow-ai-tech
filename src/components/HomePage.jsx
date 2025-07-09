@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import DecorativeDivider from './ui/DecorativeDivider.jsx';
+import decorativeTexts from '../data/decorativeTexts.json';
 
 // Example props:
 // translations: { ... } (from cs.json/en.json)
@@ -37,7 +39,7 @@ const PromptBlock = ({ prompt }) => (
 const HeroSection = ({ translations }) => (
   <section id="hero" className="w-full min-h-screen flex items-center bg-white pt-20">
     <div className="container mx-auto px-6 text-center">
-      <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight mb-4" dangerouslySetInnerHTML={{__html: translations.hero_title_html}} />
+      <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight mb-4" dangerouslySetInnerHTML={{ __html: translations.hero_title_html }} />
       <p className="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 mb-8">{translations.hero_subtitle}</p>
       <img
         src="/assets/images/claude4-system-card-img-003.png"
@@ -316,21 +318,21 @@ const PopularReposSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-sky-400">Popular GitHub Repositories</h2>
           <p className="text-lg text-slate-300 mt-2 max-w-2xl mx-auto">Explore my most starred open-source projects.</p>
           <div className="mt-4 flex justify-center gap-4">
-            <button onClick={() => setSortBy('stars')} className={`px-4 py-2 rounded ${sortBy==='stars'?'bg-sky-600 text-white':'bg-slate-800 text-sky-300'}`}>Sort by Stars</button>
-            <button onClick={() => setSortBy('forks')} className={`px-4 py-2 rounded ${sortBy==='forks'?'bg-sky-600 text-white':'bg-slate-800 text-sky-300'}`}>Sort by Forks</button>
+            <button onClick={() => setSortBy('stars')} className={`px-4 py-2 rounded ${sortBy === 'stars' ? 'bg-sky-600 text-white' : 'bg-slate-800 text-sky-300'}`}>Sort by Stars</button>
+            <button onClick={() => setSortBy('forks')} className={`px-4 py-2 rounded ${sortBy === 'forks' ? 'bg-sky-600 text-white' : 'bg-slate-800 text-sky-300'}`}>Sort by Forks</button>
           </div>
         </div>
         {loading ? <div className="text-sky-300 text-center">Loading...</div> : error ? <div className="text-red-500 text-center">{error}</div> : (
-        <div className="flex flex-wrap justify-center gap-6">
-          {sorted.map(repo => (
-            <div key={repo.url} className="bg-slate-800 rounded-xl shadow p-6 min-w-[220px] max-w-xs text-center">
-              <GithubRepoTooltip href={repo.url}>
-                <span className="text-lg font-semibold text-sky-300 hover:underline">{repo.name}</span>
-              </GithubRepoTooltip>
-              <div className="mt-2 text-slate-400">⭐ {repo.stars} | 🍴 {repo.forks}</div>
-            </div>
-          ))}
-        </div>
+          <div className="flex flex-wrap justify-center gap-6">
+            {sorted.map(repo => (
+              <div key={repo.url} className="bg-slate-800 rounded-xl shadow p-6 min-w-[220px] max-w-xs text-center">
+                <GithubRepoTooltip href={repo.url}>
+                  <span className="text-lg font-semibold text-sky-300 hover:underline">{repo.name}</span>
+                </GithubRepoTooltip>
+                <div className="mt-2 text-slate-400">⭐ {repo.stars} | 🍴 {repo.forks}</div>
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </section>
@@ -394,7 +396,7 @@ const EditableMermaidDemoSection = () => {
           <p className="text-lg text-slate-300 mt-2 max-w-2xl mx-auto">Edit the Mermaid code below and see your diagram update instantly.</p>
           <div className="mt-4 flex justify-center gap-4">
             {EXAMPLES.map(ex => (
-              <button key={ex.label} onClick={() => handleExample(ex.label)} className={`px-4 py-2 rounded ${example===ex.label?'bg-emerald-600 text-white':'bg-slate-800 text-emerald-300'}`}>{ex.label}</button>
+              <button key={ex.label} onClick={() => handleExample(ex.label)} className={`px-4 py-2 rounded ${example === ex.label ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-emerald-300'}`}>{ex.label}</button>
             ))}
           </div>
         </div>
@@ -440,7 +442,7 @@ const SavedDiagramsGallery = () => {
     try {
       await fetch(`/api/diagrams/${id}`, { method: 'DELETE' });
       setDiagrams(diagrams => diagrams.filter(d => d.id !== id));
-    } catch {}
+    } catch { }
     setDeleting(null);
   };
   const handleSaveOrder = async () => {
@@ -480,9 +482,9 @@ const SavedDiagramsGallery = () => {
         {...listeners}
         className={`bg-slate-800 p-6 rounded-xl shadow-lg relative cursor-move select-none`}
       >
-        <button onClick={() => handleDelete(diagram.id)} disabled={deleting===diagram.id} className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 disabled:opacity-50">{deleting===diagram.id ? 'Deleting...' : 'Delete'}</button>
+        <button onClick={() => handleDelete(diagram.id)} disabled={deleting === diagram.id} className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 disabled:opacity-50">{deleting === diagram.id ? 'Deleting...' : 'Delete'}</button>
         <div className="mb-2 text-slate-400 text-xs">ID: {diagram.id}</div>
-        <div className="mermaid-diagram border rounded bg-slate-900 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: window.mermaid?.render ? window.mermaid.render(`gallery-${diagram.id}`, diagram.code, () => {}) : '' }} />
+        <div className="mermaid-diagram border rounded bg-slate-900 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: window.mermaid?.render ? window.mermaid.render(`gallery-${diagram.id}`, diagram.code, () => { }) : '' }} />
         <pre className="mt-2 text-xs text-slate-300 bg-slate-900 p-2 rounded">{diagram.code}</pre>
       </div>
     );
@@ -509,15 +511,15 @@ const SavedDiagramsGallery = () => {
           </div>
         </div>
         {loading ? <div className="text-emerald-300 text-center">Loading...</div> : error ? <div className="text-red-500 text-center">{error}</div> : (
-        <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-          <SortableContext items={diagrams.map(d => d.id)} strategy={verticalListSortingStrategy}>
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {diagrams.map((diagram, idx) => (
-                <DiagramSortableItem key={diagram.id} diagram={diagram} idx={idx} />
-              ))}
-            </div>
-          </SortableContext>
-        </DndContext>
+          <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+            <SortableContext items={diagrams.map(d => d.id)} strategy={verticalListSortingStrategy}>
+              <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                {diagrams.map((diagram, idx) => (
+                  <DiagramSortableItem key={diagram.id} diagram={diagram} idx={idx} />
+                ))}
+              </div>
+            </SortableContext>
+          </DndContext>
         )}
       </div>
     </section>
@@ -550,7 +552,7 @@ const AboutSection = ({ translations }) => {
             <ol className="space-y-4">
               {steps.map((step, i) => (
                 <li key={i} className="flex items-start">
-                  <span className="w-8 h-8 flex items-center justify-center bg-sky-600 text-white rounded-full font-bold mr-4">{i+1}</span>
+                  <span className="w-8 h-8 flex items-center justify-center bg-sky-600 text-white rounded-full font-bold mr-4">{i + 1}</span>
                   <span className="text-lg text-stone-700">{step}</span>
                 </li>
               ))}
@@ -635,31 +637,34 @@ const ContactSection = ({ translations }) => {
 };
 
 // Patch: Add default values for props and defensive checks for translations and translations.nav
-const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () => {}, prompts = [] }) => {
+const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () => { }, prompts = [] }) => {
   // Defensive: Ensure translations.nav exists and has expected keys
   const nav = translations.nav || { services: 'Services', articles: 'Articles', about: 'About', contact: 'Contact' };
+
+  // Helper to get divider by index (cycle if not enough)
+  const getDivider = (idx) => {
+    const d = decorativeTexts[idx % decorativeTexts.length];
+    return <DecorativeDivider key={`divider-${idx}`} text={d.text} rotation={d.rotation} align={d.align} />;
+  };
+
+  // Sections with dividers between them
   const sections = [
     <HeroSection key="hero" translations={translations} />,
+    getDivider(0),
     <ServicesSection key="services" translations={translations} />,
+    getDivider(1),
     <ArticlesSection key="articles" translations={translations} />,
-    <InfographicsSection />,
-    <ResearchHighlightsSection />,
-    <PopularReposSection />,
-    <EditableMermaidDemoSection />,
-    <SavedDiagramsGallery />,
+    <InfographicsSection key="infographics" />,
+    getDivider(2),
+    <ResearchHighlightsSection key="research" />,
+    getDivider(3),
+    <PopularReposSection key="repos" />,
+    <EditableMermaidDemoSection key="editable-mermaid" />,
+    <SavedDiagramsGallery key="saved-diagrams" />,
+    getDivider(4),
     <AboutSection key="about" translations={translations} />,
     <ContactSection key="contact" translations={translations} />
   ];
-
-  let content = [];
-  let promptIdx = 0;
-  for (let i = 0; i < sections.length; i++) {
-    content.push(sections[i]);
-    if (promptIdx < prompts.length && i < sections.length - 1) {
-      content.push(<PauseBlock key={`pause-${promptIdx}`} text={prompts[promptIdx]} />);
-      promptIdx++;
-    }
-  }
 
   return (
     <div className="bg-stone-50 min-h-screen flex flex-col">
@@ -682,32 +687,9 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
         </div>
       </header>
       <main className="flex-1 pt-20">
-        {/* Hero Section */}
-        <HeroSection translations={translations} />
-        <PauseSeparator />
-        <PromptBlock prompt={translations.prompts?.[0] || 'TODO: Add prompt 0 translation'} />
-        <PauseSeparator />
-        {/* Services Section */}
-        <ServicesSection translations={translations} />
-        <PauseSeparator />
-        <PromptBlock prompt={translations.prompts?.[1] || 'TODO: Add prompt 1 translation'} />
-        <PauseSeparator />
-        {/* Articles Section */}
-        <ArticlesSection translations={translations} />
-        <InfographicsSection />
-        <ResearchHighlightsSection />
-        <PauseSeparator />
-        <PromptBlock prompt={translations.prompts?.[2] || 'TODO: Add prompt 2 translation'} />
-        <PauseSeparator />
-        <PopularReposSection />
-        <EditableMermaidDemoSection />
-        <SavedDiagramsGallery />
-        {/* About Section */}
-        <AboutSection translations={translations} />
-        <PauseSeparator />
-        <PromptBlock prompt={translations.prompts?.[3] || 'TODO: Add prompt 3 translation'} />
-        {/* Contact Section */}
-        <ContactSection translations={translations} />
+        {sections.map((section, idx) => (
+          <React.Fragment key={idx}>{section}</React.Fragment>
+        ))}
       </main>
       <footer className="bg-slate-800 text-slate-400 py-8 text-center mt-12">
         <div className="max-w-7xl mx-auto px-4">
@@ -719,4 +701,4 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
   );
 };
 
-export default HomePage; 
+export default HomePage;

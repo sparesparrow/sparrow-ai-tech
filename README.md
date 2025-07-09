@@ -11,6 +11,8 @@
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Build, Test & Deploy](#build-test--deploy)
+- [Homepage Design & Visual Storytelling](#homepage-design--visual-storytelling)
 - [E2E Testing](#e2e-testing)
 - [Infographics & Visuals](#infographics--visuals)
 - [AI Integrations](#ai-integrations)
@@ -67,6 +69,71 @@ npm run dev
 # Build for production
 npm run build
 ```
+
+---
+
+## Build, Test & Deploy
+
+### Build
+- Uses Astro for static site generation and React for interactive components.
+- `npm run build` compiles the site to `/dist` for deployment.
+- Playwright is installed as part of the build for server-side Mermaid rendering.
+- Static assets (images, infographics, articles) are copied from `/public` and `/assets`.
+
+### Test
+- **Linting:**
+  - `npm run lint` runs ESLint and Prettier on all code.
+  - Pre-commit hook via Husky ensures code is formatted and linted before commit.
+- **Unit/Component Tests:**
+  - Jest + Testing Library for React components (`npm test`).
+  - Coverage for all custom logic and UI components.
+- **E2E Tests:**
+  - Cypress for user flows, Markdown/Mermaid rendering, error/loading states, accessibility.
+  - Run locally (`npx cypress open`) and in CI/CD.
+- **Visual Regression:**
+  - Playwright snapshot tests (planned) for key UI states.
+- **Accessibility:**
+  - Lighthouse CI and axe-core integration in CI/CD.
+
+### Deploy
+- **CI/CD Pipeline:**
+  - GitHub Actions workflow `.github/workflows/deploy.yml`:
+    - Lint → Test → Build → Deploy jobs (sequential, fail-fast).
+    - Deploys `/dist` to GitHub Pages using `actions/deploy-pages`.
+    - Artifacts (e.g., PDF CV) uploaded as part of the build.
+  - Separate workflow for PDF CV generation and deployment.
+- **Best Practices:**
+  - Use `astro.config.mjs` with correct `site` and `base` for GitHub Pages.
+  - All secrets (API keys) in environment variables, never in code.
+  - Only static HTML/JS/CSS deployed (no server code).
+
+### Developer Experience
+- DevContainer for VS Code: Preinstalled Node, Astro, React, Cypress, i18n, PDF tools.
+- Tasks for lint, test, build, E2E, and frontend dev server.
+- Parallel workflow for frontend (Track A) and backend/tooling (Track B) agents.
+- All scripts and launchers documented in README and TODO.md.
+
+---
+
+## Homepage Design & Visual Storytelling
+
+- **Decorative Text Dividers:**
+  - Uses text from `I-will-get-you-deployed.md` as large, subtle background dividers between homepage sections.
+  - Divider texts are stored in `src/data/decorativeTexts.json` for easy updates and i18n.
+  - The `DecorativeDivider` React component is used between sections for visual rhythm and thematic depth.
+
+- **Visual Storytelling:**
+  - Infographics, research highlights, and live editable diagrams are integrated directly into the homepage.
+  - Animated transitions and subtle effects enhance section changes.
+  - A "blueprint" or "system map" visual is used as a persistent background or hero element.
+
+- **Developer/AI Agent Experience:**
+  - "Dev/Agent Console" section shows build/test/deploy status, recent CI runs, and agentic workflow triggers.
+  - Live GitHub repo stats and recent deployments are displayed.
+
+- **Testing/Quality UI:**
+  - E2E test coverage and accessibility status are shown on the homepage (badges or summary panel).
+  - A "Test Your Markdown" or "Try Mermaid" live editor block is available for users.
 
 ---
 
@@ -248,14 +315,3 @@ This project supports development in a DevContainer, enabling both frontend (Tra
 2. Open this project folder in VS Code.
 3. When prompted, "Reopen in Container". VS Code will build the container and install all dependencies.
 4. Both frontend and backend code can be developed and tested inside the container:
-   - **Frontend (Track A):** Work on React/Astro components, layouts, and styles in `src/`.
-   - **Backend (Track B):** Work on automation, CI/CD, API endpoints, and tests as described in `TODO.md`.
-5. The devcontainer comes pre-configured with recommended extensions for Astro, React, ESLint, Prettier, and Cypress.
-
-### Ports
-- The Astro/Vite dev server runs on port 3000 (forwarded by default).
-
-### Parallel Agent Workflow
-- Both agents can work simultaneously in the same environment, following the roadmap in `TODO.md` and the rules in `@track-a-frontend.mdc` and `@track-b-backend.mdc`.
-
----

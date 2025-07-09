@@ -22,14 +22,14 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 
 **Goal:** Align on foundational structures to prevent merge conflicts.
 
-- [ToDo] Agreement on File Structure:
-  - [ToDo] Components: All React components will reside in `src/components/`.
-  - [ToDo] Layouts: All Astro layouts will reside in `src/layouts/`.
-  - [ToDo] Styles: Global styles and CSS variables will be in `src/styles/`.
-  - [ToDo] Assets: All static images and fonts will be in `public/assets/`.
-- [ToDo] Agreement on Naming Conventions:
-  - [ToDo] Components will be PascalCase (e.g., `HeroSection.jsx`).
-  - [ToDo] CSS classes will be kebab-case (e.g., `.hero-section`).
+- [Done] Agreement on File Structure:
+  - [Done] Components: All React components will reside in `src/components/`.
+  - [Done] Layouts: All Astro layouts will reside in `src/layouts/`.
+  - [Done] Styles: Global styles and CSS variables will be in `src/styles/`.
+  - [Done] Assets: All static images and fonts will be in `public/assets/`.
+- [Done] Agreement on Naming Conventions:
+  - [Done] Components will be PascalCase (e.g., `HeroSection.jsx`).
+  - [Done] CSS classes will be kebab-case (e.g., `.hero-section`).
 
 ---
 
@@ -88,14 +88,14 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 
 ### Sprint 1: Project Foundation & CI/CD
 
-- [ToDo] 1. Project & Content Cleanup:
-  - [ToDo] Perform all file moving and standardization tasks from the "Content & Structure Cleanup" section of the original TODO list.
-  - [ToDo] **Done when:** The project's file structure is clean and follows the agreed-upon conventions.
-- [ToDo] 2. Set Up Tooling & Linters:
-  - [ToDo] Run `npm install --save-dev eslint prettier eslint-plugin-react @typescript-eslint/parser husky lint-staged`.
-  - [ToDo] Configure `.eslintrc.cjs` and `.prettierrc`.
-  - [ToDo] Run `npx husky-init` and configure lint-staged in `package.json` to run Prettier and ESLint on pre-commit.
-  - [ToDo] **Done when:** The pre-commit hook successfully formats and lints staged files.
+- [Done] 1. Project & Content Cleanup:
+  - [Done] Perform all file moving and standardization tasks from the "Content & Structure Cleanup" section of the original TODO list.
+  - [Done] **Done when:** The project's file structure is clean and follows the agreed-upon conventions.
+- [Done] 2. Set Up Tooling & Linters:
+  - [Done] Run `npm install --save-dev eslint prettier eslint-plugin-react @typescript-eslint/parser husky lint-staged`.
+  - [Done] Configure `.eslintrc.cjs` and `.prettierrc`.
+  - [Done] Run `npx husky-init` and configure lint-staged in `package.json` to run Prettier and ESLint on pre-commit.
+  - [Done] **Done when:** The pre-commit hook successfully formats and lints staged files.
 - [ToDo] 3. Configure CI/CD Pipeline (GitHub Actions):
   - [ToDo] Create `.github/workflows/deploy.yml`.
   - [ToDo] The workflow should trigger on push to main and on pull_request.
