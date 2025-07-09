@@ -1,3 +1,51 @@
+# Strategic Context
+
+The sparesparrow portfolio is more than a collection of open-source projects—it is a unified, forward-looking vision for agentic AI systems. Centered on the Model Context Protocol (MCP), these projects demonstrate leadership in interoperability, developer productivity, and security for the next generation of AI-native software. The portfolio showcases expertise in MCP, agentic workflows, and secure, scalable architectures, positioning its creator as a systems architect ready for leadership in the AI ecosystem.
+
+---
+
+## Portfolio Summary Table
+
+| Repository            | Core Stack                | Purpose                                                      | Strategic Value                                                      |
+|----------------------|---------------------------|--------------------------------------------------------------|-----------------------------------------------------------------------|
+| mcp-project-orchestrator | Python, Poetry, Mermaid, Ruff, mypy | MCP server for project scaffolding and automation            | Demonstrates agentic workflow, developer productivity, meta-level AI  |
+| mcp-prompts          | TypeScript, Node.js, Docker, PostgreSQL | Centralized, versioned prompt management                     | Enterprise prompt management, RBAC, versioning, production focus      |
+| mcp-prompts-rs       | Rust, Cargo, PostgreSQL, Docker         | High-performance, memory-safe MCP prompt server              | Security, performance, Rust for foundational infrastructure           |
+| mcp-router           | TypeScript, Python, DevContainer        | Workflow designer and router for agent-based systems         | Ambitious orchestration, multi-agent, distributed system vision       |
+| rust-network-mgr     | Rust, Netlink, nftables                 | Linux network management service                             | Systems-level expertise, memory safety, operational reliability       |
+| cursor-rules         | Markdown (.mdc)                         | Machine-readable rules for AI-assisted coding                | Human-AI collaboration, best practices, knowledge structuring         |
+
+---
+
+## MCP Ecosystem Overview
+
+```mermaid
+graph TD
+    Client["MCP Client"] --> Router["mcp-router"]
+    Router --> Orchestrator["mcp-project-orchestrator"]
+    Router --> Prompts["mcp-prompts"]
+    Orchestrator --> Project["Project Templates"]
+    Prompts --> PromptDB["Prompt Database"]
+    Router --> External["External Tools/APIs"]
+```
+*Figure: The MCP ecosystem connects clients, routers, orchestrators, prompt servers, and external tools.*
+
+---
+
+## Prompt Lifecycle Management
+
+```mermaid
+graph TD
+    Create["Create Prompt"] --> Review["Review Prompt"]
+    Review --> Approve["Approve Prompt"]
+    Approve --> Use["Use in Workflow"]
+    Use --> Archive["Archive/Version"]
+    Archive --> Create
+```
+*Figure: Prompts are created, reviewed, approved, used, and archived in a managed lifecycle.*
+
+---
+
 # An Analysis of sparesparrow's Contributions to the Model Context Protocol (MCP) Open-Source Ecosystem
 
 ## Introduction

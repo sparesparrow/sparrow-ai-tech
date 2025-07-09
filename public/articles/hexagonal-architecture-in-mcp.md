@@ -1,3 +1,29 @@
+# Portfolio Relevance
+
+This article is part of the sparesparrow/Sparrow AI & Tech portfolio, which is dedicated to building robust, secure, and interoperable agentic AI systems. The use of hexagonal architecture is a key design pattern in the portfolio, enabling modularity, testability, and security for MCP-based agentic workflows. This approach supports scalable, maintainable, and enterprise-grade AI ecosystems.
+
+---
+
+## Hexagonal Architecture in Agentic MCP Systems
+
+```mermaid
+graph TD
+    Core["Domain/Core Logic"]
+    Core --> Port1["Port: API"]
+    Core --> Port2["Port: MCP Server"]
+    Core --> Port3["Port: Database"]
+    Port1 --> Adapter1["Adapter: HTTP/REST"]
+    Port2 --> Adapter2["Adapter: MCP Protocol"]
+    Port3 --> Adapter3["Adapter: PostgreSQL"]
+    Core --> Test["Test Harness"]
+    Adapter1 --> User["User/Client"]
+    Adapter2 --> Agent["Agentic Workflow"]
+    Adapter3 --> Data["Data Storage"]
+```
+*Figure: Hexagonal architecture enables modular, testable, and secure agentic AI systems within the MCP ecosystem.*
+
+---
+
 # Hexagonal Architecture in MCP: Building Flexible and Maintainable AI Systems
 
 **Keywords:** hexagonal architecture, ports and adapters, MCP, Model Context Protocol, software architecture, AI workflow, maintainability, extensibility, open source
@@ -58,6 +84,32 @@ Let's break down how MCP leverages this pattern:
       [ ElevenLabs ]    [ ... ]        [ ... ]
            (Secondary Adapters)
 ```
+
+---
+
+## Evolution: Monolithic to Hexagonal Architecture
+
+```mermaid
+graph TD
+    Monolith["Monolithic App"] --> Hex["Hexagonal Architecture"]
+    Hex --> Core["Core Domain"]
+    Hex --> Ports["Ports"]
+    Hex --> Adapters["Adapters"]
+```
+*Figure: Systems evolve from monolithic to modular, hexagonal architectures for flexibility.*
+
+---
+
+## Testability and Extension Points
+
+```mermaid
+graph TD
+    Core["Core Logic"] --> Adapter1["Adapter: REST"]
+    Core --> Adapter2["Adapter: MCP"]
+    Core --> Test["Test Harness"]
+    Core --> New["New Integration"]
+```
+*Figure: Hexagonal architecture enables easy testing and extension via adapters and harnesses.*
 
 ---
 

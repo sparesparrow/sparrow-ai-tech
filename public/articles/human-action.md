@@ -84,6 +84,110 @@ The MCP client presents this to the user, who can approve or reject the deployme
 
 ---
 
+## Human-in-the-Loop Workflow in MCP
+
+```mermaid
+graph TD
+    Agent["LLM Agent"] --> HumanAction["human-action Tool Call"]
+    HumanAction --> User["Human User"]
+    User --> Response["User Response"]
+    Response --> Agent
+    Agent --> Resume["Resume Workflow"]
+```
+*Figure: The agent pauses for human input, receives a response, and resumes the workflow.*
+
+---
+
+## Safety and Oversight Feedback Loop
+
+```mermaid
+graph TD
+    Agent["LLM Agent"] --> Action["Proposed Action"]
+    Action --> Human["Human Reviewer"]
+    Human --> Audit["Audit Log"]
+    Audit --> Compliance["Compliance Check"]
+    Compliance --> Agent
+```
+*Figure: Human oversight and audit logging ensure safety and compliance in agentic workflows.*
+
+---
+
+## Escalation and Branching in Human-in-the-Loop
+
+```mermaid
+graph TD
+    Agent["LLM Agent"] --> HumanAction["human-action Tool Call"]
+    HumanAction --> User["Human User"]
+    User --> Escalation["Escalation (Supervisor)"]
+    Escalation --> Alternate["Alternate Path"]
+    User --> Response["User Response"]
+    Response --> Agent
+```
+*Figure: Human-in-the-loop workflows can escalate or branch to alternate paths based on user input.*
+
+---
+
+## Feedback Learning in Agentic Workflows
+
+```mermaid
+graph TD
+    User["User Feedback"] --> Agent["LLM Agent"]
+    Agent --> Improvement["Workflow Improvement"]
+    Improvement --> Audit["Audit Log"]
+    Audit --> Agent
+```
+*Figure: User feedback is used to improve agentic workflows, with changes tracked in the audit log.*
+
+---
+
+## Human-in-the-Loop Approval Sequence
+
+```mermaid
+sequenceDiagram
+    participant A as Agent
+    participant H as Human-Action Tool
+    participant U as User
+    participant W as Workflow
+    A->>H: Propose action
+    H->>U: Request approval
+    U->>H: Approve/Reject
+    H->>A: Return decision
+    A->>W: Resume/Branch workflow
+```
+*Figure: Sequence of a human-in-the-loop approval process in agentic workflows.*
+
+---
+
+## HITL Swimlane: Responsibilities in Approval Workflow
+
+```mermaid
+flowchart TD
+    subgraph Agent
+        A1["Propose Action"]
+        A2["Resume/Branch Workflow"]
+    end
+    subgraph Human
+        H1["Review Request"]
+        H2["Approve/Reject"]
+    end
+    subgraph Workflow
+        W1["Pause for Approval"]
+        W2["Continue/Branch"]
+    end
+    subgraph Audit
+        AU1["Log Decision"]
+    end
+    A1 --> W1
+    W1 --> H1
+    H1 --> H2
+    H2 --> AU1
+    AU1 --> A2
+    A2 --> W2
+```
+*Figure: Swimlane diagram showing responsibilities in a human-in-the-loop approval workflow.*
+
+---
+
 ## Conclusion
 
 The human-action concept is a cornerstone of safe, effective, and collaborative agentic AI systems. By bridging the gap between autonomous agents and human expertise, it empowers organizations to build workflows that are not only powerful and efficient, but also transparent, auditable, and aligned with human values.
