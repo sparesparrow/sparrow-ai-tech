@@ -10,6 +10,9 @@ import { motion } from 'framer-motion';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 import { Helmet } from 'react-helmet';
+import ReactMarkdown from 'react-markdown';
+import Modal from './ui/Modal.jsx';
+import PropTypes from 'prop-types';
 
 const AppContent = () => {
     const { language, setLanguage, t } = useI18n();
@@ -25,6 +28,14 @@ const AppContent = () => {
       }
       return true;
     });
+
+    // Modal state for articles
+    const [articleModalOpen, setArticleModalOpen] = React.useState(false);
+    const [articleModalUrl, setArticleModalUrl] = React.useState('');
+    const [articleModalTitle, setArticleModalTitle] = React.useState('');
+    const [articleModalContent, setArticleModalContent] = React.useState('');
+    const [articleModalLoading, setArticleModalLoading] = React.useState(false);
+    const [articleModalError, setArticleModalError] = React.useState(null);
 
     useEffect(() => {
       if (isDark) {
@@ -153,6 +164,29 @@ const AppContent = () => {
       { name: 'Feature Screenshot', src: `/sparrow-ai-tech/assets/images/screenshot-feature.png`, context: 'Feature Demo' },
     ];
 
+    // Fetch article content when modal opens
+    React.useEffect(() => {
+      if (!articleModalOpen || !articleModalUrl) return;
+      setArticleModalLoading(true);
+      setArticleModalError(null);
+      setArticleModalContent('');
+      fetch(articleModalUrl)
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to load article');
+          return res.text();
+        })
+        .then(setArticleModalContent)
+        .catch(() => setArticleModalError('Failed to load article'))
+        .finally(() => setArticleModalLoading(false));
+    }, [articleModalOpen, articleModalUrl]);
+
+    React.useEffect(() => {
+      if (!articleModalOpen) return;
+      const onKeyDown = (e) => { if (e.key === 'Escape') setArticleModalOpen(false); };
+      window.addEventListener('keydown', onKeyDown);
+      return () => window.removeEventListener('keydown', onKeyDown);
+    }, [articleModalOpen]);
+
     return (
         <>
           <Helmet>
@@ -279,7 +313,7 @@ const AppContent = () => {
                         </div>
                         <div className="flex-1 flex justify-center">
                           {/* Replace with a real screenshot or live widget if possible */}
-                          <img src={`/sparrow-ai-tech/assets/images/elevenlabs-widget-demo.png`} alt="ElevenLabs Widget Demo" className="rounded-xl shadow-2xl w-full max-w-md" />
+                          <img src={`/sparrow-ai-tech/assets/images/elevenlabs-widget-demo.png`} alt="ElevenLabs Widget Demo" className="rounded-xl shadow-2xl w-full max-w-md" loading="lazy" />
                         </div>
                       </div>
                     </motion.section>
@@ -524,7 +558,7 @@ const AppContent = () => {
                               transition={{ delay: 0.1 * idx, duration: 0.5, ease: 'easeOut' }}
                               onClick={() => { setLightboxIndex(idx); setLightboxOpen(true); }}
                             >
-                              <img src={vis.src.startsWith('http') || vis.src.startsWith('/sparrow-ai-tech/') ? vis.src : `/sparrow-ai-tech/${vis.src.replace(/^\/+/, '')}`} alt={vis.name} className="w-full h-48 object-contain mb-4 rounded-lg group-hover:shadow-2xl transition-shadow duration-300" />
+                              <img src={vis.src.startsWith('http') || vis.src.startsWith('/sparrow-ai-tech/') ? vis.src : `/sparrow-ai-tech/${vis.src.replace(/^\/+/, '')}`} alt={vis.name} className="w-full h-48 object-contain mb-4 rounded-lg group-hover:shadow-2xl transition-shadow duration-300" loading="lazy" />
                               <h4 className="text-lg font-semibold text-sky-700 mb-2">{vis.name}</h4>
                               <p className="text-slate-600 text-sm">{vis.context}</p>
                             </motion.div>
@@ -631,19 +665,41 @@ const AppContent = () => {
                             <h3 className="text-2xl font-semibold text-sky-700 mb-4">{cat.category}</h3>
                             <div className="grid md:grid-cols-2 gap-4">
                               {cat.articles.map((article, i) => (
-                                <motion.a key={i} href={`/sparrow-ai-tech${article.url}`} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg"
+                                <motion.button
+                                  key={i}
+                                  onClick={() => {
+                                    setArticleModalUrl(`/sparrow-ai-tech${article.url}`);
+                                    setArticleModalTitle(article.title);
+                                    setArticleModalOpen(true);
+                                  }}
+                                  className="block w-full text-left bg-slate-100 hover:bg-slate-200 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
                                   initial={{ opacity: 0, y: 20 }}
                                   whileInView={{ opacity: 1, y: 0 }}
                                   viewport={{ once: true }}
                                   transition={{ delay: 0.05 * i, duration: 0.4 }}
                                 >
                                   <span className="text-sky-600 font-bold">[{article.lang.toUpperCase()}]</span> <span className="text-lg font-semibold">{article.title}</span>
-                                </motion.a>
+                                </motion.button>
                               ))}
                             </div>
                           </motion.div>
                         ))}
                       </div>
+                      {/* Article Modal Overlay */}
+                      <Modal
+                        open={articleModalOpen}
+                        onClose={() => setArticleModalOpen(false)}
+                        title={articleModalTitle}
+                        isDark={isDark}
+                      >
+                        {articleModalLoading && <div className="text-sky-400">Loading…</div>}
+                        {articleModalError && <div className="text-red-400">{articleModalError}</div>}
+                        {!articleModalLoading && !articleModalError && (
+                          <div className="prose prose-invert max-w-none dark:prose-invert">
+                            <ReactMarkdown>{articleModalContent}</ReactMarkdown>
+                          </div>
+                        )}
+                      </Modal>
                     </motion.section>
                     <motion.section id="infographics" className="py-16 md:py-24"
                       initial={{ opacity: 0, y: 40 }}

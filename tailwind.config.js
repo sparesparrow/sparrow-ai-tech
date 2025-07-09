@@ -44,11 +44,50 @@ module.exports = {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         mono: ['Roboto Mono', ...defaultTheme.fontFamily.mono],
       },
+      // Add custom typography theme for both light and dark mode
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.stone.800'),
+            a: {
+              color: theme('colors.sky.700'),
+              '&:hover': {
+                color: theme('colors.sky.900'),
+              },
+              'textDecoration': 'underline',
+            },
+            h1: { color: theme('colors.stone.900') },
+            h2: { color: theme('colors.stone.900') },
+            h3: { color: theme('colors.stone.900') },
+            code: { color: theme('colors.amber.700') },
+            blockquote: { color: theme('colors.stone.700') },
+          },
+        },
+        invert: {
+          css: {
+            color: theme('colors.stone.100'),
+            a: {
+              color: theme('colors.sky.300'),
+              '&:hover': {
+                color: theme('colors.sky.100'),
+              },
+              'textDecoration': 'underline',
+            },
+            h1: { color: theme('colors.stone.100') },
+            h2: { color: theme('colors.stone.100') },
+            h3: { color: theme('colors.stone.100') },
+            code: { color: theme('colors.amber.400') },
+            blockquote: { color: theme('colors.stone.200') },
+          },
+        },
+      }),
     },
   },
 
   // The `plugins` array allows you to add official or third-party plugins
   // to extend Tailwind's functionality. For this project, no extra plugins
   // are required initially.
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

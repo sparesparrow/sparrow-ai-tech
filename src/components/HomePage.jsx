@@ -5,6 +5,13 @@ import { CSS } from '@dnd-kit/utilities';
 import DecorativeDivider from './ui/DecorativeDivider.jsx';
 import decorativeTexts from '../data/decorativeTexts.json';
 import { useI18n } from '../i18n';
+import ReactMarkdown from 'react-markdown';
+import Modal from './ui/Modal.jsx';
+import PropTypes from 'prop-types';
+import Card from './ui/Card.jsx';
+import PrimaryButton from './ui/PrimaryButton.jsx';
+import SecondaryButton from './ui/SecondaryButton.jsx';
+import SkeletonLoader from './ui/SkeletonLoader.jsx';
 
 // Example props:
 // translations: { ... } (from cs.json/en.json)
@@ -48,9 +55,7 @@ const HeroSection = ({ translations }) => (
         className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-8"
         loading="eager"
       />
-      <button className="bg-teal-600 text-white text-lg px-8 py-4 rounded-lg hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-400 dark:text-stone-900 transition-all shadow-lg transform hover:scale-105 focus:ring-2 focus:ring-teal-400 dark:focus:ring-teal-600">
-        {translations.cta_quick_analysis_hero}
-      </button>
+      <PrimaryButton onClick={() => {}}>{translations.cta_quick_analysis_hero}</PrimaryButton>
       <a href="/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.md" data-cy="test-article-link" className="block mt-4 text-sky-700 dark:text-sky-300 hover:underline">Test Article</a>
       <a href="/sparrow-ai-tech/infographics/Infographic1.html" data-cy="test-infographic-link" className="block mt-2 text-sky-700 dark:text-sky-300 hover:underline">Test Infographic</a>
     </div>
@@ -77,13 +82,13 @@ const ServicesSection = ({ translations }) => {
         </div>
         <div className="flex justify-center mb-8 flex-wrap gap-2">
           {tabs.map(tab => (
-            <button
+            <PrimaryButton
               key={tab.key}
-              className={`px-6 py-2 rounded-full font-semibold border transition-colors duration-200 ${activeTab === tab.key ? 'bg-sky-600 text-white border-sky-600 dark:bg-sky-700 dark:text-white dark:border-sky-600' : 'bg-white text-sky-700 border-sky-300 dark:bg-slate-800 dark:text-sky-300 dark:border-slate-700 hover:bg-sky-50 dark:hover:bg-slate-700'}`}
               onClick={() => setActiveTab(tab.key)}
+              className={`px-6 py-2 rounded-full font-semibold border transition-colors duration-200 ${activeTab === tab.key ? 'bg-sky-600 text-white border-sky-600 dark:bg-sky-700 dark:text-white dark:border-sky-600' : 'bg-white text-sky-700 border-sky-300 dark:bg-slate-800 dark:text-sky-300 dark:border-slate-700 hover:bg-sky-50 dark:hover:bg-slate-700'}`}
             >
               {tab.label}
-            </button>
+            </PrimaryButton>
           ))}
         </div>
         <div className="max-w-3xl mx-auto bg-white dark:bg-slate-800 p-8 rounded-xl shadow text-lg text-stone-700 dark:text-stone-200 min-h-[120px]">
@@ -127,6 +132,9 @@ const ArticlesSection = ({ translations }) => {
       ]
     }
   ];
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalUrl, setModalUrl] = React.useState('');
+  const [modalTitle, setModalTitle] = React.useState('');
   return (
     <section id="articles" className="py-20 md:py-32 bg-stone-100 dark:bg-slate-900" data-cy="articles-section">
       <div className="container mx-auto px-6">
@@ -140,15 +148,21 @@ const ArticlesSection = ({ translations }) => {
               <h3 className="text-2xl font-semibold text-sky-700 dark:text-sky-300 mb-4">{cat.name}</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 {cat.articles.map((article, i) => (
-                  <a key={i} href={article.url} target="_blank" rel="noopener noreferrer" className="block bg-white dark:bg-slate-800 hover:bg-slate-100 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg dark:hover:bg-slate-700">
-                    <span className="text-lg font-semibold text-sky-700 dark:text-sky-300">{article.title}</span>
-                  </a>
+                  <Card
+                    key={i}
+                    title={article.title}
+                    onClick={() => { setModalUrl(article.url); setModalTitle(article.title); setModalOpen(true); }}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`Open article: ${article.title}`}
+                  />
                 ))}
               </div>
             </div>
           ))}
         </div>
       </div>
+      <ArticleModal open={modalOpen} onClose={() => setModalOpen(false)} articleUrl={modalUrl} title={modalTitle} />
     </section>
   );
 };
@@ -186,11 +200,15 @@ const InfographicsSection = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {infographics.map((info, idx) => (
-            <a key={idx} href={info.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
-              <h3 className="text-lg font-semibold text-sky-700 dark:text-sky-300 mb-2">{info.title}</h3>
-              <p className="text-slate-600 dark:text-stone-300 mb-2">{info.description}</p>
-              <span className="inline-block mt-4 text-sky-600 dark:text-sky-300 font-bold">View Infographic &rarr;</span>
-            </a>
+            <Card
+              key={idx}
+              title={info.title}
+              description={info.description}
+              href={info.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View infographic: ${info.title}`}
+            />
           ))}
         </div>
       </div>
@@ -321,19 +339,22 @@ const PopularReposSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-sky-400 dark:text-sky-300">Popular GitHub Repositories</h2>
           <p className="text-lg text-slate-300 dark:text-stone-300 mt-2 max-w-2xl mx-auto">Explore my most starred open-source projects.</p>
           <div className="mt-4 flex justify-center gap-4">
-            <button onClick={() => setSortBy('stars')} className={`px-4 py-2 rounded ${sortBy === 'stars' ? 'bg-sky-600 text-white dark:bg-sky-700 dark:text-white' : 'bg-slate-800 text-sky-300 dark:bg-slate-700 dark:text-sky-300'}`}>Sort by Stars</button>
-            <button onClick={() => setSortBy('forks')} className={`px-4 py-2 rounded ${sortBy === 'forks' ? 'bg-sky-600 text-white dark:bg-sky-700 dark:text-white' : 'bg-slate-800 text-sky-300 dark:bg-slate-700 dark:text-sky-300'}`}>Sort by Forks</button>
+            <SecondaryButton onClick={() => setSortBy('stars')} selected={sortBy === 'stars'}>Sort by Stars</SecondaryButton>
+            <SecondaryButton onClick={() => setSortBy('forks')} selected={sortBy === 'forks'}>Sort by Forks</SecondaryButton>
           </div>
         </div>
-        {loading ? <div className="text-sky-300 dark:text-sky-300 text-center">Loading...</div> : error ? <div className="text-red-500 dark:text-red-500 text-center">{error}</div> : (
+        {loading ? <SkeletonLoader type="card" count={3} /> : error ? <div className="text-red-500 dark:text-red-500 text-center">{error}</div> : (
           <div className="flex flex-wrap justify-center gap-6">
             {sorted.map(repo => (
-              <div key={repo.url} className="bg-slate-800 dark:bg-slate-700 rounded-xl shadow p-6 min-w-[220px] max-w-xs text-center">
-                <GithubRepoTooltip href={repo.url}>
-                  <span className="text-lg font-semibold text-sky-300 dark:text-sky-300 hover:underline">{repo.name}</span>
-                </GithubRepoTooltip>
-                <div className="mt-2 text-slate-400 dark:text-stone-300">⭐ {repo.stars} | 🍴 {repo.forks}</div>
-              </div>
+              <Card
+                key={repo.url}
+                title={repo.name}
+                description={`⭐ ${repo.stars} | 🍴 ${repo.forks}`}
+                href={repo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View repo: ${repo.name}`}
+              />
             ))}
           </div>
         )}
@@ -413,9 +434,9 @@ const EditableMermaidDemoSection = () => {
             aria-label="Edit Mermaid diagram"
           />
           <div className="flex gap-4 items-center mb-2">
-            <button onClick={handleSave} disabled={saving} className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 dark:bg-emerald-700 dark:text-white disabled:opacity-50">
+            <PrimaryButton onClick={handleSave} disabled={saving} className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 dark:bg-emerald-700 dark:text-white disabled:opacity-50">
               {saving ? 'Saving...' : 'Save Diagram'}
-            </button>
+            </PrimaryButton>
             {toast && <span className="text-emerald-400">{toast}</span>}
           </div>
           {error && <div className="text-red-500 dark:text-red-500 mb-2">{error}</div>}
@@ -513,13 +534,13 @@ const SavedDiagramsGallery = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-emerald-400 dark:text-emerald-300">Saved Diagrams Gallery</h2>
           <p className="text-lg text-slate-300 dark:text-stone-300 mt-2 max-w-2xl mx-auto">Browse and manage your saved diagrams.</p>
           <div className="mt-4 flex justify-center gap-4">
-            <button onClick={handleSaveOrder} disabled={savingOrder} className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 dark:bg-emerald-700 dark:text-white disabled:opacity-50">
+            <PrimaryButton onClick={handleSaveOrder} disabled={savingOrder} className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 dark:bg-emerald-700 dark:text-white disabled:opacity-50">
               {savingOrder ? 'Saving...' : 'Save Order'}
-            </button>
+            </PrimaryButton>
             {orderToast && <span className="text-emerald-400">{orderToast}</span>}
           </div>
         </div>
-        {loading ? <div className="text-emerald-300 dark:text-emerald-300 text-center">Loading...</div> : error ? <div className="text-red-500 dark:text-red-500 text-center">{error}</div> : (
+        {loading ? <SkeletonLoader type="card" count={4} /> : error ? <div className="text-red-500 dark:text-red-500 text-center">{error}</div> : (
           <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             <SortableContext items={diagrams.map(d => d.id)} strategy={verticalListSortingStrategy}>
               <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -630,12 +651,9 @@ const ContactSection = ({ translations }) => {
                   required
                 />
               </div>
-              <button
-                type="submit"
-                className="w-full bg-sky-600 text-white font-bold py-3 rounded-lg hover:bg-sky-700 dark:bg-sky-700 dark:text-white transition-colors text-lg"
-              >
+              <PrimaryButton type="submit" className="w-full bg-sky-600 text-white font-bold py-3 rounded-lg hover:bg-sky-700 dark:bg-sky-700 dark:text-white transition-colors text-lg">
                 {translations.contact_submit_button}
-              </button>
+              </PrimaryButton>
             </form>
           )}
         </div>
@@ -678,15 +696,9 @@ const DownloadPdfButton = () => {
 
   return (
     <>
-      <button
-        onClick={handleDownload}
-        data-cy="download-pdf-btn"
-        className="fixed bottom-8 right-8 z-50 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg print:hidden disabled:opacity-60 dark:bg-sky-700 dark:hover:bg-sky-600"
-        aria-label="Download as PDF"
-        disabled={loading}
-      >
+      <PrimaryButton onClick={handleDownload} data-cy="download-pdf-btn" className="fixed bottom-8 right-8 z-50 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg print:hidden disabled:opacity-60 dark:bg-sky-700 dark:hover:bg-sky-600" aria-label="Download as PDF" disabled={loading}>
         {loading ? 'Generating PDF…' : 'Download as PDF'}
-      </button>
+      </PrimaryButton>
       {error && (
         <div className="fixed bottom-24 right-8 z-50 bg-red-600 text-white px-4 py-2 rounded shadow-lg dark:bg-red-700">{error}</div>
       )}
@@ -694,6 +706,51 @@ const DownloadPdfButton = () => {
   );
 };
 
+const ChatbotButton = ({ onClick }) => (
+  <PrimaryButton onClick={onClick} data-cy="open-chatbot-btn" className="fixed bottom-28 right-8 z-50 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg flex items-center gap-2 print:hidden dark:bg-emerald-700 dark:hover:bg-emerald-600" aria-label="Open Voice Chatbot">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 dark:text-emerald-300">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75v1.5m0 0a6.75 6.75 0 01-6.75-6.75h1.5A5.25 5.25 0 0012 19.5a5.25 5.25 0 005.25-5.25h1.5A6.75 6.75 0 0112 20.25zm0-15v6.75m0 0a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-4.5 0v1.5a2.25 2.25 0 002.25 2.25z" />
+    </svg>
+    Voice Chatbot
+  </PrimaryButton>
+);
+
+// Replace ArticleModal definition with usage of Modal
+const ArticleModal = ({ open, onClose, articleUrl, title }) => {
+  const [content, setContent] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
+
+  React.useEffect(() => {
+    if (!open || !articleUrl) return;
+    setLoading(true);
+    setError(null);
+    setContent('');
+    fetch(articleUrl)
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load article');
+        return res.text();
+      })
+      .then(setContent)
+      .catch(() => setError('Failed to load article'))
+      .finally(() => setLoading(false));
+  }, [open, articleUrl]);
+
+  if (!open) return null;
+  return (
+    <Modal open={open} onClose={onClose} title={title}>
+      {loading && <div className="text-sky-400">Loading…</div>}
+      {error && <div className="text-red-400">{error}</div>}
+      {!loading && !error && (
+        <div className="prose prose-invert max-w-none dark:prose-invert">
+          <ReactMarkdown>{content}</ReactMarkdown>
+        </div>
+      )}
+    </Modal>
+  );
+};
+
+// Refactor ChatbotModal to use Modal
 const ChatbotModal = ({ open, onClose }) => {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
@@ -724,58 +781,39 @@ const ChatbotModal = ({ open, onClose }) => {
 
   if (!open) return null;
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-end">
-      <div className="fixed inset-0 bg-black bg-opacity-40" onClick={onClose} data-cy="chatbot-backdrop"></div>
-      <div className="relative bg-white dark:bg-slate-800 w-full max-w-md m-8 rounded-xl shadow-2xl p-6 flex flex-col" data-cy="chatbot-modal">
-        <button onClick={onClose} className="absolute top-2 right-2 text-slate-400 hover:text-slate-700 text-2xl font-bold dark:text-slate-500" aria-label="Close Chatbot" data-cy="chatbot-close-btn">×</button>
-        <h2 className="text-xl font-bold mb-4 text-sky-700 dark:text-sky-300">Voice Chatbot (ElevenLabs)</h2>
-        <div className="flex-1 overflow-y-auto mb-4 max-h-64">
-          {messages.length === 0 && <div className="bg-slate-100 dark:bg-slate-700 rounded p-4 text-slate-600 dark:text-stone-300 text-center">Say hello to the ElevenLabs chatbot!</div>}
-          {messages.map((msg, i) => (
-            <div key={i} className={msg.from === "user" ? "text-right mb-2" : "text-left mb-2"}>
-              <span className={msg.from === "user" ? "inline-block bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-100 px-3 py-2 rounded-lg" : "inline-block bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-100 px-3 py-2 rounded-lg"}>
-                {msg.text}
-              </span>
-            </div>
-          ))}
-        </div>
-        <input
-          type="text"
-          className="w-full border border-slate-300 dark:border-slate-600 rounded px-4 py-2 mb-2 bg-slate-100 dark:bg-slate-800 text-slate-100 dark:text-stone-100"
-          placeholder="Type your message..."
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          disabled={loading}
-          data-cy="chatbot-input"
-          onKeyDown={e => { if (e.key === 'Enter') handleSend(); }}
-        />
-        <button
-          className="w-full bg-sky-600 text-white font-bold py-2 rounded-lg mt-2 disabled:opacity-60 dark:bg-sky-700 dark:text-white"
-          onClick={handleSend}
-          disabled={loading || !input.trim()}
-          data-cy="chatbot-send-btn"
-        >
-          {loading ? "Sending..." : "Send"}
-        </button>
-        {error && <div className="mt-2 text-red-600 dark:text-red-500 text-sm">{error}</div>}
+    <Modal open={open} onClose={onClose} title="Voice Chatbot (ElevenLabs)">
+      <div className="flex-1 overflow-y-auto mb-4 max-h-64">
+        {messages.length === 0 && <div className="bg-slate-100 dark:bg-slate-700 rounded p-4 text-slate-600 dark:text-stone-300 text-center">Say hello to the ElevenLabs chatbot!</div>}
+        {messages.map((msg, i) => (
+          <div key={i} className={msg.from === "user" ? "text-right mb-2" : "text-left mb-2"}>
+            <span className={msg.from === "user" ? "inline-block bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-100 px-3 py-2 rounded-lg" : "inline-block bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-100 px-3 py-2 rounded-lg"}>
+              {msg.text}
+            </span>
+          </div>
+        ))}
       </div>
-    </div>
+      <input
+        type="text"
+        className="w-full border border-slate-300 dark:border-slate-600 rounded px-4 py-2 mb-2 bg-slate-100 dark:bg-slate-800 text-slate-100 dark:text-stone-100 font-mono"
+        placeholder="Type your message..."
+        value={input}
+        onChange={e => setInput(e.target.value)}
+        disabled={loading}
+        data-cy="chatbot-input"
+        onKeyDown={e => { if (e.key === 'Enter') handleSend(); }}
+      />
+      <PrimaryButton
+        className="w-full bg-sky-600 text-white font-bold py-2 rounded-lg mt-2 disabled:opacity-60 dark:bg-sky-700 dark:text-white"
+        onClick={handleSend}
+        disabled={loading || !input.trim()}
+        data-cy="chatbot-send-btn"
+      >
+        {loading ? "Sending..." : "Send"}
+      </PrimaryButton>
+      {error && <div className="mt-2 text-red-600 dark:text-red-500 text-sm">{error}</div>}
+    </Modal>
   );
 };
-
-const ChatbotButton = ({ onClick }) => (
-  <button
-    onClick={onClick}
-    data-cy="open-chatbot-btn"
-    className="fixed bottom-28 right-8 z-50 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg flex items-center gap-2 print:hidden dark:bg-emerald-700 dark:hover:bg-emerald-600"
-    aria-label="Open Voice Chatbot"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 dark:text-emerald-300">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75v1.5m0 0a6.75 6.75 0 01-6.75-6.75h1.5A5.25 5.25 0 0012 19.5a5.25 5.25 0 005.25-5.25h1.5A6.75 6.75 0 0112 20.25zm0-15v6.75m0 0a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-4.5 0v1.5a2.25 2.25 0 002.25 2.25z" />
-    </svg>
-    Voice Chatbot
-  </button>
-);
 
 // Patch: Add default values for props and defensive checks for translations and translations.nav
 const HomePage = ({ prompts = [] }) => {
@@ -834,18 +872,18 @@ const HomePage = ({ prompts = [] }) => {
             <a href="#articles" className="nav-link text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-300">{nav.articles}</a>
             <a href="#about" className="nav-link text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-300">{nav.about}</a>
             <a href="#contact" className="nav-link text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-300">{nav.contact}</a>
-            <button onClick={() => setLanguage(language === 'en' ? 'cs' : 'en')} className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm dark:bg-sky-700 dark:hover:bg-sky-600">
+            <PrimaryButton onClick={() => setLanguage(language === 'en' ? 'cs' : 'en')} className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 text-sm dark:bg-sky-700 dark:hover:bg-sky-600">
               {language === 'en' ? 'Česky' : 'English'}
-            </button>
+            </PrimaryButton>
           </nav>
         </div>
       </header>
-      <main className="flex-1 pt-20">
+      <main className="flex-1 pt-20" role="main" aria-label="Main content">
         {sections.map((section, idx) => (
           <React.Fragment key={idx}>{section}</React.Fragment>
         ))}
       </main>
-      <footer className="bg-slate-800 dark:bg-slate-700 text-slate-400 dark:text-slate-300 py-8 text-center mt-12">
+      <footer className="bg-slate-800 dark:bg-slate-700 text-slate-400 dark:text-slate-300 py-8 text-center mt-12" role="contentinfo">
         <div className="max-w-7xl mx-auto px-4">
           <p>Interactive Strategic Blueprint for Sparrow AI & Tech</p>
           <p className="mt-2 text-sm">&copy; {new Date().getFullYear()} Sparrow AI Tech. All rights reserved.</p>
@@ -859,3 +897,22 @@ const HomePage = ({ prompts = [] }) => {
 };
 
 export default HomePage;
+
+PauseBlock.propTypes = { text: PropTypes.string.isRequired };
+PauseSeparator.propTypes = {};
+PromptBlock.propTypes = { prompt: PropTypes.string.isRequired };
+HeroSection.propTypes = { translations: PropTypes.object.isRequired };
+ServicesSection.propTypes = { translations: PropTypes.object.isRequired };
+ArticlesSection.propTypes = { translations: PropTypes.object.isRequired };
+InfographicsSection.propTypes = {};
+ResearchHighlightsSection.propTypes = {};
+PopularReposSection.propTypes = {};
+EditableMermaidDemoSection.propTypes = {};
+SavedDiagramsGallery.propTypes = {};
+AboutSection.propTypes = { translations: PropTypes.object.isRequired };
+ContactSection.propTypes = { translations: PropTypes.object.isRequired };
+DownloadPdfButton.propTypes = {};
+ChatbotModal.propTypes = { open: PropTypes.bool.isRequired, onClose: PropTypes.func.isRequired };
+ChatbotButton.propTypes = { onClick: PropTypes.func.isRequired };
+ArticleModal.propTypes = { open: PropTypes.bool.isRequired, onClose: PropTypes.func.isRequired, articleUrl: PropTypes.string, title: PropTypes.string };
+HomePage.propTypes = { prompts: PropTypes.array };
