@@ -113,6 +113,45 @@ npx cypress open
 
 ---
 
+## Backend API Endpoints
+
+### Voice Chatbot API
+- **Endpoint:** `POST /api/chatbot`
+- **Request body:** `{ message: string }`
+- **Response:** `{ reply: string }` (or `{ error: string }`)
+- **Description:** Proxies requests to the ElevenLabs API securely using an environment variable for the API key.
+- **Security:** Never expose your ElevenLabs API key to the frontend. Store it in environment variables (e.g., `.env`) and access only on the server side.
+
+### PDF Generation API
+- **Endpoint:** `POST /api/pdf`
+- **Request body:** `{ html: string }`
+- **Response:** PDF file (`application/pdf`), or `{ error: string }` on failure
+- **Description:** Generates a PDF from provided HTML using Puppeteer and returns it as a downloadable file.
+
+---
+
+## Internationalization (i18n)
+
+- i18n is powered by `astro-i18n`.
+- Translation files are located in `public/locales/en/common.json` and `public/locales/cs/common.json`.
+- **Key structure example:**
+  ```json
+  {
+    "header": {
+      "nav_projects": "Projects",
+      "nav_skills": "Skills",
+      "nav_about": "About",
+      "nav_contact": "Contact"
+    },
+    "projects": {
+      "title": "My Projects"
+    }
+  }
+  ```
+- **Usage in frontend:** Use the translation function as `t('header.nav_projects')`, `t('projects.title')`, etc.
+
+---
+
 ## Project Structure
 
 - `src/layouts/` — Astro layouts (e.g., MainLayout.astro)
@@ -143,6 +182,21 @@ npx cypress open
 1. Open in VS Code with Devcontainer support
 2. Use the provided tasks or launch scripts for your workflow
 3. See `TODO.md` for roadmap and parallel development guidance
+
+---
+
+## Setup & Run Instructions
+
+- **Install dependencies:** `npm install`
+- **Run dev server:** `npm run dev`
+- **Build for production:** `npm run build`
+- **Run tests:**
+  - **Jest (unit/component):** `npm test`
+  - **Cypress (E2E):** `npx cypress run`
+- **Lint code:** `npx eslint .`
+- **Format code:** `npx prettier --write .`
+- **Deploy:** CI/CD pipeline deploys to GitHub Pages on push to `main`.
+- **Performance & Accessibility:** Lighthouse CI runs automatically in CI/CD and uploads reports as artifacts for each deploy.
 
 ---
 

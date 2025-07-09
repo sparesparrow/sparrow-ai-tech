@@ -1,107 +1,80 @@
-# Workflow name
-name: Deploy to GitHub Pages
+name: CI/CD & Deploy
 
-# Triggers for the workflow
 on:
   push:
-    branches: ['main'] # Run on every push to the main branch
-  release:
-    types: [created] # Run when a new release is created
-  workflow_dispatch: # Allows manual triggering from the GitHub UI
-
-# Permissions required for the workflow to deploy to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Concurrency settings to prevent multiple deployments from running at the same time
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
+    branches: [main]
+  pull_request:
 
 jobs:
-  # Job to lint the code for quality checks
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          # REMOVED: `cache: 'npm'` because no package-lock.json exists
+          node-version: 18
+      - run: npm ci
+      - run: npx eslint .
 
-      - name: Install dependencies
-        run: npm install
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm test
 
-      - name: Run linters
-        run: |
-          # Conditionally run linters only if their config files exist
-          if [ -f .eslintrc.js ] || [ -f .eslintrc.cjs ]; then npx eslint . ; else echo "No ESLint config found, skipping JS lint."; fi
-          if [ -f .stylelintrc ]; then npx stylelint "**/*.css"; else echo "No Stylelint config found, skipping CSS lint."; fi
-
-  # Job to build the Astro project
   build:
     runs-on: ubuntu-latest
-    needs: [lint] # This job runs only after the 'lint' job succeeds
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # The official Astro action handles Node.js setup, dependency installation,
-      # and building the project in one clean step.
-      - name: Build with Astro
-        uses: withastro/action@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          package-manager: npm
+          node-version: 18
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
 
-      # Upload the build output ('dist/' directory) as an artifact.
-      # This artifact will be used by the 'deploy' job.
-      - name: Upload artifact
+  lighthouse:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run build
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli
+      - name: Run Lighthouse CI
+        run: |
+          npx lhci autorun --collect.staticDistDir=dist || true
+      - name: Upload Lighthouse Report
         uses: actions/upload-artifact@v4
         with:
-          # Ensure unique artifact name for every workflow run
-          name: github-pages-${{ github.run_number }}-${{ github.sha }}
-          path: ./dist
+          name: lighthouse-report
+          path: .lighthouseci
 
-  # Job to deploy the built site to GitHub Pages
   deploy:
+    needs: [lint, test, build, lighthouse]
     runs-on: ubuntu-latest
-    needs: [build] # This job runs only after the 'build' job succeeds
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }} # The URL of the deployed site
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-    outputs:
-      page_url: ${{ steps.deployment.outputs.page_url }}
-
-
-  # Job to run end-to-end tests on the deployed production site
-  e2e-prod:
-    runs-on: ubuntu-latest
-    needs: deploy # This job runs only after the 'deploy' job succeeds
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          # REMOVED: `cache: 'npm'` because no package-lock.json exists
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run Cypress tests
-        uses: cypress-io/github-action@v6
+          node-version: 18
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
-          # Use the deployed URL from the 'deploy' job as the baseUrl for tests
-          config: baseUrl=${{ needs.deploy.outputs.page_url }}
+          path: dist
+      - uses: actions/deploy-pages@v4

@@ -1,6 +1,20 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-// https://astro.build/config
+import { fileURLToPath } from 'url';
+import { join } from 'path';
+
 export default defineConfig({
-  integrations: [react()]
+  integrations: [react()],
+  i18n: {
+    locales: ['en', 'cs'],
+    defaultLocale: 'en',
+    // Add more i18n options if needed
+  },
+  vite: {
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
+    },
+  },
 });

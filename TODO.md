@@ -154,7 +154,7 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [ToDo] PDF Generation: If server-side rendering is chosen for the PDF, set up the necessary endpoint.
 - [ToDo] 2. Write Comprehensive Tests:
   - [ToDo] Component Tests: Write unit tests for any complex, non-UI logic.
-  - [ToDo] E2E Tests: **Dependency:** Use the `data-cy` attributes provided by Track A. Write new Cypress tests for the key user flows (language switching, PDF download, opening chatbot).
+  - [HelpNeeded] E2E Tests: **Dependency:** Use the `data-cy` attributes provided by Track A. Write new Cypress tests for the key user flows (language switching, PDF download, opening chatbot). Backend API endpoint tests implemented.
 - [ToDo] 3. Finalize Documentation:
   - [ToDo] Update `README.md` with the final project structure, design system documentation, and detailed setup/run instructions.
 - [ToDo] 4. Optimize and Secure:
