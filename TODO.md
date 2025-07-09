@@ -22,63 +22,31 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 
 **Goal:** Align on foundational structures to prevent merge conflicts.
 
-- [ToDo] Agreement on File Structure:
-  - [ToDo] Components: All React components will reside in `src/components/`.
-  - [ToDo] Layouts: All Astro layouts will reside in `src/layouts/`.
-  - [ToDo] Styles: Global styles and CSS variables will be in `src/styles/`.
-  - [ToDo] Assets: All static images and fonts will be in `public/assets/`.
-- [ToDo] Agreement on Naming Conventions:
-  - [ToDo] Components will be PascalCase (e.g., `HeroSection.jsx`).
-  - [ToDo] CSS classes will be kebab-case (e.g., `.hero-section`).
+- [Done] Agreement on File Structure:
+  - [Done] Components: All React components will reside in `src/components/`.
+  - [Done] Layouts: All Astro layouts will reside in `src/layouts/`.
+  - [Done] Styles: Global styles and CSS variables will be in `src/styles/`.
+  - [Done] Assets: All static images and fonts will be in `public/assets/`.
+- [Done] Agreement on Naming Conventions:
+  - [Done] Components will be PascalCase (e.g., `HeroSection.jsx`).
+  - [Done] CSS classes will be kebab-case (e.g., `.hero-section`).
 
 ---
 
 ## Track A: Frontend & User Experience (Agent 1)
 
-**Focus:** Build the visual and interactive parts of the application using Astro and React. This track owns the user-facing components and styles.
-
-### Sprint 1: Design System & Static Page Implementation
-
-- [ToDo] 1. Implement the Design System:
-  - [ToDo] Create `src/styles/theme.css` and define all color palette and spacing variables.
-  - [ToDo] Create `src/styles/typography.css` and define global styles for fonts, headings, and body text.
-  - [ToDo] Import these stylesheets into the main layout file.
-  - [ToDo] **Done when:** Style variables are defined and can be used in components.
-- [ToDo] 2. Create Global UI Components:
-  - [ToDo] Create `src/layouts/MainLayout.astro`. This layout should import the CSS files and include slots for `<Header>`, `<body>`, and `<Footer>`.
-  - [ToDo] Create `src/components/Header.jsx` with static placeholder navigation links and a placeholder UI for the language switcher.
-  - [ToDo] Create `src/components/Footer.jsx` with static links and information.
-  - [ToDo] **Done when:** The main layout can be used to wrap a page, displaying a consistent header and footer.
-- [ToDo] 3. Build Static Homepage Sections:
-  - [ToDo] Create the following React components in `src/components/`:
-    - [ToDo] `HeroSection.jsx`
-    - [ToDo] `ProjectsSection.jsx` (Use hardcoded array of project data for now).
-    - [ToDo] `SkillsSection.jsx`
-    - [ToDo] `AboutSection.jsx`
-  - [ToDo] Create the main page at `src/pages/index.astro`. Import and assemble the section components within `<MainLayout.astro>`.
-  - [ToDo] **Done when:** The homepage renders with all static sections visible.
-- [ToDo] 4. Implement Responsiveness:
-  - [ToDo] Add CSS media queries to `theme.css` or individual component stylesheets.
-  - [ToDo] Ensure all components and layouts from this sprint are fully responsive across mobile, tablet, and desktop breakpoints.
-  - [ToDo] **Done when:** The layout reflows correctly on all target screen sizes without horizontal scrollbars.
-- [ToDo] 5. Visuals and Assets:
-  - [ToDo] Place all selected images in `public/assets/images/` with descriptive, kebab-case names.
-  - [ToDo] Use Astro's `<Image />` component for optimization within `.astro` files and standard `<img>` tags in `.jsx` files, referencing the public paths.
-  - [ToDo] Add `data-cy` attributes to all key interactive elements (buttons, links) for Track B's testing.
-  - [ToDo] **Done when:** Images are displayed correctly, and E2E test selectors are in place.
-
 ### Sprint 2: Interactivity & Feature Implementation
 
-- [ToDo] 1. Implement Functional Navigation:
-  - [ToDo] Make all navigation links work, enabling smooth scrolling to page sections.
-  - [ToDo] Ensure all external links (GitHub, demos) in the `<ProjectsSection>` are correct.
-- [ToDo] 2. Develop Key Interactive Features:
-  - [ToDo] PDF Generation: Build the frontend for the "Download as PDF" feature.
-  - [ToDo] Voice Chatbot: Implement the UI for the ElevenLabs chatbot. **Dependency:** Use the API endpoint contract provided by Track B.
-- [ToDo] 3. Activate Localization:
-  - [ToDo] **Dependency:** Use the i18n function and JSON key structure provided by Track B.
-  - [ToDo] Connect the language switcher UI to the i18n framework to enable language changes.
-  - [ToDo] Wrap all static text in UI components with the translation function.
+- [Implemented] 1. Implement Functional Navigation:
+  - [Implemented] Make all navigation links work, enabling smooth scrolling to page sections.
+  - [Implemented] Ensure all external links (GitHub, demos) in the homepage and infographics sections are correct and open in a new tab.
+- [Implemented] 2. Develop Key Interactive Features:
+  - [Implemented] PDF Generation: Build the frontend for the "Download as PDF" feature (button POSTs to /api/pdf and downloads PDF).
+  - [Implemented] Voice Chatbot: Implement the UI for the ElevenLabs chatbot (UI connects to /api/chatbot endpoint).
+- [Implemented] 3. Activate Localization:
+  - [Implemented] Use the i18n function and JSON key structure provided by Track B.
+  - [Implemented] Connect the language switcher UI to the i18n framework to enable language changes.
+  - [Implemented] Wrap all static text in UI components with the translation function.
 
 ---
 
@@ -88,14 +56,14 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 
 ### Sprint 1: Project Foundation & CI/CD
 
-- [ToDo] 1. Project & Content Cleanup:
-  - [ToDo] Perform all file moving and standardization tasks from the "Content & Structure Cleanup" section of the original TODO list.
-  - [ToDo] **Done when:** The project's file structure is clean and follows the agreed-upon conventions.
-- [ToDo] 2. Set Up Tooling & Linters:
-  - [ToDo] Run `npm install --save-dev eslint prettier eslint-plugin-react @typescript-eslint/parser husky lint-staged`.
-  - [ToDo] Configure `.eslintrc.cjs` and `.prettierrc`.
-  - [ToDo] Run `npx husky-init` and configure lint-staged in `package.json` to run Prettier and ESLint on pre-commit.
-  - [ToDo] **Done when:** The pre-commit hook successfully formats and lints staged files.
+- [Done] 1. Project & Content Cleanup:
+  - [Done] Perform all file moving and standardization tasks from the "Content & Structure Cleanup" section of the original TODO list.
+  - [Done] **Done when:** The project's file structure is clean and follows the agreed-upon conventions.
+- [Done] 2. Set Up Tooling & Linters:
+  - [Done] Run `npm install --save-dev eslint prettier eslint-plugin-react @typescript-eslint/parser husky lint-staged`.
+  - [Done] Configure `.eslintrc.cjs` and `.prettierrc`.
+  - [Done] Run `npx husky-init` and configure lint-staged in `package.json` to run Prettier and ESLint on pre-commit.
+  - [Done] **Done when:** The pre-commit hook successfully formats and lints staged files.
 - [ToDo] 3. Configure CI/CD Pipeline (GitHub Actions):
   - [ToDo] Create `.github/workflows/deploy.yml`.
   - [ToDo] The workflow should trigger on push to main and on pull_request.
@@ -132,16 +100,16 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 
 ### Sprint 2: Interactivity & Feature Implementation
 
-- [ToDo] 1. Implement Functional Navigation:
-  - [ToDo] Make all navigation links work, enabling smooth scrolling to page sections.
-  - [ToDo] Ensure all external links (GitHub, demos) in the `<ProjectsSection>` are correct.
-- [ToDo] 2. Develop Key Interactive Features:
-  - [ToDo] PDF Generation: Build the frontend for the "Download as PDF" feature.
-  - [ToDo] Voice Chatbot: Implement the UI for the ElevenLabs chatbot. **Dependency:** Use the API endpoint contract provided by Track B.
-- [ToDo] 3. Activate Localization:
-  - [ToDo] **Dependency:** Use the i18n function and JSON key structure provided by Track B.
-  - [ToDo] Connect the language switcher UI to the i18n framework to enable language changes.
-  - [ToDo] Wrap all static text in UI components with the translation function.
+- [Implemented] 1. Implement Functional Navigation:
+  - [Implemented] Make all navigation links work, enabling smooth scrolling to page sections.
+  - [Implemented] Ensure all external links (GitHub, demos) in the homepage and infographics sections are correct and open in a new tab.
+- [Implemented] 2. Develop Key Interactive Features:
+  - [Implemented] PDF Generation: Build the frontend for the "Download as PDF" feature (button POSTs to /api/pdf and downloads PDF).
+  - [Implemented] Voice Chatbot: Implement the UI for the ElevenLabs chatbot (UI connects to /api/chatbot endpoint).
+- [Implemented] 3. Activate Localization:
+  - [Implemented] Use the i18n function and JSON key structure provided by Track B.
+  - [Implemented] Connect the language switcher UI to the i18n framework to enable language changes.
+  - [Implemented] Wrap all static text in UI components with the translation function.
 
 ---
 

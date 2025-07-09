@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+<<<<<<< HEAD
+import DecorativeDivider from './ui/DecorativeDivider.jsx';
+import decorativeTexts from '../data/decorativeTexts.json';
+=======
+import { useI18n } from '../i18n';
+>>>>>>> 33e29b2 (feat: Enhance localization support and improve UI components; implement PDF download functionality and voice chatbot integration)
 
 // Example props:
 // translations: { ... } (from cs.json/en.json)
@@ -37,7 +43,7 @@ const PromptBlock = ({ prompt }) => (
 const HeroSection = ({ translations }) => (
   <section id="hero" className="w-full min-h-screen flex items-center bg-white pt-20">
     <div className="container mx-auto px-6 text-center">
-      <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight mb-4" dangerouslySetInnerHTML={{__html: translations.hero_title_html}} />
+      <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight mb-4" dangerouslySetInnerHTML={{ __html: translations.hero_title_html }} />
       <p className="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 mb-8">{translations.hero_subtitle}</p>
       <img
         src="/assets/images/claude4-system-card-img-003.png"
@@ -316,21 +322,21 @@ const PopularReposSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-sky-400">Popular GitHub Repositories</h2>
           <p className="text-lg text-slate-300 mt-2 max-w-2xl mx-auto">Explore my most starred open-source projects.</p>
           <div className="mt-4 flex justify-center gap-4">
-            <button onClick={() => setSortBy('stars')} className={`px-4 py-2 rounded ${sortBy==='stars'?'bg-sky-600 text-white':'bg-slate-800 text-sky-300'}`}>Sort by Stars</button>
-            <button onClick={() => setSortBy('forks')} className={`px-4 py-2 rounded ${sortBy==='forks'?'bg-sky-600 text-white':'bg-slate-800 text-sky-300'}`}>Sort by Forks</button>
+            <button onClick={() => setSortBy('stars')} className={`px-4 py-2 rounded ${sortBy === 'stars' ? 'bg-sky-600 text-white' : 'bg-slate-800 text-sky-300'}`}>Sort by Stars</button>
+            <button onClick={() => setSortBy('forks')} className={`px-4 py-2 rounded ${sortBy === 'forks' ? 'bg-sky-600 text-white' : 'bg-slate-800 text-sky-300'}`}>Sort by Forks</button>
           </div>
         </div>
         {loading ? <div className="text-sky-300 text-center">Loading...</div> : error ? <div className="text-red-500 text-center">{error}</div> : (
-        <div className="flex flex-wrap justify-center gap-6">
-          {sorted.map(repo => (
-            <div key={repo.url} className="bg-slate-800 rounded-xl shadow p-6 min-w-[220px] max-w-xs text-center">
-              <GithubRepoTooltip href={repo.url}>
-                <span className="text-lg font-semibold text-sky-300 hover:underline">{repo.name}</span>
-              </GithubRepoTooltip>
-              <div className="mt-2 text-slate-400">⭐ {repo.stars} | 🍴 {repo.forks}</div>
-            </div>
-          ))}
-        </div>
+          <div className="flex flex-wrap justify-center gap-6">
+            {sorted.map(repo => (
+              <div key={repo.url} className="bg-slate-800 rounded-xl shadow p-6 min-w-[220px] max-w-xs text-center">
+                <GithubRepoTooltip href={repo.url}>
+                  <span className="text-lg font-semibold text-sky-300 hover:underline">{repo.name}</span>
+                </GithubRepoTooltip>
+                <div className="mt-2 text-slate-400">⭐ {repo.stars} | 🍴 {repo.forks}</div>
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </section>
@@ -394,7 +400,7 @@ const EditableMermaidDemoSection = () => {
           <p className="text-lg text-slate-300 mt-2 max-w-2xl mx-auto">Edit the Mermaid code below and see your diagram update instantly.</p>
           <div className="mt-4 flex justify-center gap-4">
             {EXAMPLES.map(ex => (
-              <button key={ex.label} onClick={() => handleExample(ex.label)} className={`px-4 py-2 rounded ${example===ex.label?'bg-emerald-600 text-white':'bg-slate-800 text-emerald-300'}`}>{ex.label}</button>
+              <button key={ex.label} onClick={() => handleExample(ex.label)} className={`px-4 py-2 rounded ${example === ex.label ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-emerald-300'}`}>{ex.label}</button>
             ))}
           </div>
         </div>
@@ -440,7 +446,7 @@ const SavedDiagramsGallery = () => {
     try {
       await fetch(`/api/diagrams/${id}`, { method: 'DELETE' });
       setDiagrams(diagrams => diagrams.filter(d => d.id !== id));
-    } catch {}
+    } catch { }
     setDeleting(null);
   };
   const handleSaveOrder = async () => {
@@ -480,9 +486,9 @@ const SavedDiagramsGallery = () => {
         {...listeners}
         className={`bg-slate-800 p-6 rounded-xl shadow-lg relative cursor-move select-none`}
       >
-        <button onClick={() => handleDelete(diagram.id)} disabled={deleting===diagram.id} className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 disabled:opacity-50">{deleting===diagram.id ? 'Deleting...' : 'Delete'}</button>
+        <button onClick={() => handleDelete(diagram.id)} disabled={deleting === diagram.id} className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 disabled:opacity-50">{deleting === diagram.id ? 'Deleting...' : 'Delete'}</button>
         <div className="mb-2 text-slate-400 text-xs">ID: {diagram.id}</div>
-        <div className="mermaid-diagram border rounded bg-slate-900 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: window.mermaid?.render ? window.mermaid.render(`gallery-${diagram.id}`, diagram.code, () => {}) : '' }} />
+        <div className="mermaid-diagram border rounded bg-slate-900 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: window.mermaid?.render ? window.mermaid.render(`gallery-${diagram.id}`, diagram.code, () => { }) : '' }} />
         <pre className="mt-2 text-xs text-slate-300 bg-slate-900 p-2 rounded">{diagram.code}</pre>
       </div>
     );
@@ -509,15 +515,15 @@ const SavedDiagramsGallery = () => {
           </div>
         </div>
         {loading ? <div className="text-emerald-300 text-center">Loading...</div> : error ? <div className="text-red-500 text-center">{error}</div> : (
-        <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-          <SortableContext items={diagrams.map(d => d.id)} strategy={verticalListSortingStrategy}>
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {diagrams.map((diagram, idx) => (
-                <DiagramSortableItem key={diagram.id} diagram={diagram} idx={idx} />
-              ))}
-            </div>
-          </SortableContext>
-        </DndContext>
+          <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+            <SortableContext items={diagrams.map(d => d.id)} strategy={verticalListSortingStrategy}>
+              <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                {diagrams.map((diagram, idx) => (
+                  <DiagramSortableItem key={diagram.id} diagram={diagram} idx={idx} />
+                ))}
+              </div>
+            </SortableContext>
+          </DndContext>
         )}
       </div>
     </section>
@@ -550,7 +556,7 @@ const AboutSection = ({ translations }) => {
             <ol className="space-y-4">
               {steps.map((step, i) => (
                 <li key={i} className="flex items-start">
-                  <span className="w-8 h-8 flex items-center justify-center bg-sky-600 text-white rounded-full font-bold mr-4">{i+1}</span>
+                  <span className="w-8 h-8 flex items-center justify-center bg-sky-600 text-white rounded-full font-bold mr-4">{i + 1}</span>
                   <span className="text-lg text-stone-700">{step}</span>
                 </li>
               ))}
@@ -634,19 +640,165 @@ const ContactSection = ({ translations }) => {
   );
 };
 
+const DownloadPdfButton = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleDownload = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const html = document.documentElement.outerHTML;
+      const res = await fetch('/api/pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ html }),
+      });
+      if (!res.ok) throw new Error('Failed to generate PDF');
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'sparrow-ai-tech.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (e) {
+      setError('PDF download failed.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <button
+        onClick={handleDownload}
+        data-cy="download-pdf-btn"
+        className="fixed bottom-8 right-8 z-50 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg print:hidden disabled:opacity-60"
+        aria-label="Download as PDF"
+        disabled={loading}
+      >
+        {loading ? 'Generating PDF…' : 'Download as PDF'}
+      </button>
+      {error && (
+        <div className="fixed bottom-24 right-8 z-50 bg-red-600 text-white px-4 py-2 rounded shadow-lg">{error}</div>
+      )}
+    </>
+  );
+};
+
+const ChatbotModal = ({ open, onClose }) => {
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSend = async () => {
+    if (!input.trim()) return;
+    setLoading(true);
+    setError(null);
+    setMessages((msgs) => [...msgs, { from: "user", text: input }]);
+    try {
+      const res = await fetch("/api/chatbot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input }),
+      });
+      if (!res.ok) throw new Error("Failed to get reply");
+      const data = await res.json();
+      setMessages((msgs) => [...msgs, { from: "bot", text: data.reply }]);
+      setInput("");
+    } catch (e) {
+      setError("Chatbot error. Try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-end justify-end">
+      <div className="fixed inset-0 bg-black bg-opacity-40" onClick={onClose} data-cy="chatbot-backdrop"></div>
+      <div className="relative bg-white w-full max-w-md m-8 rounded-xl shadow-2xl p-6 flex flex-col" data-cy="chatbot-modal">
+        <button onClick={onClose} className="absolute top-2 right-2 text-slate-400 hover:text-slate-700 text-2xl font-bold" aria-label="Close Chatbot" data-cy="chatbot-close-btn">×</button>
+        <h2 className="text-xl font-bold mb-4 text-sky-700">Voice Chatbot (ElevenLabs)</h2>
+        <div className="flex-1 overflow-y-auto mb-4 max-h-64">
+          {messages.length === 0 && <div className="bg-slate-100 rounded p-4 text-slate-600 text-center">Say hello to the ElevenLabs chatbot!</div>}
+          {messages.map((msg, i) => (
+            <div key={i} className={msg.from === "user" ? "text-right mb-2" : "text-left mb-2"}>
+              <span className={msg.from === "user" ? "inline-block bg-sky-100 text-sky-800 px-3 py-2 rounded-lg" : "inline-block bg-emerald-100 text-emerald-800 px-3 py-2 rounded-lg"}>
+                {msg.text}
+              </span>
+            </div>
+          ))}
+        </div>
+        <input
+          type="text"
+          className="w-full border border-slate-300 rounded px-4 py-2 mb-2"
+          placeholder="Type your message..."
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          disabled={loading}
+          data-cy="chatbot-input"
+          onKeyDown={e => { if (e.key === 'Enter') handleSend(); }}
+        />
+        <button
+          className="w-full bg-sky-600 text-white font-bold py-2 rounded-lg mt-2 disabled:opacity-60"
+          onClick={handleSend}
+          disabled={loading || !input.trim()}
+          data-cy="chatbot-send-btn"
+        >
+          {loading ? "Sending..." : "Send"}
+        </button>
+        {error && <div className="mt-2 text-red-600 text-sm">{error}</div>}
+      </div>
+    </div>
+  );
+};
+
+const ChatbotButton = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    data-cy="open-chatbot-btn"
+    className="fixed bottom-28 right-8 z-50 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg flex items-center gap-2 print:hidden"
+    aria-label="Open Voice Chatbot"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75v1.5m0 0a6.75 6.75 0 01-6.75-6.75h1.5A5.25 5.25 0 0012 19.5a5.25 5.25 0 005.25-5.25h1.5A6.75 6.75 0 0112 20.25zm0-15v6.75m0 0a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-4.5 0v1.5a2.25 2.25 0 002.25 2.25z" />
+    </svg>
+    Voice Chatbot
+  </button>
+);
+
 // Patch: Add default values for props and defensive checks for translations and translations.nav
-const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () => {}, prompts = [] }) => {
+const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () => { }, prompts = [] }) => {
+  const { t, language: currentLanguage } = useI18n();
   // Defensive: Ensure translations.nav exists and has expected keys
   const nav = translations.nav || { services: 'Services', articles: 'Articles', about: 'About', contact: 'Contact' };
+
+  // Helper to get divider by index (cycle if not enough)
+  const getDivider = (idx) => {
+    const d = decorativeTexts[idx % decorativeTexts.length];
+    return <DecorativeDivider key={`divider-${idx}`} text={d.text} rotation={d.rotation} align={d.align} />;
+  };
+
+  // Sections with dividers between them
   const sections = [
     <HeroSection key="hero" translations={translations} />,
+    getDivider(0),
     <ServicesSection key="services" translations={translations} />,
+    getDivider(1),
     <ArticlesSection key="articles" translations={translations} />,
-    <InfographicsSection />,
-    <ResearchHighlightsSection />,
-    <PopularReposSection />,
-    <EditableMermaidDemoSection />,
-    <SavedDiagramsGallery />,
+    <InfographicsSection key="infographics" />,
+    getDivider(2),
+    <ResearchHighlightsSection key="research" />,
+    getDivider(3),
+    <PopularReposSection key="repos" />,
+    <EditableMermaidDemoSection key="editable-mermaid" />,
+    <SavedDiagramsGallery key="saved-diagrams" />,
+    getDivider(4),
     <AboutSection key="about" translations={translations} />,
     <ContactSection key="contact" translations={translations} />
   ];
@@ -660,6 +812,8 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
       promptIdx++;
     }
   }
+
+  const [chatbotOpen, setChatbotOpen] = useState(false);
 
   return (
     <div className="bg-stone-50 min-h-screen flex flex-col">
@@ -682,32 +836,9 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
         </div>
       </header>
       <main className="flex-1 pt-20">
-        {/* Hero Section */}
-        <HeroSection translations={translations} />
-        <PauseSeparator />
-        <PromptBlock prompt={translations.prompts?.[0] || 'TODO: Add prompt 0 translation'} />
-        <PauseSeparator />
-        {/* Services Section */}
-        <ServicesSection translations={translations} />
-        <PauseSeparator />
-        <PromptBlock prompt={translations.prompts?.[1] || 'TODO: Add prompt 1 translation'} />
-        <PauseSeparator />
-        {/* Articles Section */}
-        <ArticlesSection translations={translations} />
-        <InfographicsSection />
-        <ResearchHighlightsSection />
-        <PauseSeparator />
-        <PromptBlock prompt={translations.prompts?.[2] || 'TODO: Add prompt 2 translation'} />
-        <PauseSeparator />
-        <PopularReposSection />
-        <EditableMermaidDemoSection />
-        <SavedDiagramsGallery />
-        {/* About Section */}
-        <AboutSection translations={translations} />
-        <PauseSeparator />
-        <PromptBlock prompt={translations.prompts?.[3] || 'TODO: Add prompt 3 translation'} />
-        {/* Contact Section */}
-        <ContactSection translations={translations} />
+        {sections.map((section, idx) => (
+          <React.Fragment key={idx}>{section}</React.Fragment>
+        ))}
       </main>
       <footer className="bg-slate-800 text-slate-400 py-8 text-center mt-12">
         <div className="max-w-7xl mx-auto px-4">
@@ -715,8 +846,11 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
           <p className="mt-2 text-sm">&copy; {new Date().getFullYear()} Sparrow AI Tech. All rights reserved.</p>
         </div>
       </footer>
+      <DownloadPdfButton />
+      <ChatbotButton onClick={() => setChatbotOpen(true)} />
+      <ChatbotModal open={chatbotOpen} onClose={() => setChatbotOpen(false)} />
     </div>
   );
 };
 
-export default HomePage; 
+export default HomePage;

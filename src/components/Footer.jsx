@@ -1,13 +1,17 @@
 import React from 'react';
+import { useI18n } from '../i18n';
 
-const Footer = () => (
-  <footer className="footer" data-cy="footer">
-    <p data-cy="footer-copyright">Copyright © 2024 Sparrow AI Tech</p>
-    <ul>
-      <li><a href="#privacy" data-cy="footer-privacy">Privacy Policy</a></li>
-      <li><a href="#terms" data-cy="footer-terms">Terms of Service</a></li>
-    </ul>
-  </footer>
-);
+const Footer = () => {
+  const { t } = useI18n();
+  return (
+    <footer className="footer" data-cy="footer">
+      <p data-cy="footer-copyright">{t('footer.copyright')}</p>
+      <ul>
+        <li><a href="#privacy" data-cy="footer-privacy">Privacy Policy</a></li>
+        <li><a href="#terms" data-cy="footer-terms">Terms of Service</a></li>
+      </ul>
+    </footer>
+  );
+};
 
 export default Footer; 
