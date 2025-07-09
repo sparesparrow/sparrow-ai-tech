@@ -26,7 +26,7 @@ describe('MarkdownViewer Component', () => {
    * Test: Načítání a renderování markdownu z libovolné cesty
    */
   it('fetches and renders markdown from any path', () => {
-    cy.visit(`${import.meta.env.BASE_URL}markdown-test?src=${testMd}`);
+    cy.visit(`/sparrow-ai-tech/markdown-test?src=${testMd}`);
     cy.get('.markdown-viewer').should('exist');
     cy.contains('MCP Prompts').should('exist'); // Upravte na existující nadpis v testovacím souboru
   });
@@ -35,7 +35,7 @@ describe('MarkdownViewer Component', () => {
    * Test: Renderování Mermaid diagramů
    */
   it('renders Mermaid diagrams', () => {
-    cy.visit(`${import.meta.env.BASE_URL}markdown-test?src=${testMermaidMd}`);
+    cy.visit(`/sparrow-ai-tech/markdown-test?src=${testMermaidMd}`);
     cy.get('.mermaid-diagram').should('exist');
     cy.get('.mermaid-diagram svg').should('exist');
   });
@@ -44,7 +44,7 @@ describe('MarkdownViewer Component', () => {
    * Test: Konzistentní stylování pomocí tříd prose
    */
   it('applies consistent styling with prose classes', () => {
-    cy.visit(`${import.meta.env.BASE_URL}markdown-test?src=${testMd}`);
+    cy.visit(`/sparrow-ai-tech/markdown-test?src=${testMd}`);
     cy.get('.markdown-viewer').should('have.class', 'prose').and('have.class', 'prose-invert');
   });
 
@@ -53,7 +53,7 @@ describe('MarkdownViewer Component', () => {
    */
   it('shows loading and error states', () => {
     cy.intercept('GET', notFoundMd, { statusCode: 404 }).as('fetch404');
-    cy.visit(`${import.meta.env.BASE_URL}markdown-test?src=${notFoundMd}`);
+    cy.visit(`/sparrow-ai-tech/markdown-test?src=${notFoundMd}`);
     cy.get('.markdown-viewer-loading').should('exist');
     cy.wait('@fetch404');
     cy.get('.markdown-viewer-error').should('exist').and('contain', 'Failed to fetch');
@@ -64,7 +64,7 @@ describe('MarkdownViewer Component', () => {
    */
   it('applies custom className', () => {
     // Předpoklad: /markdown-test?src=...&className=custom-md-class přidá vlastní třídu
-    cy.visit(`${import.meta.env.BASE_URL}markdown-test?src=${testMd}&className=custom-md-class`);
+    cy.visit(`/sparrow-ai-tech/markdown-test?src=${testMd}&className=custom-md-class`);
     cy.get('.markdown-viewer').should('have.class', 'custom-md-class');
   });
 

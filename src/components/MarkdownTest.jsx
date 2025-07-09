@@ -7,7 +7,7 @@ function useQuery() {
 
 const MarkdownTest = () => {
   const query = useQuery();
-  const src = query.get('src') || `${import.meta.env.BASE_URL}articles/mcp-prompts.md`;
+  const src = query.get('src') || `/sparrow-ai-tech/articles/mcp-prompts.md`;
   const className = query.get('className') || '';
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">

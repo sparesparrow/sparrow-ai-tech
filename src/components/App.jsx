@@ -196,8 +196,10 @@ const App = () => {
     useEffect(() => {
         setContent(siteData[language]);
         document.documentElement.lang = language;
-        // Dummy API call for Cypress test
-        fetch('/sparrow-ai-tech/api/test').catch(() => {});
+        // Dummy API call for Cypress test (delayed for Cypress stub)
+        setTimeout(() => {
+          fetch('/sparrow-ai-tech/api/test').catch(() => {});
+        }, 500);
     }, [language]);
 
     const toggleLanguage = () => setLanguage(prev => prev === 'en' ? 'cs' : 'en');
@@ -231,59 +233,59 @@ const App = () => {
       {
         category: 'Architecture',
         articles: [
-          { title: 'Hexagonal Architecture in MCP (EN)', url: '/articles/hexagonal-architecture-in-mcp.md', lang: 'en' },
-          { title: 'Hexagonální architektura v MCP (CS)', url: '/articles/hexagonal-architecture-in-mcp.cs.md', lang: 'cs' },
-          { title: 'Merged: Hexagonal Architecture', url: '/articles/merged/hexagonal-architecture-in-mcp.md', lang: 'en/cs' },
+          { title: 'Hexagonal Architecture in MCP (EN)', url: '/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.md', lang: 'en' },
+          { title: 'Hexagonální architektura v MCP (CS)', url: '/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.cs.md', lang: 'cs' },
+          { title: 'Merged: Hexagonal Architecture', url: '/sparrow-ai-tech/articles/merged/hexagonal-architecture-in-mcp.md', lang: 'en/cs' },
         ]
       },
       {
         category: 'Human & AI',
         articles: [
-          { title: 'The Importance of Human Action in AI (EN)', url: '/articles/human-action.md', lang: 'en' },
-          { title: 'Důležitost lidského jednání v AI (CS)', url: '/articles/human-action.cs.md', lang: 'cs' },
+          { title: 'The Importance of Human Action in AI (EN)', url: '/sparrow-ai-tech/articles/human-action.md', lang: 'en' },
+          { title: 'Důležitost lidského jednání v AI (CS)', url: '/sparrow-ai-tech/articles/human-action.cs.md', lang: 'cs' },
         ]
       },
       {
         category: 'MCP Prompts',
         articles: [
-          { title: 'Getting Started with MCP Prompts (EN)', url: '/articles/mcp-prompts.md', lang: 'en' },
-          { title: 'Začínáme s MCP Prompts (CS)', url: '/articles/mcp-prompts.cs.md', lang: 'cs' },
-          { title: 'Merged: MCP Prompts', url: '/articles/merged/mcp-prompts-and-rs.md', lang: 'en/cs' },
+          { title: 'Getting Started with MCP Prompts (EN)', url: '/sparrow-ai-tech/articles/mcp-prompts.md', lang: 'en' },
+          { title: 'Začínáme s MCP Prompts (CS)', url: '/sparrow-ai-tech/articles/mcp-prompts.cs.md', lang: 'cs' },
+          { title: 'Merged: MCP Prompts', url: '/sparrow-ai-tech/articles/merged/mcp-prompts-and-rs.md', lang: 'en/cs' },
         ]
       },
       {
         category: 'Ecosystem & Contributions',
         articles: [
-          { title: 'MCP Ecosystem Overview', url: '/articles/merged/mcp-ecosystem-overview.md', lang: 'en' },
-          { title: 'MCP in Practice & Contributions', url: '/articles/merged/mcp-in-practice-and-contributions.md', lang: 'en' },
-          { title: 'MCP Contributions (EN)', url: '/articles/mcp-contributions.en.md', lang: 'en' },
-          { title: 'MCP Contributions (CS)', url: '/articles/mcp-contributions.cs.md', lang: 'cs' },
+          { title: 'MCP Ecosystem Overview', url: '/sparrow-ai-tech/articles/merged/mcp-ecosystem-overview.md', lang: 'en' },
+          { title: 'MCP in Practice & Contributions', url: '/sparrow-ai-tech/articles/merged/mcp-in-practice-and-contributions.md', lang: 'en' },
+          { title: 'MCP Contributions (EN)', url: '/sparrow-ai-tech/articles/mcp-contributions.en.md', lang: 'en' },
+          { title: 'MCP Contributions (CS)', url: '/sparrow-ai-tech/articles/mcp-contributions.cs.md', lang: 'cs' },
         ]
       },
       {
         category: 'Workshops & Publications',
         articles: [
-          { title: 'Andrew Ng Workshops (CS)', url: '/articles/andrew-ng-workshops.cs.md', lang: 'cs' },
-          { title: 'Andrej Karpathy Workshops (CS)', url: '/articles/andrej-karpathy-workshops.cs.md', lang: 'cs' },
-          { title: 'Dario Amodei Publications (CS)', url: '/articles/dario-amodei-publikace.cs.md', lang: 'cs' },
-          { title: 'ForwardFutureAI - Matthew Berman (CS)', url: '/articles/forwardfutureai-matthew-berman.cs.md', lang: 'cs' },
+          { title: 'Andrew Ng Workshops (CS)', url: '/sparrow-ai-tech/articles/andrew-ng-workshops.cs.md', lang: 'cs' },
+          { title: 'Andrej Karpathy Workshops (CS)', url: '/sparrow-ai-tech/articles/andrej-karpathy-workshops.cs.md', lang: 'cs' },
+          { title: 'Dario Amodei Publications (CS)', url: '/sparrow-ai-tech/articles/dario-amodei-publikace.cs.md', lang: 'cs' },
+          { title: 'ForwardFutureAI - Matthew Berman (CS)', url: '/sparrow-ai-tech/articles/forwardfutureai-matthew-berman.cs.md', lang: 'cs' },
         ]
       },
       {
         category: 'Rules & Liberty',
         articles: [
-          { title: 'Cursor Rules (EN)', url: '/articles/cursor-rules.md', lang: 'en' },
-          { title: 'Cursor Rules (CS)', url: '/articles/cursor-rules.cs.md', lang: 'cs' },
-          { title: 'Liberty (EN)', url: '/articles/liberty.md', lang: 'en' },
+          { title: 'Cursor Rules (EN)', url: '/sparrow-ai-tech/articles/cursor-rules.md', lang: 'en' },
+          { title: 'Cursor Rules (CS)', url: '/sparrow-ai-tech/articles/cursor-rules.cs.md', lang: 'cs' },
+          { title: 'Liberty (EN)', url: '/sparrow-ai-tech/articles/liberty.md', lang: 'en' },
         ]
       },
     ];
 
     const infographicsReact = [
-      { title: 'MCP Ecosystem (React)', route: '/infographics/1', description: 'How the sparesparrow open-source toolchain revolutionizes AI agent development.' },
-      { title: 'Human-in-the-Loop AI (React)', route: '/infographics/2', description: 'The indispensable partnership between human intuition and artificial intelligence.' },
-      { title: 'Hexagonal Architecture (React)', route: '/infographics/3', description: 'How the Ports & Adapters pattern protects your application core.' },
-      { title: 'Strategic Blueprint SPA (React)', route: '/infographics/spa', description: 'Interactive, visually rich SPA: strategy, tech, ecosystem, and CI/CD pipeline.' },
+      { title: 'MCP Ecosystem (React)', route: '/sparrow-ai-tech/infographics/1', description: 'How the sparesparrow open-source toolchain revolutionizes AI agent development.' },
+      { title: 'Human-in-the-Loop AI (React)', route: '/sparrow-ai-tech/infographics/2', description: 'The indispensable partnership between human intuition and artificial intelligence.' },
+      { title: 'Hexagonal Architecture (React)', route: '/sparrow-ai-tech/infographics/3', description: 'How the Ports & Adapters pattern protects your application core.' },
+      { title: 'Strategic Blueprint SPA (React)', route: '/sparrow-ai-tech/infographics/spa', description: 'Interactive, visually rich SPA: strategy, tech, ecosystem, and CI/CD pipeline.' },
     ];
     const infographicsHtml = [
       { title: 'MCP Ecosystem (HTML)', url: `/sparrow-ai-tech/infographics/1.html` },
@@ -671,7 +673,7 @@ const App = () => {
                               transition={{ delay: 0.1 * idx, duration: 0.5, ease: 'easeOut' }}
                               onClick={() => { setLightboxIndex(idx); setLightboxOpen(true); }}
                             >
-                              <img src={vis.src} alt={vis.name} className="w-full h-48 object-contain mb-4 rounded-lg group-hover:shadow-2xl transition-shadow duration-300" />
+                              <img src={vis.src.startsWith('http') || vis.src.startsWith('/sparrow-ai-tech/') ? vis.src : `/sparrow-ai-tech/${vis.src.replace(/^\/+/, '')}`} alt={vis.name} className="w-full h-48 object-contain mb-4 rounded-lg group-hover:shadow-2xl transition-shadow duration-300" />
                               <h4 className="text-lg font-semibold text-sky-700 mb-2">{vis.name}</h4>
                               <p className="text-slate-600 text-sm">{vis.context}</p>
                             </motion.div>
@@ -688,7 +690,10 @@ const App = () => {
                             { src: `/sparrow-ai-tech/assets/images/hard-coder-architecture.png`, alt: 'Hard-Coder Architecture' },
                             { src: `/sparrow-ai-tech/assets/images/mcp-router-flow.png`, alt: 'MCP Router Flow' },
                             { src: `/sparrow-ai-tech/assets/images/project-orchestrator-diagram.png`, alt: 'Project Orchestrator Diagram' }
-                          ]}
+                          ].map(slide => ({
+                            ...slide,
+                            src: slide.src.startsWith('http') || slide.src.startsWith('/sparrow-ai-tech/') ? slide.src : `/sparrow-ai-tech/${slide.src.replace(/^\/+/, '')}`
+                          }))}
                           render={{
                             slide: ({ slide }) => (
                               <img src={slide.src} alt={slide.alt} style={{ maxHeight: '80vh', maxWidth: '90vw', margin: 'auto' }} />
@@ -814,7 +819,7 @@ const App = () => {
                         <h3 className="text-xl font-semibold text-sky-700 mb-4">Standalone (HTML)</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                           {infographicsHtml.map((info, idx) => (
-                            <a key={idx} href={info.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
+                            <a key={idx} href={`/sparrow-ai-tech${info.url}`} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
                               <h4 className="text-lg font-semibold text-sky-600 mb-2">{info.title}</h4>
                             </a>
                           ))}

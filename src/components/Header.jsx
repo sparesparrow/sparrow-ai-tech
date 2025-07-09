@@ -6,6 +6,7 @@ const Header = () => {
   return (
     <nav className="header-nav" data-cy="header-nav">
       <ul>
+        {/* These are in-page navigation links (hash links), so they do not need the /sparrow-ai-tech/ prefix. If you add links to other pages, use absolute paths starting with /sparrow-ai-tech/. */}
         <li><a href="#projects" data-cy="nav-projects">{t('header.nav_projects')}</a></li>
         <li><a href="#skills" data-cy="nav-skills">{t('header.nav_skills')}</a></li>
         <li><a href="#about" data-cy="nav-about">{t('header.nav_about')}</a></li>

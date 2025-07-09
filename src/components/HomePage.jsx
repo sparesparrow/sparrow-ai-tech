@@ -43,7 +43,7 @@ const HeroSection = ({ translations }) => (
       <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight mb-4" dangerouslySetInnerHTML={{ __html: translations.hero_title_html }} />
       <p className="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 mb-8">{translations.hero_subtitle}</p>
       <img
-        src={`${import.meta.env.BASE_URL}assets/images/claude4-system-card-img-003.png`}
+        src={`/sparrow-ai-tech/assets/images/claude4-system-card-img-003.png`}
         alt="Abstract AI system card visual, suitable for hero section"
         className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-8"
         loading="eager"
@@ -101,29 +101,29 @@ const ArticlesSection = ({ translations }) => {
     {
       name: 'Getting Started',
       articles: [
-        { title: 'MCP Ecosystem Overview', url: `${import.meta.env.BASE_URL}articles/merged/mcp-ecosystem-overview.md` },
-        { title: 'Hexagonal Architecture in MCP', url: `${import.meta.env.BASE_URL}articles/merged/hexagonal-architecture-in-mcp.md` },
+        { title: 'MCP Ecosystem Overview', url: '/sparrow-ai-tech/articles/merged/mcp-ecosystem-overview.md' },
+        { title: 'Hexagonal Architecture in MCP', url: '/sparrow-ai-tech/articles/merged/hexagonal-architecture-in-mcp.md' },
       ]
     },
     {
       name: 'Guides',
       articles: [
-        { title: 'Human Action in AI', url: `${import.meta.env.BASE_URL}articles/human-action.md` },
-        { title: 'Liberty', url: `${import.meta.env.BASE_URL}articles/liberty.md` },
+        { title: 'Human Action in AI', url: '/sparrow-ai-tech/articles/human-action.md' },
+        { title: 'Liberty', url: '/sparrow-ai-tech/articles/liberty.md' },
       ]
     },
     {
       name: 'Tutorials',
       articles: [
-        { title: 'Getting Started with MCP Prompts', url: `${import.meta.env.BASE_URL}articles/mcp-prompts.md` },
-        { title: 'MCP in Practice', url: `${import.meta.env.BASE_URL}articles/mcp-in-practice.en.md` },
+        { title: 'Getting Started with MCP Prompts', url: '/sparrow-ai-tech/articles/mcp-prompts.md' },
+        { title: 'MCP in Practice', url: '/sparrow-ai-tech/articles/mcp-in-practice.en.md' },
       ]
     },
     {
       name: 'Reference',
       articles: [
-        { title: 'MCP Contributions', url: `${import.meta.env.BASE_URL}articles/mcp-contributions.en.md` },
-        { title: 'Cursor Rules', url: `${import.meta.env.BASE_URL}articles/cursor-rules.md` },
+        { title: 'MCP Contributions', url: '/sparrow-ai-tech/articles/mcp-contributions.en.md' },
+        { title: 'Cursor Rules', url: '/sparrow-ai-tech/articles/cursor-rules.md' },
       ]
     }
   ];
@@ -140,7 +140,7 @@ const ArticlesSection = ({ translations }) => {
               <h3 className="text-2xl font-semibold text-sky-700 mb-4">{cat.name}</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 {cat.articles.map((article, i) => (
-                  <a key={i} href={article.url} target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-slate-100 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
+                  <a key={i} href={article.url.startsWith('/sparrow-ai-tech/') ? article.url : `/sparrow-ai-tech${article.url}`} target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-slate-100 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
                     <span className="text-lg font-semibold text-sky-700">{article.title}</span>
                   </a>
                 ))}
@@ -159,22 +159,22 @@ const InfographicsSection = () => {
     {
       title: 'MCP Ecosystem',
       description: 'How the sparesparrow open-source toolchain revolutionizes AI agent development.',
-      url: `${import.meta.env.BASE_URL}infographics/1.html`,
+      url: '/sparrow-ai-tech/infographics/1.html',
     },
     {
       title: 'Human-in-the-Loop AI',
       description: 'The indispensable partnership between human intuition and artificial intelligence.',
-      url: `${import.meta.env.BASE_URL}infographics/2.html`,
+      url: '/sparrow-ai-tech/infographics/2.html',
     },
     {
       title: 'Hexagonal Architecture',
       description: 'How the Ports & Adapters pattern protects your application core.',
-      url: `${import.meta.env.BASE_URL}infographics/3.html`,
+      url: '/sparrow-ai-tech/infographics/3.html',
     },
     {
       title: 'ElevenLabs Widget Demo',
       description: 'Live demo of the ElevenLabs voice widget integration.',
-      url: `${import.meta.env.BASE_URL}infographics/elevenlabs-widget.html`,
+      url: '/sparrow-ai-tech/infographics/elevenlabs-widget.html',
     },
   ];
   return (
@@ -186,7 +186,7 @@ const InfographicsSection = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {infographics.map((info, idx) => (
-            <a key={idx} href={info.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
+            <a key={idx} href={info.url.startsWith('/sparrow-ai-tech/') ? info.url : `/sparrow-ai-tech${info.url}`} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
               <h3 className="text-lg font-semibold text-sky-700 mb-2">{info.title}</h3>
               <p className="text-slate-600 mb-2">{info.description}</p>
               <span className="inline-block mt-4 text-sky-600 font-bold">View Infographic &rarr;</span>
@@ -202,37 +202,37 @@ const InfographicsSection = () => {
 const ResearchHighlightsSection = () => {
   const images = [
     {
-      src: `${import.meta.env.BASE_URL}assets/images/2212.08073v1-img-002.png`,
+      src: '/sparrow-ai-tech/assets/images/2212.08073v1-img-002.png',
       alt: 'Diagram showing the hexagonal architecture of the MCP server.',
       caption: 'MCP Server: Hexagonal Architecture Diagram',
       source: '',
     },
     {
-      src: `${import.meta.env.BASE_URL}assets/images/2401.05566v3-img-055.png`,
+      src: '/sparrow-ai-tech/assets/images/2401.05566v3-img-055.png',
       alt: 'Benchmark results chart from MCP research.',
       caption: 'MCP Research: Benchmark Results',
       source: '',
     },
     {
-      src: `${import.meta.env.BASE_URL}assets/images/claude4-system-card-img-008.png`,
+      src: '/sparrow-ai-tech/assets/images/claude4-system-card-img-008.png',
       alt: 'Claude 4 System Card: Benchmark Performance',
       caption: 'Claude 4 System Card: Benchmark Performance',
       source: 'https://www-cdn.anthropic.com/6be99a52cb68eb70eb9572b4cafad13df32ed995.pdf',
     },
     {
-      src: `${import.meta.env.BASE_URL}assets/images/2401.05566v3-img-019.png`,
+      src: '/sparrow-ai-tech/assets/images/2401.05566v3-img-019.png',
       alt: 'Data flow diagram for agentic workflows.',
       caption: 'Agentic Workflow: Data Flow Diagram',
       source: '',
     },
     {
-      src: `${import.meta.env.BASE_URL}assets/images/claude4-system-card-img-007.png`,
+      src: '/sparrow-ai-tech/assets/images/claude4-system-card-img-007.png',
       alt: 'Claude 4: Agentic Coding Workflow',
       caption: 'Claude 4: Agentic Coding Workflow',
       source: 'https://www-cdn.anthropic.com/6be99a52cb68eb70eb9572b4cafad13df32ed995.pdf',
     },
     {
-      src: `${import.meta.env.BASE_URL}assets/images/2401.05566v3-img-008.jpg`,
+      src: '/sparrow-ai-tech/assets/images/2401.05566v3-img-008.jpg',
       alt: 'Abstract conceptual visual from MCP research.',
       caption: 'MCP Research: Conceptual Visual',
       source: '',
@@ -248,7 +248,7 @@ const ResearchHighlightsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {images.map((img, idx) => (
             <div key={idx} className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
-              <img src={img.src.replace(/^\//, '')} alt={img.alt} className="max-h-64 w-auto object-contain mb-4 rounded border" loading="lazy" />
+              <img src={img.src.startsWith('http') || img.src.startsWith('/sparrow-ai-tech/') ? img.src : `/sparrow-ai-tech/${img.src.replace(/^\/+/, '')}`} alt={img.alt} className="max-h-64 w-auto object-contain mb-4 rounded border" loading="lazy" />
               <div className="text-sm text-stone-700 text-center mb-2">{img.caption}</div>
               {img.source && <a href={img.source} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 underline">Source</a>}
             </div>
@@ -377,7 +377,7 @@ const EditableMermaidDemoSection = () => {
     setSaving(true);
     setToast(null);
     try {
-      const res = await fetch('/api/diagrams', {
+      const res = await fetch('/sparrow-ai-tech/api/diagrams', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code }),
@@ -434,7 +434,7 @@ const SavedDiagramsGallery = () => {
   React.useEffect(() => {
     setLoading(true);
     setError(null);
-    fetch('/api/diagrams')
+    fetch('/sparrow-ai-tech/api/diagrams')
       .then(res => res.ok ? res.json() : Promise.reject('Failed to fetch'))
       .then(setDiagrams)
       .catch(() => setError('Failed to load diagrams'))
@@ -443,7 +443,7 @@ const SavedDiagramsGallery = () => {
   const handleDelete = async (id) => {
     setDeleting(id);
     try {
-      await fetch(`${import.meta.env.BASE_URL}api/diagrams/${id}`, { method: 'DELETE' });
+      await fetch(`/sparrow-ai-tech/api/diagrams/${id}`, { method: 'DELETE' });
       setDiagrams(diagrams => diagrams.filter(d => d.id !== id));
     } catch { }
     setDeleting(null);
@@ -452,7 +452,7 @@ const SavedDiagramsGallery = () => {
     setSavingOrder(true);
     setOrderToast(null);
     try {
-      const res = await fetch('/api/diagrams/reorder', {
+      const res = await fetch('/sparrow-ai-tech/api/diagrams/reorder', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ order: diagrams.map(d => d.id) }),
@@ -648,7 +648,7 @@ const DownloadPdfButton = () => {
     setError(null);
     try {
       const html = document.documentElement.outerHTML;
-      const res = await fetch('/api/pdf', {
+      const res = await fetch('/sparrow-ai-tech/api/pdf', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ html }),
@@ -700,7 +700,7 @@ const ChatbotModal = ({ open, onClose }) => {
     setError(null);
     setMessages((msgs) => [...msgs, { from: "user", text: input }]);
     try {
-      const res = await fetch("/api/chatbot", {
+      const res = await fetch("/sparrow-ai-tech/api/chatbot", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input }),
