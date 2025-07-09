@@ -1,14 +1,15 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MarkdownViewer from './MarkdownViewer';
+import { jest } from '@jest/globals';
 
 // Mock fetch for markdown loading
 beforeEach(() => {
   global.fetch = jest.fn((url) => {
-    if (url.endsWith('test.md')) {
+    if (typeof url === 'string' && url.endsWith('test.md')) {
       return Promise.resolve({ ok: true, text: () => Promise.resolve('# Hello World') });
     }
-    if (url.endsWith('bad.md')) {
+    if (typeof url === 'string' && url.endsWith('bad.md')) {
       return Promise.resolve({ ok: false });
     }
     return Promise.reject(new Error('Unknown URL'));

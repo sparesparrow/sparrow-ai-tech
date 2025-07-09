@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-<<<<<<< HEAD
 import DecorativeDivider from './ui/DecorativeDivider.jsx';
 import decorativeTexts from '../data/decorativeTexts.json';
-=======
 import { useI18n } from '../i18n';
->>>>>>> 33e29b2 (feat: Enhance localization support and improve UI components; implement PDF download functionality and voice chatbot integration)
 
 // Example props:
 // translations: { ... } (from cs.json/en.json)
@@ -774,7 +771,9 @@ const ChatbotButton = ({ onClick }) => (
 
 // Patch: Add default values for props and defensive checks for translations and translations.nav
 const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () => { }, prompts = [] }) => {
-  const { t, language: currentLanguage } = useI18n();
+  const i18n = useI18n() || {};
+  const t = i18n.t || ((x) => x);
+  const currentLanguage = i18n.language || 'en';
   // Defensive: Ensure translations.nav exists and has expected keys
   const nav = translations.nav || { services: 'Services', articles: 'Articles', about: 'About', contact: 'Contact' };
 
