@@ -14,7 +14,7 @@ const { title = "" } = Astro.props;
       // Try Expressive Code copy button first
       const copyButton = element.querySelector(".copy button");
       let code = "";
-      if (copyButton && copyButton.dataset.code) {
+      if (copyButton && (copyButton instanceof HTMLElement) && copyButton.dataset.code) {
         code = copyButton.dataset.code.replace(/\u007F/g, "\n");
       } else {
         // Fallback: extract from code block lines
