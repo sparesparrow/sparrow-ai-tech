@@ -1,16 +1,48 @@
 import { jest } from '@jest/globals';
 import { act } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { I18nProvider } from '../../i18n.jsx';
+import { I18nProvider, useI18n } from '../../i18n.jsx';
+import React, { useState } from 'react';
+import Header from '../Header.jsx';
 
-// ESM-compatible mocking for loadTranslations only
-jest.unstable_mockModule('../../i18n.jsx', () => ({
-  ...jest.requireActual('../../i18n.jsx'),
-  loadTranslations: async (lang) => lang === 'cs' ? { nav: { home: 'Domů' } } : { nav: { home: 'Home' } },
-}));
+const mockTranslations = {
+  en: {
+    header: {
+      nav_projects: 'Projects',
+      nav_skills: 'Skills',
+      nav_about: 'About',
+      nav_contact: 'Contact',
+    },
+  },
+  cs: {
+    header: {
+      nav_projects: 'Projekty',
+      nav_skills: 'Dovednosti',
+      nav_about: 'O nás',
+      nav_contact: 'Kontakt',
+    },
+  },
+};
+
+beforeEach(() => {
+  global.fetch = jest.fn((url) => {
+    if (url.includes('/locales/en/common.json')) {
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockTranslations.en) });
+    }
+    if (url.includes('/locales/cs/common.json')) {
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockTranslations.cs) });
+    }
+    return Promise.resolve({ ok: false });
+  });
+});
+afterEach(() => {
+  jest.resetAllMocks();
+});
+
+// Remove TestI18nProvider and use the real I18nProvider with fetch mocking
 
 const TestComponent = () => {
-  const { t, language, setLanguage } = require('../../i18n.jsx').useI18n();
+  const { t, language, setLanguage } = useI18n();
   return (
     <div>
       <span data-testid="lang">{language}</span>
@@ -26,24 +58,42 @@ describe('I18nProvider', () => {
     await act(async () => {
       render(
         <I18nProvider>
-          <TestComponent />
+          <Header />
         </I18nProvider>
       );
     });
-    expect(screen.getByTestId('lang').textContent).toBe('en');
-    expect(await screen.findByText('Home')).toBeInTheDocument();
+    // Wait for the translation to load
+    expect(await screen.findByText('Projects')).toBeInTheDocument();
+    // The EN button should be disabled, CS enabled
+    expect(screen.getByRole('button', { name: 'EN' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'CS' })).not.toBeDisabled();
   });
 
   it('switches to Czech and persists', async () => {
+    // Step 1: Render and wait for English
     await act(async () => {
       render(
         <I18nProvider>
-          <TestComponent />
+          <Header />
         </I18nProvider>
       );
-      fireEvent.click(screen.getByText('CZ'));
     });
-    expect(screen.getByTestId('lang').textContent).toBe('cs');
-    expect(await screen.findByText('Domů')).toBeInTheDocument();
+    // Debug: Output the DOM after initial render
+    // eslint-disable-next-line no-console
+    console.log('DOM after render:', screen.debug ? screen.debug() : 'no debug');
+    await screen.findByText('Projects');
+
+    // Step 2: Click CS
+    const csButton = await screen.findByRole('button', { name: 'CS' });
+    fireEvent.click(csButton);
+
+    // Debug: Output the DOM after clicking CS
+    // eslint-disable-next-line no-console
+    console.log('DOM after CS click:', screen.debug ? screen.debug() : 'no debug');
+
+    // Step 3: Wait for Czech translation
+    expect(await screen.findByText('Projekty')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'CS' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'EN' })).not.toBeDisabled();
   });
 }); 

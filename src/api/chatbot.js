@@ -3,7 +3,7 @@
 // Request body: { text: string, voice_id?: string, ... }
 // Response: { audio_url: string, ... } or error
 
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch'; // Remove this line
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
   try {
     // Prepare ElevenLabs API request
     const elevenLabsUrl = `https://api.elevenlabs.io/v1/text-to-speech/${voice_id || 'default'}`;
-    const elevenLabsRes = await fetch(elevenLabsUrl, {
+    const elevenLabsRes = await globalThis.fetch(elevenLabsUrl, {
       method: 'POST',
       headers: {
         'xi-api-key': apiKey,
@@ -48,4 +48,5 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).json({ error: error.message || 'Internal server error' });
   }
-} 
+}
+// Note: In production, ensure fetch is polyfilled (e.g., with node-fetch) if not available. 

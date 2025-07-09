@@ -8,10 +8,10 @@ import i18nConfig from './astro-i18n.config.mjs';
 
 export default defineConfig({
   site: 'https://sparesparrow.github.io/sparrow-ai-tech',
-  base: '/sparrow-ai-tech/',
+  base: '/',
   integrations: [
     react(),
-    i18n(i18nConfig),
+    // i18n(i18nConfig), // Temporarily disabled for debugging
   ],
   markdown: {
     rehypePlugins: [
