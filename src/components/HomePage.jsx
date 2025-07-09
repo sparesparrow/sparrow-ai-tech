@@ -4,6 +4,7 @@ import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } 
 import { CSS } from '@dnd-kit/utilities';
 import DecorativeDivider from './ui/DecorativeDivider.jsx';
 import decorativeTexts from '../data/decorativeTexts.json';
+<<<<<<< HEAD
 import { useI18n } from '../i18n';
 import ReactMarkdown from 'react-markdown';
 import Modal from './ui/Modal.jsx';
@@ -13,6 +14,8 @@ import PrimaryButton from './ui/PrimaryButton.jsx';
 import SecondaryButton from './ui/SecondaryButton.jsx';
 import SkeletonLoader from './ui/SkeletonLoader.jsx';
 import PortfolioProjectsTable from './PortfolioProjectsTable';
+=======
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
 
 // Example props:
 // translations: { ... } (from cs.json/en.json)
@@ -48,8 +51,13 @@ const PromptBlock = ({ prompt }) => (
 const HeroSection = ({ translations }) => (
   <section id="hero" className="w-full min-h-screen flex items-center bg-white dark:bg-slate-900 pt-20 transition-colors duration-300" data-cy="hero-section">
     <div className="container mx-auto px-6 text-center">
+<<<<<<< HEAD
       <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 dark:text-stone-100 leading-tight mb-4" dangerouslySetInnerHTML={{ __html: translations.hero_title_html }} />
       <p className="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 dark:text-stone-300 mb-8">{translations.hero_subtitle}</p>
+=======
+      <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight mb-4" dangerouslySetInnerHTML={{ __html: translations.hero_title_html }} />
+      <p className="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 mb-8">{translations.hero_subtitle}</p>
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
       <img
         src={`/sparrow-ai-tech/assets/images/claude4-system-card-img-003.png`}
         alt="Abstract AI system card visual, suitable for hero section"
@@ -351,6 +359,7 @@ const PopularReposSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-sky-400 dark:text-sky-300">Popular GitHub Repositories</h2>
           <p className="text-lg text-slate-300 dark:text-stone-300 mt-2 max-w-2xl mx-auto">Explore my most starred open-source projects.</p>
           <div className="mt-4 flex justify-center gap-4">
+<<<<<<< HEAD
             <SecondaryButton onClick={() => setSortBy('stars')} selected={sortBy === 'stars'}>Sort by Stars</SecondaryButton>
             <SecondaryButton onClick={() => setSortBy('forks')} selected={sortBy === 'forks'}>Sort by Forks</SecondaryButton>
           </div>
@@ -367,6 +376,21 @@ const PopularReposSection = () => {
                 rel="noopener noreferrer"
                 aria-label={`View repo: ${repo.name}`}
               />
+=======
+            <button onClick={() => setSortBy('stars')} className={`px-4 py-2 rounded ${sortBy === 'stars' ? 'bg-sky-600 text-white' : 'bg-slate-800 text-sky-300'}`}>Sort by Stars</button>
+            <button onClick={() => setSortBy('forks')} className={`px-4 py-2 rounded ${sortBy === 'forks' ? 'bg-sky-600 text-white' : 'bg-slate-800 text-sky-300'}`}>Sort by Forks</button>
+          </div>
+        </div>
+        {loading ? <div className="text-sky-300 text-center">Loading...</div> : error ? <div className="text-red-500 text-center">{error}</div> : (
+          <div className="flex flex-wrap justify-center gap-6">
+            {sorted.map(repo => (
+              <div key={repo.url} className="bg-slate-800 rounded-xl shadow p-6 min-w-[220px] max-w-xs text-center">
+                <GithubRepoTooltip href={repo.url}>
+                  <span className="text-lg font-semibold text-sky-300 hover:underline">{repo.name}</span>
+                </GithubRepoTooltip>
+                <div className="mt-2 text-slate-400">⭐ {repo.stars} | 🍴 {repo.forks}</div>
+              </div>
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
             ))}
           </div>
         )}
@@ -432,7 +456,11 @@ const EditableMermaidDemoSection = () => {
           <p className="text-lg text-slate-300 dark:text-stone-300 mt-2 max-w-2xl mx-auto">Edit the Mermaid code below and see your diagram update instantly.</p>
           <div className="mt-4 flex justify-center gap-4">
             {EXAMPLES.map(ex => (
+<<<<<<< HEAD
               <button key={ex.label} onClick={() => handleExample(ex.label)} className={`px-4 py-2 rounded ${example === ex.label ? 'bg-emerald-600 text-white dark:bg-emerald-700 dark:text-white' : 'bg-slate-800 text-emerald-300 dark:bg-slate-700 dark:text-emerald-300'}`}>{ex.label}</button>
+=======
+              <button key={ex.label} onClick={() => handleExample(ex.label)} className={`px-4 py-2 rounded ${example === ex.label ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-emerald-300'}`}>{ex.label}</button>
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
             ))}
           </div>
         </div>
@@ -520,12 +548,19 @@ const SavedDiagramsGallery = () => {
         {...listeners}
         className={`bg-slate-800 dark:bg-slate-700 p-6 rounded-xl shadow-lg relative cursor-move select-none`}
       >
+<<<<<<< HEAD
         <button onClick={() => handleDelete(diagram.id)} disabled={deleting === diagram.id} className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 dark:bg-red-700 dark:text-white disabled:opacity-50">
           {deleting === diagram.id ? 'Deleting...' : 'Delete'}
         </button>
         <div className="mb-2 text-slate-400 dark:text-stone-300 text-xs">ID: {diagram.id}</div>
         <div className="mermaid-diagram border rounded bg-slate-900 dark:bg-slate-800 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: window.mermaid?.render ? window.mermaid.render(`gallery-${diagram.id}`, diagram.code, () => { }) : '' }} />
         <pre className="mt-2 text-xs text-slate-300 dark:text-stone-300 bg-slate-900 dark:bg-slate-800 p-2 rounded">{diagram.code}</pre>
+=======
+        <button onClick={() => handleDelete(diagram.id)} disabled={deleting === diagram.id} className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 disabled:opacity-50">{deleting === diagram.id ? 'Deleting...' : 'Delete'}</button>
+        <div className="mb-2 text-slate-400 text-xs">ID: {diagram.id}</div>
+        <div className="mermaid-diagram border rounded bg-slate-900 p-4 overflow-x-auto" dangerouslySetInnerHTML={{ __html: window.mermaid?.render ? window.mermaid.render(`gallery-${diagram.id}`, diagram.code, () => { }) : '' }} />
+        <pre className="mt-2 text-xs text-slate-300 bg-slate-900 p-2 rounded">{diagram.code}</pre>
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
       </div>
     );
   }
@@ -552,7 +587,11 @@ const SavedDiagramsGallery = () => {
             {orderToast && <span className="text-emerald-400">{orderToast}</span>}
           </div>
         </div>
+<<<<<<< HEAD
         {loading ? <SkeletonLoader type="card" count={4} /> : error ? <div className="text-red-500 dark:text-red-500 text-center">{error}</div> : (
+=======
+        {loading ? <div className="text-emerald-300 text-center">Loading...</div> : error ? <div className="text-red-500 text-center">{error}</div> : (
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
           <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             <SortableContext items={diagrams.map(d => d.id)} strategy={verticalListSortingStrategy}>
               <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -594,8 +633,13 @@ const AboutSection = ({ translations }) => {
             <ol className="space-y-4">
               {steps.map((step, i) => (
                 <li key={i} className="flex items-start">
+<<<<<<< HEAD
                   <span className="w-8 h-8 flex items-center justify-center bg-sky-600 text-white rounded-full font-bold mr-4 dark:bg-sky-700 dark:text-white">{i + 1}</span>
                   <span className="text-lg text-stone-700 dark:text-stone-200">{step}</span>
+=======
+                  <span className="w-8 h-8 flex items-center justify-center bg-sky-600 text-white rounded-full font-bold mr-4">{i + 1}</span>
+                  <span className="text-lg text-stone-700">{step}</span>
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
                 </li>
               ))}
             </ol>
@@ -828,10 +872,16 @@ const ChatbotModal = ({ open, onClose }) => {
 };
 
 // Patch: Add default values for props and defensive checks for translations and translations.nav
+<<<<<<< HEAD
 const HomePage = ({ prompts = [] }) => {
   const { t, language, setLanguage } = useI18n();
   // Defensive: Ensure translations.nav exists and has expected keys
   const nav = t('nav');
+=======
+const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () => { }, prompts = [] }) => {
+  // Defensive: Ensure translations.nav exists and has expected keys
+  const nav = translations.nav || { services: 'Services', articles: 'Articles', about: 'About', contact: 'Contact' };
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
 
   // Helper to get divider by index (cycle if not enough)
   const getDivider = (idx) => {
@@ -841,11 +891,19 @@ const HomePage = ({ prompts = [] }) => {
 
   // Sections with dividers between them
   const sections = [
+<<<<<<< HEAD
     <HeroSection key="hero" translations={{ hero_title_html: t('hero.title_html'), hero_subtitle: t('hero.subtitle'), cta_quick_analysis_hero: t('hero.cta_quick_analysis_hero') }} />,
     getDivider(0),
     <ServicesSection key="services" translations={{ services_title: t('services.title'), services_subtitle: t('services.subtitle'), service_tab_ai: t('services.tab.ai'), service_tab_security: t('services.tab.security'), service_tab_linux: t('services.tab.linux'), service_tab_software: t('services.tab.software'), service_tab_modernization: t('services.tab.modernization'), service_tab_ai_content: t('services.tab.ai_content'), service_tab_security_content: t('services.tab.security_content'), service_tab_linux_content: t('services.tab.linux_content'), service_tab_software_content: t('services.tab.software_content'), service_tab_modernization_content: t('services.tab.modernization_content') }} />,
     getDivider(1),
     <ArticlesSection key="articles" translations={{ articles_title: t('articles.title'), articles_subtitle: t('articles.subtitle'), articles: t('articles.articles') }} />,
+=======
+    <HeroSection key="hero" translations={translations} />,
+    getDivider(0),
+    <ServicesSection key="services" translations={translations} />,
+    getDivider(1),
+    <ArticlesSection key="articles" translations={translations} />,
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
     <InfographicsSection key="infographics" />,
     getDivider(2),
     <ResearchHighlightsSection key="research" />,
@@ -854,6 +912,7 @@ const HomePage = ({ prompts = [] }) => {
     <EditableMermaidDemoSection key="editable-mermaid" />,
     <SavedDiagramsGallery key="saved-diagrams" />,
     getDivider(4),
+<<<<<<< HEAD
     <AboutSection key="about" translations={{ about_title: t('about.title'), about_subtitle: t('about.subtitle'), about_benefit1_title: t('about.benefit1_title'), about_benefit2_title: t('about.benefit2_title'), about_benefit3_title: t('about.benefit3_title'), process_title: t('about.process_title'), process_step1: t('about.process_step1'), process_step2: t('about.process_step2'), process_step3: t('about.process_step3'), process_step4: t('about.process_step4') }} />,
     <ContactSection key="contact" translations={{ contact_title: t('contact.title'), contact_subtitle: t('contact.subtitle'), contact_name_label: t('contact.name_label'), contact_name_placeholder: t('contact.name_placeholder'), contact_email_label: t('contact.email_label'), contact_email_placeholder: t('contact.email_placeholder'), contact_message_label: t('contact.message_label'), contact_message_placeholder: t('contact.message_placeholder'), contact_submit_button: t('contact.submit_button'), contact_success: t('contact.success') }} />
   ];
@@ -870,6 +929,12 @@ const HomePage = ({ prompts = [] }) => {
 
   const [chatbotOpen, setChatbotOpen] = useState(false);
 
+=======
+    <AboutSection key="about" translations={translations} />,
+    <ContactSection key="contact" translations={translations} />
+  ];
+
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
   return (
     <div className="bg-stone-50 dark:bg-slate-900 min-h-screen flex flex-col">
       <header className="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-stone-200 dark:bg-slate-800 dark:border-slate-700">
@@ -890,7 +955,11 @@ const HomePage = ({ prompts = [] }) => {
           </nav>
         </div>
       </header>
+<<<<<<< HEAD
       <main className="flex-1 pt-20" role="main" aria-label="Main content">
+=======
+      <main className="flex-1 pt-20">
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
         {sections.map((section, idx) => (
           <React.Fragment key={idx}>{section}</React.Fragment>
         ))}
@@ -909,6 +978,7 @@ const HomePage = ({ prompts = [] }) => {
 };
 
 export default HomePage;
+<<<<<<< HEAD
 
 PauseBlock.propTypes = { text: PropTypes.string.isRequired };
 PauseSeparator.propTypes = {};
@@ -928,3 +998,5 @@ ChatbotModal.propTypes = { open: PropTypes.bool.isRequired, onClose: PropTypes.f
 ChatbotButton.propTypes = { onClick: PropTypes.func.isRequired };
 ArticleModal.propTypes = { open: PropTypes.bool.isRequired, onClose: PropTypes.func.isRequired, articleUrl: PropTypes.string, title: PropTypes.string };
 HomePage.propTypes = { prompts: PropTypes.array };
+=======
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
