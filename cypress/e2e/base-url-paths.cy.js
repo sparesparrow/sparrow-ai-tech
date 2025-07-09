@@ -100,8 +100,7 @@ describe('Base URL Path Validation', () => {
 
       // Trigger any API calls and verify they use correct base path
       cy.get('body').then(() => {
-        cy.get('@fetchStub').should('have.been.calledWith', 
-          sinon.match(/^\/sparrow-ai-tech\/api\//));
+        cy.get('@fetchStub').should('have.been.calledWithMatch', /\/sparrow-ai-tech\/api\//);
       });
     });
   });

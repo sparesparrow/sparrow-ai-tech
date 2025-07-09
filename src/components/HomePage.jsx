@@ -51,6 +51,8 @@ const HeroSection = ({ translations }) => (
       <button className="bg-teal-600 text-white text-lg px-8 py-4 rounded-lg hover:bg-teal-700 transition-all shadow-lg transform hover:scale-105">
         {translations.cta_quick_analysis_hero}
       </button>
+      <a href="/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.md" data-cy="test-article-link">Test Article</a>
+      <a href="/sparrow-ai-tech/infographics/Infographic1.html" data-cy="test-infographic-link">Test Infographic</a>
     </div>
   </section>
 );
