@@ -1,15 +1,22 @@
+<<<<<<< HEAD
 name: CI/CD & Deploy Pipeline
+=======
+name: Deploy to GitHub Pages
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+<<<<<<< HEAD
 
 # Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
+=======
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
 
 jobs:
   lint:
@@ -20,12 +27,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
+<<<<<<< HEAD
           node-version: '18'
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
       - name: Run linter
         run: npm run lint
+=======
+          node-version: 20.x
+      - run: npm ci
+      - run: npm run lint
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
 
   test:
     runs-on: ubuntu-latest
@@ -36,6 +49,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
+<<<<<<< HEAD
           node-version: '18'
           cache: 'npm'
       - name: Install dependencies
@@ -44,6 +58,11 @@ jobs:
         run: npm test
       - name: Run Cypress E2E tests
         run: npx cypress run
+=======
+          node-version: 20.x
+      - run: npm ci
+      - run: npm test
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
 
   build:
     runs-on: ubuntu-latest
@@ -54,6 +73,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
+<<<<<<< HEAD
           node-version: '18'
           cache: 'npm'
       - name: Install dependencies
@@ -95,10 +115,36 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, lighthouse]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+=======
+          node-version: 20.x
+      - run: npm ci
+      - name: Install Playwright (for mermaid rendering)
+        run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
     permissions:
       pages: write
       id-token: write
       contents: read
+<<<<<<< HEAD
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
+=======
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v4
+      - uses: actions/download-pages-artifact@v3
+      - id: deployment
+        uses: actions/deploy-pages@v4
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)

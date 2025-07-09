@@ -1,28 +1,28 @@
 describe('Infographics Page', () => {
   it('renders Infographic1', () => {
-    cy.visit('/sparrow-ai-tech/infographics/Infographic1');
+    cy.visitApp('/infographics/Infographic1');
     cy.contains('Infographic 1').should('be.visible');
   });
 
   it('renders Infographic2', () => {
-    cy.visit('/sparrow-ai-tech/infographics/Infographic2');
+    cy.visitApp('/infographics/Infographic2');
     cy.contains('Infographic 2').should('be.visible');
   });
 
   it('renders Infographic3', () => {
-    cy.visit('/sparrow-ai-tech/infographics/Infographic3');
+    cy.visitApp('/infographics/Infographic3');
     cy.contains('Infographic 3').should('be.visible');
   });
 
   it('renders SPA infographic', () => {
-    cy.visit('/sparrow-ai-tech/infographics/SPA');
+    cy.visitApp('/infographics/SPA');
     cy.contains('Single Page Application').should('be.visible');
   });
 });
 
 describe('Navigation and Main Sections', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
 
   it('should display all main navigation links', () => {
@@ -84,7 +84,7 @@ describe('Navigation and Main Sections', () => {
 describe('Mobile Navigation', () => {
   beforeEach(() => {
     cy.viewport('iphone-6');
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should open and close the mobile menu', () => {
     cy.get('#mobile-menu-button').click();
@@ -99,7 +99,7 @@ describe('Mobile Navigation', () => {
 
 describe('FAQ Section', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should expand and collapse FAQ answers', () => {
     cy.get('.faq-question').first().as('firstFaq');
@@ -112,7 +112,7 @@ describe('FAQ Section', () => {
 
 describe('Contact Form', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should validate required fields', () => {
     cy.get('#contact-form').within(() => {
@@ -134,7 +134,7 @@ describe('Contact Form', () => {
 
 describe('Language and Theme Toggle', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should toggle language and update UI', () => {
     cy.get('#language-toggle').click();
@@ -148,7 +148,7 @@ describe('Language and Theme Toggle', () => {
 
 describe('References Carousel', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should navigate carousel slides', () => {
     cy.get('#carousel-next').click();
@@ -160,7 +160,7 @@ describe('References Carousel', () => {
 
 describe('Floating WhatsApp Button', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should be visible and have correct link', () => {
     cy.get('.floating-contact-btn').should('be.visible').and('have.attr', 'href').and('include', 'wa.me');
@@ -169,7 +169,7 @@ describe('Floating WhatsApp Button', () => {
 
 describe('Timeline and Architecture Sections', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should display the timeline section', () => {
     cy.get('#timeline').should('exist');
@@ -183,7 +183,7 @@ describe('Timeline and Architecture Sections', () => {
 
 describe('Accessibility', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('main sections should have headings and be reachable', () => {
     cy.get('main h2').should('have.length.at.least', 1);
@@ -193,7 +193,7 @@ describe('Accessibility', () => {
 
 describe('Modal Dialogs', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should open and close the Full Analysis modal', () => {
     cy.get('#read-full-analysis-link').click();
@@ -217,7 +217,7 @@ describe('Modal Dialogs', () => {
 
 describe('Service Tabs', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should switch service tabs and show correct content', () => {
     cy.get('.service-tab').each(($tab) => {
@@ -230,7 +230,7 @@ describe('Service Tabs', () => {
 
 describe('Article Modal', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should open and close the article modal', () => {
     cy.get('.read-more-button:not([disabled])').first().click();
@@ -242,7 +242,7 @@ describe('Article Modal', () => {
 
 describe('Quick Analysis Form Output', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should show results after submitting the Quick Analysis form', () => {
     cy.get('#ico-input').type('12345678');
@@ -253,7 +253,7 @@ describe('Quick Analysis Form Output', () => {
 
 describe('Language Switcher Dropdown', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should change language using the dropdown', () => {
     cy.get('#site-lang-switcher').select('en');
@@ -263,7 +263,7 @@ describe('Language Switcher Dropdown', () => {
 
 describe('Back to Top Button', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should appear after scrolling and scroll to top when clicked', () => {
     cy.scrollTo('bottom');
@@ -274,7 +274,7 @@ describe('Back to Top Button', () => {
 
 describe('Timeline Keyboard Navigation', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should allow tabbing through timeline items', () => {
     cy.get('.timeline-item').first().focus().should('have.focus');
@@ -289,7 +289,7 @@ describe('Timeline Keyboard Navigation', () => {
 
 describe('FAQ Keyboard Accessibility', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visitApp('/');
   });
   it('should expand/collapse FAQ with keyboard', () => {
     cy.get('.faq-question').first().focus().type('{enter}');

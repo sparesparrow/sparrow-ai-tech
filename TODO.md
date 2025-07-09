@@ -67,6 +67,23 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [Implemented] Add a final deploy job that uses the `actions/deploy-pages` action to deploy the `dist/` folder to GitHub Pages.
   - [ToDo] **Done when:** The pipeline successfully runs and deploys the github page.
 
+<<<<<<< HEAD
+=======
+- [Done] 1. Project & Content Cleanup:
+  - [Done] Perform all file moving and standardization tasks from the "Content & Structure Cleanup" section of the original TODO list.
+  - [Done] **Done when:** The project's file structure is clean and follows the agreed-upon conventions.
+- [Done] 2. Set Up Tooling & Linters:
+  - [Done] Run `npm install --save-dev eslint prettier eslint-plugin-react @typescript-eslint/parser husky lint-staged`.
+  - [Done] Configure `.eslintrc.cjs` and `.prettierrc`.
+  - [Done] Run `npx husky-init` and configure lint-staged in `package.json` to run Prettier and ESLint on pre-commit.
+  - [Done] **Done when:** The pre-commit hook successfully formats and lints staged files.
+- [ToDo] 3. Configure CI/CD Pipeline (GitHub Actions):
+  - [ToDo] Create `.github/workflows/deploy.yml`.
+  - [ToDo] The workflow should trigger on push to main and on pull_request.
+  - [ToDo] Define jobs for: lint, test, and build.
+  - [ToDo] Add a final deploy job that uses the `actions/deploy-pages` action to deploy the `dist/` folder to GitHub Pages.
+  - [ToDo] **Done when:** The pipeline successfully runs and deploys the initial empty project.
+>>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
 - [ToDo] 4. Set Up Testing Frameworks:
   - [Done] Install and configure Cypress for E2E testing (`npx cypress init`).
   - [HelpNeeded] Install and configure Jest and Testing Library for component testing.
