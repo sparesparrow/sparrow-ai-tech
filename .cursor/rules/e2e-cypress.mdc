@@ -10,15 +10,15 @@ alwaysApply: true
 - Test page: `/MarkdownTest` (case-sensitive, matches Astro route)
 - To test a markdown file in `/articles`:
   ```js
-  cy.visit('/markdown-test?src=/articles/mcp-prompts.md')
+  cy.visit('/markdown-test?src=./articles/mcp-prompts.md')
   ```
 - For a file in `/dist`:
   ```js
-  cy.visit('/markdown-test?src=/dist/human-action-README.md')
+  cy.visit('/markdown-test?src=./dist/human-action-README.md')
   ```
 - For a file in `/public`:
   ```js
-  cy.visit('/markdown-test?src=/public/your-doc.md')
+  cy.visit('/markdown-test?src=./public/your-doc.md')
   ```
 
 ## 2. Selectors
@@ -40,7 +40,7 @@ alwaysApply: true
   ```
 - **Custom Class:**
   ```js
-  cy.visit('/markdown-test?src=/articles/mcp-prompts.md&className=my-custom-class')
+  cy.visit('/markdown-test?src=./articles/mcp-prompts.md&className=my-custom-class')
   cy.get('.my-custom-class')
   ```
 
@@ -54,19 +54,19 @@ alwaysApply: true
 ## Example Cypress Test Snippet
 ```js
 it('renders markdown content', () => {
-  cy.visit('/markdown-test?src=/articles/mcp-prompts.md');
+  cy.visit('/markdown-test?src=./articles/mcp-prompts.md');
   cy.get('.prose').should('exist');
   cy.contains('Some expected heading or text from the markdown');
 });
 
 it('renders mermaid diagram', () => {
-  cy.visit('/markdown-test?src=/articles/mermaid-example.md');
+  cy.visit('/markdown-test?src=./articles/mermaid-example.md');
   cy.get('.mermaid-diagram').find('svg').should('exist');
 });
 
 it('shows error on fetch fail', () => {
   cy.intercept('GET', '/articles/does-not-exist.md', { statusCode: 404 });
-  cy.visit('/markdown-test?src=/articles/does-not-exist.md');
+  cy.visit('/markdown-test?src=./articles/does-not-exist.md');
   cy.contains('Error').should('exist');
 });
 ```

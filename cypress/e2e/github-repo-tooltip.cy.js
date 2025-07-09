@@ -1,6 +1,6 @@
 describe('GitHub Repo Metadata Tooltip', () => {
   it('shows metadata tooltip on hover over GitHub repo link', () => {
-    cy.visit('/markdown-test?src=/articles/github-link-test.md');
+    cy.visit('/markdown-test?src=./articles/github-link-test.md');
     // Wait for markdown to load
     cy.contains('Visit Sparrow AI Tech Repo').should('be.visible');
     // Hover over the link

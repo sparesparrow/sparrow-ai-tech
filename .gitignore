@@ -36,5 +36,4 @@ build/
 _site/
 
 # Astro/React static assets
-/public/infographics/
-public/assets/images/unused/
+unused/

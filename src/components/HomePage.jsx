@@ -43,7 +43,7 @@ const HeroSection = ({ translations }) => (
       <h1 className="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight mb-4" dangerouslySetInnerHTML={{ __html: translations.hero_title_html }} />
       <p className="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 mb-8">{translations.hero_subtitle}</p>
       <img
-        src="/assets/images/claude4-system-card-img-003.png"
+        src={`${import.meta.env.BASE_URL}assets/images/claude4-system-card-img-003.png`}
         alt="Abstract AI system card visual, suitable for hero section"
         className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-8"
         loading="eager"
@@ -99,29 +99,29 @@ const ArticlesSection = ({ translations }) => {
     {
       name: 'Getting Started',
       articles: [
-        { title: 'MCP Ecosystem Overview', url: '/articles/merged/mcp-ecosystem-overview.md' },
-        { title: 'Hexagonal Architecture in MCP', url: '/articles/merged/hexagonal-architecture-in-mcp.md' },
+        { title: 'MCP Ecosystem Overview', url: `${import.meta.env.BASE_URL}articles/merged/mcp-ecosystem-overview.md` },
+        { title: 'Hexagonal Architecture in MCP', url: `${import.meta.env.BASE_URL}articles/merged/hexagonal-architecture-in-mcp.md` },
       ]
     },
     {
       name: 'Guides',
       articles: [
-        { title: 'Human Action in AI', url: '/articles/human-action.md' },
-        { title: 'Liberty', url: '/articles/liberty.md' },
+        { title: 'Human Action in AI', url: `${import.meta.env.BASE_URL}articles/human-action.md` },
+        { title: 'Liberty', url: `${import.meta.env.BASE_URL}articles/liberty.md` },
       ]
     },
     {
       name: 'Tutorials',
       articles: [
-        { title: 'Getting Started with MCP Prompts', url: '/articles/mcp-prompts.md' },
-        { title: 'MCP in Practice', url: '/articles/mcp-in-practice.en.md' },
+        { title: 'Getting Started with MCP Prompts', url: `${import.meta.env.BASE_URL}articles/mcp-prompts.md` },
+        { title: 'MCP in Practice', url: `${import.meta.env.BASE_URL}articles/mcp-in-practice.en.md` },
       ]
     },
     {
       name: 'Reference',
       articles: [
-        { title: 'MCP Contributions', url: '/articles/mcp-contributions.en.md' },
-        { title: 'Cursor Rules', url: '/articles/cursor-rules.md' },
+        { title: 'MCP Contributions', url: `${import.meta.env.BASE_URL}articles/mcp-contributions.en.md` },
+        { title: 'Cursor Rules', url: `${import.meta.env.BASE_URL}articles/cursor-rules.md` },
       ]
     }
   ];
@@ -157,22 +157,22 @@ const InfographicsSection = () => {
     {
       title: 'MCP Ecosystem',
       description: 'How the sparesparrow open-source toolchain revolutionizes AI agent development.',
-      url: '/infographics/1.html',
+      url: `${import.meta.env.BASE_URL}infographics/1.html`,
     },
     {
       title: 'Human-in-the-Loop AI',
       description: 'The indispensable partnership between human intuition and artificial intelligence.',
-      url: '/infographics/2.html',
+      url: `${import.meta.env.BASE_URL}infographics/2.html`,
     },
     {
       title: 'Hexagonal Architecture',
       description: 'How the Ports & Adapters pattern protects your application core.',
-      url: '/infographics/3.html',
+      url: `${import.meta.env.BASE_URL}infographics/3.html`,
     },
     {
       title: 'ElevenLabs Widget Demo',
       description: 'Live demo of the ElevenLabs voice widget integration.',
-      url: '/infographics/elevenlabs-widget.html',
+      url: `${import.meta.env.BASE_URL}infographics/elevenlabs-widget.html`,
     },
   ];
   return (
@@ -200,37 +200,37 @@ const InfographicsSection = () => {
 const ResearchHighlightsSection = () => {
   const images = [
     {
-      src: '/assets/images/2212.08073v1-img-002.png',
+      src: `${import.meta.env.BASE_URL}assets/images/2212.08073v1-img-002.png`,
       alt: 'Diagram showing the hexagonal architecture of the MCP server.',
       caption: 'MCP Server: Hexagonal Architecture Diagram',
       source: '',
     },
     {
-      src: '/assets/images/2401.05566v3-img-055.png',
+      src: `${import.meta.env.BASE_URL}assets/images/2401.05566v3-img-055.png`,
       alt: 'Benchmark results chart from MCP research.',
       caption: 'MCP Research: Benchmark Results',
       source: '',
     },
     {
-      src: '/assets/images/claude4-system-card-img-008.png',
+      src: `${import.meta.env.BASE_URL}assets/images/claude4-system-card-img-008.png`,
       alt: 'Claude 4 System Card: Benchmark Performance',
       caption: 'Claude 4 System Card: Benchmark Performance',
       source: 'https://www-cdn.anthropic.com/6be99a52cb68eb70eb9572b4cafad13df32ed995.pdf',
     },
     {
-      src: '/assets/images/2401.05566v3-img-019.png',
+      src: `${import.meta.env.BASE_URL}assets/images/2401.05566v3-img-019.png`,
       alt: 'Data flow diagram for agentic workflows.',
       caption: 'Agentic Workflow: Data Flow Diagram',
       source: '',
     },
     {
-      src: '/assets/images/claude4-system-card-img-007.png',
+      src: `${import.meta.env.BASE_URL}assets/images/claude4-system-card-img-007.png`,
       alt: 'Claude 4: Agentic Coding Workflow',
       caption: 'Claude 4: Agentic Coding Workflow',
       source: 'https://www-cdn.anthropic.com/6be99a52cb68eb70eb9572b4cafad13df32ed995.pdf',
     },
     {
-      src: '/assets/images/2401.05566v3-img-008.jpg',
+      src: `${import.meta.env.BASE_URL}assets/images/2401.05566v3-img-008.jpg`,
       alt: 'Abstract conceptual visual from MCP research.',
       caption: 'MCP Research: Conceptual Visual',
       source: '',
@@ -246,7 +246,7 @@ const ResearchHighlightsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {images.map((img, idx) => (
             <div key={idx} className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
-              <img src={img.src} alt={img.alt} className="max-h-64 w-auto object-contain mb-4 rounded border" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}${img.src.replace(/^\//, '')}`} alt={img.alt} className="max-h-64 w-auto object-contain mb-4 rounded border" loading="lazy" />
               <div className="text-sm text-stone-700 text-center mb-2">{img.caption}</div>
               {img.source && <a href={img.source} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 underline">Source</a>}
             </div>
@@ -441,7 +441,7 @@ const SavedDiagramsGallery = () => {
   const handleDelete = async (id) => {
     setDeleting(id);
     try {
-      await fetch(`/api/diagrams/${id}`, { method: 'DELETE' });
+      await fetch(`${import.meta.env.BASE_URL}api/diagrams/${id}`, { method: 'DELETE' });
       setDiagrams(diagrams => diagrams.filter(d => d.id !== id));
     } catch { }
     setDeleting(null);

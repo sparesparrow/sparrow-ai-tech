@@ -5,7 +5,7 @@ import { join } from 'path';
 
 export default defineConfig({
 
-  base: '/sparrow-ai-tech',
+  base: '/sparrow-ai-tech/',
   
   integrations: [react()],
   i18n: {

@@ -11,8 +11,8 @@
 This roadmap is optimized for two developers or AI agents working in parallel. It uses a high-granularity, command-driven approach to minimize ambiguity and maximize autonomy.
 
 ## Content & Structure Cleanup
-- [Done] Move all test/demo markdown files out of `/articles` to `/cypress/fixtures/articles`
-- [Done] Remove all `.md` duplicates from `/public/articles`, keeping only `.html` files for static hosting
+- [Done] Move all test/demo markdown files out of `./articles` to `./cypress/fixtures/articles`
+- [Done] Remove all `.md` duplicates from `./public/articles`, keeping only `.html` files for static hosting
 - [Done] Standardize article language management: use `article.md` (EN), `article.cs.md` (CZ), and extend with `article.[lang].md` for future languages
 - [Done] Commit and push all changes to remote repository
 
@@ -118,7 +118,7 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 ### Sprint 2: Backend Integrations & Testing
 
 - [ToDo] 1. Implement Backend for Features:
-  - [ToDo] Voice Chatbot: Create a serverless function (`/api/chatbot.js`) to securely handle API calls to the ElevenLabs API. **Handoff:** Provide the API contract (endpoint URL, request/response format) to Agent A.
+  - [ToDo] Voice Chatbot: Create a serverless function (`./api/chatbot.js`) to securely handle API calls to the ElevenLabs API. **Handoff:** Provide the API contract (endpoint URL, request/response format) to Agent A.
   - [ToDo] PDF Generation: If server-side rendering is chosen for the PDF, set up the necessary endpoint.
 - [ToDo] 2. Write Comprehensive Tests:
   - [ToDo] Component Tests: Write unit tests for any complex, non-UI logic.

@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 const I18nContext = createContext();
 
 const loadTranslations = async (lang) => {
-    const res = await fetch(`/locales/${lang}/common.json`);
+    const res = await fetch(`${import.meta.env.BASE_URL}locales/${lang}/common.json`);
     if (!res.ok) throw new Error('Failed to load translations');
     return res.json();
 };

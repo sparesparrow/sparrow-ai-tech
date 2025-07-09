@@ -1,0 +1,11 @@
+---
+description: Actions to take before processing and fulfilling User's request.
+alwaysApply: false
+---
+First, check installed model context protocol servers at `.cursor/mcp.json`.
+Then, search the Web for information about the detected MCP servers, browsing repositories on github, npmjs, docker hub, glama.ai, and more publishing platforms for MCP servers.
+If installed MCP server is found, learn how to configure it with environment variables and commandline arguments, or other ways for configuring the MCP server.
+Then, check what MCP Tools  are provided by the MCP server and learn the tool usage schema.
+Then, think how each Tool might be called/triggered by the user message in natural language, so that it matches the description and provides necessary information that the LLM  needs to provide to the tool as function arguments.
+Then, write results of your research into files (each MCP server to it's own file) that, if not existing yet, has to be created in folder `.cursor/rules` under name corresponding to the MCP server name, with extension `.mdc`. 
+Then, proceed with whatever the user requested, prefering to use your installed MCP tools to complete the task, if applicable.

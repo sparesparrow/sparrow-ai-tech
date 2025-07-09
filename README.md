@@ -76,9 +76,9 @@ npm run build
 
 ### Build
 - Uses Astro for static site generation and React for interactive components.
-- `npm run build` compiles the site to `/dist` for deployment.
+- `npm run build` compiles the site to `./dist` for deployment.
 - Playwright is installed as part of the build for server-side Mermaid rendering.
-- Static assets (images, infographics, articles) are copied from `/public` and `/assets`.
+- Static assets (images, infographics, articles) are copied from `./public` and `./assets`.
 
 ### Test
 - **Linting:**
@@ -99,7 +99,7 @@ npm run build
 - **CI/CD Pipeline:**
   - GitHub Actions workflow `.github/workflows/deploy.yml`:
     - Lint → Test → Build → Deploy jobs (sequential, fail-fast).
-    - Deploys `/dist` to GitHub Pages using `actions/deploy-pages`.
+    - Deploys `./dist` to GitHub Pages using `actions/deploy-pages`.
     - Artifacts (e.g., PDF CV) uploaded as part of the build.
   - Separate workflow for PDF CV generation and deployment.
 - **Best Practices:**
@@ -141,17 +141,17 @@ npm run build
 
 - Visit [https://sparesparrow.github.io/sparrow-ai-tech/](https://sparesparrow.github.io/sparrow-ai-tech/) for the live site.
 - Explore:
-  - **Articles**: `/articles/` (Markdown, Mermaid, tooltips)
-  - **Infographics**: `/infographics/` (React & HTML)
-  - **Visual Library**: `/assets/images/`
-  - **CV Download**: `/cv.pdf`
+  - **Articles**: `./articles/` (Markdown, Mermaid, tooltips)
+  - **Infographics**: `./infographics/` (React & HTML)
+  - **Visual Library**: `./assets/images/`
+  - **CV Download**: `./cv.pdf`
 
 ### Example: Rendering Markdown with Mermaid
 ```jsx
 import MarkdownViewer from '@/components/MarkdownViewer';
-<MarkdownViewer src="/articles/hexagonal-architecture-in-mcp.md" />
+<MarkdownViewer src={`import.meta.env.BASE_URL}articles/hexagonal-architecture-in-mcp.md`} />
 ```
-
+- Note: *If you're using any hardcoded absolute paths in your components, you might need to update them to use Astro's import.meta.env.BASE_URL for dynamic base path handling*
 ---
 
 ## E2E Testing
@@ -167,9 +167,9 @@ npx cypress open
 
 ## Infographics & Visuals
 
-- **React Infographics**: `/infographics/1`, `/infographics/2`, `/infographics/3`, `/infographics/spa`
-- **HTML Infographics**: `/infographics/1.html`, `/infographics/SPA.html`, etc.
-- **Visual Library**: `/assets/images/` (diagrams, screenshots)
+- **React Infographics**: `./infographics/1`, `./infographics/2`, `./infographics/3`, `./infographics/spa`
+- **HTML Infographics**: `./infographics/1.html`, `./infographics/SPA.html`, etc.
+- **Visual Library**: `./assets/images/` (diagrams, screenshots)
 
 ---
 

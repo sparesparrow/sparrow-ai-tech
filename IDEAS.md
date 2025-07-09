@@ -198,9 +198,9 @@ In src/pages/index.astro, import this JSON data. This keeps the page logic clean
 
 ### 1. **Build**
 - Use Astro for static site generation, React for interactive components.
-- `npm run build` compiles the site to `/dist` for deployment.
+- `npm run build` compiles the site to `./dist` for deployment.
 - Playwright is installed as part of the build for server-side Mermaid rendering.
-- All static assets (images, infographics, articles) are copied from `/public` and `/assets`.
+- All static assets (images, infographics, articles) are copied from `./public` and `./assets`.
 
 ### 2. **Test**
 - **Linting:**
@@ -221,7 +221,7 @@ In src/pages/index.astro, import this JSON data. This keeps the page logic clean
 - **CI/CD Pipeline:**
   - GitHub Actions workflow `.github/workflows/deploy.yml`:
     - Lint → Test → Build → Deploy jobs (sequential, fail-fast).
-    - Deploys `/dist` to GitHub Pages using `actions/deploy-pages`.
+    - Deploys `./dist` to GitHub Pages using `actions/deploy-pages`.
     - Artifacts (e.g., PDF CV) uploaded as part of the build.
   - Separate workflow for PDF CV generation and deployment.
 - **Best Practices:**

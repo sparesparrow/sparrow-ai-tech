@@ -283,16 +283,16 @@ const App = () => {
       { title: 'Strategic Blueprint SPA (React)', route: '/infographics/spa', description: 'Interactive, visually rich SPA: strategy, tech, ecosystem, and CI/CD pipeline.' },
     ];
     const infographicsHtml = [
-      { title: 'MCP Ecosystem (HTML)', url: '/infographics/1.html' },
-      { title: 'Human-in-the-Loop AI (HTML)', url: '/infographics/2.html' },
-      { title: 'Hexagonal Architecture (HTML)', url: '/infographics/3.html' },
-      { title: 'SPA Infographic (HTML)', url: '/infographics/SPA.html' },
-      { title: 'ElevenLabs Widget Demo', url: '/infographics/elevenlabs-widget.html' },
+      { title: 'MCP Ecosystem (HTML)', url: `${import.meta.env.BASE_URL}infographics/1.html` },
+      { title: 'Human-in-the-Loop AI (HTML)', url: `${import.meta.env.BASE_URL}infographics/2.html` },
+      { title: 'Hexagonal Architecture (HTML)', url: `${import.meta.env.BASE_URL}infographics/3.html` },
+      { title: 'SPA Infographic (HTML)', url: `${import.meta.env.BASE_URL}infographics/SPA.html` },
+      { title: 'ElevenLabs Widget Demo', url: `${import.meta.env.BASE_URL}infographics/elevenlabs-widget.html` },
     ];
     const visuals = [
-      { name: 'MCP Ecosystem Diagram', src: '/assets/images/mcp-ecosystem-diagram.png', context: 'Ecosystem, Architecture' },
-      { name: 'UI Screenshot', src: '/assets/images/screenshot-ui.png', context: 'Homepage, UI' },
-      { name: 'Feature Screenshot', src: '/assets/images/screenshot-feature.png', context: 'Feature Demo' },
+      { name: 'MCP Ecosystem Diagram', src: `${import.meta.env.BASE_URL}assets/images/mcp-ecosystem-diagram.png`, context: 'Ecosystem, Architecture' },
+      { name: 'UI Screenshot', src: `${import.meta.env.BASE_URL}assets/images/screenshot-ui.png`, context: 'Homepage, UI' },
+      { name: 'Feature Screenshot', src: `${import.meta.env.BASE_URL}assets/images/screenshot-feature.png`, context: 'Feature Demo' },
     ];
 
     return (
@@ -374,7 +374,7 @@ const App = () => {
                       >
                         <a href="#portfolio" className="bg-sky-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-sky-700 transition-all">View the Strategy</a>
                         <a href="#tech" className="bg-white text-slate-700 font-semibold px-6 py-3 rounded-lg border border-slate-300 hover:bg-slate-100 transition-all">Explore the Tech</a>
-                        <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition-all flex items-center justify-center">
+                        <a href={`${import.meta.env.BASE_URL}cv.pdf`} target="_blank" rel="noopener noreferrer" className="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition-all flex items-center justify-center">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
                           Download CV (PDF)
                         </a>
@@ -414,7 +414,7 @@ const App = () => {
                       </div>
                       <div className="flex-1 flex justify-center">
                         {/* Replace with a real screenshot or live widget if possible */}
-                        <img src="/assets/images/elevenlabs-widget-demo.png" alt="ElevenLabs Widget Demo" className="rounded-xl shadow-2xl w-full max-w-md" />
+                        <img src={`${import.meta.env.BASE_URL}assets/images/elevenlabs-widget-demo.png`} alt="ElevenLabs Widget Demo" className="rounded-xl shadow-2xl w-full max-w-md" />
                       </div>
                     </div>
                   </motion.section>
@@ -643,12 +643,12 @@ const App = () => {
                       {/* Masonry grid with lightbox */}
                       <div className="columns-1 sm:columns-2 md:columns-3 gap-6 [column-fill:_balance]"><div className="flex flex-col gap-6">
                         {[
-                          { name: 'MCP Ecosystem Diagram', src: '/assets/images/mcp-ecosystem-diagram.png', context: 'Architecture' },
-                          { name: 'UI Screenshot', src: '/assets/images/screenshot-ui.png', context: 'UI' },
-                          { name: 'Feature Screenshot', src: '/assets/images/screenshot-feature.png', context: 'UI' },
-                          { name: 'Hard-Coder Architecture', src: '/assets/images/hard-coder-architecture.png', context: 'Architecture' },
-                          { name: 'MCP Router Flow', src: '/assets/images/mcp-router-flow.png', context: 'Process' },
-                          { name: 'Project Orchestrator Diagram', src: '/assets/images/project-orchestrator-diagram.png', context: 'Architecture' }
+                          { name: 'MCP Ecosystem Diagram', src: `${import.meta.env.BASE_URL}assets/images/mcp-ecosystem-diagram.png`, context: 'Architecture' },
+                          { name: 'UI Screenshot', src: `${import.meta.env.BASE_URL}assets/images/screenshot-ui.png`, context: 'UI' },
+                          { name: 'Feature Screenshot', src: `${import.meta.env.BASE_URL}assets/images/screenshot-feature.png`, context: 'UI' },
+                          { name: 'Hard-Coder Architecture', src: `${import.meta.env.BASE_URL}assets/images/hard-coder-architecture.png`, context: 'Architecture' },
+                          { name: 'MCP Router Flow', src: `${import.meta.env.BASE_URL}assets/images/mcp-router-flow.png`, context: 'Process' },
+                          { name: 'Project Orchestrator Diagram', src: `${import.meta.env.BASE_URL}assets/images/project-orchestrator-diagram.png`, context: 'Architecture' }
                         ].map((vis, idx) => (
                           <motion.div
                             key={idx}
@@ -670,12 +670,12 @@ const App = () => {
                         close={() => setLightboxOpen(false)}
                         index={lightboxIndex}
                         slides={[
-                          { src: '/assets/images/mcp-ecosystem-diagram.png', alt: 'MCP Ecosystem Diagram' },
-                          { src: '/assets/images/screenshot-ui.png', alt: 'UI Screenshot' },
-                          { src: '/assets/images/screenshot-feature.png', alt: 'Feature Screenshot' },
-                          { src: '/assets/images/hard-coder-architecture.png', alt: 'Hard-Coder Architecture' },
-                          { src: '/assets/images/mcp-router-flow.png', alt: 'MCP Router Flow' },
-                          { src: '/assets/images/project-orchestrator-diagram.png', alt: 'Project Orchestrator Diagram' }
+                          { src: `${import.meta.env.BASE_URL}assets/images/mcp-ecosystem-diagram.png`, alt: 'MCP Ecosystem Diagram' },
+                          { src: `${import.meta.env.BASE_URL}assets/images/screenshot-ui.png`, alt: 'UI Screenshot' },
+                          { src: `${import.meta.env.BASE_URL}assets/images/screenshot-feature.png`, alt: 'Feature Screenshot' },
+                          { src: `${import.meta.env.BASE_URL}assets/images/hard-coder-architecture.png`, alt: 'Hard-Coder Architecture' },
+                          { src: `${import.meta.env.BASE_URL}assets/images/mcp-router-flow.png`, alt: 'MCP Router Flow' },
+                          { src: `${import.meta.env.BASE_URL}assets/images/project-orchestrator-diagram.png`, alt: 'Project Orchestrator Diagram' }
                         ]}
                         render={{
                           slide: ({ slide }) => (
@@ -802,7 +802,7 @@ const App = () => {
                       <h3 className="text-xl font-semibold text-sky-700 mb-4">Standalone (HTML)</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {infographicsHtml.map((info, idx) => (
-                          <a key={idx} href={`${import.meta.env.BASE_URL}${info.url}`} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
+                          <a key={idx} href={info.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
                             <h4 className="text-lg font-semibold text-sky-600 mb-2">{info.title}</h4>
                           </a>
                         ))}

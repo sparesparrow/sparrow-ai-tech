@@ -26,7 +26,7 @@ describe('MarkdownViewer Component', () => {
    * Test: Načítání a renderování markdownu z libovolné cesty
    */
   it('fetches and renders markdown from any path', () => {
-    cy.visit(`/markdown-test?src=${testMd}`);
+    cy.visit(`${import.meta.env.BASE_URL}markdown-test?src=${testMd}`);
     cy.get('.markdown-viewer').should('exist');
     cy.contains('MCP Prompts').should('exist'); // Upravte na existující nadpis v testovacím souboru
   });
@@ -35,7 +35,7 @@ describe('MarkdownViewer Component', () => {
    * Test: Renderování Mermaid diagramů
    */
   it('renders Mermaid diagrams', () => {
-    cy.visit(`/markdown-test?src=${testMermaidMd}`);
+    cy.visit(`${import.meta.env.BASE_URL}markdown-test?src=${testMermaidMd}`);
     cy.get('.mermaid-diagram').should('exist');
     cy.get('.mermaid-diagram svg').should('exist');
   });
@@ -44,7 +44,7 @@ describe('MarkdownViewer Component', () => {
    * Test: Konzistentní stylování pomocí tříd prose
    */
   it('applies consistent styling with prose classes', () => {
-    cy.visit(`/markdown-test?src=${testMd}`);
+    cy.visit(`${import.meta.env.BASE_URL}markdown-test?src=${testMd}`);
     cy.get('.markdown-viewer').should('have.class', 'prose').and('have.class', 'prose-invert');
   });
 
@@ -53,7 +53,7 @@ describe('MarkdownViewer Component', () => {
    */
   it('shows loading and error states', () => {
     cy.intercept('GET', notFoundMd, { statusCode: 404 }).as('fetch404');
-    cy.visit(`/markdown-test?src=${notFoundMd}`);
+    cy.visit(`${import.meta.env.BASE_URL}markdown-test?src=${notFoundMd}`);
     cy.get('.markdown-viewer-loading').should('exist');
     cy.wait('@fetch404');
     cy.get('.markdown-viewer-error').should('exist').and('contain', 'Failed to fetch');
@@ -64,30 +64,30 @@ describe('MarkdownViewer Component', () => {
    */
   it('applies custom className', () => {
     // Předpoklad: /markdown-test?src=...&className=custom-md-class přidá vlastní třídu
-    cy.visit(`/markdown-test?src=${testMd}&className=custom-md-class`);
+    cy.visit(`${import.meta.env.BASE_URL}markdown-test?src=${testMd}&className=custom-md-class`);
     cy.get('.markdown-viewer').should('have.class', 'custom-md-class');
   });
 
   it('renders markdown content', () => {
-    cy.visit('/markdown-test?src=/articles/mcp-prompts.md');
+    cy.visit('/markdown-test?src=./articles/mcp-prompts.md');
     cy.get('.prose').should('exist');
     cy.contains('Some expected heading or text from the markdown');
   });
 
   it('renders mermaid diagram', () => {
-    cy.visit('/markdown-test?src=/articles/mermaid-example.md');
+    cy.visit('/markdown-test?src=./articles/mermaid-example.md');
     cy.get('.mermaid-diagram').find('svg').should('exist');
   });
 
   it('shows error on fetch fail', () => {
     cy.intercept('GET', '/articles/does-not-exist.md', { statusCode: 404 });
-    cy.visit('/markdown-test?src=/articles/does-not-exist.md');
+    cy.visit('/markdown-test?src=./articles/does-not-exist.md');
     cy.contains('Error').should('exist');
   });
 
   it('shows image preview on hover for image links', () => {
     // This markdown file should contain: [Alt text](/assets/images/test-image.png)
-    cy.visit('/markdown-test?src=/articles/image-link-test.md');
+    cy.visit('/markdown-test?src=./articles/image-link-test.md');
     cy.contains('Alt text').trigger('mouseover');
     cy.get('.tippy-box img').should('be.visible').and(($img) => {
       expect($img[0].src).to.match(/test-image\.png$/);
@@ -96,14 +96,14 @@ describe('MarkdownViewer Component', () => {
 
   it('shows Mermaid diagram preview on hover for .mmd links', () => {
     // /articles/mermaid-test-link.md should contain: [Diagram](/articles/test-diagram.mmd)
-    cy.visit('/markdown-test?src=/articles/mermaid-test-link.md');
+    cy.visit('/markdown-test?src=./articles/mermaid-test-link.md');
     cy.contains('Diagram').trigger('mouseover');
     cy.get('.tippy-box .mermaid-diagram svg').should('be.visible');
   });
 
   it('shows GitHub repo metadata tooltip on hover for repo links', () => {
     // /articles/github-link-test.md should contain: [MCP Prompts](https://github.com/sparesparrow/mcp-prompts)
-    cy.visit('/markdown-test?src=/articles/github-link-test.md');
+    cy.visit('/markdown-test?src=./articles/github-link-test.md');
     cy.contains('MCP Prompts').trigger('mouseover');
     cy.get('.tippy-box').should('contain.text', 'sparesparrow/mcp-prompts');
     cy.get('.tippy-box').should('contain.text', 'stars').or('contain.text', '⭐');
