@@ -40,6 +40,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^9.0.1",
+    "react-router-dom": "^7.6.3",
     "tippy.js": "^6.3.7",
     "yet-another-react-lightbox": "^3.20.0"
   },
