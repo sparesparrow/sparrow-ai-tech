@@ -763,7 +763,7 @@ const App = () => {
                           <h3 className="text-2xl font-semibold text-sky-700 mb-4">{cat.category}</h3>
                           <div className="grid md:grid-cols-2 gap-4">
                             {cat.articles.map((article, i) => (
-                              <motion.a key={i} href={article.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg"
+                              <motion.a key={i} href={`${import.meta.env.BASE_URL}${article.url}`} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
@@ -802,7 +802,7 @@ const App = () => {
                       <h3 className="text-xl font-semibold text-sky-700 mb-4">Standalone (HTML)</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {infographicsHtml.map((info, idx) => (
-                          <a key={idx} href={info.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
+                          <a key={idx} href={`${import.meta.env.BASE_URL}${info.url}`} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
                             <h4 className="text-lg font-semibold text-sky-600 mb-2">{info.title}</h4>
                           </a>
                         ))}
