@@ -1,0 +1,54 @@
+---
+export interface Props {
+  title?: string;
+}
+const { title = "" } = Astro.props;
+---
+<script>
+  import mermaid from "mermaid";
+  mermaid.initialize({ startOnLoad: false });
+
+  function extractAndCleanMermaidCode() {
+    const mermaidElements = document.querySelectorAll("figure.expandable-diagram");
+    mermaidElements.forEach((element) => {
+      // Try Expressive Code copy button first
+      const copyButton = element.querySelector(".copy button");
+      let code = "";
+      if (copyButton && copyButton.dataset.code) {
+        code = copyButton.dataset.code.replace(/\u007F/g, "\n");
+      } else {
+        // Fallback: extract from code block lines
+        const codeElement = element.querySelector('pre[data-language="mermaid"] code');
+        if (codeElement) {
+          const codeLines = codeElement.querySelectorAll(".ec-line .code");
+          code = Array.from(codeLines)
+            .map((line) => line.textContent.trim())
+            .join("\n")
+            .trim();
+        }
+      }
+      if (!code) return;
+      // Create a new pre element with just the cleaned code
+      const newPreElement = document.createElement("pre");
+      newPreElement.className = "mermaid not-prose";
+      newPreElement.textContent = code;
+      // Replace diagram content
+      const diagramContentContainer = element.querySelector(".diagram-content");
+      diagramContentContainer.replaceChild(newPreElement, diagramContentContainer.firstChild);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    extractAndCleanMermaidCode();
+    mermaid.initialize({ startOnLoad: true });
+  });
+</script>
+
+<figure class="expandable-diagram">
+  <figcaption>{title}</figcaption>
+  <div class="diagram-content">Loading diagram...</div>
+  <details>
+    <summary>Source</summary>
+    <slot />
+  </details>
+</figure> 

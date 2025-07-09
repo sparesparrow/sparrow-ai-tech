@@ -1,3 +1,22 @@
+# Portfolio Relevance
+
+This article is part of the sparesparrow/Sparrow AI & Tech portfolio, which is dedicated to building robust, secure, and interoperable agentic AI systems. Mastering foundational AI/ML concepts, as taught in Andrew Ng's courses, is essential for developing, understanding, and leading the next generation of agentic workflows, MCP-based architectures, and secure AI ecosystems. These skills form the base of the technical skill tree for AI leadership.
+
+---
+
+## Skill Tree: From Foundations to Agentic AI
+
+```mermaid
+graph TD
+    Basics["Základy AI/ML (Karpathy, Ng, Amodei)"] --> DeepLearning["Hluboké učení"]
+    DeepLearning --> LLMs["Velké jazykové modely"]
+    LLMs --> Agentic["Agentní workflow a MCP"]
+    Agentic --> Leadership["Architektura a vedení AI systémů"]
+```
+*Figure: Foundational AI/ML education is the root of the skill tree leading to agentic AI system leadership.*
+
+---
+
 # Andrew Ng: Nejlepší online kurzy a workshopy pro strojové učení a AI
 
 **Klíčová slova:** Andrew Ng, strojové učení, umělá inteligence, Coursera, DeepLearning.AI, Machine Learning, čeština
@@ -73,6 +92,33 @@ Tato série pěti kurzů vás provede moderním hlubokým učením:
 - Jak AI mění svět a pracovní trh
 - Jak navrhovat AI projekty v organizaci
 - Základy etiky a odpovědnosti v AI
+
+---
+
+## Cesta učení: Od začátečníka k AI lídrovi
+
+```mermaid
+graph TD
+    Zacatecnik["Začátečník"] --> Zaklady["Základní kurzy (Ng, Karpathy)"]
+    Zaklady --> Hluboke["Hluboké učení"]
+    Hluboke --> Projekty["Praktické projekty"]
+    Projekty --> Komunita["AI komunita"]
+    Komunita --> Lider["AI leadership"]
+```
+*Obrázek: Učební cesta od začátečníka přes kurzy a projekty až k AI leadershipu.*
+
+---
+
+## Struktura typického AI/ML kurzu
+
+```mermaid
+graph TD
+    Prednasky["Přednášky"] --> Cv["Cvičení"]
+    Cv --> Projekty["Projekty"]
+    Projekty --> Peer["Peer review"]
+    Peer --> Certifikat["Certifikace"]
+```
+*Obrázek: Typický AI/ML kurz zahrnuje přednášky, cvičení, projekty, peer review a certifikaci.*
 
 ---
 

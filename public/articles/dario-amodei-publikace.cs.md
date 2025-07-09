@@ -1,3 +1,22 @@
+# Portfolio Relevance
+
+This article is part of the sparesparrow/Sparrow AI & Tech portfolio, which is dedicated to building robust, secure, and interoperable agentic AI systems. Understanding the research and safety principles pioneered by Dario Amodei is essential for developing, understanding, and leading the next generation of agentic workflows, MCP-based architectures, and secure AI ecosystems. These skills form the base of the technical skill tree for AI leadership.
+
+---
+
+## Skill Tree: From Foundations to Agentic AI
+
+```mermaid
+graph TD
+    Basics["Základy AI/ML (Karpathy, Ng, Amodei)"] --> DeepLearning["Hluboké učení"]
+    DeepLearning --> LLMs["Velké jazykové modely"]
+    LLMs --> Agentic["Agentní workflow a MCP"]
+    Agentic --> Leadership["Architektura a vedení AI systémů"]
+```
+*Figure: Foundational AI/ML education is the root of the skill tree leading to agentic AI system leadership.*
+
+---
+
 # Dario Amodei: Průkopník bezpečné umělé inteligence a jeho klíčové publikace
 
 **Klíčová slova:** Dario Amodei, Anthropic, Claude, bezpečnost AI, alignment, umělá inteligence, výzkum, čeština
@@ -113,3 +132,30 @@ Dario Amodei představuje novou generaci AI výzkumníků a podnikatelů, kteř�
 ---
 
 *Článek připraven pro šíření znalostí v české AI komunitě. Sdílejte a inspirujte další!* 
+
+---
+
+## Výzkumná pipeline: Od výzkumu k bezpečnosti
+
+```mermaid
+graph TD
+    Vyzkum["Výzkum"] --> Publikace["Publikace"]
+    Publikace --> Principy["Bezpečnostní principy"]
+    Principy --> Implementace["Implementace v AI systémech"]
+    Implementace --> Dopad["Dopad na AI bezpečnost"]
+```
+*Obrázek: Výzkum vede k publikacím, které formují bezpečnostní principy a jejich implementaci v AI.*
+
+---
+
+## Síť vlivu Daria Amodeiho
+
+```mermaid
+graph TD
+    Amodei["Dario Amodei"] --> Anthropic["Anthropic"]
+    Anthropic --> Claude["Claude"]
+    Amodei --> Komunita["Výzkumná komunita"]
+    Komunita --> Bezpecnost["Oblast AI bezpečnosti"]
+    Claude --> Bezpecnost
+```
+*Obrázek: Dario Amodei ovlivňuje vývoj AI bezpečnosti skrze Anthropic, Claude a výzkumnou komunitu.* 

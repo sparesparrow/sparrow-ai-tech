@@ -36,6 +36,32 @@ Hexagonální (šestiúhelníková) architektura je návrhový vzor, který odd�
 
 ---
 
+## Vývoj: Od monolitu k hexagonální architektuře
+
+```mermaid
+graph TD
+    Monolit["Monolitická aplikace"] --> Hex["Hexagonální architektura"]
+    Hex --> Jadro["Jádro systému"]
+    Hex --> Porty["Porty"]
+    Hex --> Adaptery["Adaptéry"]
+```
+*Obrázek: Systémy se vyvíjejí od monolitických k modulárním, hexagonálním architekturám pro větší flexibilitu.*
+
+---
+
+## Testovatelnost a rozšiřitelnost
+
+```mermaid
+graph TD
+    Jadro["Jádro logiky"] --> Adapter1["Adaptér: REST"]
+    Jadro --> Adapter2["Adaptér: MCP"]
+    Jadro --> Test["Testovací rámec"]
+    Jadro --> Nova["Nová integrace"]
+```
+*Obrázek: Hexagonální architektura umožňuje snadné testování a rozšíření pomocí adaptérů a testovacích rámců.*
+
+---
+
 ## Závěr
 
 Hexagonální architektura je klíčovým prvkem moderního návrhu MCP serverů. Umožňuje rychlý vývoj, snadné testování a dlouhodobou udržitelnost celého ekosystému. 
