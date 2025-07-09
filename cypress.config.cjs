@@ -3,7 +3,7 @@ const { defineConfig } = require('cypress');
 module.exports = defineConfig({
   e2e: {
     // Use local dev server by default; override with CYPRESS_BASE_URL for CI/deploy
-    baseUrl: process.env.CYPRESS_BASE_URL || 'http://localhost:4321/',
+    baseUrl: process.env.CYPRESS_BASE_URL || 'http://localhost:4322/',
     setupNodeEvents(on, config) {
       // Example: implement node event listeners here
       // You can add custom tasks, plugins, or event handlers for Cypress here.

@@ -1,27 +1,26 @@
+// ESM-compatible Jest mocking for node-fetch
 import { jest } from '@jest/globals';
+
 import handler from './chatbot.js';
 
 // Mock window.matchMedia for JSDOM
 global.window = global.window || {};
-global.window.matchMedia = global.window.matchMedia || function() {
+global.window.matchMedia = global.window.matchMedia || function () {
   return {
     matches: false,
-    addEventListener: () => {},
-    removeEventListener: () => {},
-    addListener: () => {},
-    removeListener: () => {},
-    dispatchEvent: () => {},
+    addEventListener: () => { },
+    removeEventListener: () => { },
+    addListener: () => { },
+    removeListener: () => { },
+    dispatchEvent: () => { },
   };
 };
 
-// Mock fetch globally
-global.fetch = jest.fn();
-
 const mockRes = () => {
   const res = {};
-  res.status = jest.fn().mockReturnValue(res);
-  res.json = jest.fn().mockReturnValue(res);
-  res.setHeader = jest.fn();
+  res.status = jest.fn().mockImplementation((code) => { console.log('res.status called with', code); return res; });
+  res.json = jest.fn().mockImplementation((obj) => { console.log('res.json called with', obj); return res; });
+  res.setHeader = jest.fn().mockImplementation((...args) => { console.log('res.setHeader called with', ...args); });
   res.end = jest.fn();
   res.send = jest.fn();
   return res;
@@ -31,6 +30,7 @@ describe('POST /api/chatbot', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     process.env.ELEVENLABS_API_KEY = 'test-key';
+    global.fetch = jest.fn();
   });
 
   it('returns 400 if text is missing', async () => {
@@ -63,7 +63,7 @@ describe('POST /api/chatbot', () => {
     const res = mockRes();
     // Mock fetch to return a stream
     const mockStream = { pipe: jest.fn() };
-    fetch.mockResolvedValue({
+    global.fetch.mockResolvedValue({
       ok: true,
       body: mockStream,
       status: 200,
@@ -77,13 +77,13 @@ describe('POST /api/chatbot', () => {
   it('returns error if ElevenLabs fails', async () => {
     const req = { method: 'POST', body: { text: 'hello' } };
     const res = mockRes();
-    fetch.mockResolvedValue({
+    global.fetch.mockResolvedValue({
       ok: false,
       text: async () => 'API error',
       status: 502,
     });
     await handler(req, res);
-    expect(res.status).toHaveBeenCalledWith(401); // if handler returns 401
+    expect(res.status).toHaveBeenCalledWith(502); // match the mock's status
     expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ error: 'API error' }));
   });
 }); 
