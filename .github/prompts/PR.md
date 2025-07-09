@@ -1,0 +1,1 @@
+switch to branch B, pull, squash commits into one, force push,  review changes for the branch compared to main branch and test it accordingly,  ensuring that the changes does not break anything that was working before. finally, when satisfied, create pull request to main branch and switch back to main branch
