@@ -138,7 +138,7 @@ const ArticlesSection = ({ translations }) => {
               <h3 className="text-2xl font-semibold text-sky-700 mb-4">{cat.name}</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 {cat.articles.map((article, i) => (
-                  <a key={i} href={`${import.meta.env.BASE_URL}${article.url}`} target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-slate-100 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
+                  <a key={i} href={article.url} target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-slate-100 p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
                     <span className="text-lg font-semibold text-sky-700">{article.title}</span>
                   </a>
                 ))}
@@ -184,7 +184,7 @@ const InfographicsSection = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {infographics.map((info, idx) => (
-            <a key={idx} href={`${import.meta.env.BASE_URL}${info.url}`} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
+            <a key={idx} href={info.url} target="_blank" rel="noopener noreferrer" className="block bg-slate-100 hover:bg-slate-200 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-center">
               <h3 className="text-lg font-semibold text-sky-700 mb-2">{info.title}</h3>
               <p className="text-slate-600 mb-2">{info.description}</p>
               <span className="inline-block mt-4 text-sky-600 font-bold">View Infographic &rarr;</span>
@@ -246,7 +246,7 @@ const ResearchHighlightsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {images.map((img, idx) => (
             <div key={idx} className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
-              <img src={`${import.meta.env.BASE_URL}${img.src.replace(/^\//, '')}`} alt={img.alt} className="max-h-64 w-auto object-contain mb-4 rounded border" loading="lazy" />
+              <img src={img.src.replace(/^\//, '')} alt={img.alt} className="max-h-64 w-auto object-contain mb-4 rounded border" loading="lazy" />
               <div className="text-sm text-stone-700 text-center mb-2">{img.caption}</div>
               {img.source && <a href={img.source} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 underline">Source</a>}
             </div>
@@ -326,8 +326,8 @@ const PopularReposSection = () => {
         {loading ? <div className="text-sky-300 text-center">Loading...</div> : error ? <div className="text-red-500 text-center">{error}</div> : (
           <div className="flex flex-wrap justify-center gap-6">
             {sorted.map(repo => (
-              <div key={`${import.meta.env.BASE_URL}${repo.url}`} className="bg-slate-800 rounded-xl shadow p-6 min-w-[220px] max-w-xs text-center">
-                <GithubRepoTooltip href={`${import.meta.env.BASE_URL}${repo.url}`}>
+              <div key={repo.url} className="bg-slate-800 rounded-xl shadow p-6 min-w-[220px] max-w-xs text-center">
+                <GithubRepoTooltip href={repo.url}>
                   <span className="text-lg font-semibold text-sky-300 hover:underline">{repo.name}</span>
                 </GithubRepoTooltip>
                 <div className="mt-2 text-slate-400">⭐ {repo.stars} | 🍴 {repo.forks}</div>
