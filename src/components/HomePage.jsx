@@ -636,6 +636,48 @@ const ContactSection = ({ translations }) => {
   );
 };
 
+const DownloadPdfButton = () => (
+  <button
+    onClick={() => window.print()}
+    data-cy="download-pdf-btn"
+    className="fixed bottom-8 right-8 z-50 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg print:hidden"
+    aria-label="Download as PDF"
+  >
+    Download as PDF
+  </button>
+);
+
+const ChatbotModal = ({ open, onClose }) => (
+  open ? (
+    <div className="fixed inset-0 z-50 flex items-end justify-end">
+      <div className="fixed inset-0 bg-black bg-opacity-40" onClick={onClose} data-cy="chatbot-backdrop"></div>
+      <div className="relative bg-white w-full max-w-md m-8 rounded-xl shadow-2xl p-6 flex flex-col" data-cy="chatbot-modal">
+        <button onClick={onClose} className="absolute top-2 right-2 text-slate-400 hover:text-slate-700 text-2xl font-bold" aria-label="Close Chatbot" data-cy="chatbot-close-btn">×</button>
+        <h2 className="text-xl font-bold mb-4 text-sky-700">Voice Chatbot (ElevenLabs)</h2>
+        <div className="flex-1 overflow-y-auto mb-4">
+          <div className="bg-slate-100 rounded p-4 text-slate-600 text-center">Coming soon: This will be a live voice chatbot powered by ElevenLabs.</div>
+        </div>
+        <input type="text" className="w-full border border-slate-300 rounded px-4 py-2 mb-2" placeholder="Type your message..." disabled />
+        <button className="w-full bg-sky-600 text-white font-bold py-2 rounded-lg mt-2 opacity-50 cursor-not-allowed" disabled data-cy="chatbot-send-btn">Send</button>
+      </div>
+    </div>
+  ) : null
+);
+
+const ChatbotButton = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    data-cy="open-chatbot-btn"
+    className="fixed bottom-28 right-8 z-50 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg flex items-center gap-2 print:hidden"
+    aria-label="Open Voice Chatbot"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75v1.5m0 0a6.75 6.75 0 01-6.75-6.75h1.5A5.25 5.25 0 0012 19.5a5.25 5.25 0 005.25-5.25h1.5A6.75 6.75 0 0112 20.25zm0-15v6.75m0 0a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-4.5 0v1.5a2.25 2.25 0 002.25 2.25z" />
+    </svg>
+    Voice Chatbot
+  </button>
+);
+
 // Patch: Add default values for props and defensive checks for translations and translations.nav
 const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () => { }, prompts = [] }) => {
   // Defensive: Ensure translations.nav exists and has expected keys
@@ -665,6 +707,18 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
     <AboutSection key="about" translations={translations} />,
     <ContactSection key="contact" translations={translations} />
   ];
+
+  let content = [];
+  let promptIdx = 0;
+  for (let i = 0; i < sections.length; i++) {
+    content.push(sections[i]);
+    if (promptIdx < prompts.length && i < sections.length - 1) {
+      content.push(<PauseBlock key={`pause-${promptIdx}`} text={prompts[promptIdx]} />);
+      promptIdx++;
+    }
+  }
+
+  const [chatbotOpen, setChatbotOpen] = useState(false);
 
   return (
     <div className="bg-stone-50 min-h-screen flex flex-col">
@@ -697,6 +751,9 @@ const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () =>
           <p className="mt-2 text-sm">&copy; {new Date().getFullYear()} Sparrow AI Tech. All rights reserved.</p>
         </div>
       </footer>
+      <DownloadPdfButton />
+      <ChatbotButton onClick={() => setChatbotOpen(true)} />
+      <ChatbotModal open={chatbotOpen} onClose={() => setChatbotOpen(false)} />
     </div>
   );
 };
