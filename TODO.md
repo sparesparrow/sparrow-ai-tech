@@ -73,12 +73,12 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [Implemented] Make all navigation links work, enabling smooth scrolling to page sections.
   - [Implemented] Ensure all external links (GitHub, demos) in the homepage and infographics sections are correct and open in a new tab.
 - [Implemented] 2. Develop Key Interactive Features:
-  - [Implemented] PDF Generation: Build the frontend for the "Download as PDF" feature (button present, triggers print for now).
-  - [Implemented] Voice Chatbot: Implement the UI for the ElevenLabs chatbot (UI present, backend pending Track B handoff).
-- [HelpNeeded] 3. Activate Localization:
-  - [HelpNeeded] **Dependency:** Use the i18n function and JSON key structure provided by Track B.
-  - [HelpNeeded] Connect the language switcher UI to the i18n framework to enable language changes.
-  - [HelpNeeded] Wrap all static text in UI components with the translation function.
+  - [Implemented] PDF Generation: Build the frontend for the "Download as PDF" feature (button POSTs to /api/pdf and downloads PDF).
+  - [Implemented] Voice Chatbot: Implement the UI for the ElevenLabs chatbot (UI connects to /api/chatbot endpoint).
+- [Implemented] 3. Activate Localization:
+  - [Implemented] Use the i18n function and JSON key structure provided by Track B.
+  - [Implemented] Connect the language switcher UI to the i18n framework to enable language changes.
+  - [Implemented] Wrap all static text in UI components with the translation function.
 
 ---
 
@@ -134,7 +134,7 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 
 - [Implemented] 1. Implement Functional Navigation:
   - [Implemented] Make all navigation links work, enabling smooth scrolling to page sections.
-  - [ToDo] Ensure all external links (GitHub, demos) in the `<ProjectsSection>` are correct.
+  - [Implemented] Ensure all external links (GitHub, demos) in the `<ProjectsSection>` are correct.
 - [ToDo] 2. Develop Key Interactive Features:
   - [ToDo] PDF Generation: Build the frontend for the "Download as PDF" feature.
   - [ToDo] Voice Chatbot: Implement the UI for the ElevenLabs chatbot. **Dependency:** Use the API endpoint contract provided by Track B.

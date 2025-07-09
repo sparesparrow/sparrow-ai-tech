@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+<<<<<<< HEAD
 import DecorativeDivider from './ui/DecorativeDivider.jsx';
 import decorativeTexts from '../data/decorativeTexts.json';
+=======
+import { useI18n } from '../i18n';
+>>>>>>> 33e29b2 (feat: Enhance localization support and improve UI components; implement PDF download functionality and voice chatbot integration)
 
 // Example props:
 // translations: { ... } (from cs.json/en.json)
@@ -636,33 +640,123 @@ const ContactSection = ({ translations }) => {
   );
 };
 
-const DownloadPdfButton = () => (
-  <button
-    onClick={() => window.print()}
-    data-cy="download-pdf-btn"
-    className="fixed bottom-8 right-8 z-50 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg print:hidden"
-    aria-label="Download as PDF"
-  >
-    Download as PDF
-  </button>
-);
+const DownloadPdfButton = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-const ChatbotModal = ({ open, onClose }) => (
-  open ? (
+  const handleDownload = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const html = document.documentElement.outerHTML;
+      const res = await fetch('/api/pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ html }),
+      });
+      if (!res.ok) throw new Error('Failed to generate PDF');
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'sparrow-ai-tech.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (e) {
+      setError('PDF download failed.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <button
+        onClick={handleDownload}
+        data-cy="download-pdf-btn"
+        className="fixed bottom-8 right-8 z-50 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all text-lg print:hidden disabled:opacity-60"
+        aria-label="Download as PDF"
+        disabled={loading}
+      >
+        {loading ? 'Generating PDF…' : 'Download as PDF'}
+      </button>
+      {error && (
+        <div className="fixed bottom-24 right-8 z-50 bg-red-600 text-white px-4 py-2 rounded shadow-lg">{error}</div>
+      )}
+    </>
+  );
+};
+
+const ChatbotModal = ({ open, onClose }) => {
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSend = async () => {
+    if (!input.trim()) return;
+    setLoading(true);
+    setError(null);
+    setMessages((msgs) => [...msgs, { from: "user", text: input }]);
+    try {
+      const res = await fetch("/api/chatbot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input }),
+      });
+      if (!res.ok) throw new Error("Failed to get reply");
+      const data = await res.json();
+      setMessages((msgs) => [...msgs, { from: "bot", text: data.reply }]);
+      setInput("");
+    } catch (e) {
+      setError("Chatbot error. Try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (!open) return null;
+  return (
     <div className="fixed inset-0 z-50 flex items-end justify-end">
       <div className="fixed inset-0 bg-black bg-opacity-40" onClick={onClose} data-cy="chatbot-backdrop"></div>
       <div className="relative bg-white w-full max-w-md m-8 rounded-xl shadow-2xl p-6 flex flex-col" data-cy="chatbot-modal">
         <button onClick={onClose} className="absolute top-2 right-2 text-slate-400 hover:text-slate-700 text-2xl font-bold" aria-label="Close Chatbot" data-cy="chatbot-close-btn">×</button>
         <h2 className="text-xl font-bold mb-4 text-sky-700">Voice Chatbot (ElevenLabs)</h2>
-        <div className="flex-1 overflow-y-auto mb-4">
-          <div className="bg-slate-100 rounded p-4 text-slate-600 text-center">Coming soon: This will be a live voice chatbot powered by ElevenLabs.</div>
+        <div className="flex-1 overflow-y-auto mb-4 max-h-64">
+          {messages.length === 0 && <div className="bg-slate-100 rounded p-4 text-slate-600 text-center">Say hello to the ElevenLabs chatbot!</div>}
+          {messages.map((msg, i) => (
+            <div key={i} className={msg.from === "user" ? "text-right mb-2" : "text-left mb-2"}>
+              <span className={msg.from === "user" ? "inline-block bg-sky-100 text-sky-800 px-3 py-2 rounded-lg" : "inline-block bg-emerald-100 text-emerald-800 px-3 py-2 rounded-lg"}>
+                {msg.text}
+              </span>
+            </div>
+          ))}
         </div>
-        <input type="text" className="w-full border border-slate-300 rounded px-4 py-2 mb-2" placeholder="Type your message..." disabled />
-        <button className="w-full bg-sky-600 text-white font-bold py-2 rounded-lg mt-2 opacity-50 cursor-not-allowed" disabled data-cy="chatbot-send-btn">Send</button>
+        <input
+          type="text"
+          className="w-full border border-slate-300 rounded px-4 py-2 mb-2"
+          placeholder="Type your message..."
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          disabled={loading}
+          data-cy="chatbot-input"
+          onKeyDown={e => { if (e.key === 'Enter') handleSend(); }}
+        />
+        <button
+          className="w-full bg-sky-600 text-white font-bold py-2 rounded-lg mt-2 disabled:opacity-60"
+          onClick={handleSend}
+          disabled={loading || !input.trim()}
+          data-cy="chatbot-send-btn"
+        >
+          {loading ? "Sending..." : "Send"}
+        </button>
+        {error && <div className="mt-2 text-red-600 text-sm">{error}</div>}
       </div>
     </div>
-  ) : null
-);
+  );
+};
 
 const ChatbotButton = ({ onClick }) => (
   <button
@@ -680,6 +774,7 @@ const ChatbotButton = ({ onClick }) => (
 
 // Patch: Add default values for props and defensive checks for translations and translations.nav
 const HomePage = ({ translations = {}, language = 'en', onLanguageChange = () => { }, prompts = [] }) => {
+  const { t, language: currentLanguage } = useI18n();
   // Defensive: Ensure translations.nav exists and has expected keys
   const nav = translations.nav || { services: 'Services', articles: 'Articles', about: 'About', contact: 'Contact' };
 
