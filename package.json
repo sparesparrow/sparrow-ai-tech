@@ -27,7 +27,8 @@
     "test:ci": "jest --ci",
     "test:e2e": "cypress run",
     "prepare": "husky install",
-    "lint": "echo eslint . --ext .js,.jsx,.ts,.tsx,.astro"
+    "lint": "echo eslint . --ext .js,.jsx,.ts,.tsx,.astro",
+    "postinstall": "npx playwright install --with-deps"
   },
   "dependencies": {
     "@astrojs/react": "3.6.3",
@@ -36,7 +37,7 @@
     "@tailwindcss/typography": "0.5.16",
     "@tippyjs/react": "^4.2.6",
     "@uiw/react-md-editor": "^4.0.7",
-    "astro-i18n": "^2.2.4",
+    "astro-i18n": "2.2.4",
     "chart.js": "^4.4.3",
     "framer-motion": "11.18.2",
     "mermaid": "^11.8.1",
@@ -84,7 +85,8 @@
     "prettier-plugin-tailwindcss": "^0.6.13",
     "react-helmet": "6.1.0",
     "tailwindcss": "^3.4.17",
-    "typescript-eslint": "^8.36.0"
+    "typescript-eslint": "^8.36.0",
+    "rehype-mermaid": "^3.0.1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,astro,md,css,html,json}": [

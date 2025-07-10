@@ -1,12 +1,12 @@
 describe('MarkdownViewer Component', () => {
   it('renders markdown content and custom link renderers', () => {
-    cy.visit('/markdown-test?src=./articles/github-link-test.md');
+    cy.visit('/sparrow-ai-tech/markdown-test?src=./articles/github-link-test.md');
     cy.contains('GitHub Repo Link Test').should('be.visible');
     cy.contains('Visit Sparrow AI Tech Repo').should('be.visible');
   });
 
   it('shows GitHub repo metadata tooltip on hover', () => {
-    cy.visit('/markdown-test?src=./articles/github-link-test.md');
+    cy.visit('/sparrow-ai-tech/markdown-test?src=./articles/github-link-test.md');
     cy.contains('Visit Sparrow AI Tech Repo').trigger('mouseover');
     cy.get('.tippy-box').should('be.visible');
     cy.get('.tippy-box').should('contain.text', 'sparesparrow/sparrow-ai-tech');
@@ -22,7 +22,7 @@ describe('ImagePreviewLink Component', () => {
   });
 
   it('shows image preview tooltip on hover', () => {
-    cy.visit('/markdown-test?src=./articles/image-link-test.md');
+    cy.visit('/sparrow-ai-tech/markdown-test?src=./articles/image-link-test.md');
     cy.contains('Preview Image').trigger('mouseover');
     cy.get('.tippy-box img').should('be.visible');
     cy.get('.tippy-box img').should('have.attr', 'src', '/test-image.png');
@@ -36,7 +36,7 @@ describe('MermaidPreviewLink Component', () => {
   });
 
   it('shows mermaid diagram preview tooltip on hover', () => {
-    cy.visit('/markdown-test?src=./articles/mermaid-link-test.md');
+    cy.visit('/sparrow-ai-tech/markdown-test?src=./articles/mermaid-link-test.md');
     cy.contains('Preview Diagram').trigger('mouseover');
     cy.get('.tippy-box .mermaid-diagram').should('be.visible');
     cy.get('.tippy-box').should('contain.text', 'A');

@@ -12,6 +12,7 @@ import Card from './ui/Card.jsx';
 import PrimaryButton from './ui/PrimaryButton.jsx';
 import SecondaryButton from './ui/SecondaryButton.jsx';
 import SkeletonLoader from './ui/SkeletonLoader.jsx';
+import PortfolioProjectsTable from './PortfolioProjectsTable';
 
 // Example props:
 // translations: { ... } (from cs.json/en.json)
@@ -55,7 +56,18 @@ const HeroSection = ({ translations }) => (
         className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-8"
         loading="eager"
       />
-      <PrimaryButton onClick={() => {}}>{translations.cta_quick_analysis_hero}</PrimaryButton>
+      <div className="flex gap-4 mt-6">
+        <a
+          href="/todo"
+          className="inline-block"
+          data-cy="todo-dashboard-cta"
+        >
+          <button className="px-6 py-3 rounded bg-green-600 text-white font-semibold text-lg shadow hover:bg-green-700 focus:outline-none">
+            View Project TODOs
+          </button>
+        </a>
+        <PrimaryButton onClick={() => {}}>{translations.cta_quick_analysis_hero}</PrimaryButton>
+      </div>
       <a href="/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.md" data-cy="test-article-link" className="block mt-4 text-sky-700 dark:text-sky-300 hover:underline">Test Article</a>
       <a href="/sparrow-ai-tech/infographics/Infographic1.html" data-cy="test-infographic-link" className="block mt-2 text-sky-700 dark:text-sky-300 hover:underline">Test Infographic</a>
     </div>

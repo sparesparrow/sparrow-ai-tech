@@ -234,23 +234,27 @@ export default function MermaidLiveEditor() {
               onChange={e => setCode(e.target.value)}
               placeholder="Enter your Mermaid diagram code here..."
               onKeyDown={handleKeyDown}
+              data-cy="mermaid-editor-textarea"
             />
           </div>
           <div style={styles.controls}>
             <button
               style={{ ...styles.btn, ...styles.btnPrimary }}
               onClick={() => renderDiagram(code)}
+              data-cy="mermaid-editor-update-btn"
             >Update Diagram</button>
             <button
               style={{ ...styles.btn, ...styles.btnSecondary }}
               onClick={handleClear}
+              data-cy="mermaid-editor-clear-btn"
             >Clear</button>
             <button
               style={{ ...styles.btn, ...styles.btnSecondary, background: copied ? '#28a745' : '#6c757d' }}
               onClick={handleCopy}
+              data-cy="mermaid-editor-copy-btn"
             >{copied ? 'Copied!' : 'Copy Code'}</button>
           </div>
-          {error && <div style={styles.error}>{error}</div>}
+          {error && <div style={styles.error} data-cy="mermaid-editor-error">{error}</div>}
         </div>
         <div style={styles.panel}>
           <div style={styles.panelHeader}>🎨 Live Preview</div>
@@ -258,6 +262,7 @@ export default function MermaidLiveEditor() {
             <div
               style={styles.preview}
               dangerouslySetInnerHTML={{ __html: svg }}
+              data-cy="mermaid-editor-preview"
             />
           </div>
         </div>

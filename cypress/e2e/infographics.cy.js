@@ -1,25 +1,22 @@
-describe('Infographics Section', () => {
-  beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+describe('Infographics Page', () => {
+  it('renders Infographic1', () => {
+    cy.visit('/sparrow-ai-tech/infographics/Infographic1');
+    cy.contains('Infographic 1').should('be.visible');
   });
 
-  it('should display Infografiky link in navigation', () => {
-    cy.get('a[href="#infographics"]').should('exist').and('contain', 'Infografiky');
+  it('renders Infographic2', () => {
+    cy.visit('/sparrow-ai-tech/infographics/Infographic2');
+    cy.contains('Infographic 2').should('be.visible');
   });
 
-  it('should display Infographics section', () => {
-    cy.get('#infographics').should('exist');
-    cy.get('#infographics h2').should('contain', 'Infografiky');
+  it('renders Infographic3', () => {
+    cy.visit('/sparrow-ai-tech/infographics/Infographic3');
+    cy.contains('Infographic 3').should('be.visible');
   });
 
-  it('should have three infographic cards with correct links', () => {
-    cy.get('#infographics a[href="infographics/1.html"]').should('exist');
-    cy.get('#infographics a[href="infographics/2.html"]').should('exist');
-    cy.get('#infographics a[href="infographics/3.html"]').should('exist');
-  });
-
-  it('should open Infografika 1 in a new tab', () => {
-    cy.get('#infographics a[href="infographics/1.html"]').should('have.attr', 'target', '_blank');
+  it('renders SPA infographic', () => {
+    cy.visit('/sparrow-ai-tech/infographics/SPA');
+    cy.contains('Single Page Application').should('be.visible');
   });
 });
 

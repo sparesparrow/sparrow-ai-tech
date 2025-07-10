@@ -127,3 +127,16 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 - **Integration & Testing:** The release branch is tested end-to-end. All E2E tests must pass.
 - Once stable, `release/v1.0` is merged into main, triggering the final deployment.
 - **Outcome:** A fully functional, interactive, tested, and deployed web application.
+
+- [Done] Implement interactive Mermaid editor at /mermaid-editor with live preview, error handling, copy/clear, keyboard shortcuts, accessibility, and robust E2E Cypress tests using data-cy attributes.
+
+  - [ ] Scaffold Python FastAPI backend (mcp-mermaid-generator)
+  - [ ] Implement /generate_diagram and /validate_syntax endpoints
+  - [ ] Integrate LLM (OpenAI, Ollama, or MermaidLlama)
+  - [ ] Integrate prompt server or local prompt templates
+  - [ ] Validate and sanitize Mermaid code
+  - [ ] Render SVG via Playwright (Python or mermaid-cli)
+  - [ ] Sanitize SVG output
+  - [ ] Dockerize the backend
+  - [ ] Add CI/CD workflow for build, test, deploy
+  - [ ] Document API contract and security measures

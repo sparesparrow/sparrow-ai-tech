@@ -1,0 +1,43 @@
+---
+description: This rule encodes the UI/UX, accessibility, and implementation best practices for interactive Mermaid editors
+globs:
+alwaysApply: false
+---
+# Interactive Mermaid Editor: Best Practices and Guidelines
+
+This rule encodes the UI/UX, accessibility, and implementation best practices for interactive Mermaid editors, as exemplified by [InteractiveConceptMapEditor.html](mdc:public/articles/InteractiveConceptMapEditor.html).
+
+## 1. Core Features
+- Live editing of Mermaid code with real-time preview
+- Error handling: display clear error messages for syntax issues
+- Copy-to-clipboard and clear/reset editor actions
+- Keyboard shortcuts (e.g., Ctrl+Enter to update preview)
+- Responsive layout for desktop and mobile
+- Theming and visually appealing UI (backgrounds, gradients, shadows)
+
+## 2. Implementation Details
+- Use a `<textarea>` for code input and a dedicated preview area for SVG output
+- Use MermaidJS client-side for live preview in the editor (for authoring only)
+- Debounce input to avoid excessive re-renders
+- Use unique IDs for each diagram render to avoid conflicts
+- Style SVG output for max width and responsive scaling
+- Provide initial example code for onboarding
+
+## 3. Accessibility
+- Ensure all controls (buttons, textarea) are keyboard accessible
+- Use clear focus states and ARIA labels where appropriate
+- Provide error messages in a visually distinct, accessible manner
+
+## 4. Integration with SSR Workflows
+- For production documentation, prefer SSR of diagrams (see [mermaidjs.mdc](mdc:mermaidjs.mdc))
+- Use client-side editors for authoring, preview, and user interaction, but render final diagrams server-side for performance and SEO
+- Editors can be embedded in documentation as interactive playgrounds, but static output should use SSR
+
+## 5. File/Folder Conventions
+- Place interactive editors in `/public/articles/`, `/src/components/`, or as standalone HTML/JSX files
+- Use `.html`, `.jsx`, or `.astro` for editor implementations
+
+---
+**Reference:**
+- [InteractiveConceptMapEditor.html](mdc:public/articles/InteractiveConceptMapEditor.html)
+- See also: [mermaidjs.mdc](mdc:mermaidjs.mdc) for SSR and architecture guidance

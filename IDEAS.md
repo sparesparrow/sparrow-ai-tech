@@ -1,8 +1,6 @@
 # Ideas to explore:
-- https://dev.to/devopswithamol/
-automate-server-deployments-with-github-actions-ssh-p24
-- https://ecostack.dev/posts/
-automated-docker-compose-deployment-github-actions/
+- https://dev.to/devopswithamol/automate-server-deployments-with-github-actions-ssh-p24
+- https://ecostack.dev/posts/automated-docker-compose-deployment-github-actions/
 
 ### Chceme použít text z `I-will-get-you-deployed.md` jako designový prvek. Je to velmi kreativní nápad. Místo toho, aby byl text jen dalším článkem, můžeme jeho pět odstavců integrovat do stránky jako vizuální kotvy, které oddělují sekce nebo vyplňují prostor subtilním, ale tematickým způsobem.
 
@@ -147,6 +145,7 @@ const paragraphs = [
 - **Animace:** Můžete přidat jemné animace opacity nebo pohybu pro ještě větší vizuální efekt.
 - **Responsivita:** Upravte velikost písma podle viewportu (`text-[8vw]` apod.).
 - **Randomizace:** Pokud chcete, aby se texty objevovaly náhodně, můžete je generovat v React/Astro pomocí Math.random().
+- Evaluate MermaidLlama (HuggingFace, https://huggingface.co/TroyDoesAI/MermaidLlama) and local LLMs (Ollama+Granite, see https://alain-airom.medium.com/fun-project-of-the-week-mermaid-flowcharts-generator-0bc74404e9e6) as alternatives to OpenAI for diagram code generation in the agentic backend.
 
 ---
 
