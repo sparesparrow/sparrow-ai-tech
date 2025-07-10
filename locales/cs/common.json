@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "home": "Domů",
+    "portfolio": "Portfolio",
+    "articles": "Články",
+    "infographics": "Infografiky",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "title": "Vítejte ve Sparrow AI Tech",
+    "subtitle": "AI řešení pro budoucnost"
+  },
+  "articles": {
+    "sectionTitle": "Vybrané články"
+  },
+  "infographics": {
+    "sectionTitle": "Infografiky"
+  },
+  "contact": {
+    "sectionTitle": "Kontaktujte nás"
+  }
+}
