@@ -30,9 +30,30 @@ npx cypress open # Run Cypress E2E tests interactively
 ```
 
 ## Testing
-- **Jest**: Unit/component tests in `src/components/__tests__`
+- **Jest**: Unit/component tests in `src/components/__tests__` using [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - **Cypress**: E2E tests in `cypress/e2e/`
 - **Lighthouse CI**: Automated performance checks in CI (see below)
+
+### Running Tests
+
+```sh
+npm test # Run all Jest tests
+npx cypress open # Run Cypress E2E tests interactively
+```
+
+### Writing Component Tests
+- Place test files in `src/components/__tests__/` with `.test.jsx` or `.test.js` extension.
+- Use [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for rendering and interacting with components.
+- Use [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) for extended assertions.
+
+## Testing & Quality Assurance
+- **Cypress**: E2E tests in `cypress/e2e/` (run with `npm test:e2e` or `npx cypress run`)
+- **Jest**: Unit/component tests in `src/components/__tests__/` (run with `npm test`)
+- **Lighthouse CI**: Automated performance and accessibility checks in CI
+
+**Note:**
+- All E2E and unit tests must pass (`npm test:e2e`, `npm test`) before deployment.
+- If any Cypress tests fail, update selectors or test logic as needed (see TODO.md for current status).
 
 ## Deployment
 - **GitHub Actions**: CI/CD pipeline runs lint, test, build, Lighthouse CI, and deploys to GitHub Pages
@@ -54,3 +75,32 @@ npx cypress open # Run Cypress E2E tests interactively
 ## Credits & License
 - Built with Astro, React, Tailwind CSS, Cypress, Jest
 - MIT License
+
+## Internationalization (i18n)
+- **astro-i18n** is fully configured for English and Czech.
+- Translation files: `public/locales/en/common.json`, `public/locales/cs/common.json`
+- Use the translation function in frontend code: `t('header.nav_projects')`
+- Key structure example:
+  ```json
+  {
+    "header": {
+      "nav_projects": "Projects"
+    }
+  }
+  ```
+- See TODO.md for handoff and further details.
+
+## Backend API Endpoints
+
+### /api/pdf
+- **POST**: `{ html: string }` or `{ markdown: string }`
+- **Response**: `application/pdf` (stream) or `{ error: string }`
+- Uses Puppeteer to generate PDF from HTML/Markdown.
+
+### /api/chatbot
+- **POST**: `{ text: string, voice_id?: string }`
+- **Response**: `audio/mpeg` (stream) or `{ error: string }`
+- Proxies to ElevenLabs API, API key is read from environment variables (never exposed to client).
+
+**Security:**
+- All API keys and secrets are managed via environment variables. Never commit secrets to the codebase.

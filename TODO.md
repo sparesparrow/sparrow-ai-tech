@@ -70,15 +70,15 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 - [ToDo] 4. Set Up Testing Frameworks:
   - [Done] Install and configure Cypress for E2E testing (`npx cypress init`).
   - [HelpNeeded] Install and configure Jest and Testing Library for component testing.
-  - [ToDo] Fix any existing failing Cypress tests by updating selectors or test logic.
+  - [InProgress] Fix any existing failing Cypress tests by updating selectors or test logic.
   - [ToDo] **Done when:** `npm install` , `npm run lint`, `npm test:e2e`,  `npm run build` and `npm test:ci`  execute without errors.
 
 
-- [ToDo] 5. Set Up Internationalization (i18n) Framework:
-  - [ToDo] Integrate and configure astro-i18n.
-  - [ToDo] Create `public/locales/en/common.json` and `public/locales/cs/common.json`.
-  - [ToDo] Define a clear structure for translation keys (e.g., `{ "header": { "nav_projects": "Projects" } }`).
-  - [ToDo] **Done when:** The i18n utility is configured and ready for the frontend to use. **Handoff:** Provide the function call (e.g., `t('header.nav_projects')`) and key structure to Agent A.
+- [Implemented] 5. Set Up Internationalization (i18n) Framework:
+  - [Implemented] Integrate and configure astro-i18n.
+  - [Implemented] Create `public/locales/en/common.json` and `public/locales/cs/common.json`.
+  - [Implemented] Define a clear structure for translation keys (e.g., `{ "header": { "nav_projects": "Projects" } }`).
+  - [Implemented] **Done when:** The i18n utility is configured and ready for the frontend to use. **Handoff:** Use `t('header.nav_projects')` and the provided key structure in frontend components.
 
 ---
 
@@ -106,9 +106,10 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [ToDo] Voice Chatbot: Create a serverless function (`./api/chatbot.js`) to securely handle API calls to the ElevenLabs API. **Handoff:** Provide the API contract (endpoint URL, request/response format) to Agent A.
   - [ToDo] PDF Generation: If server-side rendering is chosen for the PDF, set up the necessary endpoint.
   
-- [ToDo] 2. Write Comprehensive Tests:
-  - [ToDo] Component Tests: Write unit tests for any complex, non-UI logic.
-  - [HelpNeeded] E2E Tests: **Dependency:** Use the `data-cy` attributes provided by Track A. Write new Cypress tests for the key user flows (language switching, PDF download, opening chatbot). Backend API endpoint tests implemented.
+- [Tested] 2. Write Comprehensive Tests:
+  - [Tested] Backend API endpoint tests implemented (including SVG sanitization and XSS vectors)
+  - [InProgress] Component Tests: Write unit tests for any complex, non-UI logic.
+  - [InProgress] E2E Tests: **Dependency:** Use the `data-cy` attributes provided by Track A. Write new Cypress tests for the key user flows (language switching, PDF download, opening chatbot). Backend API endpoint tests implemented.
 - [ToDo] 3. Finalize Documentation:
   - [ToDo] Update `README.md` with the final project structure, design system documentation, and detailed setup/run instructions.
 - [ToDo] 4. Optimize and Secure:
@@ -134,9 +135,9 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [ ] Implement /generate_diagram and /validate_syntax endpoints
   - [ ] Integrate LLM (OpenAI, Ollama, or MermaidLlama)
   - [ ] Integrate prompt server or local prompt templates
-  - [ ] Validate and sanitize Mermaid code
-  - [ ] Render SVG via Playwright (Python or mermaid-cli)
-  - [ ] Sanitize SVG output
+  - [Tested] Validate and sanitize Mermaid code
+  - [Tested] Render SVG via Playwright (Python or mermaid-cli)
+  - [Tested] Sanitize SVG output
   - [ ] Dockerize the backend
   - [ ] Add CI/CD workflow for build, test, deploy
   - [ ] Document API contract and security measures
