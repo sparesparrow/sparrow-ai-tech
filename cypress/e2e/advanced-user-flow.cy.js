@@ -2,7 +2,7 @@
 
 describe('Advanced User Flows', () => {
   beforeEach(() => {
-    cy.visit('/sparrow-ai-tech/');
+    cy.visit('/sparrow-ai-tech/en/');
   });
 
   it('navigates through the main sections and persists state', () => {
@@ -26,7 +26,7 @@ describe('Advanced User Flows', () => {
 
   it.skip('handles API/network errors gracefully', () => {
     cy.intercept('GET', '/sparrow-ai-tech/api/some-endpoint', { statusCode: 500 }).as('getApi');
-    cy.visit('/sparrow-ai-tech/');
+    cy.visit('/sparrow-ai-tech/en/');
     cy.wait('@getApi');
     cy.contains(/error/i).should('be.visible');
   });
@@ -38,13 +38,13 @@ describe('Advanced User Flows', () => {
 
   it('works correctly on mobile viewport', () => {
     cy.viewport('iphone-6');
-    cy.visit('/sparrow-ai-tech/');
+    cy.visit('/sparrow-ai-tech/en/');
     cy.get('button').contains(/menu/i).click({force:true});
     cy.get('nav').should('be.visible');
   });
 
   it.skip('tests form validation and submission', () => {
-    cy.visit('/sparrow-ai-tech/contact');
+    cy.visit('/sparrow-ai-tech/en/contact');
     cy.get('input[name="email"]').type('invalid-email');
     cy.get('form').submit();
     cy.contains(/invalid email/i).should('be.visible');
@@ -57,7 +57,7 @@ describe('Advanced User Flows', () => {
 
 describe('Mermaid Editor E2E', () => {
   beforeEach(() => {
-    cy.visit('/mermaid-editor');
+    cy.visit('/en/mermaid-editor');
   });
 
   it('renders the editor and preview', () => {

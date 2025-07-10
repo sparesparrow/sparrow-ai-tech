@@ -1,9 +1,12 @@
 // astro-i18n.config.mjs
+const locales = {
+  en: 'en-US',
+  cs: 'cs-CZ',
+};
+
+const defaultLocale = 'en';
+
 export default {
-  locales: ['en', 'cs'],
-  defaultLocale: 'en',
-  translations: {
-    en: 'public/locales/en/common.json',
-    cs: 'public/locales/cs/common.json'
-  }
+  locales,
+  defaultLocale,
 }; 

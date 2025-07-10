@@ -3,10 +3,11 @@ import react from '@astrojs/react';
 import { fileURLToPath } from 'url';
 import { join } from 'path';
 import rehypeMermaid from 'rehype-mermaid';
-import i18n from 'astro-i18n';
+import i18n from 'astro-i18n-aut/integration';
 import i18nConfig from './astro-i18n.config.mjs';
 
 export default defineConfig({
+  site: 'https://sparesparrow.github.io/sparrow-ai-tech',
   base: '/sparrow-ai-tech/',
   integrations: [
     react(),
