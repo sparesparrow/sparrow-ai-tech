@@ -35,7 +35,7 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 
 ## Track A: Frontend & User Experience (Agent 1)
 
-### Sprint 2: Interactivity & Feature Implementation
+### Interactivity & Feature Implementation
 
 - [Implemented] 1. Implement Functional Navigation:
   - [Implemented] Make all navigation links work, enabling smooth scrolling to page sections.
@@ -54,7 +54,7 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 
 **Focus:** Build the project's foundation, including testing, deployment, and backend integrations. This track ensures the project is robust, maintainable, and deployable.
 
-### Sprint 1: Project Foundation & CI/CD
+### Project Foundation & CI/CD
 
 - [Done] 1. Project & Content Cleanup:
   - [Done] Perform all file moving and standardization tasks from the "Content & Structure Cleanup" section of the original TODO list.
@@ -64,17 +64,16 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [Done] Configure `.eslintrc.cjs` and `.prettierrc`.
   - [Done] Run `npx husky-init` and configure lint-staged in `package.json` to run Prettier and ESLint on pre-commit.
   - [Done] **Done when:** The pre-commit hook successfully formats and lints staged files.
-- [ToDo] 3. Configure CI/CD Pipeline (GitHub Actions):
-  - [ToDo] Create `.github/workflows/deploy.yml`.
-  - [ToDo] The workflow should trigger on push to main and on pull_request.
-  - [ToDo] Define jobs for: lint, test, and build.
-  - [ToDo] Add a final deploy job that uses the `actions/deploy-pages` action to deploy the `dist/` folder to GitHub Pages.
-  - [ToDo] **Done when:** The pipeline successfully runs and deploys the initial empty project.
+  - [Implemented] Add a final deploy job that uses the `actions/deploy-pages` action to deploy the `dist/` folder to GitHub Pages.
+  - [ToDo] **Done when:** The pipeline successfully runs and deploys the github page.
+
 - [ToDo] 4. Set Up Testing Frameworks:
-  - [ToDo] Install and configure Cypress for E2E testing (`npx cypress init`).
-  - [ToDo] Install and configure Jest and Testing Library for component testing.
+  - [Done] Install and configure Cypress for E2E testing (`npx cypress init`).
+  - [HelpNeeded] Install and configure Jest and Testing Library for component testing.
   - [ToDo] Fix any existing failing Cypress tests by updating selectors or test logic.
-  - [ToDo] **Done when:** `npm test` and `npx cypress run` execute without errors.
+  - [ToDo] **Done when:** `npm install` , `npm run lint`, `npm test:e2e`,  `npm run build` and `npm test:ci`  execute without errors.
+
+
 - [ToDo] 5. Set Up Internationalization (i18n) Framework:
   - [ToDo] Integrate and configure astro-i18n.
   - [ToDo] Create `public/locales/en/common.json` and `public/locales/cs/common.json`.
@@ -83,22 +82,9 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 
 ---
 
-### Synchronization Point 1: End of Sprint 1
-
-**Goal:** Merge the foundational UI with the CI/CD and tooling setup.
-
-**Process:**
-- Both agents ensure their branches are up-to-date with main.
-- Track B creates a pull request to merge its foundation branch into main. Review and merge.
-- Track A rebases its ui-sprint-1 branch on the new main, then creates a pull request.
-- **Review:** Both agents review the PR. The CI pipeline must pass.
-- **Outcome:** A deployable static site with a working test and build pipeline. The homepage is visible but not yet interactive.
-
----
-
 ## Track A: Frontend & User Experience (Agent 1)
 
-### Sprint 2: Interactivity & Feature Implementation
+### Interactivity & Feature Implementation
 
 - [Implemented] 1. Implement Functional Navigation:
   - [Implemented] Make all navigation links work, enabling smooth scrolling to page sections.
@@ -110,16 +96,16 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [Implemented] Use the i18n function and JSON key structure provided by Track B.
   - [Implemented] Connect the language switcher UI to the i18n framework to enable language changes.
   - [Implemented] Wrap all static text in UI components with the translation function.
-
 ---
 
 ## Track B: Backend, Tooling & Automation (Agent 2)
 
-### Sprint 2: Backend Integrations & Testing
+### Backend Integrations & Testing
 
 - [ToDo] 1. Implement Backend for Features:
   - [ToDo] Voice Chatbot: Create a serverless function (`./api/chatbot.js`) to securely handle API calls to the ElevenLabs API. **Handoff:** Provide the API contract (endpoint URL, request/response format) to Agent A.
   - [ToDo] PDF Generation: If server-side rendering is chosen for the PDF, set up the necessary endpoint.
+  
 - [ToDo] 2. Write Comprehensive Tests:
   - [ToDo] Component Tests: Write unit tests for any complex, non-UI logic.
   - [HelpNeeded] E2E Tests: **Dependency:** Use the `data-cy` attributes provided by Track A. Write new Cypress tests for the key user flows (language switching, PDF download, opening chatbot). Backend API endpoint tests implemented.
@@ -128,16 +114,16 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 - [ToDo] 4. Optimize and Secure:
   - [ToDo] Set up Lighthouse CI in the `deploy.yml` workflow to report on performance and accessibility.
   - [ToDo] Review for security best practices, especially around API key handling for the chatbot (use environment variables).
+  - [ToDo] **Done when:** `npm install` , `npm run lint`, `npm test:e2e`,  `npm run build` and `npm test:ci`  execute without errors.
 
 ---
 
-### Synchronization Point 2: End of Sprint 2
-
+### Synchronization Point
 **Goal:** Integrate the interactive frontend with backend logic and finalize testing for release.
 
 **Process:**
 - A new `release/v1.0` branch is created from main.
-- Both agents create pull requests for their Sprint 2 work into the `release/v1.0` branch.
+- Both agents create pull requests for theirwork into the `release/v1.0` branch.
 - **Integration & Testing:** The release branch is tested end-to-end. All E2E tests must pass.
 - Once stable, `release/v1.0` is merged into main, triggering the final deployment.
 - **Outcome:** A fully functional, interactive, tested, and deployed web application.

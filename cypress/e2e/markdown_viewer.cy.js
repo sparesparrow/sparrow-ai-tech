@@ -69,25 +69,25 @@ describe('MarkdownViewer Component', () => {
   });
 
   it('renders markdown content', () => {
-    cy.visit('/markdown-test?src=./articles/mcp-prompts.md');
+    cy.visit('/sparrow-ai-tech/markdown-test?src=./articles/mcp-prompts.md');
     cy.get('.prose').should('exist');
     cy.contains('Some expected heading or text from the markdown');
   });
 
   it('renders mermaid diagram', () => {
-    cy.visit('/markdown-test?src=./articles/mermaid-example.md');
+    cy.visit('/sparrow-ai-tech/markdown-test?src=./articles/mermaid-example.md');
     cy.get('.mermaid-diagram').find('svg').should('exist');
   });
 
   it('shows error on fetch fail', () => {
     cy.intercept('GET', '/articles/does-not-exist.md', { statusCode: 404 });
-    cy.visit('/markdown-test?src=./articles/does-not-exist.md');
+    cy.visit('/sparrow-ai-tech/markdown-test?src=./articles/does-not-exist.md');
     cy.contains('Error').should('exist');
   });
 
   it('shows image preview on hover for image links', () => {
     // This markdown file should contain: [Alt text](/assets/images/test-image.png)
-    cy.visit('/markdown-test?src=./articles/image-link-test.md');
+    cy.visit('/sparrow-ai-tech/markdown-test?src=./articles/image-link-test.md');
     cy.contains('Alt text').trigger('mouseover');
     cy.get('.tippy-box img').should('be.visible').and(($img) => {
       expect($img[0].src).to.match(/test-image\.png$/);
@@ -96,14 +96,14 @@ describe('MarkdownViewer Component', () => {
 
   it('shows Mermaid diagram preview on hover for .mmd links', () => {
     // /articles/mermaid-test-link.md should contain: [Diagram](/articles/test-diagram.mmd)
-    cy.visit('/markdown-test?src=./articles/mermaid-test-link.md');
+    cy.visit('/sparrow-ai-tech/markdown-test?src=./articles/mermaid-test-link.md');
     cy.contains('Diagram').trigger('mouseover');
     cy.get('.tippy-box .mermaid-diagram svg').should('be.visible');
   });
 
   it('shows GitHub repo metadata tooltip on hover for repo links', () => {
     // /articles/github-link-test.md should contain: [MCP Prompts](https://github.com/sparesparrow/mcp-prompts)
-    cy.visit('/markdown-test?src=./articles/github-link-test.md');
+    cy.visit('/sparrow-ai-tech/markdown-test?src=./articles/github-link-test.md');
     cy.contains('MCP Prompts').trigger('mouseover');
     cy.get('.tippy-box').should('contain.text', 'sparesparrow/mcp-prompts');
     cy.get('.tippy-box').should('contain.text', 'stars').or('contain.text', '⭐');

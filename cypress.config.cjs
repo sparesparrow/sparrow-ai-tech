@@ -2,9 +2,8 @@ const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   e2e: {
-    //baseUrl: 'http://localhost:5173/sparrow-ai-tech', // For local dev
-    // For production E2E, use:
-     baseUrl: 'https://sparesparrow.github.io/sparrow-ai-tech/',
+    // Use local dev server by default; override with CYPRESS_BASE_URL for CI/deploy
+    baseUrl: process.env.CYPRESS_BASE_URL || 'http://localhost:4321',
     setupNodeEvents(on, config) {
       // Example: implement node event listeners here
       // You can add custom tasks, plugins, or event handlers for Cypress here.

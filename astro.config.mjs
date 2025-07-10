@@ -8,7 +8,10 @@ export default defineConfig({
 
   base: '/sparrow-ai-tech/',
   
-  integrations: [react(), i18n],
+  integrations: [
+    { name: '@astrojs/react', ...react() },
+    { name: 'astro-i18n', ...i18n },
+  ],
   i18n: {
     locales: ['en', 'cs'],
     defaultLocale: 'en',

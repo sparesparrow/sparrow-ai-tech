@@ -1,18 +1,112 @@
 ---
 import '../styles/global.css';
-import HomePage from '../components/HomePage.jsx';
+import Sparkles from '../components/Sparkles.jsx';
+
+const navLinks = [
+  { href: '/infographics/Infographic1', label: 'Infographic 1' },
+  { href: '/infographics/Infographic2', label: 'Infographic 2' },
+  { href: '/infographics/Infographic3', label: 'Infographic 3' },
+  { href: '/infographics/SPA', label: 'SPA' },
+  { href: '/MarkdownTest', label: 'Markdown Test' },
+  { href: '/mermaid-editor', label: 'Mermaid Editor' },
+];
+
 ---
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sparrow AI Tech</title>
-    <link rel="icon" type="image/png" href="/sparrow-ai-tech/favicon.png" />
-    <link rel="icon" type="image/x-icon" href="/sparrow-ai-tech/favicon.ico" />
-    <link rel="manifest" href="/sparrow-ai-tech/manifest.json" />
-    <link rel="stylesheet" href="/sparrow-ai-tech/assets/css/global.css" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="/assets/css/global.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+    </style>
   </head>
-  <body>
-    <HomePage />
+  <body class="bg-gradient-to-br from-slate-50 to-slate-200 min-h-screen">
+    <div class="background-gif-container" aria-hidden="true">
+      <img src="/assets/images/QgFc9ovreXOjW8hVonunb.gif" alt="Working memory spreading activation" class="background-gif" />
+    </div>
+    <header class="w-full bg-white/80 backdrop-blur border-b border-slate-200 shadow-sm sticky top-0 z-10">
+      <nav class="max-w-5xl mx-auto flex items-center justify-between py-4 px-6">
+        <div class="flex items-center gap-2">
+          <img src="/favicon.png" alt="Sparrow AI Logo" class="w-8 h-8" />
+          <span class="text-xl font-bold tracking-tight text-slate-800">Sparrow AI Tech</span>
+        </div>
+        <ul class="flex gap-6 text-slate-700 font-medium">
+          {navLinks.map(link => (
+            <li><a href={link.href} class="hover:text-blue-600 transition-colors">{link.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+    <main class="max-w-4xl mx-auto px-4 py-16 flex flex-col items-center text-center">
+      <Sparkles>
+        <h1 class="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-600 to-teal-400 bg-clip-text text-transparent mb-6 drop-shadow-lg">Welcome to Sparrow AI Tech</h1>
+      </Sparkles>
+      <p class="text-lg md:text-xl text-slate-700 mb-8 max-w-2xl">Empowering your workflow with AI-driven tools, infographics, and interactive editors. Explore our features and get inspired by the future of technology.</p>
+      <div class="flex flex-wrap gap-4 justify-center mb-12">
+        {navLinks.map(link => (
+          <a href={link.href} class="px-5 py-3 rounded-lg bg-blue-600 text-white font-semibold shadow hover:bg-blue-700 transition-colors">{link.label}</a>
+        ))}
+      </div>
+      <img src="/assets/ai-hero.svg" alt="AI Illustration" class="w-full max-w-md mx-auto rounded-xl shadow-lg border border-slate-200 bg-white/70" style="margin-bottom:2rem;" onerror="this.style.display='none'" />
+      <section class="mt-8 grid md:grid-cols-3 gap-8 w-full">
+        <div class="bg-white rounded-xl shadow p-6 border border-slate-100">
+          <h2 class="text-xl font-bold mb-2 text-blue-700">Infographics</h2>
+          <p class="text-slate-600 mb-2">Visualize complex ideas with our interactive infographics.</p>
+          <a href="/infographics/Infographic1" class="text-blue-600 hover:underline">See Infographics →</a>
+        </div>
+        <div class="bg-white rounded-xl shadow p-6 border border-slate-100">
+          <h2 class="text-xl font-bold mb-2 text-teal-700">Markdown & Mermaid</h2>
+          <p class="text-slate-600 mb-2">Edit and preview Markdown and Mermaid diagrams live.</p>
+          <a href="/MarkdownTest" class="text-teal-600 hover:underline">Try Markdown Editor →</a>
+        </div>
+        <div class="bg-white rounded-xl shadow p-6 border border-slate-100">
+          <h2 class="text-xl font-bold mb-2 text-purple-700">AI Tools</h2>
+          <p class="text-slate-600 mb-2">Leverage AI-powered chatbots and PDF generation for productivity.</p>
+          <a href="/api/chatbot" class="text-purple-600 hover:underline">Chatbot API →</a>
+        </div>
+      </section>
+    </main>
+    <footer class="w-full py-8 mt-16 border-t border-slate-200 bg-white/80 text-center text-slate-500 text-sm">
+      &copy; {new Date().getFullYear()} Sparrow AI Tech. All rights reserved.
+    </footer>
+    <script>
+      // Fade out the background GIF as the user scrolls
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const fadeStart = 0;
+        const fadeEnd = 300;
+        const opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
+        const bg = document.querySelector('.background-gif');
+        if (bg) bg.style.opacity = opacity;
+      });
+    </script>
+    <style>
+      .background-gif-container {
+        position: fixed;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .background-gif {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        opacity: 1;
+        transition: opacity 0.5s;
+        will-change: opacity;
+        filter: blur(0.5px) brightness(0.95);
+      }
+      main, header, footer {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
   </body>
-</html> 
+</html>
