@@ -1,0 +1,28 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mcp-mermaid-generator
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t mcp-mermaid-generator-test .
+
+      - name: Run backend tests in Docker container
+        run: |
+          docker run --rm mcp-mermaid-generator-test pytest tests/ 
