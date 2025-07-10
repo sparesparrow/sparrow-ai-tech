@@ -17,10 +17,10 @@ const navLinks = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sparrow AI Tech</title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="stylesheet" href="/assets/css/global.css" />
+    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}favicon.png`} />
+    <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
+    <link rel="manifest" href={`${import.meta.env.BASE_URL}manifest.json`} />
+    <link rel="stylesheet" href={`${import.meta.env.BASE_URL}assets/css/global.css`} />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <style>
       body { font-family: 'Inter', sans-serif; }
@@ -28,12 +28,12 @@ const navLinks = [
   </head>
   <body class="bg-gradient-to-br from-slate-50 to-slate-200 min-h-screen">
     <div class="background-gif-container" aria-hidden="true">
-      <img src="/assets/images/QgFc9ovreXOjW8hVonunb.gif" alt="Working memory spreading activation" class="background-gif" />
+      <img src={`${import.meta.env.BASE_URL}assets/images/QgFc9ovreXOjW8hVonunb.gif`} alt="Working memory spreading activation" class="background-gif" />
     </div>
     <header class="w-full bg-white/80 backdrop-blur border-b border-slate-200 shadow-sm sticky top-0 z-10">
       <nav class="max-w-5xl mx-auto flex items-center justify-between py-4 px-6">
         <div class="flex items-center gap-2">
-          <img src="/favicon.png" alt="Sparrow AI Logo" class="w-8 h-8" />
+          <img src={`${import.meta.env.BASE_URL}favicon.png`} alt="Sparrow AI Logo" class="w-8 h-8" />
           <span class="text-xl font-bold tracking-tight text-slate-800">Sparrow AI Tech</span>
         </div>
         <ul class="flex gap-6 text-slate-700 font-medium">
@@ -53,10 +53,10 @@ const navLinks = [
           <a href={link.href} class="px-5 py-3 rounded-lg bg-blue-600 text-white font-semibold shadow hover:bg-blue-700 transition-colors">{link.label}</a>
         ))}
       </div>
-      <img src="/assets/ai-hero.svg" alt="AI Illustration" class="w-full max-w-md mx-auto rounded-xl shadow-lg border border-slate-200 bg-white/70" style="margin-bottom:2rem;" onerror="this.style.display='none'" />
+      <img src={`${import.meta.env.BASE_URL}assets/ai-hero.svg`} alt="AI Illustration" class="w-full max-w-md mx-auto rounded-xl shadow-lg border border-slate-200 bg-white/70" style="margin-bottom:2rem;" onerror="this.style.display='none'" />
       <!-- Spreading Activation Diagram (captioned) -->
       <section style="text-align:center; margin: 2rem 0;">
-        <img src="/assets/images/l2H_6X5z_ZWxI8mocQDy6.png" alt="Spreading activation diagram: field of cortical assemblies and focus of attention" style="max-width: 100%; height: auto; border: 1px solid #eee; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" />
+        <img src={`${import.meta.env.BASE_URL}assets/images/l2H_6X5z_ZWxI8mocQDy6.png`} alt="Spreading activation diagram: field of cortical assemblies and focus of attention" style="max-width: 100%; height: auto; border: 1px solid #eee; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" />
         <figcaption style="margin-top: 0.5rem; color: #666; font-size: 0.95em;">
           <strong>Spreading Activation:</strong> Field of cortical assemblies, focus of attention, and short-term memory store (inspired by cognitive neuroscience models).
         </figcaption>
