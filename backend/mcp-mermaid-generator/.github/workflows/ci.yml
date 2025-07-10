@@ -1,0 +1,55 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Run FastAPI Backend Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend/mcp-mermaid-generator
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+          pip install pytest-asyncio
+
+      - name: Install Playwright browsers
+        run: |
+          source venv/bin/activate
+          playwright install --with-deps
+
+      - name: Run tests
+        run: |
+          source venv/bin/activate
+          pytest --maxfail=2 --disable-warnings --tb=short
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-test-results
+          path: backend/mcp-mermaid-generator/.pytest_cache
+
+      # - name: Build Docker image (optional)
+      #   run: docker build -t mcp-mermaid-generator .
+      #   working-directory: backend/mcp-mermaid-generator
+
+      # Add deployment steps here as needed 

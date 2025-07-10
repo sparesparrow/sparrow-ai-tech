@@ -3,10 +3,37 @@
 // Response: { reply: string } (or error)
 // This endpoint proxies requests to the ElevenLabs API securely.
 
+// Simple in-memory rate limiter (per IP, 10 requests/minute)
+const rateLimitMap = new Map();
+const RATE_LIMIT = 10;
+const WINDOW_MS = 60 * 1000; // 1 minute
+
+function getClientIp(request) {
+  // Try to get IP from headers (works for most deployments)
+  return request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+}
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  let entry = rateLimitMap.get(ip);
+  if (!entry || now - entry.start > WINDOW_MS) {
+    entry = { count: 1, start: now };
+  } else {
+    entry.count += 1;
+  }
+  rateLimitMap.set(ip, entry);
+  return entry.count <= RATE_LIMIT;
+}
+
 export async function post({ request }) {
   const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
   if (!ELEVENLABS_API_KEY) {
     return new Response(JSON.stringify({ error: 'Missing API key' }), { status: 500 });
+  }
+
+  const ip = getClientIp(request);
+  if (!checkRateLimit(ip)) {
+    return new Response(JSON.stringify({ error: 'Too many requests' }), { status: 429 });
   }
 
   let body;
@@ -19,6 +46,9 @@ export async function post({ request }) {
   const { message } = body;
   if (!message) {
     return new Response(JSON.stringify({ error: 'Missing message' }), { status: 400 });
+  }
+  if (typeof message !== 'string' || message.length > 1000) {
+    return new Response(JSON.stringify({ error: 'Message too long (max 1000 chars)' }), { status: 400 });
   }
 
   // Example: Forward to ElevenLabs API (replace with actual endpoint and payload as needed)

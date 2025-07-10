@@ -1,6 +1,6 @@
 {
   "name": "sparrow-ai-tech",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "type": "module",
   "description": "SPARROW-AI-TECH: Inovace, AI agenti, kybernetická bezpečnost, modernizace IT a vývoj softwaru.",
@@ -86,7 +86,7 @@
     "react-helmet": "6.1.0",
     "tailwindcss": "^3.4.17",
     "typescript-eslint": "^8.36.0",
-    "rehype-mermaid": "^3.0.1"
+    "rehype-mermaid": "^3.0.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,astro,md,css,html,json}": [

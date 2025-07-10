@@ -1,5 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { jest } from '@jest/globals';
+
+// Mock window.matchMedia for JSDOM
+global.window = global.window || {};
+global.window.matchMedia = global.window.matchMedia || function() {
+  return {
+    matches: false,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    addListener: () => {},
+    removeListener: () => {},
+    dispatchEvent: () => {},
+  };
+};
 
 const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(() => {

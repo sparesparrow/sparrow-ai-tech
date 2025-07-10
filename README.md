@@ -92,15 +92,61 @@ npx cypress open # Run Cypress E2E tests interactively
 
 ## Backend API Endpoints
 
-### /api/pdf
-- **POST**: `{ html: string }` or `{ markdown: string }`
-- **Response**: `application/pdf` (stream) or `{ error: string }`
-- Uses Puppeteer to generate PDF from HTML/Markdown.
+### 1. Voice Chatbot Endpoint
 
-### /api/chatbot
-- **POST**: `{ text: string, voice_id?: string }`
-- **Response**: `audio/mpeg` (stream) or `{ error: string }`
-- Proxies to ElevenLabs API, API key is read from environment variables (never exposed to client).
+- **POST** `/api/chatbot`
+- **Request Body:**
+  ```json
+  { "message": "<user message>" }
+  ```
+- **Response:**
+  - Success: `{ "reply": "<AI reply>" }`
+  - Error: `{ "error": "<error message>" }`
+- **Description:**
+  Proxies user messages to the ElevenLabs API and returns the AI-generated reply. The ElevenLabs API key is loaded from the `ELEVENLABS_API_KEY` environment variable (never hardcoded).
+- **Security:**
+  - API key is never exposed to the client or logged.
+  - Input is validated for presence and type.
+  - All errors are handled gracefully.
+  - [Recommended] Add rate limiting and CORS policy for production.
 
-**Security:**
-- All API keys and secrets are managed via environment variables. Never commit secrets to the codebase.
+### 2. PDF Generation Endpoint
+
+- **POST** `/api/pdf`
+- **Request Body:**
+  ```json
+  { "html": "<HTML string>" }
+  ```
+- **Response:**
+  - Success: PDF file (`application/pdf`)
+  - Error: `{ "error": "<error message>" }`
+- **Description:**
+  Generates a PDF from the provided HTML using Puppeteer.
+- **Security:**
+  - Input is validated for presence and type.
+  - Puppeteer runs with `--no-sandbox` for compatibility, but for best security, run in a containerized environment.
+  - [Recommended] Sanitize HTML input and limit payload size to prevent abuse.
+  - [Recommended] Add rate limiting.
+
+---
+
+**Security Model & Best Practices:**
+- All secrets (API keys) are loaded from environment variables.
+- No secrets are logged or exposed in responses.
+- Input validation is performed on all endpoints.
+- Error messages are generic and do not leak sensitive information.
+- [Recommended] Implement rate limiting, CORS, and input size checks for production deployments.
+
+**Example Usage:**
+
+```bash
+# Chatbot
+curl -X POST https://<your-domain>/api/chatbot \
+  -H 'Content-Type: application/json' \
+  -d '{"message": "Hello!"}'
+
+# PDF Generation
+curl -X POST https://<your-domain>/api/pdf \
+  -H 'Content-Type: application/json' \
+  -d '{"html": "<h1>My PDF</h1>"}' --output myfile.pdf
+```

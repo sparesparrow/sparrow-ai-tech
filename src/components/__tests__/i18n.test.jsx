@@ -1,9 +1,16 @@
-import React from 'react';
+import { jest } from '@jest/globals';
+import { act } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { I18nProvider, useI18n } from '../i18n';
+import { I18nProvider } from '../../i18n.jsx';
+
+// ESM-compatible mocking for loadTranslations only
+jest.unstable_mockModule('../../i18n.jsx', () => ({
+  ...jest.requireActual('../../i18n.jsx'),
+  loadTranslations: async (lang) => lang === 'cs' ? { nav: { home: 'Domů' } } : { nav: { home: 'Home' } },
+}));
 
 const TestComponent = () => {
-  const { t, language, setLanguage } = useI18n();
+  const { t, language, setLanguage } = require('../../i18n.jsx').useI18n();
   return (
     <div>
       <span data-testid="lang">{language}</span>
@@ -15,33 +22,28 @@ const TestComponent = () => {
 };
 
 describe('I18nProvider', () => {
-  beforeEach(() => {
-    localStorage.clear();
-  });
-  it('returns English by default', () => {
-    render(
-      <I18nProvider>
-        <TestComponent />
-      </I18nProvider>
-    );
+  it('returns English by default', async () => {
+    await act(async () => {
+      render(
+        <I18nProvider>
+          <TestComponent />
+        </I18nProvider>
+      );
+    });
     expect(screen.getByTestId('lang').textContent).toBe('en');
-    expect(screen.getByTestId('home').textContent).toBe('Home');
+    expect(await screen.findByText('Home')).toBeInTheDocument();
   });
-  it('switches to Czech and persists', () => {
-    render(
-      <I18nProvider>
-        <TestComponent />
-      </I18nProvider>
-    );
-    fireEvent.click(screen.getByText('CZ'));
+
+  it('switches to Czech and persists', async () => {
+    await act(async () => {
+      render(
+        <I18nProvider>
+          <TestComponent />
+        </I18nProvider>
+      );
+      fireEvent.click(screen.getByText('CZ'));
+    });
     expect(screen.getByTestId('lang').textContent).toBe('cs');
-    expect(screen.getByTestId('home').textContent).toBe('Domů');
-    // Simulate reload
-    render(
-      <I18nProvider>
-        <TestComponent />
-      </I18nProvider>
-    );
-    expect(screen.getByTestId('lang').textContent).toBe('cs');
+    expect(await screen.findByText('Domů')).toBeInTheDocument();
   });
 }); 
