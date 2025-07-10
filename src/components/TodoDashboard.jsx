@@ -312,28 +312,99 @@ export default function TodoDashboard({ todoMd }) {
     toastTimeout.current = setTimeout(() => setToast(''), 2000);
   }
 
+  // Helper to get current filtered Markdown (reuse exportMarkdown logic)
+  function getCurrentMarkdown() {
+    let md = '';
+    filteredSections.forEach(section => {
+      md += `## ${section.title}\n`;
+      section.tasks.forEach(task => {
+        const statusBox = getTaskStatus(section.line, task.line, task.status) === 'Done' ? '[x]' : '[ ]';
+        let line = `- ${statusBox} ${task.text}`;
+        if (task.tags.length) line += ` [${task.tags.join(', ')}]`;
+        if (task.owners.length) line += ` (owner: ${task.owners.join(', ')})`;
+        md += line + '\n';
+        if (task.subtasks && task.subtasks.length) {
+          task.subtasks.forEach(sub => {
+            const subStatusBox = getSubtaskStatus(task.line, sub.line, sub.status) === 'Done' ? '[x]' : '[ ]';
+            let subLine = `  - ${subStatusBox} ${sub.text}`;
+            if (sub.tags.length) subLine += ` [${sub.tags.join(', ')}]`;
+            if (sub.owners.length) subLine += ` (owner: ${sub.owners.join(', ')})`;
+            md += subLine + '\n';
+          });
+        }
+      });
+      md += '\n';
+    });
+    return md;
+  }
+
+  // Share handler using Web Share API or clipboard fallback
+  async function handleShare() {
+    const title = 'Project TODOs | Sparrow AI Tech';
+    const text = 'Check out my current project roadmap!';
+    const md = getCurrentMarkdown();
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title,
+          text: `${text}\n\n${md}`.slice(0, 2000), // Limit for some platforms
+        });
+        showToast('Shared via native share!');
+        return;
+      } catch (err) {
+        // Fallback to clipboard
+      }
+    }
+    // Clipboard fallback
+    try {
+      await navigator.clipboard.writeText(md);
+      showToast('Copied TODOs to clipboard!');
+    } catch (err) {
+      showToast('Unable to share or copy.');
+    }
+  }
+
   return (
     <div className="todo-dashboard max-w-4xl mx-auto p-4" data-cy="todo-dashboard">
-      <div className="flex gap-2 mb-4" role="group" aria-label="Export controls">
-        <button
-          onClick={exportMarkdown}
-          className="px-3 py-2 rounded bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium"
-          data-cy="export-md-btn"
-          aria-label="Export as Markdown"
-        >
-          Export as Markdown
-        </button>
-        <button
-          onClick={exportCSV}
-          className="px-3 py-2 rounded bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium"
-          data-cy="export-csv-btn"
-          aria-label="Export as CSV"
-        >
-          Export as CSV
-        </button>
+      <div
+        className="sticky top-0 z-10 bg-gray-100 dark:bg-gray-950 pb-2 mb-4 flex flex-col sm:flex-row gap-2 sm:gap-4 items-stretch sm:items-center shadow-sm"
+        role="group"
+        aria-label="Export and share controls"
+        style={{ borderBottom: '1px solid #e5e7eb' }}
+      >
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
+          <button
+            onClick={exportMarkdown}
+            className="px-4 py-3 rounded bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+            data-cy="export-md-btn"
+            aria-label="Export as Markdown"
+            tabIndex={0}
+          >
+            Export as Markdown
+          </button>
+          <button
+            onClick={exportCSV}
+            className="px-4 py-3 rounded bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+            data-cy="export-csv-btn"
+            aria-label="Export as CSV"
+            tabIndex={0}
+          >
+            Export as CSV
+          </button>
+          <button
+            onClick={handleShare}
+            className="px-4 py-3 rounded bg-blue-600 hover:bg-blue-700 text-white font-medium focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+            data-cy="share-btn"
+            aria-label="Share TODOs"
+            tabIndex={0}
+          >
+            Share
+          </button>
+        </div>
+        {/* Add filter/search controls here if not already sticky */}
       </div>
       {toast && (
-        <div className="fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded shadow" data-cy="export-toast" role="status">
+        <div className="fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded shadow text-lg z-50" data-cy="export-toast" role="status">
           {toast}
         </div>
       )}
