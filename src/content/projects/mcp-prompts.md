@@ -2,7 +2,7 @@
 title: 'mcp-prompts'
 description: 'Documentation for the mcp-prompts project.'
 repo_url: 'https://github.com/sparesparrow/mcp-prompts.git'
-pubDate: '2025-07-17'
+pubDate: '2025-07-18'
 ---
 
 
