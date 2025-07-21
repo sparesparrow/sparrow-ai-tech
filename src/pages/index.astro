@@ -3,12 +3,12 @@ import '../styles/global.css';
 import Sparkles from '../components/Sparkles.jsx';
 
 const navLinks = [
-  { href: '/en/infographics/Infographic1', label: 'Infographic 1' },
-  { href: '/en/infographics/Infographic2', label: 'Infographic 2' },
-  { href: '/en/infographics/Infographic3', label: 'Infographic 3' },
-  { href: '/en/infographics/SPA', label: 'SPA' },
-  { href: '/en/MarkdownTest', label: 'Markdown Test' },
-  { href: '/en/mermaid-editor', label: 'Mermaid Editor' },
+  { href: `${import.meta.env.BASE_URL}en/infographics/Infographic1`, label: 'Infographic 1' },
+  { href: `${import.meta.env.BASE_URL}en/infographics/Infographic2`, label: 'Infographic 2' },
+  { href: `${import.meta.env.BASE_URL}en/infographics/Infographic3`, label: 'Infographic 3' },
+  { href: `${import.meta.env.BASE_URL}en/infographics/SPA`, label: 'SPA' },
+  { href: `${import.meta.env.BASE_URL}en/MarkdownTest`, label: 'Markdown Test' },
+  { href: `${import.meta.env.BASE_URL}en/mermaid-editor`, label: 'Mermaid Editor' },
 ];
 ---
 
@@ -113,21 +113,27 @@ const navLinks = [
           <p class="mb-2 text-slate-600">
             Visualize complex ideas with our interactive infographics.
           </p>
-          <a href="/en/infographics/Infographic1" class="text-blue-600 hover:underline"
-            >See Infographics →</a
+          <a
+            href={`${import.meta.env.BASE_URL}en/infographics/Infographic1`}
+            class="text-blue-600 hover:underline">See Infographics →</a
           >
         </div>
         <div class="rounded-xl border border-slate-100 bg-white p-6 shadow">
           <h2 class="mb-2 text-xl font-bold text-teal-700">Markdown & Mermaid</h2>
           <p class="mb-2 text-slate-600">Edit and preview Markdown and Mermaid diagrams live.</p>
-          <a href="/en/MarkdownTest" class="text-teal-600 hover:underline">Try Markdown Editor →</a>
+          <a
+            href={`${import.meta.env.BASE_URL}en/MarkdownTest`}
+            class="text-teal-600 hover:underline">Try Markdown Editor →</a
+          >
         </div>
         <div class="rounded-xl border border-slate-100 bg-white p-6 shadow">
           <h2 class="mb-2 text-xl font-bold text-purple-700">AI Tools</h2>
           <p class="mb-2 text-slate-600">
             Leverage AI-powered chatbots and PDF generation for productivity.
           </p>
-          <a href="/api/chatbot" class="text-purple-600 hover:underline">Chatbot API →</a>
+          <a href={`${import.meta.env.BASE_URL}api/chatbot`} class="text-purple-600 hover:underline"
+            >Chatbot API →</a
+          >
         </div>
       </section>
     </main>
