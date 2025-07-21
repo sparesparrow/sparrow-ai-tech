@@ -10,8 +10,8 @@ const navLinks = [
   { href: '/en/MarkdownTest', label: 'Markdown Test' },
   { href: '/en/mermaid-editor', label: 'Mermaid Editor' },
 ];
-
 ---
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -21,65 +21,119 @@ const navLinks = [
     <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
     <link rel="manifest" href={`${import.meta.env.BASE_URL}manifest.json`} />
     <link rel="stylesheet" href={`${import.meta.env.BASE_URL}assets/css/global.css`} />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      body { font-family: 'Inter', sans-serif; }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
     </style>
   </head>
-  <body class="bg-gradient-to-br from-slate-50 to-slate-200 min-h-screen">
+  <body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-200">
     <div class="background-gif-container" aria-hidden="true">
-      <img src={`${import.meta.env.BASE_URL}assets/images/QgFc9ovreXOjW8hVonunb.gif`} alt="Working memory spreading activation" class="background-gif" />
+      <img
+        src={`${import.meta.env.BASE_URL}assets/images/QgFc9ovreXOjW8hVonunb.gif`}
+        alt="Working memory spreading activation"
+        class="background-gif"
+      />
     </div>
-    <header class="w-full bg-white/80 backdrop-blur border-b border-slate-200 shadow-sm sticky top-0 z-10">
-      <nav class="max-w-5xl mx-auto flex items-center justify-between py-4 px-6">
+    <header
+      class="sticky top-0 z-10 w-full border-b border-slate-200 bg-white/80 shadow-sm backdrop-blur"
+    >
+      <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <div class="flex items-center gap-2">
-          <img src={`${import.meta.env.BASE_URL}favicon.png`} alt="Sparrow AI Logo" class="w-8 h-8" />
+          <img
+            src={`${import.meta.env.BASE_URL}favicon.png`}
+            alt="Sparrow AI Logo"
+            class="h-8 w-8"
+          />
           <span class="text-xl font-bold tracking-tight text-slate-800">Sparrow AI Tech</span>
         </div>
-        <ul class="flex gap-6 text-slate-700 font-medium">
-          {navLinks.map(link => (
-            <li><a href={link.href} class="hover:text-blue-600 transition-colors">{link.label}</a></li>
-          ))}
+        <ul class="flex gap-6 font-medium text-slate-700">
+          {
+            navLinks.map((link) => (
+              <li>
+                <a href={link.href} class="transition-colors hover:text-blue-600">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </nav>
     </header>
-    <main class="max-w-4xl mx-auto px-4 py-16 flex flex-col items-center text-center">
+    <main class="mx-auto flex max-w-4xl flex-col items-center px-4 py-16 text-center">
       <Sparkles>
-        <h1 class="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-600 to-teal-400 bg-clip-text text-transparent mb-6 drop-shadow-lg">Welcome to Sparrow AI Tech</h1>
+        <h1
+          class="mb-6 bg-gradient-to-r from-blue-600 to-teal-400 bg-clip-text text-5xl font-extrabold text-transparent drop-shadow-lg md:text-6xl"
+        >
+          Welcome to Sparrow AI Tech
+        </h1>
       </Sparkles>
-      <p class="text-lg md:text-xl text-slate-700 mb-8 max-w-2xl">Empowering your workflow with AI-driven tools, infographics, and interactive editors. Explore our features and get inspired by the future of technology.</p>
-      <div class="flex flex-wrap gap-4 justify-center mb-12">
-        {navLinks.map(link => (
-          <a href={link.href} class="px-5 py-3 rounded-lg bg-blue-600 text-white font-semibold shadow hover:bg-blue-700 transition-colors">{link.label}</a>
-        ))}
+      <p class="mb-8 max-w-2xl text-lg text-slate-700 md:text-xl">
+        Empowering your workflow with AI-driven tools, infographics, and interactive editors.
+        Explore our features and get inspired by the future of technology.
+      </p>
+      <div class="mb-12 flex flex-wrap justify-center gap-4">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white shadow transition-colors hover:bg-blue-700"
+            >
+              {link.label}
+            </a>
+          ))
+        }
       </div>
-      <img src={`${import.meta.env.BASE_URL}assets/ai-hero.svg`} alt="AI Illustration" class="w-full max-w-md mx-auto rounded-xl shadow-lg border border-slate-200 bg-white/70" style="margin-bottom:2rem;" onerror="this.style.display='none'" />
+      <img
+        src={`${import.meta.env.BASE_URL}assets/ai-hero.svg`}
+        alt="AI Illustration"
+        class="mx-auto w-full max-w-md rounded-xl border border-slate-200 bg-white/70 shadow-lg"
+        style="margin-bottom:2rem;"
+        onerror="this.style.display='none'"
+      />
       <!-- Spreading Activation Diagram (captioned) -->
       <section style="text-align:center; margin: 2rem 0;">
-        <img src={`${import.meta.env.BASE_URL}assets/images/l2H_6X5z_ZWxI8mocQDy6.png`} alt="Spreading activation diagram: field of cortical assemblies and focus of attention" style="max-width: 100%; height: auto; border: 1px solid #eee; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" />
+        <img
+          src={`${import.meta.env.BASE_URL}assets/images/claude4-system-card-img-008.png`}
+          alt="Spreading activation diagram: field of cortical assemblies and focus of attention"
+          style="max-width: 100%; height: auto; border: 1px solid #eee; box-shadow: 0 2px 8px rgba(0,0,0,0.05);"
+        />
         <figcaption style="margin-top: 0.5rem; color: #666; font-size: 0.95em;">
-          <strong>Spreading Activation:</strong> Field of cortical assemblies, focus of attention, and short-term memory store (inspired by cognitive neuroscience models).
+          <strong>Spreading Activation:</strong> Field of cortical assemblies, focus of attention, and
+          short-term memory store (inspired by cognitive neuroscience models).
         </figcaption>
       </section>
-      <section class="mt-8 grid md:grid-cols-3 gap-8 w-full">
-        <div class="bg-white rounded-xl shadow p-6 border border-slate-100">
-          <h2 class="text-xl font-bold mb-2 text-blue-700">Infographics</h2>
-          <p class="text-slate-600 mb-2">Visualize complex ideas with our interactive infographics.</p>
-          <a href="/en/infographics/Infographic1" class="text-blue-600 hover:underline">See Infographics →</a>
+      <section class="mt-8 grid w-full gap-8 md:grid-cols-3">
+        <div class="rounded-xl border border-slate-100 bg-white p-6 shadow">
+          <h2 class="mb-2 text-xl font-bold text-blue-700">Infographics</h2>
+          <p class="mb-2 text-slate-600">
+            Visualize complex ideas with our interactive infographics.
+          </p>
+          <a href="/en/infographics/Infographic1" class="text-blue-600 hover:underline"
+            >See Infographics →</a
+          >
         </div>
-        <div class="bg-white rounded-xl shadow p-6 border border-slate-100">
-          <h2 class="text-xl font-bold mb-2 text-teal-700">Markdown & Mermaid</h2>
-          <p class="text-slate-600 mb-2">Edit and preview Markdown and Mermaid diagrams live.</p>
+        <div class="rounded-xl border border-slate-100 bg-white p-6 shadow">
+          <h2 class="mb-2 text-xl font-bold text-teal-700">Markdown & Mermaid</h2>
+          <p class="mb-2 text-slate-600">Edit and preview Markdown and Mermaid diagrams live.</p>
           <a href="/en/MarkdownTest" class="text-teal-600 hover:underline">Try Markdown Editor →</a>
         </div>
-        <div class="bg-white rounded-xl shadow p-6 border border-slate-100">
-          <h2 class="text-xl font-bold mb-2 text-purple-700">AI Tools</h2>
-          <p class="text-slate-600 mb-2">Leverage AI-powered chatbots and PDF generation for productivity.</p>
+        <div class="rounded-xl border border-slate-100 bg-white p-6 shadow">
+          <h2 class="mb-2 text-xl font-bold text-purple-700">AI Tools</h2>
+          <p class="mb-2 text-slate-600">
+            Leverage AI-powered chatbots and PDF generation for productivity.
+          </p>
           <a href="/api/chatbot" class="text-purple-600 hover:underline">Chatbot API →</a>
         </div>
       </section>
     </main>
-    <footer class="w-full py-8 mt-16 border-t border-slate-200 bg-white/80 text-center text-slate-500 text-sm">
+    <footer
+      class="mt-16 w-full border-t border-slate-200 bg-white/80 py-8 text-center text-sm text-slate-500"
+    >
       &copy; {new Date().getFullYear()} Sparrow AI Tech. All rights reserved.
     </footer>
     <script>
@@ -96,7 +150,10 @@ const navLinks = [
     <style>
       .background-gif-container {
         position: fixed;
-        top: 0; left: 0; width: 100vw; height: 100vh;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
         z-index: 0;
         pointer-events: none;
         overflow: hidden;
@@ -110,7 +167,9 @@ const navLinks = [
         will-change: opacity;
         filter: blur(0.5px) brightness(0.95);
       }
-      main, header, footer {
+      main,
+      header,
+      footer {
         position: relative;
         z-index: 1;
       }
