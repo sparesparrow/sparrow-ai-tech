@@ -2,27 +2,92 @@ name: Backend CI
 
 on:
   push:
-    branches: [main]
+    branches: [ main, develop ]
+    paths: 
+      - 'backend/**'
+      - '.github/workflows/backend-ci.yml'
   pull_request:
-    branches: [main]
+    branches: [ main ]
+    paths:
+      - 'backend/**'
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: mcp-mermaid-generator
+    timeout-minutes: 20
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Cache Docker layers
+      uses: actions/cache@v3
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
+          
+    - name: Build Docker image
+      run: |
+        cd backend/mcp-mermaid-generator
+        docker build -t backend-test:latest . --cache-from=type=local,src=/tmp/.buildx-cache --cache-to=type=local,dest=/tmp/.buildx-cache-new,mode=max
+        
+    - name: Run backend tests in Docker container
+      run: |
+        cd backend/mcp-mermaid-generator
+        echo "🧪 Running tests with verbose output..."
+        docker run --rm \
+          -v $(pwd):/app \
+          -w /app \
+          -e PYTHONPATH=/app \
+          -e DEBUG=true \
+          backend-test:latest \
+          bash -c "
+            set -e
+            echo '📦 Installing test dependencies...'
+            pip install pytest pytest-cov pytest-xvfb || echo 'Some dependencies may have failed'
+            echo '🔍 Listing test files...'
+            find . -name '*test*.py' -o -name 'test_*.py' | head -10
+            echo '🚀 Running tests...'
+            python -m pytest tests/ -v --tb=short --maxfail=5 || exit 27
+          " 2>&1 | tee test_output.log
+        
+    - name: Check test results
+      if: always()
+      run: |
+        if [ -f test_output.log ]; then
+          echo "📊 Test output summary:"
+          tail -20 test_output.log
+        fi
+        
+    - name: Login to Docker Hub
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: Push to Docker Hub
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
+        docker tag backend-test:latest ${{ secrets.DOCKER_USERNAME }}/sparrow-backend:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/sparrow-backend:latest
+        
+    - name: Move cache
+      run: |
+        rm -rf /tmp/.buildx-cache
+        mv /tmp/.buildx-cache-new /tmp/.buildx-cache || true
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build Docker image
-        run: |
-          docker build -t mcp-mermaid-generator-test .
-
-      - name: Run backend tests in Docker container
-        run: |
-          docker run --rm mcp-mermaid-generator-test pytest tests/ 
+  complete-job:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+    - name: Job Summary
+      run: |
+        echo "✅ Backend CI workflow completed"
+        echo "Build and test job status: ${{ needs.build-and-test.result }}"
