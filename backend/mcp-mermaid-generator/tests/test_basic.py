@@ -24,11 +24,12 @@ def test_environment():
     assert sys.version_info >= (3, 8)
 
 
+async def async_function():
+    return "success"
+
+
 @pytest.mark.asyncio
 async def test_async_functionality():
     """Test async functionality."""
-    async def async_function():
-        return "success"
-    
     result = await async_function()
     assert result == "success"
