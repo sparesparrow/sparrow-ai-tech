@@ -28,7 +28,7 @@
     "test:e2e": "cypress run",
     "prepare": "husky install",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
-    "postinstall": "npx playwright install --with-deps"
+    "postinstall": "npx playwright install --with-deps chromium"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",

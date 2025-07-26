@@ -1,0 +1,81 @@
+{
+  "seo_meta_tags": {
+    "title_tag": {
+      "current": "Welcome to Sparrow AI Tech",
+      "recommended_cz": "Sparrow AI Tech – AI nástroje pro vývojáře",
+      "recommended_en": "Sparrow AI Tech – AI Tools for Developers",
+      "max_length": 60,
+      "current_length": 27,
+      "includes_keywords": false
+    },
+    "meta_description": {
+      "current": null,
+      "recommended_cz": "Sparrow AI Tech nabízí infografiky, Markdown editor a chatbot API – podpořte svůj workflow ještě dnes.",
+      "recommended_en": "Sparrow AI Tech offers infographics, Markdown editor and chatbot API – empower your workflow today.",
+      "max_length": 160,
+      "recommended_cz_length": 108,
+      "recommended_en_length": 105
+    },
+    "open_graph": {
+      "og_title": "Sparrow AI Tech – AI Tools for Developers",
+      "og_description": "Infografiky, Markdown & Mermaid editor, AI chatbot API.",
+      "og_image": "https://sparesparrow.github.io/sparrow-ai-tech/assets/og-cover.png",
+      "og_url": "https://sparesparrow.github.io/sparrow-ai-tech/",
+      "og_type": "website"
+    }
+  },
+  "wcag_compliance": {
+    "level": "AA",
+    "issues": [
+      {
+        "criterion": "1.1.1",
+        "name": "Non-text Content",
+        "current_status": "fail",
+        "issue": "Missing alt attributes on infographic images",
+        "solution": "Add descriptive alt text for all images"
+      },
+      {
+        "criterion": "1.4.3",
+        "name": "Contrast (Minimum)",
+        "current_status": "warning",
+        "issue": "Button contrast may be < 4.5:1",
+        "solution": "Ensure all buttons have minimum 4.5:1 contrast ratio"
+      },
+      {
+        "criterion": "2.1.1",
+        "name": "Keyboard",
+        "current_status": "warning",
+        "issue": "Missing focus styles for keyboard navigation",
+        "solution": "Add visible focus indicators for all interactive elements"
+      }
+    ]
+  },
+  "content_structure": {
+    "current_sections": [
+      "Welcome",
+      "Infographics",
+      "Markdown & Mermaid",
+      "AI Tools"
+    ],
+    "recommended_sections": [
+      "Hero Section",
+      "About Us",
+      "Features",
+      "Case Studies",
+      "Pricing & Demo",
+      "Contact",
+      "Footer"
+    ]
+  },
+  "localization": {
+    "current": "EN only",
+    "target": "CZ + EN",
+    "missing_elements": [
+      "Czech language navigation",
+      "Translated content",
+      "Language switcher",
+      "Localized URLs",
+      "Czech meta tags"
+    ]
+  }
+}

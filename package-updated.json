@@ -1,0 +1,49 @@
+{
+  "name": "sparrow-ai-tech",
+  "version": "0.1.5",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --ignore-path .gitignore",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --ignore-path .gitignore --fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,astro,md,json}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,astro,md,json}\"",
+    "type-check": "astro check",
+    "clean": "rm -rf dist .astro node_modules/.cache",
+    "fix-all": "npm run lint:fix && npm run format"
+  },
+  "dependencies": {
+    "@astrojs/react": "^3.6.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^5.0.3",
+    "chart.js": "^4.4.7",
+    "mermaid": "^11.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rehype-mermaid": "^2.1.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "astro-eslint-parser": "^1.0.3",
+    "eslint": "^9.15.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-astro": "^1.2.4",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "playwright": "^1.48.2",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
