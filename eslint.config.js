@@ -1,24 +1,34 @@
 import js from '@eslint/js';
 import globals from 'globals';
-import tseslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
+import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
 import cypress from 'eslint-plugin-cypress';
 
 export default [
-  { ignores: ["node_modules/", ".astro/", "dist/"] },
+  { 
+    ignores: [
+      "node_modules/", 
+      ".astro/", 
+      "dist/", 
+      "build/", 
+      "coverage/",
+      "**/*-fixed.*",
+      "*.json",
+      "*.md"
+    ] 
+  },
   js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
     plugins: {
-      '@typescript-eslint': tseslint,
       react: react,
-      cypress: cypress,
     },
     languageOptions: {
-      parser: tsParser,
       parserOptions: {
         ecmaFeatures: { jsx: true },
+        ecmaVersion: 'latest',
+        sourceType: 'module'
       },
       globals: {
         ...globals.browser,
@@ -27,15 +37,29 @@ export default [
       },
     },
     rules: {
-      'no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }],
+      'no-unused-vars': ['warn', { 'argsIgnorePattern': '^_', 'varsIgnorePattern': '^_' }],
+      '@typescript-eslint/no-unused-vars': ['warn', { 'argsIgnorePattern': '^_', 'varsIgnorePattern': '^_' }],
       'react/display-name': 'off',
+      'react/react-in-jsx-scope': 'off',
       'no-undef': 'warn',
+    },
+    settings: {
+      react: { version: 'detect' }
     }
   },
   {
-    files: ['cypress/**/*.js'],
+    files: ['cypress/**/*.{js,ts,jsx,tsx}'],
+    plugins: {
+      cypress: cypress,
+    },
     languageOptions: {
-      globals: { ...globals.cypress }
+      globals: {
+        ...globals.browser,
+        ...cypress.environments.globals.globals,
+      }
+    },
+    rules: {
+      ...cypress.configs.recommended.rules,
     }
   }
 ];
