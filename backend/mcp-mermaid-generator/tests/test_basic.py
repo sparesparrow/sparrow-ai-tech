@@ -1,35 +1,36 @@
-"""Basic tests for backend functionality."""
-
+"""Basic functionality tests."""
 import pytest
 
 
-def test_basic_functionality():
-    """Test that basic Python functionality works."""
-    assert 1 + 1 == 2
+def test_python_works():
+    """Test that Python is working."""
+    assert 2 + 2 == 4
 
 
 def test_import_main():
-    """Test that main module can be imported."""
+    """Test that we can import main module."""
     try:
         import main
-        assert True
+        assert hasattr(main, 'app')  # FastAPI app should exist
     except ImportError:
-        # If main.py doesn't exist, create a basic version
-        pytest.skip("main.py not found")
+        pytest.skip("main.py not found or has import issues")
 
 
-def test_environment():
-    """Test that the test environment is set up correctly."""
-    import sys
-    assert sys.version_info >= (3, 8)
-
-
-async def async_function():
-    return "success"
+def test_fastapi_import():
+    """Test that FastAPI can be imported."""
+    try:
+        from fastapi import FastAPI
+        app = FastAPI()
+        assert app is not None
+    except ImportError:
+        pytest.fail("FastAPI not available")
 
 
 @pytest.mark.asyncio
-async def test_async_functionality():
+async def test_async_works():
     """Test async functionality."""
-    result = await async_function()
+    async def sample_async():
+        return "success"
+    
+    result = await sample_async()
     assert result == "success"
