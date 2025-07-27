@@ -1,96 +1,81 @@
-import js from '@eslint/js';
-import tsParser from '@typescript-eslint/parser';
-import astroPlugin from 'eslint-plugin-astro';
-import cypressPlugin from 'eslint-plugin-cypress';
-import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
-import reactPlugin from 'eslint-plugin-react';
-import globals from 'globals';
+import js              from '@eslint/js';
+import tsPlugin        from '@typescript-eslint/eslint-plugin';
+import tsParser        from '@typescript-eslint/parser';
+import reactPlugin     from 'eslint-plugin-react';
+import jsxA11y         from 'eslint-plugin-jsx-a11y';
+import astroPlugin     from 'eslint-plugin-astro';
+import cypressPlugin   from 'eslint-plugin-cypress';
+import globals         from 'globals';
 
+/*  ─────────────────────────────  Flat-config  ────────────────────────────── */
 export default [
+  /* Ignore big generated/utility trees */
+  { ignores : [
+      '.astro/**/*','dist/**/*','node_modules/**/*','build/','coverage/','.nyc_output/',
+      'cypress/downloads/','cypress/screenshots/','**/*-fixed.*',
+      '*.json','*.md','*.css','*.html','package-lock.json'
+  ]},
+
+  /* Base JS/JSX (React without react-hooks plug-in) */
   {
-    ignores: [
-      '.astro/**/*', 'dist/**/*', 'node_modules/**/*', 'build/', 'coverage/',
-      '.nyc_output/', 'cypress/downloads/', 'cypress/screenshots/',
-      '**/*-fixed.*', 'app.js', 'chatbot-api-fixed.js', 'i18n-fixed.jsx',
-      'MermaidLiveEditor-fixed.jsx', '*.json', '*.md', '*.css', '*.html',
-      'package-lock.json', 'sparrow_audit_data.json', 'fix-analysis.md'
-    ]
-  },
-  {
-    files: ['**/*.{js,jsx,ts,tsx}'],
-    plugins: {
-      react: reactPlugin,
-      'jsx-a11y': jsxA11yPlugin
+    files  : ['**/*.{js,jsx}'],
+    plugins: {react:reactPlugin,'jsx-a11y':jsxA11y},
+    languageOptions : {
+      parserOptions : {ecmaVersion:'latest',sourceType:'module',ecmaFeatures:{jsx:true}},
+      globals       : {...globals.browser,...globals.node}
     },
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaFeatures: { jsx: true },
-        ecmaVersion: 'latest',
-        sourceType: 'module'
-      },
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
-    rules: {
+    rules : {
       ...reactPlugin.configs.recommended.rules,
-      'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off',
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
-      'jsx-a11y/click-events-have-key-events': 'warn',
-      'jsx-a11y/no-static-element-interactions': 'warn'
+      ...jsxA11y.configs.recommended.rules,
+      'react/react-in-jsx-scope':'off',
+      'react/prop-types':'off',
+      'no-unused-vars':['warn',{argsIgnorePattern:'^_',varsIgnorePattern:'^_'}],
     },
-    settings: {
-        react: { version: "detect" }
-    }
+    settings:{react:{version:'detect'}}
   },
+
+  /* TS / TSX --------------------------------------------------------------- */
   {
-    files: ['**/*.astro'],
-    plugins: {
-      astro: astroPlugin,
+    files  : ['**/*.{ts,tsx}'],
+    plugins: {'@typescript-eslint':tsPlugin,react:reactPlugin},
+    languageOptions:{
+      parser:tsParser,
+      parserOptions:{ecmaVersion:'latest',sourceType:'module',ecmaFeatures:{jsx:true}},
+      globals:{...globals.browser,...globals.node}
     },
-    languageOptions: {
-      globals: { ...globals.node, ...globals.browser, Astro: 'readonly' },
-      parser: astroPlugin.parser,
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-        extraFileExtensions: ['.astro'],
-      },
+    rules:{
+      ...tsPlugin.configs.recommended.rules,
+      ...reactPlugin.configs.recommended.rules,
+      '@typescript-eslint/no-unused-vars':['warn',{argsIgnorePattern:'^_'}],
+      'react/react-in-jsx-scope':'off',
+      'react/prop-types':'off'
     },
-    rules: {
-      'no-unused-vars': 'off',
-      'no-undef': 'off'
-    },
+    settings:{react:{version:'detect'}}
   },
+
+  /* Astro (very lenient) --------------------------------------------------- */
   {
-    files: ['cypress/**/*.{js,ts,jsx,tsx}'],
-    plugins: {
-      cypress: cypressPlugin,
+    files:['**/*.astro'],
+    plugins:{astro:astroPlugin},
+    languageOptions:{
+      parser:astroPlugin.parser,
+      parserOptions:{parser:'@typescript-eslint/parser',extraFileExtensions:['.astro']},
+      globals:{...globals.browser,...globals.node,Astro:'readonly'}
     },
-    languageOptions: {
-      globals: { 
-        ...globals.browser,
-        cy: 'readonly',
-        Cypress: 'readonly',
-        describe: 'readonly',
-        it: 'readonly',
-        expect: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly'
-      }
-    },
-    rules: {
-      ...cypressPlugin.configs.recommended.rules,
-      'cypress/no-unnecessary-waiting': 'warn',
-      'cypress/unsafe-to-chain-command': 'warn'
-    },
+    rules:{'no-unused-vars':'off','no-undef':'off'}
   },
+
+  /* Cypress E2E ------------------------------------------------------------ */
   {
-    files: ['**/*.test.{js,jsx,ts,tsx}', '**/__tests__/**/*.{js,jsx,ts,tsx}'],
-    languageOptions: {
-      globals: { ...globals.jest }
-    }
+    files:['cypress/**/*.{js,ts,jsx,tsx}','**/*.cy.{js,ts,jsx,tsx}'],
+    plugins:{cypress:cypressPlugin},
+    languageOptions:{globals:{...globals.browser,...cypressPlugin.environments.globals.globals}},
+    rules:{...cypressPlugin.configs.recommended.rules}
   },
+
+  /* Jest / Vitest unit tests ---------------------------------------------- */
+  {
+    files:['**/*.test.{js,jsx,ts,tsx}','**/__tests__/**/*.{js,jsx,ts,tsx}'],
+    languageOptions:{globals:{...globals.jest}}
+  }
 ];

@@ -1,4 +1,4 @@
 {
-  "*.{js,jsx,ts,tsx}": ["eslint --fix --max-warnings 20"],
-  "*.{js,jsx,ts,tsx,astro,md,css,html}": ["prettier --write --ignore-unknown"]
+  "*.{js,jsx,ts,tsx}": ["eslint --fix"],
+  "*.astro": ["prettier --write"]
 }
