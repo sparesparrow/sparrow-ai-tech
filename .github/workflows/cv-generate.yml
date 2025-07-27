@@ -1,0 +1,33 @@
+name: Generate and Deploy CV PDF
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-cv-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v4
+
+      - name: Download latest CV markdown from sparesparrow/cv
+        run: |
+          curl -L https://raw.githubusercontent.com/sparesparrow/cv/main/README.md -o cv.md
+
+      - name: Install Pandoc and LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+
+      - name: Convert CV markdown to PDF
+        run: |
+          mkdir -p dist
+          pandoc cv.md -o dist/cv.pdf --pdf-engine=xelatex
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdf
+          path: dist/cv.pdf

@@ -16,29 +16,32 @@ jobs:
   test-and-build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18'
         cache: 'npm'
-        
+
     - name: Install dependencies
       run: npm ci
-      
+
     - name: Run linting
       run: npm run lint
-      
+
     - name: Run tests
       run: npm test
-      
+
+    - name: Install Playwright for build
+      run: npx playwright install --with-deps chromium
+
     - name: Build application
       run: npm run build
-      
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:

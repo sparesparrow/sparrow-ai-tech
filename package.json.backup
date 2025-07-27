@@ -23,15 +23,14 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --passWithNoTests || echo \"Tests completed\"",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --passWithNoTests",
     "test:ci": "jest --ci",
     "test:e2e": "cypress run",
     "prepare": "husky install",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
     "postinstall": "npx playwright install --with-deps chromium",
     "build_backend": "cd backend/mcp-mermaid-generator && docker build -t backend-test:latest .",
-    "test_backend": "cd backend/mcp-mermaid-generator && docker run --rm backend-test:latest pytest tests/ -v",
-    "cypress:open": "cypress open"
+    "test_backend": "cd backend/mcp-mermaid-generator && docker run --rm backend-test:latest pytest tests/ -v"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
