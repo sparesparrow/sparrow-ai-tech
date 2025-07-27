@@ -55,6 +55,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "astro": "^5.0.3",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -99,12 +100,19 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.js"
+    ],
     "testMatch": [
       "**/__tests__/**/*.(js|jsx|ts|tsx)",
       "**/*.(test|spec).(js|jsx|ts|tsx)"
     ],
-    "moduleFileExtensions": ["js", "jsx", "ts", "tsx"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx"
+    ],
     "collectCoverageFrom": [
       "src/**/*.(js|jsx|ts|tsx)",
       "!src/**/*.d.ts"
