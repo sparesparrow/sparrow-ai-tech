@@ -1,6 +1,4 @@
 ---
----
-
 import '../styles/global.css';
 import Sparkles from '../components/Sparkles.jsx';
 
@@ -12,7 +10,6 @@ const navLinks = [
   { href: `${import.meta.env.BASE_URL}en/MarkdownTest`, label: 'Markdown Test' },
   { href: `${import.meta.env.BASE_URL}en/mermaid-editor`, label: 'Mermaid Editor' },
 ];
----
 
 <html lang="en">
   <head>
@@ -152,6 +149,7 @@ const navLinks = [
         const fadeEnd = 300;
         const opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
         const bg = document.querySelector('.background-gif');
+---
         if (bg) bg.style.opacity = opacity;
       });
     </script>

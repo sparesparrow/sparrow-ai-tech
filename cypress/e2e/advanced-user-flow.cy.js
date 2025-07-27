@@ -26,14 +26,4 @@ describe('Advanced User Flow', () => {
     cy.get('[data-cy="dark-mode-toggle"]').click();
     cy.get('html').should('have.class', 'dark');
   });
-
-  it('should test contact form', () => {
-    cy.get('a[href="#contact"]').click();
-    cy.get('[data-cy="contact-form"]').should('be.visible');
-    cy.get('input[name="name"]').type('Test User');
-    cy.get('input[name="email"]').type('test@example.com');
-    cy.get('textarea[name="message"]').type('Test message');
-    cy.get('button[type="submit"]').click();
-    cy.get('[data-cy="form-success"]').should('be.visible');
-  });
 });

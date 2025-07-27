@@ -1,7 +1,7 @@
 ---
+// No imports needed for this static page
 ---
 
----
 <html lang="en">
   <head>
     <title>Security & Enterprise Readiness | Sparrow AI Tech</title>
@@ -12,45 +12,9 @@
       <div class="max-w-4xl mx-auto px-4">
         <h1 class="text-4xl font-bold mb-4">Security & Enterprise Readiness</h1>
         <p class="mb-8 text-lg text-gray-700 dark:text-gray-300">
-          Proactive security analysis and mitigation strategies for the Model Context Protocol (MCP) and agentic AI systems. This section summarizes key threats and the concrete steps taken to address them across the portfolio.
+          Proactive security analysis and mitigation strategies for the Model Context Protocol (MCP) and agentic AI systems.
         </p>
-        <section id="security-section" data-cy="security-table-section">
-          <h2 class="text-2xl font-semibold mb-4">MCP Security Threats & Mitigations</h2>
-          <div class="overflow-x-auto">
-            <table class="min-w-full border border-gray-300 dark:border-gray-700 text-sm">
-              <thead class="bg-gray-200 dark:bg-gray-800">
-                <tr>
-                  <th class="px-4 py-2">Threat Vector</th>
-                  <th class="px-4 py-2">Description</th>
-                  <th class="px-4 py-2">Mitigation Strategy</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="border px-4 py-2">Tool Poisoning</td>
-                  <td class="border px-4 py-2">Malicious or compromised MCP server provides misleading tool descriptions, tricking the LLM into unintended actions.</td>
-                  <td class="border px-4 py-2">Strict schema validation, semantic analysis, zero trust sandboxing for all tools.</td>
-                </tr>
-                <tr>
-                  <td class="border px-4 py-2">Data Exfiltration / Insecure Resource Exposure</td>
-                  <td class="border px-4 py-2">Improper exposure of sensitive resources (files, DB) without access control.</td>
-                  <td class="border px-4 py-2">RBAC enforcement, path traversal prevention, data masking/redaction.</td>
-                </tr>
-                <tr>
-                  <td class="border px-4 py-2">Installer Spoofing / Malicious Server Installation</td>
-                  <td class="border px-4 py-2">User is tricked into installing a malicious MCP server.</td>
-                  <td class="border px-4 py-2">Signed packages, clear installation instructions, official repo links.</td>
-                </tr>
-                <tr>
-                  <td class="border px-4 py-2">Denial of Service (DoS)</td>
-                  <td class="border px-4 py-2">Flooding the server with requests or resource exhaustion attacks.</td>
-                  <td class="border px-4 py-2">Rate limiting, input validation, async architecture for resilience.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
       </div>
     </main>
   </body>
-</html> 
+</html>

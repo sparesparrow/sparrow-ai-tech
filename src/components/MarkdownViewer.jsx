@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import MermaidPreviewLink from './MermaidPreviewLink';
-import ImagePreviewLink from './ImagePreviewLink';
-import GithubRepoTooltip from './GithubRepoTooltip';
+// import MermaidPreviewLink from './MermaidPreviewLink';
+// import ImagePreviewLink from './ImagePreviewLink';
+// import GithubRepoTooltip from './GithubRepoTooltip';
 
 // Placeholder for Mermaid diagrams (now unsupported)
 const Mermaid = () => (
   <div className="mermaid-diagram text-red-500">Mermaid diagrams are not supported.</div>
 );
 
-const EditableMermaid = () => (
+// const EditableMermaid = () => (
   <div className="mermaid-diagram text-red-500">Editable Mermaid diagrams are not supported.</div>
 );
 
