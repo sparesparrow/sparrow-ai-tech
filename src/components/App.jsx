@@ -161,6 +161,7 @@ const AppContent = () => {
     const visuals = [
       { name: 'MCP Ecosystem Diagram', src: `/sparrow-ai-tech/assets/images/mcp-ecosystem-diagram.png`, context: 'Ecosystem, Architecture' },
       { name: 'UI Screenshot', src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`,
+      context: "UI Demo",
       context: "UI Demo", context: 'Homepage, UI' },
       { name: 'Feature Screenshot', src: `/sparrow-ai-tech/assets/images/screenshot-feature.png`, context: 'Feature Demo' },
     ];
@@ -545,6 +546,7 @@ const AppContent = () => {
                           {[
                             { name: 'MCP Ecosystem Diagram', src: `/sparrow-ai-tech/assets/images/mcp-ecosystem-diagram.png`, context: 'Architecture' },
                             { name: 'UI Screenshot', src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`,
+      context: "UI Demo",
       context: "UI Demo", context: 'UI' },
                             { name: 'Feature Screenshot', src: `/sparrow-ai-tech/assets/images/screenshot-feature.png`, context: 'UI' },
                             { name: 'Hard-Coder Architecture', src: `/sparrow-ai-tech/assets/images/hard-coder-architecture.png`, context: 'Architecture' },
@@ -573,6 +575,7 @@ const AppContent = () => {
                           slides={[
                             { src: `/sparrow-ai-tech/assets/images/mcp-ecosystem-diagram.png`, alt: 'MCP Ecosystem Diagram' },
                             { src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`,
+      context: "UI Demo",
       context: "UI Demo", alt: 'UI Screenshot' },
                             { src: `/sparrow-ai-tech/assets/images/screenshot-feature.png`, alt: 'Feature Screenshot' },
                             { src: `/sparrow-ai-tech/assets/images/hard-coder-architecture.png`, alt: 'Hard-Coder Architecture' },

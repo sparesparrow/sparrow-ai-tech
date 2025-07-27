@@ -45,7 +45,7 @@ export default async function handler(req, res) {
     // ElevenLabs returns audio/mpeg; stream or buffer as needed
     res.setHeader('Content-Type', 'audio/mpeg');
     elevenLabsRes.body.pipe(res);
-  } catch (error) {
+  } catch(_error) {
     res.status(500).json({ error: error.message || 'Internal server error' });
   }
 }

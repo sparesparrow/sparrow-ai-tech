@@ -351,7 +351,7 @@ export default function TodoDashboard({ todoMd }) {
         });
         showToast('Shared via native share!');
         return;
-      } catch (err) {
+      } catch(_err) {
         // Fallback to clipboard
       }
     }
@@ -359,7 +359,7 @@ export default function TodoDashboard({ todoMd }) {
     try {
       await navigator.clipboard.writeText(md);
       showToast('Copied TODOs to clipboard!');
-    } catch (err) {
+    } catch(_err) {
       showToast('Unable to share or copy.');
     }
   }

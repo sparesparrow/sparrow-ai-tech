@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', 'attachment; filename="document.pdf"');
     return res.status(200).end(pdfBuffer);
-  } catch (err) {
+  } catch(_err) {
     return res.status(500).json({ error: 'Failed to generate PDF' });
   }
 } 

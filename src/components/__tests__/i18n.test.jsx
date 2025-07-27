@@ -79,7 +79,7 @@ describe('I18nProvider', () => {
       );
     });
     // Debug: Output the DOM after initial render
-    // eslint-disable-next-line no-console
+     
     console.log('DOM after render:', screen.debug ? screen.debug() : 'no debug');
     await screen.findByText('Projects');
 
@@ -88,7 +88,7 @@ describe('I18nProvider', () => {
     fireEvent.click(csButton);
 
     // Debug: Output the DOM after clicking CS
-    // eslint-disable-next-line no-console
+     
     console.log('DOM after CS click:', screen.debug ? screen.debug() : 'no debug');
 
     // Step 3: Wait for Czech translation

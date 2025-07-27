@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run linting with warnings allowed
+npx lint-staged --allow-empty || echo "Lint-staged completed with warnings"

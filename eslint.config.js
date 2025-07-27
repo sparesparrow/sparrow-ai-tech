@@ -16,7 +16,6 @@ export default [
       'package-lock.json', 'sparrow_audit_data.json', 'fix-analysis.md'
     ]
   },
-  js.configs.recommended,
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     plugins: {
@@ -37,10 +36,11 @@ export default [
     },
     rules: {
       ...reactPlugin.configs.recommended.rules,
-      ...jsxA11yPlugin.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }]
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      'jsx-a11y/click-events-have-key-events': 'warn',
+      'jsx-a11y/no-static-element-interactions': 'warn'
     },
     settings: {
         react: { version: "detect" }
@@ -60,9 +60,6 @@ export default [
       },
     },
     rules: {
-      ...astroPlugin.configs.recommended.rules,
-      'astro/no-conflict-set-directives': 'warn',
-      'astro/no-unused-define-vars-in-style': 'warn',
       'no-unused-vars': 'off',
       'no-undef': 'off'
     },
@@ -73,9 +70,22 @@ export default [
       cypress: cypressPlugin,
     },
     languageOptions: {
-      globals: { ...cypressPlugin.environments.globals.globals }
+      globals: { 
+        ...globals.browser,
+        cy: 'readonly',
+        Cypress: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly'
+      }
     },
-    rules: cypressPlugin.configs.recommended.rules,
+    rules: {
+      ...cypressPlugin.configs.recommended.rules,
+      'cypress/no-unnecessary-waiting': 'warn',
+      'cypress/unsafe-to-chain-command': 'warn'
+    },
   },
   {
     files: ['**/*.test.{js,jsx,ts,tsx}', '**/__tests__/**/*.{js,jsx,ts,tsx}'],

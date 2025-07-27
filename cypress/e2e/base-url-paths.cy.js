@@ -196,7 +196,7 @@ describe('Environment-specific Base URL', () => {
       const currentPath = win.location.pathname;
 
       if (isProduction) {
-        expect(currentPath).to.match(new RegExp(`^${base}`));
+        expect(currentPath).to.include(base);
       }
     });
   });

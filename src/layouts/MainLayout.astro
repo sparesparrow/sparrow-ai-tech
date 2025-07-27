@@ -1,31 +1,20 @@
 ---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
 ---
 
-import Header from '../components/Header.jsx';
-import Footer from '../components/Footer.jsx';
-import '../styles/global.css';
-import '../styles/theme.css';
-import '../styles/typography.css';
----
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sparrow AI Tech</title>
-    <link rel="icon" type="image/png" href="/sparrow-ai-tech/favicon.png" />
-    <link rel="icon" type="image/x-icon" href="/sparrow-ai-tech/favicon.ico" />
-    <link rel="manifest" href="/sparrow-ai-tech/manifest.json" />
-    <link rel="stylesheet" href="/sparrow-ai-tech/assets/css/global.css" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
   </head>
   <body>
-    <header>
-      <Header client:load />
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer>
-      <Footer client:load />
-    </footer>
+    <slot />
   </body>
-</html> 
+</html>

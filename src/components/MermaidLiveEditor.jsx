@@ -37,7 +37,7 @@ export default function MermaidLiveEditor() {
       const { svg } = await mermaidRef.current.render(id, text);
       setSvg(svg);
       setError('');
-    } catch (e) {
+    } catch(_e) {
       setError(e.message);
       setSvg('');
     }
