@@ -1,64 +1,41 @@
 import js from '@eslint/js';
-import reactPlugin from 'eslint-plugin-react';
 import globals from 'globals';
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
+import react from 'eslint-plugin-react';
+import cypress from 'eslint-plugin-cypress';
 
 export default [
-  {
-    ignores: [
-      '.astro/**/*', 'dist/**/*', 'node_modules/**/*', 'build/', 'coverage/',
-      '.nyc_output/', 'cypress/downloads/', 'cypress/screenshots/',
-      '**/*-fixed.*', 'app.js', 'chatbot-api-fixed.js', 'i18n-fixed.jsx',
-      'MermaidLiveEditor-fixed.jsx', '*.json', '*.md', '*.css', '*.html',
-      '*.min.js', '*.bundle.js', 'package-*.json', 'sparrow_audit_data.json',
-      'fix-analysis.md', 'tailwind-config-fixed.js', 'content-config-fixed.ts'
-    ]
-  },
+  { ignores: ["node_modules/", ".astro/", "dist/"] },
   js.configs.recommended,
   {
-    files: ['**/*.{js,jsx,mjs,cjs}'],
+    files: ["**/*.{js,jsx,ts,tsx}"],
     plugins: {
-      react: reactPlugin
+      '@typescript-eslint': tseslint,
+      react: react,
+      cypress: cypress,
     },
     languageOptions: {
+      parser: tsParser,
       parserOptions: {
         ecmaFeatures: { jsx: true },
-        ecmaVersion: 'latest',
-        sourceType: 'module'
       },
       globals: {
         ...globals.browser,
-        ...globals.node
-      }
+        ...globals.node,
+        ...globals.jest,
+      },
     },
     rules: {
-      ...reactPlugin.configs.recommended.rules,
-      'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off',
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }]
-    },
-    settings: {
-      react: { version: 'detect' }
+      'no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }],
+      'react/display-name': 'off',
+      'no-undef': 'warn',
     }
   },
   {
-    files: ['cypress/**/*.{js,ts,jsx,tsx}'],
+    files: ['cypress/**/*.js'],
     languageOptions: {
-      globals: {
-        ...globals.browser,
-        cy: 'readonly',
-        Cypress: 'readonly',
-        describe: 'readonly',
-        it: 'readonly',
-        expect: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly'
-      }
-    }
-  },
-  {
-    files: ['**/*.test.{js,jsx,ts,tsx}', '**/__tests__/**/*.{js,jsx,ts,tsx}'],
-    languageOptions: {
-      globals: { ...globals.jest }
+      globals: { ...globals.cypress }
     }
   }
 ];
