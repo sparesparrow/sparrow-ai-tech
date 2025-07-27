@@ -1,6 +1,6 @@
 {
   "name": "sparrow-ai-tech",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Modern Astro + React web project with i18n, Tailwind CSS, and GitHub Pages deployment",
   "private": true,
   "type": "module",
@@ -9,26 +9,46 @@
     "type": "git",
     "url": "https://github.com/sparesparrow/sparrow-ai-tech.git"
   },
+  "author": "sparesparrow",
+  "license": "MIT",
+  "keywords": [
+    "astro",
+    "react",
+    "tailwindcss",
+    "typescript",
+    "static-site",
+    "github-pages",
+    "i18n"
+  ],
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "astro dev --host",
+    "start": "astro dev --host",
     "build": "astro check && astro build",
-    "preview": "astro preview",
+    "build:dev": "astro build --mode development",
+    "preview": "astro preview --host",
     "astro": "astro",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:e2e": "cypress run",
     "test:e2e:open": "cypress open",
+    "test:e2e:headless": "cypress run --headless",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --ignore-path .gitignore",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --ignore-path .gitignore --fix",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,astro,md,json}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,astro,md,json}\"",
+    "lint:report": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --ignore-path .gitignore --output-file eslint-report.json --format json",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,astro,md,json,css,scss}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,astro,md,json,css,scss}\"",
     "type-check": "astro check",
-    "clean": "rm -rf dist .astro node_modules/.cache",
+    "type-check:watch": "astro check --watch",
+    "clean": "rm -rf dist .astro node_modules/.cache coverage cypress/screenshots cypress/videos",
+    "clean:install": "npm run clean && rm -rf node_modules package-lock.json && npm install",
     "fix-all": "npm run lint:fix && npm run format",
+    "check-all": "npm run type-check && npm run lint && npm run format:check && npm run test",
     "prepare": "husky install",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "postinstall": "npm run prepare",
+    "deps:check": "npm outdated",
+    "deps:update": "npm update"
   },
   "dependencies": {
     "@astrojs/react": "^3.6.2",
@@ -45,6 +65,7 @@
     "@tailwindcss/typography": "^0.5.15",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "@typescript-eslint/eslint-plugin": "^8.15.0",
     "@typescript-eslint/parser": "^8.15.0",
     "astro-eslint-parser": "^1.0.3",
@@ -72,8 +93,21 @@
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{md,json}": [
+    "*.{md,json,css,scss}": [
       "prettier --write"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"],
+    "testMatch": [
+      "**/__tests__/**/*.(js|jsx|ts|tsx)",
+      "**/*.(test|spec).(js|jsx|ts|tsx)"
+    ],
+    "moduleFileExtensions": ["js", "jsx", "ts", "tsx"],
+    "collectCoverageFrom": [
+      "src/**/*.(js|jsx|ts|tsx)",
+      "!src/**/*.d.ts"
     ]
   },
   "engines": {
@@ -83,6 +117,7 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not dead"
+    "not dead",
+    "not ie 11"
   ]
 }
