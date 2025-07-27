@@ -28,7 +28,9 @@
     "test:e2e": "cypress run",
     "prepare": "husky install",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
-    "postinstall": "npx playwright install --with-deps chromium"
+    "postinstall": "npx playwright install --with-deps chromium",
+    "build_backend": "cd backend/mcp-mermaid-generator && docker build -t backend-test:latest .",
+    "test_backend": "cd backend/mcp-mermaid-generator && docker run --rm backend-test:latest pytest tests/ -v"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
