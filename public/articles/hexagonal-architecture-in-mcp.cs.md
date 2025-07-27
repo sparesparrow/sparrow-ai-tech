@@ -45,7 +45,8 @@ graph TD
     Hex --> Porty["Porty"]
     Hex --> Adaptery["Adaptéry"]
 ```
-*Obrázek: Systémy se vyvíjejí od monolitických k modulárním, hexagonálním architekturám pro větší flexibilitu.*
+
+_Obrázek: Systémy se vyvíjejí od monolitických k modulárním, hexagonálním architekturám pro větší flexibilitu._
 
 ---
 
@@ -58,10 +59,11 @@ graph TD
     Jadro --> Test["Testovací rámec"]
     Jadro --> Nova["Nová integrace"]
 ```
-*Obrázek: Hexagonální architektura umožňuje snadné testování a rozšíření pomocí adaptérů a testovacích rámců.*
+
+_Obrázek: Hexagonální architektura umožňuje snadné testování a rozšíření pomocí adaptérů a testovacích rámců._
 
 ---
 
 ## Závěr
 
-Hexagonální architektura je klíčovým prvkem moderního návrhu MCP serverů. Umožňuje rychlý vývoj, snadné testování a dlouhodobou udržitelnost celého ekosystému. 
+Hexagonální architektura je klíčovým prvkem moderního návrhu MCP serverů. Umožňuje rychlý vývoj, snadné testování a dlouhodobou udržitelnost celého ekosystému.

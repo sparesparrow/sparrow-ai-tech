@@ -13,7 +13,8 @@ graph TD
     LLMs --> Agentic["Agentní workflow a MCP"]
     Agentic --> Leadership["Architektura a vedení AI systémů"]
 ```
-*Figure: Foundational AI/ML education is the root of the skill tree leading to agentic AI system leadership.*
+
+_Figure: Foundational AI/ML education is the root of the skill tree leading to agentic AI system leadership._
 
 ---
 
@@ -89,7 +90,8 @@ graph TD
     Transformer --> LLM["Velký jazykový model (LLM)"]
     LLM --> Nasazeni["Nasazení a aplikace"]
 ```
-*Obrázek: Progrese od základních neuronových sítí přes MLP a Transformer až k LLM a jejich nasazení.*
+
+_Obrázek: Progrese od základních neuronových sítí přes MLP a Transformer až k LLM a jejich nasazení._
 
 ---
 
@@ -102,7 +104,8 @@ graph TD
     Notebooky --> Komunita["AI komunita"]
     Komunita --> Prispevek["Příspěvek / Contribution"]
 ```
-*Obrázek: Otevřený workflow učení zahrnuje GitHub, YouTube, notebooky, komunitu a příspěvky.*
+
+_Obrázek: Otevřený workflow učení zahrnuje GitHub, YouTube, notebooky, komunitu a příspěvky._
 
 ---
 
@@ -122,10 +125,11 @@ Kurzy Andreje Karpathyho jsou jedinečnou příležitostí pro českou AI komuni
 ---
 
 **Odkazy:**
+
 - [Neural Networks: Zero to Hero (GitHub)](https://github.com/karpathy/nn-zero-to-hero)
 - [Zero to Hero – YouTube playlist](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ)
 - [LLM101n (GitHub)](https://github.com/karpathy/LLM101n)
 
 ---
 
-*Článek připraven pro šíření znalostí v české AI komunitě. Sdílejte a inspirujte další!* 
+_Článek připraven pro šíření znalostí v české AI komunitě. Sdílejte a inspirujte další!_

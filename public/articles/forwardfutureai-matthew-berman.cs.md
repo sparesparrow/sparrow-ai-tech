@@ -51,4 +51,4 @@ Matthew Berman a jeho ForwardFutureAI představují důležitý směr v rozvoji 
 
 ---
 
-*Článek připraven pro šíření znalostí v české AI komunitě. Sdílejte a inspirujte další!* 
+_Článek připraven pro šíření znalostí v české AI komunitě. Sdílejte a inspirujte další!_

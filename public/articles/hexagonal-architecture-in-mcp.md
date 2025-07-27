@@ -20,7 +20,8 @@ graph TD
     Adapter2 --> Agent["Agentic Workflow"]
     Adapter3 --> Data["Data Storage"]
 ```
-*Figure: Hexagonal architecture enables modular, testable, and secure agentic AI systems within the MCP ecosystem.*
+
+_Figure: Hexagonal architecture enables modular, testable, and secure agentic AI systems within the MCP ecosystem._
 
 ---
 
@@ -35,6 +36,7 @@ graph TD
 Hexagonal architecture, also known as the **Ports and Adapters** pattern, is a software design approach that emphasizes separation of concerns, testability, and flexibility. Instead of structuring your application around technical layers (like controllers, services, repositories), you organize it around the core business logic (the "domain") and define clear boundaries for how external systems interact with it.
 
 ### Key Concepts:
+
 - **Core Domain:** The heart of your application, containing business rules and logic.
 - **Ports:** Interfaces that define how the core communicates with the outside world (e.g., APIs, databases, UIs).
 - **Adapters:** Implementations of ports that connect the core to specific technologies (e.g., REST API, file storage, Postgres, third-party services).
@@ -57,15 +59,18 @@ The Model Context Protocol (MCP) is designed for extensibility, maintainability,
 Let's break down how MCP leverages this pattern:
 
 ### 1. **Core Domain**
+
 - Entities: Prompt, Template, Category, User
 - Use Cases: CreatePrompt, SearchPrompts, ManageTemplates, etc.
 
 ### 2. **Ports (Interfaces)**
+
 - `PromptRepositoryPort`: Interface for storing/retrieving prompts
 - `TemplateEnginePort`: Interface for rendering templates
 - `UserAuthPort`: Interface for authentication/authorization
 
 ### 3. **Adapters**
+
 - **Primary (Driving):** REST API, MCP protocol, CLI
 - **Secondary (Driven):** FileStorageAdapter, PostgresAdapter, EtaTemplatingAdapter, ElevenLabsAdapter
 
@@ -96,7 +101,8 @@ graph TD
     Hex --> Ports["Ports"]
     Hex --> Adapters["Adapters"]
 ```
-*Figure: Systems evolve from monolithic to modular, hexagonal architectures for flexibility.*
+
+_Figure: Systems evolve from monolithic to modular, hexagonal architectures for flexibility._
 
 ---
 
@@ -109,7 +115,8 @@ graph TD
     Core --> Test["Test Harness"]
     Core --> New["New Integration"]
 ```
-*Figure: Hexagonal architecture enables easy testing and extension via adapters and harnesses.*
+
+_Figure: Hexagonal architecture enables easy testing and extension via adapters and harnesses._
 
 ---
 
@@ -128,6 +135,7 @@ Adopting hexagonal architecture in MCP and similar AI projects leads to cleaner,
 
 ---
 
-**Want to learn more?**  
-- [MCP GitHub Repository](https://github.com/sparesparrow/mcp-prompts)  
-- [Hexagonal Architecture Explained (Alistair Cockburn)](https://alistair.cockburn.us/hexagonal-architecture/) 
+**Want to learn more?**
+
+- [MCP GitHub Repository](https://github.com/sparesparrow/mcp-prompts)
+- [Hexagonal Architecture Explained (Alistair Cockburn)](https://alistair.cockburn.us/hexagonal-architecture/)

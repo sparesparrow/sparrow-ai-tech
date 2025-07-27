@@ -53,11 +53,11 @@ function parseTodoMd(md) {
       text = text.replace(/#\w+/g, '').replace(/@\w+/g, '').trim();
       currentTask = { text, status, tags, owners, subtasks: [], line: i };
       if (currentSection) currentSection.tasks.push(currentTask);
-    } else if (/^  - \[.\] /.test(line) && currentTask) {
+    } else if (/^ {2}- \[.\] /.test(line) && currentTask) {
       // Subtask (indented)
       let status = 'ToDo';
       let text = line;
-      let match = line.match(/^  - \[(.|\w+)\] (.*)/);
+      let match = line.match(/^ {2}- \[(.|\w+)\] (.*)/);
       if (match) {
         if (statusMap[match[1]]) status = statusMap[match[1]];
         else if (customStatusMap[`[${match[1]}]`]) status = customStatusMap[`[${match[1]}]`];

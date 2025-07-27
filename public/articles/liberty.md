@@ -1,4 +1,3 @@
-
 # Portfolio Relevance
 
 This article is part of the sparesparrow/Sparrow AI & Tech portfolio, which is dedicated to building robust, secure, and interoperable agentic AI systems. The analysis of open-source governance, transparent collaboration, and decentralized decision-making in libertarian constitutions directly informs the design of secure, auditable, and community-driven agentic AI ecosystems. These principles are foundational for building trustworthy, scalable AI systems.
@@ -15,7 +14,8 @@ graph TD
     Security --> Agentic["Agentic AI Ecosystem"]
     Agentic --> Trust["Trust & Adoption"]
 ```
-*Figure: Open-source governance and transparent collaboration are foundational for secure, trustworthy agentic AI ecosystems.*
+
+_Figure: Open-source governance and transparent collaboration are foundational for secure, trustworthy agentic AI ecosystems._
 
 ---
 
@@ -28,7 +28,8 @@ graph TD
     Community --> Revision["Revision"]
     Revision --> Adoption["Adoption/Implementation"]
 ```
-*Figure: The process of drafting a libertarian constitution involves community feedback and iterative revision.*
+
+_Figure: The process of drafting a libertarian constitution involves community feedback and iterative revision._
 
 ---
 
@@ -43,7 +44,8 @@ graph TD
     Voting --> Consensus["Consensus"]
     Consensus --> Implementation["Implementation"]
 ```
-*Figure: Decentralized decision-making involves proposals, voting, consensus, and implementation by multiple stakeholders.*
+
+_Figure: Decentralized decision-making involves proposals, voting, consensus, and implementation by multiple stakeholders._
 
 ---
 
@@ -68,6 +70,7 @@ Definice vlastnictví v Urzově návrhu je formulována takto: „Vlastnictví j
 ### Struktura a filosofie
 
 Libertariánská ústava podle Urzy obsahuje tři hlavní části[1]:
+
 - **Preambule a tělo** - tyto části jsou „vysvětlující"
 - **Hlava** - obsahuje „problémové" výjimky pro stát
 
@@ -94,6 +97,7 @@ Urza se zabývá otázkou, co dělat s legislativní konkurencí[1]. Pokud poru�
 ### Neřešení konfliktů jako výhoda
 
 Urza argumentuje, že ústava neselhává tím, že neřeší konflikty výkladů - naopak je to její zásadní dobrá vlastnost[1]. Jeho logika je následující:
+
 - Je-li jedna ze stran konfliktu výrazně silnější, pak je to jedno, stejně si svou sílu prosadí bez ohledu na ústavu[1]
 - Jsou-li strany konfliktu podobně silné, pak by ústava neměla předem určovat, kdo je „v právu"[1]
 
@@ -118,6 +122,7 @@ Repozitář umožňuje návštěvníkům navrhovat změny a nové instituty pros
 ### Aktuální verze ústavy
 
 Současná verze ústavy je dostupná v repozitáři[3]. Historické verze ústavy lze nalézt v následujících dokumentech[2]:
+
 - Ústava před výročním milníkem 2022
 - Ústava před revizí Floating Man z 2022
 - Ústava před simplifikační revizí se zaznamenanými změnami
@@ -132,6 +137,7 @@ Aktuální ústava Liberlandu[3] obsahuje:
 **Preambuli** deklarující svobodu, vlastnictví a zajištění svobody pro budoucí generace[3].
 
 **Knihu 1: Základní principy** zahrnující[3]:
+
 - Individuální suverenitu a sebevlastnictví
 - Soukromé vlastnictví a suverenitu nad vlastnictvím
 - Trvalost vlastnictví a svobodu transakcí
@@ -139,18 +145,21 @@ Aktuální ústava Liberlandu[3] obsahuje:
 - Centralizovanou autoritu jako veřejného obránce vlastnictví
 
 **Knihu 2: Vláda Liberlandu** pokrývající[3]:
+
 - Strukturu a práva vlády
 - Základní práva a fundamentální svobody
 - Ústavní politiky
 - Finanční principy včetně vyváženého rozpočtu
 
 **Knihu 3: Soudní moc** definující[3]:
+
 - Funkci soudnictví
 - Jurisprudenci a hierarchii soudů
 - Nástroje soudnictví
 - Ustanovení Nejvyššího soudu
 
 **Knihu 4: Legislativní moc** upravující[3]:
+
 - Tvorbu zákonů a regulaci chování
 - Instituce legislativní moci včetně referenda
 

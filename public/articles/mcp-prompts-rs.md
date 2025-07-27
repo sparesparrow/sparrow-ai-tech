@@ -28,20 +28,24 @@ By rewriting mcp-prompts in Rust, sparesparrow leverages these advantages to cre
 ## Architecture and Core Features
 
 ### 1. Modern Rust Foundation
+
 - **Async-First Design:** Built on top of Rust's async runtime (likely Tokio), enabling efficient, non-blocking I/O and high concurrency.
 - **RESTful API with SSE:** Implements a REST API and Server-Sent Events (SSE) for real-time updates, ensuring feature parity with the TypeScript version and seamless integration with MCP clients.
 - **Modular Codebase:** Core logic is organized into dedicated modules (e.g., `src/prompt/`, `src/template/`), following Rust best practices for maintainability and extensibility.
 
 ### 2. Flexible Storage Backends
+
 - **File System Adapter:** Prompts and templates can be stored as JSON files, supporting local development and Git-based workflows.
 - **PostgreSQL Adapter:** Enterprise-grade, scalable storage for production deployments, leveraging Rust's mature database ecosystem.
 - **Extensible Format Support:** The architecture is designed to support additional formats (e.g., MDC for Cursor IDE, PGAI for vector search) as the ecosystem evolves.
 
 ### 3. The MutablePrompt Model (Rust Edition)
+
 - **Format Conversion:** Re-implements the innovative MutablePrompt interface from the TypeScript version, enabling on-the-fly conversion between JSON, template, and (in future) other formats.
 - **Adapter Pattern:** Clean separation between storage logic and application logic, making it easy to add new formats or backends without touching core code.
 
 ### 4. Developer Experience
+
 - **Containerization:** Distributed as a Docker image for easy deployment in any environment.
 - **Clear Documentation:** Follows the tradition of sparesparrow's projects with thorough README files, usage guides, and integration examples.
 - **CI/CD Ready:** Built with robust automation and testing in mind, ensuring reliability with every release.
@@ -50,17 +54,17 @@ By rewriting mcp-prompts in Rust, sparesparrow leverages these advantages to cre
 
 ## Advantages Over the TypeScript Version
 
-| Feature                | mcp-prompts (TypeScript) | mcp-prompts-rs (Rust)         |
-|------------------------|--------------------------|-------------------------------|
-| Language               | TypeScript (Node.js)     | Rust                          |
-| Performance            | Good                     | Excellent (native, async)      |
-| Memory Safety          | Dynamic, GC              | Compile-time, no GC           |
-| Concurrency            | Event loop               | True async, multi-threaded     |
-| Storage Backends       | File, PostgreSQL, MDC    | File, PostgreSQL (MDC planned)|
-| Format Flexibility     | MutablePrompt interface  | Modular, adapter-based        |
-| API                    | REST, SSE, MCP Tools     | REST, SSE, MCP Tools          |
-| Containerization       | Yes                      | Yes                           |
-| Stability              | Mature, some issues      | In development, high potential |
+| Feature            | mcp-prompts (TypeScript) | mcp-prompts-rs (Rust)          |
+| ------------------ | ------------------------ | ------------------------------ |
+| Language           | TypeScript (Node.js)     | Rust                           |
+| Performance        | Good                     | Excellent (native, async)      |
+| Memory Safety      | Dynamic, GC              | Compile-time, no GC            |
+| Concurrency        | Event loop               | True async, multi-threaded     |
+| Storage Backends   | File, PostgreSQL, MDC    | File, PostgreSQL (MDC planned) |
+| Format Flexibility | MutablePrompt interface  | Modular, adapter-based         |
+| API                | REST, SSE, MCP Tools     | REST, SSE, MCP Tools           |
+| Containerization   | Yes                      | Yes                            |
+| Stability          | Mature, some issues      | In development, high potential |
 
 - **Performance & Scalability:** Rust's zero-cost abstractions and async runtime enable mcp-prompts-rs to handle more requests with lower latency and resource usage.
 - **Reliability:** Rust's strict type system and memory safety guarantees reduce runtime errors and crashes.
@@ -71,6 +75,7 @@ By rewriting mcp-prompts in Rust, sparesparrow leverages these advantages to cre
 ## Role in the MCP Ecosystem
 
 mcp-prompts-rs is not just a rewrite—it is the next evolutionary step for prompt management in the MCP world. It serves as:
+
 - **A Reference Implementation:** Demonstrates best practices for building high-performance, extensible MCP servers in Rust.
 - **A Platform for Growth:** Its modular design and robust foundation make it the ideal base for future features, such as advanced search, analytics, and integration with orchestration and routing tools.
 - **A Community Anchor:** By providing a reliable, open-source, MIT-licensed server, mcp-prompts-rs encourages adoption, contribution, and innovation across the MCP and LLM developer communities.
@@ -106,10 +111,11 @@ mcp-prompts-rs represents a major leap forward for prompt management in the agen
 
 ---
 
-*References:*
+_References:_
+
 1. [mcp-prompts-rs GitHub](https://github.com/sparesparrow/mcp-prompts-rs)
 2. [mcp-prompts GitHub](https://github.com/sparesparrow/mcp-prompts)
 3. [Model Context Protocol - Wikipedia](https://en.wikipedia.org/wiki/Model_Context_Protocol)
 4. [Unlocking the power of Model Context Protocol (MCP) on AWS](https://aws.amazon.com/blogs/machine-learning/unlocking-the-power-of-model-context-protocol-mcp-on-aws/)
 5. [MCP Prompts Server - Glama](https://glama.ai/mcp/servers/@sparesparrow/mcp-prompts)
-6. [Prompt Manager MCP server for AI agents - Playbooks](https://playbooks.com/mcp/sparesparrow-prompt-manager) 
+6. [Prompt Manager MCP server for AI agents - Playbooks](https://playbooks.com/mcp/sparesparrow-prompt-manager)

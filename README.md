@@ -1,7 +1,7 @@
 # Sparrow AI Tech
 
-<<<<<<< HEAD
-=======
+# <<<<<<< HEAD
+
 [![Build Status](https://img.shields.io/github/actions/workflow/status/sparesparrow/sparrow-ai-tech/deploy.yml?branch=main)](https://github.com/sparesparrow/sparrow-ai-tech/actions)
 [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)](https://sparesparrow.github.io/sparrow-ai-tech/)
 [![License](https://img.shields.io/github/license/sparesparrow/sparrow-ai-tech)](LICENSE)
@@ -9,6 +9,7 @@
 ---
 
 ## Table of Contents
+
 - [Overview](#overview)
 - [Features](#features)
 - [Installation](#installation)
@@ -24,11 +25,14 @@
 
 ---
 
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
+> > > > > > > 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
+
 ## Overview
+
 A modern web project using Astro + React, with full i18n (astro-i18n), Tailwind CSS (dark mode by default with toggle), robust E2E tests (Cypress), unit/component tests (Jest), and backend endpoints for ElevenLabs and PDF generation.
 
 ## Folder Structure
+
 - `/src` — Main app source (React, Astro pages, layouts, styles)
 - `/public` — Static assets (images, CSS, manifest, favicon, articles, infographics, locales)
 - `/articles` — Markdown articles and documentation
@@ -39,12 +43,14 @@ A modern web project using Astro + React, with full i18n (astro-i18n), Tailwind 
 - `/_site` — (Legacy) Jekyll build output
 
 ## Design System
+
 - **Tailwind CSS** for all styling
 - **Dark mode** enabled by default, with toggle (respects system preference, persists user choice)
 - **Accessible**: semantic HTML, keyboard navigation, aria-labels
 - **Testing**: All interactive elements use `data-cy` attributes for robust Cypress selectors
 
 ## Setup & Development
+
 ```sh
 npm install
 npm run dev # Start local dev server
@@ -55,22 +61,28 @@ npx cypress open # Run Cypress E2E tests interactively
 ```
 
 ## Testing
+
 - **Jest**: Unit/component tests in `src/components/__tests__` using [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - **Cypress**: E2E tests in `cypress/e2e/`
 - **Lighthouse CI**: Automated performance checks in CI (see below)
 
 <<<<<<< HEAD
+
 ### Running Tests
+
 =======
+
 ## Build, Test & Deploy
 
 ### Build
+
 - Uses Astro for static site generation and React for interactive components.
 - `npm run build` compiles the site to `/dist` for deployment.
 - Playwright is installed as part of the build for server-side Mermaid rendering.
 - Static assets (images, infographics, articles) are copied from `/public` and `/assets`.
 
 ### Test
+
 - **Linting:**
   - `npm run lint` runs ESLint and Prettier on all code.
   - Pre-commit hook via Husky ensures code is formatted and linted before commit.
@@ -86,6 +98,7 @@ npx cypress open # Run Cypress E2E tests interactively
   - Lighthouse CI and axe-core integration in CI/CD.
 
 ### Deploy
+
 - **CI/CD Pipeline:**
   - GitHub Actions workflow `.github/workflows/deploy.yml`:
     - Lint → Test → Build → Deploy jobs (sequential, fail-fast).
@@ -98,6 +111,7 @@ npx cypress open # Run Cypress E2E tests interactively
   - Only static HTML/JS/CSS deployed (no server code).
 
 ### Developer Experience
+
 - DevContainer for VS Code: Preinstalled Node, Astro, React, Cypress, i18n, PDF tools.
 - Tasks for lint, test, build, E2E, and frontend dev server.
 - Parallel workflow for frontend (Track A) and backend/tooling (Track B) agents.
@@ -128,7 +142,8 @@ npx cypress open # Run Cypress E2E tests interactively
 ---
 
 ## Usage
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
+
+> > > > > > > 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
 
 ```sh
 npm test # Run all Jest tests
@@ -136,24 +151,29 @@ npx cypress open # Run Cypress E2E tests interactively
 ```
 
 ### Writing Component Tests
+
 - Place test files in `src/components/__tests__/` with `.test.jsx` or `.test.js` extension.
 - Use [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for rendering and interacting with components.
 - Use [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) for extended assertions.
 
 ## Testing & Quality Assurance
+
 - **Cypress**: E2E tests in `cypress/e2e/` (run with `npm test:e2e` or `npx cypress run`)
 - **Jest**: Unit/component tests in `src/components/__tests__/` (run with `npm test`)
 - **Lighthouse CI**: Automated performance and accessibility checks in CI
 
 **Note:**
+
 - All E2E and unit tests must pass (`npm test:e2e`, `npm test`) before deployment.
 - If any Cypress tests fail, update selectors or test logic as needed (see TODO.md for current status).
 
 ## Deployment
+
 - **GitHub Actions**: CI/CD pipeline runs lint, test, build, Lighthouse CI, and deploys to GitHub Pages
 - **Astro**: Output in `/dist` (set `site` and `base` in `astro.config.mjs` for subpath deploy)
 
 ## Environment Variables & Security
+
 - All API keys (e.g., `ELEVENLABS_API_KEY`) are read from environment variables
 - For local dev, create a `.env` file:
   ```env
@@ -162,15 +182,18 @@ npx cypress open # Run Cypress E2E tests interactively
 - In CI/CD, set secrets in your GitHub repository settings
 
 ## Contributing
+
 - Fork, branch, and submit PRs
 - Run all tests before submitting
 - Follow code style and accessibility best practices
 
 ## Credits & License
+
 - Built with Astro, React, Tailwind CSS, Cypress, Jest
 - MIT License
 
 ## Internationalization (i18n)
+
 - **astro-i18n** is fully configured for English and Czech.
 - Translation files: `public/locales/en/common.json`, `public/locales/cs/common.json`
 - Use the translation function in frontend code: `t('header.nav_projects')`
@@ -225,6 +248,7 @@ npx cypress open # Run Cypress E2E tests interactively
 ---
 
 **Security Model & Best Practices:**
+
 - All secrets (API keys) are loaded from environment variables.
 - No secrets are logged or exposed in responses.
 - Input validation is performed on all endpoints.
@@ -245,19 +269,24 @@ curl -X POST https://sparesparrow.github.io/sparrow-ai-tech/api/pdf \
   -H 'Content-Type: application/json' \
   -d '{"html": "<h1>My PDF</h1>"}' --output myfile.pdf
 ```
+
 =======
+
 ## Track B: Backend, Tooling & Automation
+
 - Use the IDE launch script for backend checks: `@track-b-backend.mdc`
 - Run lint, test, and build with the VS Code task or `npm run lint && npm run test && npm run build`
 - E2E tests: Run with the VS Code task or `npx cypress run`
 - i18n: Add translations in `public/locales/en/common.json` and `public/locales/cs/common.json`
 
 ## Devcontainer & Dockerfile
+
 - Preinstalled tools for Node, Astro, React, Cypress, i18n, PDF, and automation
 - Recommended VS Code extensions for full-stack workflows
 - Tasks for frontend, backend, and E2E testing
 
 ## Getting Started
+
 1. Open in VS Code with Devcontainer support
 2. Use the provided tasks or launch scripts for your workflow
 3. See `TODO.md` for roadmap and parallel development guidance
@@ -310,6 +339,7 @@ This project is licensed under the Apache-2.0 License. See [LICENSE](LICENSE) fo
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
 - [sparesparrow](https://github.com/sparesparrow)
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
@@ -327,4 +357,4 @@ This project supports development in a DevContainer, enabling both frontend (Tra
 2. Open this project folder in VS Code.
 3. When prompted, "Reopen in Container". VS Code will build the container and install all dependencies.
 4. Both frontend and backend code can be developed and tested inside the container:
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
+   > > > > > > > 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)

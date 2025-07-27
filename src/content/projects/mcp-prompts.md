@@ -5,7 +5,6 @@ repo_url: 'https://github.com/sparesparrow/mcp-prompts.git'
 pubDate: '2025-07-27'
 ---
 
-
 # MCP Prompts Server · `@sparesparrow/mcp-prompts`
 
 [![CI](https://github.com/sparesparrow/mcp-prompts/actions/workflows/ci.yml/badge.svg)](../../actions)
@@ -18,6 +17,7 @@ pubDate: '2025-07-27'
 ---
 
 ## Table of Contents
+
 - [Why MCP Prompts?](#why-mcp-prompts)
 - [Features](#features)
 - [Quick Start](#quick-start)
@@ -86,11 +86,13 @@ npx -y @sparesparrow/mcp-prompts
 ### 2. Run with Docker
 
 **File storage:**
+
 ```bash
 docker run -d --name mcp-server -p 3003:3003 -v $(pwd)/data:/app/data ghcr.io/sparesparrow/mcp-prompts:latest
 ```
 
 **Postgres storage:**
+
 ```bash
 docker run -d --name mcp-server -p 3003:3003 -v $(pwd)/data:/app/data \
   -e "STORAGE_TYPE=postgres" -e "POSTGRES_URL=your_connection_string" \
@@ -98,6 +100,7 @@ docker run -d --name mcp-server -p 3003:3003 -v $(pwd)/data:/app/data \
 ```
 
 **Docker Compose (multi-server):**
+
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose.extended.yml up -d
 ```
@@ -124,21 +127,22 @@ curl http://localhost:3003/health
 
 All scripts are in the `scripts/` directory. Key scripts include:
 
-| Script                                 | Description                                                      |
-|----------------------------------------|------------------------------------------------------------------|
-| `test-npm-mcp-prompts.sh`              | Test MCP Prompts via npx and MCP Inspector                       |
-| `test-docker-mcp-prompts.sh`           | Test official Docker image and MCP Inspector                     |
-| `test-docker-compose-mcp-prompts.sh`   | Test Docker Compose environment with MCP Inspector               |
-| `extract-catalog.sh`                   | Extract and validate prompt catalog                              |
-| `extract-contracts.sh`                 | Extract and validate API contracts                               |
-| `extract-implementations.sh`           | Extract implementation details for documentation                 |
-| `setup-claude-desktop.sh`              | Setup integration with Claude Desktop                            |
-| `build-and-push-docker.sh`             | Build and push Docker images                                     |
-| `run-tests.sh`                         | Run all unit and integration tests                               |
-| `release.sh`                           | Automated release and version bump script                        |
-| `publish.sh`                           | Publish package to npm                                          |
+| Script                               | Description                                        |
+| ------------------------------------ | -------------------------------------------------- |
+| `test-npm-mcp-prompts.sh`            | Test MCP Prompts via npx and MCP Inspector         |
+| `test-docker-mcp-prompts.sh`         | Test official Docker image and MCP Inspector       |
+| `test-docker-compose-mcp-prompts.sh` | Test Docker Compose environment with MCP Inspector |
+| `extract-catalog.sh`                 | Extract and validate prompt catalog                |
+| `extract-contracts.sh`               | Extract and validate API contracts                 |
+| `extract-implementations.sh`         | Extract implementation details for documentation   |
+| `setup-claude-desktop.sh`            | Setup integration with Claude Desktop              |
+| `build-and-push-docker.sh`           | Build and push Docker images                       |
+| `run-tests.sh`                       | Run all unit and integration tests                 |
+| `release.sh`                         | Automated release and version bump script          |
+| `publish.sh`                         | Publish package to npm                             |
 
 **Usage:**
+
 ```bash
 ./scripts/<script-name> --help
 ```
@@ -162,6 +166,7 @@ MCP Prompts implements the full [Model Context Protocol](https://modelcontextpro
 - **ElevenLabs Integration**: Optional audio synthesis for prompt summaries
 
 **Architecture Overview:**
+
 - **Core**: Prompt management, template engine, versioning
 - **Adapters**: Storage (file, memory, Postgres), external MCP servers
 - **API Layer**: MCP tools/resources, HTTP endpoints, OpenAPI docs
@@ -217,6 +222,7 @@ This section provides a complete workflow for building, running, debugging, and 
 ```bash
 npm install @modelcontextprotocol/sdk zod pg
 ```
+
 - `@modelcontextprotocol/sdk` – Official MCP SDK (server, types, transports)
 - `zod` – Input and schema validation
 - `pg` – PostgreSQL driver
@@ -268,7 +274,7 @@ await server.connect(new StdioServerTransport());
 
 ```yaml
 # docker-compose.yml
-version: "3.9"
+version: '3.9'
 services:
   postgres:
     image: postgres:16
@@ -276,8 +282,8 @@ services:
       POSTGRES_DB: mcp
       POSTGRES_USER: mcp
       POSTGRES_PASSWORD: mcp
-    ports: ["5432:5432"]
-    volumes: ["./pgdata:/var/lib/postgresql/data"]
+    ports: ['5432:5432']
+    volumes: ['./pgdata:/var/lib/postgresql/data']
 
   mcp-server:
     build: .
@@ -324,13 +330,17 @@ This will expose your MCP server over SSE/HTTP for remote access.
 MCP Prompts can be used standalone or as part of a federated MCP ecosystem. Integration patterns include:
 
 ### 1. **Client-Side Federation**
+
 Configure multiple MCP servers in your host application (e.g., Claude Desktop, Cursor):
 
 ```json
 {
   "mcpServers": {
     "mcp-prompts": { "command": "npx", "args": ["-y", "@sparesparrow/mcp-prompts"] },
-    "filesystem": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/files"] },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/files"]
+    },
     "memory": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-memory"] },
     "github": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-github"] }
   }
@@ -338,6 +348,7 @@ Configure multiple MCP servers in your host application (e.g., Claude Desktop, C
 ```
 
 ### 2. **Server-Side Integration**
+
 MCP Prompts can connect to other MCP servers (Filesystem, Memory, GitHub) as storage or metadata backends via adapters. Use Docker Compose for orchestration:
 
 ```yaml
@@ -369,6 +380,7 @@ services:
 ```
 
 ### 3. **Routing and Federation**
+
 MCP Prompts does not natively proxy or federate requests to other servers, but you can use API gateways, custom adapters, or orchestration tools to build federated workflows. See the [MCP Integration Guide](docs/06-mcp-integration.md) for advanced patterns.
 
 ---
@@ -404,6 +416,7 @@ MCP klienti (např. Cursor, Claude Desktop, VS Code, Amazon Q) podporují různ�
 ### 1. Formáty `mcp.json`
 
 #### a) Formát `mcpServers` (Cursor, Claude Desktop, Amazon Q)
+
 ```json
 {
   "mcpServers": {
@@ -421,6 +434,7 @@ MCP klienti (např. Cursor, Claude Desktop, VS Code, Amazon Q) podporují různ�
 ```
 
 #### b) Formát `servers` (VS Code, Hugging Face clients)
+
 ```json
 {
   "servers": [
@@ -442,6 +456,7 @@ MCP klienti (např. Cursor, Claude Desktop, VS Code, Amazon Q) podporují různ�
 ### 2. Konfigurace pro různá prostředí
 
 #### **Linux Host**
+
 ```json
 {
   "mcpServers": {
@@ -459,6 +474,7 @@ MCP klienti (např. Cursor, Claude Desktop, VS Code, Amazon Q) podporují různ�
 ```
 
 Alternativně s wrapper scriptem:
+
 ```json
 {
   "mcpServers": {
@@ -470,6 +486,7 @@ Alternativně s wrapper scriptem:
 ```
 
 #### **Windows Host**
+
 ```json
 {
   "mcpServers": {
@@ -486,16 +503,22 @@ Alternativně s wrapper scriptem:
 ```
 
 #### **Docker Image**
+
 ```json
 {
   "mcpServers": {
     "mcp-prompts": {
       "command": "docker",
       "args": [
-        "run", "-i", "--rm",
-        "-v", "${PWD}/prompts:/app/prompts",
-        "-e", "PROMPTS_DIR=/app/prompts",
-        "-e", "POSTGRES_URL",
+        "run",
+        "-i",
+        "--rm",
+        "-v",
+        "${PWD}/prompts:/app/prompts",
+        "-e",
+        "PROMPTS_DIR=/app/prompts",
+        "-e",
+        "POSTGRES_URL",
         "sparesparrow/mcp-prompts:latest"
       ],
       "env": {
@@ -507,16 +530,19 @@ Alternativně s wrapper scriptem:
 ```
 
 #### **NPM Package (doporučený způsob)**
+
 ```json
 {
   "mcpServers": {
     "mcp-prompts": {
       "command": "npx",
       "args": [
-        "-y", 
+        "-y",
         "@sparesparrow/mcp-prompts",
-        "--source", "catalog:",
-        "--source", "file:./company-prompts"
+        "--source",
+        "catalog:",
+        "--source",
+        "file:./company-prompts"
       ],
       "env": {
         "STORAGE_TYPE": "postgres",
@@ -539,6 +565,7 @@ LOG_LEVEL=info
 ```
 
 Nebo v konfiguraci VS Code:
+
 ```json
 {
   "inputs": [
@@ -549,7 +576,7 @@ Nebo v konfiguraci VS Code:
       "password": true
     },
     {
-      "type": "promptString", 
+      "type": "promptString",
       "id": "prompts-dir",
       "description": "Cesta k promptům"
     }
@@ -575,10 +602,12 @@ Projekt `mcp-prompts` je navržen podle principů hexagonální architektury (ar
 - `index.ts` – Kompozice aplikace, propojení portů a adaptérů
 
 ### Praktické příklady
+
 - Pro přidání nového úložiště stačí implementovat rozhraní `PromptRepository` a zaregistrovat adaptér.
 - Pro změnu templating systému stačí implementovat `TemplatingPort`.
 
 ### Odkazy
+
 - [Oficiální MCP architektura](https://modelcontextprotocol.io/specification/2025-06-18/architecture)
 - [Hexagonal Architecture (Alistair Cockburn)](https://alistair.cockburn.us/hexagonal-architecture/)
 
@@ -587,6 +616,7 @@ Projekt `mcp-prompts` je navržen podle principů hexagonální architektury (ar
 mcp-prompts is architected using the Hexagonal Architecture (Ports & Adapters) pattern. This design separates the core business logic from external systems (storage, APIs, UI) via well-defined interfaces (ports) and their implementations (adapters).
 
 **Key Components:**
+
 - **Core (Hexagon):** Pure business logic for prompt management, versioning, templating, and validation. No dependencies on frameworks or infrastructure.
 - **Ports (Interfaces):**
   - **Primary Port:** `IPromptApplication` – defines the API for all use cases (add, get, list, apply, etc.).
@@ -603,11 +633,13 @@ mcp-prompts is architected using the Hexagonal Architecture (Ports & Adapters) p
     - `EtaTemplatingAdapter` (template rendering)
 
 **Benefits:**
+
 - Isolated, testable core logic
 - Easy to add new storage or API adapters
 - Stable, maintainable, and extensible foundation for the MCP ecosystem
 
 **Directory Structure Example:**
+
 ```
 mcp-prompts/
   core/
@@ -628,15 +660,18 @@ mcp-prompts/
 ```
 
 **Testing:**
+
 - Core logic is tested with in-memory/mock ports (no I/O required).
 - Adapters are tested with real dependencies (integration tests).
 
 **Integration:**
+
 - MCPAdapter uses `@modelcontextprotocol/sdk` to register tools/resources.
 - Compatible with MCP Inspector, mcp-cli, Claude Desktop, and other MCP clients.
 
 **References:**
-- [Hexagonal Architecture: Wikipedia](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software))
+
+- [Hexagonal Architecture: Wikipedia](<https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)>)
 - [MCP Specification](https://modelcontextprotocol.io/specification/2025-06-18/architecture)
 - [DEV: Stop Losing Prompts – Build Your Own MCP Prompt Registry](https://dev.to/stevengonsalvez/stop-losing-prompts-build-your-own-mcp-prompt-registry-4fi1)
 
@@ -660,5 +695,6 @@ mcp-prompts/
 - If you change the shared config or move files, clean all `dist/` directories and rebuild.
 
 ## References
+
 - [Turborepo TypeScript Monorepo Guide](https://turborepo.com/docs/guides/tools/typescript)
 - [Separate tsconfig for builds](https://www.timsanteford.com/posts/streamlining-your-next-js-builds-with-a-separate-typescript-configuration/)

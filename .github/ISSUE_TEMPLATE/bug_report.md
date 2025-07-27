@@ -9,9 +9,10 @@ labels: bug
 <!-- A clear and concise description of what the bug is. -->
 
 ## Steps to Reproduce
-1. 
-2. 
-3. 
+
+1.
+2.
+3.
 
 ## Expected Behavior
 
@@ -26,10 +27,11 @@ labels: bug
 <!-- If applicable, add screenshots to help explain your problem. -->
 
 ## Environment
+
 - OS: [e.g. Windows, macOS, Linux]
 - Browser: [e.g. Chrome, Firefox]
 - Version: [e.g. 1.0.0]
 
 ## Additional Context
 
-<!-- Add any other context about the problem here. --> 
+<!-- Add any other context about the problem here. -->

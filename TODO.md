@@ -1,6 +1,7 @@
 # TODOs - A Parallel Roadmap for a pair of AI Agents
 
 **Task Status Legend:**
+
 - [ToDo] = Not started
 - [InProgress] = Work in progress
 - [Implemented] = Feature/code implemented, not yet tested
@@ -11,6 +12,7 @@
 This roadmap is optimized for two developers or AI agents working in parallel. It uses a high-granularity, command-driven approach to minimize ambiguity and maximize autonomy.
 
 ## Content & Structure Cleanup
+
 - [Done] Move all test/demo markdown files out of `./articles` to `./cypress/fixtures/articles`
 - [Done] Remove all `.md` duplicates from `./public/articles`, keeping only `.html` files for static hosting
 - [Done] Standardize article language management: use `article.md` (EN), `article.cs.md` (CZ), and extend with `article.[lang].md` for future languages
@@ -122,8 +124,7 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [Done] Install and configure Cypress for E2E testing (`npx cypress init`).
   - [HelpNeeded] Install and configure Jest and Testing Library for component testing.
   - [InProgress] Fix any existing failing Cypress tests by updating selectors or test logic.
-  - [ToDo] **Done when:** `npm install` , `npm run lint`, `npm test:e2e`,  `npm run build` and `npm test:ci`  execute without errors.
-
+  - [ToDo] **Done when:** `npm install` , `npm run lint`, `npm test:e2e`, `npm run build` and `npm test:ci` execute without errors.
 
 - [Implemented] 5. Set Up Internationalization (i18n) Framework:
   - [Implemented] Integrate and configure astro-i18n.
@@ -158,6 +159,7 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [Implemented] Use the i18n function and JSON key structure provided by Track B.
   - [Implemented] Connect the language switcher UI to the i18n framework to enable language changes.
   - [Implemented] Wrap all static text in UI components with the translation function.
+
 ---
 
 ## Track B: Backend, Tooling & Automation (Agent 2)
@@ -167,7 +169,6 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 - [ToDo] 1. Implement Backend for Features:
   - [ToDo] Voice Chatbot: Create a serverless function (`./api/chatbot.js`) to securely handle API calls to the ElevenLabs API. **Handoff:** Provide the API contract (endpoint URL, request/response format) to Agent A.
   - [ToDo] PDF Generation: If server-side rendering is chosen for the PDF, set up the necessary endpoint.
-  
 - [Tested] 2. Write Comprehensive Tests:
   - [Tested] Backend API endpoint tests implemented (including SVG sanitization and XSS vectors)
   - [InProgress] Component Tests: Write unit tests for any complex, non-UI logic.
@@ -177,14 +178,16 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 - [ToDo] 4. Optimize and Secure:
   - [ToDo] Set up Lighthouse CI in the `deploy.yml` workflow to report on performance and accessibility.
   - [ToDo] Review for security best practices, especially around API key handling for the chatbot (use environment variables).
-  - [ToDo] **Done when:** `npm install` , `npm run lint`, `npm test:e2e`,  `npm run build` and `npm test:ci`  execute without errors.
+  - [ToDo] **Done when:** `npm install` , `npm run lint`, `npm test:e2e`, `npm run build` and `npm test:ci` execute without errors.
 
 ---
 
 ### Synchronization Point
+
 **Goal:** Integrate the interactive frontend with backend logic and finalize testing for release.
 
 **Process:**
+
 - A new `release/v1.0` branch is created from main.
 - Both agents create pull requests for theirwork into the `release/v1.0` branch.
 - **Integration & Testing:** The release branch is tested end-to-end. All E2E tests must pass.
@@ -192,7 +195,6 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
 - **Outcome:** A fully functional, interactive, tested, and deployed web application.
 
 - [Done] Implement interactive Mermaid editor at /mermaid-editor with live preview, error handling, copy/clear, keyboard shortcuts, accessibility, and robust E2E Cypress tests using data-cy attributes.
-
   - [ ] Scaffold Python FastAPI backend (mcp-mermaid-generator)
   - [ ] Implement /generate_diagram and /validate_syntax endpoints
   - [ ] Integrate LLM (OpenAI, Ollama, or MermaidLlama)

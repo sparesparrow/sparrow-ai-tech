@@ -1,4 +1,5 @@
 # Ideas to explore:
+
 - https://dev.to/devopswithamol/automate-server-deployments-with-github-actions-ssh-p24
 - https://ecostack.dev/posts/automated-docker-compose-deployment-github-actions/
 
@@ -12,21 +13,21 @@ Zde je několik konkrétních návrhů, jak bychom to mohli implementovat, od ne
 
 #### 1\. **Subtilní Oddělovače Sekcí (Subtle Section Dividers)**
 
-  - **Popis:** Každý z pěti odstavců použijeme jako velký, ale velmi světlý text na pozadí, který vizuálně odděluje hlavní sekce vaší stránky (např. mezi "Skills" a "Portfolio"). Text by byl téměř nečitelný na první pohled, ale při bližším zkoumání by byl vidět.
-  - **Styl:** Velmi velké písmo (`text-8xl`), světle šedá barva (`text-stone-200`), nízká průhlednost (`opacity-50`), a možná i mírně pootočený (`-rotate-3`). Text by byl umístěn absolutně za hlavním obsahem sekce.
-  - **Přínos:** Vytváří texturu a hloubku, aniž by rušil hlavní obsah. Působí moderně a "designově".
+- **Popis:** Každý z pěti odstavců použijeme jako velký, ale velmi světlý text na pozadí, který vizuálně odděluje hlavní sekce vaší stránky (např. mezi "Skills" a "Portfolio"). Text by byl téměř nečitelný na první pohled, ale při bližším zkoumání by byl vidět.
+- **Styl:** Velmi velké písmo (`text-8xl`), světle šedá barva (`text-stone-200`), nízká průhlednost (`opacity-50`), a možná i mírně pootočený (`-rotate-3`). Text by byl umístěn absolutně za hlavním obsahem sekce.
+- **Přínos:** Vytváří texturu a hloubku, aniž by rušil hlavní obsah. Působí moderně a "designově".
 
 #### 2\. **Interaktivní Bloky s "Glitchem" (Interactive Glitch Blocks)**
 
-  - **Popis:** Mezi sekcemi by byly bloky, které na první pohled vypadají jako poškozený nebo "glitchující" kód. Při najetí myší by se "glitch" efekt uklidnil a zobrazil by se jeden z pěti odstavců s čitelným písmem.
-  - **Styl:** Použili bychom `font-mono`, různé barvy (zelená, jantarová) a CSS animace nebo JavaScript pro vytvoření "glitch" efektu (rychlé změny pozice, barvy, znaků).
-  - **Přínos:** Velmi poutavé a interaktivní. Přímo odkazuje na témata kyberbezpečnosti a "skrytých" motivů v kódu. Je to silný vizuální prvek, který ukazuje vaše dovednosti v oblasti frontendu.
+- **Popis:** Mezi sekcemi by byly bloky, které na první pohled vypadají jako poškozený nebo "glitchující" kód. Při najetí myší by se "glitch" efekt uklidnil a zobrazil by se jeden z pěti odstavců s čitelným písmem.
+- **Styl:** Použili bychom `font-mono`, různé barvy (zelená, jantarová) a CSS animace nebo JavaScript pro vytvoření "glitch" efektu (rychlé změny pozice, barvy, znaků).
+- **Přínos:** Velmi poutavé a interaktivní. Přímo odkazuje na témata kyberbezpečnosti a "skrytých" motivů v kódu. Je to silný vizuální prvek, který ukazuje vaše dovednosti v oblasti frontendu.
 
 #### 3\. **"Rozsypaný Čaj" na Pozadí (Background Scatter)**
 
-  - **Popis:** Jednotlivá slova nebo krátké fráze z odstavců by byly náhodně rozmístěny po celém pozadí stránky jako vodoznak. Byly by velmi světlé a nerušivé.
-  - **Styl:** Absolutní pozicování pomocí JavaScriptu, který náhodně rozmístí `<span>` elementy s textem. Různé velikosti a rotace pro organický vzhled.
-  - **Přínos:** Vizuálně zajímavé a pokrývá celý web jednotným tematickým stylem.
+- **Popis:** Jednotlivá slova nebo krátké fráze z odstavců by byly náhodně rozmístěny po celém pozadí stránky jako vodoznak. Byly by velmi světlé a nerušivé.
+- **Styl:** Absolutní pozicování pomocí JavaScriptu, který náhodně rozmístí `<span>` elementy s textem. Různé velikosti a rotace pro organický vzhled.
+- **Přínos:** Vizuálně zajímavé a pokrývá celý web jednotným tematickým stylem.
 
 ### Který koncept zvolit?
 
@@ -59,14 +60,14 @@ Představme si, že toto přidáte do `src/pages/index.astro` mezi sekci `Skills
 
 **Vysvětlení kódu:**
 
-  * `relative w-full ...`: Vytvoříme kontejner, který bude obsahovat náš dekorativní text. `overflow-hidden` zajistí, že text nepřeteče ven.
-  * `absolute ...`: Dva odstavce s textem jsou absolutně pozicovány uvnitř kontejneru.
-  * `font-mono text-[12rem] ...`: Používáme monospaced font pro "technický" vzhled a obrovskou velikost písma.
-  * `text-stone-200 opacity-70`: Barva je velmi světlá a mírně průhledná, aby nerušila.
-  * `-rotate-6`: Mírné pootočení dodává dynamiku.
-  * `select-none`: Zabraňuje uživateli omylem označit tento dekorativní text.
-  * `aria-hidden="true"`: Skryje tento dekorativní prvek před čtečkami obrazovky, protože nemá sémantický význam pro obsah.
-  * `no-print`: Třída, kterou jsme definovali v `global.css`, zajistí, že se tento prvek nebude tisknout do PDF.
+- `relative w-full ...`: Vytvoříme kontejner, který bude obsahovat náš dekorativní text. `overflow-hidden` zajistí, že text nepřeteče ven.
+- `absolute ...`: Dva odstavce s textem jsou absolutně pozicovány uvnitř kontejneru.
+- `font-mono text-[12rem] ...`: Používáme monospaced font pro "technický" vzhled a obrovskou velikost písma.
+- `text-stone-200 opacity-70`: Barva je velmi světlá a mírně průhledná, aby nerušila.
+- `-rotate-6`: Mírné pootočení dodává dynamiku.
+- `select-none`: Zabraňuje uživateli omylem označit tento dekorativní text.
+- `aria-hidden="true"`: Skryje tento dekorativní prvek před čtečkami obrazovky, protože nemá sémantický význam pro obsah.
+- `no-print`: Třída, kterou jsme definovali v `global.css`, zajistí, že se tento prvek nebude tisknout do PDF.
 
 Tento přístup vám umožní kreativně využít poskytnutý text a pozvednout vizuální úroveň vašeho portfolia. Můžete si pohrát s texty z různých odstavců, jejich pozicí, barvami a rotací pro každou sekci.
 
@@ -78,14 +79,17 @@ Níže najdete konkrétní návrh, jak **implementovat Koncept č. 1 (Subtilní 
 ## **Jak na to: Subtilní Oddělovače Sekcí s textem z `I-will-get-you-deployed.md`**
 
 ### 1. **Získání textu a rozdělení na odstavce**
+
 - Každý odstavec z markdownu použijte jako samostatný dekorativní prvek.
 - Můžete je načíst v Astro/React komponentě (např. importem nebo načtením souboru).
 
 ### 2. **Vložení do stránky**
+
 - Mezi hlavní sekce (např. Skills, Portfolio, Contact) vložte dekorativní `<div>` s absolutně pozicovaným textem.
 - Pro každý oddělovač použijte jiný odstavec, případně kombinujte části textu.
 
 ### 3. **Styly (Tailwind CSS)**
+
 - Použijte velké písmo, světlou barvu, průhlednost, rotaci a `select-none`.
 - Přidejte třídu `no-print` do globálního CSS, aby se text netiskl.
 
@@ -108,6 +112,7 @@ export default function DecorativeDivider({ text, className = "" }) {
 ```
 
 **Použití v Astro/React stránce:**
+
 ```jsx
 import DecorativeDivider from '../components/DecorativeDivider.jsx';
 
@@ -130,6 +135,7 @@ const paragraphs = [
 ```
 
 ### 5. **Globální CSS pro tisk**
+
 ```css
 /* global.css */
 .no-print {
@@ -142,6 +148,7 @@ const paragraphs = [
 ---
 
 ## **Další rozšíření**
+
 - **Animace:** Můžete přidat jemné animace opacity nebo pohybu pro ještě větší vizuální efekt.
 - **Responsivita:** Upravte velikost písma podle viewportu (`text-[8vw]` apod.).
 - **Randomizace:** Pokud chcete, aby se texty objevovaly náhodně, můžete je generovat v React/Astro pomocí Math.random().
@@ -150,9 +157,11 @@ const paragraphs = [
 ---
 
 ## **Závěr**
+
 Tento přístup je moderní, subtilní a zároveň tematicky propojený s vaším zaměřením na AI a bezpečnost.
 
 Task: Implement Decorative Text Dividers (Enhanced)1. ObjectiveTo strategically enhance the visual design and thematic depth of the portfolio homepage by integrating subtle, large-format text blocks as decorative dividers. These dividers will utilize the provocative and contextually relevant text from the I-will-get-you-deployed.md document. The goal is to create a sophisticated, multi-layered user experience that communicates technical expertise and creative thinking, reinforcing the portfolio's focus on AI, system architecture, and cybersecurity.2. Context and RationaleIn a competitive technical landscape, a portfolio must do more than just list skills; it must tell a story. This design element moves beyond simple aesthetics to serve a narrative purpose. The chosen text, which explores themes of AI alignment, trust, and security, acts as a conceptual "easter egg." For a technically-savvy visitor (such as a hiring manager or a senior engineer), discovering these subtle textual undercurrents signals a deep engagement with the core challenges of the AI field.This implementation should be executed with precision to feel intentional and high-end. It must be visually unobtrusive, enhancing the page's rhythm and flow without distracting from the primary content (projects, skills, contact information). The final result should be a seamless blend of content and design that is both memorable and professional.3. Subtasks3.1. Data Source Preparation and ManagementDescription: To ensure maintainability and separation of concerns, the text snippets from I-will-get-you-deployed.md must be extracted and stored in a structured, easily accessible format. Hardcoding them directly in the Astro page is a quick start, but a dedicated data file is a more robust, long-term solution.Action:Create a new data file at src/data/decorativeTexts.json. This approach centralizes the content, making it easier to update or translate in the future.Structure the JSON file as an array of objects, where each object contains the text and suggested initial styling parameters. This makes the data source more powerful.Example src/data/decorativeTexts.json:
+
 ```json
 [
   {
@@ -196,18 +205,19 @@ In src/pages/index.astro, import this JSON data. This keeps the page logic clean
 ## Modern Build, Test & Deploy Approach (2024)
 
 ### 1. **Build**
+
 - Use Astro for static site generation, React for interactive components.
-<<<<<<< HEAD
+  <<<<<<< HEAD
 - `npm run build` compiles the site to `./dist` for deployment.
 - Playwright is installed as part of the build for server-side Mermaid rendering.
-- All static assets (images, infographics, articles) are copied from `./public` and `./assets`.
-=======
+- # All static assets (images, infographics, articles) are copied from `./public` and `./assets`.
 - `npm run build` compiles the site to `/dist` for deployment.
 - Playwright is installed as part of the build for server-side Mermaid rendering.
 - All static assets (images, infographics, articles) are copied from `/public` and `/assets`.
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
+  > > > > > > > 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
 
 ### 2. **Test**
+
 - **Linting:**
   - `npm run lint` runs ESLint and Prettier on all code.
   - Pre-commit hook via Husky ensures code is formatted and linted before commit.
@@ -223,15 +233,13 @@ In src/pages/index.astro, import this JSON data. This keeps the page logic clean
   - Lighthouse CI and axe-core integration in CI/CD.
 
 ### 3. **Deploy**
+
 - **CI/CD Pipeline:**
-  - GitHub Actions workflow `.github/workflows/deploy.yml`:
-    - Lint → Test → Build → Deploy jobs (sequential, fail-fast).
-<<<<<<< HEAD
-    - Deploys `./dist` to GitHub Pages using `actions/deploy-pages`.
-=======
-    - Deploys `/dist` to GitHub Pages using `actions/deploy-pages`.
->>>>>>> 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
-    - Artifacts (e.g., PDF CV) uploaded as part of the build.
+  - GitHub Actions workflow `.github/workflows/deploy.yml`: - Lint → Test → Build → Deploy jobs (sequential, fail-fast).
+    <<<<<<< HEAD - Deploys `./dist` to GitHub Pages using `actions/deploy-pages`.
+    ======= - Deploys `/dist` to GitHub Pages using `actions/deploy-pages`.
+    > > > > > > > 7dd0b0f (chore: update configuration files and dependencies; remove unused Babel and Jest configurations, enhance ESLint setup, and add Mermaid Editor link in Header component)
+        - Artifacts (e.g., PDF CV) uploaded as part of the build.
   - Separate workflow for PDF CV generation and deployment.
 - **Best Practices:**
   - Use `astro.config.mjs` with correct `site` and `base` for GitHub Pages.
@@ -239,6 +247,7 @@ In src/pages/index.astro, import this JSON data. This keeps the page logic clean
   - Only static HTML/JS/CSS deployed (no server code).
 
 ### 4. **Developer Experience**
+
 - DevContainer for VS Code: Preinstalled Node, Astro, React, Cypress, i18n, PDF tools.
 - Tasks for lint, test, build, E2E, and frontend dev server.
 - Parallel workflow for frontend (Track A) and backend/tooling (Track B) agents.
@@ -269,6 +278,7 @@ In src/pages/index.astro, import this JSON data. This keeps the page logic clean
 ---
 
 ## Decorative Divider Implementation (Summary)
+
 - See below for full plan and code sample.
 - Store divider texts in `src/data/decorativeTexts.json`.
 - Use `DecorativeDivider` component between homepage sections.

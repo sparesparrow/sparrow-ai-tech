@@ -18,6 +18,7 @@ This is an agentic backend service for generating and validating Mermaid diagram
 ## 🛠️ API Contract (NEW)
 
 ### POST `/generate_diagram`
+
 - **Request:**
   ```json
   {
@@ -37,6 +38,7 @@ This is an agentic backend service for generating and validating Mermaid diagram
   - `500` for LLM or SVG rendering errors
 
 ### POST `/validate_syntax`
+
 - **Request:**
   ```json
   { "mermaid_code": "graph TD; A-->B;" }
@@ -47,12 +49,16 @@ This is an agentic backend service for generating and validating Mermaid diagram
   ```
 - **Invalid Example:**
   ```json
-  { "is_valid": false, "errors": ["Missing required Mermaid diagram keyword (graph, sequenceDiagram, classDiagram)"] }
+  {
+    "is_valid": false,
+    "errors": ["Missing required Mermaid diagram keyword (graph, sequenceDiagram, classDiagram)"]
+  }
   ```
 
 ---
 
 ## 🔒 Security Measures (NEW)
+
 - **Input Validation:** All user input is validated and sanitized (removes `<script>`, `<style>`, null bytes).
 - **LLM Guardrails:** Prompt templates restrict LLM output to Mermaid code only. (TODO: Add intent guard LLM for advanced protection.)
 - **SVG Sanitization:** SVG output is sanitized to remove scripts/styles. (TODO: Integrate DOMPurify or similar for robust sanitization.)
@@ -64,6 +70,7 @@ This is an agentic backend service for generating and validating Mermaid diagram
 ## 🧪 Running Tests (NEW)
 
 ### Locally
+
 ```bash
 cd backend/mcp-mermaid-generator
 python -m venv venv
@@ -75,6 +82,7 @@ pytest test_main.py
 ```
 
 ### In CI
+
 - Tests run automatically on push/PR to `main`.
 - See GitHub Actions tab for results and logs.
 
@@ -93,6 +101,7 @@ pytest test_main.py
 ---
 
 ## 🤝 Contributors & Roadmap (NEW)
+
 - Contributions welcome! Please open issues or pull requests.
 - Roadmap:
   - [x] LLM integration for Mermaid code generation
@@ -108,7 +117,8 @@ pytest test_main.py
 ---
 
 ## References
+
 - [public/articles/MermaidJS.md](../../public/articles/MermaidJS.md)
 - [public/articles/Towards actively reasoning LLM systems.md](../../public/articles/Towards%20actively%20reasoning%20LLM%20systems.md)
 - [Playwright Python CI Guide](https://playwright.dev/python/docs/ci-intro)
-- [FastAPI Testing Docs](https://fastapi.tiangolo.com/em/tutorial/testing/) 
+- [FastAPI Testing Docs](https://fastapi.tiangolo.com/em/tutorial/testing/)

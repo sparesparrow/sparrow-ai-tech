@@ -18,7 +18,8 @@ graph TD
     MCP --> Tools["Tools/Resources/Prompts"]
     Tools --> Output["Final Output"]
 ```
-*Figure: A mixture of agents, coordinated by an orchestrator and connected via MCP, enables robust, adaptive AI solutions.*
+
+_Figure: A mixture of agents, coordinated by an orchestrator and connected via MCP, enables robust, adaptive AI solutions._
 
 ---
 
@@ -52,7 +53,8 @@ graph TD
     AgentC --> Combiner
     Combiner --> Output["Final Output"]
 ```
-*Figure: Multiple specialized agents process input and their outputs are combined for a final decision.*
+
+_Figure: Multiple specialized agents process input and their outputs are combined for a final decision._
 
 ---
 
@@ -70,7 +72,8 @@ graph LR
     A3 -- "Feedback" --> A1
     Agents --> Emergent["Emergent Capability"]
 ```
-*Figure: Interactions between agents can lead to new, emergent capabilities not present in any single agent.*
+
+_Figure: Interactions between agents can lead to new, emergent capabilities not present in any single agent._
 
 ---
 
@@ -91,7 +94,8 @@ graph TD
     AgentC --> Fusion
     Fusion --> Decision
 ```
-*Figure: Agents can collaborate using voting, weighted averaging, or fusion techniques to reach a decision.*
+
+_Figure: Agents can collaborate using voting, weighted averaging, or fusion techniques to reach a decision._
 
 ---
 
@@ -106,7 +110,8 @@ graph TD
     Subtask2 --> AgentB["Agent B"]
     Subtask3 --> AgentC["Agent C"]
 ```
-*Figure: A complex problem is decomposed into subtasks, each assigned to a specialized agent.*
+
+_Figure: A complex problem is decomposed into subtasks, each assigned to a specialized agent._
 
 This approach is used in various AI applications, including natural language processing, computer vision, robotics, and decision-making systems. It's similar in some ways to ensemble methods in machine learning, but often involves more complex interactions between agents.
 

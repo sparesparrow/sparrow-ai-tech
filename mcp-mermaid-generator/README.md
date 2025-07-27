@@ -46,17 +46,19 @@ pytest tests/
 - Status: ![CI](https://github.com/sparesparrow/sparrow-ai-tech/actions/workflows/mcp-mermaid-generator-ci.yml/badge.svg)
 
 ## TODO
+
 - Integrate LLM (OpenAI, Ollama, etc.)
 - Integrate prompt server or local prompt templates
 - Validate and sanitize Mermaid code
 - Render SVG via Playwright or mermaid-cli
 - Sanitize SVG output
 - Add CI/CD workflow for build, test, deploy
-- Document API contract and security measures 
+- Document API contract and security measures
 
 ## Security and SVG Sanitization
 
 This backend uses [py-svg-hush](https://github.com/jams2/py-svg-hush) to sanitize all SVG output before returning it to clients. The sanitization pipeline removes:
+
 - `<script>` tags
 - Event handler attributes (e.g., `onclick`)
 - `javascript:` URLs in attributes or styles
@@ -67,6 +69,7 @@ This defense-in-depth approach ensures robust protection against SVG-based XSS a
 ## Testing Strategy and Mocking
 
 All tests are fully isolated from the file system and external binaries using Python's `unittest.mock` library:
+
 - `mock_open` is used to patch `builtins.open` for file reads/writes in tests, as recommended in [modern Python testing guides](https://smhk.net/note/2024/04/python-mock-reading-and-writing-files/) and the [Python docs](https://docs.python.org/3/library/unittest.mock.html).
 - `subprocess.run` and `py_svg_hush.filter_svg` are patched in tests to avoid running real binaries or sanitizers, ensuring tests are fast and reliable.
 - All critical XSS and SVG-based attack vectors are covered by automated tests in `tests/test_api.py`.
@@ -83,4 +86,4 @@ All tests are fully isolated from the file system and external binaries using Py
 - See `test_svg_sanitization_removes_style_tags` in `tests/test_api.py` for an example of patching multiple dependencies.
 - Ensure new tests do not depend on the file system or external binaries for maximum reliability.
 
---- 
+---
