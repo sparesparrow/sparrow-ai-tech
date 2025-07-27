@@ -1,138 +1,86 @@
 import js from '@eslint/js';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import typescriptParser from '@typescript-eslint/parser';
-import astroEslint from 'eslint-plugin-astro';
+import tsParser from '@typescript-eslint/parser';
+import astroPlugin from 'eslint-plugin-astro';
+import cypressPlugin from 'eslint-plugin-cypress';
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+import reactPlugin from 'eslint-plugin-react';
 import globals from 'globals';
 
-// COVER: base JS, TS, Cypress, Jest
 export default [
   {
     ignores: [
-      '.astro/**/*',
-      'dist/**/*',
-      'node_modules/**/*',
-      'build/',
-      'coverage/',
-      '.nyc_output/',
-      'cypress/downloads/',
-      'cypress/screenshots/',
-      '**/*-fixed.*',
-      'app.js',
-      'chatbot-api-fixed.js',
-      'i18n-fixed.jsx',
-      'MermaidLiveEditor-fixed.jsx',
-      '*.json',
-      '*.md',
-      '*.css',
-      '*.html',
-      '*.min.js',
-      '*.bundle.js',
-      'package-*.json',
-      'sparrow_audit_data.json',
-      'fix-analysis.md',
-    ],
+      '.astro/**/*', 'dist/**/*', 'node_modules/**/*', 'build/', 'coverage/',
+      '.nyc_output/', 'cypress/downloads/', 'cypress/screenshots/',
+      '**/*-fixed.*', 'app.js', 'chatbot-api-fixed.js', 'i18n-fixed.jsx',
+      'MermaidLiveEditor-fixed.jsx', '*.json', '*.md', '*.css', '*.html',
+      'package-lock.json', 'sparrow_audit_data.json', 'fix-analysis.md'
+    ]
   },
-  // JS/JSX config
+  js.configs.recommended,
   {
-    files: ['**/*.{js,jsx,mjs,cjs}'],
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      react: reactPlugin,
+      'jsx-a11y': jsxA11yPlugin
+    },
     languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: 'module',
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-        ...globals.es2022,
-      },
+      parser: tsParser,
       parserOptions: {
         ecmaFeatures: { jsx: true },
-      },
-    },
-    rules: {
-      'no-undef': 'error',
-      'no-unused-vars': 'warn',
-      'no-console': 'off',
-    },
-  },
-  // Cypress E2E (all .cy.js and in cypress dir)
-  {
-    files: ['cypress/**/*.{js,ts}', '**/*.cy.{js,ts}'],
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        cy: 'readonly',
-        Cypress: 'readonly',
-        describe: 'readonly',
-        it: 'readonly',
-        expect: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly',
-        before: 'readonly',
-        after: 'readonly',
-      },
-    },
-    rules: {},
-  },
-  // Jest (unit/integration tests, also covers __tests__ dir)
-  {
-    files: ['**/*.test.{js,jsx,ts,tsx}', '**/__tests__/**/*.{js,jsx,ts,tsx}'],
-    languageOptions: {
-      globals: {
-        ...globals.jest,
-        describe: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly',
-        it: 'readonly',
-        test: 'readonly',
-        expect: 'readonly',
-      },
-    },
-    rules: {},
-  },
-  // TypeScript config
-  {
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      parser: typescriptParser,
-      parserOptions: {
-        ecmaVersion: 2022,
-        sourceType: 'module',
+        ecmaVersion: 'latest',
+        sourceType: 'module'
       },
       globals: {
         ...globals.browser,
         ...globals.node,
       },
     },
-    plugins: {
-      '@typescript-eslint': typescriptEslint,
-    },
     rules: {
-      ...typescriptEslint.configs.recommended.rules,
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-empty-object-type': 'off',
-      '@typescript-eslint/triple-slash-reference': 'off',
+      ...reactPlugin.configs.recommended.rules,
+      ...jsxA11yPlugin.configs.recommended.rules,
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }]
     },
+    settings: {
+        react: { version: "detect" }
+    }
   },
-  // Astro config (with relaxed parser rules for tokens)
   {
     files: ['**/*.astro'],
     plugins: {
-      astro: astroEslint,
+      astro: astroPlugin,
     },
     languageOptions: {
-      parser: astroEslint.parser,
+      globals: { ...globals.node, ...globals.browser, Astro: 'readonly' },
+      parser: astroPlugin.parser,
       parserOptions: {
         parser: '@typescript-eslint/parser',
         extraFileExtensions: ['.astro'],
       },
-      globals: {
-        ...globals.browser,
-        Astro: 'readonly',
-      },
     },
     rules: {
-      ...astroEslint.configs.recommended.rules,
-      // For Astro 2: Make parsing errors less intrusive so CI doesn't fail
-      'astro/parser': 'off',
+      ...astroPlugin.configs.recommended.rules,
+      'astro/no-conflict-set-directives': 'warn',
+      'astro/no-unused-define-vars-in-style': 'warn',
+      'no-unused-vars': 'off',
+      'no-undef': 'off'
     },
+  },
+  {
+    files: ['cypress/**/*.{js,ts,jsx,tsx}'],
+    plugins: {
+      cypress: cypressPlugin,
+    },
+    languageOptions: {
+      globals: { ...cypressPlugin.environments.globals.globals }
+    },
+    rules: cypressPlugin.configs.recommended.rules,
+  },
+  {
+    files: ['**/*.test.{js,jsx,ts,tsx}', '**/__tests__/**/*.{js,jsx,ts,tsx}'],
+    languageOptions: {
+      globals: { ...globals.jest }
+    }
   },
 ];

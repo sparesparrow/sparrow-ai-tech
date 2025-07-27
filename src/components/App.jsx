@@ -160,7 +160,8 @@ const AppContent = () => {
     ];
     const visuals = [
       { name: 'MCP Ecosystem Diagram', src: `/sparrow-ai-tech/assets/images/mcp-ecosystem-diagram.png`, context: 'Ecosystem, Architecture' },
-      { name: 'UI Screenshot', src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`, context: 'Homepage, UI' },
+      { name: 'UI Screenshot', src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`,
+      context: "UI Demo", context: 'Homepage, UI' },
       { name: 'Feature Screenshot', src: `/sparrow-ai-tech/assets/images/screenshot-feature.png`, context: 'Feature Demo' },
     ];
 
@@ -543,7 +544,8 @@ const AppContent = () => {
                         <div className="columns-1 sm:columns-2 md:columns-3 gap-6 [column-fill:_balance]"><div className="flex flex-col gap-6">
                           {[
                             { name: 'MCP Ecosystem Diagram', src: `/sparrow-ai-tech/assets/images/mcp-ecosystem-diagram.png`, context: 'Architecture' },
-                            { name: 'UI Screenshot', src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`, context: 'UI' },
+                            { name: 'UI Screenshot', src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`,
+      context: "UI Demo", context: 'UI' },
                             { name: 'Feature Screenshot', src: `/sparrow-ai-tech/assets/images/screenshot-feature.png`, context: 'UI' },
                             { name: 'Hard-Coder Architecture', src: `/sparrow-ai-tech/assets/images/hard-coder-architecture.png`, context: 'Architecture' },
                             { name: 'MCP Router Flow', src: `/sparrow-ai-tech/assets/images/mcp-router-flow.png`, context: 'Process' },
@@ -570,7 +572,8 @@ const AppContent = () => {
                           index={lightboxIndex}
                           slides={[
                             { src: `/sparrow-ai-tech/assets/images/mcp-ecosystem-diagram.png`, alt: 'MCP Ecosystem Diagram' },
-                            { src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`, alt: 'UI Screenshot' },
+                            { src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`,
+      context: "UI Demo", alt: 'UI Screenshot' },
                             { src: `/sparrow-ai-tech/assets/images/screenshot-feature.png`, alt: 'Feature Screenshot' },
                             { src: `/sparrow-ai-tech/assets/images/hard-coder-architecture.png`, alt: 'Hard-Coder Architecture' },
                             { src: `/sparrow-ai-tech/assets/images/mcp-router-flow.png`, alt: 'MCP Router Flow' },

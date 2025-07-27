@@ -1,3 +1,4 @@
+const base = Cypress.env("BASE_URL") || "";
 // cypress/e2e/base-url-paths.cy.js
 describe('Base URL Path Validation', () => {
   const base = Cypress.config('baseUrl').replace(/https?:\/\//, '/').replace(/\/$/, '');

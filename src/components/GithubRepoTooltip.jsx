@@ -1,62 +1,52 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
 
-const isGithubRepoUrl = (url) => {
-  const match = url.match(/^https?:\/\/(www\.)?github\.com\/([^\/]+)\/([^\/]+)(\/?$|#|\?)/i);
-  return match ? { owner: match[2], repo: match[3] } : null;
-};
+export default function GithubRepoTooltip({ repoPath, children }) {
+  const [repoData, setRepoData] = React.useState(null);
 
-const GithubRepoTooltip = ({ href, children, ...props }) => {
-  const repoInfo = isGithubRepoUrl(href);
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const fetchRepo = async () => {
-    if (!repoInfo || data || loading) return;
-    setLoading(true);
-    setError(null);
+  const fetchRepoData = React.useCallback(async () => {
     try {
-      const res = await fetch(`https://api.github.com/repos/${repoInfo.owner}/${repoInfo.repo}`);
-      if (!res.ok) throw new Error('Failed to fetch repo');
-      const json = await res.json();
-      setData(json);
-    } catch (e) {
-      setError('Failed to load repo metadata');
-    } finally {
-      setLoading(false);
+      const response = await fetch(`https://api.github.com/repos/${repoPath}`);
+      const data = await response.json();
+      setRepoData(data);
+    } catch (_error) {
+      // Handle error silently
+    }
+  }, [repoPath]);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    window.open(`https://github.com/${repoPath}`, '_blank');
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      handleClick(e);
     }
   };
 
-  if (repoInfo) {
-    return (
-      <Tippy
-        content={
-          loading ? 'Loading repo...' :
-          error ? <span style={{ color: 'red' }}>{error}</span> :
-          data ? (
-            <div style={{ minWidth: 220 }}>
-              <strong>{data.full_name}</strong><br />
-              ⭐ {data.stargazers_count} | 🍴 {data.forks_count}<br />
-              {data.language && <span>📝 {data.language}<br /></span>}
-              {data.open_issues_count !== undefined && <span>🐞 {data.open_issues_count} issues<br /></span>}
-              {data.license && <span>📄 {data.license.spdx_id}<br /></span>}
-              {data.description && <span>{data.description}<br /></span>}
-              <span>👀 {data.watchers_count} watchers</span>
-            </div>
-          ) : 'Hover to load repo info'
-        }
-        interactive={true}
-        maxWidth={350}
-        onShow={fetchRepo}
-        placement="top"
+  return (
+    <Tippy
+      onShow={fetchRepoData}
+      content={
+        repoData ? (
+          <div className="p-2">
+            <h4 className="font-bold">{repoData.name}</h4>
+            <p className="text-sm">{repoData.description}</p>
+          </div>
+        ) : 'Loading...'
+      }
+      placement="top"
+    >
+      <span
+        role="link"
+        tabIndex={0}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        className="cursor-pointer"
       >
-        <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>
-      </Tippy>
-    );
-  }
-  return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
-};
-
-export default GithubRepoTooltip; 
+        {children}
+      </span>
+    </Tippy>
+  );
+}
