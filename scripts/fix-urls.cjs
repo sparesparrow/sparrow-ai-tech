@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
+const path = require('path');
 const { glob } = require('glob');
 
 const BASE_URL = '/sparrow-ai-tech';
@@ -10,23 +10,27 @@ function fixUrlsInFile(filePath) {
   let changed = false;
   
   const fixes = [
-    // Fix the main malformed pattern - kritické opravy
+    // Oprava hlavních malformed vzorů
+    [/\/sparrow-ai-techinfographics\//g, `${BASE_URL}/infographics/`],
     [/\/sparrow-ai-techen\//g, `${BASE_URL}/en/`],
     [/\/sparrow-ai-techapi\//g, `${BASE_URL}/api/`],
     [/\/sparrow-ai-techassets\//g, `${BASE_URL}/assets/`],
     [/\/sparrow-ai-techfavicon\./g, `${BASE_URL}/favicon.`],
     [/\/sparrow-ai-techmanifest\./g, `${BASE_URL}/manifest.`],
     
-    // Fix missing base URLs for internal assets
+    // Oprava duplikovaných assets cest
+    [/\/sparrow-ai-tech\/assets\/assets\//g, `${BASE_URL}/assets/`],
+    [/\/assets\/assets\//g, '/assets/'],
+    
+    // Oprava relativních cest
     [/href="\/assets\//g, `href="${BASE_URL}/assets/`],
     [/src="\/assets\//g, `src="${BASE_URL}/assets/`],
     [/href="\/infographics\//g, `href="${BASE_URL}/infographics/`],
-    [/href="\/MarkdownTest/g, `href="${BASE_URL}/MarkdownTest`],
-    [/href="\/mermaid-editor/g, `href="${BASE_URL}/mermaid-editor`],
-    [/href="\/agentic-workflow/g, `href="${BASE_URL}/agentic-workflow`],
-    [/href="\/todo/g, `href="${BASE_URL}/todo`],
-    [/href="\/security/g, `href="${BASE_URL}/security`],
-    [/href="\/test/g, `href="${BASE_URL}/test`],
+    
+    // Specifické opravy pro infografiky
+    [/href="\/sparrow-ai-techinfographics\/Infographic1\/"/g, `href="${BASE_URL}/infographics/Infographic1"`],
+    [/href="\/sparrow-ai-techinfographics\/Infographic2\/"/g, `href="${BASE_URL}/infographics/Infographic2"`],
+    [/href="\/sparrow-ai-techinfographics\/Infographic3\/"/g, `href="${BASE_URL}/infographics/Infographic3"`],
   ];
   
   fixes.forEach(([pattern, replacement]) => {
@@ -42,22 +46,38 @@ function fixUrlsInFile(filePath) {
   }
 }
 
-// Find and fix all relevant files
-const patterns = [
-  'dist/**/*.{html,js,css}'
-];
-
-async function fixAllUrls() {
-  for (const pattern of patterns) {
+async function main() {
+  // Oprava souborů v dist/
+  const distPatterns = [
+    'dist/**/*.html',
+    'dist/**/*.css',
+    'dist/**/*.js'
+  ];
+  
+  for (const pattern of distPatterns) {
     try {
-      const files = glob.sync(pattern);
-      console.log(`🔍 Processing ${files.length} files matching ${pattern}`);
+      const files = await glob(pattern);
       files.forEach(fixUrlsInFile);
-    } catch (error) {
-      console.warn(`⚠️ Pattern ${pattern} failed:`, error.message);
+    } catch (err) {
+      console.log(`Skipping pattern ${pattern}: ${err.message}`);
     }
   }
+  
+  // Oprava zdrojových souborů
+  const srcPatterns = [
+    'src/**/*.{astro,jsx,js,ts,tsx,html}',
+  ];
+  
+  for (const pattern of srcPatterns) {
+    try {
+      const files = await glob(pattern);
+      files.forEach(fixUrlsInFile);
+    } catch (err) {
+      console.log(`Skipping pattern ${pattern}: ${err.message}`);
+    }
+  }
+  
   console.log('🎉 URL fixing complete!');
 }
 
-fixAllUrls();
+main().catch(console.error);
