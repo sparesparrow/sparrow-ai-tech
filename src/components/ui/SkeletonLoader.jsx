@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-const SkeletonLoader = ({ type = 'card', count = 1, className = '' }) => {
-  const skeletons = Array.from({ length: count });
+const _SkeletonLoader = ({ type = 'card', count = 1, className = '' }) => {
+  const _skeletons = Array.from({ length: count });
   if (type === 'card') {
     return (
       <div role="status" aria-busy="true" className={`flex gap-4 ${className}`}>

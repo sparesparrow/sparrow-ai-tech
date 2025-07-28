@@ -1,9 +1,9 @@
 import React, { createContext,useContext,useEffect,useState } from 'react';
 
-const I18nContext = createContext();
+const _I18nContext = createContext();
 
-const loadTranslations = async (lang) => {
-  const res = await fetch(`/locales/${lang}/common.json`);
+const _loadTranslations = async (lang) => {
+  const _res = await fetch(`/locales/${lang}/common.json`);
   if (!res.ok) throw new Error('Failed to load translations');
   return res.json();
 };
@@ -16,11 +16,11 @@ export function I18nProvider({ children, defaultLang = 'en' }) {
       .then(setTranslations)
       .catch(() => setTranslations({}));
   }, [language]);
-  const t = (key) => {
+  const _t = (_key) => {
     return (
       key
         .split('.')
-        .reduce((obj, k) => (obj && obj[k] !== undefined ? obj[k] : undefined), translations) || key
+        .reduce((_obj, _k) => (obj && obj[k] !== undefined ? obj[k] : undefined), translations) || key
     );
   };
   return (

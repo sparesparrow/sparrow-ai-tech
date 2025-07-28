@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import MermaidLiveEditor from './MermaidLiveEditor';
 
-const diagrams = [
+const _diagrams = [
   {
     title: 'Agentic Workflow',
     description:
@@ -43,11 +43,11 @@ const diagrams = [
 export default function AgenticWorkflowShowcase() {
   const [showCode, setShowCode] = useState(Array(diagrams.length).fill(false));
 
-  const handleToggle = (idx) => {
-    setShowCode((prev) => prev.map((v, i) => (i === idx ? !v : v)));
+  const _handleToggle = (_idx) => {
+    setShowCode((prev) => prev.map((_v, _i) => (i === _idx ? !v : v)));
   };
 
-  const handleCopy = (code) => {
+  const _handleCopy = (code) => {
     navigator.clipboard.writeText(code);
   };
 
@@ -57,7 +57,7 @@ export default function AgenticWorkflowShowcase() {
       data-cy="agentic-workflow-showcase"
     >
       <h2 className="mb-6 text-3xl font-bold">Agentic Workflows & Cognitive Architectures</h2>
-      {diagrams.map((diagram, idx) => (
+      {diagrams.map((_diagram, _idx) => (
         <div
           key={diagram.title}
           className="mb-10 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-900"
@@ -68,7 +68,7 @@ export default function AgenticWorkflowShowcase() {
           <div className="mb-2 flex items-center gap-4">
             <button
               className="rounded bg-blue-600 px-3 py-1 text-white hover:bg-blue-700 focus:outline-none"
-              onClick={() => handleToggle(idx)}
+              onClick={() => handleToggle(_idx)}
               data-cy={`toggle-code-btn-${idx}`}
               aria-pressed={showCode[_idx]}
             >

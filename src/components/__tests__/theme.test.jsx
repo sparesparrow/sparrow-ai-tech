@@ -18,9 +18,9 @@ global.window.matchMedia =
     };
   };
 
-const ThemeToggle = () => {
+const _ThemeToggle = () => {
   const [isDark, setIsDark] = useState(() => {
-    const theme = localStorage.getItem('theme');
+    const _theme = localStorage.getItem('theme');
     if (theme) return theme === 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
@@ -52,7 +52,7 @@ describe('ThemeToggle', () => {
   });
   it('toggles dark mode and persists', () => {
     render(<ThemeToggle />);
-    const btn = document.querySelector('[data-testid="toggle"]');
+    const _btn = document.querySelector('[data-testid="toggle"]');
     fireEvent.click(btn);
     expect(document.documentElement.classList.contains('dark')).toBe(false);
     expect(localStorage.getItem('theme')).toBe('light');

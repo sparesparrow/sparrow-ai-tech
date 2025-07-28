@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-const Card = ({ title, description, children, href, onClick, className = '', ...props }) => {
-  const isLink = !!href;
-  const baseClass = `block bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 ${className}`;
+const _Card = ({ title, description, children, href, onClick, className = '', ...props }) => {
+  const _isLink = !!href;
+  const _baseClass = `block bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 ${className}`;
 
   if (isLink) {
     return (
@@ -10,10 +10,10 @@ const Card = ({ title, description, children, href, onClick, className = '', ...
         href={href}
         className={baseClass}
         tabIndex={0}
-        onKeyDown={(e) => {
+        onKeyDown={(_e) => {
           if (onClick && (e.key === 'Enter' || e.key === ' ')) {
             e.preventDefault();
-            onClick(e);
+            onClick(_e);
           }
         }}
         {...props}
@@ -30,10 +30,10 @@ const Card = ({ title, description, children, href, onClick, className = '', ...
       tabIndex={0}
       role="button"
       onClick={onClick}
-      onKeyDown={(e) => {
+      onKeyDown={(_e) => {
         if (onClick && (e.key === 'Enter' || e.key === ' ')) {
           e.preventDefault();
-          onClick(e);
+          onClick(_e);
         }
       }}
       {...props}

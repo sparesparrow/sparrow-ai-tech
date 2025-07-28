@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 
 // Chart.js is loaded via CDN in the HTML version, but here we use dynamic import for SSR safety
-const useChart = (canvasId, config) => {
+const _useChart = (_canvasId, _config) => {
   useEffect(() => {
     let chartInstance;
     let Chart;
-    let destroyed = false;
+    let _destroyed = false;
     import('chart.js/auto').then((mod) => {
       Chart = mod.default;
       if (!destroyed) {
-        const ctx = document.getElementById(canvasId).getContext('2d');
-        chartInstance = new Chart(ctx, config);
+        const _ctx = document.getElementById(canvasId).getContext('2d');
+        chartInstance = new Chart(_ctx, _config);
       }
     });
     return () => {
@@ -20,7 +20,7 @@ const useChart = (canvasId, config) => {
   }, [canvasId, config]);
 };
 
-const Infographic1 = () => {
+const _Infographic1 = () => {
   // Chart configs
   useChart('promptRotChart', {
     type: 'doughnut',
@@ -70,13 +70,13 @@ const Infographic1 = () => {
           callbacks: {
             title: (items) => items[0].label,
             label: (ctx) => {
-              const toolRoles = {
+              const _toolRoles = {
                 'mcp-prompts': 'Prompt Management & Versioning',
                 'mcp_project,orchestrator': 'Project Scaffolding & Automation',
                 'mcp-router': 'Intelligent Workflow Orchestration',
                 'mcp-prompts-rs': 'High-Performance Rust Rewrite',
               };
-              let rawLabel = ctx.label;
+              let _rawLabel = ctx.label;
               if (Array.isArray(rawLabel)) rawLabel = rawLabel.join('');
               rawLabel = rawLabel.replace(/,/g, '');
               return toolRoles[rawLabel] || 'Role';

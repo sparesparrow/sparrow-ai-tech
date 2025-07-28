@@ -1,5 +1,5 @@
 
-const projects = [
+const _projects = [
   {
     name: 'mcp-project-orchestrator',
     tech: 'Python, Poetry, Mermaid, Ruff, mypy',
@@ -63,7 +63,7 @@ export default function PortfolioProjectsTable() {
             </tr>
           </thead>
           <tbody>
-            {projects.map((p, i) => (
+            {projects.map((_p, _i) => (
               <tr key={p.name} data-cy={`portfolio-row-${i}`}>
                 <td className="px-4 py-2 font-mono text-blue-700 dark:text-blue-300">{p.name}</td>
                 <td className="px-4 py-2 text-sm text-gray-700 dark:text-gray-300">{p.tech}</td>

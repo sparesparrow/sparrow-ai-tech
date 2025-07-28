@@ -7,15 +7,15 @@ import MermaidPreviewLink from './MermaidPreviewLink.jsx';
 import ImagePreviewLink from './ImagePreviewLink.jsx';
 import GithubRepoTooltip from './GithubRepoTooltip.jsx';
 
-const Mermaid = () => (
+const _Mermaid = () => (
   <div className="mermaid-diagram text-red-500">Mermaid diagrams are not supported.</div>
 );
 
-const EditableMermaid = () => (
+const _EditableMermaid = () => (
   <div className="mermaid-diagram text-red-500">Editable Mermaid diagrams are not supported.</div>
 );
 
-const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
+const _MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,7 +34,7 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
   }, [src]);
 
   if (loading) return <div className="markdown-viewer-loading">Loading…</div>;
-  if (error) return <div className="markdown-viewer-error">Error loading markdown.</div>;
+  if (_error) return <div className="markdown-viewer-error">Error loading markdown.</div>;
 
   return (
     <div className={`prose prose-invert max-w-none ${className}`}>

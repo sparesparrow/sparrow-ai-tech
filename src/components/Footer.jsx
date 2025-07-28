@@ -1,6 +1,6 @@
 import { useI18n } from '../i18n';
 
-const Footer = () => {
+const _Footer = () => {
   const { t } = useI18n();
   return (
     <footer className="footer" data-cy="footer">

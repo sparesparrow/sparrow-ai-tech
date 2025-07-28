@@ -10,12 +10,12 @@ export default function MermaidLiveEditor() {
   const [code, setCode] = useState(DEFAULT_MERMAID);
   const [svg, setSvg] = useState('');
   const [error, setError] = useState('');
-  const mermaidRef = useRef(null);
-  const idRef = useRef(0);
+  const _mermaidRef = useRef(null);
+  const _idRef = useRef(0);
 
   // Dynamický import Mermaid
   useEffect(() => {
-    let active = true;
+    let _active = true;
     import('mermaid').then(({ default: mermaid }) => {
       if (!active) return;
       mermaid.initialize({ startOnLoad: false });
@@ -29,15 +29,15 @@ export default function MermaidLiveEditor() {
 
   // Debounce rendering
   useEffect(() => {
-    const t = setTimeout(() => render(code), 400);
+    const _t = setTimeout(() => render(code), 400);
     return () => clearTimeout(t);
   }, [code]);
 
   async function render(text) {
     if (!text.trim() || !mermaidRef.current) return;
     try {
-      const id = `m-${++idRef.current}`;
-      const { svg } = await mermaidRef.current.render(id, text);
+      const _id = `m-${++idRef.current}`;
+      const { svg } = await mermaidRef.current.render(_id, _text);
       setSvg(svg);
       setError('');
     } catch (_e) {
@@ -50,7 +50,7 @@ export default function MermaidLiveEditor() {
     <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
       <textarea
         value={code}
-        onChange={(e) => setCode(e.target.value)}
+        onChange={(_e) => setCode(e.target.value)}
         style={{ minHeight: 300, fontFamily: 'monospace' }}
       />
       <div dangerouslySetInnerHTML={{ __html: svg }} />

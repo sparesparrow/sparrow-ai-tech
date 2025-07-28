@@ -8,13 +8,13 @@ function useQuery() {
   return new URLSearchParams();
 }
 
-const MarkdownTest = () => {
-  const query = useQuery();
-  let src = query.get('src') || '/articles/mcp-prompts.md';
+const _MarkdownTest = () => {
+  const _query = useQuery();
+  let _src = query.get('src') || '/articles/mcp-prompts.md';
   
   // Normalizace pro lokální dev vs. produkci
   if (typeof window !== 'undefined') {
-    const isProd = window.location.pathname.startsWith('/sparrow-ai-tech');
+    const _isProd = window.location.pathname.startsWith('/sparrow-ai-tech');
     if (src.startsWith('./articles/')) {
       src = isProd
         ? `/sparrow-ai-tech/articles/` + src.slice('./articles/'.length)
@@ -26,7 +26,7 @@ const MarkdownTest = () => {
     }
   }
   
-  const className = query.get('className') || '';
+  const _className = query.get('className') || '';
   
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">

@@ -13,7 +13,7 @@ import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 import Modal from './ui/Modal.jsx';
 
-const AppContent = () => {
+const _AppContent = () => {
   const { language, setLanguage, t } = useI18n();
   const [_content, setContent] = useState(t('siteData.en'));
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +21,7 @@ const AppContent = () => {
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
-      const theme = localStorage.getItem('theme');
+      const _theme = localStorage.getItem('theme');
       if (theme) return theme === 'dark';
       return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
@@ -47,19 +47,19 @@ const AppContent = () => {
   }, [isDark]);
 
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const handler = (e) => {
+    const _mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const _handler = (_e) => {
       if (!localStorage.getItem('theme')) setIsDark(e.matches);
     };
-    mq.addEventListener ? mq.addEventListener('change', handler) : mq.addListener(handler)(handler);
+    mq.addEventListener ? mq.addEventListener('change', handler) : mq.addEventListener('change', handler)(handler);
     return () => {
       mq.removeEventListener
         ? mq.removeEventListener('change', handler)
-        : mq.removeEventListener ? mq.removeEventListener('change', handler) : mq.removeListener(handler);
+        : mq.removeEventListener ? mq.removeEventListener('change', handler) : mq.removeEventListener('change', handler);
     };
   }, []);
 
-  const toggleDark = () => setIsDark((d) => !d);
+  const _toggleDark = () => setIsDark((d) => !d);
 
   useEffect(() => {
     setContent(t('siteData')[language]);
@@ -70,9 +70,9 @@ const AppContent = () => {
     }, 500);
   }, [language]);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const _toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const MenuIcon = () => (
+  const _MenuIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className="h-6 w-6"
@@ -88,7 +88,7 @@ const AppContent = () => {
       />
     </svg>
   );
-  const CloseIcon = () => (
+  const _CloseIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className="h-6 w-6"
@@ -99,7 +99,7 @@ const AppContent = () => {
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
     </svg>
   );
-  const ExternalLinkIcon = () => (
+  const _ExternalLinkIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -117,7 +117,7 @@ const AppContent = () => {
       <line x1="10" y1="14" x2="21" y2="3"></line>
     </svg>
   );
-  const GithubIcon = () => (
+  const _GithubIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -135,7 +135,7 @@ const AppContent = () => {
   );
 
   // 1. Define a new, richer content structure for articles, infographics, and _visuals
-  const categorizedArticles = [
+  const _categorizedArticles = [
     {
       category: 'Architecture',
       articles: [
@@ -249,7 +249,7 @@ const AppContent = () => {
     },
   ];
 
-  const infographicsReact = [
+  const _infographicsReact = [
     {
       title: 'MCP Ecosystem (React)',
       route: '/sparrow-ai-tech/infographics/1',
@@ -273,7 +273,7 @@ const AppContent = () => {
       description: 'Interactive, visually rich SPA: strategy, tech, ecosystem, and CI/CD pipeline.',
     },
   ];
-  const infographicsHtml = [
+  const _infographicsHtml = [
     { title: 'MCP Ecosystem (HTML)', url: `/sparrow-ai-tech/infographics/1.html` },
     { title: 'Human-in-the-Loop AI (HTML)', url: `/sparrow-ai-tech/infographics/2.html` },
     { title: 'Hexagonal Architecture (HTML)', url: `/sparrow-ai-tech/infographics/3.html` },
@@ -319,7 +319,7 @@ const AppContent = () => {
 
   React.useEffect(() => {
     if (!articleModalOpen) return;
-    const onKeyDown = (e) => {
+    const _onKeyDown = (_e) => {
       if (e.key === 'Escape') setArticleModalOpen(false);
     };
     window.addEventListener('keydown', onKeyDown);
@@ -853,7 +853,7 @@ const AppContent = () => {
                             {idx < arr.length - 1 && (
                               <div className="absolute left-0 right-0 top-8 z-0 flex justify-between">
                                 <div
-                                  style={{ left: `${(idx + 1) * 25}%` }}
+                                  style={{ left: `${(_idx + 1) * 25}%` }}
                                   className="z-0 h-1 w-1/4 rounded-full bg-sky-200"
                                 />
                               </div>
@@ -1087,7 +1087,7 @@ const AppContent = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 0.2, duration: 0.5 }}
                       >
-                        {t('siteData')[language].portfolio.projects.map((project, index) => (
+                        {t('siteData')[language].portfolio.projects.map((_project, _index) => (
                           <motion.div
                             key={index}
                             className="rounded-lg border border-slate-200 bg-slate-50 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
@@ -1173,7 +1173,7 @@ const AppContent = () => {
                             {cat.category}
                           </h3>
                           <div className="grid gap-4 md:grid-cols-2">
-                            {cat.articles.map((article, i) => (
+                            {cat.articles.map((_article, _i) => (
                               <motion.button
                                 key={i}
                                 onClick={() => {
@@ -1321,7 +1321,7 @@ const AppContent = () => {
   );
 };
 
-const App = () => (
+const _App = () => (
   <I18nProvider>
     <AppContent />
   </I18nProvider>

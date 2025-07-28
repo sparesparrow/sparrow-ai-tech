@@ -8,26 +8,14 @@ export default defineConfig({
   base: '/sparrow-ai-tech/',
   integrations: [react()],
   markdown: {
-    rehypePlugins: [
-      [rehypeMermaid, { strategy: 'img-svg' }]
-    ],
+    rehypePlugins: [[rehypeMermaid, { strategy: 'img-svg' }]]
   },
   vite: {
-    build: { 
-      rollupOptions: {
-        onwarn(warning, warn) {
-          // Treat warnings as errors in production
-          if (globalThis.process?.env || {}.NODE_ENV === 'production') {
-            throw new Error(warning.message);
-          }
-          warn(warning);
-        }
-      }
-    },
+    build: { abortOnError: true },
     resolve: {
       alias: {
-        '@': fileURLToPath(new globalThis.URL('./src', import.meta.url)),
-      },
-    },
-  },
+        '@': fileURLToPath(new URL('./src', import.meta.url))
+      }
+    }
+  }
 });

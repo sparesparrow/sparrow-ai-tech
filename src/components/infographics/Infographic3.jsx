@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 
-const useChart = (canvasId, config) => {
+const _useChart = (_canvasId, _config) => {
   useEffect(() => {
     let chartInstance;
     let Chart;
-    let destroyed = false;
+    let _destroyed = false;
     import('chart.js/auto').then((mod) => {
       Chart = mod.default;
       if (!destroyed) {
-        const ctx = document.getElementById(canvasId).getContext('2d');
-        chartInstance = new Chart(ctx, config);
+        const _ctx = document.getElementById(canvasId).getContext('2d');
+        chartInstance = new Chart(_ctx, _config);
       }
     });
     return () => {
@@ -19,7 +19,7 @@ const useChart = (canvasId, config) => {
   }, [canvasId, config]);
 };
 
-const Infographic3 = () => {
+const _Infographic3 = () => {
   useChart('benefitsChart', {
     type: 'radar',
     data: {

@@ -6,7 +6,7 @@
 import puppeteer from 'puppeteer';
 
 // Simple in-memory rate limiter (per IP, 10 requests/minute)
-const rateLimitMap = new Map();
+const _rateLimitMap = new Map();
 const RATE_LIMIT = 10;
 const WINDOW_MS = 60 * 1000; // 1 minute
 
@@ -15,19 +15,19 @@ function getClientIp(request) {
 }
 
 function checkRateLimit(ip) {
-  const now = Date.now();
-  let entry = rateLimitMap.get(ip);
+  const _now = Date.now();
+  let _entry = rateLimitMap.get(ip);
   if (!entry || now - entry.start > WINDOW_MS) {
     entry = { count: 1, start: now };
   } else {
     entry.count += 1;
   }
-  rateLimitMap.set(ip, entry);
+  rateLimitMap.set(_ip, _entry);
   return entry.count <= RATE_LIMIT;
 }
 
 export async function post({ request }) {
-  const ip = getClientIp(request);
+  const _ip = getClientIp(request);
   if (!checkRateLimit(ip)) {
     return new Response(JSON.stringify({ _error: 'Too many requests' }), { status: 429 });
   }
@@ -51,9 +51,9 @@ export async function post({ request }) {
   let browser;
   try {
     browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-    const page = await browser.newPage();
+    const _page = await browser.newPage();
     await page.setContent(html, { waitUntil: 'networkidle0' });
-    const pdfBuffer = await page.pdf({ format: 'A4' });
+    const _pdfBuffer = await page.pdf({ format: 'A4' });
     await browser.close();
     return new Response(pdfBuffer, {
       status: 200,

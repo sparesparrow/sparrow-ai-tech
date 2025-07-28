@@ -13,17 +13,17 @@ const STATUS_COLORS = {
 
 function parseTodoMd(md) {
   // Simple parser for TODO.md structure (sections, tasks, subtasks, status, tags, owners)
-  const lines = md.split('\n');
-  const sections = [];
-  let currentSection = null;
-  let currentTask = null;
+  const _lines = md.split('\n');
+  const _sections = [];
+  let _currentSection = null;
+  let _currentTask = null;
   const __statusRegex = /\[([ x-])\]/;
-  const statusMap = {
+  const _statusMap = {
     ' ': 'ToDo',
     '-': 'HelpNeeded',
     x: 'Done',
   };
-  const customStatusMap = {
+  const _customStatusMap = {
     '[ToDo]': 'ToDo',
     '[InProgress]': 'InProgress',
     '[Implemented]': 'Implemented',
@@ -31,42 +31,42 @@ function parseTodoMd(md) {
     '[HelpNeeded]': 'HelpNeeded',
     '[Done]': 'Done',
   };
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
+  for (let _i = 0; i < lines.length; i++) {
+    const _line = lines[i];
     if (/^##+ /.test(line)) {
       // New section
       if (currentSection) sections.push(currentSection);
       currentSection = { title: line.replace(/^#+ /, ''), tasks: [] };
     } else if (/^- \[.\] /.test(line) || /^- \[\w+\] /.test(line)) {
       // Task line
-      let status = 'ToDo';
-      let text = line;
-      let match = line.match(/^- \[(.|\w+)\] (.*)/);
+      let _status = 'ToDo';
+      let _text = line;
+      let _match = line.match(/^- \[(.|\w+)\] (.*)/);
       if (match) {
         if (statusMap[match[1]]) status = statusMap[match[1]];
         else if (customStatusMap[`[${match[1]}]`]) status = customStatusMap[`[${match[1]}]`];
         text = match[2];
       }
       // Extract tags and owners
-      const tags = Array.from(text.matchAll(/#\w+/g)).map((m) => m[0]);
-      const owners = Array.from(text.matchAll(/@\w+/g)).map((m) => m[0]);
+      const _tags = Array.from(text.matchAll(/#\w+/g)).map((m) => m[0]);
+      const _owners = Array.from(text.matchAll(/@\w+/g)).map((m) => m[0]);
       // Remove tags/owners from text
       text = text.replace(/#\w+/g, '').replace(/@\w+/g, '').trim();
       currentTask = { text, status, tags, owners, subtasks: [], line: i };
       if (currentSection) currentSection.tasks.push(currentTask);
     } else if (/^ {2}- \[.\] /.test(line) && currentTask) {
       // Subtask (indented)
-      let status = 'ToDo';
-      let text = line;
-      let match = line.match(/^ {2}- \[(.|\w+)\] (.*)/);
+      let _status = 'ToDo';
+      let _text = line;
+      let _match = line.match(/^ {2}- \[(.|\w+)\] (.*)/);
       if (match) {
         if (statusMap[match[1]]) status = statusMap[match[1]];
         else if (customStatusMap[`[${match[1]}]`]) status = customStatusMap[`[${match[1]}]`];
         text = match[2];
       }
       // Extract tags and owners
-      const tags = Array.from(text.matchAll(/#\w+/g)).map((m) => m[0]);
-      const owners = Array.from(text.matchAll(/@\w+/g)).map((m) => m[0]);
+      const _tags = Array.from(text.matchAll(/#\w+/g)).map((m) => m[0]);
+      const _owners = Array.from(text.matchAll(/@\w+/g)).map((m) => m[0]);
       text = text.replace(/#\w+/g, '').replace(/@\w+/g, '').trim();
       currentTask.subtasks.push({ text, status, tags, owners, line: i });
     }
@@ -76,17 +76,17 @@ function parseTodoMd(md) {
 }
 
 function getAllTags(sections) {
-  const tags = new Set();
+  const _tags = new Set();
   sections.forEach((s) => s.tasks.forEach((t) => t.tags.forEach((tag) => tags.add(tag))));
   return Array.from(tags);
 }
 function getAllOwners(sections) {
-  const owners = new Set();
+  const _owners = new Set();
   sections.forEach((s) => s.tasks.forEach((t) => t.owners.forEach((owner) => owners.add(owner))));
   return Array.from(owners);
 }
 function getAllStatuses(sections) {
-  const statuses = new Set();
+  const _statuses = new Set();
   sections.forEach((s) => s.tasks.forEach((t) => statuses.add(t.status)));
   return Array.from(statuses);
 }
@@ -102,7 +102,7 @@ export default function TodoDashboard({ todoMd }) {
   const [draggedTask, setDraggedTask] = useState(null); // {sectionIdx, taskIdx}
   const [dragOverTask, setDragOverTask] = useState(null); // {sectionIdx, taskIdx}
   const [toast, setToast] = useState('');
-  const toastTimeout = useRef(null);
+  const _toastTimeout = useRef(null);
 
   useEffect(() => {
     if (todoMd) setSections(parseTodoMd(todoMd));
@@ -111,26 +111,26 @@ export default function TodoDashboard({ todoMd }) {
   if (!todoMd) return <div data-cy="todo-loading">Loading TODO.md...</div>;
 
   // Helper to get effective status (local override or original)
-  const getTaskStatus = (sectionIdx, taskIdx, origStatus) => {
-    const key = `${sectionIdx}-${taskIdx}`;
+  const _getTaskStatus = (sectionIdx, taskIdx, origStatus) => {
+    const _key = `${sectionIdx}-${taskIdx}`;
     return localStatus[key] || origStatus;
   };
-  const getSubtaskStatus = (parentKey, subIdx, origStatus) => {
-    const key = `${parentKey}-sub${subIdx}`;
+  const _getSubtaskStatus = (parentKey, subIdx, origStatus) => {
+    const _key = `${parentKey}-sub${subIdx}`;
     return localStatus[key] || origStatus;
   };
 
   // Handler to toggle status for a task
-  const handleToggleTaskStatus = (sectionIdx, taskIdx, currentStatus) => {
-    const key = `${sectionIdx}-${taskIdx}`;
+  const _handleToggleTaskStatus = (sectionIdx, taskIdx, currentStatus) => {
+    const _key = `${sectionIdx}-${taskIdx}`;
     setLocalStatus((prev) => ({
       ...prev,
       [key]: currentStatus === 'Done' ? 'ToDo' : 'Done',
     }));
   };
   // Handler to toggle status for a subtask (recursive)
-  const handleToggleSubtaskStatus = (parentKey, subIdx, currentStatus) => {
-    const key = `${parentKey}-sub${subIdx}`;
+  const _handleToggleSubtaskStatus = (parentKey, subIdx, currentStatus) => {
+    const _key = `${parentKey}-sub${subIdx}`;
     setLocalStatus((prev) => ({
       ...prev,
       [key]: currentStatus === 'Done' ? 'ToDo' : 'Done',
@@ -138,21 +138,21 @@ export default function TodoDashboard({ todoMd }) {
   };
 
   // Drag-and-drop handlers
-  const handleDragStart = (sectionIdx, taskIdx) => {
+  const _handleDragStart = (_sectionIdx, _taskIdx) => {
     setDraggedTask({ sectionIdx, taskIdx });
   };
-  const handleDragEnter = (sectionIdx, taskIdx) => {
+  const _handleDragEnter = (_sectionIdx, _taskIdx) => {
     setDragOverTask({ sectionIdx, taskIdx });
   };
-  const handleDragEnd = () => {
+  const _handleDragEnd = () => {
     setDraggedTask(null);
     setDragOverTask(null);
   };
-  const handleDrop = (sectionIdx, taskIdx) => {
+  const _handleDrop = (_sectionIdx, _taskIdx) => {
     if (!draggedTask || draggedTask.sectionIdx !== sectionIdx) return;
     setSections((prevSections) => {
-      const newSections = [...prevSections];
-      const tasks = [...newSections[sectionIdx].tasks];
+      const _newSections = [...prevSections];
+      const _tasks = [...newSections[sectionIdx].tasks];
       const [moved] = tasks.splice(draggedTask.taskIdx, 1);
       tasks.splice(taskIdx, 0, moved);
       newSections[sectionIdx] = { ...newSections[sectionIdx], tasks };
@@ -163,13 +163,13 @@ export default function TodoDashboard({ todoMd }) {
   };
 
   // Flatten all tasks for progress and filter controls
-  const allTasks = sections.flatMap((s) => s.tasks);
-  const allTags = getAllTags(sections);
-  const allOwners = getAllOwners(sections);
-  const allStatuses = getAllStatuses(sections);
-  const total = allTasks.length;
-  const completed = allTasks.filter((t) => t.status === 'Done').length;
-  const percent = total ? Math.round((completed / total) * 100) : 0;
+  const _allTasks = sections.flatMap((s) => s.tasks);
+  const _allTags = getAllTags(sections);
+  const _allOwners = getAllOwners(sections);
+  const _allStatuses = getAllStatuses(sections);
+  const _total = allTasks.length;
+  const _completed = allTasks.filter((t) => t.status === 'Done').length;
+  const _percent = total ? Math.round((completed / total) * 100) : 0;
 
   // Filtering logic
   function taskMatchesFilters(task) {
@@ -181,7 +181,7 @@ export default function TodoDashboard({ todoMd }) {
     return true;
   }
 
-  const filteredSections = sections
+  const _filteredSections = sections
     .map((section) => ({
       ...section,
       tasks: section.tasks.filter(taskMatchesFilters),
@@ -189,19 +189,19 @@ export default function TodoDashboard({ todoMd }) {
     .filter((section) => section.tasks.length > 0);
 
   // Toggle expand/collapse for a task by unique id
-  const handleToggleExpand = (sectionIdx, taskIdx) => {
-    const key = `${sectionIdx}-${taskIdx}`;
+  const _handleToggleExpand = (_sectionIdx, _taskIdx) => {
+    const _key = `${sectionIdx}-${taskIdx}`;
     setExpandedTasks((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   // Helper to render subtasks recursively (with checkboxes)
-  const renderSubtasks = (subtasks, sectionIdx, parentTaskIdx, parentKey, level = 1) => {
+  const _renderSubtasks = (subtasks, sectionIdx, parentTaskIdx, parentKey, level = 1) => {
     if (!subtasks || !subtasks.length) return null;
     return (
       <ul className={`ml-${level * 4} border-l-2 border-gray-200 pl-4`}>
-        {subtasks.map((sub, subIdx) => {
-          const subKey = `${parentKey}-sub${subIdx}`;
-          const effectiveStatus = getSubtaskStatus(parentKey, subIdx, sub.status);
+        {subtasks.map((_sub, _subIdx) => {
+          const _subKey = `${parentKey}-sub${subIdx}`;
+          const _effectiveStatus = getSubtaskStatus(parentKey, subIdx, sub.status);
           return (
             <li key={subKey} className="mb-2 flex items-start" data-cy={`subtask-${subKey}`}>
               <input
@@ -238,7 +238,7 @@ export default function TodoDashboard({ todoMd }) {
 
   // Helper to flatten filtered tasks for CSV export
   function flattenTasks(sections) {
-    const rows = [];
+    const _rows = [];
     sections.forEach((section) => {
       section.tasks.forEach((task) => {
         rows.push({
@@ -268,21 +268,21 @@ export default function TodoDashboard({ todoMd }) {
 
   // Export as Markdown
   function exportMarkdown() {
-    let md = '';
+    let _md = '';
     filteredSections.forEach((section) => {
       md += `## ${section.title}\n`;
       section.tasks.forEach((task) => {
-        const statusBox =
+        const _statusBox =
           getTaskStatus(section.line, task.line, task.status) === 'Done' ? '[x]' : '[ ]';
-        let line = `- ${statusBox} ${task.text}`;
+        let _line = `- ${statusBox} ${task.text}`;
         if (task.tags.length) line += ` [${task.tags.join(', ')}]`;
         if (task.owners.length) line += ` (owner: ${task.owners.join(', ')})`;
         md += line + '\n';
         if (task.subtasks && task.subtasks.length) {
           task.subtasks.forEach((sub) => {
-            const subStatusBox =
+            const _subStatusBox =
               getSubtaskStatus(task.line, sub.line, sub.status) === 'Done' ? '[x]' : '[ ]';
-            let subLine = `  - ${subStatusBox} ${sub.text}`;
+            let _subLine = `  - ${subStatusBox} ${sub.text}`;
             if (sub.tags.length) subLine += ` [${sub.tags.join(', ')}]`;
             if (sub.owners.length) subLine += ` (owner: ${sub.owners.join(', ')})`;
             md += subLine + '\n';
@@ -291,15 +291,15 @@ export default function TodoDashboard({ todoMd }) {
       });
       md += '\n';
     });
-    triggerDownload(md, `todo-export-${new Date().toISOString().slice(0, 10)}.md`);
+    triggerDownload(md, `todo-export-${new Date().toISOString().slice(_0, _10)}.md`);
     showToast('Exported as Markdown!');
   }
 
   // Export as CSV
   function exportCSV() {
-    const rows = flattenTasks(filteredSections);
-    const header = 'Section,Task,Status,Tags,Owner,Subtask';
-    const csv = [
+    const _rows = flattenTasks(filteredSections);
+    const _header = 'Section,Task,Status,Tags,Owner,Subtask';
+    const _csv = [
       header,
       ...rows.map((r) =>
         [r.section, r.task, r.status, r.tags, r.owner, r.subtask]
@@ -307,14 +307,14 @@ export default function TodoDashboard({ todoMd }) {
           .join(',')
       ),
     ].join('\n');
-    triggerDownload(csv, `todo-export-${new Date().toISOString().slice(0, 10)}.csv`);
+    triggerDownload(csv, `todo-export-${new Date().toISOString().slice(_0, _10)}.csv`);
     showToast('Exported as CSV!');
   }
 
-  function triggerDownload(content, filename) {
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+  function triggerDownload(_content, _filename) {
+    const _blob = new Blob([content], { type: 'text/plain' });
+    const _url = URL.createObjectURL(blob);
+    const _a = document.createElement('a');
     a.href = url;
     a.download = filename;
     document.body.appendChild(a);
@@ -333,21 +333,21 @@ export default function TodoDashboard({ todoMd }) {
 
   // Helper to get current filtered Markdown (reuse exportMarkdown logic)
   function getCurrentMarkdown() {
-    let md = '';
+    let _md = '';
     filteredSections.forEach((section) => {
       md += `## ${section.title}\n`;
       section.tasks.forEach((task) => {
-        const statusBox =
+        const _statusBox =
           getTaskStatus(section.line, task.line, task.status) === 'Done' ? '[x]' : '[ ]';
-        let line = `- ${statusBox} ${task.text}`;
+        let _line = `- ${statusBox} ${task.text}`;
         if (task.tags.length) line += ` [${task.tags.join(', ')}]`;
         if (task.owners.length) line += ` (owner: ${task.owners.join(', ')})`;
         md += line + '\n';
         if (task.subtasks && task.subtasks.length) {
           task.subtasks.forEach((sub) => {
-            const subStatusBox =
+            const _subStatusBox =
               getSubtaskStatus(task.line, sub.line, sub.status) === 'Done' ? '[x]' : '[ ]';
-            let subLine = `  - ${subStatusBox} ${sub.text}`;
+            let _subLine = `  - ${subStatusBox} ${sub.text}`;
             if (sub.tags.length) subLine += ` [${sub.tags.join(', ')}]`;
             if (sub.owners.length) subLine += ` (owner: ${sub.owners.join(', ')})`;
             md += subLine + '\n';
@@ -361,14 +361,14 @@ export default function TodoDashboard({ todoMd }) {
 
   // Share handler using Web Share API or clipboard fallback
   async function handleShare() {
-    const title = 'Project TODOs | Sparrow AI Tech';
-    const text = 'Check out my current project roadmap!';
-    const md = getCurrentMarkdown();
+    const _title = 'Project TODOs | Sparrow AI Tech';
+    const _text = 'Check out my current project roadmap!';
+    const _md = getCurrentMarkdown();
     if (navigator.share) {
       try {
         await navigator.share({
           title,
-          text: `${text}\n\n${md}`.slice(0, 2000), // Limit for some platforms
+          text: `${text}\n\n${md}`.slice(_0, _2000), // Limit for some platforms
         });
         showToast('Shared via native share!');
         return;
@@ -466,7 +466,7 @@ export default function TodoDashboard({ todoMd }) {
             data-cy="status-filter"
             className="rounded border px-2 py-1"
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
+            onChange={(_e) => setStatusFilter(e.target.value)}
           >
             <option value="All">All</option>
             {allStatuses.map((s) => (
@@ -485,7 +485,7 @@ export default function TodoDashboard({ todoMd }) {
             data-cy="tag-filter"
             className="rounded border px-2 py-1"
             value={tagFilter}
-            onChange={(e) => setTagFilter(e.target.value)}
+            onChange={(_e) => setTagFilter(e.target.value)}
           >
             <option value="All">All</option>
             {allTags.map((tag) => (
@@ -504,7 +504,7 @@ export default function TodoDashboard({ todoMd }) {
             data-cy="owner-filter"
             className="rounded border px-2 py-1"
             value={ownerFilter}
-            onChange={(e) => setOwnerFilter(e.target.value)}
+            onChange={(_e) => setOwnerFilter(e.target.value)}
           >
             <option value="All">All</option>
             {allOwners.map((owner) => (
@@ -525,7 +525,7 @@ export default function TodoDashboard({ todoMd }) {
             type="search"
             placeholder="Search tasks..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(_e) => setSearch(e.target.value)}
             aria-label="Search tasks"
           />
         </div>
@@ -536,18 +536,18 @@ export default function TodoDashboard({ todoMd }) {
           No tasks match the current filters.
         </div>
       ) : (
-        filteredSections.map((section, sIdx) => (
+        filteredSections.map((_section, _sIdx) => (
           <section key={sIdx} className="mb-8" data-cy={`todo-section-${sIdx}`}>
             <h2 className="mb-4 text-2xl font-bold">{section.title}</h2>
             <ul className="space-y-2">
-              {section.tasks.map((task, tIdx) => {
-                const key = `${sIdx}-${tIdx}`;
-                const hasSubtasks = task.subtasks && task.subtasks.length > 0;
-                const isExpanded = expandedTasks[key];
-                const effectiveStatus = getTaskStatus(sIdx, tIdx, task.status);
-                const isDragging =
+              {section.tasks.map((_task, _tIdx) => {
+                const _key = `${sIdx}-${tIdx}`;
+                const _hasSubtasks = task.subtasks && task.subtasks.length > 0;
+                const _isExpanded = expandedTasks[key];
+                const _effectiveStatus = getTaskStatus(sIdx, tIdx, task.status);
+                const _isDragging =
                   draggedTask && draggedTask.sectionIdx === sIdx && draggedTask.taskIdx === tIdx;
-                const isDragOver =
+                const _isDragOver =
                   dragOverTask && dragOverTask.sectionIdx === sIdx && dragOverTask.taskIdx === tIdx;
                 return (
                   <li
@@ -555,11 +555,11 @@ export default function TodoDashboard({ todoMd }) {
                     className={`mb-4 border-b pb-2 transition-all duration-200 ${isDragOver ? 'bg-blue-100 dark:bg-blue-900' : ''} ${isDragging ? 'opacity-50' : ''}`}
                     data-cy={`task-${key}`}
                     draggable
-                    onDragStart={() => handleDragStart(sIdx, tIdx)}
-                    onDragEnter={() => handleDragEnter(sIdx, tIdx)}
+                    onDragStart={() => handleDragStart(_sIdx, _tIdx)}
+                    onDragEnter={() => handleDragEnter(_sIdx, _tIdx)}
                     onDragEnd={handleDragEnd}
-                    onDrop={() => handleDrop(sIdx, tIdx)}
-                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={() => handleDrop(_sIdx, _tIdx)}
+                    onDragOver={(_e) => e.preventDefault()}
                   >
                     <div className="flex items-center">
                       <span
@@ -582,7 +582,7 @@ export default function TodoDashboard({ todoMd }) {
                       />
                       {hasSubtasks && (
                         <button
-                          onClick={() => handleToggleExpand(sIdx, tIdx)}
+                          onClick={() => handleToggleExpand(_sIdx, _tIdx)}
                           aria-expanded={!!isExpanded}
                           aria-controls={`subtasks-${key}`}
                           className="mr-2 focus:outline-none"
@@ -626,7 +626,7 @@ export default function TodoDashboard({ todoMd }) {
                         className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
                         aria-hidden={!isExpanded}
                       >
-                        {isExpanded && renderSubtasks(task.subtasks, sIdx, tIdx, key)}
+                        {isExpanded && renderSubtasks(task.subtasks, sIdx, tIdx, _key)}
                       </div>
                     )}
                   </li>

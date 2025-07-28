@@ -41,7 +41,7 @@ const __statusColors = {
   emerald: 'bg-emerald-100 text-emerald-800',
 };
 
-const navLinks = [
+const _navLinks = [
   { href: '#introduction', label: 'Introduction' },
   { href: '#strategy', label: 'Strategy' },
   { href: '#ecosystem', label: 'Ecosystem' },
@@ -50,14 +50,14 @@ const navLinks = [
 ];
 
 export default function SPAInfographic() {
-  const ssgChartRef = useRef(null);
-  const cssChartRef = useRef(null);
-  const mobileMenuRef = useRef(null);
-  const headerRef = useRef(null);
+  const _ssgChartRef = useRef(null);
+  const _cssChartRef = useRef(null);
+  const _mobileMenuRef = useRef(null);
+  const _headerRef = useRef(null);
 
   useEffect(() => {
     // Chart.js SSG
-    const ssgChart = new Chart(ssgChartRef.current, {
+    const _ssgChart = new Chart(ssgChartRef.current, {
       type: 'bar',
       data: {
         labels: ['Astro', 'Hugo', 'Next.js', 'Jekyll'],
@@ -93,7 +93,7 @@ export default function SPAInfographic() {
             bodyFont: { size: 14 },
             callbacks: {
               label: function (context) {
-                let label = context.dataset.label || '';
+                let _label = context.dataset.label || '';
                 if (label) {
                   label += ': ';
                 }
@@ -106,7 +106,7 @@ export default function SPAInfographic() {
       },
     });
     // Chart.js CSS
-    const cssChart = new Chart(cssChartRef.current, {
+    const _cssChart = new Chart(cssChartRef.current, {
       type: 'bar',
       data: {
         labels: ['Tailwind CSS', 'Bootstrap'],
@@ -143,7 +143,7 @@ export default function SPAInfographic() {
             bodyFont: { size: 14 },
             callbacks: {
               label: function (context) {
-                let label = context.dataset.label || '';
+                let _label = context.dataset.label || '';
                 if (label) {
                   label += ': ';
                 }
@@ -163,18 +163,18 @@ export default function SPAInfographic() {
 
   // Scrollspy for nav highlighting
   useEffect(() => {
-    const handleScroll = () => {
-      const headerHeight = headerRef.current.offsetHeight;
-      const sections = Array.from(document.querySelectorAll('section'));
-      let current = '';
+    const _handleScroll = () => {
+      const _headerHeight = headerRef.current.offsetHeight;
+      const _sections = Array.from(document.querySelectorAll('section'));
+      let _current = '';
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop - headerHeight - 20;
+        const _sectionTop = section.offsetTop - headerHeight - 20;
         if (window.pageYOffset >= sectionTop) {
           current = section.getAttribute('id');
         }
       });
       navLinks.forEach((link) => {
-        const el = document.querySelector(`a[href='${link.href}']`);
+        const _el = document.querySelector(`a[href='${link.href}']`);
         if (el) {
           el.classList.remove('active');
           if (link.href === `#${current}`) {

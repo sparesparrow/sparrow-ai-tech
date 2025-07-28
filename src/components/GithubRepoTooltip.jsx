@@ -4,24 +4,24 @@ import Tippy from '@tippyjs/react';
 export default function GithubRepoTooltip({ repoPath, children }) {
   const [repoData, setRepoData] = React.useState(null);
 
-  const fetchRepoData = React.useCallback(async () => {
+  const _fetchRepoData = React.useCallback(async () => {
     try {
-      const response = await fetch(`https://api.github.com/repos/${repoPath}`);
-      const data = await response.json();
+      const _response = await fetch(`https://api.github.com/repos/${repoPath}`);
+      const _data = await response.json();
       setRepoData(data);
     } catch (_error) {
-      // Handle error silently
+      // Handle _error silently
     }
   }, [repoPath]);
 
-  const handleClick = (e) => {
+  const _handleClick = (_e) => {
     e.preventDefault();
     window.open(`https://github.com/${repoPath}`, '_blank');
   };
 
-  const handleKeyDown = (e) => {
+  const _handleKeyDown = (_e) => {
     if (e.key === 'Enter' || e.key === ' ') {
-      handleClick(e);
+      handleClick(_e);
     }
   };
 

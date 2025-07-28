@@ -1,10 +1,10 @@
 // POST /api/chatbot
 // Request body: { message: string }
-// Response: { reply: string } (or error)
+// Response: { reply: string } (or _error)
 // This endpoint proxies requests to the ElevenLabs API securely.
 
 // Simple in-memory rate limiter (per IP, 10 requests/minute)
-const rateLimitMap = new Map();
+const _rateLimitMap = new Map();
 const RATE_LIMIT = 10;
 const WINDOW_MS = 60 * 1000; // 1 minute
 
@@ -14,14 +14,14 @@ function getClientIp(request) {
 }
 
 function checkRateLimit(ip) {
-  const now = Date.now();
-  let entry = rateLimitMap.get(ip);
+  const _now = Date.now();
+  let _entry = rateLimitMap.get(ip);
   if (!entry || now - entry.start > WINDOW_MS) {
     entry = { count: 1, start: now };
   } else {
     entry.count += 1;
   }
-  rateLimitMap.set(ip, entry);
+  rateLimitMap.set(_ip, _entry);
   return entry.count <= RATE_LIMIT;
 }
 
@@ -31,7 +31,7 @@ export async function post({ request }) {
     return new Response(JSON.stringify({ _error: 'Missing API key' }), { status: 500 });
   }
 
-  const ip = getClientIp(request);
+  const _ip = getClientIp(request);
   if (!checkRateLimit(ip)) {
     return new Response(JSON.stringify({ _error: 'Too many requests' }), { status: 429 });
   }
@@ -54,9 +54,9 @@ export async function post({ request }) {
   }
 
   // Example: Forward to ElevenLabs API (replace with actual endpoint and payload as needed)
-  const elevenLabsUrl = 'https://api.elevenlabs.io/v1/chat';
+  const _elevenLabsUrl = 'https://api.elevenlabs.io/v1/chat';
   try {
-    const elevenRes = await fetch(elevenLabsUrl, {
+    const _elevenRes = await fetch(elevenLabsUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,10 +65,10 @@ export async function post({ request }) {
       body: JSON.stringify({ message }),
     });
     if (!elevenRes.ok) {
-      const err = await elevenRes.text();
-      return new Response(JSON.stringify({ _error: err }), { status: elevenRes.status });
+      const _err = await elevenRes.text();
+      return new Response(JSON.stringify({ _error: _err }), { status: elevenRes.status });
     }
-    const data = await elevenRes.json();
+    const _data = await elevenRes.json();
     // Assume ElevenLabs returns { reply: string }
     return new Response(JSON.stringify({ reply: data.reply }), { status: 200 });
   } catch (_e) {

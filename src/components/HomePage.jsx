@@ -22,7 +22,7 @@ import ReactMarkdown from 'react-markdown';
 // onLanguageChange: (lang) => void
 // prompts: [string, ...]
 
-const PauseBlock = ({ text }) => (
+const _PauseBlock = ({ text }) => (
   <div className="my-12 flex justify-center">
     <div className="w-full max-w-2xl rounded border-l-4 border-yellow-400 bg-yellow-50 p-6 text-center text-lg italic text-yellow-900 shadow dark:bg-yellow-900 dark:text-yellow-100">
       <span className="mb-2 block font-bold text-yellow-700 dark:text-yellow-300">Pause</span>
@@ -32,7 +32,7 @@ const PauseBlock = ({ text }) => (
 );
 
 // Hero Section
-const HeroSection = ({ translations }) => (
+const _HeroSection = ({ translations }) => (
   <section
     id="hero"
     className="flex min-h-screen w-full items-center bg-white pt-20 transition-colors duration-300 dark:bg-slate-900"
@@ -83,8 +83,8 @@ const HeroSection = ({ translations }) => (
 );
 
 // Services Section
-const ServicesSection = ({ translations }) => {
-  const tabs = [
+const _ServicesSection = ({ translations }) => {
+  const _tabs = [
     { key: 'ai', label: translations.service_tab_ai, content: translations.service_tab_ai_content },
     {
       key: 'security',
@@ -108,7 +108,7 @@ const ServicesSection = ({ translations }) => {
     },
   ];
   const [activeTab, setActiveTab] = useState(tabs[0].key);
-  const active = tabs.find((tab) => tab.key === activeTab);
+  const _active = tabs.find((tab) => tab.key === activeTab);
   return (
     <section id="services" className="py-20 md:py-32" data-cy="services-section">
       <div className="container mx-auto px-6">
@@ -140,9 +140,9 @@ const ServicesSection = ({ translations }) => {
 };
 
 // Articles Section
-const ArticlesSection = ({ translations }) => {
+const _ArticlesSection = ({ translations }) => {
   // Example hardcoded articles by category (replace with dynamic import if needed)
-  const categories = [
+  const _categories = [
     {
       name: 'Getting Started',
       articles: [
@@ -222,7 +222,7 @@ const ArticlesSection = ({ translations }) => {
                 {cat.name}
               </h3>
               <div className="grid gap-4 md:grid-cols-2">
-                {cat.articles.map((article, i) => (
+                {cat.articles.map((_article, _i) => (
                   <Card
                     key={i}
                     title={article.title}
@@ -252,8 +252,8 @@ const ArticlesSection = ({ translations }) => {
 };
 
 // Infographics Section
-const InfographicsSection = () => {
-  const infographics = [
+const _InfographicsSection = () => {
+  const _infographics = [
     {
       title: 'MCP Ecosystem',
       description:
@@ -289,11 +289,11 @@ const InfographicsSection = () => {
             Infographics
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-lg text-stone-600 dark:text-stone-300">
-            Explore interactive and visual guides to key concepts and architectures.
+            Explore interactive and visual guides to _key concepts and architectures.
           </p>
         </div>
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {infographics.map((info, idx) => (
+          {infographics.map((_info, _idx) => (
             <Card
               key={idx}
               title={info.title}
@@ -311,8 +311,8 @@ const InfographicsSection = () => {
 };
 
 // Research Highlights Section
-const ResearchHighlightsSection = () => {
-  const images = [
+const _ResearchHighlightsSection = () => {
+  const _images = [
     {
       src: '/sparrow-ai-tech/assets/images/2212.08073v1-img-002.png',
       alt: 'Diagram showing the hexagonal architecture of the MCP server.',
@@ -366,7 +366,7 @@ const ResearchHighlightsSection = () => {
           </p>
         </div>
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {images.map((img, idx) => (
+          {images.map((_img, _idx) => (
             <div
               key={idx}
               className="flex flex-col items-center rounded-lg bg-white p-4 shadow-md dark:bg-slate-800"
@@ -403,7 +403,7 @@ const ResearchHighlightsSection = () => {
 };
 
 // Add after ArticlesSection, before AboutSection
-const PopularReposSection = () => {
+const _PopularReposSection = () => {
   const [sortBy, setSortBy] = React.useState('stars');
   const [repos, setRepos] = React.useState([
     {
@@ -445,11 +445,11 @@ const PopularReposSection = () => {
     Promise.all(
       repos.map(async (repo) => {
         try {
-          const res = await (typeof globalThis.fetch !== 'undefined'
+          const _res = await (typeof globalThis.fetch !== 'undefined'
             ? globalThis.fetch(`https://api.github.com/repos/sparesparrow/${repo.name}`)
             : Promise.reject('Failed to fetch'));
           if (!res.ok) throw new Error('Failed to fetch');
-          const data = await res.json();
+          const _data = await res.json();
           return { ...repo, stars: data.stargazers_count, forks: data.forks_count };
         } catch {
           return repo;
@@ -462,7 +462,7 @@ const PopularReposSection = () => {
       })
       .catch(() => setError('Failed to load repo data'));
   }, []);
-  const sorted = [...repos].sort((a, b) =>
+  const _sorted = [...repos].sort((_a, _b) =>
     sortBy === 'stars' ? b.stars - a.stars : b.forks - a.forks
   );
   return (
@@ -490,7 +490,7 @@ const PopularReposSection = () => {
         </div>
         {loading ? (
           <SkeletonLoader type="card" count={3} />
-        ) : error ? (
+        ) : _error ? (
           <div className="text-center text-red-500 dark:text-red-500">{error}</div>
         ) : (
           <div className="flex flex-wrap justify-center gap-6">
@@ -512,7 +512,7 @@ const PopularReposSection = () => {
   );
 };
 
-const EXAMPLES = [
+const _EXAMPLES = [
   {
     label: 'Flowchart',
     code: `graph TD\nA[Start] --> B{Is it working?}\nB -- Yes --> C[Great!]\nB -- No --> D[Debug]\nD --> B`,
@@ -527,7 +527,7 @@ const EXAMPLES = [
   },
 ];
 
-const EditableMermaidDemoSection = () => {
+const _EditableMermaidDemoSection = () => {
   const [code, setCode] = React.useState(EXAMPLES[0].code);
   const [svg, setSvg] = React.useState('');
   const [error, setError] = React.useState(null);
@@ -552,18 +552,18 @@ const EditableMermaidDemoSection = () => {
       setSvg('');
     }
   }, [code]);
-  const handleExample = (label) => {
-    const ex = EXAMPLES.find((e) => e.label === label);
+  const _handleExample = (label) => {
+    const _ex = EXAMPLES.find((_e) => e.label === label);
     if (ex) {
       setExample(label);
       setCode(ex.code);
     }
   };
-  const handleSave = async () => {
+  const _handleSave = async () => {
     setSaving(true);
     setToast(null);
     try {
-      const res = await (typeof globalThis.fetch !== 'undefined'
+      const _res = await (typeof globalThis.fetch !== 'undefined'
         ? globalThis.fetch('/sparrow-ai-tech/api/diagrams', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -612,7 +612,7 @@ const EditableMermaidDemoSection = () => {
             className="mb-2 w-full rounded border bg-slate-900 p-2 font-mono text-slate-100 dark:bg-slate-800 dark:text-stone-100"
             rows={6}
             value={code}
-            onChange={(e) => setCode(e.target.value)}
+            onChange={(_e) => setCode(e.target.value)}
             spellCheck={false}
             aria-label="Edit Mermaid diagram"
           />
@@ -637,7 +637,7 @@ const EditableMermaidDemoSection = () => {
   );
 };
 
-const SavedDiagramsGallery = () => {
+const _SavedDiagramsGallery = () => {
   const [diagrams, setDiagrams] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -656,7 +656,7 @@ const SavedDiagramsGallery = () => {
       .catch(() => setError('Failed to load diagrams'))
       .finally(() => setLoading(false));
   }, [deleting]);
-  const handleDelete = async (id) => {
+  const _handleDelete = async (id) => {
     setDeleting(id);
     try {
       if (typeof globalThis.fetch !== 'undefined') {
@@ -664,16 +664,16 @@ const SavedDiagramsGallery = () => {
       }
       setDiagrams((diagrams) => diagrams.filter((d) => d.id !== id));
     } catch {
-      // handle error if needed
+      // handle _error if needed
     }
     setDeleting(null);
   };
-  const handleSaveOrder = async () => {
+  const _handleSaveOrder = async () => {
     setSavingOrder(true);
     setOrderToast(null);
     try {
       if (typeof globalThis.fetch !== 'undefined') {
-        const res = await globalThis.fetch('/sparrow-ai-tech/api/diagrams/reorder', {
+        const _res = await globalThis.fetch('/sparrow-ai-tech/api/diagrams/reorder', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ order: diagrams.map((d) => d.id) }),
@@ -696,7 +696,7 @@ const SavedDiagramsGallery = () => {
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
       id: diagram.id,
     });
-    const style = {
+    const _style = {
       transform: CSS.Transform.toString(transform),
       transition,
       zIndex: isDragging ? 10 : 1,
@@ -735,11 +735,11 @@ const SavedDiagramsGallery = () => {
     );
   }
 
-  const handleDragEnd = (event) => {
+  const _handleDragEnd = (event) => {
     const { active, over } = event;
     if (active.id !== over?.id) {
-      const oldIndex = diagrams.findIndex((d) => d.id === active.id);
-      const newIndex = diagrams.findIndex((d) => d.id === over.id);
+      const _oldIndex = diagrams.findIndex((d) => d.id === active.id);
+      const _newIndex = diagrams.findIndex((d) => d.id === over.id);
       setDiagrams((items) => arrayMove(items, oldIndex, newIndex));
     }
   };
@@ -771,7 +771,7 @@ const SavedDiagramsGallery = () => {
         </div>
         {loading ? (
           <SkeletonLoader type="card" count={4} />
-        ) : error ? (
+        ) : _error ? (
           <div className="text-center text-red-500 dark:text-red-500">{error}</div>
         ) : (
           <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
@@ -793,8 +793,8 @@ const SavedDiagramsGallery = () => {
 };
 
 // About Section
-const AboutSection = ({ translations }) => {
-  const steps = [
+const _AboutSection = ({ translations }) => {
+  const _steps = [
     translations.process_step1,
     translations.process_step2,
     translations.process_step3,
@@ -832,7 +832,7 @@ const AboutSection = ({ translations }) => {
               {translations.process_title}
             </h3>
             <ol className="space-y-4">
-              {steps.map((step, i) => (
+              {steps.map((_step, _i) => (
                 <li key={i} className="flex items-start">
                   <span className="mr-4 flex h-8 w-8 items-center justify-center rounded-full bg-sky-600 font-bold text-white dark:bg-sky-700 dark:text-white">
                     {i + 1}
@@ -849,11 +849,11 @@ const AboutSection = ({ translations }) => {
 };
 
 // Contact Section
-const ContactSection = ({ translations }) => {
+const _ContactSection = ({ translations }) => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const handleSubmit = (e) => {
+  const _handleChange = (_e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const _handleSubmit = (_e) => {
     e.preventDefault();
     setSubmitted(true);
   };
@@ -946,21 +946,21 @@ const ContactSection = ({ translations }) => {
   );
 };
 
-const DownloadPdfButton = () => {
+const _DownloadPdfButton = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   // Polyfills and imports for SSR/browser compatibility
 
-  const handleDownload = async () => {
+  const _handleDownload = async () => {
     setLoading(true);
     setError(null);
     try {
-      const html =
+      const _html =
         typeof globalThis.document !== 'undefined'
           ? globalThis.document.documentElement.outerHTML
           : '';
-      const res = await (typeof globalThis.fetch !== 'undefined'
+      const _res = await (typeof globalThis.fetch !== 'undefined'
         ? globalThis.fetch('/api/pdf', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -968,9 +968,9 @@ const DownloadPdfButton = () => {
           })
         : Promise.reject('Failed to generate PDF'));
       if (!res.ok) throw new Error('Failed to generate PDF');
-      const blob = await res.blob();
-      const url = typeof globalThis.URL !== 'undefined' ? globalThis.URL.createObjectURL(blob) : '';
-      const a =
+      const _blob = await res.blob();
+      const _url = typeof globalThis.URL !== 'undefined' ? globalThis.URL.createObjectURL(blob) : '';
+      const _a =
         typeof globalThis.document !== 'undefined' ? globalThis.document.createElement('a') : null;
       if (a) {
         a.href = url;
@@ -1007,7 +1007,7 @@ const DownloadPdfButton = () => {
   );
 };
 
-const ChatbotModal = ({ open, onClose }) => {
+const _ChatbotModal = ({ open, onClose }) => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -1015,13 +1015,13 @@ const ChatbotModal = ({ open, onClose }) => {
 
   // Polyfills and imports for SSR/browser compatibility
 
-  const handleSend = async () => {
+  const _handleSend = async () => {
     if (!input.trim()) return;
     setLoading(true);
     setError(null);
     setMessages((msgs) => [...msgs, { from: 'user', text: input }]);
     try {
-      const res = await (typeof globalThis.fetch !== 'undefined'
+      const _res = await (typeof globalThis.fetch !== 'undefined'
         ? globalThis.fetch('/api/chatbot', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1029,7 +1029,7 @@ const ChatbotModal = ({ open, onClose }) => {
           })
         : Promise.reject('Failed to get reply'));
       if (!res.ok) throw new Error('Failed to get reply');
-      const data = await res.json();
+      const _data = await res.json();
       setMessages((msgs) => [...msgs, { from: 'bot', text: data.reply }]);
       setInput('');
     } catch {
@@ -1048,7 +1048,7 @@ const ChatbotModal = ({ open, onClose }) => {
         data-cy="chatbot-backdrop"
         role="button"
         tabIndex={0}
-        onKeyDown={(e) => {
+        onKeyDown={(_e) => {
           if (e.key === 'Enter') onClose();
         }}
       ></div>
@@ -1071,7 +1071,7 @@ const ChatbotModal = ({ open, onClose }) => {
               Say hello to the ElevenLabs chatbot!
             </div>
           )}
-          {messages.map((msg, i) => (
+          {messages.map((_msg, _i) => (
             <div key={i} className={msg.from === 'user' ? 'mb-2 text-right' : 'mb-2 text-left'}>
               <span
                 className={
@@ -1090,10 +1090,10 @@ const ChatbotModal = ({ open, onClose }) => {
           className="mb-2 w-full rounded border border-slate-300 px-4 py-2"
           placeholder="Type your message..."
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(_e) => setInput(e.target.value)}
           disabled={loading}
           data-cy="chatbot-input"
-          onKeyDown={(e) => {
+          onKeyDown={(_e) => {
             if (e.key === 'Enter') handleSend();
           }}
         />
@@ -1111,7 +1111,7 @@ const ChatbotModal = ({ open, onClose }) => {
   );
 };
 
-const ChatbotButton = ({ onClick }) => (
+const _ChatbotButton = ({ onClick }) => (
   <button
     onClick={onClick}
     data-cy="open-chatbot-btn"
@@ -1136,14 +1136,14 @@ const ChatbotButton = ({ onClick }) => (
   </button>
 );
 
-const ArticleModal = ({ open, onClose, articleUrl, title }) => {
+const _ArticleModal = ({ open, onClose, articleUrl, title }) => {
   const [content, setContent] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
   // Polyfills and imports for SSR/browser compatibility
 
-  const isBrowser = typeof globalThis !== 'undefined';
+  const _isBrowser = typeof globalThis !== 'undefined';
 
   React.useEffect(() => {
     if (!open || !articleUrl || !isBrowser) return;
@@ -1177,14 +1177,14 @@ const ArticleModal = ({ open, onClose, articleUrl, title }) => {
   );
 };
 
-const HomePage = ({
+const _HomePage = ({
   translations = {},
   language = 'en',
   onLanguageChange = () => {},
   prompts = [],
 }) => {
   // Defensive: Ensure translations.nav exists and has expected keys
-  const nav = translations.nav || {
+  const _nav = translations.nav || {
     services: 'Services',
     articles: 'Articles',
     about: 'About',
@@ -1192,8 +1192,8 @@ const HomePage = ({
   };
 
   // Helper to get divider by index (cycle if not enough)
-  const getDivider = (idx) => {
-    const d = decorativeTexts[idx % decorativeTexts.length];
+  const _getDivider = (_idx) => {
+    const _d = decorativeTexts[idx % decorativeTexts.length];
     return (
       <DecorativeDivider
         key={`divider-${idx}`}
@@ -1205,7 +1205,7 @@ const HomePage = ({
   };
 
   // Sections with dividers between them
-  const sections = [
+  const _sections = [
     <HeroSection key="hero" translations={translations} />,
     getDivider(0),
     <ServicesSection key="services" translations={translations} />,
@@ -1223,9 +1223,9 @@ const HomePage = ({
     <ContactSection key="contact" translations={translations} />,
   ];
 
-  let content = [];
-  let promptIdx = 0;
-  for (let i = 0; i < sections.length; i++) {
+  let _content = [];
+  let _promptIdx = 0;
+  for (let _i = 0; i < sections.length; i++) {
     content.push(sections[i]);
     if (promptIdx < prompts.length && i < sections.length - 1) {
       content.push(<PauseBlock key={`pause-${promptIdx}`} text={prompts[promptIdx]} />);
@@ -1288,7 +1288,7 @@ const HomePage = ({
         </div>
       </header>
       <main className="flex-1 pt-20" role="main" aria-label="Main content">
-        {sections.map((section, idx) => (
+        {sections.map((_section, _idx) => (
           <React.Fragment key={idx}>{section}</React.Fragment>
         ))}
       </main>

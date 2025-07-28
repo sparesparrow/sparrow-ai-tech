@@ -5,7 +5,7 @@
 
 // import fetch from 'node-fetch'; // Remove this line
 
-export default async function handler(req, res) {
+export default async function handler(_req, _res) {
   if (req.method !== 'POST') {
     res.status(405).json({ _error: 'Method not allowed' });
     return;
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  const apiKey = process.env.ELEVENLABS_API_KEY;
+  const _apiKey = process.env.ELEVENLABS_API_KEY;
   if (!apiKey) {
     res.status(500).json({ _error: 'Server misconfiguration: missing API key' });
     return;
@@ -25,8 +25,8 @@ export default async function handler(req, res) {
 
   try {
     // Prepare ElevenLabs API request
-    const elevenLabsUrl = `https://api.elevenlabs.io/v1/text-to-speech/${voice_id || 'default'}`;
-    const elevenLabsRes = await globalThis.fetch(elevenLabsUrl, {
+    const _elevenLabsUrl = `https://api.elevenlabs.io/v1/text-to-speech/${voice_id || 'default'}`;
+    const _elevenLabsRes = await globalThis.fetch(elevenLabsUrl, {
       method: 'POST',
       headers: {
         'xi-api-key': apiKey,
@@ -37,8 +37,8 @@ export default async function handler(req, res) {
     });
 
     if (!elevenLabsRes.ok) {
-      const err = await elevenLabsRes.text();
-      res.status(elevenLabsRes.status).json({ _error: err });
+      const _err = await elevenLabsRes.text();
+      res.status(elevenLabsRes.status).json({ _error: _err });
       return;
     }
 

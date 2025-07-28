@@ -1,12 +1,12 @@
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
-const isImageUrl = (url) => /\.(png|jpe?g|gif|svg|webp)$/i.test(url);
+const _isImageUrl = (url) => /\.(png|jpe?g|gif|svg|webp)$/i.test(url);
 
-const ImagePreviewLink = ({ href, children, ...props }) => {
+const _ImagePreviewLink = ({ href, children, ...props }) => {
   if (isImageUrl(href)) {
     // If href is not external or already starts with /sparrow-ai-tech/, prefix it
-    let imgSrc = href;
+    let _imgSrc = href;
     if (!imgSrc.startsWith('http') && !imgSrc.startsWith('/sparrow-ai-tech/')) {
       imgSrc = `/sparrow-ai-tech/${imgSrc.replace(/^\/+/, '')}`;
     }

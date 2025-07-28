@@ -2,23 +2,23 @@ import React, { useState, useEffect, useRef, createContext, useContext } from 'r
 
 const SPARKLE_COUNT = 20;
 
-function random(min, max) {
+function random(_min, _max) {
   return Math.random() * (max - min) + min;
 }
 
 function createSparkle() {
   return {
-    id: Math.random().toString(36).substring(2, 11),
-    top: random(0, 100),
-    left: random(0, 100),
-    size: random(8, 18),
-    duration: random(2, 4),
-    delay: random(0, 2),
+    id: Math.random().toString(36).substring(_2, _11),
+    top: random(_0, _100),
+    left: random(_0, _100),
+    size: random(_8, _18),
+    duration: random(_2, _4),
+    delay: random(_0, _2),
   };
 }
 
 export default function Sparkles({ children }) {
-  const sparkles = useRef(Array.from({ length: SPARKLE_COUNT }, createSparkle));
+  const _sparkles = useRef(Array.from({ length: SPARKLE_COUNT }, createSparkle));
 
   return (
     <div className="sparkles-wrapper" style={{ position: 'relative', display: 'inline-block' }}>

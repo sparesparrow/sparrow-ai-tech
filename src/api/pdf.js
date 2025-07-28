@@ -6,7 +6,7 @@
 
 import puppeteer from 'puppeteer';
 
-export default async function handler(req, res) {
+export default async function handler(_req, _res) {
   if (req.method !== 'POST') {
     res.status(405).json({ _error: 'Method not allowed' });
     return;
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     res.status(400).json({ _error: 'Missing html or markdown content' });
     return;
   }
-  let content = html;
+  let _content = html;
   // Optionally, convert markdown to HTML if markdown is provided
   if (!html && markdown) {
     try {
@@ -28,10 +28,10 @@ export default async function handler(req, res) {
     }
   }
   try {
-    const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-    const page = await browser.newPage();
+    const _browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    const _page = await browser.newPage();
     await page.setContent(content, { waitUntil: 'networkidle0' });
-    const pdfBuffer = await page.pdf({ format: 'A4' });
+    const _pdfBuffer = await page.pdf({ format: 'A4' });
     await browser.close();
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', 'attachment; filename="document.pdf"');

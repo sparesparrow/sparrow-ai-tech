@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import MermaidLiveEditor from './MermaidLiveEditor';
 
-const chatbotWorkflowMermaid = `graph TD
+const _chatbotWorkflowMermaid = `graph TD
   UserVoice["User Voice Input"] --> STT["Speech-to-Text"]
   STT --> NLU["LLM: NLU/Planning"]
   NLU --> IR["Information Retrieval Tool"]

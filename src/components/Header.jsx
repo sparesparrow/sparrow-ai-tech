@@ -1,6 +1,6 @@
 import { useI18n } from '../i18n';
 
-const Header = () => {
+const _Header = () => {
   const { t, language, setLanguage } = useI18n();
   return (
     <nav className="header-nav" data-cy="header-nav">
