@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+/** @jsx React.createElement */
+import React from 'react';
 
 const useChart = (canvasId, config) => {
   useEffect(() => {

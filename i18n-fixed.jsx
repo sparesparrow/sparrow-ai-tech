@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+/** @jsx React.createElement */
+import React from 'react';
 
 const I18nContext = createContext();
 

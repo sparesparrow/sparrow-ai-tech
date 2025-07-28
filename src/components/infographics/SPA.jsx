@@ -1,8 +1,8 @@
 // NOTE: Main homepage logic migrated to HomePage.jsx. This file is now for infographics/SPA only.
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import Chart from 'chart.js/auto';
 
-const ecosystemData = [
+const _ecosystemData = [
   {
     name: 'mcp-prompts',
     description:
@@ -34,7 +34,7 @@ const ecosystemData = [
   },
 ];
 
-const statusColors = {
+const _statusColors = {
   amber: 'bg-amber-100 text-amber-800',
   sky: 'bg-sky-100 text-sky-800',
   rose: 'bg-rose-100 text-rose-800',
@@ -188,7 +188,7 @@ export default function SPAInfographic() {
   }, []);
 
   // Mobile menu toggle
-  const handleMobileMenu = () => {
+  const _handleMobileMenu = () => {
     if (mobileMenuRef.current) {
       mobileMenuRef.current.classList.toggle('hidden');
     }

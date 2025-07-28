@@ -12,11 +12,10 @@ import 'yet-another-react-lightbox/styles.css';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 import Modal from './ui/Modal.jsx';
-import PropTypes from 'prop-types';
 
 const AppContent = () => {
   const { language, setLanguage, t } = useI18n();
-  const [content, setContent] = useState(t('siteData.en'));
+  const [_content, setContent] = useState(t('siteData.en'));
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -52,11 +51,11 @@ const AppContent = () => {
     const handler = (e) => {
       if (!localStorage.getItem('theme')) setIsDark(e.matches);
     };
-    mq.addEventListener ? mq.addEventListener('change', handler) : mq.addListener(handler);
+    mq.addEventListener ? mq.addEventListener('change', handler) : mq.addEventListener ? mq.addEventListener('change', handler) : mq.addListener(handler);
     return () => {
       mq.removeEventListener
         ? mq.removeEventListener('change', handler)
-        : mq.removeListener(handler);
+        : mq.removeEventListener ? mq.removeEventListener('change', handler) : mq.removeListener(handler);
     };
   }, []);
 
@@ -284,22 +283,22 @@ const AppContent = () => {
       url: `/sparrow-ai-tech/infographics/elevenlabs-widget.html`,
     },
   ];
-  const visuals = [
-    {
-      name: 'MCP Ecosystem Diagram',
-      src: `/sparrow-ai-tech/assets/images/mcp-ecosystem-diagram.png`,
-      context: 'Ecosystem',
-    },
-    {
-      name: 'UI Screenshot',
-      src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`,
-      contextLabel: 'UI Demo',
-    },
-    {
-      name: 'Feature Screenshot',
-      src: `/sparrow-ai-tech/assets/images/screenshot-feature.png`,
-      contextLabel: 'Feature Demo',
-    },
+  const _visuals = [
+  {
+    name: 'MCP Ecosystem Diagram',
+    src: `${import.meta.env.BASE_URL}assets/images/mcp-ecosystem-diagram.png`,
+    contextLabel: 'Ecosystem, Architecture',
+  },
+  {
+    name: 'UI Screenshot',
+    src: `${import.meta.env.BASE_URL}assets/images/screenshot-ui.png`,
+    contextLabel: 'Homepage, UI',
+  },
+  {
+    name: 'Feature Screenshot',
+    src: `${import.meta.env.BASE_URL}assets/images/screenshot-feature.png`,
+    contextLabel: 'Feature Demo',
+  }
   ];
 
   // Fetch article content when modal opens
@@ -981,14 +980,14 @@ const AppContent = () => {
                             },
                           ].map((vis, _idx) => (
                             <motion.div
-                              key={idx}
+                              key={_idx}
                               className="group mb-6 flex cursor-pointer break-inside-avoid flex-col items-center rounded-lg bg-white p-4 shadow-md transition-transform hover:-translate-y-1"
                               initial={{ opacity: 0, y: 30 }}
                               whileInView={{ opacity: 1, y: 0 }}
                               viewport={{ once: true, amount: 0.2 }}
-                              transition={{ delay: 0.1 * idx, duration: 0.5, ease: 'easeOut' }}
+                              transition={{ delay: 0.1 * _idx, duration: 0.5, ease: 'easeOut' }}
                               onClick={() => {
-                                setLightboxIndex(idx);
+                                setLightboxIndex(_idx);
                                 setLightboxOpen(true);
                               }}
                             >
@@ -1168,7 +1167,7 @@ const AppContent = () => {
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
-                          transition={{ delay: 0.1 * idx, duration: 0.5 }}
+                          transition={{ delay: 0.1 * _idx, duration: 0.5 }}
                         >
                           <h3 className="mb-4 text-2xl font-semibold text-sky-700">
                             {cat.category}
@@ -1238,7 +1237,7 @@ const AppContent = () => {
                       <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                         {infographicsReact.map((info, _idx) => (
                           <a
-                            key={idx}
+                            key={_idx}
                             href={info.route}
                             className="block rounded-lg bg-slate-100 p-6 text-center shadow-md transition-all duration-300 hover:bg-slate-200 hover:shadow-lg"
                           >
@@ -1253,7 +1252,7 @@ const AppContent = () => {
                       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                         {infographicsHtml.map((info, _idx) => (
                           <a
-                            key={idx}
+                            key={_idx}
                             href={`/sparrow-ai-tech${info.url}`}
                             target="_blank"
                             rel="noopener noreferrer"

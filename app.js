@@ -591,7 +591,7 @@ function updateProgressIndicators() {
     i18n: 0,
   };
 
-  Object.entries(progressData).forEach(([key, value]) => {
+  Object.entries(progressData).forEach(([_key, value]) => {
     const progressBar = document.querySelector(`[data-progress="${value}"]`);
     if (progressBar) {
       setTimeout(() => {

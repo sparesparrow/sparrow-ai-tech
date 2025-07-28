@@ -23,7 +23,7 @@ export default async function handler(req, res) {
       const { marked } = await import('marked');
       content = marked(markdown);
     } catch (_err) {
-      res.status(500).json({ error: 'Failed to convert markdown to HTML', details: err.message });
+      res.status(500).json({ error: 'Failed to convert markdown to HTML', details: _err.message });
       return;
     }
   }
@@ -37,6 +37,6 @@ export default async function handler(req, res) {
     res.setHeader('Content-Disposition', 'attachment; filename="document.pdf"');
     res.status(200).end(pdfBuffer);
   } catch (_err) {
-    res.status(500).json({ error: 'Failed to generate PDF', details: err.message });
+    res.status(500).json({ error: 'Failed to generate PDF', details: _err.message });
   }
 }

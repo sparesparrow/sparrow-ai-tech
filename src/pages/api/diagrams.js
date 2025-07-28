@@ -12,7 +12,7 @@ export async function GET() {
     });
   } catch (_error) {
     return new Response(
-      JSON.stringify({ message: 'Error reading diagrams', error: error.message }),
+      JSON.stringify({ message: 'Error reading diagrams', error: _error.message }),
       { status: 500 }
     );
   }
@@ -27,7 +27,7 @@ export async function POST({ request }) {
     });
   } catch (_error) {
     return new Response(
-      JSON.stringify({ message: 'Error updating diagrams', error: error.message }),
+      JSON.stringify({ message: 'Error updating diagrams', error: _error.message }),
       { status: 500 }
     );
   }

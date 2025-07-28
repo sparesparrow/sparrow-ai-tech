@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+/** @jsx React.createElement */
+import React from 'react';
 
 // Chart.js is loaded via CDN in the HTML version, but here we use dynamic import for SSR safety
 const useChart = (canvasId, config) => {

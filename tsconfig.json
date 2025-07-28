@@ -2,6 +2,18 @@
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "jsxImportSource": "react", 
+    "strict": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "typeRoots": ["./node_modules/@types", "./types"]
   }
 }

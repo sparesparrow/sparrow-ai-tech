@@ -1,4 +1,3 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const I18nContext = createContext();
 

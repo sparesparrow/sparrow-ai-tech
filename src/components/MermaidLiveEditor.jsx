@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+/** @jsx React.createElement */
+import React from 'react';
 
 const DEFAULT_MERMAID = `graph TD
   A[Start] --> B[Choice];

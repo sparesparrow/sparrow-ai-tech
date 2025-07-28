@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/** @jsx React.createElement */
+import React from 'react';
 import MermaidLiveEditor from './MermaidLiveEditor';
 
 const diagrams = [

@@ -27,24 +27,24 @@
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev --host",
-    "build": "astro check && astro build",
+    "build": "astro check --minimumFailingSeverity warning && astro build",
     "build:dev": "astro build --mode development",
     "preview": "astro preview --host",
     "astro": "astro",
-    "test": "jest --passWithNoTests",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --watchAll=false",
-    "test:ci": "jest --coverage --watchAll=false --passWithNoTests",
+    "test": "jest --config jest.config.mjs --passWithNoTests",
+    "test:watch": "jest --config jest.config.mjs --watch",
+    "test:coverage": "jest --config jest.config.mjs --coverage --watchAll=false",
+    "test:ci": "jest --config jest.config.mjs --coverage --watchAll=false --passWithNoTests",
     "test:e2e": "cypress run",
     "test:e2e:open": "cypress open",
     "test:e2e:headless": "cypress run --headless",
     "test:e2e:ci": "cypress run --browser chrome --headless",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --fix",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --max-warnings 0",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --fix --max-warnings 0",
     "lint:report": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --output-file eslint-report.json --format json",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,astro,md,json,css,scss,html}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,astro,md,json,css,scss,html}\"",
-    "type-check": "astro check",
+    "type-check": "astro check --minimumFailingSeverity warning",
     "type-check:watch": "astro check --watch",
     "clean": "rm -rf dist .astro node_modules/.cache coverage cypress/screenshots cypress/videos eslint-report.json",
     "clean:install": "npm run clean && rm -rf node_modules package-lock.json && npm install",
@@ -91,6 +91,7 @@
     "@tippyjs/react": "^4.2.6",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@types/react-helmet": "^6.1.11",
     "@typescript-eslint/eslint-plugin": "^8.15.0",
     "@typescript-eslint/parser": "^8.15.0",
     "astro-eslint-parser": "^1.2.2",
@@ -133,46 +134,6 @@
     "package.json": [
       "prettier --write"
     ]
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest.setup.js"
-    ],
-    "testMatch": [
-      "**/__tests__/**/*.(js|jsx|ts|tsx)",
-      "**/*.(test|spec).(js|jsx|ts|tsx)"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "ts",
-      "tsx",
-      "json"
-    ],
-    "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
-    },
-    "moduleNameMapper": {
-      "\\.(css|less|scss|sass)$": "identity-obj-proxy",
-      "^src/(.*)$": "<rootDir>/src/$1",
-      "^@/(.*)$": "<rootDir>/src/$1",
-      "\\.(astro)$": "<rootDir>/test/__mocks__/astroStub.js"
-    },
-    "collectCoverageFrom": [
-      "src/**/*.(js|jsx|ts|tsx)",
-      "!src/**/*.d.ts",
-      "!src/**/*.stories.*",
-      "!src/**/*.test.*"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 50,
-        "functions": 50,
-        "lines": 50,
-        "statements": 50
-      }
-    }
   },
   "engines": {
     "node": ">=20.0.0",

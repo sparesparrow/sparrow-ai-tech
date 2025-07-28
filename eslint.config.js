@@ -1,30 +1,27 @@
-/* eslint-env node */
-
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
-import cypress from 'eslint-plugin-cypress';
 import astro from 'eslint-plugin-astro';
 
 export default [
   {
     ignores: [
-      'node_modules/',
-      '.astro/',
-      'dist/',
-      'build/',
-      'coverage/',
-      '**/*-fixed.*',
-      '*.json',
-      '*.md',
-      '**/*.cjs', // Ignore all .cjs files from ESLint
-    ],
+      "node_modules/",
+      ".astro/",
+      "dist/",
+      "build/",
+      "coverage/",
+      "types/",
+      "**/*-fixed.*",
+      "*.json",
+      "*.md"
+    ]
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
+    files: ["**/*.{js,jsx,ts,tsx}"],
     plugins: {
       react: react,
     },
@@ -32,7 +29,7 @@ export default [
       parserOptions: {
         ecmaFeatures: { jsx: true },
         ecmaVersion: 'latest',
-        sourceType: 'module',
+        sourceType: 'module'
       },
       globals: {
         ...globals.browser,
@@ -41,39 +38,25 @@ export default [
       },
     },
     rules: {
-      'no-useless-escape': 'warn',
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
-      ],
+      // Treat warnings as errors
+      'no-unused-vars': ['error', { 
+        'argsIgnorePattern': '^_', 
+        'varsIgnorePattern': '^_',
+        'destructuredArrayIgnorePattern': '^_'
+      }],
+      '@typescript-eslint/no-unused-vars': ['error', { 
+        'argsIgnorePattern': '^_', 
+        'varsIgnorePattern': '^_',
+        'destructuredArrayIgnorePattern': '^_'
+      }],
       'react/display-name': 'off',
       'react/react-in-jsx-scope': 'off',
-      'no-undef': 'warn',
-      '@typescript-eslint/no-unused-expressions': 'warn',
-      'no-dupe-keys': 'error',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/ban-ts-comment': 'warn'
     },
     settings: {
-      react: { version: 'detect' },
-    },
-  },
-  {
-    files: ['cypress/**/*.{js,ts,jsx,tsx}'],
-    plugins: {
-      cypress: cypress,
-    },
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...cypress.environments.globals.globals,
-      },
-    },
-    rules: {
-      'no-useless-escape': 'warn',
-      ...cypress.configs.recommended.rules,
-      'cypress/no-unnecessary-waiting': 'warn',
-      'cypress/unsafe-to-chain-command': 'warn',
-    },
+      react: { version: 'detect' }
+    }
   },
   ...astro.configs.recommended,
 ];

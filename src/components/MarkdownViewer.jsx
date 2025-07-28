@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+/** @jsx React.createElement */
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import MermaidPreviewLink from './MermaidPreviewLink';
-import ImagePreviewLink from './ImagePreviewLink';
-import GithubRepoTooltip from './GithubRepoTooltip';
+import MermaidPreviewLink from './MermaidPreviewLink.jsx';
+import ImagePreviewLink from './ImagePreviewLink.jsx';
+import GithubRepoTooltip from './GithubRepoTooltip.jsx';
 
-// Placeholder for Mermaid diagrams (now unsupported)
 const Mermaid = () => (
   <div className="mermaid-diagram text-red-500">Mermaid diagrams are not supported.</div>
 );
@@ -33,7 +33,7 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
       .finally(() => setLoading(false));
   }, [src]);
 
-  if (loading) return <div className="markdown-viewer-loading">Loading...</div>;
+  if (loading) return <div className="markdown-viewer-loading">Loading…</div>;
   if (error) return <div className="markdown-viewer-error">Error loading markdown.</div>;
 
   return (
@@ -43,7 +43,7 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
         rehypePlugins={[rehypeRaw]}
         components={{
           a: ({ href, children, ...props }) => {
-            if (/^https?:\/\/(www\.)?github\.com\/[^\/]+\/[^\/]+(\/?$|#|\?)/i.test(href)) {
+            if (/^https?:\/\/(www\.)?github\.com\/[^\/]+\/[^\/]+(\/|$|#|\?)/i.test(href)) {
               return (
                 <GithubRepoTooltip href={href} {...props}>
                   {children}
@@ -63,13 +63,9 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
               </ImagePreviewLink>
             );
           },
-          code({ node, inline, className, children, ...props }) {
-            if (className === 'language-mermaid') {
-              return <Mermaid />;
-            }
-            if (editableDiagrams && className === 'language-mermaid-edit') {
-              return <EditableMermaid />;
-            }
+          code({ inline, className, children, ...props }) {
+            if (className === 'language-mermaid') return <Mermaid />;
+            if (editableDiagrams && className === 'language-mermaid-edit') return <EditableMermaid />;
             return (
               <code className={className} {...props}>
                 {children}

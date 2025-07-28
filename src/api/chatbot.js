@@ -46,7 +46,7 @@ export default async function handler(req, res) {
     res.setHeader('Content-Type', 'audio/mpeg');
     elevenLabsRes.body.pipe(res);
   } catch (_error) {
-    res.status(500).json({ error: error.message || 'Internal server error' });
+    res.status(500).json({ error: _error.message || 'Internal server error' });
   }
 }
 // Note: In production, ensure fetch is polyfilled (e.g., with node-fetch) if not available.

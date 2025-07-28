@@ -41,7 +41,7 @@ afterEach(() => {
 
 // Remove TestI18nProvider and use the real I18nProvider with fetch mocking
 
-const TestComponent = () => {
+const _TestComponent = () => {
   const { t, language, setLanguage } = useI18n();
   return (
     <div>

@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+/** @jsx React.createElement */
+import React from 'react';
 
 const SPARKLE_COUNT = 20;
 
@@ -8,7 +9,7 @@ function random(min, max) {
 
 function createSparkle() {
   return {
-    id: Math.random().toString(36).substr(2, 9),
+    id: Math.random().toString(36).substring(2, 11),
     top: random(0, 100),
     left: random(0, 100),
     size: random(8, 18),
