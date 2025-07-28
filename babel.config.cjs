@@ -1,25 +1,19 @@
-/* eslint-env node */
-/* eslint-disable no-undef */
-
 module.exports = {
   presets: [
-    ['@babel/preset-env', { 
-      targets: { node: 'current' },
-      modules: process.env.NODE_ENV === 'test' ? 'auto' : false
-    }],
+    ['@babel/preset-env', { targets: { node: 'current' } }],
     ['@babel/preset-react', { runtime: 'automatic' }],
-    ['@babel/preset-typescript', { isTSX: true, allExtensions: true }],
+    '@babel/preset-typescript',
   ],
   plugins: [
-    // Plugin pro transformaci import.meta v testech
-    function() {
+    // Plugin pro transformaci import.meta v test prostředí
+    function () {
       return {
         visitor: {
-          MetaProperty(path) {
-            if (path.node.meta.name === 'import' && path.node.property.name === 'meta') {
+          MemberExpression(path) {
+            if (path.node.meta && path.node.meta.name === 'import' && path.node.property.name === 'meta') {
               // V test prostředí nahradíme import.meta globální proměnnou
               if (process.env.NODE_ENV === 'test') {
-                path.replaceWithSourceString('global.importMeta || { env: { BASE_URL: "/" } }');
+                path.replaceWithSourceString('global.importMeta || { env: { BASE_URL: "/sparrow-ai-tech" } }');
               }
             }
           }
@@ -27,13 +21,4 @@ module.exports = {
       };
     }
   ],
-  env: {
-    test: {
-      presets: [
-        ['@babel/preset-env', { targets: { node: 'current' }, modules: 'auto' }],
-        ['@babel/preset-react', { runtime: 'automatic' }],
-        ['@babel/preset-typescript', { isTSX: true, allExtensions: true }],
-      ]
-    }
-  }
 };

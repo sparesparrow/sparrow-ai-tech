@@ -10,5 +10,10 @@ export default defineConfig({
     assets: 'assets'
   },
   output: 'static',
-  trailingSlash: 'never'
+  trailingSlash: 'never',
+  vite: {
+    define: {
+      'import.meta.env.BASE_URL': '"/sparrow-ai-tech"'
+    }
+  }
 });

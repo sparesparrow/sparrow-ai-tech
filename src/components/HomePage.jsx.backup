@@ -1,3 +1,4 @@
+import { pageUrl } from "../utils/url.js";
 import React, { useState } from 'react';
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import {
@@ -54,7 +55,7 @@ const _HeroSection = ({ translations }) => (
       />
       <div className="mt-6 flex gap-4">
         <a
-          href={`${import.meta.env.BASE_URL}todo`}
+          href={`${pageUrl}todo`}
           className="inline-block"
           data-cy="todo-dashboard-cta"
         >

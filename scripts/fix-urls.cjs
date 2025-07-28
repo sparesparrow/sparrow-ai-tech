@@ -5,7 +5,7 @@
 const fs = require('fs');
 const { glob } = require('glob');
 
-const BASE_URL = '/sparrow-ai-tech';
+const BASE_URL = "/sparrow-ai-tech";
 
 function fixUrlsInFile(filePath) {
   let content = fs.readFileSync(filePath, 'utf8');

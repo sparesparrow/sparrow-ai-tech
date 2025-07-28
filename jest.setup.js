@@ -13,12 +13,12 @@ global.Astro = {
 // Mock import.meta globally for all tests
 global.importMeta = {
   env: {
-    BASE_URL: '/'
+    BASE_URL: '/sparrow-ai-tech'
   }
 };
 
 // Set process.env for tests
-process.env.BASE_URL = '/';
+process.env.BASE_URL = '/sparrow-ai-tech';
 
 // Mock for window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
