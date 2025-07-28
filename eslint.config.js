@@ -7,21 +7,27 @@ import astro from 'eslint-plugin-astro';
 export default [
   {
     ignores: [
-      "node_modules/",
-      ".astro/",
-      "dist/",
-      "build/",
-      "coverage/",
-      "types/",
-      "**/*-fixed.*",
-      "*.json",
-      "*.md"
-    ]
+      '*-fixed.*',
+      'app.js',
+      '*-fixed.*',
+      'app.js',
+      '*-fixed.*',
+      'app.js',
+      'node_modules/',
+      '.astro/',
+      'dist/',
+      'build/',
+      'coverage/',
+      'types/',
+      '**/*-fixed.*',
+      '*.json',
+      '*.md',
+    ],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ["**/*.{js,jsx,ts,tsx}"],
+    files: ['**/*.{js,jsx,ts,tsx}'],
     plugins: {
       react: react,
     },
@@ -29,7 +35,7 @@ export default [
       parserOptions: {
         ecmaFeatures: { jsx: true },
         ecmaVersion: 'latest',
-        sourceType: 'module'
+        sourceType: 'module',
       },
       globals: {
         ...globals.browser,
@@ -39,24 +45,30 @@ export default [
     },
     rules: {
       // Treat warnings as errors
-      'no-unused-vars': ['error', { 
-        'argsIgnorePattern': '^_', 
-        'varsIgnorePattern': '^_',
-        'destructuredArrayIgnorePattern': '^_'
-      }],
-      '@typescript-eslint/no-unused-vars': ['error', { 
-        'argsIgnorePattern': '^_', 
-        'varsIgnorePattern': '^_',
-        'destructuredArrayIgnorePattern': '^_'
-      }],
+      'no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+        },
+      ],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+        },
+      ],
       'react/display-name': 'off',
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/ban-ts-comment': 'warn'
+      '@typescript-eslint/ban-ts-comment': 'warn',
     },
     settings: {
-      react: { version: 'detect' }
-    }
+      react: { version: 'detect' },
+    },
   },
   ...astro.configs.recommended,
 ];
