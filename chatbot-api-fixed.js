@@ -52,7 +52,6 @@ export async function POST({ request }) {
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.error('OpenAI API error:', errorData);
       return new Response(JSON.stringify({ error: 'Failed to get AI response' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
@@ -74,7 +73,6 @@ export async function POST({ request }) {
       }
     );
   } catch (error) {
-    console.error('Chatbot API error:', error);
     return new Response(JSON.stringify({ error: 'Internal server error' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },

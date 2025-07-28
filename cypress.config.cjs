@@ -10,7 +10,6 @@ module.exports = defineConfig({
     baseUrl: process.env.CYPRESS_BASE_URL || 'http://localhost:4321/',
     setupNodeEvents(on, config) {
       on('before:run', (_details) => {
-        console.log('Cypress tests are starting...');
       });
       return config;
     },

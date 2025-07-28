@@ -292,7 +292,6 @@ function _generateCTACode() {
 }`;
 
   alert('CTA kód vygenerován! (Zobrazen v konzoli)');
-  console.log(code);
 }
 
 // i18n Configuration
@@ -574,7 +573,6 @@ function escapeHtml(text) {
 // Load application data
 function loadApplicationData() {
   // Simulate loading data from the provided JSON
-  console.log('Loading application data...');
 
   // Update progress indicators based on actual data
   updateProgressIndicators();
