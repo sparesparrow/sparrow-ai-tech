@@ -14,7 +14,6 @@ const navLinks = [
 export default function SPAInfographic() {
   const ssgChartRef = useRef(null);
   const cssChartRef = useRef(null);
-  const _mobileMenuRef = useRef(null);
   const headerRef = useRef(null);
 
   useEffect(() => {

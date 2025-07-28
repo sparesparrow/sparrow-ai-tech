@@ -28,6 +28,11 @@ function fixUrlsInFile(filePath) {
     [/href="\/assets\//g, `href="${BASE_URL}/assets/`],
     [/src="\/assets\//g, `src="${BASE_URL}/assets/`],
     [/href="\/infographics\//g, `href="${BASE_URL}/infographics/`],
+    
+    // Dodatečné opravy pro infografiky navigation
+    [/href="\/sparrow-ai-techinfographics\/Infographic1\/"/g, `href="${BASE_URL}/infographics/Infographic1"`],
+    [/href="\/sparrow-ai-techinfographics\/Infographic2\/"/g, `href="${BASE_URL}/infographics/Infographic2"`],
+    [/href="\/sparrow-ai-techinfographics\/Infographic3\/"/g, `href="${BASE_URL}/infographics/Infographic3"`],
   ];
   
   fixes.forEach(([pattern, replacement]) => {
@@ -51,9 +56,12 @@ async function main() {
     'src/**/*.{astro,jsx,js,ts,tsx,html}',
   ];
   
+  console.log('🔧 Starting URL fixing process...');
+  
   for (const pattern of patterns) {
     try {
       const files = await glob(pattern);
+      console.log(`Processing ${files.length} files matching: ${pattern}`);
       files.forEach(fixUrlsInFile);
     } catch (err) {
       console.log(`Skipping pattern ${pattern}: ${err.message}`);
