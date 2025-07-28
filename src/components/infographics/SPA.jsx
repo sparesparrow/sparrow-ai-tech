@@ -3,45 +3,6 @@ import { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 import { url } from '../../utils/url.js';
 
-const _unusedEcosystemData = [
-  {
-    name: 'mcp-prompts',
-    description:
-      'The core server for managing, storing, and versioning prompts and templates for LLMs.',
-    status: 'In Migration',
-    statusColor: 'amber',
-    tech: ['TypeScript', 'Node.js', 'PostgreSQL', 'Docker'],
-  },
-  {
-    name: 'mcp-router',
-    description: 'A tool designed to route requests between different MCP-compliant services.',
-    status: 'Beta',
-    statusColor: 'sky',
-    tech: ['TypeScript', 'Node.js'],
-  },
-  {
-    name: 'podman-desktop-extension-mcp',
-    description: 'An extension for Podman Desktop to interact with the MCP ecosystem.',
-    status: 'Experimental',
-    statusColor: 'rose',
-    tech: ['JavaScript'],
-  },
-  {
-    name: 'awesome-mcp-servers',
-    description: 'A curated list of community-built MCP servers and related projects.',
-    status: 'Stable',
-    statusColor: 'emerald',
-    tech: ['Community'],
-  },
-];
-
-const _unusedStatusColors = {
-  amber: 'bg-amber-100 text-amber-800',
-  sky: 'bg-sky-100 text-sky-800',
-  rose: 'bg-rose-100 text-rose-800',
-  emerald: 'bg-emerald-100 text-emerald-800',
-};
-
 const navLinks = [
   { href: '#introduction', label: 'Introduction' },
   { href: '#strategy', label: 'Strategy' },
@@ -189,11 +150,6 @@ export default function SPAInfographic() {
   }, []);
 
   // Mobile menu toggle
-  const _unusedHandleMobileMenu = () => {
-    if (mobileMenuRef.current) {
-      mobileMenuRef.current.classList.toggle('hidden');
-    }
-  };
 
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-br from-[#0D1B2A] via-[#1B263B] to-[#415A77] text-[#E0E1DD]">

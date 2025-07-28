@@ -16,7 +16,6 @@ function parseTodoMd(md) {
   const sections = [];
   let currentSection = null;
   let currentTask = null;
-  const _unusedStatusRegex = /\[([ x-])\]/;
   const statusMap = {
     ' ': 'ToDo',
     '-': 'HelpNeeded',

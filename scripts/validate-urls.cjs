@@ -17,7 +17,7 @@ function validateFile(filePath) {
   const content = fs.readFileSync(filePath, 'utf8');
   let hasIssues = false;
   
-  problematicPatterns.forEach((pattern, index) => {
+  problematicPatterns.forEach((pattern) => {
     const matches = content.match(pattern);
     if (matches) {
       console.log(`❌ Found problematic URLs in ${filePath}:`);
