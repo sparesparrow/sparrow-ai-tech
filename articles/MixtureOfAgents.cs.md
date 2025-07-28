@@ -18,7 +18,8 @@ graph TD
     MCP --> Nastroje["Nástroje/Zdroje/Prompty"]
     Nastroje --> Vystup["Výstup"]
 ```
-*Obrázek: Směs agentů, koordinovaná orchestrátorem a propojená přes MCP, umožňuje robustní, adaptivní AI řešení.*
+
+_Obrázek: Směs agentů, koordinovaná orchestrátorem a propojená přes MCP, umožňuje robustní, adaptivní AI řešení._
 
 ---
 
@@ -52,7 +53,8 @@ graph TD
     AgentC --> Combiner
     Combiner --> Output["Výstup"]
 ```
-*Obrázek: Více specializovaných agentů zpracovává vstup a jejich výstupy jsou kombinovány pro finální rozhodnutí.*
+
+_Obrázek: Více specializovaných agentů zpracovává vstup a jejich výstupy jsou kombinovány pro finální rozhodnutí._
 
 ---
 
@@ -70,13 +72,14 @@ graph LR
     A3 -- "Zpětná vazba" --> A1
     Agenti --> Emergent["Emergentní schopnost"]
 ```
-*Obrázek: Interakce mezi agenty může vést ke vzniku nových schopností, které žádný jednotlivý agent nemá.*
+
+_Obrázek: Interakce mezi agenty může vést ke vzniku nových schopností, které žádný jednotlivý agent nemá._
 
 ---
 
 Tento přístup se využívá v různých AI aplikacích, včetně zpracování přirozeného jazyka, počítačového vidění, robotiky a rozhodovacích systémů. V některých ohledech je podobný ansámblovým metodám ve strojovém učení, ale často zahrnuje složitější interakce mezi agenty.
 
-Chcete, abych podrobněji rozvedl některý konkrétní aspekt přístupu Směsi agentů? 
+Chcete, abych podrobněji rozvedl některý konkrétní aspekt přístupu Směsi agentů?
 
 ---
 
@@ -97,7 +100,8 @@ graph TD
     AgentC --> Fuze
     Fuze --> Rozhodnuti
 ```
-*Obrázek: Agenti mohou spolupracovat pomocí hlasování, váženého průměru nebo fúzních technik k dosažení rozhodnutí.*
+
+_Obrázek: Agenti mohou spolupracovat pomocí hlasování, váženého průměru nebo fúzních technik k dosažení rozhodnutí._
 
 ---
 
@@ -112,4 +116,5 @@ graph TD
     Podukol2 --> AgentB["Agent B"]
     Podukol3 --> AgentC["Agent C"]
 ```
-*Obrázek: Složitý problém je rozdělen na dílčí úkoly, které jsou přiřazeny specializovaným agentům.* 
+
+_Obrázek: Složitý problém je rozdělen na dílčí úkoly, které jsou přiřazeny specializovaným agentům._

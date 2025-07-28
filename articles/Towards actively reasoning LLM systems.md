@@ -15,19 +15,21 @@ graph TD
     Security --> MCP
     Tools --> Output["Robust AI Solution"]
 ```
-*Figure: Agentic workflows leverage MCP and secure orchestration to deliver robust, adaptive AI solutions.*
+
+_Figure: Agentic workflows leverage MCP and secure orchestration to deliver robust, adaptive AI solutions._
 
 ---
 
 # Towards Actively Reasoning LLM Systems
 
-*By Knut Jägersberg, adapted and summarized for sparrow-ai-tech*
+_By Knut Jägersberg, adapted and summarized for sparrow-ai-tech_
 
 ---
 
 ## Introduction
 
 This article explores the intersection of foundation models, cognitive architectures, and compound systems, aiming for a form of artificial general intelligence (AGI) or "artificial human intelligence." We discuss:
+
 - Requirements of a thinking machine
 - An LLM-based cognitive architecture
 - Active reasoning
@@ -79,7 +81,8 @@ graph TD
     Reasoning --> Action["Action"]
     Action --> Perception
 ```
-*Figure: An LLM-based cognitive architecture cycles through perception, memory, attention, reasoning, and action.*
+
+_Figure: An LLM-based cognitive architecture cycles through perception, memory, attention, reasoning, and action._
 
 ---
 
@@ -94,13 +97,15 @@ graph TD
     Adjustment --> NewGoal["New Goal"]
     NewGoal --> Plan
 ```
-*Figure: Active reasoning involves iterative planning, action, feedback, and goal adjustment.*
+
+_Figure: Active reasoning involves iterative planning, action, feedback, and goal adjustment._
 
 ---
 
 ## Active Reasoning
 
 Active reasoning ensures outputs comply with world knowledge criteria. It involves:
+
 - Propositional reasoning via chains of transformations
 - Self-organizing retrieval and association of facts and templates
 - Differentiation: using existing knowledge to place new combinations into the body of knowledge
@@ -110,6 +115,7 @@ Active reasoning ensures outputs comply with world knowledge criteria. It involv
 ## Example: Learning to Differentiate, Intentionally
 
 The process involves:
+
 1. Self-narration and mind wandering
 2. Goal and motive formation
 3. Goal decomposition by logical inference
@@ -136,4 +142,4 @@ Care cycles are integrated for ethical alignment, ensuring the system reasons ab
 
 ---
 
-*For diagrams and further reading, see the original article on [Hugging Face](https://huggingface.co/blog/KnutJaegersberg/active-reasoning).* 
+_For diagrams and further reading, see the original article on [Hugging Face](https://huggingface.co/blog/KnutJaegersberg/active-reasoning)._

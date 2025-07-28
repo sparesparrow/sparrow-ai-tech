@@ -13,7 +13,8 @@ graph TD
     LLMs --> Agentic["Agentní workflow a MCP"]
     Agentic --> Leadership["Architektura a vedení AI systémů"]
 ```
-*Figure: Foundational AI/ML education is the root of the skill tree leading to agentic AI system leadership.*
+
+_Figure: Foundational AI/ML education is the root of the skill tree leading to agentic AI system leadership._
 
 ---
 
@@ -125,13 +126,14 @@ Dario Amodei představuje novou generaci AI výzkumníků a podnikatelů, kteř�
 ---
 
 **Odkazy:**
+
 - [Anthropic oficiální web](https://www.anthropic.com/)
 - [Claude AI](https://claude.ai/)
 - [Anthropic Research](https://www.anthropic.com/research)
 
 ---
 
-*Článek připraven pro šíření znalostí v české AI komunitě. Sdílejte a inspirujte další!* 
+_Článek připraven pro šíření znalostí v české AI komunitě. Sdílejte a inspirujte další!_
 
 ---
 
@@ -144,7 +146,8 @@ graph TD
     Principy --> Implementace["Implementace v AI systémech"]
     Implementace --> Dopad["Dopad na AI bezpečnost"]
 ```
-*Obrázek: Výzkum vede k publikacím, které formují bezpečnostní principy a jejich implementaci v AI.*
+
+_Obrázek: Výzkum vede k publikacím, které formují bezpečnostní principy a jejich implementaci v AI._
 
 ---
 
@@ -158,4 +161,5 @@ graph TD
     Komunita --> Bezpecnost["Oblast AI bezpečnosti"]
     Claude --> Bezpecnost
 ```
-*Obrázek: Dario Amodei ovlivňuje vývoj AI bezpečnosti skrze Anthropic, Claude a výzkumnou komunitu.* 
+
+_Obrázek: Dario Amodei ovlivňuje vývoj AI bezpečnosti skrze Anthropic, Claude a výzkumnou komunitu._

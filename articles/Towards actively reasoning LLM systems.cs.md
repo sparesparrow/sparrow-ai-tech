@@ -15,19 +15,21 @@ graph TD
     Bezpecnost --> MCP
     Nastroje --> Vystup["Robustní AI řešení"]
 ```
-*Obrázek: Agentní workflow využívá MCP a bezpečnou orchestraci k dosažení robustních, adaptivních AI řešení.*
+
+_Obrázek: Agentní workflow využívá MCP a bezpečnou orchestraci k dosažení robustních, adaptivních AI řešení._
 
 ---
 
 # Směrem k aktivně uvažujícím LLM systémům
 
-*Autor: Knut Jägersberg, adaptováno a shrnuto pro sparrow-ai-tech*
+_Autor: Knut Jägersberg, adaptováno a shrnuto pro sparrow-ai-tech_
 
 ---
 
 ## Úvod
 
 Tento článek zkoumá průsečík foundation modelů, kognitivních architektur a složených systémů s cílem dosáhnout formy umělé obecné inteligence (AGI) nebo „umělé lidské inteligence“. Zabýváme se:
+
 - Požadavky na myslící stroj
 - Kognitivní architekturou založenou na LLM
 - Aktivním uvažováním
@@ -72,6 +74,7 @@ Směrování pozornosti je dosaženo emergentním a strategickým ovlivňování
 ## Aktivní uvažování
 
 Aktivní uvažování zajišťuje, že výstupy odpovídají kritériím znalostí o světě. Zahrnuje:
+
 - Propoziční uvažování prostřednictvím řetězců transformací
 - Samoorganizované vyhledávání a asociaci faktů a šablon
 - Diferenciaci: využití existujících znalostí k zařazení nových kombinací do těla znalostí
@@ -81,6 +84,7 @@ Aktivní uvažování zajišťuje, že výstupy odpovídají kritériím znalost
 ## Příklad: Učení se rozlišovat záměrně
 
 Proces zahrnuje:
+
 1. Sebe-naraci a bloudění mysli
 2. Formování cílů a motivů
 3. Rozklad cílů logickou inferencí
@@ -107,4 +111,4 @@ Cykly péče jsou integrovány pro etické sladění, což zajišťuje, že syst
 
 ---
 
-*Pro diagramy a další čtení viz původní článek na [Hugging Face](https://huggingface.co/blog/KnutJaegersberg/active-reasoning).* 
+_Pro diagramy a další čtení viz původní článek na [Hugging Face](https://huggingface.co/blog/KnutJaegersberg/active-reasoning)._

@@ -49,4 +49,4 @@ MCP Open Source API Platform je základní stavební kámen pro vývoj agentníc
 
 ## Závěr
 
-MCP Open Source API Platform je otevřený, bezpečný a škálovatelný základ pro vývoj agentních AI systémů nové generace. Díky důrazu na interoperabilitu, dokumentaci a komunitní rozvoj je ideální volbou pro firmy i jednotlivce, kteří chtějí stavět na moderních standardech. 
+MCP Open Source API Platform je otevřený, bezpečný a škálovatelný základ pro vývoj agentních AI systémů nové generace. Díky důrazu na interoperabilitu, dokumentaci a komunitní rozvoj je ideální volbou pro firmy i jednotlivce, kteří chtějí stavět na moderních standardech.
