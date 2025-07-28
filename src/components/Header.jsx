@@ -1,51 +1,27 @@
-import { useI18n } from '../i18n';
+import { useI18n } from '../utils/i18n';
+import { link } from '../utils/paths';
 
-const Header = () => {
-  const { t, language, setLanguage } = useI18n();
+export default function Header() {
+  const { language } = useI18n();
+
+  const nav = [
+    { id: 'home', href: link(language, '/') },
+    { id: 'infographic1', href: link(language, '/infographics/Infographic1') },
+    { id: 'infographic2', href: link(language, '/infographics/Infographic2') },
+    { id: 'infographic3', href: link(language, '/infographics/Infographic3') },
+    { id: 'spa', href: link(language, '/infographics/SPA') },
+    { id: 'mermaid-editor', href: link(language, '/mermaid-editor') },
+  ];
+
   return (
-    <nav className="header-nav" data-cy="header-nav">
-      <ul>
-        <li>
-          <a href="#hero" data-cy="nav-hero">
-            {t('header.nav_hero')}
+    <header className="site-header">
+      <nav className="main-nav">
+        {nav.map((item) => (
+          <a key={item.id} href={item.href} className="nav-link">
+            {item.id.replace(/(^\w|-\w)/g, (m) => m.toUpperCase().replace('-', ' '))}
           </a>
-        </li>
-        <li>
-          <a href="#services" data-cy="nav-services">
-            {t('header.nav_services')}
-          </a>
-        </li>
-        <li>
-          <a href="#articles" data-cy="nav-articles">
-            {t('header.nav_articles')}
-          </a>
-        </li>
-        <li>
-          <a href="#about" data-cy="nav-about">
-            {t('header.nav_about')}
-          </a>
-        </li>
-        <li>
-          <a href="#contact" data-cy="nav-contact">
-            {t('header.nav_contact')}
-          </a>
-        </li>
-        <li>
-          <a href={`${import.meta.env.BASE_URL}en/mermaid-editor`} style={{ marginLeft: 16 }}>
-            Mermaid Editor
-          </a>
-        </li>
-      </ul>
-      <div className="lang-switcher" data-cy="lang-switcher">
-        <button onClick={() => setLanguage('en')} disabled={language === 'en'}>
-          EN
-        </button>
-        <button onClick={() => setLanguage('cs')} disabled={language === 'cs'}>
-          CS
-        </button>
-      </div>
-    </nav>
+        ))}
+      </nav>
+    </header>
   );
-};
-
-export default Header;
+}

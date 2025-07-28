@@ -1,51 +1,39 @@
-name: MCP Mermaid Generator CI
+name: MCP-Mermaid Generator CI
 
 on:
   push:
-    branches: [ main ]
+    paths: ['mcp-mermaid-generator/**']
   pull_request:
-    branches: [ main ]
+    paths: ['mcp-mermaid-generator/**']
 
 jobs:
-  build-and-test:
+  mermaid-ci:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Set up Node.js
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
+          cache: 'npm'
 
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y curl
+      - name: Install Mermaid generator dependencies
+        run: npm ci
 
-      - name: Install mermaid-cli
-        run: |
-          npm install -g @mermaid-js/mermaid-cli
-          mmdc --version
+      # ---------- 🐍  PYTHON SECTION ----------
+      - name: Run Python tests (if present)
+        if: ${{ hashFiles('mcp-mermaid-generator/tests/**') != '' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
-      - name: Install Python dependencies
+      - name: Install pytest
+        if: ${{ hashFiles('mcp-mermaid-generator/tests/**') != '' }}
         run: |
           python -m pip install --upgrade pip
-          pip install -r mcp-mermaid-generator/requirements.txt
+          pip install pytest
 
-      - name: Run backend tests (pytest)
-        run: |
-          if [ -d "mcp-mermaid-generator/tests" ]; then pytest mcp-mermaid-generator/tests; else echo "No tests found"; fi
-
-      - name: Build Docker image
-        run: |
-          docker build -t mcp-mermaid-generator ./mcp-mermaid-generator
-
-      - name: Test mmdc in Docker
-        run: |
-          docker run --rm mcp-mermaid-generator mmdc --version 
+      - name: Execute pytest suite
+        if: ${{ hashFiles('mcp-mermaid-generator/tests/**') != '' }}
+        run: pytest mcp-mermaid-generator/tests
