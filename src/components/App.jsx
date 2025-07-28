@@ -294,12 +294,12 @@ const AppContent = () => {
       name: 'UI Screenshot',
       src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`,
       context: 'UI Demo',
-      context: 'Homepage, UI',
+      contextLabel: 'Homepage, UI' ,
     },
     {
       name: 'Feature Screenshot',
       src: `/sparrow-ai-tech/assets/images/screenshot-feature.png`,
-      context: 'Feature Demo',
+      contextLabel: 'Feature Demo' ,
     },
   ];
 

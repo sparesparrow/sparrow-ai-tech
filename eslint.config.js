@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* eslint-env node */
 
 import js from '@eslint/js';
