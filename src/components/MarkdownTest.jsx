@@ -8,13 +8,13 @@ function useQuery() {
   return new URLSearchParams();
 }
 
-const _MarkdownTest = () => {
-  const _query = useQuery();
+const MarkdownTest = () => {
+  const query = useQuery();
   let _src = query.get('src') || '/articles/mcp-prompts.md';
-  
+
   // Normalizace pro lokální dev vs. produkci
   if (typeof window !== 'undefined') {
-    const _isProd = window.location.pathname.startsWith('/sparrow-ai-tech');
+    const isProd = window.location.pathname.startsWith('/sparrow-ai-tech');
     if (src.startsWith('./articles/')) {
       src = isProd
         ? `/sparrow-ai-tech/articles/` + src.slice('./articles/'.length)
@@ -25,9 +25,9 @@ const _MarkdownTest = () => {
       }
     }
   }
-  
-  const _className = query.get('className') || '';
-  
+
+  const className = query.get('className') || '';
+
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">
       <div className="w-full max-w-3xl p-4">

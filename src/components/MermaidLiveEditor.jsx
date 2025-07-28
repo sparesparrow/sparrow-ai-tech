@@ -1,5 +1,5 @@
 /** @jsx React.createElement */
-import React, { useEffect,useState,useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 const DEFAULT_MERMAID = `graph TD
   A[Start] --> B[Choice];
@@ -10,8 +10,8 @@ export default function MermaidLiveEditor() {
   const [code, setCode] = useState(DEFAULT_MERMAID);
   const [svg, setSvg] = useState('');
   const [error, setError] = useState('');
-  const _mermaidRef = useRef(null);
-  const _idRef = useRef(0);
+  const mermaidRef = useRef(null);
+  const idRef = useRef(0);
 
   // Dynamický import Mermaid
   useEffect(() => {
@@ -29,14 +29,14 @@ export default function MermaidLiveEditor() {
 
   // Debounce rendering
   useEffect(() => {
-    const _t = setTimeout(() => render(code), 400);
+    const t = setTimeout(() => render(code), 400);
     return () => clearTimeout(t);
   }, [code]);
 
   async function render(text) {
     if (!text.trim() || !mermaidRef.current) return;
     try {
-      const _id = `m-${++idRef.current}`;
+      const id = `m-${++idRef.current}`;
       const { svg } = await mermaidRef.current.render(_id, _text);
       setSvg(svg);
       setError('');

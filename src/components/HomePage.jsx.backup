@@ -1,4 +1,3 @@
-import { url } from "../../utils/url.js";
 import React, { useState } from 'react';
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import {
@@ -23,7 +22,7 @@ import ReactMarkdown from 'react-markdown';
 // onLanguageChange: (lang) => void
 // prompts: [string, ...]
 
-const PauseBlock = ({ text }) => (
+const _PauseBlock = ({ text }) => (
   <div className="my-12 flex justify-center">
     <div className="w-full max-w-2xl rounded border-l-4 border-yellow-400 bg-yellow-50 p-6 text-center text-lg italic text-yellow-900 shadow dark:bg-yellow-900 dark:text-yellow-100">
       <span className="mb-2 block font-bold text-yellow-700 dark:text-yellow-300">Pause</span>
@@ -33,7 +32,7 @@ const PauseBlock = ({ text }) => (
 );
 
 // Hero Section
-const HeroSection = ({ translations }) => (
+const _HeroSection = ({ translations }) => (
   <section
     id="hero"
     className="flex min-h-screen w-full items-center bg-white pt-20 transition-colors duration-300 dark:bg-slate-900"
@@ -63,7 +62,7 @@ const HeroSection = ({ translations }) => (
             View Project TODOs
           </button>
         </a>
-        <PrimaryButton onClick={() => { }}>{translations.cta_quick_analysis_hero}</PrimaryButton>
+        <PrimaryButton onClick={() => {}}>{translations.cta_quick_analysis_hero}</PrimaryButton>
       </div>
       <a
         href="/sparrow-ai-tech/articles/hexagonal-architecture-in-mcp.md"
@@ -84,8 +83,8 @@ const HeroSection = ({ translations }) => (
 );
 
 // Services Section
-const ServicesSection = ({ translations }) => {
-  const tabs = [
+const _ServicesSection = ({ translations }) => {
+  const _tabs = [
     { key: 'ai', label: translations.service_tab_ai, content: translations.service_tab_ai_content },
     {
       key: 'security',
@@ -109,7 +108,7 @@ const ServicesSection = ({ translations }) => {
     },
   ];
   const [activeTab, setActiveTab] = useState(tabs[0].key);
-  const active = tabs.find((tab) => tab.key === activeTab);
+  const _active = tabs.find((tab) => tab.key === activeTab);
   return (
     <section id="services" className="py-20 md:py-32" data-cy="services-section">
       <div className="container mx-auto px-6">
@@ -141,9 +140,9 @@ const ServicesSection = ({ translations }) => {
 };
 
 // Articles Section
-const ArticlesSection = ({ translations }) => {
+const _ArticlesSection = ({ translations }) => {
   // Example hardcoded articles by category (replace with dynamic import if needed)
-  const categories = [
+  const _categories = [
     {
       name: 'Getting Started',
       articles: [
@@ -253,24 +252,24 @@ const ArticlesSection = ({ translations }) => {
 };
 
 // Infographics Section
-const InfographicsSection = () => {
-  const infographics = [
+const _InfographicsSection = () => {
+  const _infographics = [
     {
       title: 'MCP Ecosystem',
       description:
         'How the sparesparrow open-source toolchain revolutionizes AI agent development.',
-      url: '{url("infographics/Infographic1/")}',
+      url: '/sparrow-ai-tech/infographics/1.html',
     },
     {
       title: 'Human-in-the-Loop AI',
       description:
         'The indispensable partnership between human intuition and artificial intelligence.',
-      url: '{url("infographics/Infographic1/")}',
+      url: '/sparrow-ai-tech/infographics/2.html',
     },
     {
       title: 'Hexagonal Architecture',
       description: 'How the Ports & Adapters pattern protects your application core.',
-      url: '{url("infographics/Infographic1/")}',
+      url: '/sparrow-ai-tech/infographics/3.html',
     },
     {
       title: 'ElevenLabs Widget Demo',
@@ -312,8 +311,8 @@ const InfographicsSection = () => {
 };
 
 // Research Highlights Section
-const ResearchHighlightsSection = () => {
-  const images = [
+const _ResearchHighlightsSection = () => {
+  const _images = [
     {
       src: '/sparrow-ai-tech/assets/images/2212.08073v1-img-002.png',
       alt: 'Diagram showing the hexagonal architecture of the MCP server.',
@@ -404,7 +403,7 @@ const ResearchHighlightsSection = () => {
 };
 
 // Add after ArticlesSection, before AboutSection
-const PopularReposSection = () => {
+const _PopularReposSection = () => {
   const [sortBy, setSortBy] = React.useState('stars');
   const [repos, setRepos] = React.useState([
     {
@@ -446,11 +445,11 @@ const PopularReposSection = () => {
     Promise.all(
       repos.map(async (repo) => {
         try {
-          const res = await (typeof globalThis.fetch !== 'undefined'
+          const _res = await (typeof globalThis.fetch !== 'undefined'
             ? globalThis.fetch(`https://api.github.com/repos/sparesparrow/${repo.name}`)
             : Promise.reject('Failed to fetch'));
           if (!res.ok) throw new Error('Failed to fetch');
-          const data = await res.json();
+          const _data = await res.json();
           return { ...repo, stars: data.stargazers_count, forks: data.forks_count };
         } catch {
           return repo;
@@ -463,7 +462,7 @@ const PopularReposSection = () => {
       })
       .catch(() => setError('Failed to load repo data'));
   }, []);
-  const sorted = [...repos].sort((_a, _b) =>
+  const _sorted = [...repos].sort((_a, _b) =>
     sortBy === 'stars' ? b.stars - a.stars : b.forks - a.forks
   );
   return (
@@ -513,7 +512,7 @@ const PopularReposSection = () => {
   );
 };
 
-const EXAMPLES = [
+const _EXAMPLES = [
   {
     label: 'Flowchart',
     code: `graph TD\nA[Start] --> B{Is it working?}\nB -- Yes --> C[Great!]\nB -- No --> D[Debug]\nD --> B`,
@@ -528,7 +527,7 @@ const EXAMPLES = [
   },
 ];
 
-const EditableMermaidDemoSection = () => {
+const _EditableMermaidDemoSection = () => {
   const [code, setCode] = React.useState(EXAMPLES[0].code);
   const [svg, setSvg] = React.useState('');
   const [error, setError] = React.useState(null);
@@ -553,23 +552,23 @@ const EditableMermaidDemoSection = () => {
       setSvg('');
     }
   }, [code]);
-  const handleExample = (label) => {
-    const ex = EXAMPLES.find((_e) => e.label === label);
+  const _handleExample = (label) => {
+    const _ex = EXAMPLES.find((_e) => e.label === label);
     if (ex) {
       setExample(label);
       setCode(ex.code);
     }
   };
-  const handleSave = async () => {
+  const _handleSave = async () => {
     setSaving(true);
     setToast(null);
     try {
-      const res = await (typeof globalThis.fetch !== 'undefined'
+      const _res = await (typeof globalThis.fetch !== 'undefined'
         ? globalThis.fetch('/sparrow-ai-tech/api/diagrams', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ code }),
-        })
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code }),
+          })
         : Promise.reject('Failed to save'));
       if (!res.ok) throw new Error('Failed to save');
       setToast('Diagram saved!');
@@ -638,7 +637,7 @@ const EditableMermaidDemoSection = () => {
   );
 };
 
-const SavedDiagramsGallery = () => {
+const _SavedDiagramsGallery = () => {
   const [diagrams, setDiagrams] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -657,7 +656,7 @@ const SavedDiagramsGallery = () => {
       .catch(() => setError('Failed to load diagrams'))
       .finally(() => setLoading(false));
   }, [deleting]);
-  const handleDelete = async (id) => {
+  const _handleDelete = async (id) => {
     setDeleting(id);
     try {
       if (typeof globalThis.fetch !== 'undefined') {
@@ -669,12 +668,12 @@ const SavedDiagramsGallery = () => {
     }
     setDeleting(null);
   };
-  const handleSaveOrder = async () => {
+  const _handleSaveOrder = async () => {
     setSavingOrder(true);
     setOrderToast(null);
     try {
       if (typeof globalThis.fetch !== 'undefined') {
-        const res = await globalThis.fetch('/sparrow-ai-tech/api/diagrams/reorder', {
+        const _res = await globalThis.fetch('/sparrow-ai-tech/api/diagrams/reorder', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ order: diagrams.map((d) => d.id) }),
@@ -697,7 +696,7 @@ const SavedDiagramsGallery = () => {
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
       id: diagram.id,
     });
-    const style = {
+    const _style = {
       transform: CSS.Transform.toString(transform),
       transition,
       zIndex: isDragging ? 10 : 1,
@@ -725,7 +724,7 @@ const SavedDiagramsGallery = () => {
           dangerouslySetInnerHTML={{
             __html:
               typeof globalThis.mermaid !== 'undefined'
-                ? globalThis.mermaid.render(`gallery-${diagram.id}`, diagram.code, () => { })
+                ? globalThis.mermaid.render(`gallery-${diagram.id}`, diagram.code, () => {})
                 : '',
           }}
         />
@@ -736,11 +735,11 @@ const SavedDiagramsGallery = () => {
     );
   }
 
-  const handleDragEnd = (event) => {
+  const _handleDragEnd = (event) => {
     const { active, over } = event;
     if (active.id !== over?.id) {
-      const oldIndex = diagrams.findIndex((d) => d.id === active.id);
-      const newIndex = diagrams.findIndex((d) => d.id === over.id);
+      const _oldIndex = diagrams.findIndex((d) => d.id === active.id);
+      const _newIndex = diagrams.findIndex((d) => d.id === over.id);
       setDiagrams((items) => arrayMove(items, oldIndex, newIndex));
     }
   };
@@ -794,8 +793,8 @@ const SavedDiagramsGallery = () => {
 };
 
 // About Section
-const AboutSection = ({ translations }) => {
-  const steps = [
+const _AboutSection = ({ translations }) => {
+  const _steps = [
     translations.process_step1,
     translations.process_step2,
     translations.process_step3,
@@ -850,11 +849,11 @@ const AboutSection = ({ translations }) => {
 };
 
 // Contact Section
-const ContactSection = ({ translations }) => {
+const _ContactSection = ({ translations }) => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
-  const handleChange = (_e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const handleSubmit = (_e) => {
+  const _handleChange = (_e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const _handleSubmit = (_e) => {
     e.preventDefault();
     setSubmitted(true);
   };
@@ -947,31 +946,31 @@ const ContactSection = ({ translations }) => {
   );
 };
 
-const DownloadPdfButton = () => {
+const _DownloadPdfButton = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   // Polyfills and imports for SSR/browser compatibility
 
-  const handleDownload = async () => {
+  const _handleDownload = async () => {
     setLoading(true);
     setError(null);
     try {
-      const html =
+      const _html =
         typeof globalThis.document !== 'undefined'
           ? globalThis.document.documentElement.outerHTML
           : '';
-      const res = await (typeof globalThis.fetch !== 'undefined'
+      const _res = await (typeof globalThis.fetch !== 'undefined'
         ? globalThis.fetch('/api/pdf', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ html }),
-        })
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ html }),
+          })
         : Promise.reject('Failed to generate PDF'));
       if (!res.ok) throw new Error('Failed to generate PDF');
-      const blob = await res.blob();
-      const url = typeof globalThis.URL !== 'undefined' ? globalThis.URL.createObjectURL(blob) : '';
-      const a =
+      const _blob = await res.blob();
+      const _url = typeof globalThis.URL !== 'undefined' ? globalThis.URL.createObjectURL(blob) : '';
+      const _a =
         typeof globalThis.document !== 'undefined' ? globalThis.document.createElement('a') : null;
       if (a) {
         a.href = url;
@@ -1008,7 +1007,7 @@ const DownloadPdfButton = () => {
   );
 };
 
-const ChatbotModal = ({ open, onClose }) => {
+const _ChatbotModal = ({ open, onClose }) => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -1016,21 +1015,21 @@ const ChatbotModal = ({ open, onClose }) => {
 
   // Polyfills and imports for SSR/browser compatibility
 
-  const handleSend = async () => {
+  const _handleSend = async () => {
     if (!input.trim()) return;
     setLoading(true);
     setError(null);
     setMessages((msgs) => [...msgs, { from: 'user', text: input }]);
     try {
-      const res = await (typeof globalThis.fetch !== 'undefined'
+      const _res = await (typeof globalThis.fetch !== 'undefined'
         ? globalThis.fetch('/api/chatbot', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: input }),
-        })
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: input }),
+          })
         : Promise.reject('Failed to get reply'));
       if (!res.ok) throw new Error('Failed to get reply');
-      const data = await res.json();
+      const _data = await res.json();
       setMessages((msgs) => [...msgs, { from: 'bot', text: data.reply }]);
       setInput('');
     } catch {
@@ -1112,7 +1111,7 @@ const ChatbotModal = ({ open, onClose }) => {
   );
 };
 
-const ChatbotButton = ({ onClick }) => (
+const _ChatbotButton = ({ onClick }) => (
   <button
     onClick={onClick}
     data-cy="open-chatbot-btn"
@@ -1137,14 +1136,14 @@ const ChatbotButton = ({ onClick }) => (
   </button>
 );
 
-const ArticleModal = ({ open, onClose, articleUrl, title }) => {
+const _ArticleModal = ({ open, onClose, articleUrl, title }) => {
   const [content, setContent] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
   // Polyfills and imports for SSR/browser compatibility
 
-  const isBrowser = typeof globalThis !== 'undefined';
+  const _isBrowser = typeof globalThis !== 'undefined';
 
   React.useEffect(() => {
     if (!open || !articleUrl || !isBrowser) return;
@@ -1178,14 +1177,14 @@ const ArticleModal = ({ open, onClose, articleUrl, title }) => {
   );
 };
 
-const HomePage = ({
+const _HomePage = ({
   translations = {},
   language = 'en',
-  onLanguageChange = () => { },
+  onLanguageChange = () => {},
   prompts = [],
 }) => {
   // Defensive: Ensure translations.nav exists and has expected keys
-  const nav = translations.nav || {
+  const _nav = translations.nav || {
     services: 'Services',
     articles: 'Articles',
     about: 'About',
@@ -1193,8 +1192,8 @@ const HomePage = ({
   };
 
   // Helper to get divider by index (cycle if not enough)
-  const getDivider = (_idx) => {
-    const d = decorativeTexts[idx % decorativeTexts.length];
+  const _getDivider = (_idx) => {
+    const _d = decorativeTexts[idx % decorativeTexts.length];
     return (
       <DecorativeDivider
         key={`divider-${idx}`}
@@ -1206,7 +1205,7 @@ const HomePage = ({
   };
 
   // Sections with dividers between them
-  const sections = [
+  const _sections = [
     <HeroSection key="hero" translations={translations} />,
     getDivider(0),
     <ServicesSection key="services" translations={translations} />,

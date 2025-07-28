@@ -18,7 +18,7 @@ function createSparkle() {
 }
 
 export default function Sparkles({ children }) {
-  const _sparkles = useRef(Array.from({ length: SPARKLE_COUNT }, createSparkle));
+  const sparkles = useRef(Array.from({ length: SPARKLE_COUNT }, createSparkle));
 
   return (
     <div className="sparkles-wrapper" style={{ position: 'relative', display: 'inline-block' }}>

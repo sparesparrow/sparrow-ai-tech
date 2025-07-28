@@ -17,7 +17,7 @@ export default async function handler(_req, _res) {
     return;
   }
 
-  const _apiKey = process.env.ELEVENLABS_API_KEY;
+  const apiKey = process.env.ELEVENLABS_API_KEY;
   if (!apiKey) {
     res.status(500).json({ _error: 'Server misconfiguration: missing API key' });
     return;
@@ -25,8 +25,8 @@ export default async function handler(_req, _res) {
 
   try {
     // Prepare ElevenLabs API request
-    const _elevenLabsUrl = `https://api.elevenlabs.io/v1/text-to-speech/${voice_id || 'default'}`;
-    const _elevenLabsRes = await globalThis.fetch(elevenLabsUrl, {
+    const elevenLabsUrl = `https://api.elevenlabs.io/v1/text-to-speech/${voice_id || 'default'}`;
+    const elevenLabsRes = await globalThis.fetch(elevenLabsUrl, {
       method: 'POST',
       headers: {
         'xi-api-key': apiKey,
@@ -37,7 +37,7 @@ export default async function handler(_req, _res) {
     });
 
     if (!elevenLabsRes.ok) {
-      const _err = await elevenLabsRes.text();
+      const err = await elevenLabsRes.text();
       res.status(elevenLabsRes.status).json({ _error: _err });
       return;
     }

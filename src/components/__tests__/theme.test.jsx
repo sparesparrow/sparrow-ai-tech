@@ -1,5 +1,5 @@
 /** @jsx React.createElement */
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { jest } from '@jest/globals';
 
@@ -10,17 +10,17 @@ global.window.matchMedia =
   function () {
     return {
       matches: false,
-      addEventListener: () => {},
-      removeEventListener: () => {},
-      addListener: () => {},
-      removeListener: () => {},
-      dispatchEvent: () => {},
+      addEventListener: () => { },
+      removeEventListener: () => { },
+      addListener: () => { },
+      removeListener: () => { },
+      dispatchEvent: () => { },
     };
   };
 
-const _ThemeToggle = () => {
+const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(() => {
-    const _theme = localStorage.getItem('theme');
+    const theme = localStorage.getItem('theme');
     if (theme) return theme === 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
@@ -52,7 +52,7 @@ describe('ThemeToggle', () => {
   });
   it('toggles dark mode and persists', () => {
     render(<ThemeToggle />);
-    const _btn = document.querySelector('[data-testid="toggle"]');
+    const btn = document.querySelector('[data-testid="toggle"]');
     fireEvent.click(btn);
     expect(document.documentElement.classList.contains('dark')).toBe(false);
     expect(localStorage.getItem('theme')).toBe('light');

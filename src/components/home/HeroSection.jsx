@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const _HeroSection = ({ content }) => (
+const HeroSection = ({ content }) => (
   <motion.section
     id="home"
     className="py-16 md:py-24"

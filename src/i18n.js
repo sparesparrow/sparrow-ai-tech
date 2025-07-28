@@ -1,33 +1,34 @@
-import React, { createContext,useContext,useEffect,useState } from 'react';
+import { url, getBaseUrl } from "./utils/url.js";
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
-const _I18nContext = createContext();
+const I18nContext = createContext();
 
-const _loadTranslations = async (lang) => {
-  const _res = await fetch(`/locales/${lang}/common.json`);
-  if (!res.ok) throw new Error('Failed to load translations');
-  return res.json();
+const loadTranslations = async (lang) => {
+  const res = await fetch(`/locales/${lang}/common.json`);
+  if (!_res.ok) throw new Error('Failed to load translations');
+  return _res.json();
 };
 
 export function I18nProvider({ children, defaultLang = 'en' }) {
   const [language, setLanguage] = useState(defaultLang);
   const [translations, setTranslations] = useState({});
   useEffect(() => {
-    loadTranslations(language)
+    _loadTranslations(language)
       .then(setTranslations)
       .catch(() => setTranslations({}));
   }, [language]);
-  const _t = (_key) => {
+  const t = (_key) => {
     return (
-      key
+      _key
         .split('.')
-        .reduce((_obj, _k) => (obj && obj[k] !== undefined ? obj[k] : undefined), translations) || key
+        .reduce((_obj, _k) => (obj && obj[k] !== undefined ? obj[k] : undefined), translations) || _key
     );
   };
   return (
-    <I18nContext.Provider value={{ language, setLanguage, t }}>{children}</I18nContext.Provider>
+    <_I18nContext.Provider value={{ language, setLanguage, t }}>{children}</_I18nContext.Provider>
   );
 }
 
 export function useI18n() {
-  return useContext(I18nContext);
+  return useContext(_I18nContext);
 }

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const _SecondaryButton = React.forwardRef(
+const SecondaryButton = React.forwardRef(
   ({ children, className = '', selected = false, type = 'button', ...props }, ref) => (
     <button
       ref={ref}

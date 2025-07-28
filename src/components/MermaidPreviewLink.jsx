@@ -1,9 +1,9 @@
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
-const _isMermaidFile = (url) => /\.(mmd|mermaid)$/i.test(url);
+const isMermaidFile = (url) => /\.(mmd|mermaid)$/i.test(url);
 
-const _MermaidPreviewLink = ({ href, children, ...props }) => {
+const MermaidPreviewLink = ({ href, children, ...props }) => {
   if (isMermaidFile(href)) {
     return (
       <Tippy

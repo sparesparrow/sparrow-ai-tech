@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
+import { url } from '../../utils/url.js';
 
 // Chart.js is loaded via CDN in the HTML version, but here we use dynamic import for SSR safety
-const _useChart = (_canvasId, _config) => {
+const useChart = (canvasId, config) => {
   useEffect(() => {
     let chartInstance;
     let Chart;
-    let _destroyed = false;
+    let destroyed = false;
     import('chart.js/auto').then((mod) => {
       Chart = mod.default;
       if (!destroyed) {
-        const _ctx = document.getElementById(canvasId).getContext('2d');
-        chartInstance = new Chart(_ctx, _config);
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        chartInstance = new Chart(_ctx, config);
       }
     });
     return () => {
@@ -20,7 +21,7 @@ const _useChart = (_canvasId, _config) => {
   }, [canvasId, config]);
 };
 
-const _Infographic1 = () => {
+const Infographic1 = () => {
   // Chart configs
   useChart('promptRotChart', {
     type: 'doughnut',
@@ -70,13 +71,13 @@ const _Infographic1 = () => {
           callbacks: {
             title: (items) => items[0].label,
             label: (ctx) => {
-              const _toolRoles = {
+              const toolRoles = {
                 'mcp-prompts': 'Prompt Management & Versioning',
                 'mcp_project,orchestrator': 'Project Scaffolding & Automation',
                 'mcp-router': 'Intelligent Workflow Orchestration',
                 'mcp-prompts-rs': 'High-Performance Rust Rewrite',
               };
-              let _rawLabel = ctx.label;
+              let rawLabel = ctx.label;
               if (Array.isArray(rawLabel)) rawLabel = rawLabel.join('');
               rawLabel = rawLabel.replace(/,/g, '');
               return toolRoles[rawLabel] || 'Role';

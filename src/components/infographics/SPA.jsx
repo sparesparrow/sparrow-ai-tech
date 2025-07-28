@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 // NOTE: Main homepage logic migrated to HomePage.jsx. This file is now for infographics/SPA only.
 import Chart from 'chart.js/auto';
+import { url } from '../../utils/url.js';
 
-const __ecosystemData = [
+const ecosystemData = [
   {
     name: 'mcp-prompts',
     description:
@@ -34,14 +35,14 @@ const __ecosystemData = [
   },
 ];
 
-const __statusColors = {
+const statusColors = {
   amber: 'bg-amber-100 text-amber-800',
   sky: 'bg-sky-100 text-sky-800',
   rose: 'bg-rose-100 text-rose-800',
   emerald: 'bg-emerald-100 text-emerald-800',
 };
 
-const _navLinks = [
+const navLinks = [
   { href: '#introduction', label: 'Introduction' },
   { href: '#strategy', label: 'Strategy' },
   { href: '#ecosystem', label: 'Ecosystem' },
@@ -50,14 +51,14 @@ const _navLinks = [
 ];
 
 export default function SPAInfographic() {
-  const _ssgChartRef = useRef(null);
-  const _cssChartRef = useRef(null);
-  const _mobileMenuRef = useRef(null);
-  const _headerRef = useRef(null);
+  const ssgChartRef = useRef(null);
+  const cssChartRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
     // Chart.js SSG
-    const _ssgChart = new Chart(ssgChartRef.current, {
+    const ssgChart = new Chart(ssgChartRef.current, {
       type: 'bar',
       data: {
         labels: ['Astro', 'Hugo', 'Next.js', 'Jekyll'],
@@ -106,7 +107,7 @@ export default function SPAInfographic() {
       },
     });
     // Chart.js CSS
-    const _cssChart = new Chart(cssChartRef.current, {
+    const cssChart = new Chart(cssChartRef.current, {
       type: 'bar',
       data: {
         labels: ['Tailwind CSS', 'Bootstrap'],
@@ -163,18 +164,18 @@ export default function SPAInfographic() {
 
   // Scrollspy for nav highlighting
   useEffect(() => {
-    const _handleScroll = () => {
-      const _headerHeight = headerRef.current.offsetHeight;
-      const _sections = Array.from(document.querySelectorAll('section'));
+    const handleScroll = () => {
+      const headerHeight = headerRef.current.offsetHeight;
+      const sections = Array.from(document.querySelectorAll('section'));
       let _current = '';
       sections.forEach((section) => {
-        const _sectionTop = section.offsetTop - headerHeight - 20;
+        const sectionTop = section.offsetTop - headerHeight - 20;
         if (window.pageYOffset >= sectionTop) {
           current = section.getAttribute('id');
         }
       });
       navLinks.forEach((link) => {
-        const _el = document.querySelector(`a[href='${link.href}']`);
+        const el = document.querySelector(`a[href='${link.href}']`);
         if (el) {
           el.classList.remove('active');
           if (link.href === `#${current}`) {
@@ -188,7 +189,7 @@ export default function SPAInfographic() {
   }, []);
 
   // Mobile menu toggle
-  const __handleMobileMenu = () => {
+  const handleMobileMenu = () => {
     if (mobileMenuRef.current) {
       mobileMenuRef.current.classList.toggle('hidden');
     }

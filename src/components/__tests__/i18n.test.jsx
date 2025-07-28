@@ -5,7 +5,7 @@ import { I18nProvider, useI18n } from '../../i18n.jsx';
 import React, { _useState as __useState } from 'react';
 import Header from '../Header.jsx';
 
-const _mockTranslations = {
+const mockTranslations = {
   en: {
     header: {
       nav_projects: 'Projects',
@@ -41,7 +41,7 @@ afterEach(() => {
 
 // Remove TestI18nProvider and use the real I18nProvider with fetch mocking
 
-const __TestComponent = () => {
+const TestComponent = () => {
   const { t, language, setLanguage } = useI18n();
   return (
     <div>
@@ -84,7 +84,7 @@ describe('I18nProvider', () => {
     await screen.findByText('Projects');
 
     // Step 2: Click CS
-    const _csButton = await screen.findByRole('button', { name: 'CS' });
+    const csButton = await screen.findByRole('button', { name: 'CS' });
     fireEvent.click(csButton);
 
     // Debug: Output the DOM after clicking CS

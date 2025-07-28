@@ -1,9 +1,9 @@
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
-const _isImageUrl = (url) => /\.(png|jpe?g|gif|svg|webp)$/i.test(url);
+const isImageUrl = (url) => /\.(png|jpe?g|gif|svg|webp)$/i.test(url);
 
-const _ImagePreviewLink = ({ href, children, ...props }) => {
+const ImagePreviewLink = ({ href, children, ...props }) => {
   if (isImageUrl(href)) {
     // If href is not external or already starts with /sparrow-ai-tech/, prefix it
     let _imgSrc = href;

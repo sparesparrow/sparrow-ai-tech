@@ -13,7 +13,7 @@ import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 import Modal from './ui/Modal.jsx';
 
-const _AppContent = () => {
+const AppContent = () => {
   const { language, setLanguage, t } = useI18n();
   const [_content, setContent] = useState(t('siteData.en'));
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +21,7 @@ const _AppContent = () => {
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
-      const _theme = localStorage.getItem('theme');
+      const theme = localStorage.getItem('theme');
       if (theme) return theme === 'dark';
       return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
@@ -47,8 +47,8 @@ const _AppContent = () => {
   }, [isDark]);
 
   useEffect(() => {
-    const _mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const _handler = (_e) => {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const handler = (_e) => {
       if (!localStorage.getItem('theme')) setIsDark(e.matches);
     };
     mq.addEventListener ? mq.addEventListener('change', handler) : mq.addEventListener('change', handler)(handler);
@@ -59,20 +59,20 @@ const _AppContent = () => {
     };
   }, []);
 
-  const _toggleDark = () => setIsDark((d) => !d);
+  const toggleDark = () => setIsDark((d) => !d);
 
   useEffect(() => {
     setContent(t('siteData')[language]);
     document.documentElement.lang = language;
     // Dummy API call for Cypress test (delayed for Cypress stub)
     setTimeout(() => {
-      fetch('/sparrow-ai-tech/api/test').catch(() => {});
+      fetch('/sparrow-ai-tech/api/test').catch(() => { });
     }, 500);
   }, [language]);
 
-  const _toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const _MenuIcon = () => (
+  const MenuIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className="h-6 w-6"
@@ -88,7 +88,7 @@ const _AppContent = () => {
       />
     </svg>
   );
-  const _CloseIcon = () => (
+  const CloseIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className="h-6 w-6"
@@ -99,7 +99,7 @@ const _AppContent = () => {
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
     </svg>
   );
-  const _ExternalLinkIcon = () => (
+  const ExternalLinkIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -117,7 +117,7 @@ const _AppContent = () => {
       <line x1="10" y1="14" x2="21" y2="3"></line>
     </svg>
   );
-  const _GithubIcon = () => (
+  const GithubIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -135,7 +135,7 @@ const _AppContent = () => {
   );
 
   // 1. Define a new, richer content structure for articles, infographics, and _visuals
-  const _categorizedArticles = [
+  const categorizedArticles = [
     {
       category: 'Architecture',
       articles: [
@@ -249,7 +249,7 @@ const _AppContent = () => {
     },
   ];
 
-  const _infographicsReact = [
+  const infographicsReact = [
     {
       title: 'MCP Ecosystem (React)',
       route: '/sparrow-ai-tech/infographics/1',
@@ -273,7 +273,7 @@ const _AppContent = () => {
       description: 'Interactive, visually rich SPA: strategy, tech, ecosystem, and CI/CD pipeline.',
     },
   ];
-  const _infographicsHtml = [
+  const infographicsHtml = [
     { title: 'MCP Ecosystem (HTML)', url: `{url("infographics/Infographic1/")}` },
     { title: 'Human-in-the-Loop AI (HTML)', url: `{url("infographics/Infographic1/")}` },
     { title: 'Hexagonal Architecture (HTML)', url: `{url("infographics/Infographic1/")}` },
@@ -283,22 +283,22 @@ const _AppContent = () => {
       url: `/sparrow-ai-tech/infographics/elevenlabs-widget.html`,
     },
   ];
-  const __visuals = [
-  {
-    name: 'MCP Ecosystem Diagram',
-    src: `${import.meta.env.BASE_URL}assets/images/mcp-ecosystem-diagram.png`,
-    contextLabel: 'Ecosystem, Architecture',
-  },
-  {
-    name: 'UI Screenshot',
-    src: `${import.meta.env.BASE_URL}assets/images/screenshot-ui.png`,
-    contextLabel: 'Homepage, UI',
-  },
-  {
-    name: 'Feature Screenshot',
-    src: `${import.meta.env.BASE_URL}assets/images/screenshot-feature.png`,
-    contextLabel: 'Feature Demo',
-  }
+  const visuals = [
+    {
+      name: 'MCP Ecosystem Diagram',
+      src: `${import.meta.env.BASE_URL}assets/images/mcp-ecosystem-diagram.png`,
+      contextLabel: 'Ecosystem, Architecture',
+    },
+    {
+      name: 'UI Screenshot',
+      src: `${import.meta.env.BASE_URL}assets/images/screenshot-ui.png`,
+      contextLabel: 'Homepage, UI',
+    },
+    {
+      name: 'Feature Screenshot',
+      src: `${import.meta.env.BASE_URL}assets/images/screenshot-feature.png`,
+      contextLabel: 'Feature Demo',
+    }
   ];
 
   // Fetch article content when modal opens
@@ -319,7 +319,7 @@ const _AppContent = () => {
 
   React.useEffect(() => {
     if (!articleModalOpen) return;
-    const _onKeyDown = (_e) => {
+    const onKeyDown = (_e) => {
       if (e.key === 'Escape') setArticleModalOpen(false);
     };
     window.addEventListener('keydown', onKeyDown);
@@ -994,7 +994,7 @@ const _AppContent = () => {
                               <img
                                 src={
                                   vis.src.startsWith('http') ||
-                                  vis.src.startsWith('/sparrow-ai-tech/')
+                                    vis.src.startsWith('/sparrow-ai-tech/')
                                     ? vis.src
                                     : `/sparrow-ai-tech/${vis.src.replace(/^\/+/, '')}`
                                 }
@@ -1044,7 +1044,7 @@ const _AppContent = () => {
                           ...slide,
                           src:
                             slide.src.startsWith('http') ||
-                            slide.src.startsWith('/sparrow-ai-tech/')
+                              slide.src.startsWith('/sparrow-ai-tech/')
                               ? slide.src
                               : `/sparrow-ai-tech/${slide.src.replace(/^\/+/, '')}`,
                         }))}
@@ -1321,7 +1321,7 @@ const _AppContent = () => {
   );
 };
 
-const _App = () => (
+const App = () => (
   <I18nProvider>
     <AppContent />
   </I18nProvider>

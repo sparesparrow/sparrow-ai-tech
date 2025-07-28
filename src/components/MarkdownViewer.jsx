@@ -1,5 +1,5 @@
 /** @jsx React.createElement */
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -7,15 +7,15 @@ import MermaidPreviewLink from './MermaidPreviewLink.jsx';
 import ImagePreviewLink from './ImagePreviewLink.jsx';
 import GithubRepoTooltip from './GithubRepoTooltip.jsx';
 
-const _Mermaid = () => (
+const Mermaid = () => (
   <div className="mermaid-diagram text-red-500">Mermaid diagrams are not supported.</div>
 );
 
-const _EditableMermaid = () => (
+const EditableMermaid = () => (
   <div className="mermaid-diagram text-red-500">Editable Mermaid diagrams are not supported.</div>
 );
 
-const _MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
+const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

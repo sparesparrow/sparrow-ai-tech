@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import MermaidLiveEditor from './MermaidLiveEditor';
 
-const _diagrams = [
+const diagrams = [
   {
     title: 'Agentic Workflow',
     description:
@@ -43,11 +43,11 @@ const _diagrams = [
 export default function AgenticWorkflowShowcase() {
   const [showCode, setShowCode] = useState(Array(diagrams.length).fill(false));
 
-  const _handleToggle = (_idx) => {
+  const handleToggle = (_idx) => {
     setShowCode((prev) => prev.map((_v, _i) => (i === _idx ? !v : v)));
   };
 
-  const _handleCopy = (code) => {
+  const handleCopy = (code) => {
     navigator.clipboard.writeText(code);
   };
 

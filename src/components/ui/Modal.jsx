@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 
-const _Modal = ({ open, onClose, title, children, className = '' }) => {
-  const _modalRef = useRef(null);
+const Modal = ({ open, onClose, title, children, className = '' }) => {
+  const modalRef = useRef(null);
 
   // Focus trap
   useEffect(() => {
     if (!open) return;
-    const _previouslyFocused = document.activeElement;
+    const previouslyFocused = document.activeElement;
     if (modalRef.current) modalRef.current.focus();
     return () => {
       if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
@@ -16,7 +16,7 @@ const _Modal = ({ open, onClose, title, children, className = '' }) => {
   // ESC to close
   useEffect(() => {
     if (!open) return;
-    const _onKeyDown = (_e) => {
+    const onKeyDown = (_e) => {
       if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', onKeyDown);

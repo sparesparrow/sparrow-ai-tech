@@ -42,7 +42,7 @@ function switchToSection(sectionId) {
   });
 
   document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
-  currentSection = sectionId;
+  _currentSection = sectionId;
 }
 
 // Character counters

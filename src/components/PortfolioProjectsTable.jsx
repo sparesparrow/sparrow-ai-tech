@@ -1,5 +1,5 @@
 
-const _projects = [
+const projects = [
   {
     name: 'mcp-project-orchestrator',
     tech: 'Python, Poetry, Mermaid, Ruff, mypy',
