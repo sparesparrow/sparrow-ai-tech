@@ -41,6 +41,7 @@ export default [
       },
     },
     rules: {
+      'no-useless-escape': 'warn',
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       '@typescript-eslint/no-unused-vars': [
         'warn',
@@ -68,6 +69,7 @@ export default [
       },
     },
     rules: {
+      'no-useless-escape': 'warn',
       ...cypress.configs.recommended.rules,
       'cypress/no-unnecessary-waiting': 'warn',
       'cypress/unsafe-to-chain-command': 'warn',
