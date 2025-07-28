@@ -1,4 +1,3 @@
-import { getBaseUrl, assetUrl, pageUrl } from "../utils/url.js";
 /**
  * Centralized URL utilities for sparrow-ai-tech
  * Single source of truth for all URL handling
@@ -12,7 +11,7 @@ export const BASE_URL = '/sparrow-ai-tech';
  */
 export function getBaseUrl() {
   // V produkci nebo pokud není nastaveno, použij GitHub Pages base
-  return getBaseUrl() || BASE_URL;
+  return import.meta.env.BASE_URL || BASE_URL;
 }
 
 /**
@@ -30,7 +29,7 @@ export function assetUrl(path) {
 export function pageUrl(path, lang = '') {
   const base = getBaseUrl();
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  
+
   if (lang && lang !== 'cs') {
     return `${base}/${lang}/${cleanPath}`;
   }
