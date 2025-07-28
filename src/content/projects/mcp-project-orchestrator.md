@@ -2,8 +2,9 @@
 title: 'mcp-project-orchestrator'
 description: 'Documentation for the mcp-project-orchestrator project.'
 repo_url: 'https://github.com/sparesparrow/mcp-project-orchestrator.git'
-pubDate: '2025-07-27'
+pubDate: '2025-07-28'
 ---
+
 
 # MCP Project Orchestrator
 
@@ -156,26 +157,22 @@ mcp-project-orchestrator/
 ## Development
 
 1. Clone the repository:
-
 ```bash
 git clone https://github.com/yourusername/mcp-project-orchestrator.git
 cd mcp-project-orchestrator
 ```
 
 2. Install dependencies:
-
 ```bash
 poetry install
 ```
 
 3. Run tests:
-
 ```bash
 poetry run pytest
 ```
 
 4. Run linting:
-
 ```bash
 poetry run ruff check .
 poetry run mypy src/mcp_project_orchestrator
