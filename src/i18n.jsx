@@ -1,10 +1,9 @@
-import { url, getBaseUrl } from "./utils/url.js";
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const I18nContext = createContext();
 
 const loadTranslations = async (lang) => {
-  const res = await fetch(`/sparrow-ai-tech/locales/${lang}/common.json`);
+  const res = await globalThis.fetch(`/sparrow-ai-tech/locales/${lang}/common.json`);
   if (!res.ok) throw new Error('Failed to load translations');
   return res.json();
 };
@@ -17,11 +16,11 @@ export function I18nProvider({ children, defaultLang = 'en' }) {
       .then(setTranslations)
       .catch(() => setTranslations({}));
   }, [language]);
-  const t = (_key) => {
+  const t = (key) => {
     return (
       key
         .split('.')
-        .reduce((_obj, _k) => (obj && obj[k] !== undefined ? obj[k] : undefined), translations) || key
+        .reduce((obj, k) => (obj && obj[k] !== undefined ? obj[k] : undefined), translations) || key
     );
   };
   return (

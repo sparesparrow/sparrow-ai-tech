@@ -94,7 +94,7 @@ export default function SPAInfographic() {
             bodyFont: { size: 14 },
             callbacks: {
               label: function (context) {
-                let _label = context.dataset.label || '';
+                let label = context.dataset.label || '';
                 if (label) {
                   label += ': ';
                 }
@@ -144,7 +144,7 @@ export default function SPAInfographic() {
             bodyFont: { size: 14 },
             callbacks: {
               label: function (context) {
-                let _label = context.dataset.label || '';
+                let label = context.dataset.label || '';
                 if (label) {
                   label += ': ';
                 }
@@ -167,7 +167,7 @@ export default function SPAInfographic() {
     const handleScroll = () => {
       const headerHeight = headerRef.current.offsetHeight;
       const sections = Array.from(document.querySelectorAll('section'));
-      let _current = '';
+      let current = '';
       sections.forEach((section) => {
         const sectionTop = section.offsetTop - headerHeight - 20;
         if (window.pageYOffset >= sectionTop) {

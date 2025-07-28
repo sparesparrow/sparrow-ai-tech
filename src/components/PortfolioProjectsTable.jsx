@@ -1,4 +1,3 @@
-
 const projects = [
   {
     name: 'mcp-project-orchestrator',
@@ -63,7 +62,7 @@ export default function PortfolioProjectsTable() {
             </tr>
           </thead>
           <tbody>
-            {projects.map((_p, _i) => (
+            {projects.map((p, i) => (
               <tr key={p.name} data-cy={`portfolio-row-${i}`}>
                 <td className="px-4 py-2 font-mono text-blue-700 dark:text-blue-300">{p.name}</td>
                 <td className="px-4 py-2 text-sm text-gray-700 dark:text-gray-300">{p.tech}</td>
@@ -74,7 +73,7 @@ export default function PortfolioProjectsTable() {
                 <td className="px-4 py-2">
                   <a
                     href={p.repo}
-                    target="_blank"
+                    target="blank"
                     rel="noopener noreferrer"
                     data-cy={`repo-link-${i}`}
                   >
@@ -85,7 +84,7 @@ export default function PortfolioProjectsTable() {
                       {' | '}
                       <a
                         href={p.docs}
-                        target="_blank"
+                        target="blank"
                         rel="noopener noreferrer"
                         data-cy={`docs-link-${i}`}
                       >
@@ -98,7 +97,7 @@ export default function PortfolioProjectsTable() {
                       {' | '}
                       <a
                         href={p.demo}
-                        target="_blank"
+                        target="blank"
                         rel="noopener noreferrer"
                         data-cy={`demo-link-${i}`}
                       >

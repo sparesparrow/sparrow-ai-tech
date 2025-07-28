@@ -58,7 +58,7 @@ const HeroSection = ({ content }) => (
         </a>
         <a
           href={`/sparrow-ai-tech/cv.pdf`}
-          target="_blank"
+          target="blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center rounded-lg bg-green-600 px-6 py-3 font-semibold text-white shadow-md transition-all hover:bg-green-700"
         >

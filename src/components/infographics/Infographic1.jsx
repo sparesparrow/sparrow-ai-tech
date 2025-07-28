@@ -11,7 +11,7 @@ const useChart = (canvasId, config) => {
       Chart = mod.default;
       if (!destroyed) {
         const ctx = document.getElementById(canvasId).getContext('2d');
-        chartInstance = new Chart(_ctx, config);
+        chartInstance = new Chart(ctx, config);
       }
     });
     return () => {
@@ -188,7 +188,7 @@ const Infographic1 = () => {
               <span className="font-bold text-sky-300">security</span> for prompt engineering and
               agent workflows.
             </p>
-            <p className="mb-2">Explore more _visuals:</p>
+            <p className="mb-2">Explore more visuals:</p>
             <div className="mt-2 flex flex-wrap justify-center gap-4">
               <a
                 href={url('infographics/Infographic1/')}

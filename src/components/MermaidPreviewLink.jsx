@@ -12,14 +12,14 @@ const MermaidPreviewLink = ({ href, children, ...props }) => {
         maxWidth={400}
         placement="top"
       >
-        <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+        <a href={href} target="blank" rel="noopener noreferrer" {...props}>
           {children}
         </a>
       </Tippy>
     );
   }
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+    <a href={href} target="blank" rel="noopener noreferrer" {...props}>
       {children}
     </a>
   );

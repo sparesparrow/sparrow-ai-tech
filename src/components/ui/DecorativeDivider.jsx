@@ -1,4 +1,3 @@
-
 export default function DecorativeDivider({ text, rotation = '', align = '' }) {
   return (
     <div

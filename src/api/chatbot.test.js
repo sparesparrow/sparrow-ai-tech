@@ -10,11 +10,11 @@ global.window.matchMedia =
   function () {
     return {
       matches: false,
-      addEventListener: () => { },
-      removeEventListener: () => { },
-      addListener: () => { },
-      removeListener: () => { },
-      dispatchEvent: () => { },
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+      dispatchEvent: () => {},
     };
   };
 
@@ -46,30 +46,30 @@ describe('POST /api/chatbot', () => {
   it('returns 400 if text is missing', async () => {
     const req = { method: 'POST', body: {} };
     const res = mockRes();
-    await handler(_req, _res);
+    await handler(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ _error: expect.any(String) }));
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ error: expect.any(String) }));
   });
 
-  it('returns 500 if API _key is missing', async () => {
+  it('returns 500 if API key is missing', async () => {
     delete process.env.ELEVENLABS_API_KEY;
     const req = { method: 'POST', body: { text: 'hello' } };
     const res = mockRes();
-    await handler(_req, _res);
+    await handler(req, res);
     expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ _error: expect.any(String) }));
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ error: expect.any(String) }));
   });
 
   it('returns 405 for non-POST methods', async () => {
     const req = { method: 'GET', body: {} };
     const res = mockRes();
-    await handler(_req, _res);
+    await handler(req, res);
     expect(res.status).toHaveBeenCalledWith(405);
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ _error: expect.any(String) }));
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ error: expect.any(String) }));
   });
 
   it('returns audio/mpeg on success', async () => {
-    const req = { method: 'POST', body: { text: 'hello', voice_id: 'test' } };
+    const req = { method: 'POST', body: { text: 'hello', voiceid: 'test' } };
     const res = mockRes();
     // Mock fetch to return a stream
     const mockStream = { pipe: jest.fn() };
@@ -79,12 +79,12 @@ describe('POST /api/chatbot', () => {
       status: 200,
       headers: { get: () => 'audio/mpeg' },
     });
-    await handler(_req, _res);
+    await handler(req, res);
     expect(res.setHeader).toHaveBeenCalledWith('Content-Type', 'audio/mpeg');
     expect(mockStream.pipe).toHaveBeenCalledWith(res);
   });
 
-  it('returns _error if ElevenLabs fails', async () => {
+  it('returns error if ElevenLabs fails', async () => {
     const req = { method: 'POST', body: { text: 'hello' } };
     const res = mockRes();
     global.fetch.mockResolvedValue({
@@ -92,8 +92,8 @@ describe('POST /api/chatbot', () => {
       text: async () => 'API error',
       status: 502,
     });
-    await handler(_req, _res);
+    await handler(req, res);
     expect(res.status).toHaveBeenCalledWith(502); // match the mock's status
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ _error: 'API error' }));
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ error: 'API error' }));
   });
 });

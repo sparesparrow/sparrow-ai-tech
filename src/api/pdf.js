@@ -2,28 +2,28 @@
 // Serverless API route for PDF generation
 // POST /api/pdf
 // Request: { html: string } or { markdown: string }
-// Response: application/pdf (stream) or { _error: string }
+// Response: application/pdf (stream) or { error: string }
 
 import puppeteer from 'puppeteer';
 
-export default async function handler(_req, _res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    res.status(405).json({ _error: 'Method not allowed' });
+    res.status(405).json({ error: 'Method not allowed' });
     return;
   }
   const { html, markdown } = req.body || {};
   if (!html && !markdown) {
-    res.status(400).json({ _error: 'Missing html or markdown content' });
+    res.status(400).json({ error: 'Missing html or markdown content' });
     return;
   }
-  let _content = html;
+  let content = html;
   // Optionally, convert markdown to HTML if markdown is provided
   if (!html && markdown) {
     try {
       const { marked } = await import('marked');
       content = marked(markdown);
-    } catch (_err) {
-      res.status(500).json({ _error: 'Failed to convert markdown to HTML', details: _err.message });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to convert markdown to HTML', details: err.message });
       return;
     }
   }
@@ -36,7 +36,7 @@ export default async function handler(_req, _res) {
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', 'attachment; filename="document.pdf"');
     res.status(200).end(pdfBuffer);
-  } catch (_err) {
-    res.status(500).json({ _error: 'Failed to generate PDF', details: _err.message });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to generate PDF', details: err.message });
   }
 }

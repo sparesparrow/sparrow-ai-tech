@@ -2,7 +2,7 @@ import { jest } from '@jest/globals';
 import { act } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { I18nProvider, useI18n } from '../../i18n.jsx';
-import React, { _useState as __useState } from 'react';
+import React, { useState as _useState } from 'react';
 import Header from '../Header.jsx';
 
 const mockTranslations = {

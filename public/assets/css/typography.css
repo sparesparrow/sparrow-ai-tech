@@ -1,7 +1,20 @@
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
+/* Typography styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
+  margin-bottom: 0.5em;
 }
 
-h1, h2, h3, h4, h5, h6 {
 p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}

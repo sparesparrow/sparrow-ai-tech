@@ -34,7 +34,7 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
   }, [src]);
 
   if (loading) return <div className="markdown-viewer-loading">Loading…</div>;
-  if (_error) return <div className="markdown-viewer-error">Error loading markdown.</div>;
+  if (error) return <div className="markdown-viewer-error">Error loading markdown.</div>;
 
   return (
     <div className={`prose prose-invert max-w-none ${className}`}>
@@ -63,9 +63,10 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
               </ImagePreviewLink>
             );
           },
-          code({ _inline, className, children, ...props }) {
+          code({ inline, className, children, ...props }) {
             if (className === 'language-mermaid') return <Mermaid />;
-            if (editableDiagrams && className === 'language-mermaid-edit') return <EditableMermaid />;
+            if (editableDiagrams && className === 'language-mermaid-edit')
+              return <EditableMermaid />;
             return (
               <code className={className} {...props}>
                 {children}

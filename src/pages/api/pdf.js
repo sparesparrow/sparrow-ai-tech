@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 // POST /api/pdf
 // Request body: { html: string }
 // Response: PDF file (application/pdf)
@@ -16,34 +18,34 @@ function getClientIp(request) {
 
 function checkRateLimit(ip) {
   const now = Date.now();
-  let _entry = rateLimitMap.get(ip);
+  let entry = rateLimitMap.get(ip);
   if (!entry || now - entry.start > WINDOW_MS) {
     entry = { count: 1, start: now };
   } else {
     entry.count += 1;
   }
-  rateLimitMap.set(_ip, _entry);
+  rateLimitMap.set(ip, entry);
   return entry.count <= RATE_LIMIT;
 }
 
 export async function post({ request }) {
   const ip = getClientIp(request);
   if (!checkRateLimit(ip)) {
-    return new Response(JSON.stringify({ _error: 'Too many requests' }), { status: 429 });
+    return new Response(JSON.stringify({ error: 'Too many requests' }), { status: 429 });
   }
   let body;
   try {
     body = await request.json();
   } catch (_e) {
-    return new Response(JSON.stringify({ _error: 'Invalid JSON' }), { status: 400 });
+    return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400 });
   }
 
   const { html } = body;
   if (!html) {
-    return new Response(JSON.stringify({ _error: 'Missing html' }), { status: 400 });
+    return new Response(JSON.stringify({ error: 'Missing html' }), { status: 400 });
   }
   if (typeof html !== 'string' || html.length > 100000) {
-    return new Response(JSON.stringify({ _error: 'HTML too large (max 100,000 chars)' }), {
+    return new Response(JSON.stringify({ error: 'HTML too large (max 100,000 chars)' }), {
       status: 400,
     });
   }
@@ -64,6 +66,6 @@ export async function post({ request }) {
     });
   } catch (_e) {
     if (browser) await browser.close();
-    return new Response(JSON.stringify({ _error: 'Failed to generate PDF' }), { status: 500 });
+    return new Response(JSON.stringify({ error: 'Failed to generate PDF' }), { status: 500 });
   }
 }

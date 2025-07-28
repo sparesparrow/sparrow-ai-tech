@@ -9,19 +9,19 @@ export default function GithubRepoTooltip({ repoPath, children }) {
       const response = await fetch(`https://api.github.com/repos/${repoPath}`);
       const data = await response.json();
       setRepoData(data);
-    } catch (_error) {
-      // Handle _error silently
+    } catch (error) {
+      // Handle error silently
     }
   }, [repoPath]);
 
-  const handleClick = (_e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    window.open(`https://github.com/${repoPath}`, '_blank');
+    window.open(`https://github.com/${repoPath}`, 'blank');
   };
 
-  const handleKeyDown = (_e) => {
+  const handleKeyDown = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
-      handleClick(_e);
+      handleClick(e);
     }
   };
 

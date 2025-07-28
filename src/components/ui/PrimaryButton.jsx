@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const PrimaryButton = React.forwardRef(
@@ -12,6 +13,8 @@ const PrimaryButton = React.forwardRef(
     </button>
   )
 );
+
+PrimaryButton.displayName = 'PrimaryButton';
 
 PrimaryButton.propTypes = {
   children: PropTypes.node.isRequired,

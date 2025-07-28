@@ -1,5 +1,5 @@
 // Application state
-let _currentSection = 'dashboard';
+let currentSection = 'dashboard';
 let generatedFiles = {};
 
 // Initialize application
@@ -42,7 +42,7 @@ function switchToSection(sectionId) {
   });
 
   document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
-  _currentSection = sectionId;
+  currentSection = sectionId;
 }
 
 // Character counters
@@ -100,7 +100,7 @@ function initializeProgressBars() {
 }
 
 // SEO Code Generation
-function _generateTitleCode() {
+function generateTitleCode() {
   const titleCz = document.getElementById('title-cz').value;
   const titleEn = document.getElementById('title-en').value;
 
@@ -124,7 +124,7 @@ function _generateTitleCode() {
   document.getElementById('seo-code-output').innerHTML = `<code>${escapeHtml(code)}</code>`;
 }
 
-function _generateDescCode() {
+function generateDescCode() {
   const descCz = document.getElementById('desc-cz').value;
   const descEn = document.getElementById('desc-en').value;
 
@@ -148,7 +148,7 @@ function _generateDescCode() {
   document.getElementById('seo-code-output').innerHTML = `<code>${escapeHtml(code)}</code>`;
 }
 
-function _generateOGCode() {
+function generateOGCode() {
   const ogTitle = document.getElementById('og-title').value;
   const ogDesc = document.getElementById('og-desc').value;
 
@@ -180,7 +180,7 @@ function _generateOGCode() {
 }
 
 // WCAG Functionality
-function _generateAltText() {
+function generateAltText() {
   const imageUrl = document.getElementById('image-url').value;
   const altTextInput = document.getElementById('alt-text');
 
@@ -270,7 +270,7 @@ function initializeCTADesigner() {
   styleSelect.addEventListener('change', updateCTAPreview);
 }
 
-function _generateCTACode() {
+function generateCTACode() {
   const text = document.getElementById('cta-text').value;
   const style = document.getElementById('cta-style').value;
 
@@ -295,7 +295,7 @@ function _generateCTACode() {
 }
 
 // i18n Configuration
-function _generateI18nConfig() {
+function generateI18nConfig() {
   const urlStructure = document.getElementById('url-structure').value;
 
   const config = `// astro-i18n.config.mjs
@@ -510,7 +510,7 @@ export default {
   generatedFiles[fileType] = code;
 }
 
-function _generateAllFiles() {
+function generateAllFiles() {
   // Generate all file codes
   ['index', 'header', 'seo', 'i18n-config'].forEach((fileType) => {
     showFileCode(fileType);
@@ -519,14 +519,14 @@ function _generateAllFiles() {
   alert('Všechny soubory vygenerovány! Můžete je nyní prohlížet a kopírovat.');
 }
 
-function _downloadFiles() {
+function downloadFiles() {
   // In a real application, this would create and download a ZIP file
   alert(
     'Download funkce by vytvořila ZIP soubor se všemi generovanými soubory. Pro demo účely jsou soubory dostupné k kopírování.'
   );
 }
 
-function _copyFileCode() {
+function copyFileCode() {
   const codeEl = document.getElementById('file-code-output');
   const text = codeEl.textContent;
 
@@ -589,7 +589,7 @@ function updateProgressIndicators() {
     i18n: 0,
   };
 
-  Object.entries(progressData).forEach(([_key, value]) => {
+  Object.entries(progressData).forEach(([key, value]) => {
     const progressBar = document.querySelector(`[data-progress="${value}"]`);
     if (progressBar) {
       setTimeout(() => {

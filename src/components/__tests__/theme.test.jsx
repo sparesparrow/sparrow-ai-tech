@@ -10,11 +10,11 @@ global.window.matchMedia =
   function () {
     return {
       matches: false,
-      addEventListener: () => { },
-      removeEventListener: () => { },
-      addListener: () => { },
-      removeListener: () => { },
-      dispatchEvent: () => { },
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+      dispatchEvent: () => {},
     };
   };
 

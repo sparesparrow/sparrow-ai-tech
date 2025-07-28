@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -10,9 +12,9 @@ export async function GET() {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
-  } catch (_error) {
+  } catch (error) {
     return new Response(
-      JSON.stringify({ message: 'Error reading diagrams', error: _error.message }),
+      JSON.stringify({ message: 'Error reading diagrams', error: error.message }),
       { status: 500 }
     );
   }
@@ -25,9 +27,9 @@ export async function POST({ request }) {
     return new Response(JSON.stringify({ message: 'Diagrams updated successfully' }), {
       status: 200,
     });
-  } catch (_error) {
+  } catch (error) {
     return new Response(
-      JSON.stringify({ message: 'Error updating diagrams', error: _error.message }),
+      JSON.stringify({ message: 'Error updating diagrams', error: error.message }),
       { status: 500 }
     );
   }

@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const SecondaryButton = React.forwardRef(
@@ -13,6 +14,8 @@ const SecondaryButton = React.forwardRef(
     </button>
   )
 );
+
+SecondaryButton.displayName = 'SecondaryButton';
 
 SecondaryButton.propTypes = {
   children: PropTypes.node.isRequired,

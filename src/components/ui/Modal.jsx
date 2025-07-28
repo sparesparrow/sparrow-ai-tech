@@ -16,7 +16,7 @@ const Modal = ({ open, onClose, title, children, className = '' }) => {
   // ESC to close
   useEffect(() => {
     if (!open) return;
-    const onKeyDown = (_e) => {
+    const onKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', onKeyDown);

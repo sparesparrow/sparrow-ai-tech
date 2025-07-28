@@ -1,4 +1,3 @@
-/** @jsx React.createElement */
 import React, { useState } from 'react';
 import MermaidLiveEditor from './MermaidLiveEditor';
 
@@ -43,8 +42,8 @@ const diagrams = [
 export default function AgenticWorkflowShowcase() {
   const [showCode, setShowCode] = useState(Array(diagrams.length).fill(false));
 
-  const handleToggle = (_idx) => {
-    setShowCode((prev) => prev.map((_v, _i) => (i === _idx ? !v : v)));
+  const handleToggle = (idx) => {
+    setShowCode((prev) => prev.map((v, i) => (i === idx ? !v : v)));
   };
 
   const handleCopy = (code) => {
@@ -57,7 +56,7 @@ export default function AgenticWorkflowShowcase() {
       data-cy="agentic-workflow-showcase"
     >
       <h2 className="mb-6 text-3xl font-bold">Agentic Workflows & Cognitive Architectures</h2>
-      {diagrams.map((_diagram, _idx) => (
+      {diagrams.map((diagram, idx) => (
         <div
           key={diagram.title}
           className="mb-10 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-900"
@@ -68,11 +67,11 @@ export default function AgenticWorkflowShowcase() {
           <div className="mb-2 flex items-center gap-4">
             <button
               className="rounded bg-blue-600 px-3 py-1 text-white hover:bg-blue-700 focus:outline-none"
-              onClick={() => handleToggle(_idx)}
+              onClick={() => handleToggle(idx)}
               data-cy={`toggle-code-btn-${idx}`}
-              aria-pressed={showCode[_idx]}
+              aria-pressed={showCode[idx]}
             >
-              {showCode[_idx] ? 'Show Diagram' : 'Show Code'}
+              {showCode[idx] ? 'Show Diagram' : 'Show Code'}
             </button>
             <button
               className="rounded bg-gray-200 px-3 py-1 text-gray-800 hover:bg-gray-300 focus:outline-none dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
@@ -87,7 +86,7 @@ export default function AgenticWorkflowShowcase() {
             className="overflow-x-auto rounded border bg-gray-50 p-4 dark:bg-gray-800"
             data-cy={`diagram-content-${idx}`}
           >
-            {showCode[_idx] ? (
+            {showCode[idx] ? (
               <pre
                 className="text-sm text-gray-800 dark:text-gray-100"
                 data-cy={`mermaid-code-${idx}`}

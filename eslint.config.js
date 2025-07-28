@@ -3,10 +3,12 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
 import cypress from 'eslint-plugin-cypress';
+import astroEslintParser from 'astro-eslint-parser';
+import * as astroPlugin from 'eslint-plugin-astro';
 
 export default [
-  { 
-    ignores: ['node_modules/', 'dist/', '.astro/', 'coverage/', '**/*-fixed.*', '*.json', '*.md'] 
+  {
+    ignores: ['node_modules/', 'dist/', '.astro/', 'coverage/', '**/*-fixed.*', '*.json', '*.md'],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -25,34 +27,58 @@ export default [
         localStorage: 'readonly',
         globalThis: 'readonly',
         // Node.js globals
-        process__filename: 'readonly',
+        process: 'readonly',
         global: 'readonly',
         Buffer: 'readonly',
         module: 'readonly',
         require: 'readonly',
         exports: 'writable',
+        fetch: 'readonly',
+        Response: 'readonly',
+        navigator: 'readonly',
       },
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-        ecmaFeatures: { jsx: true }
-      }
+        ecmaFeatures: { jsx: true },
+      },
     },
     settings: {
       react: {
-        version: 'detect'
-      }
+        version: 'detect',
+      },
     },
     rules: {
-      '@typescript-eslint/no-unused-vars': ['warn', { 
-        argsIgnorePattern: '^_', 
-        varsIgnorePattern: '^_' 
-      }],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
       'no-useless-escape': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/no-unknown-property': ['error', { ignore: ['astro'] }],
-      'react/prop-types': 'off'
-    }
+      'react/prop-types': 'off',
+      'no-undef': 'off', // Disabled for API files with custom environments
+    },
+  },
+  // Astro files configuration
+  {
+    files: ['**/*.astro'],
+    plugins: {
+      astro: astroPlugin,
+    },
+    languageOptions: {
+      parser: astroEslintParser,
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+        extraFileExtensions: ['.astro'],
+      },
+    },
+    rules: {
+      ...astroPlugin.configs.recommended.rules,
+    },
   },
   {
     files: ['cypress/**/*.{js,ts}', '**/*.cy.{js,ts}'],
@@ -74,7 +100,7 @@ export default [
         window: 'readonly',
         document: 'readonly',
         console: 'readonly',
-      }
-    }
-  }
+      },
+    },
+  },
 ];

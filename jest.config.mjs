@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const filename = fileURLToPath(import.meta.url);
-const dirname = dirname(__filename);
+const __dirname = dirname(filename);
 
 export default {
   testEnvironment: 'jsdom',

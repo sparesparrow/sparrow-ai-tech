@@ -10,10 +10,10 @@ const Card = ({ title, description, children, href, onClick, className = '', ...
         href={href}
         className={baseClass}
         tabIndex={0}
-        onKeyDown={(_e) => {
+        onKeyDown={(e) => {
           if (onClick && (e.key === 'Enter' || e.key === ' ')) {
             e.preventDefault();
-            onClick(_e);
+            onClick(e);
           }
         }}
         {...props}
@@ -30,10 +30,10 @@ const Card = ({ title, description, children, href, onClick, className = '', ...
       tabIndex={0}
       role="button"
       onClick={onClick}
-      onKeyDown={(_e) => {
+      onKeyDown={(e) => {
         if (onClick && (e.key === 'Enter' || e.key === ' ')) {
           e.preventDefault();
-          onClick(_e);
+          onClick(e);
         }
       }}
       {...props}

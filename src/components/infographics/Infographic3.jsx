@@ -10,7 +10,7 @@ const useChart = (canvasId, config) => {
       Chart = mod.default;
       if (!destroyed) {
         const ctx = document.getElementById(canvasId).getContext('2d');
-        chartInstance = new Chart(_ctx, config);
+        chartInstance = new Chart(ctx, config);
       }
     });
     return () => {
