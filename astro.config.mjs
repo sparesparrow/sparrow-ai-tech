@@ -9,14 +9,13 @@ export default defineConfig({
   integrations: [react()],
   markdown: {
     rehypePlugins: [
-      // Strategie 'inline' je deprecated; 'img-svg' generuje statické SVG
       [rehypeMermaid, { strategy: 'img-svg' }]
     ],
   },
   vite: {
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        '@': fileURLToPath(new import.meta.url + '/../src'),
       },
     },
   },
