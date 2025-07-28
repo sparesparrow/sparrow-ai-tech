@@ -3,55 +3,76 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
 import cypress from 'eslint-plugin-cypress';
-import astro from 'eslint-plugin-astro';
-
-export default [
+import astro from 'eslint-plugin
+    ignores: ['node_modules/', 'dist/', '.astro/', 'coverage/', '**/*-fixed.*', '*.json', '*.md']
+  },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    ignores: ["node_modules/", "dist/", ".astro/", "coverage/", "**/*-fixed.*", "*.json", "*.md"],
-  },
-  {
-    files: ["**/*.{js,jsx,ts,tsx}"],
-    plugins: { react },
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      react: react,
+    },
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      parserOptions: { ecmaFeatures: { jsx: true } },
       globals: {
-        ...globals.browser,
-        ...globals.node,
-        ...globals.jest,
+        // Browser globals - use "readonly" instead of spreading globals.browser
+        window: 'readonly',
+        document: 'readonly',
+        console: 'readonly',
+        alert: 'readonly',
+        // Node.js globals
+        process: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        global: 'readonly',
+        Buffer: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        exports: 'writable',
       },
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: { jsx: true }
+      }
     },
     rules: {
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
-      'no-undef': 'error',
-      '@typescript-eslint/ban-ts-comment': 'off',  # Temporarily off to allow fixes
-      'cypress/no-unnecessary-waiting': 'warn',
-      'cypress/unsafe-to-chain-command': 'warn',
-    },
-    settings: { react: { version: 'detect' } },
+      '@typescript-eslint/no-unused-vars': ['warn', { 
+        argsIgnorePattern: '^_', 
+        varsIgnorePattern: '^_' 
+      }],
+      'no-useless-escape': 'off',
+      'react/react-in-jsx-scope': 'off',
+      'react/no-unknown-property': ['error', { ignore: ['astro'] }]
+    }
   },
   {
-    files: ['cypress/**/*.js', '**/*.cy.js'],
-    plugins: { cypress },
+    files: ['cypress/**/*.{js,ts}', '**/*.cy.{js,ts}'],
+    plugins: {
+      cypress: cypress,
+    },
     languageOptions: {
       globals: {
-        ...globals.browser,
+        // Cypress globals
         cy: 'readonly',
         Cypress: 'readonly',
-        before: 'readonly',
-        beforeEach: 'readonly',
-        after: 'readonly',
-        afterEach: 'readonly',
         describe: 'readonly',
         it: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        before: 'readonly',
+        after: 'readonly',
         expect: 'readonly',
-      },
+        assert: 'readonly',
+        // Browser globals for Cypress
+        window: 'readonly',
+        document: 'readonly',
+        console: 'readonly',
+      }
     },
-    rules: cypress.configs.recommended.rules,
+    rules: {
+      ...cypress.configs.recommended.rules,
+    }
   },
-  ...astro.configs.recommended,
+  ...astro.configs.recommended
 ];
