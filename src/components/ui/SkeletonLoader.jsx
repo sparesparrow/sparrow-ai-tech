@@ -1,5 +1,3 @@
-/** @jsx React.createElement */
-import React from 'react';
 import PropTypes from 'prop-types';
 
 const SkeletonLoader = ({ type = 'card', count = 1, className = '' }) => {

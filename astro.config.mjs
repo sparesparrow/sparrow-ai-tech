@@ -17,7 +17,7 @@ export default defineConfig({
       rollupOptions: {
         onwarn(warning, warn) {
           // Treat warnings as errors in production
-          if (process.env.NODE_ENV === 'production') {
+          if (globalThis.process?.env || {}.NODE_ENV === 'production') {
             throw new Error(warning.message);
           }
           warn(warning);
@@ -26,7 +26,7 @@ export default defineConfig({
     },
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        '@': fileURLToPath(new globalThis.URL('./src', import.meta.url)),
       },
     },
   },

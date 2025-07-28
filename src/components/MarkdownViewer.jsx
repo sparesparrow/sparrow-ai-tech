@@ -1,5 +1,5 @@
 /** @jsx React.createElement */
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -63,7 +63,7 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
               </ImagePreviewLink>
             );
           },
-          code({ inline, className, children, ...props }) {
+          code({ _inline, className, children, ...props }) {
             if (className === 'language-mermaid') return <Mermaid />;
             if (editableDiagrams && className === 'language-mermaid-edit') return <EditableMermaid />;
             return (

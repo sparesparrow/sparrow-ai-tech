@@ -7,19 +7,19 @@
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    res.status(405).json({ error: 'Method not allowed' });
+    res.status(405).json({ _error: 'Method not allowed' });
     return;
   }
 
   const { text, voice_id } = req.body || {};
   if (!text || typeof text !== 'string') {
-    res.status(400).json({ error: 'Missing or invalid text' });
+    res.status(400).json({ _error: 'Missing or invalid text' });
     return;
   }
 
   const apiKey = process.env.ELEVENLABS_API_KEY;
   if (!apiKey) {
-    res.status(500).json({ error: 'Server misconfiguration: missing API key' });
+    res.status(500).json({ _error: 'Server misconfiguration: missing API key' });
     return;
   }
 
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
 
     if (!elevenLabsRes.ok) {
       const err = await elevenLabsRes.text();
-      res.status(elevenLabsRes.status).json({ error: err });
+      res.status(elevenLabsRes.status).json({ _error: err });
       return;
     }
 
@@ -46,7 +46,7 @@ export default async function handler(req, res) {
     res.setHeader('Content-Type', 'audio/mpeg');
     elevenLabsRes.body.pipe(res);
   } catch (_error) {
-    res.status(500).json({ error: _error.message || 'Internal server error' });
+    res.status(500).json({ _error: _error.message || 'Internal server error' });
   }
 }
 // Note: In production, ensure fetch is polyfilled (e.g., with node-fetch) if not available.

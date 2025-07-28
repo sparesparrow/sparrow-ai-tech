@@ -2,11 +2,11 @@ import puppeteer from 'puppeteer';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ _error: 'Method not allowed' });
   }
   const { html } = req.body;
   if (!html) {
-    return res.status(400).json({ error: 'HTML content is required' });
+    return res.status(400).json({ _error: 'HTML content is required' });
   }
   try {
     const browser = await puppeteer.launch();
@@ -18,6 +18,6 @@ export default async function handler(req, res) {
     res.setHeader('Content-Disposition', 'attachment; filename="document.pdf"');
     return res.status(200).end(pdfBuffer);
   } catch (_err) {
-    return res.status(500).json({ error: 'Failed to generate PDF' });
+    return res.status(500).json({ _error: 'Failed to generate PDF' });
   }
 }

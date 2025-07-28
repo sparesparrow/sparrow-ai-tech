@@ -1,5 +1,4 @@
-/** @jsx React.createElement */
-import React from 'react';
+import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 
 const Modal = ({ open, onClose, title, children, className = '' }) => {
   const modalRef = useRef(null);

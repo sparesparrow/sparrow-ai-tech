@@ -1,5 +1,5 @@
 /** @jsx React.createElement */
-import React from 'react';
+import React, { useState } from 'react';
 import MermaidLiveEditor from './MermaidLiveEditor';
 
 const diagrams = [
@@ -70,9 +70,9 @@ export default function AgenticWorkflowShowcase() {
               className="rounded bg-blue-600 px-3 py-1 text-white hover:bg-blue-700 focus:outline-none"
               onClick={() => handleToggle(idx)}
               data-cy={`toggle-code-btn-${idx}`}
-              aria-pressed={showCode[idx]}
+              aria-pressed={showCode[_idx]}
             >
-              {showCode[idx] ? 'Show Diagram' : 'Show Code'}
+              {showCode[_idx] ? 'Show Diagram' : 'Show Code'}
             </button>
             <button
               className="rounded bg-gray-200 px-3 py-1 text-gray-800 hover:bg-gray-300 focus:outline-none dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
@@ -87,7 +87,7 @@ export default function AgenticWorkflowShowcase() {
             className="overflow-x-auto rounded border bg-gray-50 p-4 dark:bg-gray-800"
             data-cy={`diagram-content-${idx}`}
           >
-            {showCode[idx] ? (
+            {showCode[_idx] ? (
               <pre
                 className="text-sm text-gray-800 dark:text-gray-100"
                 data-cy={`mermaid-code-${idx}`}

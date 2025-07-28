@@ -28,27 +28,27 @@ function checkRateLimit(ip) {
 export async function post({ request }) {
   const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
   if (!ELEVENLABS_API_KEY) {
-    return new Response(JSON.stringify({ error: 'Missing API key' }), { status: 500 });
+    return new Response(JSON.stringify({ _error: 'Missing API key' }), { status: 500 });
   }
 
   const ip = getClientIp(request);
   if (!checkRateLimit(ip)) {
-    return new Response(JSON.stringify({ error: 'Too many requests' }), { status: 429 });
+    return new Response(JSON.stringify({ _error: 'Too many requests' }), { status: 429 });
   }
 
   let body;
   try {
     body = await request.json();
   } catch (_e) {
-    return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400 });
+    return new Response(JSON.stringify({ _error: 'Invalid JSON' }), { status: 400 });
   }
 
   const { message } = body;
   if (!message) {
-    return new Response(JSON.stringify({ error: 'Missing message' }), { status: 400 });
+    return new Response(JSON.stringify({ _error: 'Missing message' }), { status: 400 });
   }
   if (typeof message !== 'string' || message.length > 1000) {
-    return new Response(JSON.stringify({ error: 'Message too long (max 1000 chars)' }), {
+    return new Response(JSON.stringify({ _error: 'Message too long (max 1000 chars)' }), {
       status: 400,
     });
   }
@@ -66,13 +66,13 @@ export async function post({ request }) {
     });
     if (!elevenRes.ok) {
       const err = await elevenRes.text();
-      return new Response(JSON.stringify({ error: err }), { status: elevenRes.status });
+      return new Response(JSON.stringify({ _error: err }), { status: elevenRes.status });
     }
     const data = await elevenRes.json();
     // Assume ElevenLabs returns { reply: string }
     return new Response(JSON.stringify({ reply: data.reply }), { status: 200 });
   } catch (_e) {
-    return new Response(JSON.stringify({ error: 'Failed to contact ElevenLabs API' }), {
+    return new Response(JSON.stringify({ _error: 'Failed to contact ElevenLabs API' }), {
       status: 502,
     });
   }

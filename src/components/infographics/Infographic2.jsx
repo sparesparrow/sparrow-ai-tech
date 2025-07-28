@@ -1,5 +1,4 @@
-/** @jsx React.createElement */
-import React from 'react';
+import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 
 const useChart = (canvasId, config) => {
   useEffect(() => {
@@ -107,7 +106,7 @@ const Infographic2 = () => {
               <span className="font-bold text-sky-300">quality</span>, and{' '}
               <span className="font-bold text-sky-300">creativity</span> in agentic workflows.
             </p>
-            <p className="mb-2">Explore more visuals:</p>
+            <p className="mb-2">Explore more _visuals:</p>
             <div className="mt-2 flex flex-wrap justify-center gap-4">
               <a
                 href="/sparrow-ai-tech/infographics/1.html"

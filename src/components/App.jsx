@@ -51,7 +51,7 @@ const AppContent = () => {
     const handler = (e) => {
       if (!localStorage.getItem('theme')) setIsDark(e.matches);
     };
-    mq.addEventListener ? mq.addEventListener('change', handler) : mq.addEventListener ? mq.addEventListener('change', handler) : mq.addListener(handler);
+    mq.addEventListener ? mq.addEventListener('change', handler) : mq.addListener(handler)(handler);
     return () => {
       mq.removeEventListener
         ? mq.removeEventListener('change', handler)
@@ -134,7 +134,7 @@ const AppContent = () => {
     </svg>
   );
 
-  // 1. Define a new, richer content structure for articles, infographics, and visuals
+  // 1. Define a new, richer content structure for articles, infographics, and _visuals
   const categorizedArticles = [
     {
       category: 'Architecture',
@@ -283,7 +283,7 @@ const AppContent = () => {
       url: `/sparrow-ai-tech/infographics/elevenlabs-widget.html`,
     },
   ];
-  const _visuals = [
+  const __visuals = [
   {
     name: 'MCP Ecosystem Diagram',
     src: `${import.meta.env.BASE_URL}assets/images/mcp-ecosystem-diagram.png`,
@@ -843,7 +843,7 @@ const AppContent = () => {
                             title: 'Deployment & Support',
                             desc: 'We launch, monitor, and support your solution.',
                           },
-                        ].map((step, idx, arr) => (
+                        ].map(_(step, _idx, arr) => (
                           <div key={step.title} className="flex flex-1 flex-col items-center">
                             <div className="mb-2 flex h-16 w-16 items-center justify-center rounded-full bg-sky-100 text-3xl shadow-lg">
                               {step.icon}

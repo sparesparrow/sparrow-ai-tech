@@ -48,7 +48,7 @@ describe('POST /api/chatbot', () => {
     const res = mockRes();
     await handler(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ error: expect.any(String) }));
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ _error: expect.any(String) }));
   });
 
   it('returns 500 if API key is missing', async () => {
@@ -57,7 +57,7 @@ describe('POST /api/chatbot', () => {
     const res = mockRes();
     await handler(req, res);
     expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ error: expect.any(String) }));
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ _error: expect.any(String) }));
   });
 
   it('returns 405 for non-POST methods', async () => {
@@ -65,7 +65,7 @@ describe('POST /api/chatbot', () => {
     const res = mockRes();
     await handler(req, res);
     expect(res.status).toHaveBeenCalledWith(405);
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ error: expect.any(String) }));
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ _error: expect.any(String) }));
   });
 
   it('returns audio/mpeg on success', async () => {
@@ -94,6 +94,6 @@ describe('POST /api/chatbot', () => {
     });
     await handler(req, res);
     expect(res.status).toHaveBeenCalledWith(502); // match the mock's status
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ error: 'API error' }));
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ _error: 'API error' }));
   });
 });

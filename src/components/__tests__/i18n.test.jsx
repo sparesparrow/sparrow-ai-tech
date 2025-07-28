@@ -2,7 +2,7 @@ import { jest } from '@jest/globals';
 import { act } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { I18nProvider, useI18n } from '../../i18n.jsx';
-import React, { useState } from 'react';
+import React, { _useState as __useState } from 'react';
 import Header from '../Header.jsx';
 
 const mockTranslations = {
@@ -41,7 +41,7 @@ afterEach(() => {
 
 // Remove TestI18nProvider and use the real I18nProvider with fetch mocking
 
-const _TestComponent = () => {
+const __TestComponent = () => {
   const { t, language, setLanguage } = useI18n();
   return (
     <div>

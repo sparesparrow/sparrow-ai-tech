@@ -1,5 +1,3 @@
-/** @jsx React.createElement */
-import React from 'react';
 import MarkdownViewer from './MarkdownViewer';
 
 function useQuery() {

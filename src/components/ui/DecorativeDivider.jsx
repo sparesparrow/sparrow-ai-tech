@@ -1,5 +1,3 @@
-/** @jsx React.createElement */
-import React from 'react';
 
 export default function DecorativeDivider({ text, rotation = '', align = '' }) {
   return (

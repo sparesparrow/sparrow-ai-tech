@@ -1,5 +1,4 @@
-/** @jsx React.createElement */
-import React from 'react';
+import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 
 // Chart.js is loaded via CDN in the HTML version, but here we use dynamic import for SSR safety
 const useChart = (canvasId, config) => {
@@ -188,7 +187,7 @@ const Infographic1 = () => {
               <span className="font-bold text-sky-300">security</span> for prompt engineering and
               agent workflows.
             </p>
-            <p className="mb-2">Explore more visuals:</p>
+            <p className="mb-2">Explore more _visuals:</p>
             <div className="mt-2 flex flex-wrap justify-center gap-4">
               <a
                 href="/sparrow-ai-tech/infographics/2.html"

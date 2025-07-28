@@ -1,5 +1,5 @@
 /** @jsx React.createElement */
-import React from 'react';
+import React, { useEffect,useState,useRef } from 'react';
 import PropTypes from 'prop-types';
 
 const STATUS_COLORS = {
@@ -17,7 +17,7 @@ function parseTodoMd(md) {
   const sections = [];
   let currentSection = null;
   let currentTask = null;
-  const _statusRegex = /\[([ x-])\]/;
+  const __statusRegex = /\[([ x-])\]/;
   const statusMap = {
     ' ': 'ToDo',
     '-': 'HelpNeeded',

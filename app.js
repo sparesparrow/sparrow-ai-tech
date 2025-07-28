@@ -1,5 +1,5 @@
 // Application state
-let currentSection = 'dashboard';
+let _currentSection = 'dashboard';
 let generatedFiles = {};
 
 // Initialize application
@@ -100,7 +100,7 @@ function initializeProgressBars() {
 }
 
 // SEO Code Generation
-function generateTitleCode() {
+function _generateTitleCode() {
   const titleCz = document.getElementById('title-cz').value;
   const titleEn = document.getElementById('title-en').value;
 
@@ -124,7 +124,7 @@ function generateTitleCode() {
   document.getElementById('seo-code-output').innerHTML = `<code>${escapeHtml(code)}</code>`;
 }
 
-function generateDescCode() {
+function _generateDescCode() {
   const descCz = document.getElementById('desc-cz').value;
   const descEn = document.getElementById('desc-en').value;
 
@@ -148,7 +148,7 @@ function generateDescCode() {
   document.getElementById('seo-code-output').innerHTML = `<code>${escapeHtml(code)}</code>`;
 }
 
-function generateOGCode() {
+function _generateOGCode() {
   const ogTitle = document.getElementById('og-title').value;
   const ogDesc = document.getElementById('og-desc').value;
 
@@ -180,7 +180,7 @@ function generateOGCode() {
 }
 
 // WCAG Functionality
-function generateAltText() {
+function _generateAltText() {
   const imageUrl = document.getElementById('image-url').value;
   const altTextInput = document.getElementById('alt-text');
 
@@ -270,7 +270,7 @@ function initializeCTADesigner() {
   styleSelect.addEventListener('change', updateCTAPreview);
 }
 
-function generateCTACode() {
+function _generateCTACode() {
   const text = document.getElementById('cta-text').value;
   const style = document.getElementById('cta-style').value;
 
@@ -296,7 +296,7 @@ function generateCTACode() {
 }
 
 // i18n Configuration
-function generateI18nConfig() {
+function _generateI18nConfig() {
   const urlStructure = document.getElementById('url-structure').value;
 
   const config = `// astro-i18n.config.mjs
@@ -511,7 +511,7 @@ export default {
   generatedFiles[fileType] = code;
 }
 
-function generateAllFiles() {
+function _generateAllFiles() {
   // Generate all file codes
   ['index', 'header', 'seo', 'i18n-config'].forEach((fileType) => {
     showFileCode(fileType);
@@ -520,14 +520,14 @@ function generateAllFiles() {
   alert('Všechny soubory vygenerovány! Můžete je nyní prohlížet a kopírovat.');
 }
 
-function downloadFiles() {
+function _downloadFiles() {
   // In a real application, this would create and download a ZIP file
   alert(
     'Download funkce by vytvořila ZIP soubor se všemi generovanými soubory. Pro demo účely jsou soubory dostupné k kopírování.'
   );
 }
 
-function copyFileCode() {
+function _copyFileCode() {
   const codeEl = document.getElementById('file-code-output');
   const text = codeEl.textContent;
 
