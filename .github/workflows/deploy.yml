@@ -59,6 +59,8 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Build site
         run: npm run build
+        env:
+          ASTRO_SITE: https://sparesparrow.github.io/sparrow-ai-tech/
       - name: Upload production-ready build files
         uses: actions/upload-pages-artifact@v3
         with:

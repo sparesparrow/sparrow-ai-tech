@@ -1,4 +1,4 @@
-require('@testing-library/jest-dom');
+import '@testing-library/jest-dom';
 
 // Mock for Astro components
 global.Astro = {
@@ -17,7 +17,7 @@ global.importMeta = {
   }
 };
 
-// Také nastavit process.env pro testy
+// Set process.env for tests
 process.env.BASE_URL = '/';
 
 // Mock for window.matchMedia

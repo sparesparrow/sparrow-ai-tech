@@ -2,20 +2,14 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
+// https://astro.build/config
 export default defineConfig({
+  integrations: [react(), tailwind()],
   site: 'https://sparesparrow.github.io',
   base: '/sparrow-ai-tech',
-  integrations: [
-    react(),
-    tailwind()
-  ],
-  output: 'static',
   build: {
     assets: 'assets'
   },
-  vite: {
-    define: {
-      'import.meta.env.BASE_URL': JSON.stringify('/sparrow-ai-tech/')
-    }
-  }
+  output: 'static',
+  adapter: undefined
 });
