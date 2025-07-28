@@ -1,0 +1,1 @@
+{"service":"Sparrow AI Tech Chatbot API","version":"1.0.0","methods":["POST"],"usage":"Send POST request with {\"message\": \"your text\"} to get AI response","status":"active"}
