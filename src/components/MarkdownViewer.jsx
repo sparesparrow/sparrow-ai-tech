@@ -1,9 +1,5 @@
-/* eslint-disable no-useless-escape */
-import ReactMarkdown from "react-markdown";
-import MermaidPreviewLink from "./MermaidPreviewLink";
-import ImagePreviewLink from "./ImagePreviewLink";
-import GithubRepoTooltip from "./GithubRepoTooltip";
 import React, { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import MermaidPreviewLink from './MermaidPreviewLink';
@@ -15,9 +11,9 @@ const Mermaid = () => (
   <div className="mermaid-diagram text-red-500">Mermaid diagrams are not supported.</div>
 );
 
-// const EditableMermaid = () => (
-//   <div className="mermaid-diagram text-red-500">Editable Mermaid diagrams are not supported.</div>
-// );
+const EditableMermaid = () => (
+  <div className="mermaid-diagram text-red-500">Editable Mermaid diagrams are not supported.</div>
+);
 
 const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
   const [content, setContent] = useState('');
@@ -67,7 +63,7 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
               </ImagePreviewLink>
             );
           },
-          code({ node, inline, className, children, ...props }) {
+          code({ _node, inline, className, children, ...props }) {
             if (className === 'language-mermaid') {
               return <Mermaid />;
             }

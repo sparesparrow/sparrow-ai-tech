@@ -288,18 +288,17 @@ const AppContent = () => {
     {
       name: 'MCP Ecosystem Diagram',
       src: `/sparrow-ai-tech/assets/images/mcp-ecosystem-diagram.png`,
-      context: 'Ecosystem, Architecture',
+      context: 'Ecosystem',
     },
     {
       name: 'UI Screenshot',
       src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`,
       contextLabel: 'UI Demo',
-      contextLabel: 'Homepage, UI' ,
     },
     {
       name: 'Feature Screenshot',
       src: `/sparrow-ai-tech/assets/images/screenshot-feature.png`,
-      contextLabel: 'Feature Demo' ,
+      contextLabel: 'Feature Demo',
     },
   ];
 
@@ -652,7 +651,7 @@ const AppContent = () => {
                             statusColor: 'bg-emerald-100 text-emerald-800',
                             tech: ['Community'],
                           },
-                        ].map((project, idx) => (
+                        ].map((project, _idx) => (
                           <div
                             key={project.name}
                             className={
@@ -886,7 +885,7 @@ const AppContent = () => {
                             title: 'Deployment & Support',
                             desc: 'We launch, monitor, and support your solution.',
                           },
-                        ].map((step, idx) => (
+                        ].map((step, _idx) => (
                           <div key={step.title} className="flex items-center gap-4">
                             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sky-100 text-2xl shadow-lg">
                               {step.icon}
@@ -958,7 +957,6 @@ const AppContent = () => {
                             {
                               name: 'UI Screenshot',
                               src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`,
-                              context: 'UI Demo',
                               context: 'UI',
                             },
                             {
@@ -981,7 +979,7 @@ const AppContent = () => {
                               src: `/sparrow-ai-tech/assets/images/project-orchestrator-diagram.png`,
                               context: 'Architecture',
                             },
-                          ].map((vis, idx) => (
+                          ].map((vis, _idx) => (
                             <motion.div
                               key={idx}
                               className="group mb-6 flex cursor-pointer break-inside-avoid flex-col items-center rounded-lg bg-white p-4 shadow-md transition-transform hover:-translate-y-1"
@@ -1024,7 +1022,6 @@ const AppContent = () => {
                           },
                           {
                             src: `/sparrow-ai-tech/assets/images/screenshot-ui.png`,
-                            context: 'UI Demo',
                             contextLabel: 'UI Demo',
                             alt: 'UI Screenshot',
                           },
@@ -1164,7 +1161,7 @@ const AppContent = () => {
                       >
                         Articles & Documentation
                       </motion.h2>
-                      {categorizedArticles.map((cat, idx) => (
+                      {categorizedArticles.map((cat, _idx) => (
                         <motion.div
                           key={cat.category}
                           className="mb-8"
@@ -1239,7 +1236,7 @@ const AppContent = () => {
                         Interactive (React)
                       </h3>
                       <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-                        {infographicsReact.map((info, idx) => (
+                        {infographicsReact.map((info, _idx) => (
                           <a
                             key={idx}
                             href={info.route}
@@ -1254,7 +1251,7 @@ const AppContent = () => {
                       </div>
                       <h3 className="mb-4 text-xl font-semibold text-sky-700">Standalone (HTML)</h3>
                       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-                        {infographicsHtml.map((info, idx) => (
+                        {infographicsHtml.map((info, _idx) => (
                           <a
                             key={idx}
                             href={`/sparrow-ai-tech${info.url}`}
