@@ -63,7 +63,7 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
               </ImagePreviewLink>
             );
           },
-          code({ _node, inline, className, children, ...props }) {
+          code({ node, inline, className, children, ...props }) {
             if (className === 'language-mermaid') {
               return <Mermaid />;
             }

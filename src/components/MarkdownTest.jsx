@@ -1,7 +1,8 @@
 import React from 'react';
-import MarkdownViewer from '../components/MarkdownViewer';
+import MarkdownViewer from './MarkdownViewer';
 
 function useQuery() {
+  // Použití URLSearchParams bez React Router
   if (typeof window !== 'undefined') {
     return new URLSearchParams(window.location.search);
   }
@@ -11,8 +12,8 @@ function useQuery() {
 const MarkdownTest = () => {
   const query = useQuery();
   let src = query.get('src') || '/articles/mcp-prompts.md';
-
-  // Normalize for local dev vs. production
+  
+  // Normalizace pro lokální dev vs. produkci
   if (typeof window !== 'undefined') {
     const isProd = window.location.pathname.startsWith('/sparrow-ai-tech');
     if (src.startsWith('./articles/')) {
@@ -25,11 +26,11 @@ const MarkdownTest = () => {
       }
     }
   }
-
+  
   const className = query.get('className') || '';
-
+  
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-900">
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center">
       <div className="w-full max-w-3xl p-4">
         <MarkdownViewer src={src} className={className} />
       </div>
