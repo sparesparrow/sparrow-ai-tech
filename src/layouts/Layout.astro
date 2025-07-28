@@ -6,11 +6,11 @@ export interface Props {
   description?: string;
 }
 
-const { title, description = "Sparrow AI Tech - AI tools and infographics" } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { title, description = 'Sparrow AI Tech - AI tools and infographics' } = Astro.props;
+const canonicalURL = new globalThis.URL(Astro.url.pathname, Astro.site);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,21 +20,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    
+
     <!-- Preload critical assets -->
     <link rel="preload" href={assetUrl('assets/css/global.css')} as="style" />
-    
+
     <!-- External fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-200">
     <slot />
-    
+
     <!-- Background assets with error handling -->
     <div class="background-gif-container" aria-hidden="true">
-      <img 
-        src={assetUrl('assets/images/background.gif')} 
-        alt="Working memory spreading activation" 
+      <img
+        src={assetUrl('assets/images/background.gif')}
+        alt="Working memory spreading activation"
         class="background-gif"
         onerror="this.style.display='none'"
       />

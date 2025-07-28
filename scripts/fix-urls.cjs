@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+/* eslint-env node */
+ 
 const fs = require('fs');
 const { glob } = require('glob');
 
@@ -25,11 +27,6 @@ function fixUrlsInFile(filePath) {
     [/href="\/assets\//g, `href="${BASE_URL}/assets/`],
     [/src="\/assets\//g, `src="${BASE_URL}/assets/`],
     [/href="\/infographics\//g, `href="${BASE_URL}/infographics/`],
-    
-    // Specifické opravy pro infografiky
-    [/href="\/sparrow-ai-techinfographics\/Infographic1\/"/g, `href="${BASE_URL}/infographics/Infographic1"`],
-    [/href="\/sparrow-ai-techinfographics\/Infographic2\/"/g, `href="${BASE_URL}/infographics/Infographic2"`],
-    [/href="\/sparrow-ai-techinfographics\/Infographic3\/"/g, `href="${BASE_URL}/infographics/Infographic3"`],
   ];
   
   fixes.forEach(([pattern, replacement]) => {
@@ -46,28 +43,14 @@ function fixUrlsInFile(filePath) {
 }
 
 async function main() {
-  // Oprava souborů v dist/
-  const distPatterns = [
+  const patterns = [
     'dist/**/*.html',
     'dist/**/*.css',
-    'dist/**/*.js'
-  ];
-  
-  for (const pattern of distPatterns) {
-    try {
-      const files = await glob(pattern);
-      files.forEach(fixUrlsInFile);
-    } catch (err) {
-      console.log(`Skipping pattern ${pattern}: ${err.message}`);
-    }
-  }
-  
-  // Oprava zdrojových souborů
-  const srcPatterns = [
+    'dist/**/*.js',
     'src/**/*.{astro,jsx,js,ts,tsx,html}',
   ];
   
-  for (const pattern of srcPatterns) {
+  for (const pattern of patterns) {
     try {
       const files = await glob(pattern);
       files.forEach(fixUrlsInFile);
