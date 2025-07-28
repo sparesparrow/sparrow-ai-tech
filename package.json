@@ -60,8 +60,9 @@
     "deps:audit": "npm audit --audit-level moderate",
     "serve:dist": "npx http-server dist -p 3000",
     "analyze": "npm run build && npx astro-bundle-analyzer",
-    "fix-urls": "node scripts/fix-urls.mjs",
-    "verify": "node scripts/verify-deployment.js"
+    "fix-urls": "node scripts/fix-urls.cjs",
+    "verify": "node scripts/verify-deployment.js",
+    "validate": "node scripts/validate-urls.cjs"
   },
   "dependencies": {
     "@astrojs/react": "^3.6.2",

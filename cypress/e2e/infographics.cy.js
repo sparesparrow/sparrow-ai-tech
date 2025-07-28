@@ -282,7 +282,7 @@ describe('Timeline Keyboard Navigation', () => {
   it('should allow tabbing through timeline items', () => {
     cy.get('.timeline-item').first().focus();
     cy.get('[role=button]').first().should('have.focus');
-    cy.get('.timeline-item').each(($el, idx, $list) => {
+    cy.get('.timeline-item').each((_$el, idx, $list) => {
       if (idx < $list.length - 1) {
         cy.focused().tab();
         cy.wait(50);

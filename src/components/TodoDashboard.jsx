@@ -1,4 +1,3 @@
- 
 import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
@@ -17,7 +16,7 @@ function parseTodoMd(md) {
   const sections = [];
   let currentSection = null;
   let currentTask = null;
-  const _statusRegex = /\[([ x-])\]/;
+  const _unusedStatusRegex = /\[([ x-])\]/;
   const statusMap = {
     ' ': 'ToDo',
     '-': 'HelpNeeded',
