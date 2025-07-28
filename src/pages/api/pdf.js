@@ -52,7 +52,7 @@ export async function POST({ request }) {
   let body;
   try {
     body = await request.json();
-  } catch (_e) {
+  } catch {
     return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400 });
   }
 
@@ -80,7 +80,7 @@ export async function POST({ request }) {
         'Content-Disposition': 'attachment; filename="document.pdf"',
       },
     });
-  } catch (_e) {
+  } catch {
     if (browser) await browser.close();
     return new Response(JSON.stringify({ error: 'Failed to generate PDF' }), { status: 500 });
   }

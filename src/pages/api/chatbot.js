@@ -56,7 +56,7 @@ export async function POST({ request }) {
   let body;
   try {
     body = await request.json();
-  } catch (_e) {
+  } catch {
     return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400 });
   }
 
@@ -88,7 +88,7 @@ export async function POST({ request }) {
     const data = await elevenRes.json();
     // Assume ElevenLabs returns { reply: string }
     return new Response(JSON.stringify({ reply: data.reply }), { status: 200 });
-  } catch (_e) {
+  } catch {
     return new Response(JSON.stringify({ error: 'Failed to contact ElevenLabs API' }), {
       status: 502,
     });
