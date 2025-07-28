@@ -1,10 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-env node */
-
-// POST /api/chatbot
-// Request body: { message: string }
-// Response: { reply: string } (or error)
-// This endpoint proxies requests to the ElevenLabs API securely.
 
 // Simple in-memory rate limiter (per IP, 10 requests/minute)
 const rateLimitMap = new Map();
@@ -28,11 +22,27 @@ function checkRateLimit(ip) {
   return entry.count <= RATE_LIMIT;
 }
 
-export function get() {
-  return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405 });
+// GET handler - returns API documentation or status
+export async function GET() {
+  return new Response(
+    JSON.stringify({
+      service: 'Sparrow AI Tech Chatbot API',
+      version: '1.0.0',
+      methods: ['POST'],
+      usage: 'Send POST request with {"message": "your text"} to get AI response',
+      status: 'active',
+    }),
+    {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
 }
 
-export async function post({ request }) {
+// POST handler - main chatbot functionality
+export async function POST({ request }) {
   const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
   if (!ELEVENLABS_API_KEY) {
     return new Response(JSON.stringify({ error: 'Missing API key' }), { status: 500 });

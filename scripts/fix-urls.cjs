@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-env node, commonjs */
-/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-require-imports no-console */
 
 const fs = require('fs');
 const { glob } = require('glob');

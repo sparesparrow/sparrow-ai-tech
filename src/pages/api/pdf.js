@@ -1,10 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-env node */
-
-// POST /api/pdf
-// Request body: { html: string }
-// Response: PDF file (application/pdf)
-// This endpoint generates a PDF from provided HTML using Puppeteer.
 
 import puppeteer from 'puppeteer';
 
@@ -29,15 +23,32 @@ function checkRateLimit(ip) {
   return entry.count <= RATE_LIMIT;
 }
 
-export function get() {
-  return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405 });
+// GET handler - returns API documentation
+export async function GET() {
+  return new Response(
+    JSON.stringify({
+      service: 'Sparrow AI Tech PDF Generator API',
+      version: '1.0.0',
+      methods: ['POST'],
+      usage: 'Send POST request with {"html": "your html content"} to generate PDF',
+      status: 'active',
+    }),
+    {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
 }
 
-export async function post({ request }) {
+// POST handler - PDF generation functionality
+export async function POST({ request }) {
   const ip = getClientIp(request);
   if (!checkRateLimit(ip)) {
     return new Response(JSON.stringify({ error: 'Too many requests' }), { status: 429 });
   }
+
   let body;
   try {
     body = await request.json();
