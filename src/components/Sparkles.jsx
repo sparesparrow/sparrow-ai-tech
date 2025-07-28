@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const Sparkles = ({ children }) => {
   const [sparkles, setSparkles] = useState([]);
@@ -14,7 +14,7 @@ const Sparkles = ({ children }) => {
     });
 
     const interval = setInterval(() => {
-      setSparkles(prev => {
+      setSparkles((prev) => {
         const newSparkles = [...prev, generateSparkle()].slice(-20);
         return newSparkles;
       });
@@ -25,7 +25,7 @@ const Sparkles = ({ children }) => {
 
   useEffect(() => {
     const cleanup = setTimeout(() => {
-      setSparkles(prev => prev.slice(1));
+      setSparkles((prev) => prev.slice(1));
     }, 3000);
 
     return () => clearTimeout(cleanup);
@@ -33,10 +33,10 @@ const Sparkles = ({ children }) => {
 
   return (
     <div ref={containerRef} className="relative inline-block">
-      {sparkles.map(sparkle => (
+      {sparkles.map((sparkle) => (
         <div
           key={sparkle.id}
-          className="absolute pointer-events-none animate-ping"
+          className="pointer-events-none absolute animate-ping"
           style={{
             left: `${sparkle.x}%`,
             top: `${sparkle.y}%`,

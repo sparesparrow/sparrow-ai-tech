@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
@@ -16,7 +16,7 @@ jest.mock('../../utils/i18n', () => ({
 
 // Create a mock component that uses React properly
 const MockHeaderComponent = () => {
-  const { t, language, setLanguage } = mockI18nImplementation();
+  const { t } = mockI18nImplementation();
 
   return React.createElement(
     'nav',

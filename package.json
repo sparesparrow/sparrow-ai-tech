@@ -50,7 +50,6 @@
     "clean:install": "npm run clean && rm -rf node_modules package-lock.json && npm install",
     "fix-all": "npm run lint:fix && npm run format",
     "check-all": "npm run type-check || true && npm run lint && npm run format:check && npm run test:ci",
-    "deploy": "npm run build && gh-pages -d dist",
     "deploy:ci": "npm run check-all && npm run build",
     "prepare": "husky install",
     "precommit": "lint-staged",

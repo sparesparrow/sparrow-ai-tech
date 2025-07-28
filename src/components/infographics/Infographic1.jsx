@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
+ 
+import { useEffect } from 'react';
 import { url } from '../../utils/url.js';
 
 // Chart.js is loaded via CDN in the HTML version, but here we use dynamic import for SSR safety

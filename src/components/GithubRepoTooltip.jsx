@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const GithubRepoTooltip = ({ repoUrl = 'https://github.com/sparesparrow/sparrow-ai-tech' }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,15 +13,15 @@ const GithubRepoTooltip = ({ repoUrl = 'https://github.com/sparesparrow/sparrow-
       if (match) {
         const [, owner, repo] = match;
         fetch(`https://api.github.com/repos/${owner}/${repo}`)
-          .then(res => res.json())
-          .then(data => {
+          .then((res) => res.json())
+          .then((data) => {
             if (data.message) {
               setError(data.message);
             } else {
               setRepoData(data);
             }
           })
-          .catch(err => setError(err.message));
+          .catch((err) => setError(err.message));
       }
     }
   }, [isVisible, repoData, error, repoUrl]);
@@ -47,13 +47,13 @@ const GithubRepoTooltip = ({ repoUrl = 'https://github.com/sparesparrow/sparrow-
       >
         📚 Repository Info
       </button>
-      
+
       {isVisible && (
-        <div className="absolute z-10 w-64 p-4 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg">
+        <div className="absolute z-10 mt-2 w-64 rounded-lg border border-gray-200 bg-white p-4 shadow-lg">
           {repoData ? (
             <div>
-              <h3 className="font-bold text-lg">{repoData.name}</h3>
-              <p className="text-sm text-gray-600 mb-2">{repoData.description}</p>
+              <h3 className="text-lg font-bold">{repoData.name}</h3>
+              <p className="mb-2 text-sm text-gray-600">{repoData.description}</p>
               <div className="flex justify-between text-sm">
                 <span>⭐ {repoData.stargazers_count}</span>
                 <span>🍴 {repoData.forks_count}</span>

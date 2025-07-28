@@ -28,6 +28,10 @@ function checkRateLimit(ip) {
   return entry.count <= RATE_LIMIT;
 }
 
+export function get() {
+  return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405 });
+}
+
 export async function post({ request }) {
   const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
   if (!ELEVENLABS_API_KEY) {

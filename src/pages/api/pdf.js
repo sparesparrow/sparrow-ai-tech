@@ -29,6 +29,10 @@ function checkRateLimit(ip) {
   return entry.count <= RATE_LIMIT;
 }
 
+export function get() {
+  return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405 });
+}
+
 export async function post({ request }) {
   const ip = getClientIp(request);
   if (!checkRateLimit(ip)) {
