@@ -82,19 +82,19 @@ const _Infographic3 = () => {
         </a>
         <nav className="flex gap-4">
           <a
-            href="/sparrow-ai-tech/infographics/1.html"
+            href={url('infographics/Infographic1/')}
             className="rounded px-4 py-2 font-semibold text-sky-300 transition-colors hover:text-yellow-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
           >
             Infographic 1
           </a>
           <a
-            href="/sparrow-ai-tech/infographics/2.html"
+            href={url('infographics/Infographic1/')}
             className="rounded px-4 py-2 font-semibold text-sky-300 transition-colors hover:text-yellow-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
           >
             Infographic 2
           </a>
           <a
-            href="/sparrow-ai-tech/infographics/3.html"
+            href={url('infographics/Infographic1/')}
             className="cursor-default rounded border border-yellow-400 bg-[#0D1B2A] px-4 py-2 font-semibold text-yellow-400 shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
           >
             Infographic 3
@@ -117,13 +117,13 @@ const _Infographic3 = () => {
             <p className="mb-2">Prozkoumejte další vizuály:</p>
             <div className="mt-2 flex flex-wrap justify-center gap-4">
               <a
-                href="/sparrow-ai-tech/infographics/1.html"
+                href={url('infographics/Infographic1/')}
                 className="inline-block rounded-lg bg-sky-700 px-5 py-2 font-semibold text-white shadow transition-all hover:bg-sky-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
               >
                 MCP Ecosystem
               </a>
               <a
-                href="/sparrow-ai-tech/infographics/2.html"
+                href={url('infographics/Infographic1/')}
                 className="inline-block rounded-lg bg-sky-700 px-5 py-2 font-semibold text-white shadow transition-all hover:bg-sky-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
               >
                 Human-in-the-Loop AI

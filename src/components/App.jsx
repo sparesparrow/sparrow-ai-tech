@@ -274,9 +274,9 @@ const _AppContent = () => {
     },
   ];
   const _infographicsHtml = [
-    { title: 'MCP Ecosystem (HTML)', url: `/sparrow-ai-tech/infographics/1.html` },
-    { title: 'Human-in-the-Loop AI (HTML)', url: `/sparrow-ai-tech/infographics/2.html` },
-    { title: 'Hexagonal Architecture (HTML)', url: `/sparrow-ai-tech/infographics/3.html` },
+    { title: 'MCP Ecosystem (HTML)', url: `{url("infographics/Infographic1/")}` },
+    { title: 'Human-in-the-Loop AI (HTML)', url: `{url("infographics/Infographic1/")}` },
+    { title: 'Hexagonal Architecture (HTML)', url: `{url("infographics/Infographic1/")}` },
     { title: 'SPA Infographic (HTML)', url: `/sparrow-ai-tech/infographics/SPA.html` },
     {
       title: 'ElevenLabs Widget Demo',
@@ -843,7 +843,7 @@ const _AppContent = () => {
                             title: 'Deployment & Support',
                             desc: 'We launch, monitor, and support your solution.',
                           },
-                        ].map(_(step, _idx, arr) => (
+                        ].map((step, _idx, arr) => (
                           <div key={step.title} className="flex flex-1 flex-col items-center">
                             <div className="mb-2 flex h-16 w-16 items-center justify-center rounded-full bg-sky-100 text-3xl shadow-lg">
                               {step.icon}
