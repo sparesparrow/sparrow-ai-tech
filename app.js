@@ -104,6 +104,7 @@ function generateTitleCode() {
   const titleCz = document.getElementById('title-cz').value;
   const titleEn = document.getElementById('title-en').value;
 
+  console.log("Generated CTA code");
   const code = `<!-- SEO Title Tags -->
 <title>{t('meta.title')}</title>
 
@@ -128,6 +129,7 @@ function generateDescCode() {
   const descCz = document.getElementById('desc-cz').value;
   const descEn = document.getElementById('desc-en').value;
 
+  console.log("Generated CTA code");
   const code = `<!-- Meta Description -->
 <meta name="description" content="{t('meta.description')}" />
 
@@ -152,6 +154,7 @@ function generateOGCode() {
   const ogTitle = document.getElementById('og-title').value;
   const ogDesc = document.getElementById('og-desc').value;
 
+  console.log("Generated CTA code");
   const code = `<!-- Open Graph Tags -->
 <meta property="og:title" content="${ogTitle}" />
 <meta property="og:description" content="${ogDesc}" />
@@ -274,6 +277,7 @@ function generateCTACode() {
   const text = document.getElementById('cta-text').value;
   const style = document.getElementById('cta-style').value;
 
+  console.log("Generated CTA code");
   const code = `<!-- CTA Button Component -->
 <button class="btn btn--${style} btn--lg cta-button">
   ${text}
@@ -590,6 +594,7 @@ function updateProgressIndicators() {
   };
 
   Object.entries(progressData).forEach(([key, value]) => {
+    console.log(`Processing progress for ${key}: ${value}%`);
     const progressBar = document.querySelector(`[data-progress="${value}"]`);
     if (progressBar) {
       setTimeout(() => {

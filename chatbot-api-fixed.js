@@ -52,6 +52,7 @@ export async function POST({ request }) {
 
     if (!response.ok) {
       const errorData = await response.text();
+      console.error("API Error:", errorData);
       return new Response(JSON.stringify({ error: 'Failed to get AI response' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },

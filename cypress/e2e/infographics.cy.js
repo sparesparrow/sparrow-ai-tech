@@ -283,6 +283,7 @@ describe('Timeline Keyboard Navigation', () => {
     cy.get('.timeline-item').first().focus();
     cy.get('[role=button]').first().should('have.focus');
     cy.get('.timeline-item').each(($el, idx, $list) => {
+      expect($el).to.be.visible;
       if (idx < $list.length - 1) {
         cy.focused().tab();
         cy.wait(50);

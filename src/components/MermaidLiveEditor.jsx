@@ -1,5 +1,5 @@
  
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const DEFAULT_MERMAID = `graph TD
   A[Start] --> B[Choice];

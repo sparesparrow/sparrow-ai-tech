@@ -1,55 +1,74 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
-import Tippy from '@tippyjs/react';
+import React, { useState, useEffect, useRef } from 'react';
 
-export default function GithubRepoTooltip({ repoPath, children }) {
-  const [repoData, setRepoData] = React.useState(null);
+const GithubRepoTooltip = ({ repoUrl = 'https://github.com/sparesparrow/sparrow-ai-tech' }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [repoData, setRepoData] = useState(null);
+  const [error, setError] = useState(null);
+  const tooltipRef = useRef(null);
 
-  const fetchRepoData = React.useCallback(async () => {
-    try {
-      const response = await fetch(`https://api.github.com/repos/${repoPath}`);
-      const data = await response.json();
-      setRepoData(data);
-    } catch (error) {
-      // Handle error silently
+  useEffect(() => {
+    if (isVisible && !repoData && !error) {
+      // Extract owner and repo from URL
+      const match = repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/);
+      if (match) {
+        const [, owner, repo] = match;
+        fetch(`https://api.github.com/repos/${owner}/${repo}`)
+          .then(res => res.json())
+          .then(data => {
+            if (data.message) {
+              setError(data.message);
+            } else {
+              setRepoData(data);
+            }
+          })
+          .catch(err => setError(err.message));
+      }
     }
-  }, [repoPath]);
+  }, [isVisible, repoData, error, repoUrl]);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    window.open(`https://github.com/${repoPath}`, 'blank');
-  };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(event.target)) {
+        setIsVisible(false);
+      }
+    };
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      handleClick(e);
-    }
-  };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
-    <Tippy
-      onShow={fetchRepoData}
-      content={
-        repoData ? (
-          <div className="p-2">
-            <h4 className="font-bold">{repoData.name}</h4>
-            <p className="text-sm">{repoData.description}</p>
-          </div>
-        ) : (
-          'Loading...'
-        )
-      }
-      placement="top"
-    >
-      <span
-        role="link"
-        tabIndex={0}
-        onClick={handleClick}
-        onKeyDown={handleKeyDown}
-        className="cursor-pointer"
+    <div className="relative inline-block" ref={tooltipRef}>
+      <button
+        onMouseEnter={() => setIsVisible(true)}
+        onMouseLeave={() => setIsVisible(false)}
+        onClick={() => setIsVisible(!isVisible)}
+        className="text-blue-600 hover:text-blue-800"
       >
-        {children}
-      </span>
-    </Tippy>
+        📚 Repository Info
+      </button>
+      
+      {isVisible && (
+        <div className="absolute z-10 w-64 p-4 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg">
+          {repoData ? (
+            <div>
+              <h3 className="font-bold text-lg">{repoData.name}</h3>
+              <p className="text-sm text-gray-600 mb-2">{repoData.description}</p>
+              <div className="flex justify-between text-sm">
+                <span>⭐ {repoData.stargazers_count}</span>
+                <span>🍴 {repoData.forks_count}</span>
+                <span>{repoData.language}</span>
+              </div>
+            </div>
+          ) : error ? (
+            <div className="text-red-600">Error: {error}</div>
+          ) : (
+            <div>Loading repository info...</div>
+          )}
+        </div>
+      )}
+    </div>
   );
-}
+};
+
+export default GithubRepoTooltip;
