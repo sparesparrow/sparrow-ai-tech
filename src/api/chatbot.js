@@ -31,7 +31,7 @@ export default async function handler(req, res) {
       headers: {
         'xi-api-key': apiKey,
         'Content-Type': 'application/json',
-        'Accept': 'audio/mpeg',
+        Accept: 'audio/mpeg',
       },
       body: JSON.stringify({ text }),
     });
@@ -45,8 +45,8 @@ export default async function handler(req, res) {
     // ElevenLabs returns audio/mpeg; stream or buffer as needed
     res.setHeader('Content-Type', 'audio/mpeg');
     elevenLabsRes.body.pipe(res);
-  } catch(_error) {
+  } catch (_error) {
     res.status(500).json({ error: error.message || 'Internal server error' });
   }
 }
-// Note: In production, ensure fetch is polyfilled (e.g., with node-fetch) if not available. 
+// Note: In production, ensure fetch is polyfilled (e.g., with node-fetch) if not available.

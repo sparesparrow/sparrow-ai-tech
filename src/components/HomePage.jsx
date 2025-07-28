@@ -1169,7 +1169,7 @@ const ArticleModal = ({ open, onClose, articleUrl, title }) => {
       {loading && <div className="text-sky-400">Loading…</div>}
       {error && <div className="text-red-400">{error}</div>}
       {!loading && !error && (
-        <div className="prose prose-invert max-w-none dark:prose-invert">
+        <div className="prose prose-invert dark:prose-invert max-w-none">
           <ReactMarkdown>{content}</ReactMarkdown>
         </div>
       )}

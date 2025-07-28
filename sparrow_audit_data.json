@@ -51,12 +51,7 @@
     ]
   },
   "content_structure": {
-    "current_sections": [
-      "Welcome",
-      "Infographics",
-      "Markdown & Mermaid",
-      "AI Tools"
-    ],
+    "current_sections": ["Welcome", "Infographics", "Markdown & Mermaid", "AI Tools"],
     "recommended_sections": [
       "Hero Section",
       "About Us",

@@ -79,7 +79,7 @@ describe('I18nProvider', () => {
       );
     });
     // Debug: Output the DOM after initial render
-     
+
     console.log('DOM after render:', screen.debug ? screen.debug() : 'no debug');
     await screen.findByText('Projects');
 
@@ -88,7 +88,7 @@ describe('I18nProvider', () => {
     fireEvent.click(csButton);
 
     // Debug: Output the DOM after clicking CS
-     
+
     console.log('DOM after CS click:', screen.debug ? screen.debug() : 'no debug');
 
     // Step 3: Wait for Czech translation
@@ -96,4 +96,4 @@ describe('I18nProvider', () => {
     expect(screen.getByRole('button', { name: 'CS' })).toBeDisabled();
     expect(screen.getByRole('button', { name: 'EN' })).not.toBeDisabled();
   });
-}); 
+});

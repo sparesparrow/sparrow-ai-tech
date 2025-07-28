@@ -14,14 +14,7 @@
       "jsx": true
     }
   },
-  "plugins": [
-    "@typescript-eslint",
-    "react",
-    "react-hooks",
-    "jsx-a11y",
-    "cypress",
-    "astro"
-  ],
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "jsx-a11y", "cypress", "astro"],
   "env": {
     "browser": true,
     "es2021": true,

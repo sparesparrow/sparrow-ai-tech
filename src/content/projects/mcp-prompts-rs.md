@@ -5,7 +5,6 @@ repo_url: 'https://github.com/sparesparrow/mcp-prompts-rs.git'
 pubDate: '2025-07-28'
 ---
 
-
 # mcp-prompts-rs
 
 A Rust-based server for managing AI prompts using the Model Context Protocol (MCP).

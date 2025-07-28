@@ -144,4 +144,4 @@
   "why_mcp_point2": "<strong>Open standards and community:</strong> All projects are open-source (MIT license), with a focus on documentation, containerization, and automated CI/CD. Active engagement in the MCP community and visibility on specialized platforms.",
   "why_mcp_point3": "<strong>Strategic recommendations:</strong> Emphasis on stability, accelerating the Rust rewrite, formalizing the toolchain as a unified stack, and strengthening community engagement.",
   "why_mcp_read_full": "Read the full analysis"
-} 
+}

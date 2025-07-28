@@ -39,7 +39,7 @@ export async function post({ request }) {
   let body;
   try {
     body = await request.json();
-  } catch(_e) {
+  } catch (_e) {
     return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400 });
   }
 
@@ -48,7 +48,9 @@ export async function post({ request }) {
     return new Response(JSON.stringify({ error: 'Missing message' }), { status: 400 });
   }
   if (typeof message !== 'string' || message.length > 1000) {
-    return new Response(JSON.stringify({ error: 'Message too long (max 1000 chars)' }), { status: 400 });
+    return new Response(JSON.stringify({ error: 'Message too long (max 1000 chars)' }), {
+      status: 400,
+    });
   }
 
   // Example: Forward to ElevenLabs API (replace with actual endpoint and payload as needed)
@@ -69,7 +71,7 @@ export async function post({ request }) {
     const data = await elevenRes.json();
     // Assume ElevenLabs returns { reply: string }
     return new Response(JSON.stringify({ reply: data.reply }), { status: 200 });
-  } catch(_e) {
+  } catch (_e) {
     return new Response(JSON.stringify({ error: 'Failed to contact ElevenLabs API' }), {
       status: 502,
     });

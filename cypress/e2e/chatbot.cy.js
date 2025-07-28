@@ -10,9 +10,11 @@ describe('Chatbot', () => {
     cy.visitApp('/');
     cy.get('[data-cy="chatbot-button"]').click();
     cy.get('[data-cy="chatbot-input"]').type('Error test');
-    cy.intercept('POST', '/api/chatbot', { statusCode: 500, body: { error: 'Failed' } }).as('chatError');
+    cy.intercept('POST', '/api/chatbot', { statusCode: 500, body: { error: 'Failed' } }).as(
+      'chatError'
+    );
     cy.get('[data-cy="chatbot-send"]').click();
     cy.wait('@chatError');
     cy.contains('Error').should('exist');
   });
-}); 
+});

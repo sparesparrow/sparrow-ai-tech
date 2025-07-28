@@ -11,8 +11,8 @@ const Mermaid = () => (
 );
 
 // const EditableMermaid = () => (
-  <div className="mermaid-diagram text-red-500">Editable Mermaid diagrams are not supported.</div>
-);
+//   <div className="mermaid-diagram text-red-500">Editable Mermaid diagrams are not supported.</div>
+// );
 
 const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
   const [content, setContent] = useState('');
@@ -43,21 +43,37 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
         components={{
           a: ({ href, children, ...props }) => {
             if (/^https?:\/\/(www\.)?github\.com\/[^\/]+\/[^\/]+(\/?$|#|\?)/i.test(href)) {
-              return <GithubRepoTooltip href={href} {...props}>{children}</GithubRepoTooltip>;
+              return (
+                <GithubRepoTooltip href={href} {...props}>
+                  {children}
+                </GithubRepoTooltip>
+              );
             }
             if (/\.(mmd|mermaid)$/i.test(href)) {
-              return <MermaidPreviewLink href={href} {...props}>{children}</MermaidPreviewLink>;
+              return (
+                <MermaidPreviewLink href={href} {...props}>
+                  {children}
+                </MermaidPreviewLink>
+              );
             }
-            return <ImagePreviewLink href={href} {...props}>{children}</ImagePreviewLink>;
+            return (
+              <ImagePreviewLink href={href} {...props}>
+                {children}
+              </ImagePreviewLink>
+            );
           },
-          code({node, inline, className, children, ...props}) {
+          code({ node, inline, className, children, ...props }) {
             if (className === 'language-mermaid') {
               return <Mermaid />;
             }
             if (editableDiagrams && className === 'language-mermaid-edit') {
               return <EditableMermaid />;
             }
-            return <code className={className} {...props}>{children}</code>;
+            return (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            );
           },
         }}
       >
@@ -67,4 +83,4 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
   );
 };
 
-export default MarkdownViewer; 
+export default MarkdownViewer;

@@ -34,7 +34,9 @@ export default function GithubRepoTooltip({ repoPath, children }) {
             <h4 className="font-bold">{repoData.name}</h4>
             <p className="text-sm">{repoData.description}</p>
           </div>
-        ) : 'Loading...'
+        ) : (
+          'Loading...'
+        )
       }
       placement="top"
     >

@@ -1,7 +1,9 @@
-const base = Cypress.env("BASE_URL") || "";
+const base = Cypress.env('BASE_URL') || '';
 // cypress/e2e/base-url-paths.cy.js
 describe('Base URL Path Validation', () => {
-  const base = Cypress.config('baseUrl').replace(/https?:\/\//, '/').replace(/\/$/, '');
+  const base = Cypress.config('baseUrl')
+    .replace(/https?:\/\//, '/')
+    .replace(/\/$/, '');
 
   beforeEach(() => {
     // Visit the homepage
@@ -16,8 +18,10 @@ describe('Base URL Path Validation', () => {
 
         // Skip external URLs (http/https) and data URLs
         if (!src.startsWith('http') && !src.startsWith('data:')) {
-          expect(src).to.match(new RegExp(`^${base}`),
-            `Image src "${src}" should start with base URL "${base}"`);
+          expect(src).to.match(
+            new RegExp(`^${base}`),
+            `Image src "${src}" should start with base URL "${base}"`
+          );
         }
       });
     });
@@ -28,8 +32,10 @@ describe('Base URL Path Validation', () => {
 
         // Skip external URLs
         if (!href.startsWith('http')) {
-          expect(href).to.match(new RegExp(`^${base}`),
-            `CSS link href "${href}" should start with base URL "${base}"`);
+          expect(href).to.match(
+            new RegExp(`^${base}`),
+            `CSS link href "${href}" should start with base URL "${base}"`
+          );
         }
       });
     });
@@ -40,8 +46,10 @@ describe('Base URL Path Validation', () => {
 
         // Skip external URLs and inline scripts
         if (src && !src.startsWith('http')) {
-          expect(src).to.match(new RegExp(`^${base}`),
-            `Script src "${src}" should start with base URL "${base}"`);
+          expect(src).to.match(
+            new RegExp(`^${base}`),
+            `Script src "${src}" should start with base URL "${base}"`
+          );
         }
       });
     });
@@ -54,40 +62,47 @@ describe('Base URL Path Validation', () => {
         const href = $link.attr('href');
 
         // Skip external URLs, mailto, tel, and hash links
-        if (href &&
+        if (
+          href &&
           !href.startsWith('http') &&
           !href.startsWith('mailto:') &&
           !href.startsWith('tel:') &&
-          !href.startsWith('#')) {
-
-          expect(href).to.match(new RegExp(`^${base}`),
-            `Internal link href "${href}" should start with base URL "${base}"`);
+          !href.startsWith('#')
+        ) {
+          expect(href).to.match(
+            new RegExp(`^${base}`),
+            `Internal link href "${href}" should start with base URL "${base}"`
+          );
         }
       });
     });
 
     it('should navigate to article pages correctly', () => {
       // Test specific article links if they exist
-      cy.get('a[href*="/articles/"]').first().then(($link) => {
-        const href = $link.attr('href');
-        expect(href).to.match(new RegExp(`^${base}/articles/`));
+      cy.get('a[href*="/articles/"]')
+        .first()
+        .then(($link) => {
+          const href = $link.attr('href');
+          expect(href).to.match(new RegExp(`^${base}/articles/`));
 
-        // Try to visit the link
-        cy.wrap($link).click();
-        cy.url().should('include', `${base}/articles/`);
-      });
+          // Try to visit the link
+          cy.wrap($link).click();
+          cy.url().should('include', `${base}/articles/`);
+        });
     });
 
     it('should navigate to infographic pages correctly', () => {
       // Test infographic links if they exist
-      cy.get('a[href*="/infographics/"]').first().then(($link) => {
-        const href = $link.attr('href');
-        expect(href).to.match(new RegExp(`^${base}/infographics/`));
+      cy.get('a[href*="/infographics/"]')
+        .first()
+        .then(($link) => {
+          const href = $link.attr('href');
+          expect(href).to.match(new RegExp(`^${base}/infographics/`));
 
-        // Try to visit the link
-        cy.wrap($link).click();
-        cy.url().should('include', `${base}/infographics/`);
-      });
+          // Try to visit the link
+          cy.wrap($link).click();
+          cy.url().should('include', `${base}/infographics/`);
+        });
     });
   });
 
@@ -135,10 +150,9 @@ describe('Base URL Path Validation', () => {
         // Make HTTP request to verify image loads
         cy.request({
           url: src,
-          failOnStatusCode: false
+          failOnStatusCode: false,
         }).then((response) => {
-          expect(response.status).to.be.oneOf([200, 304],
-            `Image ${src} should load successfully`);
+          expect(response.status).to.be.oneOf([200, 304], `Image ${src} should load successfully`);
         });
       });
     });
@@ -149,10 +163,12 @@ describe('Base URL Path Validation', () => {
 
         cy.request({
           url: href,
-          failOnStatusCode: false
+          failOnStatusCode: false,
         }).then((response) => {
-          expect(response.status).to.be.oneOf([200, 304],
-            `CSS file ${href} should load successfully`);
+          expect(response.status).to.be.oneOf(
+            [200, 304],
+            `CSS file ${href} should load successfully`
+          );
         });
       });
     });

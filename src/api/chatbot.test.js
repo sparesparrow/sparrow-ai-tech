@@ -5,22 +5,32 @@ import handler from './chatbot.js';
 
 // Mock window.matchMedia for JSDOM
 global.window = global.window || {};
-global.window.matchMedia = global.window.matchMedia || function () {
-  return {
-    matches: false,
-    addEventListener: () => { },
-    removeEventListener: () => { },
-    addListener: () => { },
-    removeListener: () => { },
-    dispatchEvent: () => { },
+global.window.matchMedia =
+  global.window.matchMedia ||
+  function () {
+    return {
+      matches: false,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+      dispatchEvent: () => {},
+    };
   };
-};
 
 const mockRes = () => {
   const res = {};
-  res.status = jest.fn().mockImplementation((code) => { console.log('res.status called with', code); return res; });
-  res.json = jest.fn().mockImplementation((obj) => { console.log('res.json called with', obj); return res; });
-  res.setHeader = jest.fn().mockImplementation((...args) => { console.log('res.setHeader called with', ...args); });
+  res.status = jest.fn().mockImplementation((code) => {
+    console.log('res.status called with', code);
+    return res;
+  });
+  res.json = jest.fn().mockImplementation((obj) => {
+    console.log('res.json called with', obj);
+    return res;
+  });
+  res.setHeader = jest.fn().mockImplementation((...args) => {
+    console.log('res.setHeader called with', ...args);
+  });
   res.end = jest.fn();
   res.send = jest.fn();
   return res;
@@ -86,4 +96,4 @@ describe('POST /api/chatbot', () => {
     expect(res.status).toHaveBeenCalledWith(502); // match the mock's status
     expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ error: 'API error' }));
   });
-}); 
+});

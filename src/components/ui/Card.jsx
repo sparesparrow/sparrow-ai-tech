@@ -11,11 +11,16 @@ const Card = ({ title, description, children, href, onClick, className = '', ...
         href={href}
         className={baseClass}
         tabIndex={0}
-        onKeyDown={e => { if (onClick && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onClick(e); } }}
+        onKeyDown={(e) => {
+          if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            onClick(e);
+          }
+        }}
         {...props}
       >
-        <h3 className="text-lg font-semibold text-sky-700 dark:text-sky-300 mb-2">{title}</h3>
-        {description && <p className="text-slate-600 dark:text-stone-300 mb-2">{description}</p>}
+        <h3 className="mb-2 text-lg font-semibold text-sky-700 dark:text-sky-300">{title}</h3>
+        {description && <p className="mb-2 text-slate-600 dark:text-stone-300">{description}</p>}
         {children}
       </a>
     );
@@ -26,11 +31,16 @@ const Card = ({ title, description, children, href, onClick, className = '', ...
       tabIndex={0}
       role="button"
       onClick={onClick}
-      onKeyDown={e => { if (onClick && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onClick(e); } }}
+      onKeyDown={(e) => {
+        if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault();
+          onClick(e);
+        }
+      }}
       {...props}
     >
-      <h3 className="text-lg font-semibold text-sky-700 dark:text-sky-300 mb-2">{title}</h3>
-      {description && <p className="text-slate-600 dark:text-stone-300 mb-2">{description}</p>}
+      <h3 className="mb-2 text-lg font-semibold text-sky-700 dark:text-sky-300">{title}</h3>
+      {description && <p className="mb-2 text-slate-600 dark:text-stone-300">{description}</p>}
       {children}
     </div>
   );
@@ -45,4 +55,4 @@ Card.propTypes = {
   className: PropTypes.string,
 };
 
-export default Card; 
+export default Card;

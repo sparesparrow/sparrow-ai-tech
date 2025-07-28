@@ -89,9 +89,11 @@ describe('MarkdownViewer Component', () => {
     // This markdown file should contain: [Alt text](/assets/images/test-image.png)
     cy.visitApp('/markdown-test?src=./articles/image-link-test.md');
     cy.contains('Alt text').trigger('mouseover');
-    cy.get('.tippy-box img').should('be.visible').and(($img) => {
-      expect($img[0].src).to.match(/test-image\.png$/);
-    });
+    cy.get('.tippy-box img')
+      .should('be.visible')
+      .and(($img) => {
+        expect($img[0].src).to.match(/test-image\.png$/);
+      });
   });
 
   it('shows Mermaid diagram preview on hover for .mmd links', () => {

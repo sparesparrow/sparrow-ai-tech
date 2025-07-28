@@ -1,6 +1,14 @@
 import React from 'react';
 
-const SecondaryButton = ({ children, onClick, selected, disabled, type = 'button', className = '', ...props }) => {
+const SecondaryButton = ({
+  children,
+  onClick,
+  selected,
+  disabled,
+  type = 'button',
+  className = '',
+  ...props
+}) => {
   return (
     <button
       type={type}

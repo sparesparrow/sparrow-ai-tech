@@ -1,6 +1,13 @@
 import React from 'react';
 
-const PrimaryButton = ({ children, onClick, disabled, type = 'button', className = '', ...props }) => {
+const PrimaryButton = ({
+  children,
+  onClick,
+  disabled,
+  type = 'button',
+  className = '',
+  ...props
+}) => {
   return (
     <button
       type={type}

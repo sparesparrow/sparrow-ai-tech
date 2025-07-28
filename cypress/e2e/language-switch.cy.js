@@ -8,4 +8,4 @@ describe('Language Switcher', () => {
     cy.get('[data-cy="language-toggle"]').click();
     cy.contains('Home').should('exist');
   });
-}); 
+});

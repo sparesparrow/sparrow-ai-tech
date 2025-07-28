@@ -27,7 +27,7 @@ export function I18nProvider({ children }) {
     loadTranslations(language).then(setTranslations).catch(console.error);
   }, [language]);
 
-  const t = key => {
+  const t = (key) => {
     return (
       key
         .split('.')
@@ -35,7 +35,9 @@ export function I18nProvider({ children }) {
     );
   };
 
-  return <I18nContext.Provider value={{ language, setLanguage, t }}>{children}</I18nContext.Provider>;
+  return (
+    <I18nContext.Provider value={{ language, setLanguage, t }}>{children}</I18nContext.Provider>
+  );
 }
 
 export function useI18n() {

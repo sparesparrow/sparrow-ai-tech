@@ -1,12 +1,18 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import { fileURLToPath } from 'url';
+import tailwind from '@astrojs/tailwind';
+import { fileURLToPath, URL } from 'node:url';
 import rehypeMermaid from 'rehype-mermaid';
 
 export default defineConfig({
   site: 'https://sparesparrow.github.io/sparrow-ai-tech',
   base: '/',
-  integrations: [react()],
+  integrations: [
+    react(),
+    tailwind({
+      applyBaseStyles: false,
+    })
+  ],
   markdown: {
     rehypePlugins: [
       [rehypeMermaid, { strategy: 'img-svg' }]
@@ -15,7 +21,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '@': fileURLToPath(new import.meta.url + '/../src'),
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
   },

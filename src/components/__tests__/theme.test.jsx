@@ -4,16 +4,18 @@ import { jest } from '@jest/globals';
 
 // Mock window.matchMedia for JSDOM
 global.window = global.window || {};
-global.window.matchMedia = global.window.matchMedia || function() {
-  return {
-    matches: false,
-    addEventListener: () => {},
-    removeEventListener: () => {},
-    addListener: () => {},
-    removeListener: () => {},
-    dispatchEvent: () => {},
+global.window.matchMedia =
+  global.window.matchMedia ||
+  function () {
+    return {
+      matches: false,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+      dispatchEvent: () => {},
+    };
   };
-};
 
 const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(() => {
@@ -57,4 +59,4 @@ describe('ThemeToggle', () => {
     expect(document.documentElement.classList.contains('dark')).toBe(true);
     expect(localStorage.getItem('theme')).toBe('dark');
   });
-}); 
+});

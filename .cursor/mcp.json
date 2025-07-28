@@ -1,59 +1,45 @@
 {
-    "mcpServers": {
-        "server-memory": {
-            "command": "npx",
-            "args": [
-                "-y",
-                "@modelcontextprotocol/server-memory"
-            ],
-            "env": {
-              "MEMORY_FILE_PATH": "${workspaceRoot}/memory.json"
-            }
-        },
-        "mcp-server-fetch": {
-            "command": "uvx",
-            "args": [
-                "mcp-server-fetch"
-            ]
-        },
-        "server-sequential-thinking": {
-            "command": "npx",
-            "args": [
-                "-y",
-                "@modelcontextprotocol/server-sequential-thinking"
-            ]
-        },
-        "mcp-server-filesystem": {
-            "command": "npx",
-            "args": [
-                "-y",
-                "@modelcontextprotocol/server-filesystem",
-                "/home/sparrow/Desktop/sparrow-ai-tech",
-                "--allow-all-origins",
-                "--allow-all-methods",
-                "--allow-all-headers",
-                "--allow-all-credentials",
-                "--allow-all-paths",
-                "--allow-all-domains",
-                "--allow-all-subdomains",
-                "--allow-all-protocols",
-                "--allow-all-schemes",
-                "--allow-all-ports"
-            ]
-        },
-        "puppeteer": {
-            "command": "npx",
-            "args": [
-                "-y",
-                "@modelcontextprotocol/server-puppeteer"
-            ]
-        },
-        "github": {
-            "command": "npx",
-            "args": [
-                "-y",
-                "@modelcontextprotocol/server-github"
-            ]
-        }
+  "mcpServers": {
+    "server-memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": {
+        "MEMORY_FILE_PATH": "${workspaceRoot}/memory.json"
+      }
+    },
+    "mcp-server-fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"]
+    },
+    "server-sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "mcp-server-filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home/sparrow/Desktop/sparrow-ai-tech",
+        "--allow-all-origins",
+        "--allow-all-methods",
+        "--allow-all-headers",
+        "--allow-all-credentials",
+        "--allow-all-paths",
+        "--allow-all-domains",
+        "--allow-all-subdomains",
+        "--allow-all-protocols",
+        "--allow-all-schemes",
+        "--allow-all-ports"
+      ]
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"]
     }
+  }
 }

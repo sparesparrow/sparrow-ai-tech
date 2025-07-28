@@ -34,7 +34,7 @@ export async function post({ request }) {
   let body;
   try {
     body = await request.json();
-  } catch(_e) {
+  } catch (_e) {
     return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400 });
   }
 
@@ -43,7 +43,9 @@ export async function post({ request }) {
     return new Response(JSON.stringify({ error: 'Missing html' }), { status: 400 });
   }
   if (typeof html !== 'string' || html.length > 100000) {
-    return new Response(JSON.stringify({ error: 'HTML too large (max 100,000 chars)' }), { status: 400 });
+    return new Response(JSON.stringify({ error: 'HTML too large (max 100,000 chars)' }), {
+      status: 400,
+    });
   }
 
   let browser;
@@ -60,7 +62,7 @@ export async function post({ request }) {
         'Content-Disposition': 'attachment; filename="document.pdf"',
       },
     });
-  } catch(_e) {
+  } catch (_e) {
     if (browser) await browser.close();
     return new Response(JSON.stringify({ error: 'Failed to generate PDF' }), { status: 500 });
   }

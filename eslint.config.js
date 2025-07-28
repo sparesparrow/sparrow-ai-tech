@@ -1,3 +1,6 @@
+// @ts-nocheck
+/* eslint-env node */
+
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -16,6 +19,7 @@ export default [
       '**/*-fixed.*',
       '*.json',
       '*.md',
+      '**/*.cjs', // Ignore all .cjs files from ESLint
     ],
   },
   js.configs.recommended,
@@ -46,6 +50,8 @@ export default [
       'react/display-name': 'off',
       'react/react-in-jsx-scope': 'off',
       'no-undef': 'warn',
+      '@typescript-eslint/no-unused-expressions': 'warn',
+      'no-dupe-keys': 'error',
     },
     settings: {
       react: { version: 'detect' },
@@ -64,6 +70,8 @@ export default [
     },
     rules: {
       ...cypress.configs.recommended.rules,
+      'cypress/no-unnecessary-waiting': 'warn',
+      'cypress/unsafe-to-chain-command': 'warn',
     },
   },
   ...astro.configs.recommended,

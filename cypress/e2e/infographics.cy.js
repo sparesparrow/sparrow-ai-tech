@@ -163,7 +163,10 @@ describe('Floating WhatsApp Button', () => {
     cy.visitApp('/');
   });
   it('should be visible and have correct link', () => {
-    cy.get('.floating-contact-btn').should('be.visible').and('have.attr', 'href').and('include', 'wa.me');
+    cy.get('.floating-contact-btn')
+      .should('be.visible')
+      .and('have.attr', 'href')
+      .and('include', 'wa.me');
   });
 });
 
@@ -278,12 +281,14 @@ describe('Timeline Keyboard Navigation', () => {
   });
   it('should allow tabbing through timeline items', () => {
     cy.get('.timeline-item').first().focus();
-    cy.get("[role=button]").first().should('have.focus');
+    cy.get('[role=button]').first().should('have.focus');
     cy.get('.timeline-item').each(($el, idx, $list) => {
       if (idx < $list.length - 1) {
         cy.focused().tab();
         cy.wait(50);
-        cy.get('.timeline-item').eq(idx + 1).should('have.focus');
+        cy.get('.timeline-item')
+          .eq(idx + 1)
+          .should('have.focus');
       }
     });
   });
@@ -315,15 +320,17 @@ describe('Deployed Site Smoke Test', () => {
   });
 
   it('should display the language switcher and switch language', () => {
-    cy.get('#site-lang-switcher, #language-toggle').should('exist').then($el => {
-      if ($el.is('select')) {
-        cy.wrap($el).select('en');
-        cy.get('body').should('exist'); // Optionally check for English text
-      } else {
-        cy.wrap($el).click();
-        cy.get('body').should('exist'); // Optionally check for language change
-      }
-    });
+    cy.get('#site-lang-switcher, #language-toggle')
+      .should('exist')
+      .then(($el) => {
+        if ($el.is('select')) {
+          cy.wrap($el).select('en');
+          cy.get('body').should('exist'); // Optionally check for English text
+        } else {
+          cy.wrap($el).click();
+          cy.get('body').should('exist'); // Optionally check for language change
+        }
+      });
   });
 
   it('should display the Quick Analysis form', () => {

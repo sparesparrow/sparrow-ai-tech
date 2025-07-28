@@ -1,3 +1,13 @@
+// @ts-nocheck
+/* eslint-env node */
+ 
+
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export default {
   testEnvironment: 'jsdom',
   moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
@@ -8,7 +18,7 @@ export default {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '^src/(.*)$': '<rootDir>/src/$1',
     '^@/(.*)$': '<rootDir>/src/$1',
-    '\\.(astro)$': new URL('./test/__mocks__/astroStub.js', import.meta.url).pathname,
+    '\\.(astro)$': join(__dirname, 'test/__mocks__/astroStub.js'),
   },
   setupFilesAfterEnv: ['@testing-library/jest-dom'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/', '/cypress/'],
@@ -21,4 +31,12 @@ export default {
     "**/?(*.)+(spec|test).[jt]s?(x)",
     "**/*.test.mjs"
   ],
+  coverageThreshold: {
+    global: {
+      branches: 50,
+      functions: 50,
+      lines: 50,
+      statements: 50
+    }
+  }
 };

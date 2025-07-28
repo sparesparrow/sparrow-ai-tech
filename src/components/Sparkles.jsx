@@ -23,7 +23,7 @@ export default function Sparkles({ children }) {
   return (
     <div className="sparkles-wrapper" style={{ position: 'relative', display: 'inline-block' }}>
       {children}
-      {sparkles.current.map(sparkle => (
+      {sparkles.current.map((sparkle) => (
         <span
           key={sparkle.id}
           className="sparkle"
@@ -40,7 +40,12 @@ export default function Sparkles({ children }) {
           }}
         >
           <svg width={sparkle.size} height={sparkle.size} viewBox="0 0 20 20" fill="none">
-            <polygon points="10,0 12,7 19,7 13,11 15,18 10,14 5,18 7,11 1,7 8,7" fill="#fff8c6" stroke="#ffe066" strokeWidth="0.5" />
+            <polygon
+              points="10,0 12,7 19,7 13,11 15,18 10,14 5,18 7,11 1,7 8,7"
+              fill="#fff8c6"
+              stroke="#ffe066"
+              strokeWidth="0.5"
+            />
           </svg>
         </span>
       ))}
@@ -58,4 +63,4 @@ export default function Sparkles({ children }) {
       `}</style>
     </div>
   );
-} 
+}

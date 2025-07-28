@@ -21,7 +21,9 @@ export default function MermaidLiveEditor() {
       mermaidRef.current = mermaid;
       render(code);
     });
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, []);
 
   // Debounce rendering
@@ -37,7 +39,7 @@ export default function MermaidLiveEditor() {
       const { svg } = await mermaidRef.current.render(id, text);
       setSvg(svg);
       setError('');
-    } catch(_e) {
+    } catch (_e) {
       setError(e.message);
       setSvg('');
     }
@@ -47,7 +49,7 @@ export default function MermaidLiveEditor() {
     <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
       <textarea
         value={code}
-        onChange={e => setCode(e.target.value)}
+        onChange={(e) => setCode(e.target.value)}
         style={{ minHeight: 300, fontFamily: 'monospace' }}
       />
       <div dangerouslySetInnerHTML={{ __html: svg }} />

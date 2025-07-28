@@ -24,6 +24,6 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.add('visitApp', (path) => {
-    const base = Cypress.config('baseUrl').replace(/\/$/, '');
-    cy.visit(`${base}${path}`);
+  const base = Cypress.config('baseUrl').replace(/\/$/, '');
+  cy.visit(`${base}${path}`);
 });

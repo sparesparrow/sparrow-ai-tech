@@ -2,7 +2,7 @@ import React from 'react';
 import MarkdownViewer from '../components/MarkdownViewer';
 
 function useQuery() {
-  return new URLSearchParams(useLocation().search);
+  return new URLSearchParams(// useLocation().search);
 }
 
 const MarkdownTest = () => {

@@ -12,12 +12,21 @@ const ImagePreviewLink = ({ href, children, ...props }) => {
       imgSrc = `/sparrow-ai-tech/${imgSrc.replace(/^\/+/, '')}`;
     }
     return (
-      <Tippy content={<img src={imgSrc} alt="preview" style={{ maxWidth: 200, maxHeight: 200 }} />} placement="top">
-        <a href={imgSrc} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>
+      <Tippy
+        content={<img src={imgSrc} alt="preview" style={{ maxWidth: 200, maxHeight: 200 }} />}
+        placement="top"
+      >
+        <a href={imgSrc} target="_blank" rel="noopener noreferrer" {...props}>
+          {children}
+        </a>
       </Tippy>
     );
   }
-  return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+      {children}
+    </a>
+  );
 };
 
-export default ImagePreviewLink; 
+export default ImagePreviewLink;

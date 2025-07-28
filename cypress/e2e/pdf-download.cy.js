@@ -7,4 +7,4 @@ describe('PDF Download', () => {
       expect(pdf.length).to.be.greaterThan(1000); // PDF should not be empty
     });
   });
-}); 
+});
