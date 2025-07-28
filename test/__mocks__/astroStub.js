@@ -1,1 +1,3 @@
-export default () => null;
+module.exports = function MockAstroComponent() {
+  return null;
+};
