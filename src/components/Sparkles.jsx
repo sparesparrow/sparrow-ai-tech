@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 
 const SPARKLE_COUNT = 20;

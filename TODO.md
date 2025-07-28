@@ -199,9 +199,9 @@ This roadmap is optimized for two developers or AI agents working in parallel. I
   - [ ] Implement /generate_diagram and /validate_syntax endpoints
   - [ ] Integrate LLM (OpenAI, Ollama, or MermaidLlama)
   - [ ] Integrate prompt server or local prompt templates
-  - [Tested] Validate and sanitize Mermaid code
-  - [Tested] Render SVG via Playwright (Python or mermaid-cli)
-  - [Tested] Sanitize SVG output
+  - [Done] Validate and sanitize Mermaid code
+  - [Done] Render SVG via Playwright (Python or mermaid-cli)
+  - [Done] Sanitize SVG output
   - [ ] Dockerize the backend
   - [ ] Add CI/CD workflow for build, test, deploy
   - [ ] Document API contract and security measures

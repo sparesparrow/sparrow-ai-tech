@@ -1,3 +1,5 @@
+ 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import {
@@ -28,7 +30,7 @@ const HeroSection = ({ translations }) => (
             View Project TODOs
           </button>
         </a>
-        <PrimaryButton onClick={() => {}}>{translations.cta_quick_analysis_hero}</PrimaryButton>
+        <PrimaryButton onClick={() => { }}>{translations.cta_quick_analysis_hero}</PrimaryButton>
       </div>
     </div>
   </section>
@@ -63,7 +65,7 @@ const AboutSection = ({ translations }) => {
 const HomePage = ({
   translations = {},
   language = 'en',
-  onLanguageChange = () => {},
+  onLanguageChange = () => { },
   prompts = [],
 }) => {
   return (

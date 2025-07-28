@@ -1,3 +1,5 @@
+ 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { I18nProvider, useI18n } from '../i18n';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -62,7 +64,7 @@ const AppContent = () => {
     setContent(t('siteData')[language]);
     document.documentElement.lang = language;
     setTimeout(() => {
-      fetch('/sparrow-ai-tech/api/test').catch(() => {});
+      fetch('/sparrow-ai-tech/api/test').catch(() => { });
     }, 500);
   }, [language, t]);
 

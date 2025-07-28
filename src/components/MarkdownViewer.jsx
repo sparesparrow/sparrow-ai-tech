@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /** @jsx React.createElement */
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';

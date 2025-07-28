@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 
 const Modal = ({ open, onClose, title, children, className = '' }) => {

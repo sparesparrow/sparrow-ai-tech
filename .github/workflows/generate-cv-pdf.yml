@@ -11,29 +11,29 @@ jobs:
     steps:
       - name: Checkout this repository
         uses: actions/checkout@v4
-
+        
       - name: Download latest CV markdown from sparesparrow/cv
         run: |
           curl -L https://raw.githubusercontent.com/sparesparrow/cv/main/README.md -o cv.md
-
-      - name: Install Pandoc and LaTeX
+          
+      - name: Install Pandoc, XeLaTeX and rsvg-convert
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
-
+          sudo apt-get install -y pandoc texlive-xetex texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra librsvg2-bin
+          
       - name: Convert CV markdown to PDF
         run: |
           mkdir -p dist
           pandoc cv.md -o dist/cv.pdf --pdf-engine=xelatex
-
+          
       - name: Upload PDF to Pages artifact
         uses: actions/upload-artifact@v4
         with:
           name: cv-pdf
           path: dist/cv.pdf
-
+          
       - name: Upload PDF to production-dist (for deployment)
         uses: actions/upload-artifact@v4
         with:
           name: production-dist
-          path: dist/cv.pdf 
+          path: dist/cv.pdf

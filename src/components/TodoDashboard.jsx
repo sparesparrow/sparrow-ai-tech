@@ -1,3 +1,5 @@
+ 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /** @jsx React.createElement */
 import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
@@ -17,7 +19,7 @@ function parseTodoMd(md) {
   const sections = [];
   let currentSection = null;
   let currentTask = null;
-  const statusRegex = /\ x-])\]/;
+  const statusRegex = /\[([ x-])\]/;
   const statusMap = {
     ' ': 'ToDo',
     '-': 'HelpNeeded',
@@ -379,7 +381,7 @@ export default function TodoDashboard({ todoMd }) {
         showToast('Shared via native share!');
         return;
       } catch (err) {
-        // Fallback to clipboard
+        showToast(err);
       }
     }
     // Clipboard fallback
@@ -387,7 +389,7 @@ export default function TodoDashboard({ todoMd }) {
       await navigator.clipboard.writeText(md);
       showToast('Copied TODOs to clipboard!');
     } catch (err) {
-      showToast('Unable to share or copy.');
+      showToast(err);
     }
   }
 

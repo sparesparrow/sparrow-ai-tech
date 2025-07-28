@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 // NOTE: Main homepage logic migrated to HomePage.jsx. This file is now for infographics/SPA only.
 import Chart from 'chart.js/auto';

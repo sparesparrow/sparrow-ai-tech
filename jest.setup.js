@@ -10,6 +10,13 @@ global.Astro = {
   url: new URL('http://localhost:3000/'),
 };
 
+// Mock import.meta globally for all tests
+global.importMeta = {
+  env: {
+    BASE_URL: '/',
+  },
+};
+
 // Mock for window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
   writable: true,

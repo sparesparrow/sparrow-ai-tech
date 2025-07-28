@@ -1,4 +1,3 @@
-/** @jsx React.createElement */
 import React, { useEffect, useState } from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { jest } from '@jest/globals';
@@ -24,6 +23,7 @@ const ThemeToggle = () => {
     if (theme) return theme === 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
+
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
@@ -33,6 +33,7 @@ const ThemeToggle = () => {
       localStorage.setItem('theme', 'light');
     }
   }, [isDark]);
+
   return (
     <button onClick={() => setIsDark((d) => !d)} data-testid="toggle">
       Toggle
@@ -45,11 +46,13 @@ describe('ThemeToggle', () => {
     localStorage.clear();
     document.documentElement.classList.remove('dark');
   });
+
   it('defaults to system preference if no localStorage', () => {
     window.matchMedia = jest.fn().mockReturnValue({ matches: true });
     render(<ThemeToggle />);
     expect(document.documentElement.classList.contains('dark')).toBe(true);
   });
+
   it('toggles dark mode and persists', () => {
     render(<ThemeToggle />);
     const btn = document.querySelector('[data-testid="toggle"]');
