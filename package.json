@@ -25,11 +25,11 @@
     "static-site"
   ],
   "scripts": {
-    "dev": "astro dev --host",
+    "dev": "astro dev --host --port 3000",
     "start": "astro dev --host",
-    "build": "astro check --minimumFailingSeverity warning && astro build",
+    "build": "astro check && astro build && npm run fix-urls",
     "build:dev": "astro build --mode development",
-    "preview": "astro preview --host",
+    "preview": "astro preview --host --port 4321",
     "astro": "astro",
     "test": "jest --config jest.config.mjs --passWithNoTests --silent",
     "test:watch": "jest --config jest.config.mjs --watch",
@@ -59,7 +59,9 @@
     "deps:update": "npm update",
     "deps:audit": "npm audit --audit-level moderate",
     "serve:dist": "npx http-server dist -p 3000",
-    "analyze": "npm run build && npx astro-bundle-analyzer"
+    "analyze": "npm run build && npx astro-bundle-analyzer",
+    "fix-urls": "node scripts/fix-urls.mjs",
+    "verify": "node scripts/verify-deployment.js"
   },
   "dependencies": {
     "@astrojs/react": "^3.6.2",
@@ -107,6 +109,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.0.0",
     "gh-pages": "^6.1.0",
+    "glob": "^11.0.3",
     "globals": "^15.15.0",
     "husky": "^9.1.7",
     "identity-obj-proxy": "^3.0.0",

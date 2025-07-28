@@ -1,14 +1,15 @@
 {
   "name": "Sparrow AI Tech",
-  "short_name": "SparrowAI",
+  "short_name": "Sparrow AI",
+  "description": "AI tools and infographics",
   "start_url": "/sparrow-ai-tech/",
   "display": "standalone",
-  "background_color": "#fafaf9",
-  "theme_color": "#292524",
+  "background_color": "#ffffff",
+  "theme_color": "#3B82F6",
   "icons": [
     {
-      "src": "/sparrow-ai-tech/favicon.png",
-      "sizes": "512x512",
+      "src": "favicon.png",
+      "sizes": "32x32",
       "type": "image/png"
     }
   ]

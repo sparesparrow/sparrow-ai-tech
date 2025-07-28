@@ -1,0 +1,35 @@
+---
+import { pageUrl, assetUrl } from '../utils/url-helpers.js';
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.includes('/en/') ? 'en' : 'cs';
+
+const navItems = [
+  { href: pageUrl('infographics/Infographic1', lang), label: 'Infographic 1' },
+  { href: pageUrl('infographics/Infographic2', lang), label: 'Infographic 2' },
+  { href: pageUrl('infographics/Infographic3', lang), label: 'Infographic 3' },
+  { href: pageUrl('infographics/SPA', lang), label: 'SPA' },
+  { href: pageUrl('MarkdownTest', lang), label: 'Markdown Test' },
+  { href: pageUrl('mermaid-editor', lang), label: 'Mermaid Editor' }
+];
+---
+
+<nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+  <div class="flex items-center gap-2">
+    <img src={assetUrl('favicon.png')} alt="Sparrow AI Logo" class="h-8 w-8" />
+    <span class="text-xl font-bold tracking-tight text-slate-800">Sparrow AI Tech</span>
+  </div>
+  
+  <ul class="flex gap-6 font-medium text-slate-700">
+    {navItems.map((item) => (
+      <li>
+        <a 
+          href={item.href} 
+          class="transition-colors hover:text-blue-600"
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
