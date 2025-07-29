@@ -11,8 +11,7 @@
           "type": "string"
         },
         "repo_url": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         },
         "pubDate": {
           "anyOf": [

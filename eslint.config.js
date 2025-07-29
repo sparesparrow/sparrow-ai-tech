@@ -1,105 +1,26 @@
-import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import react from 'eslint-plugin-react';
-import cypress from 'eslint-plugin-cypress';
-import astroEslintParser from 'astro-eslint-parser';
-import * as astroPlugin from 'eslint-plugin-astro';
+import eslintPluginAstro from 'eslint-plugin-astro';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 export default [
   {
-    ignores: ['node_modules/', 'dist/', '.astro/', 'coverage/', '**/*-fixed.*', '*.json', '*.md'],
-  },
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-  {
-    files: ['**/*.{js,jsx,ts,tsx}'],
-    plugins: {
-      react: react,
-    },
+    files: ['**/*.js', '**/*.mjs', '**/*.jsx'],
     languageOptions: {
-      globals: {
-        // Browser globals
-        window: 'readonly',
-        document: 'readonly',
-        console: 'readonly',
-        alert: 'readonly',
-        localStorage: 'readonly',
-        globalThis: 'readonly',
-        // Node.js globals
-        process: 'readonly',
-        global: 'readonly',
-        Buffer: 'readonly',
-        module: 'readonly',
-        require: 'readonly',
-        exports: 'writable',
-        fetch: 'readonly',
-        Response: 'readonly',
-        navigator: 'readonly',
-      },
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        ecmaFeatures: { jsx: true },
-      },
+        ecmaFeatures: {
+          jsx: true
+        }
+      }
     },
-    settings: {
-      react: {
-        version: 'detect',
-      },
+    plugins: {
+      'jsx-a11y': jsxA11y
     },
     rules: {
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-        },
-      ],
-      'no-useless-escape': 'off',
-      'react/react-in-jsx-scope': 'off',
-      'react/no-unknown-property': ['error', { ignore: ['astro'] }],
-      'react/prop-types': 'off',
-      'no-undef': 'off', // Disabled for API files with custom environments
-    },
+      'no-unused-vars': 'warn',
+      'no-console': 'warn',
+      'jsx-a11y/alt-text': 'error'
+    }
   },
-  // Astro files configuration
-  {
-    files: ['**/*.astro'],
-    plugins: {
-      astro: astroPlugin,
-    },
-    languageOptions: {
-      parser: astroEslintParser,
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-        extraFileExtensions: ['.astro'],
-      },
-    },
-    rules: {
-      ...astroPlugin.configs.recommended.rules,
-    },
-  },
-  {
-    files: ['cypress/**/*.{js,ts}', '**/*.cy.{js,ts}'],
-    plugins: {
-      cypress: cypress,
-    },
-    languageOptions: {
-      globals: {
-        cy: 'readonly',
-        Cypress: 'readonly',
-        describe: 'readonly',
-        it: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly',
-        before: 'readonly',
-        after: 'readonly',
-        expect: 'readonly',
-        assert: 'readonly',
-        window: 'readonly',
-        document: 'readonly',
-        console: 'readonly',
-      },
-    },
-  },
+  ...eslintPluginAstro.configs.recommended
 ];

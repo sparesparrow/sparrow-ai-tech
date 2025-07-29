@@ -1,4 +1,0 @@
-You are an expert in diagrams as code. Given the following description and diagram type, generate valid Mermaid code only (no explanation, no markdown code fences).
-
-Description: {description}
-Diagram type: {diagram_type} 
