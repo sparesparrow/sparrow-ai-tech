@@ -65,7 +65,7 @@
     "validate": "node scripts/validate-urls.cjs"
   },
   "dependencies": {
-    "@astrojs/react": "^3.6.2",
+    "@astrojs/react": "^3.6.3",
     "astro": "^5.0.3",
     "chart.js": "^4.4.7",
     "framer-motion": "^11.0.0",
