@@ -13,10 +13,12 @@ import PhilosophySection from '../components/PhilosophySection.astro';
   <RealProjects />
   <AgenticWorkflowsShowcase />
   <PhilosophySection />
-  <!-- Contact section remains as before -->
+
+  <!-- Enhanced Contact Section with MCP Hub Links -->
   <section id="contact" class="cyber-section">
     <div class="cyber-container">
       <h2 class="cyber-section-title">Let's Connect</h2>
+
       <div class="contact-grid">
         <div class="contact-info">
           <h3>MCP & AI Integration Specialist</h3>
@@ -25,6 +27,7 @@ import PhilosophySection from '../components/PhilosophySection.astro';
             zkušenosti s implementací MCP serverů, AI-driven development workflow, nebo bezpečnou
             správou kontejnerů.
           </p>
+
           <div class="expertise-tags">
             <span class="expertise-tag">MCP Protocol</span>
             <span class="expertise-tag">AI Orchestration</span>
@@ -32,7 +35,49 @@ import PhilosophySection from '../components/PhilosophySection.astro';
             <span class="expertise-tag">Container Security</span>
             <span class="expertise-tag">Automation</span>
           </div>
+
+          <!-- MCP Public Servers Section -->
+          <div class="mcp-servers" style="margin-top: 2rem;">
+            <h4 style="color: var(--color-cyber-green); margin-bottom: 1rem;">
+              🔌 Public MCP Servers
+            </h4>
+            <div class="mcp-links" style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <a
+                href="https://glama.ai/mcp/servers/@sparesparrow/mcp-prompts"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mcp-link"
+              >
+                <div class="mcp-link-content">
+                  <span class="mcp-icon">🌟</span>
+                  <div>
+                    <strong>Glama.ai</strong><br />
+                    <span style="font-size: 0.9rem; color: var(--color-cyber-text-dim);"
+                      >mcp-prompts server</span
+                    >
+                  </div>
+                </div>
+              </a>
+              <a
+                href="https://mcphub.com/mcp-servers/sparesparrow/mcp-prompts"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mcp-link"
+              >
+                <div class="mcp-link-content">
+                  <span class="mcp-icon">🔗</span>
+                  <div>
+                    <strong>MCPHub</strong><br />
+                    <span style="font-size: 0.9rem; color: var(--color-cyber-text-dim);"
+                      >mcp-prompts server</span
+                    >
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
+
         <div class="contact-links">
           <h3>Get in Touch</h3>
           <div class="contact-buttons">
@@ -57,8 +102,20 @@ import PhilosophySection from '../components/PhilosophySection.astro';
             >
               📄 Professional CV
             </a>
-            <a href="/infographics/Infographic1/" class="cyber-btn cyber-btn-outline">
+            <a
+              href={`${import.meta.env.BASE_URL}infographics/Infographic1/`}
+              class="cyber-btn cyber-btn-outline"
+            >
               🌐 MCP Infographics
+            </a>
+            <a
+              href={`${import.meta.env.BASE_URL}mermaid-editor`}
+              class="cyber-btn cyber-btn-outline"
+            >
+              🎨 Mermaid Editor
+            </a>
+            <a href={`${import.meta.env.BASE_URL}chatbot`} class="cyber-btn cyber-btn-outline">
+              🤖 AI Chatbot
             </a>
           </div>
         </div>
@@ -66,3 +123,103 @@ import PhilosophySection from '../components/PhilosophySection.astro';
     </div>
   </section>
 </CyberpunkLayout>
+
+<style>
+  /* Import enhanced cyberpunk styles */
+  @import '../styles/cyberpunk.css';
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 2rem;
+  }
+
+  .contact-info h3,
+  .contact-links h3 {
+    color: var(--color-cyber-green);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .contact-info p {
+    color: var(--color-cyber-text-dim);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .expertise-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .expertise-tag {
+    background: rgba(57, 255, 20, 0.1);
+    color: var(--color-cyber-green);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(57, 255, 20, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .expertise-tag:hover {
+    background: rgba(57, 255, 20, 0.2);
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+  }
+
+  .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-buttons .cyber-btn {
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+
+  /* MCP Links Styling */
+  .mcp-link {
+    display: block;
+    padding: 0.75rem;
+    background: rgba(88, 166, 255, 0.1);
+    border: 1px solid rgba(88, 166, 255, 0.3);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--color-cyber-text);
+    transition: all 0.3s ease;
+  }
+
+  .mcp-link:hover {
+    background: rgba(88, 166, 255, 0.2);
+    box-shadow: 0 0 15px rgba(88, 166, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .mcp-link-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .mcp-icon {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .contact-buttons {
+      align-items: center;
+    }
+
+    .mcp-links {
+      align-items: center;
+    }
+  }
+</style>
