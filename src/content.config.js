@@ -6,7 +6,7 @@ const projects = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     repo_url: z.string().optional(),
-    pubDate: z.date(),
+    pubDate: z.preprocess(val => new Date(val), z.date())
   }),
 });
 

@@ -1,49 +1,175 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CyberpunkHero from '../components/CyberpunkHero.astro';
-import CyberpunkFeatures from '../components/CyberpunkFeatures.astro';
-import RealProjects from '../components/RealProjects.astro';
-import PhilosophySection from '../components/PhilosophySection.astro';
 ---
 
-<Layout title="Sparrow AI Tech | MCP Developer & AI Integration Specialist">
+<Layout title="Model Context Protocol Pioneer | AI Integration Specialist">
   <main>
-    <CyberpunkHero />
-    <CyberpunkFeatures />
-    <RealProjects />
-    <PhilosophySection />
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-container">
+        <div class="nav-logo">sparrow-ai-tech</div>
+        <div class="nav-links">
+          <a href="#hero" class="nav-link active">Domů</a>
+          <a href="#projects" class="nav-link">Projekty</a>
+          <a href="#skills" class="nav-link">Dovednosti</a>
+          <a href="#philosophy" class="nav-link">Filozofie</a>
+          <a href="#contact" class="nav-link">Kontakt</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">Model Context Protocol Pioneer</h1>
+          <div class="hero-subtitle">
+            <span id="typewriter" class="typewriter"></span>
+            <span class="cursor">|</span>
+          </div>
+          <p class="hero-description">
+            Robust MCP server pro správu promptů a šablon • AI-driven generování projektů z přirozeného jazyka • 
+            Bezpečná správa MCP serverů s real-time monitoringem • Rust implementace MCP prompt serveru
+          </p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">15+</span>
+              <span class="stat-label">MCP projektů</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">3</span>
+              <span class="stat-label">Jazyky</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">2+</span>
+              <span class="stat-label">Roky zkušeností</span>
+            </div>
+          </div>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">Prozkoumat projekty</a>
+            <a href="#contact" class="btn btn-outline">Spojit se</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="/assets/ai-hero.svg" alt="AI Integration Specialist" class="hero-image">
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2 class="section-title">Aktuální projekty</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <h3 class="project-name">mcp-prompts</h3>
+              <a href="https://github.com/sparesparrow/mcp-prompts" class="project-link" target="_blank">↗</a>
+            </div>
+            <p class="project-description">Robust MCP server pro správu promptů a šablon</p>
+            <div class="project-features">
+              <span class="feature-tag">TypeScript</span>
+              <span class="feature-tag">MCP Protocol</span>
+              <span class="feature-tag">Template Engine</span>
+            </div>
+          </div>
+          
+          <div class="project-card">
+            <div class="project-header">
+              <h3 class="project-name">mcp-prompts-rs</h3>
+              <a href="https://github.com/sparesparrow/mcp-prompts-rs" class="project-link" target="_blank">↗</a>
+            </div>
+            <p class="project-description">Rust implementace MCP prompt serveru</p>
+            <div class="project-features">
+              <span class="feature-tag">Rust</span>
+              <span class="feature-tag">Performance</span>
+              <span class="feature-tag">Memory Safety</span>
+            </div>
+          </div>
+          
+          <div class="project-card">
+            <div class="project-header">
+              <h3 class="project-name">human-action</h3>
+              <a href="https://github.com/sparesparrow/human-action" class="project-link" target="_blank">↗</a>
+            </div>
+            <p class="project-description">AI-driven generování projektů z přirozeného jazyka</p>
+            <div class="project-features">
+              <span class="feature-tag">AI Integration</span>
+              <span class="feature-tag">Natural Language</span>
+              <span class="feature-tag">Code Generation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="philosophy">
+      <div class="container">
+        <h2 class="section-title">Filosofie práce</h2>
+        <div class="philosophy-quotes">
+          <div class="quote-item">
+            <p id="quote1" class="quote-text"></p>
+          </div>
+          <div class="quote-item">
+            <p id="quote2" class="quote-text"></p>
+          </div>
+          <div class="quote-item">
+            <p id="quote3" class="quote-text"></p>
+          </div>
+          <div class="quote-item">
+            <p id="quote4" class="quote-text"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Kontakt</h2>
+        <div class="contact-content">
+          <div class="contact-info">
+            <h3>Zajímá vás automatizace, MCP protokol nebo AI integrace?</h3>
+            <p>Rád se s vámi podělím o zkušenosti.</p>
+            <div class="contact-links">
+              <a href="https://github.com/sparesparrow" class="contact-link" target="_blank">
+                GitHub
+              </a>
+              <a href="mailto:contact@sparrow-ai-tech.dev" class="contact-link">
+                Email
+              </a>
+            </div>
+          </div>
+          <div class="contact-form">
+            <h3>Napište mi</h3>
+            <form class="form">
+              <div class="form-group">
+                <label class="form-label">Jméno</label>
+                <input type="text" class="form-control" placeholder="Vaše jméno">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="vas@email.cz">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Zpráva</label>
+                <textarea class="form-control" rows="4" placeholder="Vaše zpráva..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full-width">Odeslat</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 sparrow-ai-tech. Všechna práva vyhrazena.</p>
+    </div>
+  </footer>
 </Layout>
 
 <script src="/scripts/enhanced-cyberpunk.js"></script>
-
-<style>
-  /* Global cyberpunk theme styles */
-  :root {
-    --color-cyber-bg: #0d1117;
-    --color-cyber-surface: #161b22;
-    --color-cyber-green: #39ff14;
-    --color-cyber-blue: #58a6ff;
-    --color-cyber-orange: #f85149;
-    --color-cyber-text: #f0f6fc;
-    --color-cyber-text-dim: #8b949e;
-    --color-cyber-border: #30363d;
-  }
-  
-  body {
-    background: var(--color-cyber-bg);
-    color: var(--color-cyber-text);
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  }
-  
-  .fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-  }
-  
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>

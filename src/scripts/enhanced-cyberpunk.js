@@ -332,6 +332,9 @@ function initMatrixRain() {
   }
 
   const matrixInterval = setInterval(draw, 35);
+clearInterval(matrixInterval); // Cleanup
+clearInterval(matrixInterval); // Cleanup
+clearInterval(matrixInterval); // Cleanup on unload (optional)
 
   // Handle window resize
   window.addEventListener('resize', function () {

@@ -154,6 +154,9 @@ function initMatrixRain() {
   }
   
   const matrixInterval = setInterval(draw, 35);
+clearInterval(matrixInterval); // Cleanup
+clearInterval(matrixInterval); // Cleanup
+clearInterval(matrixInterval); // Cleanup on unload (optional)
   
   window.addEventListener('resize', function () {
     resizeCanvas();
