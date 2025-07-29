@@ -1,162 +1,125 @@
 ---
-import { assetUrl, pageUrl } from '../utils/url.js';
-import Sparkles from '../components/Sparkles.jsx';
-
-const navLinks = [
-  { href: pageUrl('infographics/Infographic1', 'en'), label: 'Infographic 1' },
-  { href: pageUrl('infographics/Infographic2', 'en'), label: 'Infographic 2' },
-  { href: pageUrl('infographics/Infographic3', 'en'), label: 'Infographic 3' },
-  { href: pageUrl('infographics/SPA', 'en'), label: 'SPA' },
-  { href: pageUrl('MarkdownTest', 'en'), label: 'Markdown Test' },
-  { href: pageUrl('mermaid-editor', 'en'), label: 'Mermaid Editor' },
-];
+import CyberpunkLayout from '../layouts/CyberpunkLayout.astro';
+import CyberpunkHero from '../components/CyberpunkHero.astro';
+import CyberpunkFeatures from '../components/CyberpunkFeatures.astro';
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sparrow AI Tech</title>
-    <link rel="icon" type="image/png" href={assetUrl('favicon.png')} />
-    <link rel="icon" type="image/x-icon" href={assetUrl('favicon.ico')} />
-    <link rel="manifest" href={assetUrl('manifest.json')} />
-    <link rel="stylesheet" href={assetUrl('assets/css/global.css')} />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+<CyberpunkLayout title="Sparrow AI Tech - AI-Powered Development Tools">
+  <CyberpunkHero />
+  <CyberpunkFeatures />
 
-  <body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-200">
-    <div class="background-gif-container" aria-hidden="true">
-      <img
-        src={assetUrl('assets/images/QgFc9ovreXOjW8hVonunb.gif')}
-        alt="Working memory spreading activation"
-        class="background-gif"
-      />
+  <!-- Enhanced Tools Section -->
+  <section id="tools" class="cyber-section">
+    <div class="cyber-container">
+      <h2 class="cyber-section-title">AI Tools</h2>
+
+      <div class="cyber-cards-grid">
+        <div class="cyber-card fade-in">
+          <h3 class="cyber-card-title">🤖 AI Chatbot</h3>
+          <p class="cyber-card-description">
+            Intelligent conversational AI powered by advanced language models.
+          </p>
+          <a href="/chatbot" class="cyber-btn cyber-btn-primary">Launch Chatbot</a>
+        </div>
+
+        <div class="cyber-card fade-in">
+          <h3 class="cyber-card-title">📄 PDF Generator</h3>
+          <p class="cyber-card-description">
+            Generate professional PDFs from markdown and structured data.
+          </p>
+          <a href="/pdf-generator" class="cyber-btn cyber-btn-primary">Try Generator</a>
+        </div>
+
+        <div class="cyber-card fade-in">
+          <h3 class="cyber-card-title">🔧 MCP Tools</h3>
+          <p class="cyber-card-description">
+            Model Context Protocol tools for advanced AI integrations.
+          </p>
+          <a href="/mcp-tools" class="cyber-btn cyber-btn-primary">Explore MCP</a>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <header class="sticky top-0 z-10 w-full border-b border-slate-200 bg-white/80 shadow-sm backdrop-blur">
-      <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <div class="flex items-center gap-2">
-          <img
-            src={assetUrl('favicon.png')}
-            alt="Sparrow AI Logo"
-            class="h-8 w-8"
-          />
-          <span class="text-xl font-bold tracking-tight text-slate-800"
-            >Sparrow AI Tech</span
+  <!-- Enhanced Infographics Section -->
+  <section id="infographics" class="cyber-section" style="background: var(--color-cyber-surface);">
+    <div class="cyber-container">
+      <h2 class="cyber-section-title">Interactive Infographics</h2>
+
+      <div class="cyber-cards-grid">
+        <div class="cyber-card fade-in">
+          <h3 class="cyber-card-title">🌐 MCP Ecosystem</h3>
+          <p class="cyber-card-description">
+            Explore the Model Context Protocol ecosystem and its applications.
+          </p>
+          <a href="/infographics/Infographic1/" class="cyber-btn cyber-btn-outline"
+            >View Infographic</a
           >
         </div>
 
-        <ul class="flex gap-6 font-medium text-slate-700">
-          {navLinks.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                class="transition-colors hover:text-blue-600"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </header>
-
-    <main class="mx-auto flex max-w-4xl flex-col items-center px-4 py-16 text-center">
-      <div class="relative inline-block">
-        <h1 class="mb-6 bg-gradient-to-r from-blue-600 to-teal-400 bg-clip-text text-5xl font-extrabold text-transparent drop-shadow-lg md:text-6xl">
-          Welcome to Sparrow AI Tech
-        </h1>
-      </div>
-
-      <p class="mb-8 max-w-2xl text-lg text-slate-700 md:text-xl">
-        Empowering your workflow with AI-driven tools, infographics, and interactive editors.
-        Explore our features and get inspired by the future of technology.
-      </p>
-
-      <div class="mb-12 flex flex-wrap justify-center gap-4">
-        {navLinks.map((link) => (
-          <a
-            href={link.href}
-            class="rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white shadow transition-colors hover:bg-blue-700"
+        <div class="cyber-card fade-in">
+          <h3 class="cyber-card-title">🧠 Human-in-the-Loop AI</h3>
+          <p class="cyber-card-description">
+            Understanding AI systems with human oversight and control.
+          </p>
+          <a href="/infographics/Infographic2/" class="cyber-btn cyber-btn-outline"
+            >View Infographic</a
           >
-            {link.label}
+        </div>
+
+        <div class="cyber-card fade-in">
+          <h3 class="cyber-card-title">🏗️ Hexagonal Architecture</h3>
+          <p class="cyber-card-description">
+            Software architecture patterns for maintainable applications.
+          </p>
+          <a href="/infographics/Infographic3/" class="cyber-btn cyber-btn-outline"
+            >View Infographic</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="cyber-section">
+    <div class="cyber-container">
+      <h2 class="cyber-section-title">Get In Touch</h2>
+
+      <div class="text-center">
+        <p class="cyber-hero-description" style="max-width: 600px; margin: 0 auto 2rem;">
+          Interested in AI automation, MCP protocol, or AI integration? Let's connect and explore
+          the possibilities together.
+        </p>
+
+        <div class="cyber-hero-cta" style="justify-content: center;">
+          <a
+            href="https://github.com/sparesparrow"
+            class="cyber-btn cyber-btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub Profile
           </a>
-        ))}
+          <a
+            href="https://sparesparrow.github.io/cv/"
+            class="cyber-btn cyber-btn-outline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View CV
+          </a>
+        </div>
       </div>
+    </div>
+  </section>
+</CyberpunkLayout>
 
-      <img
-        src={assetUrl('assets/ai-hero.svg')}
-        alt="AI Illustration"
-        class="mx-auto w-full max-w-md rounded-xl border border-slate-200 bg-white/70 shadow-lg"
-        style="margin-bottom:2rem;"
-        onerror="this.style.display='none'"
-      />
+<style>
+  /* Import cyberpunk styles */
+  @import '../styles/cyberpunk.css';
+</style>
 
-      <!-- Spreading Activation Diagram (captioned) -->
-      <section style="text-align:center; margin: 2rem 0;">
-        <img
-          src={assetUrl('assets/images/claude4-system-card-img-008.png')}
-          alt="Spreading activation diagram: field of cortical assemblies and focus of attention"
-          style="max-width: 100%; height: auto; border: 1px solid #eee; box-shadow: 0 2px 8px rgba(0,0,0,0.05);"
-        />
-        <figcaption style="margin-top: 0.5rem; color: #666; font-size: 0.95em;">
-          <strong>Spreading Activation:</strong> Field of cortical assemblies, focus of attention, and
-          short-term memory store (inspired by cognitive neuroscience models).
-        </figcaption>
-      </section>
-
-      <section class="mt-8 grid w-full gap-8 md:grid-cols-3">
-        <div class="rounded-xl border border-slate-100 bg-white p-6 shadow">
-          <h2 class="mb-2 text-xl font-bold text-blue-700">Infographics</h2>
-          <p class="mb-2 text-slate-600">
-            Visualize complex ideas with our interactive infographics.
-          </p>
-          <a
-            href={pageUrl('infographics/Infographic1', 'en')}
-            class="text-blue-600 hover:underline">See Infographics →</a
-          >
-        </div>
-        <div class="rounded-xl border border-slate-100 bg-white p-6 shadow">
-          <h2 class="mb-2 text-xl font-bold text-teal-700">Markdown & Mermaid</h2>
-          <p class="mb-2 text-slate-600">Edit and preview Markdown and Mermaid diagrams live.</p>
-          <a
-            href={pageUrl('MarkdownTest', 'en')}
-            class="text-teal-600 hover:underline">Try Markdown Editor →</a
-          >
-        </div>
-        <div class="rounded-xl border border-slate-100 bg-white p-6 shadow">
-          <h2 class="mb-2 text-xl font-bold text-purple-700">AI Tools</h2>
-          <p class="mb-2 text-slate-600">
-            Leverage AI-powered chatbots and PDF generation for productivity.
-          </p>
-          <a href={pageUrl('api/chatbot')} class="text-purple-600 hover:underline"
-            >Chatbot API →</a
-          >
-        </div>
-      </section>
-    </main>
-
-    <footer class="mt-16 w-full border-t border-slate-200 bg-white/80 py-8 text-center text-sm text-slate-500">
-      &copy; 2025 Sparrow AI Tech. All rights reserved.
-    </footer>
-
-    <Sparkles client:load />
-
-    <script>
-      // Parallax scroll effect for background
-      window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        const offset = 0;
-        const opacity = Math.max(0, 1 - (scrolled - offset) / (300 - offset));
-        const bg = document.querySelector('.background-gif');
-        if (bg) {
-          bg.style.opacity = opacity.toString();
-        }
-      });
-    </script>
-  </body>
-</html>
+<script>
+  // Initialize cyberpunk features
+  import '../scripts/cyberpunk.js';
+</script>

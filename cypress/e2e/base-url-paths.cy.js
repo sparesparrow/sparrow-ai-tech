@@ -1,8 +1,6 @@
 const base = '/sparrow-ai-tech';
 
 describe('Base URL Path Validation', () => {
-  const baseUrl = Cypress.config('baseUrl') || 'http://localhost:4321';
-  
   beforeEach(() => {
     cy.visit('/');
   });
@@ -27,6 +25,9 @@ describe('Base URL Path Validation', () => {
 
   it('should have working infographic links', () => {
     cy.get('a[href*="infographics"]').should('have.length.gte', 1);
-    cy.get('a[href*="infographics"]').first().should('have.attr', 'href').and('include', '/sparrow-ai-tech/');
+    cy.get('a[href*="infographics"]')
+      .first()
+      .should('have.attr', 'href')
+      .and('include', '/sparrow-ai-tech/');
   });
 });
