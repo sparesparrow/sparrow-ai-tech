@@ -61,137 +61,146 @@ const {
           <a href="#projects" class="cyber-nav-link">MCP Projects</a>
           <a href="#philosophy" class="cyber-nav-link">Philosophy</a>
           <a href="#contact" class="cyber-nav-link">Contact</a>
-          <a href="#agentic" class="cyber-nav-link">Agentic Workflows</a>
+          <a href="#agentic" class="cyber-nav-link">
+            <a href="{``}mermaid-editor/" class="cyber-nav-link">Mermaid Editor</a>
+            <a href="{``}chatbot/" class="cyber-nav-link">Chatbot</a>
+          </a>
         </div>
       </div>
-    </nav>
 
-    <main>
-      <slot />
-    </main>
+      <main>
+        <slot />
+      </main>
 
-    <!-- Enhanced Footer -->
-    <footer class="cyber-footer">
-      <div class="cyber-container">
-        <div class="footer-content">
-          <div class="footer-section">
-            <h4>MCP Pioneer</h4>
+      <!-- Enhanced Footer -->
+      <footer class="cyber-footer">
+        <div class="cyber-container">
+          <div class="footer-content">
+            <div class="footer-section">
+              <h4>MCP Pioneer</h4>
+              <p>
+                Specializace na Model Context Protocol, AI orchestration a automatizaci development
+                workflow.
+              </p>
+            </div>
+            <div class="footer-section">
+              <h4>Technologies</h4>
+              <div class="footer-tags">
+                <span>Rust</span>
+                <span>TypeScript</span>
+                <span>MCP</span>
+                <span>AI</span>
+                <span>Docker</span>
+              </div>
+            </div>
+            <div class="footer-section">
+              <h4>Links</h4>
+              <div class="footer-links">
+                <a href="https://github.com/sparesparrow" target="_blank" rel="noopener noreferrer"
+                  >GitHub</a
+                >
+                <a
+                  href="https://sparesparrow.github.io/cv/"
+                  target="_blank"
+                  rel="noopener noreferrer">CV</a
+                >
+                <a href="/infographics/Infographic1/" target="_blank">MCP Infographics</a>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
             <p>
-              Specializace na Model Context Protocol, AI orchestration a automatizaci development
-              workflow.
+              &copy; 2024 Vojtěch Špaček (sparesparrow) - Automatizační šílenec | Built with Astro &
+              ❤️
             </p>
           </div>
-          <div class="footer-section">
-            <h4>Technologies</h4>
-            <div class="footer-tags">
-              <span>Rust</span>
-              <span>TypeScript</span>
-              <span>MCP</span>
-              <span>AI</span>
-              <span>Docker</span>
-            </div>
-          </div>
-          <div class="footer-section">
-            <h4>Links</h4>
-            <div class="footer-links">
-              <a href="https://github.com/sparesparrow" target="_blank" rel="noopener noreferrer"
-                >GitHub</a
-              >
-              <a href="https://sparesparrow.github.io/cv/" target="_blank" rel="noopener noreferrer"
-                >CV</a
-              >
-              <a href="/infographics/Infographic1/" target="_blank">MCP Infographics</a>
-            </div>
-          </div>
         </div>
-        <div class="footer-bottom">
-          <p>
-            &copy; 2024 Vojtěch Špaček (sparesparrow) - Automatizační šílenec | Built with Astro &
-            ❤️
-          </p>
-        </div>
-      </div>
-    </footer>
+      </footer>
 
-    <!-- Scripts -->
-    <script src="/src/scripts/enhanced-cyberpunk.js"></script>
+      <!-- Scripts -->
+      <script src="${import.meta.env.BASE_URL}src/scripts/enhanced-cyberpunk.js"></script>
+      <!-- ElevenLabs Convai Widget -->
+      <elevenlabs-convai agent-id="agent_01jwpatrdff2dsns5d56n0ardm"></elevenlabs-convai>
+      <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"
+      ></script>
+    </nav>
   </body>
-</html>
 
-<style>
-  .cyber-footer {
-    background: var(--color-cyber-surface);
-    border-top: 1px solid var(--color-cyber-border);
-    padding: 3rem 0 1rem;
-    margin-top: 4rem;
-  }
+  <style>
+    .cyber-footer {
+      background: var(--color-cyber-surface);
+      border-top: 1px solid var(--color-cyber-border);
+      padding: 3rem 0 1rem;
+      margin-top: 4rem;
+    }
 
-  .footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .footer-section h4 {
-    color: var(--color-cyber-green);
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-  }
-
-  .footer-section p {
-    color: var(--color-cyber-text-dim);
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  .footer-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .footer-tags span {
-    background: rgba(57, 255, 20, 0.1);
-    color: var(--color-cyber-green);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    border: 1px solid rgba(57, 255, 20, 0.3);
-  }
-
-  .footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .footer-links a {
-    color: var(--color-cyber-text-dim);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .footer-links a:hover {
-    color: var(--color-cyber-blue);
-  }
-
-  .footer-bottom {
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-cyber-border);
-    text-align: center;
-  }
-
-  .footer-bottom p {
-    color: var(--color-cyber-text-dim);
-    margin: 0;
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 768px) {
     .footer-content {
-      grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      color: var(--color-cyber-green);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .footer-section p {
+      color: var(--color-cyber-text-dim);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .footer-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .footer-tags span {
+      background: rgba(57, 255, 20, 0.1);
+      color: var(--color-cyber-green);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(57, 255, 20, 0.3);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-links a {
+      color: var(--color-cyber-text-dim);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-cyber-blue);
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-cyber-border);
       text-align: center;
     }
-  }
-</style>
+
+    .footer-bottom p {
+      color: var(--color-cyber-text-dim);
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+  </style>
+</html>
