@@ -1,0 +1,150 @@
+---
+// Philosophy section with real automation philosophy quotes
+---
+
+<section id="philosophy" class="cyber-section" style="background: var(--color-cyber-surface);">
+  <div class="cyber-container">
+    <h2 class="cyber-section-title">Automation Philosophy</h2>
+
+    <div class="philosophy-intro">
+      <p class="philosophy-description">
+        Jako <strong>"automatizační šílenec"</strong> věřím, že skutečná síla technologie spočívá v její
+        schopnosti osvobozovat lidský potenciál prostřednictvím inteligentní automatizace a AI integrace.
+      </p>
+    </div>
+
+    <div class="philosophy-quotes">
+      <div class="quote-item fade-in">
+        <blockquote class="quote-text" id="quote1">
+          "Programuji nejčastěji tak, že večer spustím orchestrační skript s nekonečným cyklem
+          instrukcí typu 'Pokračuj dalším bodem ve svém seznamu úkolů'. Ráno cyklus zastavím a
+          objevujem nové změny na svém domácím počítači."
+        </blockquote>
+        <div class="quote-author">
+          <span class="author-name">Orchestrační Automatizace</span>
+          <span class="author-role">Kontinuální Development</span>
+        </div>
+      </div>
+
+      <div class="quote-item fade-in">
+        <blockquote class="quote-text" id="quote2">
+          "Automatizace pomocí různých nástrojů včetně AI mi umožňuje efektivně řešit komplexní
+          problémy, které bych bez takových nástrojů řešit ani nezačal."
+        </blockquote>
+        <div class="quote-author">
+          <span class="author-name">AI-Powered Problem Solving</span>
+          <span class="author-role">Komplexní Systémy</span>
+        </div>
+      </div>
+
+      <div class="quote-item fade-in">
+        <blockquote class="quote-text" id="quote3">
+          "Svoboda je pro mě základním pilířem smyslu života a předpokladem pro efektivní učení se
+          novým dovednostem."
+        </blockquote>
+        <div class="quote-author">
+          <span class="author-name">Learning Philosophy</span>
+          <span class="author-role">Continuous Growth</span>
+        </div>
+      </div>
+
+      <div class="quote-item fade-in">
+        <blockquote class="quote-text" id="quote4">
+          "Archetyp programátora, který sedí neustále u počítače, dnes podle mě neplatí. Moderní
+          development je o orchestraci systémů a AI nástrojů."
+        </blockquote>
+        <div class="quote-author">
+          <span class="author-name">Modern Development</span>
+          <span class="author-role">System Orchestration</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .philosophy-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .philosophy-description {
+    font-size: 1.2rem;
+    color: var(--color-cyber-text);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .philosophy-quotes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2rem;
+  }
+
+  .quote-item {
+    background: var(--color-cyber-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--color-cyber-orange);
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .quote-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-left-color: var(--color-cyber-green);
+  }
+
+  .quote-item::before {
+    content: '"';
+    font-size: 4rem;
+    color: var(--color-cyber-orange);
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+    opacity: 0.3;
+    font-family: serif;
+  }
+
+  .quote-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-cyber-text);
+    margin: 0 0 1.5rem 0;
+    font-style: italic;
+    min-height: 3rem;
+    padding-left: 1rem;
+  }
+
+  .quote-author {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .author-name {
+    font-weight: bold;
+    color: var(--color-cyber-green);
+    font-size: 0.9rem;
+  }
+
+  .author-role {
+    color: var(--color-cyber-text-dim);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 768px) {
+    .philosophy-quotes {
+      grid-template-columns: 1fr;
+    }
+
+    .quote-item {
+      padding: 1.5rem;
+    }
+  }
+</style>

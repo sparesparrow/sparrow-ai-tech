@@ -4,15 +4,36 @@ export interface Props {
   description?: string;
 }
 
-const { title, description = 'Empowering your workflow with AI-driven tools' } = Astro.props;
+const {
+  title,
+  description = 'MCP Pioneer & AI Integration Specialist - Automatizační šílenec specializující se na Model Context Protocol, AI-driven development a bezpečnou správu serverů.',
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="cs" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="MCP, Model Context Protocol, AI Integration, Automation, Rust, TypeScript, AI Development, Sparrow AI Tech, Vojtěch Špaček"
+    />
+    <meta name="author" content="Vojtěch Špaček (sparesparrow)" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sparesparrow.github.io/sparrow-ai-tech/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://sparesparrow.github.io/sparrow-ai-tech/" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
 
@@ -20,25 +41,25 @@ const { title, description = 'Empowering your workflow with AI-driven tools' } =
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Import styles -->
+    <!-- Import cyberpunk styles -->
     <style>
       @import url('/src/styles/cyberpunk.css');
     </style>
   </head>
   <body>
-    <!-- Navigation -->
+    <!-- Enhanced Navigation -->
     <nav class="cyber-nav">
       <div class="cyber-nav-container">
-        <div class="cyber-nav-logo cyber-glitch">🐦 Sparrow AI Tech</div>
+        <div class="cyber-nav-logo cyber-glitch">🐦 sparesparrow</div>
         <div class="cyber-nav-links">
           <a href="#home" class="cyber-nav-link active">Home</a>
-          <a href="#features" class="cyber-nav-link">Features</a>
-          <a href="#tools" class="cyber-nav-link">AI Tools</a>
-          <a href="#infographics" class="cyber-nav-link">Infographics</a>
+          <a href="#features" class="cyber-nav-link">Expertise</a>
+          <a href="#projects" class="cyber-nav-link">MCP Projects</a>
+          <a href="#philosophy" class="cyber-nav-link">Philosophy</a>
           <a href="#contact" class="cyber-nav-link">Contact</a>
         </div>
       </div>
@@ -48,10 +69,128 @@ const { title, description = 'Empowering your workflow with AI-driven tools' } =
       <slot />
     </main>
 
+    <!-- Enhanced Footer -->
+    <footer class="cyber-footer">
+      <div class="cyber-container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>MCP Pioneer</h4>
+            <p>
+              Specializace na Model Context Protocol, AI orchestration a automatizaci development
+              workflow.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h4>Technologies</h4>
+            <div class="footer-tags">
+              <span>Rust</span>
+              <span>TypeScript</span>
+              <span>MCP</span>
+              <span>AI</span>
+              <span>Docker</span>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>Links</h4>
+            <div class="footer-links">
+              <a href="https://github.com/sparesparrow" target="_blank" rel="noopener noreferrer"
+                >GitHub</a
+              >
+              <a href="https://sparesparrow.github.io/cv/" target="_blank" rel="noopener noreferrer"
+                >CV</a
+              >
+              <a href="/infographics/Infographic1/" target="_blank">MCP Infographics</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 Vojtěch Špaček (sparesparrow) - Automatizační šílenec | Built with Astro &
+            ❤️
+          </p>
+        </div>
+      </div>
+    </footer>
+
     <!-- Scripts -->
-    <script>
-      // Import cyberpunk functionality
-      import '../scripts/cyberpunk.js';
-    </script>
+    <script src="/src/scripts/enhanced-cyberpunk.js"></script>
   </body>
 </html>
+
+<style>
+  .cyber-footer {
+    background: var(--color-cyber-surface);
+    border-top: 1px solid var(--color-cyber-border);
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-section h4 {
+    color: var(--color-cyber-green);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .footer-section p {
+    color: var(--color-cyber-text-dim);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .footer-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-tags span {
+    background: rgba(57, 255, 20, 0.1);
+    color: var(--color-cyber-green);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(57, 255, 20, 0.3);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-links a {
+    color: var(--color-cyber-text-dim);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-cyber-blue);
+  }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-cyber-border);
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    color: var(--color-cyber-text-dim);
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+</style>

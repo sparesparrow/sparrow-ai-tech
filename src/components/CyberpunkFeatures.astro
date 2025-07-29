@@ -1,56 +1,139 @@
 ---
-// Enhanced Features component
+// Enhanced Features component with real MCP and AI expertise
 ---
 
 <section id="features" class="cyber-section" style="background: var(--color-cyber-surface);">
   <div class="cyber-container">
-    <h2 class="cyber-section-title">Advanced Features</h2>
+    <h2 class="cyber-section-title">Core Expertise</h2>
 
     <div class="cyber-cards-grid">
       <div class="cyber-card fade-in">
         <div class="cyber-card-header">
-          <h3 class="cyber-card-title">🎨 Interactive Infographics</h3>
+          <h3 class="cyber-card-title">🔌 Model Context Protocol (MCP)</h3>
         </div>
         <p class="cyber-card-description">
-          Visualize complex ideas with our interactive infographics powered by modern web
-          technologies. Perfect for data visualization and concept explanation.
+          Pioneer in MCP development with multiple production servers. Specialized in prompt
+          management, AI orchestration, and secure protocol implementations using TypeScript and
+          Rust.
         </p>
         <div class="cyber-card-tech">
-          <span class="tech-tag">D3.js</span>
-          <span class="tech-tag">Canvas</span>
-          <span class="tech-tag">WebGL</span>
+          <span class="tech-tag">MCP v1.0</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Rust</span>
+          <span class="tech-tag">PostgreSQL</span>
+        </div>
+        <div class="cyber-card-stats">
+          <div class="stat">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">MCP Projects</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">25%</span>
+            <span class="stat-label">Test Coverage ↑</span>
+          </div>
         </div>
       </div>
 
       <div class="cyber-card fade-in">
         <div class="cyber-card-header">
-          <h3 class="cyber-card-title">📝 Markdown & Mermaid</h3>
+          <h3 class="cyber-card-title">🤖 AI-Driven Development</h3>
         </div>
         <p class="cyber-card-description">
-          Edit and preview Markdown and Mermaid diagrams in real-time with our advanced editor.
-          Support for syntax highlighting and live rendering.
+          AI-powered project generation from natural language, intelligent orchestration scripts,
+          and automated development workflows that run continuously.
         </p>
         <div class="cyber-card-tech">
-          <span class="tech-tag">Monaco Editor</span>
-          <span class="tech-tag">Mermaid.js</span>
-          <span class="tech-tag">Live Preview</span>
+          <span class="tech-tag">AI Orchestration</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Template Engine</span>
+          <span class="tech-tag">Mermaid</span>
+        </div>
+        <div class="cyber-card-stats">
+          <div class="stat">
+            <span class="stat-number">40%</span>
+            <span class="stat-label">Faster Response</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">30%</span>
+            <span class="stat-label">Fewer Bugs</span>
+          </div>
         </div>
       </div>
 
       <div class="cyber-card fade-in">
         <div class="cyber-card-header">
-          <h3 class="cyber-card-title">🤖 AI Integration</h3>
+          <h3 class="cyber-card-title">🔒 Security & Infrastructure</h3>
         </div>
         <p class="cyber-card-description">
-          Leverage powerful AI tools including chatbots, PDF generation, and intelligent automation
-          to enhance your productivity and creativity.
+          Secure container management with Podman/Docker, encrypted credential storage, rootless
+          containers, and real-time monitoring systems.
         </p>
         <div class="cyber-card-tech">
-          <span class="tech-tag">OpenAI</span>
-          <span class="tech-tag">MCP Protocol</span>
-          <span class="tech-tag">Automation</span>
+          <span class="tech-tag">Podman</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">Security</span>
+          <span class="tech-tag">Real-time</span>
+        </div>
+        <div class="cyber-card-stats">
+          <div class="stat">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Encrypted</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">0</span>
+            <span class="stat-label">Root Access</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .cyber-card-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .tech-tag {
+    background: rgba(88, 166, 255, 0.1);
+    color: var(--color-cyber-blue);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(88, 166, 255, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .tech-tag:hover {
+    background: rgba(88, 166, 255, 0.2);
+    box-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
+  }
+
+  .cyber-card-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-cyber-border);
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-cyber-green);
+    text-shadow: 0 0 5px var(--color-cyber-green);
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--color-cyber-text-dim);
+  }
+</style>
