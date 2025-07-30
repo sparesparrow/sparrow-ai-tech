@@ -16,9 +16,9 @@
     "cypress:run": "cypress run"
   },
   "dependencies": {
-    "@astrojs/react": "^3.0.0",
+    "@astrojs/react": "^3.6.3",
     "@astrojs/svelte": "^7.1.0",
-    "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/tailwind": "^5.1.5",
     "astro": "^5.12.3",
     "chart.js": "^4.5.0",
     "marked": "^4.0.0",
