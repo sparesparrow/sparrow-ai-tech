@@ -2,7 +2,7 @@
 title: 'mcp-project-orchestrator'
 description: 'Documentation for the mcp-project-orchestrator project.'
 repo_url: 'https://github.com/sparesparrow/mcp-project-orchestrator.git'
-pubDate: '2025-07-29'
+pubDate: '2025-07-30'
 ---
 
 
