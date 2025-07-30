@@ -35,6 +35,7 @@
     "@babel/eslint-parser": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
     "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
     "babel-jest": "^29.7.0",
     "chart": "^0.1.2",
     "cypress": "^13.0.0",

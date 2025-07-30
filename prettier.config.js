@@ -11,8 +11,7 @@ export default {
   bracketSameLine: false,
   arrowParens: 'avoid',
   endOfLine: 'lf',
-  plugins: ['prettier-plugin-astro'],
-  pluginSearchDirs: ['.'],
+  plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
   overrides: [
     { files: '*.astro', options: { parser: 'astro', printWidth: 120 } },
     { files: ['*.js', '*.jsx', '*.ts', '*.tsx'], options: { printWidth: 100, singleQuote: true } },
