@@ -1,1 +1,0 @@
-{"service":"Sparrow AI Tech PDF Generator API","version":"1.0.0","methods":["POST"],"usage":"Send POST request with {\"html\": \"your html content\"} to generate PDF","status":"active"}
