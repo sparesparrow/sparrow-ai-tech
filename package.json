@@ -9,11 +9,13 @@
     "preview": "astro preview",
     "deploy": "npm run build && npx gh-pages -d dist",
     "astro": "astro",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "lint:fix": "eslint . --fix",
     "test": "jest",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "cypress:headless": "cypress run --headless",
+    "dev:host": "astro dev --host"
   },
   "dependencies": {
     "@astrojs/react": "^3.6.3",
@@ -44,6 +46,7 @@
     "@babel/preset-env": "^7.28.0",
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
+    "@eslint/js": "^9.32.0",
     "@tailwindcss/typography": "^0.5.16",
     "@testing-library/react": "^16.3.0",
     "@types/node": "^24.1.0",

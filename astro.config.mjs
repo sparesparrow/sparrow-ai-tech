@@ -3,7 +3,6 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import path from 'path';
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://sparesparrow.github.io',
   base: '/sparrow-ai-tech',
@@ -11,6 +10,9 @@ export default defineConfig({
     react(),
     tailwind()
   ],
+  build: {
+    assets: 'assets'
+  },
   vite: {
     resolve: {
       alias: {
@@ -18,7 +20,7 @@ export default defineConfig({
         '@components': path.resolve('./src/components'),
         '@layouts': path.resolve('./src/layouts'),
         '@pages': path.resolve('./src/pages'),
-        '@utils': path.resolve('./src/utils'),
+        '@utils': path.resolve('./src/utils')
       }
     },
     optimizeDeps: {
@@ -29,7 +31,10 @@ export default defineConfig({
         'react-router-dom',
         'yet-another-react-lightbox',
         'react-helmet',
-        '@testing-library/react'
+        'react-markdown',
+        'remark-gfm',
+        '@tippyjs/react',
+        'tippy.js'
       ],
       esbuildOptions: {
         loader: {
@@ -44,7 +49,9 @@ export default defineConfig({
             'react-vendor': ['react', 'react-dom'],
             'router-vendor': ['react-router-dom'],
             'animation-vendor': ['framer-motion'],
-            'ui-vendor': ['yet-another-react-lightbox', 'react-helmet']
+            'ui-vendor': ['yet-another-react-lightbox', 'react-helmet'],
+            'markdown-vendor': ['react-markdown', 'remark-gfm'],
+            'tooltip-vendor': ['@tippyjs/react', 'tippy.js']
           }
         }
       }
