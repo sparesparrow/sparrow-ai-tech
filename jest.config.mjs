@@ -1,15 +1,10 @@
-/** @type {import('jest').Config} */
 export default {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '\\.(css|less|scss)$': 'identity-obj-proxy',
-    '^@/(.*)$': '<rootDir>/src/$1'
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
-  moduleFileExtensions: ['js', 'jsx', 'mjs'],
   transform: {
-    '^.+\\.jsx?$': 'babel-jest'
+    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: [['@babel/preset-env', { targets: { node: 'current' } }], '@babel/preset-react', '@babel/preset-typescript'] }],
   },
-  setupFilesAfterEnv: ['./jest.setup.js'],
-  testPathIgnorePatterns: ['/node_modules/', '/dist/'],
-  passWithNoTests: true
 };
