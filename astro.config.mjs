@@ -5,6 +5,7 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   site: 'https://sparesparrow.github.io',
   base: '/sparrow-ai-tech',
+  integrations: [react(), tailwind()],
   output: 'static',
   build: {
     assets: '_astro'

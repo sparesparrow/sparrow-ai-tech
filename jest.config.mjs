@@ -2,7 +2,6 @@
 export default {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
-    /* Mock CSS modules and alias @/ to src/ */
     '\\.(css|less|scss)$': 'identity-obj-proxy',
     '^@/(.*)$': '<rootDir>/src/$1'
   },
@@ -11,5 +10,6 @@ export default {
     '^.+\\.jsx?$': 'babel-jest'
   },
   setupFilesAfterEnv: ['./jest.setup.js'],
-  testPathIgnorePatterns: ['/node_modules/', '/dist/']
+  testPathIgnorePatterns: ['/node_modules/', '/dist/'],
+  passWithNoTests: true
 };

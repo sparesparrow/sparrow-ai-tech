@@ -1,0 +1,214 @@
+@page {
+    size: A4;
+    margin: 1cm;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2cm 3cm;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+}
+
+h1 { font-size: 2em; }
+
+h2 { font-size: 1.5em; }
+
+h3 { font-size: 1.25em; }
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    border-bottom: 1px solid #3498db;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
+ul, ol {
+    margin-left: 1.5em;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+strong {
+    color: #2c3e50;
+}
+
+em {
+    color: #e74c3c;
+}
+
+pre {
+    background-color: #f8f9fa;
+    padding: 1em;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1em 0;
+}
+
+code {
+    font-family: 'Fira Code', 'JetBrains Mono', monospace;
+    background-color: #f8f9fa;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.5em;
+    text-align: left;
+}
+
+th {
+    background-color: #f5f6fa;
+    font-weight: 600;
+}
+
+blockquote {
+    margin: 1em 0;
+    padding: 1em;
+    border-left: 4px solid #3498db;
+    background-color: #f8f9fa;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 2em 0;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 2em;
+}
+
+.section-title {
+    color: #2c3e50;
+    font-size: 1.25em;
+    margin-bottom: 0.5em;
+}
+
+/* Experience */
+.experience {
+    margin-bottom: 1.5em;
+}
+
+.experience-title {
+    color: #2c3e50;
+    font-size: 1.1em;
+    margin-bottom: 0.25em;
+}
+
+.experience-period {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+}
+
+/* Skills */
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-bottom: 1em;
+}
+
+.skill {
+    background-color: #f5f6fa;
+    padding: 0.25em 0.5em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+/* Projects */
+.project {
+    margin-bottom: 1.5em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #ddd;
+}
+
+.project:last-child {
+    border-bottom: none;
+}
+
+.project-title {
+    color: #2c3e50;
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+}
+
+/* Education */
+education {
+    margin-bottom: 1.5em;
+}
+
+.education-title {
+    color: #2c3e50;
+    font-size: 1.1em;
+    margin-bottom: 0.25em;
+}
+
+.education-period {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+}
+
+/* Certifications */
+.certification {
+    margin-bottom: 1em;
+}
+
+.certification-title {
+    color: #2c3e50;
+    font-size: 1em;
+    margin-bottom: 0.25em;
+}
+
+.certification-issuer {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+}
+
+/* Page numbers */
+@page {
+    @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-size: 0.8em;
+        color: #666;
+    }
+}
+
+/* Footer */
+footer {
+    margin-top: 3em;
+    padding-top: 1em;
+    border-top: 1px solid #ddd;
+    font-size: 0.8em;
+    color: #666;
+}

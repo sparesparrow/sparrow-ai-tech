@@ -1,0 +1,216 @@
+/* Minimal Theme for CV */
+:root {
+    --primary-color: #333333;  /* Dark Gray */
+    --secondary-color: #555555; /* Medium Gray */
+    --text-color: #222222;     /* Near-Black */
+    --light-text: #777777;     /* Light Gray */
+    --background-color: #ffffff;
+    --section-bg: #f9f9f9;     /* Off-White */
+    --border-color: #eeeeee;   /* Very Light Gray */
+    --accent-color: #000000;   /* Black */
+    --link-color: #0366d6;     /* Blue */
+}
+
+/* Base Typography and Layout */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.5;
+    max-width: 21cm;  /* A4 width */
+    margin: 2.5cm auto;
+    color: var(--text-color);
+    font-size: 13px;
+    background-color: var(--background-color);
+    padding: 0 1.5cm;
+}
+
+/* Header with Name */
+h1 {
+    color: var(--accent-color);
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0.5em 0;
+    letter-spacing: -0.02em;
+    border: none;
+    padding: 0;
+}
+
+/* Contact Information */
+p:nth-of-type(1),
+p:nth-of-type(2),
+p:nth-of-type(3) {
+    margin: 0.5em 0;
+    color: var(--light-text);
+    font-size: 13px;
+}
+
+/* Section Headings */
+h2 {
+    color: var(--accent-color);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 2em 0 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Sub-sections */
+h3 {
+    color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 1.2em 0 0.3em;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+h3 em {
+    font-size: 14px;
+    color: var(--light-text);
+    font-weight: 400;
+    font-style: normal;
+}
+
+h4 {
+    color: var(--secondary-color);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 1em 0 0.3em;
+}
+
+/* Links */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Lists */
+ul, ol {
+    padding-left: 1.5em;
+    margin: 0.7em 0;
+}
+
+li {
+    margin: 0.4em 0;
+    line-height: 1.5;
+}
+
+/* Emphasis */
+strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+em {
+    color: var(--secondary-color);
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* Section Separators */
+hr {
+    border: 0;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 1.5em 0;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1em;
+    margin: 1em 0;
+}
+
+.skill-category h4 {
+    font-size: 14px;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.skill-category ul {
+    padding-left: 1.2em;
+    margin: 0.3em 0;
+}
+
+.skill-category li {
+    margin: 0.2em 0;
+}
+
+/* Project Section */
+.project {
+    margin-bottom: 1em;
+}
+
+.project-title {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.project-description {
+    margin-top: 0.3em;
+}
+
+.project-links {
+    margin-top: 0.3em;
+    font-size: 0.9em;
+}
+
+/* Footer */
+footer {
+    margin-top: 2em;
+    color: var(--light-text);
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.generated-date {
+    margin: 0;
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.5em;
+}
+
+/* Print Optimization */
+@media print {
+    body {
+        margin: 0;
+        padding: 0 1cm;
+    }
+    
+    @page {
+        margin: 1.5cm;
+    }
+    
+    h1 {
+        margin-top: 0;
+    }
+    
+    a {
+        color: var(--text-color);
+    }
+    
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.5em 0;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    body {
+        margin: 1cm;
+        padding: 0 0.5cm;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}

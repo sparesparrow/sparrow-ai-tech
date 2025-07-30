@@ -6,7 +6,7 @@
     "checkJs": false,
     "skipLibCheck": true,
     "noEmit": true,
-    "types": ["cypress", "node"]
+    "types": ["cypress", "node", "jest"]
   },
   "include": ["cypress/**/*.js", "src/**/*.js", "src/**/*.jsx"],
   "exclude": ["node_modules", "dist"]
