@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const I18nContext = createContext();
 
 const loadTranslations = async (lang) => {
-  const res = await globalThis.fetch(`/sparrow-ai-tech/locales/${lang}/common.json`);
+  const res = await globalThis.fetch(`/locales/${lang}/common.json`);
   if (!res.ok) throw new Error('Failed to load translations');
   return res.json();
 };

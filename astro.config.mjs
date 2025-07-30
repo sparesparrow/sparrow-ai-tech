@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import svelte from '@astrojs/svelte';
 import tailwind from '@astrojs/tailwind';
+import path from 'path';
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,27 +9,45 @@ export default defineConfig({
   base: '/sparrow-ai-tech',
   integrations: [
     react(),
-    svelte(), 
     tailwind()
   ],
   vite: {
-    build: {
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom'],
-            'markdown-vendor': ['react-markdown', 'remark-gfm']
-          }
-        }
+    resolve: {
+      alias: {
+        '@': path.resolve('./src'),
+        '@components': path.resolve('./src/components'),
+        '@layouts': path.resolve('./src/layouts'),
+        '@pages': path.resolve('./src/pages'),
+        '@utils': path.resolve('./src/utils'),
       }
     },
     optimizeDeps: {
       include: [
         'react',
-        'react-dom', 
-        'react-markdown',
-        'remark-gfm'
-      ]
+        'react-dom',
+        'framer-motion',
+        'react-router-dom',
+        'yet-another-react-lightbox',
+        'react-helmet',
+        '@testing-library/react'
+      ],
+      esbuildOptions: {
+        loader: {
+          '.js': 'jsx'
+        }
+      }
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'react-vendor': ['react', 'react-dom'],
+            'router-vendor': ['react-router-dom'],
+            'animation-vendor': ['framer-motion'],
+            'ui-vendor': ['yet-another-react-lightbox', 'react-helmet']
+          }
+        }
+      }
     }
   }
 });

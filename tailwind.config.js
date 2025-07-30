@@ -16,13 +16,15 @@ export default {
               textDecoration: 'underline',
               '&:hover': {
                 opacity: 1,
-                color: '#60a5fa',
-              },
-            },
-          },
-        },
-      },
+                color: '#60a5fa'
+              }
+            }
+          }
+        }
+      }
     },
   },
-  plugins: [require('@tailwindcss/typography')],
-};
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+}
