@@ -5,7 +5,10 @@
             "args": [
                 "-y",
                 "@modelcontextprotocol/server-memory"
-            ]
+            ],
+            "env": {
+              "MEMORY_FILE_PATH": "${workspaceRoot}/memory.json"
+            }
         },
         "mcp-server-fetch": {
             "command": "uvx",
@@ -25,7 +28,7 @@
             "args": [
                 "-y",
                 "@modelcontextprotocol/server-filesystem",
-                "./",
+                "/home/sparrow/Desktop/sparrow-ai-tech",
                 "--allow-all-origins",
                 "--allow-all-methods",
                 "--allow-all-headers",

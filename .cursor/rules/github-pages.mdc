@@ -1,42 +1,37 @@
 ---
-description: Best practices for writing web pages for GitHub Pages deployment writing GitHub Actions workflows to build and deploy sites to GitHub Pages with Jekyll
+alwaysApply: true
+description: GitHub Pages Deployment Best Practices
 ---
-# Writing Web Pages for GitHub Pages Deploy
 
-When creating or editing web pages for deployment on GitHub Pages, follow these best practices:
+# GitHub Pages Deployment Best Practices
 
+## For Astro Projects
+- Use the official `withastro/action` for build and deploy in GitHub Actions.
+- Set `site` and `base` in `astro.config.mjs` for project sites:
+  ```js
+  export default defineConfig({
+    site: 'https://<username>.github.io/<repo>',
+    base: '/<repo>/',
+    // ...
+  });
+  ```
+- Ensure `dist/index.html` exists (homepage must be at root of output).
+- Only static HTML, CSS, JS are supported (no server-side code).
+- Reference assets using the `base` path if set.
+- See [Astro GitHub Pages deployment docs](https://docs.astro.build/en/guides/deploy/github/).
+
+## General
 - Use only static HTML, CSS, JS, and supported Jekyll features (Markdown, Liquid, YAML front matter).
-- Do not use server-side code (PHP, Python, etc.)—GitHub Pages only supports static content and Jekyll.
-- Place content in appropriate directories (e.g., `_posts/` for blog posts, `_layouts/` for layouts, `_includes/` for snippets).
-- Use relative URLs or the Jekyll `relative_url` filter for links and assets to ensure correct paths after deployment.
-- Reference assets (images, CSS, JS) using `{{ '/path/to/asset' | relative_url }}` or `{{ site.baseurl }}`.
-- Add YAML front matter (at least `---`) to every Markdown or HTML file you want Jekyll to process.
-- Test your site locally with `bundle exec jekyll serve` before pushing to GitHub.
-- Check the [jekyll.yml](mdc:.github/workflows/jekyll.yml) workflow for build and deployment configuration.
-- For custom plugins, note that only a limited set are supported on GitHub Pages unless you use a custom Actions workflow.
-- For more, see the [GitHub Pages documentation](https://docs.github.com/en/pages) and [Jekyll documentation](https://jekyllrb.com/docs/).
-
-# Writing GitHub Actions Workflows for GitHub Pages Build and Deploy
-
-When creating or editing GitHub Actions workflows for building and deploying to GitHub Pages, follow these best practices:
-
+- Do not use server-side code (PHP, Python, etc.).
+- Use relative URLs or the Jekyll `relative_url` filter for links and assets if using Jekyll.
+- Add YAML front matter to every Markdown or HTML file you want Jekyll to process.
+- Test your site locally before pushing to GitHub.
 - Use the official actions: `actions/checkout`, `actions/configure-pages`, `actions/upload-pages-artifact`, and `actions/deploy-pages`.
-- Set the workflow to trigger on `push`, `pull_request`, and `workflow_dispatch` for flexibility.
-- Always set the required permissions:
-- `pages: write`
-- `id-token: write`
-- `contents: read` (if needed for build)
-- Use a two-job pattern: one for build (producing the static site in `_site` or `dist`), and one for deploy (deploying the artifact to GitHub Pages).
-- Use the `concurrency` key to avoid overlapping deployments:
-```yaml
-concurrency:
-    group: \"pages\"
-    cancel-in-progress: false
-```
-- For Jekyll, use `ruby/setup-ruby` to match the Ruby version used by GitHub Pages ([see versions](https://pages.github.com/versions/)).
-- For static sites (e.g., React, Vue, SSGs), use the appropriate build steps (e.g., `npm ci`, `npm run build`).
-- Always upload the build output as an artifact using `actions/upload-pages-artifact`.
-- The deploy job should use `actions/deploy-pages` and set the environment to `github-pages`.
-- Reference the actual workflow file for your project: [jekyll.yml](mdc:.github/workflows/jekyll.yml)
+- Set permissions: `pages: write`, `id-token: write`, `contents: read`.
+- Use a two-job pattern: one for build, one for deploy.
+- Use `concurrency` to avoid overlapping deployments.
+- For more, see [GitHub Pages documentation](https://docs.github.com/en/pages).
+
+
 - For more, see the [GitHub Pages custom workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
 

@@ -1,74 +1,152 @@
-# SPARROW-AI-TECH
+# Sparrow AI Tech
 
-[![Build Status](https://img.shields.io/github/workflow/status/SPARROW-AI-TECH-CZ/sparrow-ai-tech/CI)](https://github.com/SPARROW-AI-TECH-CZ/sparrow-ai-tech/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+## Overview
+A modern web project using Astro + React, with full i18n (astro-i18n), Tailwind CSS (dark mode by default with toggle), robust E2E tests (Cypress), unit/component tests (Jest), and backend endpoints for ElevenLabs and PDF generation.
 
-**Innovation and Security for Your Digital Era**
+## Folder Structure
+- `/src` — Main app source (React, Astro pages, layouts, styles)
+- `/public` — Static assets (images, CSS, manifest, favicon, articles, infographics, locales)
+- `/articles` — Markdown articles and documentation
+- `/infographics` — Standalone HTML infographics
+- `/cypress` — Cypress E2E tests, fixtures, support
+- `/dist` — Production build output (Astro/Vite)
+- `/build` — (Legacy) CRA build output
+- `/_site` — (Legacy) Jekyll build output
 
-*This project is also available in English. See below for a summary.*
+## Design System
+- **Tailwind CSS** for all styling
+- **Dark mode** enabled by default, with toggle (respects system preference, persists user choice)
+- **Accessible**: semantic HTML, keyboard navigation, aria-labels
+- **Testing**: All interactive elements use `data-cy` attributes for robust Cypress selectors
 
-SPARROW-AI-TECH je moderní IT a AI agentura zaměřená na implementaci AI agentů, kybernetickou bezpečnost, správu Linuxu, vývoj softwaru a modernizaci IT. Tento web je optimalizován pro SEO, přístupnost (a11y), rychlost a profesionální prezentaci na GitHub Pages.
+## Setup & Development
+```sh
+npm install
+npm run dev # Start local dev server
+npm run build # Build for production
+npm run preview # Preview production build
+npm test # Run Jest tests
+npx cypress open # Run Cypress E2E tests interactively
+```
+
+## Testing
+- **Jest**: Unit/component tests in `src/components/__tests__` using [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- **Cypress**: E2E tests in `cypress/e2e/`
+- **Lighthouse CI**: Automated performance checks in CI (see below)
+
+### Running Tests
+
+```sh
+npm test # Run all Jest tests
+npx cypress open # Run Cypress E2E tests interactively
+```
+
+### Writing Component Tests
+- Place test files in `src/components/__tests__/` with `.test.jsx` or `.test.js` extension.
+- Use [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for rendering and interacting with components.
+- Use [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) for extended assertions.
+
+## Testing & Quality Assurance
+- **Cypress**: E2E tests in `cypress/e2e/` (run with `npm test:e2e` or `npx cypress run`)
+- **Jest**: Unit/component tests in `src/components/__tests__/` (run with `npm test`)
+- **Lighthouse CI**: Automated performance and accessibility checks in CI
+
+**Note:**
+- All E2E and unit tests must pass (`npm test:e2e`, `npm test`) before deployment.
+- If any Cypress tests fail, update selectors or test logic as needed (see TODO.md for current status).
+
+## Deployment
+- **GitHub Actions**: CI/CD pipeline runs lint, test, build, Lighthouse CI, and deploys to GitHub Pages
+- **Astro**: Output in `/dist` (set `site` and `base` in `astro.config.mjs` for subpath deploy)
+
+## Environment Variables & Security
+- All API keys (e.g., `ELEVENLABS_API_KEY`) are read from environment variables
+- For local dev, create a `.env` file:
+  ```env
+  ELEVENLABS_API_KEY=your-key-here
+  ```
+- In CI/CD, set secrets in your GitHub repository settings
+
+## Contributing
+- Fork, branch, and submit PRs
+- Run all tests before submitting
+- Follow code style and accessibility best practices
+
+## Credits & License
+- Built with Astro, React, Tailwind CSS, Cypress, Jest
+- MIT License
+
+## Internationalization (i18n)
+- **astro-i18n** is fully configured for English and Czech.
+- Translation files: `public/locales/en/common.json`, `public/locales/cs/common.json`
+- Use the translation function in frontend code: `t('header.nav_projects')`
+- Key structure example:
+  ```json
+  {
+    "header": {
+      "nav_projects": "Projects"
+    }
+  }
+  ```
+- See TODO.md for handoff and further details.
+
+## Backend API Endpoints
+
+### 1. Voice Chatbot Endpoint
+
+- **POST** `/api/chatbot`
+- **Request Body:**
+  ```json
+  { "message": "<user message>" }
+  ```
+- **Response:**
+  - Success: `{ "reply": "<AI reply>" }`
+  - Error: `{ "error": "<error message>" }`
+- **Description:**
+  Proxies user messages to the ElevenLabs API and returns the AI-generated reply. The ElevenLabs API key is loaded from the `ELEVENLABS_API_KEY` environment variable (never hardcoded).
+- **Security:**
+  - API key is never exposed to the client or logged.
+  - Input is validated for presence and type.
+  - All errors are handled gracefully.
+  - [Recommended] Add rate limiting and CORS policy for production.
+
+### 2. PDF Generation Endpoint
+
+- **POST** `/api/pdf`
+- **Request Body:**
+  ```json
+  { "html": "<HTML string>" }
+  ```
+- **Response:**
+  - Success: PDF file (`application/pdf`)
+  - Error: `{ "error": "<error message>" }`
+- **Description:**
+  Generates a PDF from the provided HTML using Puppeteer.
+- **Security:**
+  - Input is validated for presence and type.
+  - Puppeteer runs with `--no-sandbox` for compatibility, but for best security, run in a containerized environment.
+  - [Recommended] Sanitize HTML input and limit payload size to prevent abuse.
+  - [Recommended] Add rate limiting.
 
 ---
 
-## 🚀 Features
-- **SEO optimalizace**: Meta tagy, Open Graph, Twitter Card, strukturovaná data (JSON-LD)
-- **Přístupnost**: Skip-to-content, role, kontrast, alt texty, klávesová navigace
-- **PWA ready**: Manifest, favicon, responzivní design
-- **Rychlost**: Lazy loading obrázků, optimalizované styly
-- **Print-friendly**: Speciální tisková šablona
-- **Vícejazyčnost**: Čeština/Angličtina (CS/EN toggle)
+**Security Model & Best Practices:**
+- All secrets (API keys) are loaded from environment variables.
+- No secrets are logged or exposed in responses.
+- Input validation is performed on all endpoints.
+- Error messages are generic and do not leak sensitive information.
+- [Recommended] Implement rate limiting, CORS, and input size checks for production deployments.
 
-## 🛠️ Development & Deployment
+**Example Usage:**
 
-This project uses [React](https://reactjs.org/) and is deployed to GitHub Pages using [gh-pages](https://github.com/tschaub/gh-pages).
+```bash
+# Chatbot
+curl -X POST https://<your-domain>/api/chatbot \
+  -H 'Content-Type: application/json' \
+  -d '{"message": "Hello!"}'
 
-### Local Development
-
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Start the development server:
-   ```bash
-   npm start
-   ```
-
-### Build & Deploy to GitHub Pages
-
-1. Build the app:
-   ```bash
-   npm run build
-   ```
-2. Deploy to GitHub Pages:
-   ```bash
-   npm run deploy
-   ```
-
-The site will be available at the URL specified in the `homepage` field of `package.json`.
-
-### Static Assets
-- Place all static files (like `index.html`, `favicon.ico`, images, etc.) in the `/public` directory.
-- Reference them in HTML using `%PUBLIC_URL%/asset.png` and in JS using `process.env.PUBLIC_URL + '/asset.png'`.
-
-## 🖼️ Custom Images and Icons
-- Replace `/public/favicon.png` with your logo (192x192 px PNG)
-- Replace `/public/social-preview.png` for better social sharing (1200x630 px)
-- Replace `/public/screenshot-ui.png` and `/public/screenshot-feature.png` with real UI/functionality screenshots
-
-## 📄 Other Files
-- `public/site.webmanifest` – PWA manifest
-- `public/robots.txt` – Allows search engine indexing
-
-## 📬 Contact
-- Web: [sparrow-ai-tech.github.io](https://sparrow-ai-tech.github.io/)
-- GitHub: [SPARROW-AI-TECH-CZ](https://github.com/SPARROW-AI-TECH-CZ)
-
-## 🤝 Contributing
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. By participating, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
-
-## 📜 License
-MIT License. See [LICENSE](LICENSE) for details.
-
----
-© SPARROW-AI-TECH. Všechna práva vyhrazena.
+# PDF Generation
+curl -X POST https://<your-domain>/api/pdf \
+  -H 'Content-Type: application/json' \
+  -d '{"html": "<h1>My PDF</h1>"}' --output myfile.pdf
+```

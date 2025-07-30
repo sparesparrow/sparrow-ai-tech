@@ -1,3 +1,51 @@
+# Strategický kontext
+
+Portfolio sparesparrow není jen sbírkou open-source projektů – představuje jednotnou, vizionářskou architekturu pro agentní AI systémy nové generace. Klíčovou roli zde hraje Model Context Protocol (MCP), který umožňuje interoperabilitu, produktivitu vývojářů a bezpečnost v AI-nativním softwaru. Portfolio dokládá hlubokou expertízu v MCP, agentních workflow a bezpečné, škálovatelné architektuře, čímž autora profiluje jako systémového architekta připraveného na vedoucí roli v AI ekosystému.
+
+---
+
+## Přehled portfolia
+
+| Repozitář                | Technologie                | Účel                                                        | Strategická hodnota                                               |
+|-------------------------|----------------------------|--------------------------------------------------------------|-------------------------------------------------------------------|
+| mcp-project-orchestrator | Python, Poetry, Mermaid, Ruff, mypy | MCP server pro automatizaci a scaffolding projektů           | Agentní workflow, produktivita vývojářů, meta-úroveň AI           |
+| mcp-prompts             | TypeScript, Node.js, Docker, PostgreSQL | Centralizovaná, verzovaná správa promptů                    | Podnikové řízení promptů, RBAC, verzování, produkční nasazení      |
+| mcp-prompts-rs          | Rust, Cargo, PostgreSQL, Docker         | Výkonný, bezpečný MCP server pro prompty                     | Bezpečnost, výkon, Rust pro základní infrastrukturu                |
+| mcp-router              | TypeScript, Python, DevContainer        | Designer workflow a router pro agentní systémy               | Orchestrace, multi-agentní systémy, distribuovaná architektura     |
+| rust-network-mgr        | Rust, Netlink, nftables                 | Linuxová správa sítě                                         | Systémová expertíza, bezpečnost paměti, provozní spolehlivost      |
+| cursor-rules            | Markdown (.mdc)                         | Strojově čitelná pravidla pro AI-asistované programování     | Lidsko-AI spolupráce, best practices, strukturování znalostí       |
+
+---
+
+## Přehled MCP ekosystému
+
+```mermaid
+graph TD
+    Klient["MCP klient"] --> Router["mcp-router"]
+    Router --> Orchestrator["mcp-project-orchestrator"]
+    Router --> Prompty["mcp-prompts"]
+    Orchestrator --> Projekt["Projektové šablony"]
+    Prompty --> PromptDB["Databáze promptů"]
+    Router --> Externi["Externí nástroje/API"]
+```
+*Obrázek: MCP ekosystém propojuje klienty, routery, orchestrátory, prompt servery a externí nástroje.*
+
+---
+
+## Životní cyklus promptu
+
+```mermaid
+graph TD
+    Vytvoreni["Vytvoření promptu"] --> Recenze["Recenze promptu"]
+    Recenze --> Schvaleni["Schválení promptu"]
+    Schvaleni --> Pouziti["Použití ve workflow"]
+    Pouziti --> Archivace["Archivace/Verzování"]
+    Archivace --> Vytvoreni
+```
+*Obrázek: Prompty procházejí cyklem vytvoření, recenze, schválení, použití a archivace.*
+
+---
+
 # Analýza příspěvků sparesparrow do open-source ekosystému Model Context Protocol (MCP)
 
 ## Úvod

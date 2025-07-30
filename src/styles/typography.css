@@ -1,0 +1,15 @@
+body {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: var(--color-text);
+  background: var(--color-background);
+  line-height: 1.6;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+}
+p {
+  margin-bottom: var(--spacing-md);
+} 

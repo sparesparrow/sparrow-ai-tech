@@ -40,6 +40,34 @@ MCP is more than just a codebase—it's a growing community of developers passio
 
 ---
 
+## Modular Architecture of MCP
+
+```mermaid
+graph TD
+    Core["MCP Core"] --> Adapter1["Adapter: REST API"]
+    Core --> Adapter2["Adapter: MCP Protocol"]
+    Core --> Adapter3["Adapter: Database"]
+    Adapter1 --> Integration1["Integration: External Service"]
+    Adapter2 --> Integration2["Integration: AI Tool"]
+    Adapter3 --> Integration3["Integration: Storage"]
+```
+*Figure: MCP's modular architecture enables flexible integrations and extensibility.*
+
+---
+
+## Collaborative API Development Workflow
+
+```mermaid
+graph TD
+    Dev["Developer"] --> MCP["MCP Platform"]
+    MCP --> Team["Team Collaboration"]
+    Team --> Review["Code Review"]
+    Review --> Deploy["Deploy API"]
+```
+*Figure: MCP supports collaborative, review-driven API development and deployment.*
+
+---
+
 ## Getting Started
 
 1. **Clone the Repository:**

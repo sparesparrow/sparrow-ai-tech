@@ -1,0 +1,48 @@
+---
+description: Guidance on approaching the implementation of tasks below Track A in TODO.md
+globs:
+alwaysApply: false
+---
+# Track A: Frontend & User Experience Implementation Rule
+
+When instructed to "proceed implementing Track A":
+
+- Only implement tasks under **Track A** in TODO.md (Frontend & User Experience).
+- Work only on user-facing components, layouts, and styles using Astro and React.
+- Place React components in `src/components/`, layouts in `src/layouts/`, global styles in `src/styles/`, and images in `public/assets/images/`.
+- Use PascalCase for component filenames (e.g., `HeroSection.jsx`) and kebab-case for CSS classes (e.g., `.hero-section`).
+- Add `data-cy` attributes to interactive elements for E2E testing.
+- Do not modify backend, CI/CD, or test configuration files unless explicitly instructed.
+- At synchronization points, coordinate with Track B as described in TODO.md.
+- If a dependency on Track B is encountered (e.g., i18n function, API contract), pause and request handoff or clarification before proceeding.
+- **Regularly commit working code to GitHub** with clear, descriptive commit messages.
+- **Track progress** by checking off completed items in `TODO.md` as you finish them.
+- **Add any new ideas or suggestions** to `IDEAS.md` for future consideration.
+- **Mark each task in `TODO.md` with a status:** `ToDo`, `InProgress`, `Implemented`, `Tested`, `HelpNeeded`, or `Done`.
+- **If you are stuck** (e.g., on tests or dependencies), set the task status to `HelpNeeded` and proceed to the next available task.
+#!/usr/bin/env bash
+
+# Track A: Frontend & User Experience Launch Script
+```bash
+#!/usr/bin/env bash
+set -e
+
+# Activate Node/NVM if needed
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Print environment info
+node -v
+echo "BUN_INSTALL: $BUN_INSTALL"
+echo "OPENAI_ORGANIZATION: $OPENAI_ORGANIZATION"
+
+# Start frontend dev server
+echo "Starting Astro/React dev server..."
+npm run dev
+
+echo "Track A Frontend environment ready. See TODO.md for next steps."
+```
+- **Track progress** by checking off completed items in `TODO.md` as you finish them.
+- **Add any new ideas or suggestions** to `IDEAS.md` for future consideration.
+- **Mark each task in `TODO.md` with a status:** `ToDo`, `InProgress`, `Implemented`, `Tested`, `HelpNeeded`, or `Done`.
+- **If you are stuck** (e.g., on tests or dependencies), set the task status to `HelpNeeded` and proceed to the next available task.

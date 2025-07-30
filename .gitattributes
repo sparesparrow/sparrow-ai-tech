@@ -1,0 +1,4 @@
+# Files and patterns to be encrypted with git-crypt (if used)
+.env filter=git-crypt diff=git-crypt
+secrets/** filter=git-crypt diff=git-crypt
+*.key filter=git-crypt diff=git-crypt

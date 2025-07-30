@@ -1,4 +1,52 @@
 
+# Portfolio Relevance
+
+This article is part of the sparesparrow/Sparrow AI & Tech portfolio, which is dedicated to building robust, secure, and interoperable agentic AI systems. The analysis of open-source governance, transparent collaboration, and decentralized decision-making in libertarian constitutions directly informs the design of secure, auditable, and community-driven agentic AI ecosystems. These principles are foundational for building trustworthy, scalable AI systems.
+
+---
+
+## Open Governance in Agentic AI Ecosystems
+
+```mermaid
+graph TD
+    Community["Open Community"] --> Governance["Transparent Governance"]
+    Governance --> Collaboration["Collaborative Development"]
+    Collaboration --> Security["Security & Auditability"]
+    Security --> Agentic["Agentic AI Ecosystem"]
+    Agentic --> Trust["Trust & Adoption"]
+```
+*Figure: Open-source governance and transparent collaboration are foundational for secure, trustworthy agentic AI ecosystems.*
+
+---
+
+## Constitution Drafting and Community Feedback
+
+```mermaid
+graph TD
+    Author["Author (Urza)"] --> Draft["Draft Constitution"]
+    Draft --> Community["Community Review"]
+    Community --> Revision["Revision"]
+    Revision --> Adoption["Adoption/Implementation"]
+```
+*Figure: The process of drafting a libertarian constitution involves community feedback and iterative revision.*
+
+---
+
+## Decentralized Decision-Making
+
+```mermaid
+graph TD
+    Stakeholder1["Stakeholder 1"] --> Proposal["Proposal"]
+    Stakeholder2["Stakeholder 2"] --> Proposal
+    Stakeholder3["Stakeholder 3"] --> Proposal
+    Proposal --> Voting["Voting"]
+    Voting --> Consensus["Consensus"]
+    Consensus --> Implementation["Implementation"]
+```
+*Figure: Decentralized decision-making involves proposals, voting, consensus, and implementation by multiple stakeholders.*
+
+---
+
 # Urzova libertariánská ústava: Komplexní analýza filozoficko-politického projektu
 
 Urzova verze libertariánské ústavy představuje jeden z nejdůležitějších československých pokusů o teoretické uchopení principů svobodné společnosti v ústavní podobě. Tento projekt vznikl v rámci požadavku na vypracování nové ústavy pro mikrorepubliku Liberland a stal se předmětem rozsáhlé diskuse o možnostech implementace anarchokapitalistických principů do právního rámce.

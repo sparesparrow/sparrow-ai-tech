@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "articles": "Articles",
+    "infographics": "Infographics",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Welcome to Sparrow AI Tech",
+    "subtitle": "AI solutions for the future"
+  },
+  "articles": {
+    "sectionTitle": "Featured Articles"
+  },
+  "infographics": {
+    "sectionTitle": "Infographics"
+  },
+  "contact": {
+    "sectionTitle": "Contact Us"
+  }
+}

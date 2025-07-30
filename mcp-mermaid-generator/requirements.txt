@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pydantic
+requests
+# For LLM integration (OpenAI, etc.)
+# openai
+# For SVG rendering (Playwright, etc.)
+# playwright
+# For SVG rendering, mermaid-cli (mmdc) must be installed via npm:
+# npm install -g @mermaid-js/mermaid-cli 
+py-svg-hush 

@@ -1,3 +1,29 @@
+# Strategic Context
+
+This article is part of the sparesparrow/Sparrow AI & Tech portfolio, which is dedicated to building robust, secure, and interoperable agentic AI systems. The Model Context Protocol (MCP) and agentic workflows are at the heart of this vision, enabling AI agents to reason, plan, and interact with external tools and data in a standardized, scalable way. These contributions position the portfolio as a leader in the emerging agentic AI ecosystem.
+
+---
+
+## Example Agentic Workflow
+
+```mermaid
+graph TD
+    User["User Goal"] --> Planner["Planner (LLM)"]
+    Planner --> Step1["Step 1: Tool Use"]
+    Planner --> Step2["Step 2: Data Retrieval"]
+    Planner --> Step3["Step 3: Multi-Agent Collaboration"]
+    Step1 --> Tool["External Tool/API"]
+    Step2 --> Data["Resource/Database"]
+    Step3 --> AgentB["Specialized Agent"]
+    Step3 --> AgentC["Evaluator Agent"]
+    AgentB --> Planner
+    AgentC --> Planner
+    Planner --> Output["Final Result"]
+```
+*Figure: An agentic workflow decomposes a user goal into steps, uses tools and data, and coordinates multiple agents for robust, adaptive problem-solving.*
+
+---
+
 # MCP in Practice: Real-World Use Cases and Success Stories
 
 **Keywords:** MCP, Model Context Protocol, real-world applications, case studies, AI agents, workflow automation, sparesparrow
@@ -160,6 +186,32 @@ mcp-orchestrator create --template api-docs --input openapi-spec.yaml
 - Asynchronous processing capabilities
 - Scalable architecture
 - Fault tolerance and recovery
+
+---
+
+## Microservices Architecture with MCP Servers
+
+```mermaid
+graph TD
+    User["User"] --> Gateway["API Gateway"]
+    Gateway --> MCP1["MCP Server 1"]
+    Gateway --> MCP2["MCP Server 2"]
+    MCP1 --> DB["Database"]
+    MCP2 --> DB
+```
+*Figure: MCP servers can be deployed as microservices behind a gateway, sharing resources.*
+
+---
+
+## Event-Driven Workflow with MCP
+
+```mermaid
+graph TD
+    EventSource["Event Source"] --> MCPServer["MCP Server"]
+    MCPServer --> Processor["Event Processor"]
+    Processor --> Output["Workflow Output"]
+```
+*Figure: MCP servers can process events asynchronously in scalable workflows.*
 
 ---
 

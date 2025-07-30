@@ -1,0 +1,71 @@
+---
+description: MermaidJS, Diagrams as Code, and Agentic Workflows Guide
+globs:
+alwaysApply: true
+---
+# MermaidJS, Diagrams as Code, and Agentic Workflows
+
+This rule encodes the architectural, implementation, and security best practices for using MermaidJS and diagrams-as-code in this project, as detailed in [MermaidJS.md](mdc:public/articles/MermaidJS.md).
+
+## 1. Authoring Diagrams
+- Write diagrams in plain text using Mermaid syntax in Markdown code fences (```mermaid ... ```), `.mmd`, or `.md` files.
+- Store diagrams in `/articles/`, `/public/articles/`, or `/src/content/docs/` for documentation and versioning.
+- Use the [InteractiveConceptMapEditor.html](mdc:public/articles/InteractiveConceptMapEditor.html) for live editing and previewing Mermaid diagrams.
+
+## 2. Rendering Strategy
+- **Always prefer server-side rendering (SSR) of Mermaid diagrams** using `rehype-mermaid` and Playwright for production and documentation. This ensures:
+  - No client-side JS overhead
+  - Fast load times, SEO-friendly static SVG output
+  - Consistent rendering across environments
+- Configure SSR in `astro.config.mjs`:
+  - Add `rehype-mermaid` to `markdown.rehypePlugins`
+  - Ensure Playwright is installed and available during build (see postinstall script)
+- For quick prototyping or internal tools, client-side rendering (e.g., with MermaidJS in the browser) is acceptable, but not for production docs.
+
+## 3. CI/CD and Automation
+- All builds and deployments must:
+  - Run `npx playwright install --with-deps` before build (see postinstall in `package.json`)
+  - Use GitHub Actions workflows for linting, testing (Playwright E2E, visual, a11y), and building docs
+  - Upload Playwright test reports as artifacts
+- See [MermaidJS.md](mdc:public/articles/MermaidJS.md) for full CI/CD YAML examples.
+
+## 4. Security
+- Sanitize all user input and output when generating diagrams from user data or LLMs
+- Render diagrams in a sandboxed environment (e.g., Docker, no network) when using Playwright
+- Sanitize SVG output before serving to clients (e.g., with DOMPurify)
+- Use intent guardrails and validation for any agentic/LLM-driven diagram generation
+
+## 5. Agentic Workflows and MCP
+- The preferred architecture for AI-driven diagram generation is via an MCP-compliant server (see mcp-mermaid-generator)
+- The agentic workflow:
+  1. Accepts natural language or structured input
+  2. Uses LLM + prompt templates to generate Mermaid code
+  3. Validates and sanitizes code
+  4. Renders SVG via Playwright
+  5. Returns both code and SVG to the client
+- See [MermaidJS.md](mdc:public/articles/MermaidJS.md) for full agentic and security architecture
+
+## 6. Editor and UX
+- Use [InteractiveConceptMapEditor.html](mdc:public/articles/InteractiveConceptMapEditor.html) as a reference for building or improving live Mermaid editors
+- Features to include: live preview, error handling, copy-to-clipboard, clear/reset, keyboard shortcuts
+- For production, SSR is preferred, but client-side editors are useful for authoring and preview
+
+## 7. File/Folder Conventions
+- `.md` and `.mmd` files for diagrams and documentation
+- `/articles/` and `/public/articles/` for content
+- `/src/content/docs/` for Starlight/Astro docs
+- `/cypress/fixtures/articles/` for test diagrams
+
+## 8. Testing
+- E2E tests for diagram rendering, navigation, and error states
+- Visual regression tests for diagram output
+- Accessibility tests for documentation pages
+
+---
+**References:**
+- [MermaidJS.md](mdc:public/articles/MermaidJS.md)
+- [InteractiveConceptMapEditor.html](mdc:public/articles/InteractiveConceptMapEditor.html)
+description:
+globs:
+alwaysApply: false
+---
