@@ -1,0 +1,55 @@
+/* Modern CSS custom properties and design system */
+:root {
+  /* Cyberpunk color palette */
+  --color-cyber-bg: #0d1117;
+  --color-cyber-surface: #161b22;
+  --color-cyber-green: #39ff14;
+  --color-cyber-blue: #58a6ff;
+  --color-cyber-orange: #f85149;
+  --color-cyber-purple: #d2a8ff;
+  --color-cyber-text: #f0f6fc;
+  --color-cyber-text-dim: #8b949e;
+  --color-cyber-border: #30363d;
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-cyber-bg);
+  color: var(--color-cyber-text);
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(13, 17, 23, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-cyber-green);
+  z-index: 1000;
+  padding: 0;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  background: linear-gradient(135deg, var(--color-cyber-bg) 0%, #1a1f2e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add more styles as needed... */
+

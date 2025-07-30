@@ -1,30 +1,49 @@
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+import React from 'react';
 
-const isImageUrl = (url) => /\.(png|jpe?g|gif|svg|webp)$/i.test(url);
-
-const ImagePreviewLink = ({ href, children, ...props }) => {
-  if (isImageUrl(href)) {
-    // If href is not external or already starts with /sparrow-ai-tech/, prefix it
-    let imgSrc = href;
-    if (!imgSrc.startsWith('http') && !imgSrc.startsWith('/sparrow-ai-tech/')) {
-      imgSrc = `/sparrow-ai-tech/${imgSrc.replace(/^\/+/, '')}`;
-    }
-    return (
-      <Tippy
-        content={<img src={imgSrc} alt="preview" style={{ maxWidth: 200, maxHeight: 200 }} />}
-        placement="top"
-      >
-        <a href={imgSrc} target="blank" rel="noopener noreferrer" {...props}>
-          {children}
-        </a>
-      </Tippy>
-    );
-  }
+const ImagePreviewLink = ({ href, title, children, className = "" }) => {
   return (
-    <a href={href} target="blank" rel="noopener noreferrer" {...props}>
-      {children}
-    </a>
+    <div className={`image-preview-container ${className}`} title={title}>
+      <a href={href} target="_blank" rel="noopener noreferrer" className="image-preview-link">
+        {children}
+      </a>
+      <style jsx>{`
+        .image-preview-container {
+          position: relative;
+          display: inline-block;
+        }
+
+        .image-preview-link {
+          color: var(--color-cyber-blue);
+          text-decoration: none;
+          border-bottom: 1px dashed var(--color-cyber-blue);
+          transition: all 0.3s ease;
+        }
+
+        .image-preview-link:hover {
+          color: var(--color-cyber-green);
+          border-color: var(--color-cyber-green);
+          text-shadow: 0 0 5px var(--color-cyber-green);
+        }
+
+        .image-preview-container:hover::after {
+          content: attr(title);
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          background: var(--color-cyber-bg);
+          color: var(--color-cyber-text);
+          padding: 0.5rem;
+          border: 1px solid var(--color-cyber-green);
+          border-radius: 4px;
+          font-size: 0.8rem;
+          white-space: nowrap;
+          z-index: 1000;
+          margin-bottom: 5px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+      `}</style>
+    </div>
   );
 };
 
