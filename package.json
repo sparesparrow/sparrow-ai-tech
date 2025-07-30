@@ -26,6 +26,7 @@
     "react": "^18.0.0",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.0.0",
+    "react-markdown": "^10.1.0",
     "svelte": "^5.37.1",
     "tailwindcss": "^3.0.0"
   },
@@ -36,6 +37,7 @@
     "@babel/preset-env": "^7.28.0",
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
+    "@tailwindcss/typography": "^0.5.16",
     "@typescript-eslint/parser": "^8.38.0",
     "babel-jest": "^29.7.0",
     "chart": "^0.1.2",
@@ -53,6 +55,9 @@
     "prettier": "^3.0.0",
     "prettier-plugin-astro": "^0.12.3",
     "prettier-plugin-tailwindcss": "^0.5.14",
+    "rehype-highlight": "^7.0.2",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1",
     "typescript": "^5.8.3"
   }
 }

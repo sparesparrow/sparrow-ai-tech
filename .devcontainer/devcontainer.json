@@ -1,52 +1,33 @@
 {
-  "name": "Astro + React DevContainer",
-  "image": "mcr.microsoft.com/devcontainers/node:20",
-  "postCreateCommand": "npm install",
-  "forwardPorts": [3000, 3001],
+  "name": "Sparrow AI Tech",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": [
         "astro-build.astro-vscode",
-        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss",
         "esbenp.prettier-vscode",
         "ms-vscode.vscode-typescript-next",
-        "msjsdiag.vscode-react-native",
-        "cypress.vscode-cypress-support",
-        "lokalise.i18n-ally",
-        "streetsidesoftware.code-spell-checker"
-      ]
+        "svelte.svelte-vscode"
+      ],
+      "settings": {
+        "typescript.preferences.includePackageJsonAutoImports": "on",
+        "typescript.suggest.includeAutomaticOptionalChainCompletions": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      }
     }
   },
-  "features": {},
-  "containerEnv": {
-    "NVM_DIR": "/home/node/.nvm",
-    "ANDROID_HOME": "/home/node/android-sdk",
-    "BUN_INSTALL": "/home/node/.bun",
-    "OPENAI_ORGANIZATION": "org-asqgjpWg1hSt90shKhRsqHWQ"
-  },
-  "postStartCommand": "printenv | sort | grep -E 'NVM|ANDROID|BUN|OPENAI' || true",
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-  "tasks": [
-    {
-      "label": "Run Cypress E2E Tests",
-      "type": "shell",
-      "command": "npx cypress run",
-      "group": "test",
-      "problemMatcher": []
-    },
-    {
-      "label": "Backend Checks (lint, test, build)",
-      "type": "shell",
-      "command": "npm run lint && npm run test && npm run build",
-      "group": "build",
-      "problemMatcher": []
-    },
-    {
-      "label": "Frontend Dev Server",
-      "type": "shell",
-      "command": "npm run dev",
-      "group": "build",
-      "problemMatcher": []
-    }
-  ]
+  "forwardPorts": [3000, 4321],
+  "postCreateCommand": "npm install",
+  "remoteUser": "node"
 }
