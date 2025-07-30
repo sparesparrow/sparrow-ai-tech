@@ -19,7 +19,8 @@
     "lint:check": "eslint .",
     "type-check": "astro check",
     "clean": "rm -rf dist .astro node_modules/.vite",
-    "dev:open": "astro dev --open"
+    "dev:open": "astro dev --open",
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
@@ -55,6 +56,8 @@
     "@testing-library/react": "^16.3.0",
     "@types/node": "^24.1.0",
     "@types/react-helmet": "^6.1.11",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
     "babel-jest": "^29.7.0",
     "chart": "^0.1.2",
     "cypress": "^13.0.0",

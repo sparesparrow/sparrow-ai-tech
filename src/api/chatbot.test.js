@@ -20,15 +20,15 @@ global.window.matchMedia =
 
 const mockRes = () => {
   const res = {};
-  res.status = jest.fn().mockImplementation((code) => {
+  res.status = jest.fn().mockImplementation((_code) => {
     // // // console.log('res.status called with', code);
     return res;
   });
-  res.json = jest.fn().mockImplementation((obj) => {
+  res.json = jest.fn().mockImplementation((_obj) => {
     // // // console.log('res.json called with', obj);
     return res;
   });
-  res.setHeader = jest.fn().mockImplementation((...args) => {
+  res.setHeader = jest.fn().mockImplementation((..._args) => {
     // // // console.log('res.setHeader called with', ...args);
   });
   res.end = jest.fn();

@@ -1,4 +1,4 @@
-const base = '/sparrow-ai-tech';
+const _base = '/sparrow-ai-tech';
 
 describe('Base URL Path Validation', () => {
   beforeEach(() => {

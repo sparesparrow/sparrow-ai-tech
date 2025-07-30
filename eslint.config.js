@@ -1,11 +1,12 @@
-import js from '@eslint/js';
 import babelParser from '@babel/eslint-parser';
+import tsParser from '@typescript-eslint/parser';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 export default [
-  // Global ignores
+  // Global ignores - replaces .eslintignore
   {
     ignores: [
       '.astro/',
@@ -17,7 +18,8 @@ export default [
       'cypress/downloads/',
       'cypress/screenshots/',
       'cypress/videos/',
-      '**/*.astro'  // Skip Astro files entirely from ESLint
+      '**/*.min.js',
+      '**/*.bundle.js'
     ],
   },
 
@@ -43,6 +45,8 @@ export default [
         URL: 'readonly',
         URLSearchParams: 'readonly',
         Blob: 'readonly',
+        Response: 'readonly',
+        Request: 'readonly',
 
         // Node.js globals  
         process: 'readonly',
@@ -128,12 +132,54 @@ export default [
     }
   },
 
+  // TypeScript configuration
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      parser: tsParser,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        }
+      },
+      globals: {
+        console: 'readonly',
+        window: 'readonly',
+        document: 'readonly'
+      }
+    },
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+      react,
+      'react-hooks': reactHooks,
+      'jsx-a11y': jsxA11y
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': ['warn', { 
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true
+      }],
+      'no-console': 'warn',
+      'react/react-in-jsx-scope': 'off',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      'jsx-a11y/alt-text': 'error'
+    },
+    settings: {
+      react: {
+        version: 'detect'
+      }
+    }
+  },
+
   // Cypress test files
   {
     files: ['cypress/**/*.{js,jsx}'],
     languageOptions: {
       globals: {
-        // Cypress globals
         cy: 'readonly',
         Cypress: 'readonly',
         describe: 'readonly',
@@ -148,12 +194,11 @@ export default [
     }
   },
 
-  // Jest/Test files
+  // Jest test files
   {
     files: ['**/*.test.{js,jsx}', '**/__tests__/**/*.{js,jsx}'],
     languageOptions: {
       globals: {
-        // Jest globals
         describe: 'readonly',
         it: 'readonly',
         test: 'readonly',
@@ -168,22 +213,9 @@ export default [
     }
   },
 
-  // API/Server files
+  // Config files
   {
-    files: ['src/pages/api/**/*.js', 'src/api/**/*.js'],
-    languageOptions: {
-      globals: {
-        // Server/API globals
-        Response: 'readonly',
-        Request: 'readonly',
-        fetch: 'readonly'
-      }
-    }
-  },
-
-  // Tailwind config
-  {
-    files: ['tailwind.config.js'],
+    files: ['tailwind.config.js', '*.config.js'],
     languageOptions: {
       globals: {
         require: 'readonly',
