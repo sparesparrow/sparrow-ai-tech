@@ -1,9 +1,8 @@
 import js from '@eslint/js';
-import astro from 'eslint-plugin-astro';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
+import babelParser from '@babel/eslint-parser';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import babelParser from '@babel/eslint-parser';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 export default [
   // Global ignores
@@ -17,14 +16,57 @@ export default [
       'public/',
       'cypress/downloads/',
       'cypress/screenshots/',
-      'cypress/videos/'
+      'cypress/videos/',
+      '**/*.astro'  // Skip Astro files entirely from ESLint
     ],
   },
 
-  // Base JS configuration
-  js.configs.recommended,
+  // Base JavaScript configuration
+  {
+    files: ['**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        // Browser globals
+        console: 'readonly',
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        fetch: 'readonly',
+        localStorage: 'readonly',
+        sessionStorage: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        URL: 'readonly',
+        URLSearchParams: 'readonly',
+        Blob: 'readonly',
 
-  // Configuration for JSX files
+        // Node.js globals  
+        process: 'readonly',
+        Buffer: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        exports: 'readonly',
+        global: 'readonly'
+      }
+    },
+    rules: {
+      'no-unused-vars': ['warn', { 
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true
+      }],
+      'no-console': 'warn',
+      'no-useless-escape': 'warn'
+    }
+  },
+
+  // JSX configuration
   {
     files: ['**/*.jsx'],
     languageOptions: {
@@ -34,18 +76,31 @@ export default [
       parserOptions: {
         requireConfigFile: false,
         babelOptions: {
-          presets: ['@babel/preset-react']
+          presets: ['@babel/preset-env', '@babel/preset-react']
         },
         ecmaFeatures: {
           jsx: true
         }
       },
       globals: {
+        // Browser globals
         console: 'readonly',
         window: 'readonly',
         document: 'readonly',
         navigator: 'readonly',
-        fetch: 'readonly'
+        fetch: 'readonly',
+        localStorage: 'readonly',
+        sessionStorage: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        URL: 'readonly',
+        URLSearchParams: 'readonly',
+        Blob: 'readonly',
+
+        // React globals
+        React: 'readonly'
       }
     },
     plugins: {
@@ -56,9 +111,11 @@ export default [
     rules: {
       'no-unused-vars': ['warn', { 
         argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_'
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true
       }],
       'no-console': 'warn',
+      'no-useless-escape': 'warn',
       'react/react-in-jsx-scope': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
@@ -71,26 +128,67 @@ export default [
     }
   },
 
-  // Configuration for regular JS files
+  // Cypress test files
   {
-    files: ['**/*.js'],
+    files: ['cypress/**/*.{js,jsx}'],
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
       globals: {
-        console: 'readonly',
-        process: 'readonly'
+        // Cypress globals
+        cy: 'readonly',
+        Cypress: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        before: 'readonly',
+        afterEach: 'readonly',
+        after: 'readonly',
+        context: 'readonly'
       }
-    },
-    rules: {
-      'no-unused-vars': ['warn', { 
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_'
-      }],
-      'no-console': 'warn'
     }
   },
 
-  // Astro files configuration
-  ...astro.configs['flat/recommended']
+  // Jest/Test files
+  {
+    files: ['**/*.test.{js,jsx}', '**/__tests__/**/*.{js,jsx}'],
+    languageOptions: {
+      globals: {
+        // Jest globals
+        describe: 'readonly',
+        it: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        beforeAll: 'readonly',
+        afterEach: 'readonly',
+        afterAll: 'readonly',
+        jest: 'readonly',
+        global: 'readonly'
+      }
+    }
+  },
+
+  // API/Server files
+  {
+    files: ['src/pages/api/**/*.js', 'src/api/**/*.js'],
+    languageOptions: {
+      globals: {
+        // Server/API globals
+        Response: 'readonly',
+        Request: 'readonly',
+        fetch: 'readonly'
+      }
+    }
+  },
+
+  // Tailwind config
+  {
+    files: ['tailwind.config.js'],
+    languageOptions: {
+      globals: {
+        require: 'readonly',
+        module: 'readonly'
+      }
+    }
+  }
 ];

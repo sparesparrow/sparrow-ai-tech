@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+build/
+_site/
+public/
+*.astro
+cypress/downloads/
+cypress/screenshots/
+cypress/videos/
+*.min.js
+*.bundle.js
