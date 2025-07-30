@@ -3,14 +3,20 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import babelParser from '@babel/eslint-parser';
+import tsParser from '@typescript-eslint/parser';
 
 export default [
-  // Recommended settings for Astro
+  // Global ignores for generated files and artifacts
+  {
+    ignores: ['.astro/', 'dist/', 'node_modules/', 'public/build/', 'build/', '_site/'],
+  },
+
+  // Recommended settings for Astro files
   ...(astro.configs?.['flat/recommended'] ?? []),
 
-  // Configuration for JavaScript and JSX files
+  // Configuration for JavaScript and JSX files using Babel parser
   {
-    files: ['**/*.js', '**/*.jsx'],
+    files: ['**/*.{js,jsx}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -18,62 +24,53 @@ export default [
       parserOptions: {
         requireConfigFile: false,
         babelOptions: {
-          presets: ['@babel/preset-react']
+          presets: ['@babel/preset-react'],
         },
         ecmaFeatures: {
-          jsx: true
-        }
-      }
+          jsx: true,
+        },
+      },
     },
     plugins: {
       'jsx-a11y': jsxA11y,
-      'react': react,
-      'react-hooks': reactHooks
+      react,
+      'react-hooks': reactHooks,
     },
     rules: {
-      // General rules
       'no-unused-vars': 'warn',
       'no-console': 'warn',
-
-      // Accessibility rules
       'jsx-a11y/alt-text': 'error',
-
-      // React-specific rules
-      'react/react-in-jsx-scope': 'off', // Not needed with modern JSX transform
+      'react/react-in-jsx-scope': 'off',
       'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn'
-    }
+      'react-hooks/exhaustive-deps': 'warn',
+    },
   },
 
-  // Configuration for TypeScript files (no Babel parser for TS)
+  // Configuration for TypeScript and TSX files using TypeScript parser
   {
-    files: ['**/*.ts', '**/*.tsx'],
+    files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
+      parser: tsParser, // Use the TypeScript parser
       parserOptions: {
         ecmaFeatures: {
-          jsx: true
-        }
-      }
+          jsx: true,
+        },
+      },
     },
     plugins: {
       'jsx-a11y': jsxA11y,
-      'react': react,
-      'react-hooks': reactHooks
+      react,
+      'react-hooks': reactHooks,
     },
     rules: {
-      // General rules
       'no-unused-vars': 'warn',
       'no-console': 'warn',
-
-      // Accessibility rules
       'jsx-a11y/alt-text': 'error',
-
-      // React-specific rules
       'react/react-in-jsx-scope': 'off',
       'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn'
-    }
-  }
+      'react-hooks/exhaustive-deps': 'warn',
+    },
+  },
 ];
