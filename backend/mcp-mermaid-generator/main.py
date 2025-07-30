@@ -1,22 +1,42 @@
-"""Main FastAPI application."""
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import subprocess, tempfile, os, json
 
-app = FastAPI(
-    title="MCP Mermaid Generator",
-    description="Backend service for generating Mermaid diagrams",
-    version="1.0.0"
-)
+# optional: plug your favourite LLM here
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+app = FastAPI(title="MCP Mermaid Generator")
 
-@app.get("/")
-async def root():
-    """Root endpoint."""
-    return {"message": "MCP Mermaid Generator is running"}
+class DiagramRequest(BaseModel):
+    mermaid_code: str
 
-@app.get("/health")
-async def health():
-    """Health check endpoint."""
-    return {"status": "healthy", "service": "mcp-mermaid-generator"}
+@app.post("/generate_diagram")
+def generate_diagram(req: DiagramRequest):
+    """Return SVG string (placeholder) – in real mode call LLM for code."""
+    if not req.mermaid_code.strip():
+        raise HTTPException(status_code=400, detail="Empty code")
+    return {"svg": "<svg><!-- stub --></svg>"}
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+@app.post("/validate_syntax")
+def validate_syntax(req: DiagramRequest):
+    """Use mermaid-cli in a temp file to validate."""
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".mmd") as tmp:
+        tmp.write(req.mermaid_code.encode())
+        tmp.flush()
+        try:
+            subprocess.check_output(["mmdc","-i",tmp.name,"-o","/dev/null"],
+                                    stderr=subprocess.STDOUT)
+            ok=True; out=""
+        except subprocess.CalledProcessError as e:
+            ok=False; out=e.output.decode()
+    finally:
+        os.unlink(tmp.name)
+    return {"valid": ok, "message": out}
+
+# placeholder for prompt templates
+@app.get("/prompt/{name}")
+def prompt(name:str):
+    try:
+        txt = open(f"prompts/{name}.txt").read()
+    except FileNotFoundError:
+        raise HTTPException(404,"Prompt not found")
+    return {"name":name,"template":txt}

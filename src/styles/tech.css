@@ -1,0 +1,261 @@
+/* Tech Theme for CV */
+:root {
+    --primary-color: #6200ee;  /* Purple */
+    --secondary-color: #03dac6; /* Teal */
+    --text-color: #121212;     /* Near-Black */
+    --light-text: #757575;     /* Medium Gray */
+    --background-color: #ffffff;
+    --section-bg: #f5f5f5;     /* Light Gray */
+    --border-color: #e0e0e0;   /* Very Light Gray */
+    --accent-color: #bb86fc;   /* Light Purple */
+    --error-color: #cf6679;    /* Red */
+    --code-bg: #f6f8fa;        /* Light Code Background */
+}
+
+/* Base Typography and Layout */
+body {
+    font-family: 'Roboto Mono', 'SF Mono', 'Fira Code', monospace;
+    line-height: 1.6;
+    max-width: 21cm;  /* A4 width */
+    margin: 2cm auto;
+    color: var(--text-color);
+    font-size: 13px;
+    background-color: var(--background-color);
+    padding: 0 1.5cm;
+}
+
+/* Header with Name */
+h1 {
+    color: var(--primary-color);
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0.5em 0;
+    letter-spacing: -0.01em;
+    border-bottom: none;
+    font-family: 'Roboto', 'SF Pro Display', 'Segoe UI', sans-serif;
+}
+
+h1::before {
+    content: "> ";
+    color: var(--secondary-color);
+}
+
+/* Contact Information */
+p:nth-of-type(1),
+p:nth-of-type(2),
+p:nth-of-type(3) {
+    margin: 0.5em 0;
+    color: var(--light-text);
+    font-size: 13px;
+}
+
+/* Command Line Style */
+p:nth-of-type(1)::before,
+p:nth-of-type(2)::before,
+p:nth-of-type(3)::before {
+    content: "$ ";
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* Section Headings */
+h2 {
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 1.8em 0 0.8em;
+    padding-left: 10px;
+    border-left: 4px solid var(--secondary-color);
+    font-family: 'Roboto', 'SF Pro Display', 'Segoe UI', sans-serif;
+}
+
+/* Sub-sections */
+h3 {
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 700;
+    margin: 1.2em 0 0.3em;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Roboto', 'SF Pro Display', 'Segoe UI', sans-serif;
+}
+
+h3 em {
+    font-size: 14px;
+    color: var(--light-text);
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Roboto Mono', 'SF Mono', 'Fira Code', monospace;
+}
+
+h4 {
+    color: var(--primary-color);
+    font-size: 15px;
+    font-weight: 600;
+    margin: 1em 0 0.3em;
+    font-family: 'Roboto', 'SF Pro Display', 'Segoe UI', sans-serif;
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--secondary-color);
+    transition: background-color 0.2s ease;
+    padding: 0 2px;
+}
+
+a:hover {
+    background-color: rgba(3, 218, 198, 0.1);
+}
+
+/* Lists */
+ul, ol {
+    padding-left: 1.5em;
+    margin: 0.7em 0;
+}
+
+li {
+    margin: 0.4em 0;
+    line-height: 1.5;
+}
+
+ul li::marker {
+    color: var(--secondary-color);
+    content: "→ ";
+}
+
+/* Emphasis */
+strong {
+    color: var(--primary-color);
+    font-weight: 600;
+    background-color: rgba(98, 0, 238, 0.05);
+    padding: 0 2px;
+    border-radius: 3px;
+}
+
+em {
+    color: var(--text-color);
+    font-style: normal;
+    font-weight: 400;
+    padding: 0 2px;
+    border-bottom: 1px dashed var(--secondary-color);
+}
+
+/* Section Separators */
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-color), transparent);
+    margin: 1.5em 0;
+}
+
+/* Skills Section */
+.skills {
+    background-color: var(--code-bg);
+    border-radius: 6px;
+    padding: 1em;
+    margin: 1em 0;
+    border: 1px solid var(--border-color);
+}
+
+.skill-category {
+    margin-bottom: 1em;
+}
+
+.skill-category h4::before {
+    content: "// ";
+    color: var(--secondary-color);
+}
+
+.skill-list {
+    font-family: 'Roboto Mono', 'SF Mono', 'Fira Code', monospace;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.skill-item {
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    background-color: rgba(98, 0, 238, 0.08);
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+/* Project Section */
+.project {
+    margin-bottom: 1.5em;
+    padding-left: 0.5em;
+    border-left: 2px solid var(--border-color);
+}
+
+.project:hover {
+    border-left: 2px solid var(--secondary-color);
+}
+
+.project-title {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.repository-link {
+    font-size: 0.9em;
+    font-family: 'Roboto Mono', 'SF Mono', 'Fira Code', monospace;
+}
+
+.repository-link::before {
+    content: "git: ";
+    color: var(--secondary-color);
+}
+
+/* Footer */
+footer {
+    margin-top: 2em;
+    color: var(--light-text);
+    font-size: 0.8em;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.5em;
+}
+
+.generated-date::before {
+    content: "# ";
+    color: var(--secondary-color);
+}
+
+/* Print Optimization */
+@media print {
+    body {
+        margin: 0;
+        padding: 0.5cm 1cm;
+    }
+    
+    a {
+        color: var(--text-color);
+        border-bottom: 1px dotted var(--light-text);
+    }
+    
+    @page {
+        margin: 1.5cm;
+    }
+    
+    h1 {
+        margin-top: 0;
+    }
+    
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    body {
+        margin: 1cm;
+        padding: 0 0.5cm;
+    }
+}

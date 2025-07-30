@@ -1,0 +1,268 @@
+/* Modern Theme for CV */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #3b82f6;
+    --text-color: #1e293b;
+    --light-text: #475569;
+    --background-color: #ffffff;
+    --section-bg: #f8fafc;
+    --border-color: #e2e8f0;
+    --accent-color: #0ea5e9;
+    --success-color: #10b981;
+}
+
+/* Base Typography and Layout */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    max-width: 21cm;  /* A4 width */
+    margin: 2.5cm auto;
+    color: var(--text-color);
+    font-size: 14px;
+    background-color: var(--background-color);
+    padding: 0 1.5cm;
+}
+
+/* Header and Name */
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0.5em 0;
+    color: var(--primary-color);
+    letter-spacing: -0.02em;
+    border-bottom: none;
+    position: relative;
+    padding-bottom: 0.5em;
+}
+
+h1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 100px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+}
+
+/* Contact Info Styling */
+p:nth-of-type(1),
+p:nth-of-type(2),
+p:nth-of-type(3) {
+    margin-top: 0.5em;
+    color: var(--light-text);
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+/* Section Headings */
+h2 {
+    color: var(--primary-color);
+    font-size: 22px;
+    font-weight: 600;
+    margin: 1.8em 0 0.8em;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+}
+
+h2::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 22px;
+    margin-right: 10px;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Sub-sections */
+h3 {
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 1.2em 0 0.4em;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+h3 em {
+    font-size: 15px;
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+h4 {
+    color: var(--light-text);
+    font-size: 16px;
+    font-weight: 500;
+    margin: 1em 0 0.3em;
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+a:hover {
+    border-bottom-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* Lists */
+ul, ol {
+    padding-left: 1.8em;
+    margin: 0.8em 0;
+}
+
+li {
+    margin: 0.4em 0;
+    line-height: 1.6;
+    position: relative;
+}
+
+ul li::marker {
+    color: var(--accent-color);
+}
+
+/* Emphasis */
+strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+em {
+    color: var(--success-color);
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* Section Separators */
+hr {
+    border: 0;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 2em 0;
+}
+
+/* Skills Section */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    margin: 1em 0;
+}
+
+.skill-category {
+    flex: 1 1 300px;
+    margin-bottom: 1em;
+}
+
+.skill-category h4 {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.3em;
+    margin-bottom: 0.5em;
+    color: var(--primary-color);
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.skill-tag {
+    background-color: var(--section-bg);
+    border-radius: 4px;
+    padding: 0.3em 0.6em;
+    font-size: 0.9em;
+    color: var(--primary-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Project boxes */
+.project-box {
+    background-color: var(--section-bg);
+    border-radius: 6px;
+    padding: 1em;
+    margin: 1em 0;
+    border-left: 3px solid var(--primary-color);
+}
+
+.project-box h4 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.repository-link {
+    display: inline-block;
+    margin-top: 0.5em;
+    font-size: 0.9em;
+}
+
+/* Footer */
+footer {
+    margin-top: 3em;
+    color: var(--light-text);
+    font-size: 0.8em;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1em;
+}
+
+.generated-date {
+    margin: 0;
+}
+
+/* Print Optimization */
+@media print {
+    body {
+        margin: 0.5cm;
+        padding: 0;
+    }
+    
+    a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+    
+    @page {
+        margin: 2cm;
+    }
+    
+    h1 {
+        margin-top: 0;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    body {
+        margin: 1cm;
+        padding: 0 0.5cm;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 22px;
+    }
+    
+    .skills-container {
+        flex-direction: column;
+    }
+}

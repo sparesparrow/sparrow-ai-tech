@@ -1,0 +1,220 @@
+/* Professional Theme for CV */
+:root {
+    --primary-color: #1a365d;  /* Deep Navy */
+    --secondary-color: #2d3748; /* Dark Gray-Blue */
+    --text-color: #1a202c;     /* Near-Black */
+    --light-text: #4a5568;     /* Medium Gray */
+    --background-color: #ffffff;
+    --section-bg: #f7fafc;     /* Light Blue-Gray */
+    --border-color: #e2e8f0;   /* Lightest Gray */
+    --accent-color: #3182ce;   /* Bright Blue */
+    --success-color: #38a169;  /* Green */
+}
+
+/* Base Typography and Layout */
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.6;
+    max-width: 21cm;  /* A4 width */
+    margin: 2.5cm auto;
+    color: var(--text-color);
+    font-size: 14px;
+    background-color: var(--background-color);
+    padding: 0 1.5cm;
+}
+
+/* Header with Name */
+h1 {
+    color: var(--primary-color);
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0.5em 0;
+    letter-spacing: 0.5px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5em;
+}
+
+/* Contact Information */
+p:nth-of-type(1),
+p:nth-of-type(2),
+p:nth-of-type(3) {
+    text-align: center;
+    margin: 0.5em 0;
+    color: var(--light-text);
+    font-style: italic;
+}
+
+/* Section Headings */
+h2 {
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 1.8em 0 0.8em;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.3em;
+}
+
+/* Sub-sections */
+h3 {
+    color: var(--secondary-color);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 1.2em 0 0.3em;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+h3 em {
+    font-size: 15px;
+    color: var(--light-text);
+    font-weight: normal;
+}
+
+h4 {
+    color: var(--accent-color);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 1em 0 0.3em;
+}
+
+/* Links */
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--border-color);
+    transition: border-color 0.2s ease;
+}
+
+a:hover {
+    border-bottom-color: var(--accent-color);
+}
+
+/* Lists */
+ul, ol {
+    padding-left: 1.8em;
+    margin: 0.8em 0;
+}
+
+li {
+    margin: 0.5em 0;
+    line-height: 1.6;
+}
+
+/* Emphasis */
+strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+em {
+    color: var(--secondary-color);
+    font-style: italic;
+    font-weight: normal;
+}
+
+/* Section Separators */
+hr {
+    border: 0;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 2em 0;
+}
+
+/* Skills Section */
+.skills-section {
+    margin: 1.5em 0;
+}
+
+.skills-category {
+    margin-bottom: 1.5em;
+}
+
+.skills-category h4 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.3em;
+    margin-bottom: 0.5em;
+}
+
+.skills-list {
+    display: block;
+    column-count: 2;
+    column-gap: 2em;
+}
+
+@media (max-width: 768px) {
+    .skills-list {
+        column-count: 1;
+    }
+}
+
+/* Projects */
+.project {
+    margin: 1em 0 1.5em;
+}
+
+.project h4 {
+    margin-bottom: 0.3em;
+}
+
+.project p {
+    margin: 0.5em 0;
+}
+
+.technology-tag {
+    display: inline-block;
+    font-size: 0.85em;
+    font-family: 'Courier New', monospace;
+    color: var(--accent-color);
+    background-color: var(--section-bg);
+    padding: 0.2em 0.5em;
+    margin: 0.2em;
+    border-radius: 3px;
+}
+
+/* Footer */
+footer {
+    margin-top: 3em;
+    font-size: 0.8em;
+    text-align: center;
+    color: var(--light-text);
+    font-style: italic;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1em;
+}
+
+.generated-date {
+    margin: 0;
+}
+
+/* Print Optimization */
+@media print {
+    body {
+        margin: 0;
+        padding: 0.5cm 1cm;
+    }
+    
+    a {
+        color: var(--accent-color);
+        text-decoration: none;
+        border-bottom: none;
+    }
+    
+    @page {
+        margin: 1.5cm;
+    }
+    
+    h1 {
+        margin-top: 0;
+    }
+    
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+}

@@ -1,105 +1,39 @@
-import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import astro from 'eslint-plugin-astro';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
-import cypress from 'eslint-plugin-cypress';
-import astroEslintParser from 'astro-eslint-parser';
-import * as astroPlugin from 'eslint-plugin-astro';
+import reactHooks from 'eslint-plugin-react-hooks';
 
 export default [
+  // Global ignores
   {
-    ignores: ['node_modules/', 'dist/', '.astro/', 'coverage/', '**/*-fixed.*', '*.json', '*.md'],
+    ignores: ['.astro/', 'dist/', 'node_modules/', 'public/build/', 'build/', '_site/'],
   },
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
+
+  // Astro recommended settings
+  ...(astro.configs?.['flat/recommended'] ?? []),
+
+  // React/JSX configuration
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
-    plugins: {
-      react: react,
-    },
+    files: ['**/*.{js,jsx}'],
     languageOptions: {
-      globals: {
-        // Browser globals
-        window: 'readonly',
-        document: 'readonly',
-        console: 'readonly',
-        alert: 'readonly',
-        localStorage: 'readonly',
-        globalThis: 'readonly',
-        // Node.js globals
-        process: 'readonly',
-        global: 'readonly',
-        Buffer: 'readonly',
-        module: 'readonly',
-        require: 'readonly',
-        exports: 'writable',
-        fetch: 'readonly',
-        Response: 'readonly',
-        navigator: 'readonly',
-      },
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
         ecmaFeatures: { jsx: true },
       },
     },
-    settings: {
-      react: {
-        version: 'detect',
-      },
+    plugins: {
+      'jsx-a11y': jsxA11y,
+      react,
+      'react-hooks': reactHooks,
     },
     rules: {
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-        },
-      ],
-      'no-useless-escape': 'off',
+      'no-unused-vars': 'warn',
+      'no-console': 'warn',
+      'jsx-a11y/alt-text': 'error',
       'react/react-in-jsx-scope': 'off',
-      'react/no-unknown-property': ['error', { ignore: ['astro'] }],
-      'react/prop-types': 'off',
-      'no-undef': 'off', // Disabled for API files with custom environments
-    },
-  },
-  // Astro files configuration
-  {
-    files: ['**/*.astro'],
-    plugins: {
-      astro: astroPlugin,
-    },
-    languageOptions: {
-      parser: astroEslintParser,
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-        extraFileExtensions: ['.astro'],
-      },
-    },
-    rules: {
-      ...astroPlugin.configs.recommended.rules,
-    },
-  },
-  {
-    files: ['cypress/**/*.{js,ts}', '**/*.cy.{js,ts}'],
-    plugins: {
-      cypress: cypress,
-    },
-    languageOptions: {
-      globals: {
-        cy: 'readonly',
-        Cypress: 'readonly',
-        describe: 'readonly',
-        it: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly',
-        before: 'readonly',
-        after: 'readonly',
-        expect: 'readonly',
-        assert: 'readonly',
-        window: 'readonly',
-        document: 'readonly',
-        console: 'readonly',
-      },
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
     },
   },
 ];

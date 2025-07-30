@@ -8,8 +8,8 @@ pubDate: '2025-07-30'
 
 # MCP Project Orchestrator
 
-[![CI/CD](https://github.com/yourusername/mcp-project-orchestrator/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/mcp-project-orchestrator/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/yourusername/mcp-project-orchestrator/branch/main/graph/badge.svg)](https://codecov.io/gh/yourusername/mcp-project-orchestrator)
+[![CI/CD](https://github.com/sparesparrow/mcp-project-orchestrator/actions/workflows/ci.yml/badge.svg)](https://github.com/sparesparrow/mcp-project-orchestrator/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/sparesparrow/mcp-project-orchestrator/branch/main/graph/badge.svg)](https://codecov.io/gh/sparesparrow/mcp-project-orchestrator)
 [![PyPI version](https://badge.fury.io/py/mcp-project-orchestrator.svg)](https://badge.fury.io/py/mcp-project-orchestrator)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -158,7 +158,7 @@ mcp-project-orchestrator/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/mcp-project-orchestrator.git
+git clone https://github.com/sparesparrow/mcp-project-orchestrator.git
 cd mcp-project-orchestrator
 ```
 
@@ -192,7 +192,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- [Model Context Protocol](https://github.com/yourusername/model-context-protocol) - The foundation for this project
+- [Model Context Protocol](https://github.com/sparesparrow/model-context-protocol) - The foundation for this project
 - [Mermaid](https://mermaid-js.github.io/mermaid/) - For diagram generation
 - [Poetry](https://python-poetry.org/) - For dependency management
 - [Ruff](https://github.com/astral-sh/ruff) - For linting

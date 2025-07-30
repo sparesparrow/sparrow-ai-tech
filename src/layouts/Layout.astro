@@ -1,46 +1,25 @@
 ---
-import { assetUrl } from '../utils/url.js';
-
 export interface Props {
   title: string;
-  description?: string;
 }
 
-const { title, description = 'Sparrow AI Tech - AI tools and infographics' } = Astro.props;
-const canonicalURL = new globalThis.URL(Astro.url.pathname, Astro.site);
+const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="cs">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
+    <meta name="description" content="Model Context Protocol Pioneer | AI Integration Specialist" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href={assetUrl('favicon.png')} />
-    <link rel="canonical" href={canonicalURL} />
-    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
-
-    <!-- Preload critical assets -->
-    <link rel="preload" href={assetUrl('assets/css/global.css')} as="style" />
-
-    <!-- External fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
   </head>
-  <body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-200">
+  <body>
     <slot />
-
-    <!-- Background assets with error handling -->
-    <div class="background-gif-container" aria-hidden="true">
-      <img
-        src={assetUrl('assets/images/background.gif')}
-        alt="Working memory spreading activation"
-        class="background-gif"
-        onerror="this.style.display='none'"
-      />
-    </div>
   </body>
 </html>
+
+<style is:global>
+  @import '../styles/cyberpunk.css';
+</style>
