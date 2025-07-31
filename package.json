@@ -48,6 +48,7 @@
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.7.1",
     "react-tooltip": "^5.29.1",
+    "typescript": "^5.8.3",
     "yet-another-react-lightbox": "^3.25.0"
   },
   "devDependencies": {
