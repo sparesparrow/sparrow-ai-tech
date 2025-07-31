@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { jest } from '@jest/globals';
 
 // Mock window.matchMedia for JSDOM
 global.window = global.window || {};
-global.window.matchMedia = global.window.matchMedia || function() {
-  return {
-    matches: false,
-    addEventListener: () => {},
-    removeEventListener: () => {},
-    addListener: () => {},
-    removeListener: () => {},
-    dispatchEvent: () => {},
+global.window.matchMedia =
+  global.window.matchMedia ||
+  function () {
+    return {
+      matches: false,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+      dispatchEvent: () => {},
+    };
   };
-};
 
 const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(() => {
@@ -21,6 +23,7 @@ const ThemeToggle = () => {
     if (theme) return theme === 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
+
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
@@ -30,6 +33,7 @@ const ThemeToggle = () => {
       localStorage.setItem('theme', 'light');
     }
   }, [isDark]);
+
   return (
     <button onClick={() => setIsDark((d) => !d)} data-testid="toggle">
       Toggle
@@ -42,11 +46,13 @@ describe('ThemeToggle', () => {
     localStorage.clear();
     document.documentElement.classList.remove('dark');
   });
+
   it('defaults to system preference if no localStorage', () => {
     window.matchMedia = jest.fn().mockReturnValue({ matches: true });
     render(<ThemeToggle />);
     expect(document.documentElement.classList.contains('dark')).toBe(true);
   });
+
   it('toggles dark mode and persists', () => {
     render(<ThemeToggle />);
     const btn = document.querySelector('[data-testid="toggle"]');
@@ -57,4 +63,4 @@ describe('ThemeToggle', () => {
     expect(document.documentElement.classList.contains('dark')).toBe(true);
     expect(localStorage.getItem('theme')).toBe('dark');
   });
-}); 
+});

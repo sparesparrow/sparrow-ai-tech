@@ -14,7 +14,8 @@ graph TD
     MCP --> Tools["Tools/Resources/Prompts"]
     Tools --> Output["AI Output (Voice/Text)"]
 ```
-*Figure: VUI enables natural interaction with agentic workflows and MCP-based AI systems, expanding accessibility and impact.*
+
+_Figure: VUI enables natural interaction with agentic workflows and MCP-based AI systems, expanding accessibility and impact._
 
 ---
 
@@ -29,7 +30,8 @@ graph TD
     Response --> TTS["Text-to-Speech"]
     TTS --> VoiceOutput["Voice Output"]
 ```
-*Figure: The VUI processing pipeline from user voice input to agentic workflow and synthesized voice output.*
+
+_Figure: The VUI processing pipeline from user voice input to agentic workflow and synthesized voice output._
 
 ---
 
@@ -43,7 +45,8 @@ graph TD
     Text --> Agentic
     Agentic --> Output["Output Channels (Voice/Text)"]
 ```
-*Figure: Users can interact with agentic workflows via both voice and text interfaces, with multi-modal output.*
+
+_Figure: Users can interact with agentic workflows via both voice and text interfaces, with multi-modal output._
 
 ---
 
@@ -67,7 +70,8 @@ sequenceDiagram
     T->>V: Synthesize voice
     V->>U: Play audio response
 ```
-*Figure: Sequence of a full VUI interaction from user speech to agentic response.*
+
+_Figure: Sequence of a full VUI interaction from user speech to agentic response._
 
 ---
 
@@ -97,7 +101,8 @@ flowchart TD
     O1 --> V2
     V2 --> U2
 ```
-*Figure: Swimlane diagram showing responsibilities in a VUI voice interaction.*
+
+_Figure: Swimlane diagram showing responsibilities in a VUI voice interaction._
 
 ---
 

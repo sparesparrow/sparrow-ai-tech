@@ -1,88 +1,226 @@
-import js from '@eslint/js';
-import react from 'eslint-plugin-react';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
-import astro from 'eslint-plugin-astro';
-import prettier from 'eslint-plugin-prettier';
+import babelParser from '@babel/eslint-parser';
 import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
-import astroParser from 'astro-eslint-parser';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 export default [
-  // JavaScript and JSX
+  // Global ignores - replaces .eslintignore
   {
-    files: ['**/*.js', '**/*.jsx'],
+    ignores: [
+      '.astro/',
+      'dist/',
+      'node_modules/',
+      'build/',
+      '_site/',
+      'public/',
+      'cypress/downloads/',
+      'cypress/screenshots/',
+      'cypress/videos/',
+      '**/*.min.js',
+      '**/*.bundle.js'
+    ],
+  },
+
+  // Base JavaScript configuration
+  {
+    files: ['**/*.js'],
     languageOptions: {
-      ecmaVersion: 2021,
+      ecmaVersion: 'latest',
       sourceType: 'module',
+      globals: {
+        // Browser globals
+        console: 'readonly',
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        fetch: 'readonly',
+        localStorage: 'readonly',
+        sessionStorage: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        URL: 'readonly',
+        URLSearchParams: 'readonly',
+        Blob: 'readonly',
+        Response: 'readonly',
+        Request: 'readonly',
+
+        // Node.js globals  
+        process: 'readonly',
+        Buffer: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        exports: 'readonly',
+        global: 'readonly'
+      }
+    },
+    rules: {
+      'no-unused-vars': ['warn', { 
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true
+      }],
+      'no-console': 'warn',
+      'no-useless-escape': 'warn'
+    }
+  },
+
+  // JSX configuration
+  {
+    files: ['**/*.jsx'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      parser: babelParser,
       parserOptions: {
-        ecmaFeatures: { jsx: true },
+        requireConfigFile: false,
+        babelOptions: {
+          presets: ['@babel/preset-env', '@babel/preset-react']
+        },
+        ecmaFeatures: {
+          jsx: true
+        }
       },
+      globals: {
+        // Browser globals
+        console: 'readonly',
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        fetch: 'readonly',
+        localStorage: 'readonly',
+        sessionStorage: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        URL: 'readonly',
+        URLSearchParams: 'readonly',
+        Blob: 'readonly',
+
+        // React globals
+        React: 'readonly'
+      }
     },
     plugins: {
       react,
-      'jsx-a11y': jsxA11y,
-      prettier,
+      'react-hooks': reactHooks,
+      'jsx-a11y': jsxA11y
     },
     rules: {
-      ...js.configs.recommended.rules,
-      ...react.configs.recommended.rules,
-      ...jsxA11y.configs.recommended.rules,
-      'prettier/prettier': 'error',
-      'react/prop-types': 'off',
+      'no-unused-vars': ['warn', { 
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true
+      }],
+      'no-console': 'warn',
+      'no-useless-escape': 'warn',
       'react/react-in-jsx-scope': 'off',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      'jsx-a11y/alt-text': 'error'
     },
     settings: {
-      react: { version: 'detect' },
-    },
+      react: {
+        version: 'detect'
+      }
+    }
   },
-  // TypeScript and TSX
+
+  // TypeScript configuration
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       parser: tsParser,
       parserOptions: {
-        project: './tsconfig.json',
-        ecmaVersion: 2021,
-        sourceType: 'module',
-        ecmaFeatures: { jsx: true },
+        ecmaFeatures: {
+          jsx: true
+        }
       },
+      globals: {
+        console: 'readonly',
+        window: 'readonly',
+        document: 'readonly'
+      }
     },
     plugins: {
       '@typescript-eslint': tsPlugin,
       react,
-      'jsx-a11y': jsxA11y,
-      prettier,
+      'react-hooks': reactHooks,
+      'jsx-a11y': jsxA11y
     },
     rules: {
-      ...tsPlugin.configs.recommended.rules,
-      ...react.configs.recommended.rules,
-      ...jsxA11y.configs.recommended.rules,
-      'prettier/prettier': 'error',
-      'react/prop-types': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { 
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true
+      }],
+      'no-console': 'warn',
       'react/react-in-jsx-scope': 'off',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      'jsx-a11y/alt-text': 'error'
     },
     settings: {
-      react: { version: 'detect' },
-    },
+      react: {
+        version: 'detect'
+      }
+    }
   },
-  // Astro
+
+  // Cypress test files
   {
-    files: ['**/*.astro'],
+    files: ['cypress/**/*.{js,jsx}'],
     languageOptions: {
-      parser: astroParser,
-      parserOptions: {
-        ecmaVersion: 2021,
-        sourceType: 'module',
-        extraFileExtensions: ['.astro'],
-      },
-    },
-    plugins: {
-      astro,
-      prettier,
-    },
-    rules: {
-      ...astro.configs.recommended.rules,
-      'prettier/prettier': 'error',
-    },
+      globals: {
+        cy: 'readonly',
+        Cypress: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        before: 'readonly',
+        afterEach: 'readonly',
+        after: 'readonly',
+        context: 'readonly'
+      }
+    }
   },
+
+  // Jest test files
+  {
+    files: ['**/*.test.{js,jsx}', '**/__tests__/**/*.{js,jsx}'],
+    languageOptions: {
+      globals: {
+        describe: 'readonly',
+        it: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        beforeAll: 'readonly',
+        afterEach: 'readonly',
+        afterAll: 'readonly',
+        jest: 'readonly',
+        global: 'readonly'
+      }
+    }
+  },
+
+  // Config files
+  {
+    files: ['tailwind.config.js', '*.config.js'],
+    languageOptions: {
+      globals: {
+        require: 'readonly',
+        module: 'readonly'
+      }
+    }
+  }
 ];

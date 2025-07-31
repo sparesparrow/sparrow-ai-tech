@@ -38,4 +38,4 @@ I v nejpokročilejších agentních AI systémech zůstává člověk klíčový
 
 ## Závěr
 
-Lidská akce je nedílnou součástí agentních AI systémů. Správně navržená spolupráce člověka a stroje zvyšuje bezpečnost, efektivitu i kreativitu celého workflow. 
+Lidská akce je nedílnou součástí agentních AI systémů. Správně navržená spolupráce člověka a stroje zvyšuje bezpečnost, efektivitu i kreativitu celého workflow.

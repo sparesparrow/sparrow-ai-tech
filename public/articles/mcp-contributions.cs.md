@@ -6,14 +6,14 @@ Portfolio sparesparrow není jen sbírkou open-source projektů – představuje
 
 ## Přehled portfolia
 
-| Repozitář                | Technologie                | Účel                                                        | Strategická hodnota                                               |
-|-------------------------|----------------------------|--------------------------------------------------------------|-------------------------------------------------------------------|
-| mcp-project-orchestrator | Python, Poetry, Mermaid, Ruff, mypy | MCP server pro automatizaci a scaffolding projektů           | Agentní workflow, produktivita vývojářů, meta-úroveň AI           |
-| mcp-prompts             | TypeScript, Node.js, Docker, PostgreSQL | Centralizovaná, verzovaná správa promptů                    | Podnikové řízení promptů, RBAC, verzování, produkční nasazení      |
-| mcp-prompts-rs          | Rust, Cargo, PostgreSQL, Docker         | Výkonný, bezpečný MCP server pro prompty                     | Bezpečnost, výkon, Rust pro základní infrastrukturu                |
-| mcp-router              | TypeScript, Python, DevContainer        | Designer workflow a router pro agentní systémy               | Orchestrace, multi-agentní systémy, distribuovaná architektura     |
-| rust-network-mgr        | Rust, Netlink, nftables                 | Linuxová správa sítě                                         | Systémová expertíza, bezpečnost paměti, provozní spolehlivost      |
-| cursor-rules            | Markdown (.mdc)                         | Strojově čitelná pravidla pro AI-asistované programování     | Lidsko-AI spolupráce, best practices, strukturování znalostí       |
+| Repozitář                | Technologie                             | Účel                                                     | Strategická hodnota                                            |
+| ------------------------ | --------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------------- |
+| mcp-project-orchestrator | Python, Poetry, Mermaid, Ruff, mypy     | MCP server pro automatizaci a scaffolding projektů       | Agentní workflow, produktivita vývojářů, meta-úroveň AI        |
+| mcp-prompts              | TypeScript, Node.js, Docker, PostgreSQL | Centralizovaná, verzovaná správa promptů                 | Podnikové řízení promptů, RBAC, verzování, produkční nasazení  |
+| mcp-prompts-rs           | Rust, Cargo, PostgreSQL, Docker         | Výkonný, bezpečný MCP server pro prompty                 | Bezpečnost, výkon, Rust pro základní infrastrukturu            |
+| mcp-router               | TypeScript, Python, DevContainer        | Designer workflow a router pro agentní systémy           | Orchestrace, multi-agentní systémy, distribuovaná architektura |
+| rust-network-mgr         | Rust, Netlink, nftables                 | Linuxová správa sítě                                     | Systémová expertíza, bezpečnost paměti, provozní spolehlivost  |
+| cursor-rules             | Markdown (.mdc)                         | Strojově čitelná pravidla pro AI-asistované programování | Lidsko-AI spolupráce, best practices, strukturování znalostí   |
 
 ---
 
@@ -28,7 +28,8 @@ graph TD
     Prompty --> PromptDB["Databáze promptů"]
     Router --> Externi["Externí nástroje/API"]
 ```
-*Obrázek: MCP ekosystém propojuje klienty, routery, orchestrátory, prompt servery a externí nástroje.*
+
+_Obrázek: MCP ekosystém propojuje klienty, routery, orchestrátory, prompt servery a externí nástroje._
 
 ---
 
@@ -42,7 +43,8 @@ graph TD
     Pouziti --> Archivace["Archivace/Verzování"]
     Archivace --> Vytvoreni
 ```
-*Obrázek: Prompty procházejí cyklem vytvoření, recenze, schválení, použití a archivace.*
+
+_Obrázek: Prompty procházejí cyklem vytvoření, recenze, schválení, použití a archivace._
 
 ---
 
@@ -172,4 +174,4 @@ sparesparrow je vysoce kvalifikovaný, produktivní a vlivný nezávislý přisp
 ---
 
 **Použité zdroje:**
-(Viz původní notepad pro kompletní odkazy a reference.) 
+(Viz původní notepad pro kompletní odkazy a reference.)

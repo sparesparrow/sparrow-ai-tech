@@ -1,0 +1,178 @@
+---
+// Enhanced Hero component with real portfolio content
+---
+
+<section id="home" class="cyber-hero">
+  <div class="cyber-hero-container">
+    <div class="cyber-hero-content">
+      <h1 class="cyber-hero-title cyber-glitch">Vojtěch Špaček</h1>
+      <div class="cyber-hero-subtitle">
+        <span id="typewriter" class="typewriter"></span>
+        <span class="cursor">|</span>
+      </div>
+      <p class="cyber-hero-description">
+        <strong>Model Context Protocol Pioneer | AI Integration Specialist</strong><br />
+        Automatizační šílenec specializující se na MCP protokol, AI-driven development a bezpečnou správu
+        serverů. Expertem na Rust, TypeScript a pokročilé automatizační řešení.
+      </p>
+
+      <div class="cyber-hero-stats">
+        <div class="cyber-stat-item">
+          <span class="cyber-stat-number">1230+</span>
+          <span class="cyber-stat-label">Commits</span>
+        </div>
+        <div class="cyber-stat-item">
+          <span class="cyber-stat-number">15</span>
+          <span class="cyber-stat-label">Active Repos</span>
+        </div>
+        <div class="cyber-stat-item">
+          <span class="cyber-stat-number">892</span>
+          <span class="cyber-stat-label">Contributions 2024</span>
+        </div>
+        <div class="cyber-stat-item">
+          <span class="cyber-stat-number">5+</span>
+          <span class="cyber-stat-label">MCP Projects</span>
+        </div>
+      </div>
+
+      <div class="cyber-hero-cta">
+        <a href="#projects" class="cyber-btn cyber-btn-primary"> 🚀 Explore MCP Projects </a>
+        <a
+          href="https://sparesparrow.github.io/cv/"
+          target="_blank"
+          class="cyber-btn cyber-btn-outline"
+        >
+          📄 View CV
+        </a>
+        <a href="#philosophy" class="cyber-btn cyber-btn-outline"> 💭 Philosophy </a>
+      </div>
+    </div>
+
+    <div class="cyber-hero-visual">
+      <div class="cyber-hero-parallax">
+        <div class="hero-code-terminal">
+          <div class="terminal-header">
+            <span class="terminal-title">sparrow@mcp-server:~$</span>
+            <div class="terminal-controls">
+              <span class="control minimize"></span>
+              <span class="control maximize"></span>
+              <span class="control close"></span>
+            </div>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line">
+              <span class="prompt">$</span>
+              <span class="command">mcp-server --port 3000</span>
+            </div>
+            <div class="terminal-line output">
+              <span class="success">✓ MCP Protocol v1.0 initialized</span>
+            </div>
+            <div class="terminal-line output">
+              <span class="info">🔗 Connected to prompt database</span>
+            </div>
+            <div class="terminal-line output">
+              <span class="warning">⚡ AI orchestration ready</span>
+            </div>
+            <div class="terminal-line">
+              <span class="prompt">$</span>
+              <span class="cursor-blink">_</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-code-terminal {
+    background: var(--color-cyber-surface);
+    border: 2px solid var(--color-cyber-green);
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+    width: 450px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    overflow: hidden;
+  }
+
+  .terminal-header {
+    background: var(--color-cyber-bg);
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-cyber-border);
+  }
+
+  .terminal-title {
+    color: var(--color-cyber-green);
+    font-size: 0.9rem;
+    text-shadow: 0 0 5px var(--color-cyber-green);
+  }
+
+  .terminal-controls {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .control.close {
+    background: #ff5f56;
+  }
+  .control.minimize {
+    background: #ffbd2e;
+  }
+  .control.maximize {
+    background: #27ca3f;
+  }
+
+  .terminal-body {
+    padding: 1rem;
+    min-height: 150px;
+  }
+
+  .terminal-line {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .prompt {
+    color: var(--color-cyber-blue);
+    margin-right: 0.5rem;
+  }
+
+  .command {
+    color: var(--color-cyber-text);
+  }
+
+  .output {
+    margin-left: 1rem;
+  }
+
+  .success {
+    color: var(--color-cyber-green);
+  }
+  .info {
+    color: var(--color-cyber-blue);
+  }
+  .warning {
+    color: var(--color-cyber-orange);
+  }
+
+  .cursor-blink {
+    animation: blink 1s infinite;
+    color: var(--color-cyber-green);
+  }
+
+  @media (max-width: 768px) {
+    .hero-code-terminal {
+      width: 100%;
+      max-width: 350px;
+    }
+  }
+</style>

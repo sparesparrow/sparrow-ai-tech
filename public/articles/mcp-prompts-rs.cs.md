@@ -65,4 +65,4 @@ mcp-prompts-rs je přepis původního mcp-prompts serveru do jazyka Rust, zamě�
 
 mcp-prompts-rs posouvá správu promptů na novou úroveň – kombinuje osvědčenou architekturu MCP s výkonem a bezpečností Rustu. Je ideální volbou pro týmy, které potřebují robustní, škálovatelné a bezpečné řešení pro správu promptů v agentních AI systémech.
 
-**Prozkoumejte projekt:** [https://github.com/sparesparrow/mcp-prompts-rs](https://github.com/sparesparrow/mcp-prompts-rs) 
+**Prozkoumejte projekt:** [https://github.com/sparesparrow/mcp-prompts-rs](https://github.com/sparesparrow/mcp-prompts-rs)

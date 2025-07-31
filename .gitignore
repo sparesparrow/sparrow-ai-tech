@@ -37,3 +37,34 @@ _site/
 
 # Astro/React static assets
 unused/
+
+# Build artifacts
+dist/
+build/
+_site/
+
+# Test coverage
+coverage/
+
+# Environment files
+.env.local
+.env.production
+.env.test
+
+# IDE files
+.vscode/settings.json
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+.tmp/
+temp/

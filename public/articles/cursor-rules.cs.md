@@ -37,4 +37,4 @@ Cursor Rules je formát a sada pravidel pro správu a sdílení promptů přímo
 
 ## Závěr
 
-Cursor Rules přináší pořádek a efektivitu do správy promptů v moderním vývoji AI aplikací. Díky standardizaci a integraci s nástroji jako MCP server je ideální volbou pro týmy, které chtějí mít prompty pod kontrolou. 
+Cursor Rules přináší pořádek a efektivitu do správy promptů v moderním vývoji AI aplikací. Díky standardizaci a integraci s nástroji jako MCP server je ideální volbou pro týmy, které chtějí mít prompty pod kontrolou.

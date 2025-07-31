@@ -1,9 +1,9 @@
 // Serverless API endpoint for ElevenLabs voice chatbot
 // POST /api/chatbot
-// Request body: { text: string, voice_id?: string, ... }
+// Request body: { text: string, voiceid?: string, ... }
 // Response: { audio_url: string, ... } or error
 
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch'; // Remove this line
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { text, voice_id } = req.body || {};
+  const { text, voiceid } = req.body || {};
   if (!text || typeof text !== 'string') {
     res.status(400).json({ error: 'Missing or invalid text' });
     return;
@@ -25,13 +25,13 @@ export default async function handler(req, res) {
 
   try {
     // Prepare ElevenLabs API request
-    const elevenLabsUrl = `https://api.elevenlabs.io/v1/text-to-speech/${voice_id || 'default'}`;
-    const elevenLabsRes = await fetch(elevenLabsUrl, {
+    const elevenLabsUrl = `https://api.elevenlabs.io/v1/text-to-speech/${voiceid || 'default'}`;
+    const elevenLabsRes = await globalThis.fetch(elevenLabsUrl, {
       method: 'POST',
       headers: {
         'xi-api-key': apiKey,
         'Content-Type': 'application/json',
-        'Accept': 'audio/mpeg',
+        Accept: 'audio/mpeg',
       },
       body: JSON.stringify({ text }),
     });
@@ -48,4 +48,5 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).json({ error: error.message || 'Internal server error' });
   }
-} 
+}
+// Note: In production, ensure fetch is polyfilled (e.g., with node-fetch) if not available.

@@ -1,5 +1,5 @@
-fastapi
-uvicorn
-pydantic
-playwright
-openai 
+fastapi==0.111.0
+uvicorn[standard]==0.30.0
+pydantic==2.7.3
+mermaid-cli==10.10.0
+openai>=1.33.0

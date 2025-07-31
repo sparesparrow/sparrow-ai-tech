@@ -15,6 +15,7 @@ As large language models (LLMs) become central to modern software, the need for 
 ## The Problem: Prompt Rot in AI Development
 
 In the age of LLMs, prompts are as critical as code. Yet, teams often struggle with "prompt rot": prompts scattered across codebases, lost in chat logs, or buried in documents. This leads to:
+
 - **Lack of versioning:** No way to track changes or revert to working prompts.
 - **Difficult testing:** Prompts are hard to isolate and validate.
 - **Security risks:** Sensitive prompts may be shared insecurely.
@@ -27,17 +28,21 @@ mcp-prompts directly addresses these pain points by providing a single source of
 ## Core Features and Architecture
 
 ### 1. Centralized Prompt Management
+
 - **CRUD Operations:** Add, update, list, and delete prompts via a clean API.
 - **Versioning:** Git-like history for every prompt, enabling traceability and rollback.
 - **Tagging & Metadata:** Organize prompts for easy discovery and reuse.
 
 ### 2. Flexible Storage Backends
+
 - **File Adapter:** Store prompts as JSON files—simple, human-readable, and Git-friendly.
 - **PostgreSQL Adapter:** Enterprise-grade, scalable storage for production use.
 - **MDC Adapter:** Direct compatibility with Cursor IDE's .mdc format for seamless developer workflows.
 
 ### 3. The MutablePrompt Interface
+
 A unique abstraction that allows prompts to be converted between multiple formats:
+
 - **JSON:** Internal standard for server operations.
 - **MDC:** For IDE integration.
 - **PGAI:** For vector/semantic search in Postgres AI.
@@ -46,6 +51,7 @@ A unique abstraction that allows prompts to be converted between multiple format
 This adapter/bridge pattern ensures mcp-prompts can evolve with new formats and tools, future-proofing your prompt infrastructure.
 
 ### 4. Developer Experience
+
 - **Easy Installation:** Available via npm (`@sparesparrow/mcp-prompts`) and Docker Hub (`sparesparrow/mcp-prompts`).
 - **Quick Start:** Run with `npx`, global npm install, or as a Docker container.
 - **Clear Docs:** Copy-paste config for integrating with Claude Desktop, Playbooks, and more.
@@ -56,6 +62,7 @@ This adapter/bridge pattern ensures mcp-prompts can evolve with new formats and 
 ## Strategic Value: MLOps for Prompts
 
 mcp-prompts elevates prompt management to a first-class engineering discipline, akin to source control for code or model registries for ML. It enables:
+
 - **Governance:** Track, audit, and secure prompt usage.
 - **Collaboration:** Share and reuse best prompts across teams.
 - **Scalability:** Move from local file storage to cloud databases as needs grow.
@@ -66,6 +73,7 @@ mcp-prompts elevates prompt management to a first-class engineering discipline, 
 ## Evolution: From TypeScript to Rust and Beyond
 
 The project is rapidly evolving:
+
 - **mcp-prompts-rs:** A high-performance Rust rewrite, leveraging memory safety and concurrency for production workloads [[15](https://github.com/sparesparrow/mcp-prompts-rs)].
 - **mcp-prompts-catalog:** Decouples prompt content from server logic, enabling independent updates and broader ecosystem integration [[7](https://github.com/sparesparrow/mcp-prompts-catalog)].
 
@@ -106,7 +114,8 @@ mcp-prompts is more than a prompt server—it's a foundational platform for the 
 
 ---
 
-*References:*
+_References:_
+
 1. [mcp-prompts GitHub](https://github.com/sparesparrow/mcp-prompts)
 2. [mcp-prompts npm](https://www.npmjs.com/package/@sparesparrow/mcp-prompts)
 3. [mcp-prompts-catalog](https://github.com/sparesparrow/mcp-prompts-catalog)
@@ -115,4 +124,4 @@ mcp-prompts is more than a prompt server—it's a foundational platform for the 
 6. [Glama MCP Server](https://glama.ai/mcp/servers/@sparesparrow/mcp-prompts)
 7. [Reddit Community Mention](https://www.reddit.com/r/ClaudeAI/comments/1jd3zdb/i_just_use_api_for_system_prompt_alternatives/)
 
-</rewritten_file> 
+</rewritten_file>

@@ -1,40 +1,42 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
-const Modal = ({ open, onClose, title, children, className = '' }) => {
-  const modalRef = useRef(null);
-
-  // Focus trap
+const Modal = ({ open, onClose, title, children, isDark = false }) => {
   useEffect(() => {
-    if (!open) return;
-    const previouslyFocused = document.activeElement;
-    if (modalRef.current) modalRef.current.focus();
-    return () => {
-      if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') onClose();
     };
-  }, [open]);
 
-  // ESC to close
-  useEffect(() => {
-    if (!open) return;
-    const onKeyDown = (e) => { if (e.key === 'Escape') onClose(); };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
+    if (open) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
   }, [open, onClose]);
 
   if (!open) return null;
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="fixed inset-0 bg-black bg-opacity-50" onClick={onClose} />
       <div
-        ref={modalRef}
-        tabIndex={-1}
-        className={`relative w-full max-w-3xl mx-auto bg-slate-900 text-stone-100 rounded-xl shadow-2xl p-8 overflow-y-auto max-h-[90vh] border border-slate-700 focus:outline-none ${className}`}
+        className={`relative max-h-[80vh] w-full max-w-2xl overflow-auto rounded-lg shadow-xl ${
+          isDark ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
+        }`}
       >
-        <button onClick={onClose} aria-label="Close modal" className="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">×</button>
-        {title && <h2 id="modal-title" className="text-2xl font-bold mb-6 text-sky-300">{title}</h2>}
-        {children}
+        <div className="flex items-center justify-between border-b p-4">
+          <h2 className="text-xl font-semibold">{title}</h2>
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+            ✕
+          </button>
+        </div>
+        <div className="p-4">{children}</div>
       </div>
     </div>
   );
 };
 
-export default Modal; 
+export default Modal;

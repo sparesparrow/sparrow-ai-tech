@@ -1,6 +1,6 @@
 describe('Language Switcher', () => {
   it('switches language and persists after reload', () => {
-    cy.visit('/');
+    cy.visitApp('/');
     cy.get('[data-cy="language-toggle"]').click();
     cy.contains('Domů').should('exist'); // Czech for Home
     cy.reload();
@@ -8,4 +8,4 @@ describe('Language Switcher', () => {
     cy.get('[data-cy="language-toggle"]').click();
     cy.contains('Home').should('exist');
   });
-}); 
+});

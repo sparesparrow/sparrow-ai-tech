@@ -1,62 +1,74 @@
-import React, { useState } from 'react';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+import { useState, useEffect, useRef } from 'react';
 
-const isGithubRepoUrl = (url) => {
-  const match = url.match(/^https?:\/\/(www\.)?github\.com\/([^\/]+)\/([^\/]+)(\/?$|#|\?)/i);
-  return match ? { owner: match[2], repo: match[3] } : null;
-};
-
-const GithubRepoTooltip = ({ href, children, ...props }) => {
-  const repoInfo = isGithubRepoUrl(href);
-  const [data, setData] = useState(null);
+const GithubRepoTooltip = ({ repoUrl = 'https://github.com/sparesparrow/sparrow-ai-tech' }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [repoData, setRepoData] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const tooltipRef = useRef(null);
 
-  const fetchRepo = async () => {
-    if (!repoInfo || data || loading) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch(`https://api.github.com/repos/${repoInfo.owner}/${repoInfo.repo}`);
-      if (!res.ok) throw new Error('Failed to fetch repo');
-      const json = await res.json();
-      setData(json);
-    } catch (e) {
-      setError('Failed to load repo metadata');
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    if (isVisible && !repoData && !error) {
+      // Extract owner and repo from URL
+      const match = repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/);
+      if (match) {
+        const [, owner, repo] = match;
+        fetch(`https://api.github.com/repos/${owner}/${repo}`)
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.message) {
+              setError(data.message);
+            } else {
+              setRepoData(data);
+            }
+          })
+          .catch((err) => setError(err.message));
+      }
     }
-  };
+  }, [isVisible, repoData, error, repoUrl]);
 
-  if (repoInfo) {
-    return (
-      <Tippy
-        content={
-          loading ? 'Loading repo...' :
-          error ? <span style={{ color: 'red' }}>{error}</span> :
-          data ? (
-            <div style={{ minWidth: 220 }}>
-              <strong>{data.full_name}</strong><br />
-              ⭐ {data.stargazers_count} | 🍴 {data.forks_count}<br />
-              {data.language && <span>📝 {data.language}<br /></span>}
-              {data.open_issues_count !== undefined && <span>🐞 {data.open_issues_count} issues<br /></span>}
-              {data.license && <span>📄 {data.license.spdx_id}<br /></span>}
-              {data.description && <span>{data.description}<br /></span>}
-              <span>👀 {data.watchers_count} watchers</span>
-            </div>
-          ) : 'Hover to load repo info'
-        }
-        interactive={true}
-        maxWidth={350}
-        onShow={fetchRepo}
-        placement="top"
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(event.target)) {
+        setIsVisible(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative inline-block" ref={tooltipRef}>
+      <button
+        onMouseEnter={() => setIsVisible(true)}
+        onMouseLeave={() => setIsVisible(false)}
+        onClick={() => setIsVisible(!isVisible)}
+        className="text-blue-600 hover:text-blue-800"
       >
-        <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>
-      </Tippy>
-    );
-  }
-  return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
+        📚 Repository Info
+      </button>
+
+      {isVisible && (
+        <div className="absolute z-10 mt-2 w-64 rounded-lg border border-gray-200 bg-white p-4 shadow-lg">
+          {repoData ? (
+            <div>
+              <h3 className="text-lg font-bold">{repoData.name}</h3>
+              <p className="mb-2 text-sm text-gray-600">{repoData.description}</p>
+              <div className="flex justify-between text-sm">
+                <span>⭐ {repoData.stargazers_count}</span>
+                <span>🍴 {repoData.forks_count}</span>
+                <span>{repoData.language}</span>
+              </div>
+            </div>
+          ) : error ? (
+            <div className="text-red-600">Error: {error}</div>
+          ) : (
+            <div>Loading repository info...</div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 };
 
-export default GithubRepoTooltip; 
+export default GithubRepoTooltip;

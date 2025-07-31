@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import MermaidPreviewLink from './MermaidPreviewLink';
-import ImagePreviewLink from './ImagePreviewLink';
-import GithubRepoTooltip from './GithubRepoTooltip';
+import MermaidPreviewLink from './MermaidPreviewLink.jsx';
+import ImagePreviewLink from './ImagePreviewLink.jsx';
+import GithubRepoTooltip from './GithubRepoTooltip.jsx';
 
-// Placeholder for Mermaid diagrams (now unsupported)
 const Mermaid = () => (
   <div className="mermaid-diagram text-red-500">Mermaid diagrams are not supported.</div>
 );
@@ -32,7 +33,7 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
       .finally(() => setLoading(false));
   }, [src]);
 
-  if (loading) return <div className="markdown-viewer-loading">Loading...</div>;
+  if (loading) return <div className="markdown-viewer-loading">Loading…</div>;
   if (error) return <div className="markdown-viewer-error">Error loading markdown.</div>;
 
   return (
@@ -42,22 +43,35 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
         rehypePlugins={[rehypeRaw]}
         components={{
           a: ({ href, children, ...props }) => {
-            if (/^https?:\/\/(www\.)?github\.com\/[^\/]+\/[^\/]+(\/?$|#|\?)/i.test(href)) {
-              return <GithubRepoTooltip href={href} {...props}>{children}</GithubRepoTooltip>;
+            if (/^https?:\/\/(www\.)?github\.com\/[^\/]+\/[^\/]+(\/|$|#|\?)/i.test(href)) {
+              return (
+                <GithubRepoTooltip href={href} {...props}>
+                  {children}
+                </GithubRepoTooltip>
+              );
             }
             if (/\.(mmd|mermaid)$/i.test(href)) {
-              return <MermaidPreviewLink href={href} {...props}>{children}</MermaidPreviewLink>;
+              return (
+                <MermaidPreviewLink href={href} {...props}>
+                  {children}
+                </MermaidPreviewLink>
+              );
             }
-            return <ImagePreviewLink href={href} {...props}>{children}</ImagePreviewLink>;
+            return (
+              <ImagePreviewLink href={href} {...props}>
+                {children}
+              </ImagePreviewLink>
+            );
           },
-          code({node, inline, className, children, ...props}) {
-            if (className === 'language-mermaid') {
-              return <Mermaid />;
-            }
-            if (editableDiagrams && className === 'language-mermaid-edit') {
+          code({ inline, className, children, ...props }) {
+            if (className === 'language-mermaid') return <Mermaid />;
+            if (editableDiagrams && className === 'language-mermaid-edit')
               return <EditableMermaid />;
-            }
-            return <code className={className} {...props}>{children}</code>;
+            return (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            );
           },
         }}
       >
@@ -67,4 +81,4 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
   );
 };
 
-export default MarkdownViewer; 
+export default MarkdownViewer;

@@ -33,4 +33,4 @@ Thank you for your interest in contributing! We welcome all contributions to imp
 - Check the README and existing issues before opening a new one.
 - For security issues, please see `SECURITY.md`.
 
-Thank you for helping make this project better! 
+Thank you for helping make this project better!

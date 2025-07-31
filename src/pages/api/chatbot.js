@@ -1,7 +1,4 @@
-// POST /api/chatbot
-// Request body: { message: string }
-// Response: { reply: string } (or error)
-// This endpoint proxies requests to the ElevenLabs API securely.
+/* eslint-env node */
 
 // Simple in-memory rate limiter (per IP, 10 requests/minute)
 const rateLimitMap = new Map();
@@ -25,7 +22,27 @@ function checkRateLimit(ip) {
   return entry.count <= RATE_LIMIT;
 }
 
-export async function post({ request }) {
+// GET handler - returns API documentation or status
+export async function GET() {
+  return new Response(
+    JSON.stringify({
+      service: 'Sparrow AI Tech Chatbot API',
+      version: '1.0.0',
+      methods: ['POST'],
+      usage: 'Send POST request with {"message": "your text"} to get AI response',
+      status: 'active',
+    }),
+    {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+}
+
+// POST handler - main chatbot functionality
+export async function POST({ request }) {
   const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
   if (!ELEVENLABS_API_KEY) {
     return new Response(JSON.stringify({ error: 'Missing API key' }), { status: 500 });
@@ -39,7 +56,7 @@ export async function post({ request }) {
   let body;
   try {
     body = await request.json();
-  } catch (e) {
+  } catch {
     return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400 });
   }
 
@@ -48,7 +65,9 @@ export async function post({ request }) {
     return new Response(JSON.stringify({ error: 'Missing message' }), { status: 400 });
   }
   if (typeof message !== 'string' || message.length > 1000) {
-    return new Response(JSON.stringify({ error: 'Message too long (max 1000 chars)' }), { status: 400 });
+    return new Response(JSON.stringify({ error: 'Message too long (max 1000 chars)' }), {
+      status: 400,
+    });
   }
 
   // Example: Forward to ElevenLabs API (replace with actual endpoint and payload as needed)
@@ -69,7 +88,7 @@ export async function post({ request }) {
     const data = await elevenRes.json();
     // Assume ElevenLabs returns { reply: string }
     return new Response(JSON.stringify({ reply: data.reply }), { status: 200 });
-  } catch (e) {
+  } catch {
     return new Response(JSON.stringify({ error: 'Failed to contact ElevenLabs API' }), {
       status: 502,
     });

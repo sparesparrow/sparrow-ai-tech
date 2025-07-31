@@ -51,7 +51,8 @@ graph TD
     Adapter2 --> Integration2["Integration: AI Tool"]
     Adapter3 --> Integration3["Integration: Storage"]
 ```
-*Figure: MCP's modular architecture enables flexible integrations and extensibility.*
+
+_Figure: MCP's modular architecture enables flexible integrations and extensibility._
 
 ---
 
@@ -64,7 +65,8 @@ graph TD
     Team --> Review["Code Review"]
     Review --> Deploy["Deploy API"]
 ```
-*Figure: MCP supports collaborative, review-driven API development and deployment.*
+
+_Figure: MCP supports collaborative, review-driven API development and deployment._
 
 ---
 
@@ -92,4 +94,4 @@ graph TD
 
 MCP (sparrow-api) is redefining how developers approach API management in the age of AI. Its open-source nature, extensible design, and vibrant community make it an essential tool for anyone building intelligent, scalable, and maintainable software.
 
-**Ready to join the community? [Get started with MCP today!](https://github.com/sparrowapp-dev/sparrow-api)** 
+**Ready to join the community? [Get started with MCP today!](https://github.com/sparrowapp-dev/sparrow-api)**

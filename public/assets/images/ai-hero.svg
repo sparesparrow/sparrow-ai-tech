@@ -1,0 +1,4 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f3f4f6" stroke="#d1d5db" stroke-width="2"/>
+  <text x="200" y="150" text-anchor="middle" fill="#6b7280" font-size="16" font-family="system-ui, sans-serif">AI Hero Image</text>
+</svg>

@@ -1,23 +1,27 @@
-import React from 'react';
-import { useI18n } from '../i18n';
+import { useI18n } from '../utils/i18n';
+import { link } from '../utils/paths';
 
-const Header = () => {
-  const { t, language, setLanguage } = useI18n();
+export default function Header() {
+  const { language } = useI18n();
+
+  const nav = [
+    { id: 'home', href: link(language, '/') },
+    { id: 'infographic1', href: link(language, '/infographics/Infographic1') },
+    { id: 'infographic2', href: link(language, '/infographics/Infographic2') },
+    { id: 'infographic3', href: link(language, '/infographics/Infographic3') },
+    { id: 'spa', href: link(language, '/infographics/SPA') },
+    { id: 'mermaid-editor', href: link(language, '/mermaid-editor') },
+  ];
+
   return (
-    <nav className="header-nav" data-cy="header-nav">
-      <ul>
-        {/* These are in-page navigation links (hash links), so they do not need the /sparrow-ai-tech/ prefix. If you add links to other pages, use absolute paths starting with /sparrow-ai-tech/. */}
-        <li><a href="#projects" data-cy="nav-projects">{t('header.nav_projects')}</a></li>
-        <li><a href="#skills" data-cy="nav-skills">{t('header.nav_skills')}</a></li>
-        <li><a href="#about" data-cy="nav-about">{t('header.nav_about')}</a></li>
-        <li><a href="#contact" data-cy="nav-contact">{t('header.nav_contact')}</a></li>
-      </ul>
-      <div className="lang-switcher" data-cy="lang-switcher">
-        <button onClick={() => setLanguage('en')} disabled={language === 'en'}>EN</button>
-        <button onClick={() => setLanguage('cs')} disabled={language === 'cs'}>CS</button>
-      </div>
-    </nav>
+    <header className="site-header">
+      <nav className="main-nav">
+        {nav.map((item) => (
+          <a key={item.id} href={item.href} className="nav-link">
+            {item.id.replace(/(^\w|-\w)/g, (m) => m.toUpperCase().replace('-', ' '))}
+          </a>
+        ))}
+      </nav>
+    </header>
   );
-};
-
-export default Header;
+}

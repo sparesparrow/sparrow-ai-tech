@@ -1,1 +1,3 @@
-module.exports = () => null;
+export default function MockAstroComponent() {
+  return '<div>Mock Astro Component</div>';
+}

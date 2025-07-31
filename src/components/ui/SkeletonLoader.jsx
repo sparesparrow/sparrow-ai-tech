@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 const SkeletonLoader = ({ type = 'card', count = 1, className = '' }) => {
@@ -7,7 +6,10 @@ const SkeletonLoader = ({ type = 'card', count = 1, className = '' }) => {
     return (
       <div role="status" aria-busy="true" className={`flex gap-4 ${className}`}>
         {skeletons.map((_, i) => (
-          <div key={i} className="w-72 h-32 bg-slate-200 dark:bg-slate-700 rounded-lg animate-pulse" />
+          <div
+            key={i}
+            className="h-32 w-72 animate-pulse rounded-lg bg-slate-200 dark:bg-slate-700"
+          />
         ))}
       </div>
     );
@@ -15,7 +17,7 @@ const SkeletonLoader = ({ type = 'card', count = 1, className = '' }) => {
   if (type === 'image') {
     return (
       <div role="status" aria-busy="true" className={className}>
-        <div className="w-full h-64 bg-slate-200 dark:bg-slate-700 rounded animate-pulse" />
+        <div className="h-64 w-full animate-pulse rounded bg-slate-200 dark:bg-slate-700" />
       </div>
     );
   }
@@ -28,4 +30,4 @@ SkeletonLoader.propTypes = {
   className: PropTypes.string,
 };
 
-export default SkeletonLoader; 
+export default SkeletonLoader;

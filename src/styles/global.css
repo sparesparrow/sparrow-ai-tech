@@ -1,3 +1,4 @@
+@import "./cyberpunk.css";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap');
 @import './theme.css';
 @import './typography.css';
@@ -23,7 +24,7 @@
     - Add anti-aliasing for smoother font rendering.
   */
   body {
-    @apply bg-stone-50 text-stone-800 font-sans antialiased dark:bg-slate-900 dark:text-stone-100;
+    @apply bg-stone-50 font-sans text-stone-800 antialiased dark:bg-slate-900 dark:text-stone-100;
   }
 
   /*
@@ -31,7 +32,12 @@
     This ensures all headings have a professional look without
     needing to apply utility classes every time.
   */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold text-stone-900 dark:text-stone-100;
   }
 
@@ -59,7 +65,7 @@
     and maintain a consistent size.
   */
   .chart-container {
-    @apply relative w-full max-w-3xl mx-auto h-[400px] max-h-[50vh];
+    @apply relative mx-auto h-[400px] max-h-[50vh] w-full max-w-3xl;
   }
 }
 
@@ -72,7 +78,7 @@
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  
+
   .no-print {
     display: none !important;
   }

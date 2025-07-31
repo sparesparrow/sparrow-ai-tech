@@ -14,4 +14,4 @@ If you discover a security vulnerability, please report it privately.
 - We ask that you do not disclose the vulnerability publicly until it has been resolved.
 - We are committed to resolving all security issues promptly and will keep you informed of progress.
 
-Thank you for helping keep this project and its users safe! 
+Thank you for helping keep this project and its users safe!

@@ -13,7 +13,8 @@ graph TD
     LLMs --> Agentic["Agentní workflow a MCP"]
     Agentic --> Leadership["Architektura a vedení AI systémů"]
 ```
-*Figure: Foundational AI/ML education is the root of the skill tree leading to agentic AI system leadership.*
+
+_Figure: Foundational AI/ML education is the root of the skill tree leading to agentic AI system leadership._
 
 ---
 
@@ -105,7 +106,8 @@ graph TD
     Projekty --> Komunita["AI komunita"]
     Komunita --> Lider["AI leadership"]
 ```
-*Obrázek: Učební cesta od začátečníka přes kurzy a projekty až k AI leadershipu.*
+
+_Obrázek: Učební cesta od začátečníka přes kurzy a projekty až k AI leadershipu._
 
 ---
 
@@ -118,7 +120,8 @@ graph TD
     Projekty --> Peer["Peer review"]
     Peer --> Certifikat["Certifikace"]
 ```
-*Obrázek: Typický AI/ML kurz zahrnuje přednášky, cvičení, projekty, peer review a certifikaci.*
+
+_Obrázek: Typický AI/ML kurz zahrnuje přednášky, cvičení, projekty, peer review a certifikaci._
 
 ---
 
@@ -149,6 +152,7 @@ Kurzy Andrewa Nga jsou ideálním startem i prohloubením znalostí v oblasti st
 ---
 
 **Odkazy:**
+
 - [Machine Learning by Andrew Ng (Coursera)](https://www.coursera.org/learn/machine-learning)
 - [Deep Learning Specialization (Coursera)](https://www.coursera.org/specializations/deep-learning)
 - [AI For Everyone (Coursera)](https://www.coursera.org/learn/ai-for-everyone)
@@ -156,4 +160,4 @@ Kurzy Andrewa Nga jsou ideálním startem i prohloubením znalostí v oblasti st
 
 ---
 
-*Článek připraven pro šíření znalostí v české AI komunitě. Sdílejte a inspirujte další!* 
+_Článek připraven pro šíření znalostí v české AI komunitě. Sdílejte a inspirujte další!_
