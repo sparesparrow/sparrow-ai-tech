@@ -2,7 +2,7 @@
 title: 'mcp-prompts-rs'
 description: 'Documentation for the mcp-prompts-rs project.'
 repo_url: 'https://github.com/sparesparrow/mcp-prompts-rs.git'
-pubDate: '2025-07-30'
+pubDate: '2025-07-31'
 ---
 
 

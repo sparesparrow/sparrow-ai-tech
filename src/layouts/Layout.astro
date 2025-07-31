@@ -1,20 +1,11 @@
 ---
-export interface Props {
-  title: string;
-  description?: string;
-}
-
-const { title, description = "Modern Astro + React web project with AI tools and infographics" } = Astro.props;
+export interface Props { title?: string; lang?: string }
+const { title = 'sparrow-ai-tech', lang = 'en' } = Astro.props;
 ---
-
 <!DOCTYPE html>
-<html lang="cs">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
     <!-- Preload critical fonts -->
@@ -22,8 +13,8 @@ const { title, description = "Modern Astro + React web project with AI tools and
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Import main styles -->
-    <link rel="stylesheet" href="/style.css">
-
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="/styles/main.css" />
     <!-- Ensure Tailwind CSS is loaded -->
     <style>
       /* Critical CSS for immediate rendering */
@@ -44,8 +35,7 @@ const { title, description = "Modern Astro + React web project with AI tools and
   </head>
   <body>
     <slot />
-
-    <!-- Load JavaScript after content -->
-    <script is:inline src="/js/app.js"></script>
+    <!-- inline JS for bundling -->
+    <script src="/js/app.js" is:inline></script>
   </body>
 </html>
