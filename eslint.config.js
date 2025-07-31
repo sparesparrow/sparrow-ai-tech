@@ -6,31 +6,41 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 export default [
-  // Global ignores - replaces .eslintignore
+  // Globální ignorování souborů
   {
     ignores: [
+      // Build a systémové složky
       '.astro/',
       'dist/',
       'node_modules/',
       'build/',
       '_site/',
-      'public/',
+      
+      // Astro soubory (mají vlastní TypeScript kontrolu)
+      '**/*.astro',
+      
+      // Cypress a testovací soubory (mají jiné požadavky)
       'cypress/downloads/',
-      'cypress/screenshots/',
+      'cypress/screenshots/', 
       'cypress/videos/',
+      
+      // Minimalizované soubory
       '**/*.min.js',
-      '**/*.bundle.js'
+      '**/*.bundle.js',
+      
+      // Veřejné statické soubory
+      'public/**/*'
     ],
   },
 
-  // Base JavaScript configuration
+  // Základní JavaScript konfigurace
   {
     files: ['**/*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
-        // Browser globals
+        // Browser globály
         console: 'readonly',
         window: 'readonly',
         document: 'readonly',
@@ -48,7 +58,7 @@ export default [
         Response: 'readonly',
         Request: 'readonly',
 
-        // Node.js globals  
+        // Node.js globály pro config soubory
         process: 'readonly',
         Buffer: 'readonly',
         __dirname: 'readonly',
@@ -70,7 +80,7 @@ export default [
     }
   },
 
-  // JSX configuration
+  // JSX/React komponenty
   {
     files: ['**/*.jsx'],
     languageOptions: {
@@ -87,7 +97,7 @@ export default [
         }
       },
       globals: {
-        // Browser globals
+        // Browser globály pro React komponenty
         console: 'readonly',
         window: 'readonly',
         document: 'readonly',
@@ -102,8 +112,6 @@ export default [
         URL: 'readonly',
         URLSearchParams: 'readonly',
         Blob: 'readonly',
-
-        // React globals
         React: 'readonly'
       }
     },
@@ -113,6 +121,7 @@ export default [
       'jsx-a11y': jsxA11y
     },
     rules: {
+      // Použít standardní ESLint pravidlo místo TypeScript verze pro JSX soubory
       'no-unused-vars': ['warn', { 
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
@@ -132,7 +141,7 @@ export default [
     }
   },
 
-  // TypeScript configuration
+  // TypeScript soubory (pokud existují)
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
@@ -175,11 +184,14 @@ export default [
     }
   },
 
-  // Cypress test files
+  // Cypress testovací soubory
   {
-    files: ['cypress/**/*.{js,jsx}'],
+    files: ['cypress/**/*.{js,jsx}', 'cypress/**/*.cy.{js,jsx}'],
     languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       globals: {
+        // Cypress globály
         cy: 'readonly',
         Cypress: 'readonly',
         describe: 'readonly',
@@ -189,16 +201,30 @@ export default [
         before: 'readonly',
         afterEach: 'readonly',
         after: 'readonly',
-        context: 'readonly'
+        context: 'readonly',
+        
+        // Browser globály pro Cypress
+        window: 'readonly',
+        document: 'readonly'
       }
+    },
+    rules: {
+      'no-unused-vars': ['warn', { 
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true
+      }]
     }
   },
 
-  // Jest test files
+  // Jest a testovací soubory
   {
-    files: ['**/*.test.{js,jsx}', '**/__tests__/**/*.{js,jsx}'],
+    files: ['**/*.test.{js,jsx}', '**/__tests__/**/*.{js,jsx}', 'src/api/**/*.test.js'],
     languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       globals: {
+        // Jest globály
         describe: 'readonly',
         it: 'readonly',
         test: 'readonly',
@@ -210,16 +236,46 @@ export default [
         jest: 'readonly',
         global: 'readonly'
       }
+    },
+    rules: {
+      'no-unused-vars': ['warn', { 
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true
+      }]
     }
   },
 
-  // Config files
+  // API routes (server-side kód)
   {
-    files: ['tailwind.config.js', '*.config.js'],
+    files: ['src/pages/api/**/*.js'],
     languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        // Server-side globály
+        Response: 'readonly',
+        Request: 'readonly',
+        fetch: 'readonly',
+        console: 'readonly',
+        process: 'readonly',
+        Buffer: 'readonly',
+        global: 'readonly'
+      }
+    }
+  },
+
+  // Konfigurační soubory
+  {
+    files: ['tailwind.config.js', '*.config.js', '*.config.mjs'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       globals: {
         require: 'readonly',
-        module: 'readonly'
+        module: 'readonly',
+        process: 'readonly',
+        __dirname: 'readonly'
       }
     }
   }
