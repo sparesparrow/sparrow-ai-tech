@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
+    "@astrojs/svelte": "^7.1.0",
     "@astrojs/tailwind": "^5.1.5",
     "astro": "^5.12.6",
     "chart.js": "^4.5.0",
