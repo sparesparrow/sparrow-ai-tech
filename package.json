@@ -20,6 +20,7 @@
     "astro": "astro",
     "lint": "eslint src",
     "test": "echo 'No tests configured yet'",
+    "check": "npm run lint && npm test",
     "test:e2e": "cypress run",
     "test:e2e:open": "cypress open",
     "test:e2e:headless": "cypress run --headless",
