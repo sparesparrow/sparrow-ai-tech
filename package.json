@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
-    "@astrojs/tailwind": "^5.1.5",
+    "@astrojs/tailwind": "^6.0.2",
     "@tippyjs/react": "^4.2.6",
     "astro": "^5.12.6",
     "chart.js": "^4.5.0",
