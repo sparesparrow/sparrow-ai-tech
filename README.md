@@ -2,7 +2,8 @@
 
 🌐 **Live Site**: https://sparesparrow.github.io/sparrow-ai-tech/
 
-A professional portfolio website showcasing expertise in Model Context Protocol (MCP), AI integrations, and modern development practices.
+A professional portfolio website showcasing expertise in Model Context Protocol
+(MCP), AI integrations, and modern development practices.
 
 ## 🚀 Features
 
@@ -23,62 +24,54 @@ A professional portfolio website showcasing expertise in Model Context Protocol 
 
 ## 📦 Installation
 
-Clone the repository
-git clone https://github.com/sparesparrow/sparrow-ai-tech.git
-cd sparrow-ai-tech
+Clone the repository git clone
+https://github.com/sparesparrow/sparrow-ai-tech.git cd sparrow-ai-tech
 
-Install dependencies
-npm install
+Install dependencies npm install
 
-Start development server
-npm run dev
+Start development server npm run dev
 
 ## 🔧 Development Scripts
 
-npm run dev # Start development server
-npm run build # Build for production
-npm run preview # Preview production build
-npm run lint # Run ESLint with auto-fix
-npm run type-check # Run Astro type checking
-npm run clean # Clean build artifacts
+npm run dev # Start development server npm run build # Build for production npm
+run preview # Preview production build npm run lint # Run ESLint with auto-fix
+npm run type-check # Run Astro type checking npm run clean # Clean build
+artifacts
 
 ## 🌍 Deployment
 
-The site automatically deploys to GitHub Pages when changes are pushed to the `main` branch.
+The site automatically deploys to GitHub Pages when changes are pushed to the
+`main` branch.
 
-Manual deployment:
-npm run build
-git add dist
-git commit -m "deploy: update site"
-git push origin main
+Manual deployment: npm run build git add dist git commit -m "deploy: update
+site" git push origin main
 
 ## 🔄 Workflow Status
 
 ### Latest Workflow Runs
+
 Last updated: $(date)
 
 **Frontend CI**: ✅ Updated to handle missing pnpm-lock.yaml gracefully
 **Deploy**: ✅ Updated to handle missing pnpm-lock.yaml gracefully  
-**Backend CI**: ✅ Uses Python/pip, no pnpm dependencies
-**Content Sync**: ✅ Automated documentation sync from external repos
-**CV Generate**: ✅ Automated CV PDF generation and deployment
+**Backend CI**: ✅ Uses Python/pip, no pnpm dependencies **Content Sync**: ✅
+Automated documentation sync from external repos **CV Generate**: ✅ Automated
+CV PDF generation and deployment
 
 ### Recent Fixes
-- **Fixed pnpm lockfile error**: Removed `--frozen-lockfile` flag from workflows to allow lockfile generation if missing
-- **Added pnpm-lock.yaml**: Committed the generated lockfile to ensure consistent dependency resolution
-- **Standardized pnpm setup**: All workflows now use pnpm version 9 with consistent configuration
+
+- **Fixed pnpm lockfile error**: Removed `--frozen-lockfile` flag from workflows
+  to allow lockfile generation if missing
+- **Added pnpm-lock.yaml**: Committed the generated lockfile to ensure
+  consistent dependency resolution
+- **Standardized pnpm setup**: All workflows now use pnpm version 9 with
+  consistent configuration
 
 ## 📝 Project Structure
 
-sparrow-ai-tech/
-├── src/
-│ ├── components/ # React components
-│ ├── layouts/ # Astro layouts
-│ ├── pages/ # Astro pages
-│ └── styles/ # Global styles
-├── public/ # Static assets
-├── cypress/ # E2E tests
-└── dist/ # Build output
+sparrow-ai-tech/ ├── src/ │ ├── components/ # React components │ ├── layouts/ #
+Astro layouts │ ├── pages/ # Astro pages │ └── styles/ # Global styles ├──
+public/ # Static assets ├── cypress/ # E2E tests └── dist/ # Build output
 
 # =================================================================
 
@@ -96,23 +89,20 @@ npm pkg set type="module"
 
 # Set basic project metadata
 
-npm pkg set name="sparrow-ai-tech"
-npm pkg set version="0.2.1"
-npm pkg set description="Modern Astro + React web project with AI tools, infographics, and interactive features"
-npm pkg set private=true
-npm pkg set homepage="https://sparesparrow.github.io/sparrow-ai-tech/"
-npm pkg set author="sparesparrow <sparesparrow@protonmail.ch>"
-npm pkg set license="MIT"
+npm pkg set name="sparrow-ai-tech" npm pkg set version="0.2.1" npm pkg set
+description="Modern Astro + React web project with AI tools, infographics, and
+interactive features" npm pkg set private=true npm pkg set
+homepage="https://sparesparrow.github.io/sparrow-ai-tech/" npm pkg set
+author="sparesparrow <sparesparrow@protonmail.ch>" npm pkg set license="MIT"
 
 # Set repository information
 
-npm pkg set repository.type="git"
-npm pkg set repository.url="https://github.com/sparesparrow/sparrow-ai-tech.git"
+npm pkg set repository.type="git" npm pkg set
+repository.url="https://github.com/sparesparrow/sparrow-ai-tech.git"
 
 # Set Node.js engine requirements
 
-npm pkg set engines.node=">=20.0.0"
-npm pkg set engines.npm=">=10.0.0"
+npm pkg set engines.node=">=20.0.0" npm pkg set engines.npm=">=10.0.0"
 
 # =================================================================
 
@@ -204,35 +194,35 @@ npm install --save-dev gh-pages@^6.1.0
 
 # Development scripts
 
-npm pkg set scripts.dev="astro dev --host --port 3000"
-npm pkg set scripts.start="astro dev --host"
-npm pkg set scripts.preview="astro preview --host --port 4321"
-npm pkg set scripts.astro="astro"
+npm pkg set scripts.dev="astro dev --host --port 3000" npm pkg set
+scripts.start="astro dev --host" npm pkg set scripts.preview="astro preview
+--host --port 4321" npm pkg set scripts.astro="astro"
 
 # Build and deployment scripts
 
-npm pkg set scripts.build="astro check && astro build && npm run fix-urls"
-npm pkg set scripts.deploy="npm run build && gh-pages -d dist"
+npm pkg set scripts.build="astro check && astro build && npm run fix-urls" npm
+pkg set scripts.deploy="npm run build && gh-pages -d dist"
 
 # Testing scripts (E2E only)
 
-npm pkg set scripts.test:e2e="cypress run"
-npm pkg set scripts.test:e2e:open="cypress open"
-npm pkg set scripts.test:e2e:headless="cypress run --headless"
-npm pkg set scripts.test:e2e:ci="cypress run --browser chrome --headless"
+npm pkg set scripts.test:e2e="cypress run" npm pkg set
+scripts.test:e2e:open="cypress open" npm pkg set
+scripts.test:e2e:headless="cypress run --headless" npm pkg set
+scripts.test:e2e:ci="cypress run --browser chrome --headless"
 
 # Utility scripts
 
-npm pkg set scripts.clean="rm -rf dist .astro node_modules/.cache cypress/screenshots cypress/videos"
-npm pkg set scripts.clean:install="npm run clean && rm -rf node_modules package-lock.json && npm install"
-npm pkg set scripts.fix-urls="node scripts/fix-urls.cjs"
-npm pkg set scripts.verify="node scripts/verify-deployment.js"
-npm pkg set scripts.validate="node scripts/validate-urls.cjs"
+npm pkg set scripts.clean="rm -rf dist .astro node_modules/.cache
+cypress/screenshots cypress/videos" npm pkg set scripts.clean:install="npm run
+clean && rm -rf node_modules package-lock.json && npm install" npm pkg set
+scripts.fix-urls="node scripts/fix-urls.cjs" npm pkg set scripts.verify="node
+scripts/verify-deployment.js" npm pkg set scripts.validate="node
+scripts/validate-urls.cjs"
 
 # Dependency management scripts
 
-npm pkg set scripts.deps:check="npm outdated"
-npm pkg set scripts.deps:audit="npm audit --audit-level moderate"
+npm pkg set scripts.deps:check="npm outdated" npm pkg set
+scripts.deps:audit="npm audit --audit-level moderate"
 
 # =================================================================
 
@@ -246,7 +236,8 @@ npm pkg set browserslist='["> 1%", "last 2 versions", "not dead", "not ie 11"]'
 
 # Set keywords for npm registry
 
-npm pkg set keywords='["astro", "react", "tailwindcss", "ai-tools", "infographics", "mermaid", "chartjs", "github-pages", "static-site"]'
+npm pkg set keywords='["astro", "react", "tailwindcss", "ai-tools",
+"infographics", "mermaid", "chartjs", "github-pages", "static-site"]'
 
 # =================================================================
 
@@ -298,8 +289,9 @@ npm run build
 - **Response:**
   - Success: `{ "reply": "<AI reply>" }`
   - Error: `{ "error": "<error message>" }`
-- **Description:**
-  Proxies user messages to the ElevenLabs API and returns the AI-generated reply. The ElevenLabs API key is loaded from the `ELEVENLABS_API_KEY` environment variable (never hardcoded).
+- **Description:** Proxies user messages to the ElevenLabs API and returns the
+  AI-generated reply. The ElevenLabs API key is loaded from the
+  `ELEVENLABS_API_KEY` environment variable (never hardcoded).
 - **Security:**
   - API key is never exposed to the client or logged.
   - Input is validated for presence and type.
@@ -316,11 +308,11 @@ npm run build
 - **Response:**
   - Success: PDF file (`application/pdf`)
   - Error: `{ "error": "<error message>" }`
-- **Description:**
-  Generates a PDF from the provided HTML using Puppeteer.
+- **Description:** Generates a PDF from the provided HTML using Puppeteer.
 - **Security:**
   - Input is validated for presence and type.
-  - Puppeteer runs with `--no-sandbox` for compatibility, but for best security, run in a containerized environment.
+  - Puppeteer runs with `--no-sandbox` for compatibility, but for best security,
+    run in a containerized environment.
   - [Recommended] Sanitize HTML input and limit payload size to prevent abuse.
   - [Recommended] Add rate limiting.
 
@@ -332,7 +324,8 @@ npm run build
 - No secrets are logged or exposed in responses.
 - Input validation is performed on all endpoints.
 - Error messages are generic and do not leak sensitive information.
-- [Recommended] Implement rate limiting, CORS, and input size checks for production deployments.
+- [Recommended] Implement rate limiting, CORS, and input size checks for
+  production deployments.
 
 ### Deploy
 
@@ -349,7 +342,8 @@ npm run build
 
 ### Developer Experience
 
-- DevContainer for VS Code: Preinstalled Node, Astro, React, Cypress, i18n, PDF tools.
+- DevContainer for VS Code: Preinstalled Node, Astro, React, Cypress, i18n, PDF
+  tools.
 - Tasks for lint, test, build, E2E, and frontend dev server.
 - Parallel workflow for frontend (Track A) and backend/tooling (Track B) agents.
 - All scripts and launchers documented in README and TODO.md.
@@ -359,25 +353,30 @@ npm run build
 ## Homepage Design & Visual Storytelling
 
 - **Decorative Text Dividers:**
-
-  - Uses text from `I-will-get-you-deployed.md` as large, subtle background dividers between homepage sections.
-  - Divider texts are stored in `src/data/decorativeTexts.json` for easy updates and i18n.
-  - The `DecorativeDivider` React component is used between sections for visual rhythm and thematic depth.
+  - Uses text from `I-will-get-you-deployed.md` as large, subtle background
+    dividers between homepage sections.
+  - Divider texts are stored in `src/data/decorativeTexts.json` for easy updates
+    and i18n.
+  - The `DecorativeDivider` React component is used between sections for visual
+    rhythm and thematic depth.
 
 - **Visual Storytelling:**
-
-  - Infographics, research highlights, and live editable diagrams are integrated directly into the homepage.
+  - Infographics, research highlights, and live editable diagrams are integrated
+    directly into the homepage.
   - Animated transitions and subtle effects enhance section changes.
-  - A "blueprint" or "system map" visual is used as a persistent background or hero element.
+  - A "blueprint" or "system map" visual is used as a persistent background or
+    hero element.
 
 - **Developer/AI Agent Experience:**
-
-  - "Dev/Agent Console" section shows build/test/deploy status, recent CI runs, and agentic workflow triggers.
+  - "Dev/Agent Console" section shows build/test/deploy status, recent CI runs,
+    and agentic workflow triggers.
   - Live GitHub repo stats and recent deployments are displayed.
 
 - **Testing/Quality UI:**
-  - E2E test coverage and accessibility status are shown on the homepage (badges or summary panel).
-  - A "Test Your Markdown" or "Try Mermaid" live editor block is available for users.
+  - E2E test coverage and accessibility status are shown on the homepage (badges
+    or summary panel).
+  - A "Test Your Markdown" or "Try Mermaid" live editor block is available for
+    users.
 
 ## �� Contributing
 
@@ -394,7 +393,8 @@ npm run build
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
+for details.
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/sparesparrow/sparrow-ai-tech/deploy.yml?branch=main)](https://github.com/sparesparrow/sparrow-ai-tech/actions)
 [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)](https://sparesparrow.github.io/sparrow-ai-tech/)
