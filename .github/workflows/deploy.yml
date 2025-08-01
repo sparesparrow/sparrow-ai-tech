@@ -1,3 +1,4 @@
+
 name: Deploy to GitHub Pages
 
 on:
@@ -26,13 +27,14 @@ jobs:
       - name: 📥 Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: latest
+          version: 9
+          run_install: false
           
       - name: 📦 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'pnpm'
+          node-version: "22"
+          cache: "pnpm"
           
       - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile
@@ -45,7 +47,7 @@ jobs:
       - name: 🔨 Build for production
         run: pnpm run build
         env:
-          NODE_OPTIONS: '--max-old-space-size=4096'
+          NODE_OPTIONS: "--max-old-space-size=4096"
           
       - name: 📤 Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -58,8 +60,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-      
+    
     steps:
       - name: 🚀 Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+

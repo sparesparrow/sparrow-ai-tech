@@ -1,3 +1,4 @@
+
 name: Generate and Deploy CV PDF
 
 on:
@@ -5,7 +6,7 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: '0 6 * * 1' # Weekly on Monday at 6 AM
+    - cron: "0 6 * * 1" # Weekly on Monday at 6 AM
 
 jobs:
   generate-cv:
@@ -48,7 +49,8 @@ jobs:
           retention-days: 30
           
       - name: 📤 Upload to Pages
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == "refs/heads/main"
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist/cv.pdf
+
