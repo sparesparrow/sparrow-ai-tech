@@ -14,7 +14,7 @@ export default function LanguageToggle() {
     location.reload(); // reload to pick proper Astro content
   };
   return (
-    <button className="btn btn--outline" onClick={switchLang}>
+    <button className="btn btn--outline" onClick={switchLang} data-testid="language-toggle">
       {lang === 'en' ? 'Čeština' : 'English'}
     </button>
   );

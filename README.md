@@ -66,8 +66,10 @@ CV PDF generation and deployment
   consistent dependency resolution
 - **Standardized pnpm setup**: All workflows now use pnpm version 9 with
   consistent configuration
-- **Fixed test dependencies**: Added missing `@testing-library/react` and `@testing-library/jest-dom`
-- **Fixed deploy script**: Removed references to non-existent scripts, deploy now works successfully
+- **Fixed test dependencies**: Added missing `@testing-library/react` and
+  `@testing-library/jest-dom`
+- **Fixed deploy script**: Removed references to non-existent scripts, deploy
+  now works successfully
 - **All tests passing**: 10/10 tests pass, full CI pipeline works locally
 
 ## 📝 Project Structure
