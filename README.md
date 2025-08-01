@@ -52,6 +52,22 @@ git add dist
 git commit -m "deploy: update site"
 git push origin main
 
+## 🔄 Workflow Status
+
+### Latest Workflow Runs
+Last updated: $(date)
+
+**Frontend CI**: ✅ Updated to handle missing pnpm-lock.yaml gracefully
+**Deploy**: ✅ Updated to handle missing pnpm-lock.yaml gracefully  
+**Backend CI**: ✅ Uses Python/pip, no pnpm dependencies
+**Content Sync**: ✅ Automated documentation sync from external repos
+**CV Generate**: ✅ Automated CV PDF generation and deployment
+
+### Recent Fixes
+- **Fixed pnpm lockfile error**: Removed `--frozen-lockfile` flag from workflows to allow lockfile generation if missing
+- **Added pnpm-lock.yaml**: Committed the generated lockfile to ensure consistent dependency resolution
+- **Standardized pnpm setup**: All workflows now use pnpm version 9 with consistent configuration
+
 ## 📝 Project Structure
 
 sparrow-ai-tech/
