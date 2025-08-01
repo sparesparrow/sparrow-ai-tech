@@ -54,15 +54,15 @@ jobs:
               if [ -f "$SOURCE_DOC" ]; then
                 # Create Astro frontmatter
                 cat > "$DEST_DOC" << DOCEOF
-          ---
-          title: '${REPO_NAME}'
-          description: 'Documentation for the ${REPO_NAME} project'
-          repository: '${REPO_PATH}'
-          lastUpdated: '$(date --iso-8601)'
-          tags: ['mcp', 'automation', 'project']
-          ---
-          
-          DOCEOF
+---
+title: '${REPO_NAME}'
+description: 'Documentation for the ${REPO_NAME} project'
+repository: '${REPO_PATH}'
+lastUpdated: '$(date --iso-8601)'
+tags: ['mcp', 'automation', 'project']
+---
+
+DOCEOF
                 
                 # Append README content
                 cat "$SOURCE_DOC" >> "$DEST_DOC"

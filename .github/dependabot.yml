@@ -44,14 +44,3 @@ updates:
       - "sparesparrow"
     commit-message:
       prefix: "ci"
-
-  # Enable version updates for Python (if present)
-  - package-ecosystem: "pip"
-    directory: "/backend/mcp-mermaid-generator"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 3
-    reviewers:
-      - "sparesparrow"
-    commit-message:
-      prefix: "deps"
