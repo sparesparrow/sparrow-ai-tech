@@ -1,12 +1,13 @@
 {
-  "name": "Sparrow AI Tech",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
+  "name": "Sparrow AI Tech - Modern Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": true,
       "configureZshAsDefaultShell": true,
       "installOhMyZsh": true
     },
+    "ghcr.io/devcontainers-contrib/features/pnpm:2": {},
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
@@ -27,7 +28,16 @@
       }
     }
   },
-  "forwardPorts": [3000, 4321],
-  "postCreateCommand": "npm install",
+  "forwardPorts": [4321, 3000],
+  // Mount the SSH agent socket from the host to the container
+  "mounts": [
+    "source=${localEnv:SSH_AUTH_SOCK},target=/tmp/ssh-agent.sock,type=bind"
+  ],
+  // Set the SSH_AUTH_SOCK environment variable in the container
+  "containerEnv": {
+    "SSH_AUTH_SOCK": "/tmp/ssh-agent.sock"
+  },
+  // Install dependencies and fix permissions on the SSH socket
+  "postCreateCommand": "pnpm install && sudo chown node /tmp/ssh-agent.sock",
   "remoteUser": "node"
 }
