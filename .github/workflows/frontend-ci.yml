@@ -36,7 +36,7 @@ jobs:
           cache: "pnpm"
           
       - name: 📦 Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install # Removed --frozen-lockfile to allow lockfile generation if missing
         
       - name: 🔍 Security audit
         run: pnpm audit --audit-level high
