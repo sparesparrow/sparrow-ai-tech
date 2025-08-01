@@ -14,7 +14,8 @@
   "keywords": "[\"astro\", \"react\", \"tailwindcss\", \"ai-tools\", \"infographics\", \"mermaid\", \"chartjs\", \"github-pages\", \"static-site\"]",
   "scripts": {
     "astro": "astro",
-    "build": "astro check && astro build",
+    "build": "NODE_OPTIONS=--max-old-space-size=4096 astro build",
+    "build:check": "NODE_OPTIONS=--max-old-space-size=4096 astro check && astro build",
     "check": "astro check",
     "clean": "rm -rf dist .astro node_modules/.cache cypress/screenshots cypress/videos",
     "clean:install": "npm run clean && rm -rf node_modules package-lock.json && npm install",
@@ -43,7 +44,6 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
-    "@astrojs/svelte": "^7.1.0",
     "@astrojs/tailwind": "^5.1.5",
     "@tippyjs/react": "^4.2.6",
     "astro": "^5.12.6",
@@ -57,17 +57,16 @@
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
     "react-markdown": "^10.1.0",
-    "svelte": "^5.37.1",
     "react-router-dom": "^7.7.1",
     "react-tooltip": "^5.29.1",
     "tailwindcss": "^3.4.17",
     "tippy.js": "^6.3.7",
     "typescript": "^5.8.3",
     "yet-another-react-lightbox": "^3.25.0"
-    
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/svelte": "^7.1.0",
     "@babel/core": "^7.28.0",
     "@babel/eslint-parser": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
