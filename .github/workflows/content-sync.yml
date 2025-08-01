@@ -1,67 +1,88 @@
-name: Sync External Repository Docs
+name: Sync External Repository Documentation
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 2 * * *' # Daily at 2 AM
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  sync-docs:
+  sync-documentation:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
     steps:
-      - name: Checkout repository
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: 📦 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-
-      - name: Create content directory
+          node-version: '22'
+          
+      - name: 📁 Create content directory
         run: mkdir -p src/content/projects
-
-      - name: Sync documentation from external repositories
+        
+      - name: 🔄 Sync documentation from repositories
         run: |
+          # Repository list - easily configurable
           REPOS=(
             "sparesparrow/human-action"
-            "sparesparrow/mcp-prompts"
+            "sparesparrow/mcp-prompts" 
             "sparesparrow/mcp-prompts-rs"
             "sparesparrow/mcp-project-orchestrator"
+            "sparesparrow/mcp-router"
           )
-
+          
           for REPO_PATH in "${REPOS[@]}"; do
-            OWNER=$(echo $REPO_PATH | cut -d'/' -f1)
             REPO_NAME=$(echo $REPO_PATH | cut -d'/' -f2)
-            CLONE_URL="https://github.com/${OWNER}/${REPO_NAME}.git"
+            CLONE_URL="https://github.com/${REPO_PATH}.git"
             TEMP_DIR="temp_${REPO_NAME}"
-
-            echo "--- Syncing docs for ${REPO_NAME} ---"
-            git clone --depth 1 $CLONE_URL $TEMP_DIR
-
-            SOURCE_DOC_PATH="${TEMP_DIR}/README.md"
-            DEST_DOC_PATH="src/content/projects/${REPO_NAME}.md"
-
-            if [ -f "$SOURCE_DOC_PATH" ]; then
-              FRONTMATTER="---\ntitle: '${REPO_NAME}'\ndescription: 'Documentation for the ${REPO_NAME} project.'\nrepo_url: '${CLONE_URL}'\npubDate: '$(date --iso-8601)'\n---\n\n"
-              echo -e "$FRONTMATTER" > "$DEST_DOC_PATH"
-              cat "$SOURCE_DOC_PATH" >> "$DEST_DOC_PATH"
-              echo "Successfully synced ${SOURCE_DOC_PATH} to ${DEST_DOC_PATH}"
+            
+            echo "📥 Syncing documentation for ${REPO_NAME}..."
+            
+            # Clone with error handling
+            if git clone --depth 1 $CLONE_URL $TEMP_DIR; then
+              SOURCE_DOC="${TEMP_DIR}/README.md"
+              DEST_DOC="src/content/projects/${REPO_NAME}.md"
+              
+              if [ -f "$SOURCE_DOC" ]; then
+                # Create Astro frontmatter
+                cat > "$DEST_DOC" << DOCEOF
+          ---
+          title: '${REPO_NAME}'
+          description: 'Documentation for the ${REPO_NAME} project'
+          repository: '${REPO_PATH}'
+          lastUpdated: '$(date --iso-8601)'
+          tags: ['mcp', 'automation', 'project']
+          ---
+          
+          DOCEOF
+                
+                # Append README content
+                cat "$SOURCE_DOC" >> "$DEST_DOC"
+                echo "✅ Successfully synced ${REPO_NAME}"
+              else
+                echo "⚠️ README.md not found in ${REPO_NAME}"
+              fi
             else
-              echo "Warning: ${SOURCE_DOC_PATH} not found in repository."
+              echo "❌ Failed to clone ${REPO_NAME}"
             fi
-
+            
+            # Cleanup
             rm -rf $TEMP_DIR
           done
-
-      - name: Commit and push updated documentation
+          
+      - name: 💾 Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "docs(sync): Update external project documentation"
+          commit_message: "docs: sync external repository documentation [automated]"
           file_pattern: "src/content/projects/*.md"
-          commit_user_name: "GitHub Actions Bot"
-          commit_user_email: "actions@github.com"
-          commit_author: "GitHub Actions Bot <actions@github.com>"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"

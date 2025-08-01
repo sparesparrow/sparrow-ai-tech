@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -17,26 +17,37 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
     steps:
-      - name: Checkout
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
         
-      - name: Setup Node
+      - name: 📦 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: '22'
+          cache: 'pnpm'
           
-      - name: Install dependencies
-        run: npm ci
+      - name: 📥 Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+          
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
         
-      - name: Run checks
-        run: npm run lint && npm test
-        
-      - name: Build
-        run: npm run build
-        
-      - name: Upload Pages artifact
+      - name: ✅ Run quality checks
+        run: |
+          pnpm run lint
+          pnpm run test
+          
+      - name: 🔨 Build for production
+        run: pnpm run build
+        env:
+          NODE_OPTIONS: '--max-old-space-size=4096'
+          
+      - name: 📤 Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -47,7 +58,8 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+      
     steps:
-      - name: Deploy to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

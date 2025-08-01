@@ -4,31 +4,51 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1' # Weekly on Monday at 6 AM
 
 jobs:
-  build-cv-pdf:
+  generate-cv:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
     steps:
-      - name: Checkout this repository
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
         
-      - name: Download latest CV markdown from sparesparrow/cv
+      - name: 📥 Download latest CV from sparesparrow/cv
         run: |
           curl -L https://raw.githubusercontent.com/sparesparrow/cv/main/README.md -o cv.md
           
-      - name: Install Pandoc, XeLaTeX and rsvg-convert
+      - name: 📦 Install LaTeX and Pandoc
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc texlive-xetex texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra librsvg2-bin
-          
-      - name: Convert CV markdown to PDF
+          sudo apt-get install -y \
+            pandoc \
+            texlive-xetex \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-latex-extra \
+            librsvg2-bin
+            
+      - name: 🔄 Convert Markdown to PDF
         run: |
           mkdir -p dist
-          pandoc cv.md -o dist/cv. eisvogel || \
-          pandoc cv.md -o dist/cv.pdf --pdf-engine=xelatex
-          
-      - name: Upload PDF artifact
+          pandoc cv.md -o dist/cv.pdf \
+            --pdf-engine=xelatex \
+            --variable geometry:margin=1in \
+            --variable fontsize=11pt \
+            || pandoc cv.md -o dist/cv.pdf --pdf-engine=xelatex
+            
+      - name: 📤 Upload CV PDF artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cv-pdf
+          name: cv-pdf-${{ github.sha }}
+          path: dist/cv.pdf
+          retention-days: 30
+          
+      - name: 📤 Upload to Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
           path: dist/cv.pdf

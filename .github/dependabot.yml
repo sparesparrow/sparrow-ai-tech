@@ -1,0 +1,57 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "sparesparrow"
+    assignees:
+      - "sparesparrow"
+    commit-message:
+      prefix: "deps"
+      prefix-development: "deps-dev"
+    groups:
+      astro:
+        patterns:
+          - "astro*"
+          - "@astrojs/*"
+      testing:
+        patterns:
+          - "jest*"
+          - "@types/jest"
+          - "cypress*"
+          - "playwright*"
+      linting:
+        patterns:
+          - "eslint*"
+          - "prettier*"
+          - "@typescript-eslint/*"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday" 
+      time: "06:00"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "sparesparrow"
+    commit-message:
+      prefix: "ci"
+
+  # Enable version updates for Python (if present)
+  - package-ecosystem: "pip"
+    directory: "/backend/mcp-mermaid-generator"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "sparesparrow"
+    commit-message:
+      prefix: "deps"
