@@ -4,8 +4,17 @@ export default {
   darkMode: 'class',
   theme: {
     safelist: [
-      'fade-in','visible','cyber-glitch','cyber-card','cyber-stat-item','skill-progress',
-      'notification','notification--success','notification--error','nav-link','active'
+      'fade-in',
+      'visible',
+      'cyber-glitch',
+      'cyber-card',
+      'cyber-stat-item',
+      'skill-progress',
+      'notification',
+      'notification--success',
+      'notification--error',
+      'nav-link',
+      'active',
     ],
     extend: {
       typography: {
@@ -20,15 +29,35 @@ export default {
               textDecoration: 'underline',
               '&:hover': {
                 opacity: 1,
-                color: '#60a5fa'
-              }
-            }
-          }
-        }
-      }
+                color: '#60a5fa',
+              },
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
+  plugins: [require('@tailwindcss/typography')],
+};
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./src/**/*.{astro,html,js,jsx,ts,tsx,vue,svelte}'],
+  theme: {
+    extend: {},
+  },
+  plugins: [require('@tailwindcss/typography')],
+  safelist: [
+    'fade-in',
+    'visible',
+    'cyber-glitch',
+    'cyber-card',
+    'cyber-stat-item',
+    'skill-progress',
+    'notification',
+    'notification--success',
+    'notification--error',
+    'nav-link',
+    'active',
   ],
-}
+};
