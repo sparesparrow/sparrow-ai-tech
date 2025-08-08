@@ -1,4 +1,3 @@
-
 name: Deploy to GitHub Pages
 
 on:
@@ -12,43 +11,43 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    
+
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: 📥 Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
           run_install: false
-          
+
       - name: 📦 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          cache: "pnpm"
-          
+          node-version: '22'
+          cache: 'pnpm'
+
       - name: 📦 Install dependencies
         run: pnpm install # Removed --frozen-lockfile
-        
+
       - name: ✅ Run quality checks
         run: |
           pnpm run lint
           pnpm run test
-          
+
       - name: 🔨 Build for production
         run: pnpm run build
         env:
-          NODE_OPTIONS: "--max-old-space-size=4096"
-          
+          NODE_OPTIONS: '--max-old-space-size=4096'
+
       - name: 📤 Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -60,9 +59,8 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    
+
     steps:
       - name: 🚀 Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

@@ -5,11 +5,7 @@
       "type": "object",
       "properties": {
         "title": {
-          "type": "string",
-          "minLength": 1,
-          "errorMessage": {
-            "minLength": "title is required"
-          }
+          "type": "string"
         },
         "description": {
           "type": "string"
@@ -41,6 +37,10 @@
           "type": "boolean",
           "default": false
         },
+        "author": {
+          "type": "string",
+          "default": "Vojtěch Špaček"
+        },
         "slug": {
           "type": "string"
         },
@@ -49,7 +49,8 @@
         }
       },
       "required": [
-        "title"
+        "title",
+        "pubDate"
       ],
       "additionalProperties": false
     }
