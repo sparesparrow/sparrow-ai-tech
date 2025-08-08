@@ -1,5 +1,8 @@
 ---
+import Layout from '../layouts/Layout.astro';
 import MarkdownTestComponent from '../components/MarkdownTest.jsx';
 ---
 
-<MarkdownTestComponent client:only="react" />
+<Layout title="Markdown Test">
+  <MarkdownTestComponent client:only="react" />
+</Layout>

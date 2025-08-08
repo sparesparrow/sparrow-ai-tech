@@ -1,97 +1,137 @@
 ---
 export interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
-import LanguageToggle from "../components/LanguageToggle.jsx";
+import LanguageToggle from '../components/LanguageToggle.jsx';
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Model Context Protocol Pioneer - AI-driven tooling for modern web workflows" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Model Context Protocol Pioneer - AI-driven tooling for modern web workflows" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
 
-		<link rel="stylesheet" href="/styles/main.css" />
-		
-		<!-- Enhanced SEO meta tags -->
-		<meta name="keywords" content="MCP, Model Context Protocol, AI Integration, Vojtěch Špaček, Developer, TypeScript, Rust, Automation" />
-		<meta name="author" content="Vojtěch Špaček" />
-		
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://sparesparrow.github.io/sparrow-ai-tech/" />
-		<meta property="og:title" content="Vojtěch Špaček | MCP Pioneer & AI Integration Specialist" />
-		<meta property="og:description" content="Model Context Protocol Pioneer - AI-driven tooling for modern web workflows" />
-		<meta property="og:image" content="https://sparesparrow.github.io/sparrow-ai-tech/og-image.png" />
+    <link rel="stylesheet" href="/styles/main.css" />
 
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content="https://sparesparrow.github.io/sparrow-ai-tech/" />
-		<meta property="twitter:title" content="Vojtěch Špaček | MCP Pioneer & AI Integration Specialist" />
-		<meta property="twitter:description" content="Model Context Protocol Pioneer - AI-driven tooling for modern web workflows" />
-		<meta property="twitter:image" content="https://sparesparrow.github.io/sparrow-ai-tech/og-image.png" />
-	</head>
-	<body>
-		<!-- Navigation -->
-		<nav class="nav">
-			<div class="nav-container">
-				<div class="nav-logo">sparrow-ai-tech</div>
-				<LanguageToggle client:load />
-				<div class="nav-links">
-					<a href="#home" class="nav-link">Home</a>
-					<a href="#expertise" class="nav-link">Expertise</a>
-					<a href="#projects" class="nav-link">MCP Projects</a>
-					<a href="#philosophy" class="nav-link">Philosophy</a>
-					<a href="#contact" class="nav-link">Contact</a>
-				</div>
-			</div>
-		</nav>
+    <!-- Enhanced SEO meta tags -->
+    <meta
+      name="keywords"
+      content="MCP, Model Context Protocol, AI Integration, Vojtěch Špaček, Developer, TypeScript, Rust, Automation"
+    />
+    <meta name="author" content="Vojtěch Špaček" />
 
-		<slot />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sparesparrow.github.io/sparrow-ai-tech/" />
+    <meta property="og:title" content="Vojtěch Špaček | MCP Pioneer & AI Integration Specialist" />
+    <meta
+      property="og:description"
+      content="Model Context Protocol Pioneer - AI-driven tooling for modern web workflows"
+    />
+    <meta property="og:image" content="https://sparesparrow.github.io/sparrow-ai-tech/og-image.png" />
 
-		<!-- Enhanced Footer -->
-		<footer class="footer">
-			<div class="container">
-				<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
-					<div>
-						<h4 style="color: var(--color-cyber-green); margin-bottom: 1rem;">MCP Pioneer</h4>
-						<p style="color: var(--color-cyber-text-dim); margin: 0;">
-							Specializuji se na Model Context Protocol, AI orchestraci a moderní vývojové praktiky.
-						</p>
-					</div>
-					<div>
-						<h4 style="color: var(--color-cyber-blue); margin-bottom: 1rem;">Technologies</h4>
-						<div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-							<span style="background: rgba(57, 255, 20, 0.1); color: var(--color-cyber-green); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">Rust</span>
-							<span style="background: rgba(88, 166, 255, 0.1); color: var(--color-cyber-blue); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">TypeScript</span>
-							<span style="background: rgba(210, 168, 255, 0.1); color: var(--color-cyber-purple); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">MCP</span>
-							<span style="background: rgba(248, 81, 73, 0.1); color: var(--color-cyber-orange); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">AI</span>
-							<span style="background: rgba(57, 255, 20, 0.1); color: var(--color-cyber-green); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">Docker</span>
-						</div>
-					</div>
-					<div>
-						<h4 style="color: var(--color-cyber-purple); margin-bottom: 1rem;">Useful Links</h4>
-						<div style="display: flex; flex-direction: column; gap: 0.5rem;">
-							<a href="https://github.com/sparesparrow" style="color: var(--color-cyber-text-dim); text-decoration: none; transition: color 0.3s ease;">GitHub Profile</a>
-							<a href="#" style="color: var(--color-cyber-text-dim); text-decoration: none; transition: color 0.3s ease;">Professional CV</a>
-							<a href="#" style="color: var(--color-cyber-text-dim); text-decoration: none; transition: color 0.3s ease;">MCP Infographics</a>
-						</div>
-					</div>
-				</div>
-				<p style="color: var(--color-cyber-text-dim); margin: 0; text-align: center; border-top: 1px solid var(--color-cyber-border); padding-top: 1rem;">
-					© 2025 Vojtěch Špaček. All rights reserved.
-				</p>
-			</div>
-		</footer>
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://sparesparrow.github.io/sparrow-ai-tech/" />
+    <meta property="twitter:title" content="Vojtěch Špaček | MCP Pioneer & AI Integration Specialist" />
+    <meta
+      property="twitter:description"
+      content="Model Context Protocol Pioneer - AI-driven tooling for modern web workflows"
+    />
+    <meta property="twitter:image" content="https://sparesparrow.github.io/sparrow-ai-tech/og-image.png" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-container">
+        <div class="nav-logo">sparrow-ai-tech</div>
+        <LanguageToggle client:load />
+        <div class="nav-links">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#expertise" class="nav-link">Expertise</a>
+          <a href="#projects" class="nav-link">MCP Projects</a>
+          <a href="#philosophy" class="nav-link">Philosophy</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+      </div>
+    </nav>
 
-		<!-- Scripts -->
-		<script src="/js/app.js" is:inline></script>
-		<script src="/scripts/enhanced-cyberpunk.js" is:inline></script>
-	</body>
+    <slot />
+
+    <!-- Enhanced Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;"
+        >
+          <div>
+            <h4 style="color: var(--color-cyber-green); margin-bottom: 1rem;">MCP Pioneer</h4>
+            <p style="color: var(--color-cyber-text-dim); margin: 0;">
+              Specializuji se na Model Context Protocol, AI orchestraci a moderní vývojové praktiky.
+            </p>
+          </div>
+          <div>
+            <h4 style="color: var(--color-cyber-blue); margin-bottom: 1rem;">Technologies</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+              <span
+                style="background: rgba(57, 255, 20, 0.1); color: var(--color-cyber-green); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;"
+                >Rust</span
+              >
+              <span
+                style="background: rgba(88, 166, 255, 0.1); color: var(--color-cyber-blue); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;"
+                >TypeScript</span
+              >
+              <span
+                style="background: rgba(210, 168, 255, 0.1); color: var(--color-cyber-purple); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;"
+                >MCP</span
+              >
+              <span
+                style="background: rgba(248, 81, 73, 0.1); color: var(--color-cyber-orange); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;"
+                >AI</span
+              >
+              <span
+                style="background: rgba(57, 255, 20, 0.1); color: var(--color-cyber-green); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;"
+                >Docker</span
+              >
+            </div>
+          </div>
+          <div>
+            <h4 style="color: var(--color-cyber-purple); margin-bottom: 1rem;">Useful Links</h4>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <a
+                href="https://github.com/sparesparrow"
+                style="color: var(--color-cyber-text-dim); text-decoration: none; transition: color 0.3s ease;"
+                >GitHub Profile</a
+              >
+              <a
+                href="#"
+                style="color: var(--color-cyber-text-dim); text-decoration: none; transition: color 0.3s ease;"
+                >Professional CV</a
+              >
+              <a
+                href="#"
+                style="color: var(--color-cyber-text-dim); text-decoration: none; transition: color 0.3s ease;"
+                >MCP Infographics</a
+              >
+            </div>
+          </div>
+        </div>
+        <p
+          style="color: var(--color-cyber-text-dim); margin: 0; text-align: center; border-top: 1px solid var(--color-cyber-border); padding-top: 1rem;"
+        >
+          © 2025 Vojtěch Špaček. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/app.js" is:inline></script>
+    <script src="/scripts/enhanced-cyberpunk.js" is:inline></script>
+  </body>
 </html>
