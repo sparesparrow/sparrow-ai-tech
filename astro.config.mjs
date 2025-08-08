@@ -30,6 +30,7 @@ export default defineConfig({
         '@styles': resolve('./src/styles'),
         '@utils': resolve('./src/utils'),
         '@data': resolve('./src/data'),
+        '@js': resolve('./src/js'),
         '@content': resolve('./src/content'),
         '@assets': resolve('./public/assets'),
       },

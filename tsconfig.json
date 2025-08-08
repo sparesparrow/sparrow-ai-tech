@@ -16,6 +16,7 @@
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
       "@data/*": ["src/data/*"],
+      "@js/*": ["src/js/*"],
       "@content/*": ["src/content/*"],
       "@assets/*": ["public/assets/*"]
     },

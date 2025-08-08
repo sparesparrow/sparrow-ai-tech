@@ -6,18 +6,14 @@
       "@components/*": ["./src/components/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@pages/*": ["./src/pages/*"],
+      "@js/*": ["./src/js/*"],
+      "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/utils/*"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".astro"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", ".astro"]
 }

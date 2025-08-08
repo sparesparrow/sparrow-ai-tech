@@ -26,13 +26,10 @@ export function assetUrl(path) {
 /**
  * Create page URL with optional language support
  */
-export function pageUrl(path, lang = '') {
+export function pageUrl(path) {
   const base = getBaseUrl();
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
 
-  if (lang && lang !== 'cs') {
-    return `${base}/${lang}/${cleanPath}`;
-  }
   return `${base}/${cleanPath}`;
 }
 

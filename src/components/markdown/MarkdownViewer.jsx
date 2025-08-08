@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import MermaidPreviewLink from './MermaidPreviewLink.jsx';
-import ImagePreviewLink from './ImagePreviewLink.jsx';
-import GithubRepoTooltip from './GithubRepoTooltip.jsx';
+import MermaidPreviewLink from '../MermaidPreviewLink.jsx';
+import ImagePreviewLink from '../ImagePreviewLink.jsx';
+import GithubRepoTooltip from '../GithubRepoTooltip.jsx';
 
 const Mermaid = () => (
   <div className="mermaid-diagram text-red-500">Mermaid diagrams are not supported.</div>
@@ -24,7 +24,7 @@ const MarkdownViewer = ({ src, className = '', editableDiagrams = true }) => {
     setLoading(true);
     setError(null);
     fetch(src)
-      .then((res) => {
+      .then(res => {
         if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
         return res.text();
       })
