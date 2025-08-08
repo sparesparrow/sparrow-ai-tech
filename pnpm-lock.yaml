@@ -99,6 +99,12 @@ importers:
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
+      '@types/react':
+        specifier: ^19.1.9
+        version: 19.1.9
+      '@types/react-dom':
+        specifier: ^19.1.7
+        version: 19.1.7(@types/react@19.1.9)
       '@types/react-helmet':
         specifier: ^6.1.11
         version: 6.1.11
