@@ -1,27 +1,29 @@
 # Node.js
 node_modules/
 
-# Logs and temp files
+# Log files
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+.tmp/
+temp/
 *.tmp
 *.swp
 *.swo
-.DS_Store
-Thumbs.db
 
 # Editor and OS files
-*.sublime-workspace
-*.sublime-project
-.idea/
-.vscode/
-*.iml
+#*.sublime-workspace
+#*.sublime-project
+#.idea/
+#.vscode/
+#*.iml
 
 # System files
 *.bak
 *.orig
-
-# Custom project files
-.env
 
 # Exclude test artifacts
 coverage/
@@ -30,10 +32,6 @@ coverage/
 cypress/screenshots/
 cypress/videos/
 cypress/downloads/ 
-
-dist/
-build/
-_site/
 
 # Astro/React static assets
 unused/
@@ -47,24 +45,15 @@ _site/
 coverage/
 
 # Environment files
+.env
 .env.local
 .env.production
 .env.test
 
 # IDE files
-.vscode/settings.json
-.idea/
+#.vscode/settings.json
+#.idea/
 
 # OS files
 .DS_Store
 Thumbs.db
-
-# Log files
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Temporary files
-.tmp/
-temp/

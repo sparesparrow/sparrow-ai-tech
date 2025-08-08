@@ -1,6 +1,9 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import { fileURLToPath } from 'node:url';
+
+const root = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
   integrations: [react(), tailwind({ applyBaseStyles: false })],
@@ -14,15 +17,15 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '@': './src',
-        '@components': './src/components',
-        '@layouts': './src/layouts',
-        '@styles': './src/styles',
+        '@': `${root}src`,
+        '@components': `${root}src/components`,
+        '@layouts': `${root}src/layouts`,
+        '@styles': `${root}src/styles`,
+        '@assets': `${root}public/assets`,
+        '@utils': `${root}src/utils`,
+        '@data': `${root}src/data`,
+        '@content': `${root}src/content`,
       },
-    },
-    build: {
-      cssMinify: true,
-      minify: true,
     },
   },
 });

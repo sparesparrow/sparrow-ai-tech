@@ -1,7 +1,7 @@
 {
-  "$ref": "#/definitions/projects",
+  "$ref": "#/definitions/articles",
   "definitions": {
-    "projects": {
+    "articles": {
       "type": "object",
       "properties": {
         "title": {
@@ -10,10 +10,23 @@
         "description": {
           "type": "string"
         },
-        "repository": {
-          "type": "string"
+        "pubDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
         },
-        "technologies": {
+        "tags": {
           "type": "array",
           "items": {
             "type": "string"
@@ -23,10 +36,6 @@
           "type": "string"
         }
       },
-      "required": [
-        "title",
-        "description"
-      ],
       "additionalProperties": false
     }
   },

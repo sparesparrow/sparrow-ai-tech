@@ -39,7 +39,7 @@ function initScrollAnimations() {
   };
 
   const observer = new IntersectionObserver(function (entries) {
-    entries.forEach((entry) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
 
@@ -53,7 +53,7 @@ function initScrollAnimations() {
 
   // Add fade-in class to elements and observe them
   const animatedElements = document.querySelectorAll('.cyber-card, .fade-in, .cyber-stat-item');
-  animatedElements.forEach((el) => {
+  animatedElements.forEach(el => {
     el.classList.add('fade-in');
     observer.observe(el);
   });
@@ -85,21 +85,24 @@ function animateStatNumbers(statElement) {
 
 // Animated skill progress bars
 function initSkillBars() {
-  const skillObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const skillProgress = entry.target.querySelector('.skill-progress');
-        const level = skillProgress.getAttribute('data-level');
+  const skillObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const skillProgress = entry.target.querySelector('.skill-progress');
+          const level = skillProgress.getAttribute('data-level');
 
-        // Animate the progress bar
-        setTimeout(() => {
-          skillProgress.style.width = level + '%';
-        }, 300);
+          // Animate the progress bar
+          setTimeout(() => {
+            skillProgress.style.width = level + '%';
+          }, 300);
 
-        skillObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
 
   document.querySelectorAll('.skill-item').forEach(item => {
     skillObserver.observe(item);
@@ -109,7 +112,7 @@ function initSkillBars() {
 // Enhanced navigation
 function initNavigation() {
   // Smooth scroll for navigation links
-  document.querySelectorAll('.cyber-nav-link').forEach((link) => {
+  document.querySelectorAll('.cyber-nav-link').forEach(link => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
       const targetId = this.getAttribute('href');
@@ -125,7 +128,7 @@ function initNavigation() {
         });
 
         // Update active state
-        document.querySelectorAll('.cyber-nav-link').forEach((navLink) => {
+        document.querySelectorAll('.cyber-nav-link').forEach(navLink => {
           navLink.classList.remove('active');
         });
         this.classList.add('active');
@@ -144,7 +147,7 @@ function updateActiveNavLink() {
 
   const scrollPosition = window.scrollY + 150;
 
-  sections.forEach((section) => {
+  sections.forEach(section => {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.offsetHeight;
 
@@ -153,7 +156,7 @@ function updateActiveNavLink() {
     }
   });
 
-  navLinks.forEach((link) => {
+  navLinks.forEach(link => {
     link.classList.remove('active');
     if (link.getAttribute('href') === '#' + currentSection) {
       link.classList.add('active');
@@ -165,14 +168,14 @@ function updateActiveNavLink() {
 function initProjectCards() {
   const projectCards = document.querySelectorAll('.project-card');
 
-  projectCards.forEach((card) => {
+  projectCards.forEach(card => {
     // Enhanced mouse events
     card.addEventListener('mouseenter', function () {
       this.style.transform = 'translateY(-8px) scale(1.02)';
 
       // Add glow effect to tech tags
       const techTags = this.querySelectorAll('.tech-tag, .feature-tag');
-      techTags.forEach((tag) => {
+      techTags.forEach(tag => {
         tag.style.boxShadow = '0 0 15px rgba(57, 255, 20, 0.3)';
       });
     });
@@ -182,7 +185,7 @@ function initProjectCards() {
 
       // Remove glow effect
       const techTags = this.querySelectorAll('.tech-tag, .feature-tag');
-      techTags.forEach((tag) => {
+      techTags.forEach(tag => {
         tag.style.boxShadow = '';
       });
     });
@@ -238,7 +241,7 @@ function initPhilosophyQuotes() {
   // Observer for philosophy section
   const philosophyObserver = new IntersectionObserver(
     function (entries) {
-      entries.forEach((entry) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           // Start typing quotes with delays
           quoteElements.forEach((element, index) => {
@@ -392,8 +395,8 @@ function createMatrixRain() {
 
   resizeCanvas();
 
-  const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
-  const matrixArray = matrix.split("");
+  const matrix = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}';
+  const matrixArray = matrix.split('');
 
   const fontSize = 10;
   let columns = Math.floor(canvas.width / fontSize);
@@ -503,7 +506,7 @@ function showNotification(message, type) {
     transform: 'translateX(400px)',
     transition: 'transform 0.3s ease',
     maxWidth: '300px',
-    wordWrap: 'break-word'
+    wordWrap: 'break-word',
   });
 
   document.body.appendChild(notification);
@@ -589,7 +592,7 @@ document.addEventListener('DOMContentLoaded', addGlitchEffect);
 document.addEventListener('DOMContentLoaded', function () {
   const glitchElements = document.querySelectorAll('.cyber-glitch');
 
-  glitchElements.forEach((element) => {
+  glitchElements.forEach(element => {
     element.addEventListener('mouseenter', function () {
       this.style.animation = 'glitch 0.3s ease-in-out';
     });
@@ -605,7 +608,7 @@ window.addEventListener('scroll', function () {
   const scrolled = window.pageYOffset;
   const heroElements = document.querySelectorAll('.cyber-hero-parallax');
 
-  heroElements.forEach((element) => {
+  heroElements.forEach(element => {
     const rate = scrolled * -0.2;
     element.style.transform = `translateY(${rate}px)`;
   });
@@ -634,3 +637,216 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+// Enhanced Cyberpunk Interactive Features for Astro
+document.addEventListener('DOMContentLoaded', function () {
+  initTypewriter();
+  initScrollAnimations();
+  initNavigation();
+  initMatrixRain();
+  initGlitchEffect();
+});
+
+// Typewriter effect for hero section
+function initTypewriter() {
+  const typewriterElement = document.getElementById('typewriter');
+  if (!typewriterElement) return;
+  const text = 'Automatizační šílenec, který se nikdy nenudí';
+  let index = 0;
+  function typeChar() {
+    if (index < text.length) {
+      typewriterElement.textContent += text.charAt(index);
+      index++;
+      setTimeout(typeChar, 100);
+    }
+  }
+  setTimeout(typeChar, 1000);
+}
+
+// Scroll animations for fade-in effects
+function initScrollAnimations() {
+  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+  const animatedElements = document.querySelectorAll('.cyber-card, .fade-in');
+  animatedElements.forEach(el => {
+    el.classList.add('fade-in');
+    observer.observe(el);
+  });
+}
+
+// Navigation functionality
+function initNavigation() {
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      if (targetSection) {
+        const navHeight = document.querySelector('.nav').offsetHeight;
+        const targetPosition = targetSection.offsetTop - navHeight - 20;
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        document
+          .querySelectorAll('.nav-link')
+          .forEach(navLink => navLink.classList.remove('active'));
+        this.classList.add('active');
+      }
+    });
+  });
+}
+
+// Matrix rain effect (subtle background animation)
+function initMatrixRain() {
+  if (window.innerWidth <= 768) return; // Skip on mobile
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.style.position = 'fixed';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
+  canvas.style.pointerEvents = 'none';
+  canvas.style.zIndex = '-1';
+  canvas.style.opacity = '0.05';
+  document.body.appendChild(canvas);
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+
+  const matrix = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()';
+  const matrixArray = matrix.split('');
+  const fontSize = 10;
+  let columns = Math.floor(canvas.width / fontSize);
+  let drops = [];
+
+  function initDrops() {
+    drops = [];
+    for (let x = 0; x < columns; x++) {
+      drops[x] = 1;
+    }
+  }
+  initDrops();
+
+  function draw() {
+    ctx.fillStyle = 'rgba(13, 17, 23, 0.04)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#39ff14';
+    ctx.font = fontSize + 'px monospace';
+    for (let i = 0; i < drops.length; i++) {
+      const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  const matrixInterval = setInterval(draw, 35);
+  window.addEventListener('resize', function () {
+    resizeCanvas();
+    columns = Math.floor(canvas.width / fontSize);
+    initDrops();
+  });
+}
+
+// Glitch effect for interactive elements
+function initGlitchEffect() {
+  const glitchElements = document.querySelectorAll('.cyber-glitch');
+  glitchElements.forEach(element => {
+    element.addEventListener('mouseenter', function () {
+      this.style.animation = 'glitch 0.3s ease-in-out';
+    });
+    element.addEventListener('animationend', function () {
+      this.style.animation = '';
+    });
+  });
+}
+
+// Enhanced cyberpunk UI effects
+function unnamedFunction() {
+  try {
+    const root = document.documentElement;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      // Simple glow pulse on nav logo
+      const logo = document.querySelector('.nav-logo');
+      if (logo) {
+        logo.style.transition = 'text-shadow 0.6s ease-in-out';
+        setInterval(() => {
+          logo.style.textShadow = '0 0 6px #39ff14, 0 0 12px #39ff14';
+          setTimeout(() => (logo.style.textShadow = 'none'), 300);
+        }, 3500);
+      }
+
+      // Animate counters if present
+      const counters = document.querySelectorAll('.stat-number[data-target]');
+      const animateCounter = el => {
+        const target = Number(el.getAttribute('data-target') || '0');
+        let current = 0;
+        const step = Math.max(1, Math.floor(target / 60));
+        const interval = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(interval);
+          }
+          el.textContent = String(current);
+        }, 16);
+      };
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.6 }
+      );
+      counters.forEach(c => observer.observe(c));
+    }
+
+    // Typewriter effect if present
+    const typewriter = document.getElementById('typewriter');
+    if (typewriter) {
+      const phrases = ['MCP Pioneer', 'AI Integration Specialist', 'Automation Architect'];
+      let idx = 0;
+      let pos = 0;
+      let forward = true;
+      const tick = () => {
+        const text = phrases[idx];
+        if (forward) {
+          pos++;
+          if (pos > text.length) {
+            forward = false;
+            setTimeout(tick, 900);
+            return;
+          }
+        } else {
+          pos--;
+          if (pos === 0) {
+            forward = true;
+            idx = (idx + 1) % phrases.length;
+          }
+        }
+        typewriter.textContent = text.slice(0, pos);
+        setTimeout(tick, forward ? 85 : 45);
+      };
+      tick();
+    }
+  } catch (err) {
+    // no-op fail safe
+    console.error('[enhanced-cyberpunk] init failed', err);
+  }
+}

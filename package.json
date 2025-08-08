@@ -2,7 +2,7 @@
   "name": "sparrow-ai-tech",
   "version": "0.2.1",
   "description": "Modern Astro + React web project with AI tools, infographics, and interactive features",
-  "private": "true",
+  "private": true,
   "type": "module",
   "homepage": "https://sparesparrow.github.io/sparrow-ai-tech/",
   "repository": {
@@ -11,19 +11,29 @@
   },
   "author": "sparesparrow <sparesparrow@protonmail.ch>",
   "license": "MIT",
-  "keywords": "[\"astro\", \"react\", \"tailwindcss\", \"ai-tools\", \"infographics\", \"mermaid\", \"chartjs\", \"github-pages\", \"static-site\"]",
+  "keywords": [
+    "astro",
+    "react",
+    "tailwindcss",
+    "ai-tools",
+    "infographics",
+    "mermaid",
+    "chartjs",
+    "github-pages",
+    "static-site"
+  ],
   "scripts": {
     "astro": "astro",
     "build": "astro check && astro build",
     "build:check": "NODE_OPTIONS=--max-old-space-size=4096 astro check && astro build",
     "check": "astro check",
     "clean": "rm -rf dist .astro node_modules/.cache cypress/screenshots cypress/videos",
-    "clean:install": "pnpm run clean && rm -rf node_modules pnpm-lock.yaml && pnpm install",
+    "clean:install": "npm run clean && rm -rf node_modules pnpm-lock.yaml && npm install",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "deps:check": "pnpm outdated",
-    "deps:audit": "pnpm audit --audit-level moderate",
-    "deploy": "pnpm run build && npx gh-pages -d dist",
+    "deps:check": "npm outdated",
+    "deps:audit": "npm audit --audit-level moderate",
+    "deploy": "npm run build && npx gh-pages -d dist",
     "dev": "astro dev",
     "dev:host": "astro dev --host --port 3000",
     "fix-urls": "echo 'URL fixing not needed for Astro + GitHub Pages'",
@@ -41,8 +51,8 @@
     "test:e2e:ci": "cypress run --browser chrome --headless",
     "validate": "echo 'URL validation not needed for Astro + GitHub Pages'",
     "verify": "echo 'Deployment verification not needed for Astro + GitHub Pages'",
-    "ci": "pnpm run lint && pnpm run test && pnpm run build",
-    "ci:e2e": "pnpm run test:e2e:ci"
+    "ci": "npm run lint && npm run test && npm run build",
+    "ci:e2e": "npm run test:e2e:ci"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
@@ -63,7 +73,6 @@
     "react-tooltip": "^5.29.1",
     "tailwindcss": "^3.4.17",
     "tippy.js": "^6.3.7",
-    "typescript": "^5.8.3",
     "yet-another-react-lightbox": "^3.25.0"
   },
   "devDependencies": {
@@ -84,7 +93,6 @@
     "autoprefixer": "^10.4.21",
     "babel-jest": "^29.7.0",
     "browserslist": "^4.25.1",
-    "chart": "^0.1.2",
     "cypress": "^13.17.0",
     "cypress-axe": "^1.6.0",
     "eslint": "^9.32.0",
@@ -115,5 +123,6 @@
   },
   "bugs": {
     "url": "https://github.com/sparesparrow/sparrow-ai-tech/issues"
-  }
+  },
+  "packageManager": "pnpm@10.11.1"
 }
