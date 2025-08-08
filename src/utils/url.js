@@ -20,7 +20,7 @@ export function getBaseUrl() {
 export function assetUrl(path) {
   const base = getBaseUrl();
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  return `${base}/${cleanPath}`;
+  return `${import.meta.env.BASE_URL}/${cleanPath}`;
 }
 
 /**
@@ -30,7 +30,7 @@ export function pageUrl(path) {
   const base = getBaseUrl();
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
 
-  return `${base}/${cleanPath}`;
+  return `${import.meta.env.BASE_URL}/${cleanPath}`;
 }
 
 /**
