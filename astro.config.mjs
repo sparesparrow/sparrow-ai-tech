@@ -3,29 +3,26 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  integrations: [
-    react(),
-    tailwind({
-      // Disable base styles since we have our own
-      applyBaseStyles: false,
-    })
-  ],
-  output: 'static',
+  integrations: [react(), tailwind({ applyBaseStyles: false })],
   site: 'https://sparesparrow.github.io',
   base: '/sparrow-ai-tech',
+  output: 'static',
   build: {
-    assets: 'assets'
+    assets: 'assets',
+    inlineStylesheets: 'auto',
   },
   vite: {
     resolve: {
       alias: {
-        '@': new URL('./src', import.meta.url).pathname
-      }
+        '@': './src',
+        '@components': './src/components',
+        '@layouts': './src/layouts',
+        '@styles': './src/styles',
+      },
     },
     build: {
-      rollupOptions: {
-        external: []
-      }
-    }
-  }
+      cssMinify: true,
+      minify: true,
+    },
+  },
 });
