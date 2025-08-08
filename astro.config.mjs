@@ -10,11 +10,16 @@ function resolve(path) {
 export default defineConfig({
   integrations: [react(), tailwind({ applyBaseStyles: false })],
   site: 'https://sparesparrow.github.io',
-  base: '/sparrow-ai-tech',
+  base: process.env.NODE_ENV === 'production' ? '/sparrow-ai-tech' : '/',
   output: 'static',
   build: {
-    assets: 'assets',
+    assets: '_astro',
     inlineStylesheets: 'auto',
+    rollupOptions: {
+      output: {
+        assetFileNames: '_astro/[name].[hash].[ext]',
+      },
+    },
   },
   vite: {
     resolve: {

@@ -1,9 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CyberpunkLayout from '../layouts/CyberpunkLayout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+
+import { pageUrl, assetUrl } from '../utils/url.js';
 import { url } from '../utils/url.js';
+import appScript from '../js/app.js?url';
 
+import LanguageToggle from '../components/core/LanguageToggle.jsx';
+
+import '../css/main.css'; // Direct import for processing
+import '../css/';
+import '../js/';
+import '../js/app';
+import '../js/app.js';
+
+export interface Props {
+  title?: string;
+}
+
+const { title = 'Sparrow AI Tech' } = Astro.props;
+const base = import.meta.env.BASE_URL || '/sparrow-ai-tech';
 const lang = Astro.url.searchParams.get('lang') || 'cs';
-
 const t = {
   en: {
     hero: 'Model Context Protocol Pioneer',

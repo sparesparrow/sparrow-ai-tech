@@ -36,7 +36,6 @@
     "deploy": "npm run build && npx gh-pages -d dist",
     "dev": "astro dev",
     "dev:host": "astro dev --host --port 3000",
-    "fix-urls": "echo 'URL fixing not needed for Astro + GitHub Pages'",
     "preview": "astro preview",
     "preview:host": "astro preview --host --port 4321",
     "lint": "eslint src",
@@ -49,8 +48,6 @@
     "test:e2e:open": "cypress open",
     "test:e2e:headless": "cypress run --headless",
     "test:e2e:ci": "cypress run --browser chrome --headless",
-    "validate": "echo 'URL validation not needed for Astro + GitHub Pages'",
-    "verify": "echo 'Deployment verification not needed for Astro + GitHub Pages'",
     "ci": "npm run lint && npm run test && npm run build",
     "ci:e2e": "npm run test:e2e:ci"
   },
