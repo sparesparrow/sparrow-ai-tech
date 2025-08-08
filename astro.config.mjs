@@ -2,8 +2,11 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import { fileURLToPath } from 'node:url';
-const root = fileURLToPath(new URL('.', import.meta.url));
-console.log('root: ', root);
+
+function resolve(path) {
+  return fileURLToPath(new URL(path, import.meta.url));
+}
+
 export default defineConfig({
   integrations: [react(), tailwind({ applyBaseStyles: false })],
   site: 'https://sparesparrow.github.io',
@@ -16,14 +19,19 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url)),
-        '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
-        '@layouts': fileURLToPath(new URL('./src/layouts', import.meta.url)),
-        '@styles': fileURLToPath(new URL('./src/styles', import.meta.url)),
-        '@assets': fileURLToPath(new URL('./public/assets', import.meta.url)),
-        '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),
-        '@data': fileURLToPath(new URL('./src/data', import.meta.url)),
-        '@content': fileURLToPath(new URL('./src/content', import.meta.url)),
+        '@': resolve('./src'),
+        '@components': resolve('./src/components'),
+        '@core': resolve('./src/components/core'),
+        '@ui': resolve('./src/components/ui'),
+        '@features': resolve('./src/components/features'),
+        '@charts': resolve('./src/components/charts'),
+        '@markdown': resolve('./src/components/markdown'),
+        '@layouts': resolve('./src/layouts'),
+        '@styles': resolve('./src/styles'),
+        '@utils': resolve('./src/utils'),
+        '@data': resolve('./src/data'),
+        '@content': resolve('./src/content'),
+        '@assets': resolve('./public/assets'),
       },
     },
   },

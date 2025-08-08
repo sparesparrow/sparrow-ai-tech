@@ -5,7 +5,11 @@
       "type": "object",
       "properties": {
         "title": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1,
+          "errorMessage": {
+            "minLength": "title is required"
+          }
         },
         "description": {
           "type": "string"
@@ -30,12 +34,23 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "default": []
+        },
+        "draft": {
+          "type": "boolean",
+          "default": false
+        },
+        "slug": {
+          "type": "string"
         },
         "$schema": {
           "type": "string"
         }
       },
+      "required": [
+        "title"
+      ],
       "additionalProperties": false
     }
   },

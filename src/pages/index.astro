@@ -1,12 +1,13 @@
 ---
-import Layout from '@layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro';
+import { url } from '../utils/url.js';
 
 const lang = Astro.url.searchParams.get('lang') || 'cs';
 
 const t = {
   en: {
     hero: 'Model Context Protocol Pioneer',
-    subtitle: 'AI-driven tooling for modern web workflows',
+    subtitle: 'AI-driven tooling sfor modern web workflows',
     explore: 'Explore Projects',
     contact: 'Contact',
     quotes: [
@@ -174,5 +175,5 @@ const t = {
 
 <style>
   /* Import the main cyberpunk stylesheet */
-  @import url('/styles/main.css');
+  @import url('../styles/main.css');
 </style>

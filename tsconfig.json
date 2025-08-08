@@ -1,9 +1,26 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "moduleResolution": "node",
     "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@core/*": ["src/components/core/*"],
+      "@ui/*": ["src/components/ui/*"],
+      "@features/*": ["src/components/features/*"],
+      "@charts/*": ["src/components/charts/*"],
+      "@markdown/*": ["src/components/markdown/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@styles/*": ["src/styles/*"],
+      "@utils/*": ["src/utils/*"],
+      "@data/*": ["src/data/*"],
+      "@content/*": ["src/content/*"],
+      "@assets/*": ["public/assets/*"]
+    },
     "types": []
   },
-  "include": ["src", "astro.config.mjs", "env.d.ts"]
+  "include": ["src/**/*", "**/*.astro", "astro.config.mjs", "env.d.ts"],
+  "exclude": ["dist", "node_modules", "public"]
 }

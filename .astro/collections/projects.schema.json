@@ -5,19 +5,29 @@
       "type": "object",
       "properties": {
         "title": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1,
+          "errorMessage": {
+            "minLength": "title is required"
+          }
         },
         "description": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1,
+          "errorMessage": {
+            "minLength": "description is required"
+          }
         },
         "repository": {
-          "type": "string"
+          "type": "string",
+          "format": "uri"
         },
         "technologies": {
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "default": []
         },
         "$schema": {
           "type": "string"
