@@ -10,10 +10,10 @@ const t = {
     explore: 'Explore Projects',
     contact: 'Contact',
     quotes: [
-      '"The state distorts education by its mere existence; it cannot help but be ideological." — Consequences of State Schooling',
-      '"Entrepreneurs do not need state incentives to prosper, only the absence of state obstacles." — The State vs Entrepreneurship',
-      '"Cybercrime is an argument for surveillance only to those who forget that crime and state are Siamese twins." — Cybercrime & State Oversight',
-      '"A willingness to take risks cannot be legislated away—it only moves underground." — On Risk-taking',
+      '"The state distorts education by its mere existence; it cannot help but be ideological."',
+      '"Entrepreneurs do not need state incentives to prosper, only the absence of state obstacles."',
+      '"Cybercrime is an argument for mass surveillance."',
+      '"Those who would give up essential Liberty, to purchase a little temporary Safety, deserve neither Liberty nor Safety." - Benjamin Franklin',
     ],
   },
   cs: {
@@ -22,10 +22,10 @@ const t = {
     explore: 'Prozkoumat projekty',
     contact: 'Kontakt',
     quotes: [
-      '„Stát svou existencí deformuje vzdělávání – nikoli proto, že by byl špatný učitel, ale protože nemůže nebýt ideologem." — Následky státního školství',
-      '„Podnikatelé k prosperitě nepotřebují státní pobídky, nýbrž absenci státních překážek." — Stát proti podnikání',
-      '„Kyberkriminalita je ARGu-ment pro větší dohled jen pro ty, kteří nepochopili, že zločin a stát jsou siamská dvojčata." — Kyberkriminalita…',
-      '„Ochota riskovat nelze vymýtit legislativou – lze ji pouze přesunout do ilegality." — Ochota riskovat',
+      '„Stát svou existencí deformuje vzdělávání – nikoli proto, že by byl špatný učitel, ale protože nemůže nebýt ideologem."',
+      '„Podnikatelé k prosperitě nepotřebují státní pobídky, nýbrž absenci státních překážek."',
+      '„Kyberkriminalita je klíčem ke státnímu dohledu."',
+      '„Ti, kteří se vzdají základní svobody, aby získali trochu dočasné bezpečnosti, si nezaslouží ani svobodu, ani bezpečnost." - Benjamin Franklin',
     ],
   },
 }[lang];
@@ -132,7 +132,7 @@ const t = {
         <h2 class="section-title">Filozofie & Citace</h2>
         <div class="philosophy-quotes">
           {
-            t.quotes.map(quote => (
+            t?.quotes.map(quote => (
               <div class="quote-item">
                 <p class="quote-text">{quote}</p>
               </div>

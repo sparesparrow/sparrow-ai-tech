@@ -1,6 +1,3 @@
-// Main application JavaScript
-console.log('Sparrow AI Tech - Application loaded');
-// Enhanced Cyberpunk Interactive Features with Real Content
 document.addEventListener('DOMContentLoaded', function () {
   initTypewriter();
   initScrollAnimations();
@@ -11,16 +8,15 @@ document.addEventListener('DOMContentLoaded', function () {
   initMatrixRain();
   initTerminalAnimation();
   initFormHandling();
+  initGlitchEffect();
 });
 
 // Typewriter effect with real Czech text
 function initTypewriter() {
   const typewriterElement = document.getElementById('typewriter');
   if (!typewriterElement) return;
-
   const text = 'Automatizační šílenec, který se nikdy nenudí';
   let index = 0;
-
   function typeChar() {
     if (index < text.length) {
       typewriterElement.textContent += text.charAt(index);
@@ -639,126 +635,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-
-// Enhanced Cyberpunk Interactive Features for Astro
-document.addEventListener('DOMContentLoaded', function () {
-  initTypewriter();
-  initScrollAnimations();
-  initNavigation();
-  initMatrixRain();
-  initGlitchEffect();
-});
-
-// Typewriter effect for hero section
-function initTypewriter() {
-  const typewriterElement = document.getElementById('typewriter');
-  if (!typewriterElement) return;
-  const text = 'Automatizační šílenec, který se nikdy nenudí';
-  let index = 0;
-  function typeChar() {
-    if (index < text.length) {
-      typewriterElement.textContent += text.charAt(index);
-      index++;
-      setTimeout(typeChar, 100);
-    }
-  }
-  setTimeout(typeChar, 1000);
-}
-
-// Scroll animations for fade-in effects
-function initScrollAnimations() {
-  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-  const animatedElements = document.querySelectorAll('.cyber-card, .fade-in');
-  animatedElements.forEach(el => {
-    el.classList.add('fade-in');
-    observer.observe(el);
-  });
-}
-
-// Navigation functionality
-function initNavigation() {
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      if (targetSection) {
-        const navHeight = document.querySelector('.nav').offsetHeight;
-        const targetPosition = targetSection.offsetTop - navHeight - 20;
-        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-        document
-          .querySelectorAll('.nav-link')
-          .forEach(navLink => navLink.classList.remove('active'));
-        this.classList.add('active');
-      }
-    });
-  });
-}
-
-// Matrix rain effect (subtle background animation)
-function initMatrixRain() {
-  if (window.innerWidth <= 768) return; // Skip on mobile
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  canvas.style.position = 'fixed';
-  canvas.style.top = '0';
-  canvas.style.left = '0';
-  canvas.style.width = '100%';
-  canvas.style.height = '100%';
-  canvas.style.pointerEvents = 'none';
-  canvas.style.zIndex = '-1';
-  canvas.style.opacity = '0.05';
-  document.body.appendChild(canvas);
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resizeCanvas();
-
-  const matrix = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()';
-  const matrixArray = matrix.split('');
-  const fontSize = 10;
-  let columns = Math.floor(canvas.width / fontSize);
-  let drops = [];
-
-  function initDrops() {
-    drops = [];
-    for (let x = 0; x < columns; x++) {
-      drops[x] = 1;
-    }
-  }
-  initDrops();
-
-  function draw() {
-    ctx.fillStyle = 'rgba(13, 17, 23, 0.04)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#39ff14';
-    ctx.font = fontSize + 'px monospace';
-    for (let i = 0; i < drops.length; i++) {
-      const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
-    }
-  }
-
-  const matrixInterval = setInterval(draw, 35);
-  window.addEventListener('resize', function () {
-    resizeCanvas();
-    columns = Math.floor(canvas.width / fontSize);
-    initDrops();
-  });
-}
 
 // Glitch effect for interactive elements
 function initGlitchEffect() {
