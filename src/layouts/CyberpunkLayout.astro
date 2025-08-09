@@ -12,7 +12,10 @@ const {
   description = 'MCP Pioneer & AI Integration Specialist – Automatizační šílenec specializující se na Model Context Protocol, AI-driven development a bezpečnou správu serverů.',
 } = Astro.props;
 
-const lang = Astro.url?.searchParams.get('lang') || 'en';
+const lang = Astro.url?.searchParams.get('lang') || 'cs';
+const baseUrl = 'https://sparesparrow.github.io/sparrow-ai-tech';
+const pathname = Astro.url?.pathname || '/';
+const canonical = `${baseUrl}${pathname}`;
 ---
 
 <!doctype html>
@@ -38,6 +41,11 @@ const lang = Astro.url?.searchParams.get('lang') || 'en';
     <meta property="twitter:url" content="https://sparesparrow.github.io/sparrow-ai-tech/" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" href={`${baseUrl}/?lang=en`} hreflang="en" />
+    <link rel="alternate" href={`${baseUrl}/?lang=cs`} hreflang="cs" />
+    <link rel="alternate" href={canonical} hreflang="x-default" />
 
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
     <title>{title}</title>

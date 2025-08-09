@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
 
 export default function LanguageToggle() {
-  const [lang, setLang] = useState('en');
+  const [lang, setLang] = useState('cs');
   useEffect(() => {
-    const stored = localStorage.getItem('lang') || 'en';
-    setLang(stored);
-    document.documentElement.lang = stored;
+    try {
+      const currentUrl = new URL(window.location.href);
+      const urlLang = currentUrl.searchParams.get('lang');
+      const stored = localStorage.getItem('lang');
+      const next = urlLang || stored || 'cs';
+      setLang(next);
+      document.documentElement.lang = next;
+    } catch {
+      setLang('cs');
+      document.documentElement.lang = 'cs';
+    }
   }, []);
   const switchLang = () => {
     const next = lang === 'en' ? 'cs' : 'en';

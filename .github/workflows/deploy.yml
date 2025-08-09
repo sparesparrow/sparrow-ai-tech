@@ -12,12 +12,12 @@ permissions:
 
 concurrency:
   group: 'pages'
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: 📥 Checkout repository
@@ -47,6 +47,20 @@ jobs:
         run: pnpm run build
         env:
           NODE_OPTIONS: '--max-old-space-size=4096'
+
+      - name: 📥 Download latest CV (Markdown)
+        run: |
+          curl -L https://raw.githubusercontent.com/sparesparrow/cv/main/README.md -o cv.md || echo '# CV' > cv.md
+
+      - name: 📦 Install Pandoc and TeX (for PDF generation)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-xetex texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+
+      - name: 🧾 Generate CV PDF into dist/cv.pdf
+        run: |
+          mkdir -p dist
+          pandoc cv.md -o dist/cv.pdf --pdf-engine=xelatex --variable geometry:margin=1in --variable fontsize=11pt || true
 
       - name: 📤 Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

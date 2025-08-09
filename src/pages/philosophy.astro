@@ -135,7 +135,130 @@ const t = {
   cs: {
     title: 'Filosofie & Intelektuální rámec',
     subtitle: 'Syntéza rakouské ekonomie, bezpečnosti AI, neurověd a pragmatického inženýrství',
-    // Czech translations would go here
+    thinkers: {
+      rothbard: {
+        name: 'Murray Rothbard',
+        domain: 'Anarchokapitalismus & Rakouská ekonomie',
+        keyIdeas: [
+          'Stát jako instituce organizované agrese',
+          'Praxeologie jako logika lidského jednání',
+          'Svobodný trh jako nejplnější vyjádření anarchismu',
+          'Vlastnická práva jako základ svobody',
+        ],
+        influence:
+          'Formuje můj přístup k decentralizovaným systémům a skepsi vůči centralizované kontrole v AI governance.',
+        quote:
+          '"Jedinou životaschopnou alternativou ke státu je společnost založená čistě na dobrovolné akci, zcela neomezené násilím či hrozbou násilí."',
+      },
+      mises: {
+        name: 'Ludwig von Mises',
+        domain: 'Ekonomická kalkulace & Praxeologie',
+        keyIdeas: [
+          'Problém ekonomické kalkulace v socialistických systémech',
+          'Ceny jako nositelé informací a znalostí',
+          'Metodologický individualismus',
+          'Spontánní řád vznikající z individuálních akcí',
+        ],
+        influence:
+          'Ovlivňuje mé chápání koordinace distribuovaných systémů bez centrálního plánování, aplikovatelné na AI orchestraci.',
+        quote: '"Racionální ekonomická aktivita je v socialistickém společenství nemožná."',
+      },
+      amodei: {
+        name: 'Dario Amodei',
+        domain: 'Bezpečnost AI & Ústavní AI',
+        keyIdeas: [
+          'Politiky zodpovědného škálování vývoje AI',
+          'Ústavní AI pro sladění s hodnotami',
+          'Výzkum interpretovatelnosti pro transparentnost',
+          'Závod porozumění schopnostem AI versus rizikům',
+        ],
+        influence:
+          'Směruje můj přístup k budování bezpečných, interpretovatelných AI systémů s odpovídajícími zárukami a evaluací.',
+        quote:
+          '"Jsme v závodě o porozumění AI, jak se stává mocnější. Naše chápání musí držet krok s naší schopností věci stavět."',
+      },
+      ng: {
+        name: 'Andrew Ng',
+        domain: 'Strojové učení & Nasazování AI',
+        keyIdeas: [
+          'Datově-centristický vývoj AI',
+          'AI jako nová elektřina',
+          'Demokratizace přístupu k AI a vzdělání',
+          'Důraz na praktické aplikace AI',
+        ],
+        influence:
+          'Zdůrazňuje důležitost dostat AI systémy do produkce a řešit skutečné problémy, nikoli jen dělat výzkum.',
+        quote:
+          '"AI je nová elektřina. Stejně jako elektřina transformovala jedno odvětví za druhým před 100 lety, AI udělá totéž."',
+      },
+      primeagen: {
+        name: 'ThePrimeagen',
+        domain: 'Softwarové inženýrství & Developer Experience',
+        keyIdeas: [
+          'Buď inženýr, ne frameworker',
+          'Pochop základy před abstrakcemi',
+          'Výkon a efektivita jsou důležité',
+          'Nástroje pro vývojáře formují způsob myšlení',
+        ],
+        influence:
+          'Posiluje zaměření na inženýrské základy a budování nástrojů, které násobí produktivitu vývojářů.',
+        quote:
+          '"Měl bys se učit o věcech jako I/O, sokety, event loop, buffery a hashování."',
+      },
+      fridman: {
+        name: 'Lex Fridman',
+        domain: 'AI výzkum & Technika zaměřená na člověka',
+        keyIdeas: [
+          'Rozhovory jako cesta k porozumění',
+          'Láska a empatie v tvorbě technologií',
+          'Dlouhodobé uvažování o dopadech AI',
+          'Interdisciplinární přístup ke složitým problémům',
+        ],
+        influence:
+          'Inspiruje humanistický přístup k technologiím a důležitost rozmanitých perspektiv při vývoji AI.',
+        quote:
+          '"Nejkrásnější na inženýrství je, že stavíš nástroje, které rozšiřují lidské schopnosti."',
+      },
+      huberman: {
+        name: 'Andrew Huberman',
+        domain: 'Neurovědy & Lidská optimalizace',
+        keyIdeas: [
+          'Neuroplasticita spuštěná soustředěnou pozorností',
+          'Protokoly před motivací při změně chování',
+          'Na vědě založený přístup k optimalizaci',
+          'Stres jako nástroj adaptace',
+        ],
+        influence: 'Informuje návrh učících systémů a rozhraní člověk–AI využívajících principy neurověd.',
+        quote: '"Mentální námaha, kterou cítíš při učení, je spouštěčem neuroplasticity."',
+      },
+      slush: {
+        name: 'Slush ekosystém',
+        domain: 'Startupová kultura & Inovace',
+        keyIdeas: [
+          'Stavět pro skutečné uživatele se skutečnými problémy',
+          'Nordický přístup k udržitelné inovaci',
+          'Technologie jako nástroj zlepšení společnosti',
+          'Spolupráce místo hry s nulovým součtem',
+        ],
+        influence:
+          'Zdůrazňuje důležitost validace trhu a budování technologií, které slouží skutečným lidským potřebám.',
+        quote: '"Inovace bez implementace je jen drahý výzkum."',
+      },
+      mrrobot: {
+        name: 'Mr. Robot filosofie',
+        domain: 'Kyberbezpečnost & Systémové myšlení',
+        keyIdeas: [
+          'Porozuměním systému systém měníš',
+          'Informační bezpečnost jako společenská odpovědnost',
+          'Mocenské struktury se odrážejí v technologiích',
+          'Individuální agentnost v komplexních systémech',
+        ],
+        influence:
+          'Utvrzuje mindset „security-first“ a povědomí, že technická rozhodnutí mají širší společenské dopady.',
+        quote:
+          '"Svět je nebezpečné místo, ne kvůli těm, kteří páchají zlo, ale kvůli těm, kteří se dívají a nedělají nic."',
+      },
+    },
   },
 }[lang];
 ---
@@ -206,7 +329,7 @@ const t = {
     <section class="bg-slate-900/50 py-20">
       <div class="container mx-auto px-6">
         <div class="mb-16 text-center">
-          <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">Synthesis: Applied Philosophy</h2>
+          <h2 class="mb-6 text-3c font-bold text-white md:text-4xl">Synthesis: Applied Philosophy</h2>
           <p class="mx-auto max-w-4xl text-lg text-slate-300">
             How these diverse intellectual influences converge into a coherent approach to building AI systems and
             technology.

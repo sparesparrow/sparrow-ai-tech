@@ -24,6 +24,10 @@ const t = {
     subtitle: 'AI-driven tooling for modern web workflows',
     explore: 'Explore Projects',
     contact: 'Contact',
+    writingsTitle: 'Writings',
+    writingsIntro: 'Selected essays and commentary on economics, AI, and engineering.',
+    writingsCta: 'Read on Stoky',
+    writingsUrl: 'https://stoky.urza.cz/autori/sparesparrow-937',
     quotes: [
       'Rothbard: "Capitalism is the fullest expression of anarchism, and anarchism is the fullest expression of capitalism."',
       'Mises: "Rational economic activity is impossible in a socialist commonwealth." — The cornerstone of Austrian praxeology.',
@@ -87,6 +91,10 @@ const t = {
     subtitle: 'AI nástroje pro moderní webové workflow',
     explore: 'Prozkoumat projekty',
     contact: 'Kontakt',
+    writingsTitle: 'Texty',
+    writingsIntro: 'Vybrané eseje a komentáře o ekonomii, AI a inženýrství.',
+    writingsCta: 'Číst na Stoky',
+    writingsUrl: 'https://stoky.urza.cz/autori/sparesparrow-937',
     quotes: [
       'Rothbard: "Kapitalismus je nejplnějším vyjádřením anarchismu a anarchismus nejplnějším vyjádřením kapitalismu."',
       'Mises: "Racionální ekonomická aktivita je v socialistické společnosti nemožná." — Základ rakouské praxeologie.',
@@ -423,6 +431,22 @@ const t = {
       </div>
     </section>
 
+    <!-- Writings -->
+    <section class="py-20">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">{t?.writingsTitle}</h2>
+        <p class="mx-auto mb-8 max-w-2xl text-slate-300">{t?.writingsIntro}</p>
+        <a
+          href={t?.writingsUrl}
+          target="_blank"
+          rel="noopener"
+          class="rounded-lg border border-slate-600 bg-slate-800 px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-slate-700"
+        >
+          {t?.writingsCta}
+        </a>
+      </div>
+    </section>
+
     <!-- Contact -->
     <section class="py-20">
       <div class="container mx-auto px-6 text-center">
@@ -449,10 +473,12 @@ const t = {
               Professional CV
             </a>
             <a
-              href="/sparrow-ai-tech/mermaid-editor"
+              href={t?.writingsUrl}
+              target="_blank"
+              rel="noopener"
               class="rounded-lg border border-purple-500/50 px-8 py-3 font-medium text-purple-400 transition-all duration-300 hover:bg-purple-500/10"
             >
-              MCP Infographics
+              {t?.writingsTitle}
             </a>
           </div>
         </div>
