@@ -24,6 +24,14 @@ const t = {
     subtitle: 'AI-driven tooling for modern web workflows',
     explore: 'Explore Projects',
     contact: 'Contact',
+    viewPhilosophy: 'Philosophy',
+    cv: 'Professional CV',
+    stats: {
+      projects: 'MCP Projects',
+      coverage: '↑ Test Coverage',
+      response: '% Faster Response',
+      bugs: '% ↓ Bugs',
+    },
     quotes: [
       'Rothbard: "Capitalism is the fullest expression of anarchism, and anarchism is the fullest expression of capitalism."',
       'Mises: "Rational economic activity is impossible in a socialist commonwealth." — The cornerstone of Austrian praxeology.',
@@ -87,6 +95,14 @@ const t = {
     subtitle: 'AI nástroje pro moderní webové workflow',
     explore: 'Prozkoumat projekty',
     contact: 'Kontakt',
+    viewPhilosophy: 'Filosofie',
+    cv: 'Profesní CV',
+    stats: {
+      projects: 'MCP Projekty',
+      coverage: '↑ Pokrytí testy',
+      response: '% Rychlejší odezva',
+      bugs: '% ↓ Chyb',
+    },
     quotes: [
       'Rothbard: "Kapitalismus je nejplnějším vyjádřením anarchismu a anarchismus nejplnějším vyjádřením kapitalismu."',
       'Mises: "Racionální ekonomická aktivita je v socialistické společnosti nemožná." — Základ rakouské praxeologie.',
@@ -176,19 +192,19 @@ const t = {
           <div class="mx-auto mb-16 grid max-w-4xl grid-cols-2 gap-6 md:grid-cols-4">
             <div class="rounded-lg border border-cyan-500/30 bg-slate-800/50 p-4 backdrop-blur-sm">
               <div class="text-2xl font-bold text-cyan-400">15+</div>
-              <div class="text-sm text-slate-300">MCP Projects</div>
+              <div class="text-sm text-slate-300">{t?.stats.projects}</div>
             </div>
             <div class="rounded-lg border border-purple-500/30 bg-slate-800/50 p-4 backdrop-blur-sm">
               <div class="text-2xl font-bold text-purple-400">98%</div>
-              <div class="text-sm text-slate-300">↑ Test Coverage</div>
+              <div class="text-sm text-slate-300">{t?.stats.coverage}</div>
             </div>
             <div class="rounded-lg border border-green-500/30 bg-slate-800/50 p-4 backdrop-blur-sm">
               <div class="text-2xl font-bold text-green-400">3x</div>
-              <div class="text-sm text-slate-300">% Faster Response</div>
+              <div class="text-sm text-slate-300">{t?.stats.response}</div>
             </div>
             <div class="rounded-lg border border-orange-500/30 bg-slate-800/50 p-4 backdrop-blur-sm">
               <div class="text-2xl font-bold text-orange-400">-85%</div>
-              <div class="text-sm text-slate-300">% ↓ Bugs</div>
+              <div class="text-sm text-slate-300">{t?.stats.bugs}</div>
             </div>
           </div>
 
@@ -203,13 +219,13 @@ const t = {
               href="/sparrow-ai-tech/cv.pdf"
               class="rounded-lg border border-cyan-500/50 px-8 py-3 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
             >
-              Professional CV
+              {t?.cv}
             </a>
             <a
-              href="#philosophy"
+              href="/sparrow-ai-tech/philosophy"
               class="rounded-lg border border-purple-500/50 px-8 py-3 font-medium text-purple-400 transition-all duration-300 hover:bg-purple-500/10"
             >
-              Philosophy
+              {t?.viewPhilosophy}
             </a>
           </div>
         </div>
@@ -323,7 +339,7 @@ const t = {
     <section id="philosophy" class="bg-slate-900/50 py-20">
       <div class="container mx-auto px-6">
         <div class="mb-16 text-center">
-          <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">{t?.philosophyTitle}</h2>
+          <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">{t?.viewPhilosophy}</h2>
           <p class="mx-auto max-w-3xl text-lg text-slate-300">{t?.philosophyIntro}</p>
         </div>
 
@@ -446,7 +462,7 @@ const t = {
               href="/sparrow-ai-tech/cv.pdf"
               class="rounded-lg border border-cyan-500/50 px-8 py-3 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
             >
-              Professional CV
+              {t?.cv}
             </a>
             <a
               href="/sparrow-ai-tech/mermaid-editor"

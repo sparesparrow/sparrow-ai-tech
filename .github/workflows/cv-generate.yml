@@ -16,11 +16,15 @@ jobs:
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
-        
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
       - name: 📥 Download latest CV from sparesparrow/cv
         run: |
           curl -L https://raw.githubusercontent.com/sparesparrow/cv/main/README.md -o cv.md
-          
+          mkdir -p public
+      
       - name: 📦 Install LaTeX and Pandoc
         run: |
           sudo apt-get update
@@ -40,7 +44,17 @@ jobs:
             --variable geometry:margin=1in \
             --variable fontsize=11pt \
             || pandoc cv.md -o dist/cv.pdf --pdf-engine=xelatex
-            
+          cp dist/cv.pdf public/cv.pdf
+      
+      - name: 💾 Commit cv.pdf into public/
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(cv): update public/cv.pdf [automated]"
+          file_pattern: "public/cv.pdf"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+      
       - name: 📤 Upload CV PDF artifact
         uses: actions/upload-artifact@v4
         with:
@@ -52,5 +66,5 @@ jobs:
         if: github.ref == "refs/heads/main"
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/cv.pdf
+          path: dist
 

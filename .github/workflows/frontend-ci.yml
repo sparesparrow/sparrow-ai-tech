@@ -13,10 +13,14 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: frontend-ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: 📥 Checkout repository
@@ -34,8 +38,16 @@ jobs:
           node-version: '22'
           cache: 'pnpm'
 
+      - name: ♻️ Restore Astro cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .astro
+            node_modules/.cache
+          key: astro-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+
       - name: 📦 Install dependencies
-        run: pnpm install # Removed --frozen-lockfile to allow lockfile generation if missing
+        run: pnpm install
 
       - name: 🔍 Security audit
         run: pnpm audit --audit-level high
@@ -47,13 +59,18 @@ jobs:
       - name: 🧪 Run unit tests
         run: pnpm run test
 
-      - name: 🎭 Install Playwright browsers
+      - name: 🎭 Install Playwright (PRs only)
+        if: github.event_name == 'pull_request'
         run: pnpm exec playwright install --with-deps chromium
 
       - name: 🔨 Build application
         run: pnpm run build
         env:
           NODE_OPTIONS: '--max-old-space-size=4096'
+
+      - name: 💡 Lighthouse (PRs only)
+        if: github.event_name == 'pull_request'
+        run: pnpm exec lhci autorun || echo "LHCI warnings ignored in PRs"
 
       - name: 📤 Upload build artifacts
         uses: actions/upload-artifact@v4

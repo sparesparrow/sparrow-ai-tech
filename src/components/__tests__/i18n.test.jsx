@@ -28,13 +28,7 @@ const MockHeaderComponent = () => {
   );
 };
 
-// Mock the Header component
-jest.mock('../Header.jsx', () => {
-  return {
-    __esModule: true,
-    default: MockHeaderComponent,
-  };
-});
+
 
 describe('i18n Integration', () => {
   test('should render header with translation', () => {

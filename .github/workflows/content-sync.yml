@@ -10,6 +10,14 @@ permissions:
   contents: write
   pull-requests: write
 
+env:
+  REPOS: |
+    sparesparrow/human-action
+    sparesparrow/mcp-prompts
+    sparesparrow/mcp-prompts-rs
+    sparesparrow/mcp-project-orchestrator
+    sparesparrow/mcp-router
+
 jobs:
   sync-documentation:
     runs-on: ubuntu-latest
@@ -20,6 +28,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          ref: ${{ github.ref }}
+          persist-credentials: true
           
       - name: 📦 Setup Node.js
         uses: actions/setup-node@v4
@@ -31,30 +42,30 @@ jobs:
         
       - name: 🔄 Sync documentation from repositories
         run: |
-          # Repository list - easily configurable
-          REPOS=(
-            "sparesparrow/human-action"
-            "sparesparrow/mcp-prompts" 
-            "sparesparrow/mcp-prompts-rs"
-            "sparesparrow/mcp-project-orchestrator"
-            "sparesparrow/mcp-router"
-          )
-          
-          for REPO_PATH in "${REPOS[@]}"; do
+          set -e
+          TEMP_BASE="temp_sync"
+          mkdir -p "$TEMP_BASE"
+          echo "$REPOS" | while read -r REPO_PATH; do
+            [ -z "$REPO_PATH" ] && continue
             REPO_NAME=$(echo $REPO_PATH | cut -d"/" -f2)
             CLONE_URL="https://github.com/${REPO_PATH}.git"
-            TEMP_DIR="temp_${REPO_NAME}"
-            
+            TEMP_DIR="${TEMP_BASE}/${REPO_NAME}"
             echo "📥 Syncing documentation for ${REPO_NAME}..."
-            
-            # Clone with error handling
-            if git clone --depth 1 $CLONE_URL $TEMP_DIR; then
-              SOURCE_DOC="${TEMP_DIR}/README.md"
-              DEST_DOC="src/content/projects/${REPO_NAME}.md"
-              
-              if [ -f "$SOURCE_DOC" ]; then
-                # Create Astro frontmatter
-                cat > "$DEST_DOC" << DOCEOF
+            for attempt in 1 2 3; do
+              if git clone --depth 1 $CLONE_URL $TEMP_DIR; then
+                break
+              fi
+              echo "Retrying clone (${attempt}) for ${REPO_NAME}..."
+              sleep 2
+            done
+            if [ ! -d "$TEMP_DIR" ]; then
+              echo "❌ Failed to clone ${REPO_NAME}"
+              continue
+            fi
+            SOURCE_DOC="${TEMP_DIR}/README.md"
+            DEST_DOC="src/content/projects/${REPO_NAME}.md"
+            if [ -f "$SOURCE_DOC" ]; then
+              cat > "$DEST_DOC" << DOCEOF
 ---
 title: "${REPO_NAME}"
 description: "Documentation for the ${REPO_NAME} project"
@@ -64,27 +75,23 @@ tags: ["mcp", "automation", "project"]
 ---
 
 DOCEOF
-                
-                # Append README content
-                cat "$SOURCE_DOC" >> "$DEST_DOC"
-                echo "✅ Successfully synced ${REPO_NAME}"
-              else
-                echo "⚠️ README.md not found in ${REPO_NAME}"
-              fi
+              cat "$SOURCE_DOC" >> "$DEST_DOC"
+              echo "✅ Successfully synced ${REPO_NAME}"
             else
-              echo "❌ Failed to clone ${REPO_NAME}"
+              echo "⚠️ README.md not found in ${REPO_NAME}"
             fi
-            
-            # Cleanup
-            rm -rf $TEMP_DIR
+            rm -rf "$TEMP_DIR"
           done
-          
-      - name: 💾 Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+          rmdir "$TEMP_BASE" 2>/dev/null || true
+        
+      - name: 💾 Create PR with changes
+        uses: peter-evans/create-pull-request@v6
         with:
-          commit_message: "docs: sync external repository documentation [automated]"
-          file_pattern: "src/content/projects/*.md"
-          commit_user_name: "github-actions[bot]"
-          commit_user_email: "github-actions[bot]@users.noreply.github.com"
-          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          commit-message: "docs: sync external repository documentation [automated]"
+          title: "docs: sync external repository documentation"
+          body: "Automated sync of README.md from configured repositories."
+          branch: chore/content-sync
+          delete-branch: true
+          add-paths: |
+            src/content/projects/*.md
 

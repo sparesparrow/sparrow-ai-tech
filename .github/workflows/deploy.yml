@@ -36,7 +36,7 @@ jobs:
           cache: 'pnpm'
 
       - name: 📦 Install dependencies
-        run: pnpm install # Removed --frozen-lockfile
+        run: pnpm install
 
       - name: ✅ Run quality checks
         run: |
@@ -47,6 +47,9 @@ jobs:
         run: pnpm run build
         env:
           NODE_OPTIONS: '--max-old-space-size=4096'
+
+      - name: 🧩 Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: 📤 Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

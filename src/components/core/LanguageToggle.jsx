@@ -1,17 +1,30 @@
 import { useState, useEffect } from 'react';
 
 export default function LanguageToggle() {
-  const [lang, setLang] = useState('en');
+  const getInitialLang = () => {
+    try {
+      const url = new URL(window.location.href);
+      const fromUrl = url.searchParams.get('lang');
+      if (fromUrl) return fromUrl;
+    } catch {}
+    const stored = typeof localStorage !== 'undefined' ? localStorage.getItem('lang') : null;
+    return stored || 'cs';
+  };
+
+  const [lang, setLang] = useState('cs');
+
   useEffect(() => {
-    const stored = localStorage.getItem('lang') || 'en';
-    setLang(stored);
-    document.documentElement.lang = stored;
+    const initial = getInitialLang();
+    setLang(initial);
+    document.documentElement.lang = initial;
   }, []);
+
   const switchLang = () => {
     const next = lang === 'en' ? 'cs' : 'en';
     setLang(next);
-    localStorage.setItem('lang', next);
-    // Update URL param so Astro can render correct language on load
+    try {
+      localStorage.setItem('lang', next);
+    } catch {}
     try {
       const url = new URL(window.location.href);
       url.searchParams.set('lang', next);
@@ -21,6 +34,7 @@ export default function LanguageToggle() {
       location.reload();
     }
   };
+
   return (
     <button className="btn btn--outline" onClick={switchLang} data-testid="language-toggle" data-cy="language-toggle">
       {lang === 'en' ? 'Čeština' : 'English'}
