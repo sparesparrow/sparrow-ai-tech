@@ -1438,3 +1438,25 @@ section {
 html {
   scroll-behavior: smooth;
 }
+
+/* Force cyberpunk theme background as default unless explicitly overridden */
+:root,
+html,
+body {
+  background-color: var(--color-cyber-bg) !important;
+  color: var(--color-cyber-text) !important;
+}
+
+/* If a light scheme is explicitly requested, allow it to override */
+[data-color-scheme='light'] {
+  background-color: var(--color-background) !important;
+  color: var(--color-text) !important;
+}
+
+/* UI theme attribute hook */
+[data-ui-theme='cyberpunk'] :root,
+[data-ui-theme='cyberpunk'] html,
+[data-ui-theme='cyberpunk'] body {
+  background-color: var(--color-cyber-bg) !important;
+  color: var(--color-cyber-text) !important;
+}

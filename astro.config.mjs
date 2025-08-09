@@ -9,8 +9,8 @@ function resolve(path) {
 
 export default defineConfig({
   integrations: [react(), tailwind({ applyBaseStyles: false })],
-  site: 'https://sparesparrow.github.io',
-  base: process.env.NODE_ENV === 'production' ? '/sparrow-ai-tech' : '/',
+  site: 'https://sparesparrow.github.io/sparrow-ai-tech',
+  base: process.env.NODE_ENV === 'production' ? '/sparrow-ai-tech/' : '/',
   output: 'static',
   build: {
     assets: '_astro',

@@ -1,14 +1,13 @@
 ---
 import CyberpunkLayout from '../layouts/CyberpunkLayout.astro';
 import MainLayout from '../layouts/MainLayout.astro';
-import '../css/main.css'; // Direct import for processing
-import appScript from '../js/app.js?url';
 export interface Props {
   title?: string;
 }
 const { title = 'Sparrow AI Tech' } = Astro.props;
 import LanguageToggle from '../components/core/LanguageToggle.jsx';
 import ThemeToggle from '../components/core/ThemeToggle.jsx';
+import ThemeSelect from '../components/core/ThemeSelect.jsx';
 const base = import.meta.env.BASE_URL || '/sparrow-ai-tech';
 ---
 
@@ -21,7 +20,7 @@ const base = import.meta.env.BASE_URL || '/sparrow-ai-tech';
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <link rel="stylesheet" href={`${import.meta.env.BASE_URL}/styles/main.css`} />
+    <link rel="stylesheet" href={`${import.meta.env.BASE_URL}/css/main.css`} />
     <meta
       name="keywords"
       content="MCP, Model Context Protocol, AI Integration, Vojtěch Špaček, Developer, JavaScript, Rust, Automation"
@@ -52,6 +51,7 @@ const base = import.meta.env.BASE_URL || '/sparrow-ai-tech';
         <div class="nav-actions" style="display:flex; align-items:center; gap:.5rem;">
           <LanguageToggle client:load />
           <ThemeToggle client:load />
+          <ThemeSelect client:load />
         </div>
         <div class="nav-links">
           <a href="#home" class="nav-link">Home</a>
@@ -131,6 +131,8 @@ const base = import.meta.env.BASE_URL || '/sparrow-ai-tech';
       </div>
     </footer>
     <script src="/js/app.js" is:inline></script>
+    <elevenlabs-convai agent-id="agent_01jwpatrdff2dsns5d56n0ardm"></elevenlabs-convai>
+    <script is:inline src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
   </body>
 </html>
 

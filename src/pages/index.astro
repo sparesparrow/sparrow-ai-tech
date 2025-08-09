@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import CyberpunkLayout from '../layouts/CyberpunkLayout.astro';
 import MainLayout from '../layouts/MainLayout.astro';
+import RepoGallery from '../components/RepoGallery.jsx';
 
 import { pageUrl, assetUrl } from '../utils/url.js';
 import { url } from '../utils/url.js';
@@ -24,10 +25,15 @@ const t = {
     explore: 'Explore Projects',
     contact: 'Contact',
     quotes: [
-      '"The state distorts education by its mere existence; it cannot help but be ideological."',
-      '"Entrepreneurs do not need state incentives to prosper, only the absence of state obstacles."',
-      '"Cybercrime is an argument for mass surveillance."',
-      '"Those who would give up essential Liberty, to purchase a little temporary Safety, deserve neither Liberty nor Safety." - Benjamin Franklin',
+      'Rothbard: Liberty scales responsibility; coercion scales fragility.',
+      'Mises: Prices are compressed knowledge; planning without them is planning without truth.',
+      'Dario Amodei: Aligning powerful systems is an engineering discipline, not a slogan.',
+      'Andrew Ng: The most valuable model is the one in production.',
+      'ThePrimeagen: Mastery comes from throughput—ship code, profile, refactor, repeat.',
+      'Lex Fridman: Be kind. Be curious. Seek truth with humility.',
+      'Andrew Huberman: Behavior changes the brain; protocols beat motivation.',
+      'Slush: Build cypherpunk tools with real users and real threat models.',
+      'Mr. Robot: Control the system by understanding its assumptions.',
     ],
   },
   cs: {
@@ -36,10 +42,15 @@ const t = {
     explore: 'Prozkoumat projekty',
     contact: 'Kontakt',
     quotes: [
-      '„Stát svou existencí deformuje vzdělávání – nikoli proto, že by byl špatný učitel, ale protože nemůže nebýt ideologem."',
-      '„Podnikatelé k prosperitě nepotřebují státní pobídky, nýbrž absenci státních překážek."',
-      '„Kyberkriminalita je klíčem ke státnímu dohledu."',
-      '„Ti, kteří se vzdají základní svobody, aby získali trochu dočasné bezpečnosti, si nezaslouží ani svobodu, ani bezpečnost." - Benjamin Franklin',
+      'Rothbard: Svoboda škáluje odpovědnost; donucení škáluje křehkost.',
+      'Mises: Ceny jsou zhuštěné znalosti; plán bez nich je plán bez pravdy.',
+      'Dario Amodei: Zarovnání silných systémů je inženýrská disciplína, ne slogan.',
+      'Andrew Ng: Nejhodnotnější model je ten v produkci.',
+      'Primeagen: Mistrovství vzniká průtokem — doruč, profiluj, refaktoruj, opakuj.',
+      'Lex Fridman: Buď laskavý. Buď zvědavý. Hledej pravdu s pokorou.',
+      'Andrew Huberman: Chování mění mozek; protokoly vítězí nad motivací.',
+      'Slush: Stavěj cypherpunkové nástroje pro skutečné uživatele a hrozby.',
+      'Mr. Robot: Systému vládneš tak, že rozumíš jeho předpokladům.',
     ],
   },
 }[lang];
@@ -140,6 +151,9 @@ const t = {
       </div>
     </section>
 
+    <!-- GitHub Repo Gallery with Filters -->
+    <RepoGallery client:load />
+
     <!-- Philosophy & Quotes Section -->
     <section id="philosophy" class="philosophy">
       <div class="container">
@@ -184,21 +198,11 @@ const t = {
       </div>
     </section>
   </main>
+  <script src={`${import.meta.env.BASE_URL}/js/index.js`} defer></script>
 </Layout>
 
 <style>
-  /* Import the main cyberpunk stylesheet */
-  @import url('../styles/main.css');
-  @import '../styles/cyberpunk.css';
-  @import '../styles/main.css';
-  @import '../styles/style.css';
-  @import '../styles/styles.css';
-  @import '../styles/global.css';
-  @import '../styles/theme.css';
-  @import '../styles/typography.css';
-  @import '../styles/professional.css';
-  @import '../styles/tech.css';
-  @import '../styles/base.css';
-  @import '../styles/modern.css';
-  @import '../styles/minimal.css';
+  /* Import the main styles (cyberpunk look is merged into main.css) */
+  @import url('../css/main.css');
+  /* Additional optional styles removed to avoid missing file errors */
 </style>

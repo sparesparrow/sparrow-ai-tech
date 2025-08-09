@@ -730,3 +730,4 @@ function unnamedFunction() {
 }
 
 // Language toggle is handled by React component `LanguageToggle.jsx`
+
