@@ -244,9 +244,17 @@ const t = {
           <div class="mb-8 font-mono text-xl text-cyan-300 md:text-2xl">
             | {t?.hero} |
           </div>
-          <p class="mx-auto mb-12 max-w-2xl text-lg text-slate-300 md:text-xl">
-            {t?.subtitle}
-          </p>
+          <div class="mx-auto mb-12 grid max-w-5xl items-center gap-8 md:grid-cols-[1fr,auto]">
+            <p class="text-lg text-slate-300 md:text-xl">{t?.subtitle}</p>
+            <figure class="justify-self-center rounded-xl border border-cyan-500/30 bg-slate-800/40 p-3 backdrop-blur-sm">
+              <img
+                src={`${import.meta.env.BASE_URL}/assets/ai-hero.svg`}
+                alt="AI hero illustration"
+                class="h-24 w-auto md:h-28 lg:h-32"
+                loading="lazy"
+              />
+            </figure>
+          </div>
 
           <!-- Stats Grid -->
           <div class="mx-auto mb-16 grid max-w-4xl grid-cols-2 gap-6 md:grid-cols-4">
@@ -395,12 +403,24 @@ const t = {
       </div>
     </section>
 
-    <!-- Philosophy Section -->
+    <!-- Philosophy Section with visual card -->
     <section id="philosophy" class="bg-slate-900/50 py-20">
       <div class="container mx-auto px-6">
         <div class="mb-16 text-center">
           <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">{t?.philosophyTitle}</h2>
           <p class="mx-auto max-w-3xl text-lg text-slate-300">{t?.philosophyIntro}</p>
+        </div>
+
+        <div class="mx-auto mb-16 max-w-5xl">
+          <figure class="rounded-xl border border-purple-500/30 bg-slate-800/40 p-4 text-center shadow-lg backdrop-blur-sm">
+            <img
+              src="https://cdnl.tblsft.com/sites/default/files/inline-images/Inline-607-monosemanticity-fig1-01-2560x896.png"
+              alt="Anthropic neural feature map"
+              class="mx-auto h-auto max-h-64 w-auto"
+              loading="lazy"
+            />
+            <figcaption class="mt-3 text-sm text-slate-400">Anthropic research: neural feature map</figcaption>
+          </figure>
         </div>
 
         <!-- Influence Quotes Grid -->
