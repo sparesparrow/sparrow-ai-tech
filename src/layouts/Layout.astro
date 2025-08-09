@@ -18,10 +18,10 @@ const base = rawBase.replace(/\/$/, '');
     <meta charset="UTF-8" />
     <meta name="description" content="Model Context Protocol Pioneer - AI-driven tooling for modern web workflows" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href={` /favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <link rel="stylesheet" href={`${base}/styles/main.css`} />
+    <link rel="stylesheet" href={` /css/main.css`} />
     <meta
       name="keywords"
       content="MCP, Model Context Protocol, AI Integration, Vojtěch Špaček, Developer, JavaScript, Rust, Automation"
@@ -130,7 +130,7 @@ const base = rawBase.replace(/\/$/, '');
         </p>
       </div>
     </footer>
-    <script src="/js/app.js" is:inline></script>
+    <script src={`${base}/js/app.js`} defer></script>
     <elevenlabs-convai agent-id="agent_01jwpatrdff2dsns5d56n0ardm"></elevenlabs-convai>
     <script is:inline src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
   </body>

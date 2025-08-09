@@ -81,6 +81,44 @@ const t = {
         'Security by design: Threat modeling from day one',
       ],
     },
+    publications: {
+      title: 'Articles at Stoky Svobodného přístavu',
+      intro: 'Selected writings published under the author “sparesparrow” at Stoky Svobodného přístavu.',
+      items: [
+        {
+          title: 'Následky státního školství',
+          date: '2025-04-30',
+          url: 'https://stoky.urza.cz/texty/nasledky-statniho-skolstvi-3160',
+        },
+        {
+          title: 'Stát proti podnikání',
+          date: '2025-03-25',
+          url: 'https://stoky.urza.cz/texty/stat-proti-podnikani-3131',
+        },
+        {
+          title: 'Jednejte, a bude vám sjednáno Pojednání o ekonomii',
+          date: '2025-03-07',
+          url: 'https://stoky.urza.cz/texty/jednejte-a-bude-vam-sjednano-pojednani-o-ekonomii-3113',
+        },
+        {
+          title: 'Kyberkriminalita je klíčem ke státnímu dohledu nad kyberprostorem',
+          date: '2024-11-01',
+          url: 'https://stoky.urza.cz/texty/kyberkriminalita-je-klicem-ke-statnimu-dohledu-nad-kyberprostorem-3018',
+        },
+        {
+          title: 'Nebezpečnější než CBDC',
+          date: '2024-10-28',
+          url: 'https://stoky.urza.cz/texty/nebezpecnejsi-nez-cbdc-2946',
+        },
+        {
+          title: 'O svobodě slova na X',
+          date: '2024-10-14',
+          url: 'https://stoky.urza.cz/texty/o-svobode-slova-na-x-2943',
+        },
+      ],
+      moreCta: 'View all on Stoky',
+      moreUrl: 'https://stoky.urza.cz/autori/sparesparrow-937',
+    },
   },
   cs: {
     hero: 'Průkopník Model Context Protocolu',
@@ -143,6 +181,44 @@ const t = {
         'Skuteční uživatelé, skutečné problémy: Validace trhu před technickou elegancí',
         'Bezpečnost od návrhu: Modelování hrozeb od prvního dne',
       ],
+    },
+    publications: {
+      title: 'Publikace na Stokách Svobodného přístavu',
+      intro: 'Výběr textů publikovaných pod autorem „sparesparrow“ na Stokách Svobodného přístavu.',
+      items: [
+        {
+          title: 'Následky státního školství',
+          date: '2025-04-30',
+          url: 'https://stoky.urza.cz/texty/nasledky-statniho-skolstvi-3160',
+        },
+        {
+          title: 'Stát proti podnikání',
+          date: '2025-03-25',
+          url: 'https://stoky.urza.cz/texty/stat-proti-podnikani-3131',
+        },
+        {
+          title: 'Jednejte, a bude vám sjednáno Pojednání o ekonomii',
+          date: '2025-03-07',
+          url: 'https://stoky.urza.cz/texty/jednejte-a-bude-vam-sjednano-pojednani-o-ekonomii-3113',
+        },
+        {
+          title: 'Kyberkriminalita je klíčem ke státnímu dohledu nad kyberprostorem',
+          date: '2024-11-01',
+          url: 'https://stoky.urza.cz/texty/kyberkriminalita-je-klicem-ke-statnimu-dohledu-nad-kyberprostorem-3018',
+        },
+        {
+          title: 'Nebezpečnější než CBDC',
+          date: '2024-10-28',
+          url: 'https://stoky.urza.cz/texty/nebezpecnejsi-nez-cbdc-2946',
+        },
+        {
+          title: 'O svobodě slova na X',
+          date: '2024-10-14',
+          url: 'https://stoky.urza.cz/texty/o-svobode-slova-na-x-2943',
+        },
+      ],
+      moreCta: 'Zobrazit vše na Stokách',
+      moreUrl: 'https://stoky.urza.cz/autori/sparesparrow-937',
     },
   },
 }[lang];
@@ -420,6 +496,43 @@ const t = {
       <div class="container mx-auto px-6">
         <h2 class="mb-16 text-center text-3xl font-bold text-white md:text-4xl">GitHub Projects</h2>
         <RepoGallery client:load />
+      </div>
+    </section>
+
+    <!-- Publications (Stoky) -->
+    <section class="bg-slate-900/40 py-20">
+      <div class="container mx-auto px-6">
+        <div class="mb-10 text-center">
+          <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl">{t?.publications.title}</h2>
+          <p class="mx-auto max-w-3xl text-slate-300">{t?.publications.intro}</p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {
+            t?.publications.items.map(item => (
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group block rounded-xl border border-slate-700/50 bg-slate-800/30 p-6 transition-colors duration-300 hover:border-cyan-400/40"
+              >
+                <div class="mb-2 text-sm text-slate-400">{item.date}</div>
+                <div class="text-lg font-semibold text-cyan-300 group-hover:text-cyan-200">{item.title}</div>
+              </a>
+            ))
+          }
+        </div>
+
+        <div class="mt-10 text-center">
+          <a
+            href={t?.publications.moreUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 px-8 py-3 font-medium text-white transition-all duration-300 hover:from-cyan-400 hover:to-purple-400"
+          >
+            {t?.publications.moreCta}
+          </a>
+        </div>
       </div>
     </section>
 
