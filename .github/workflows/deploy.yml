@@ -35,8 +35,18 @@ jobs:
           node-version: '22'
           cache: 'pnpm'
 
+      - name: ♻️ Restore Astro cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .astro
+            node_modules/.cache
+          key: astro-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            astro-${{ runner.os }}-
+
       - name: 📦 Install dependencies
-        run: pnpm install # Removed --frozen-lockfile
+        run: pnpm install
 
       - name: ✅ Run quality checks
         run: |
@@ -47,6 +57,7 @@ jobs:
         run: pnpm run build
         env:
           NODE_OPTIONS: '--max-old-space-size=4096'
+          NODE_ENV: production
 
       - name: 📤 Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

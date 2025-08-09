@@ -1,5 +1,5 @@
 
-name: Generate and Deploy CV PDF
+name: Generate and Commit CV PDF
 
 on:
   push:
@@ -7,6 +7,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 6 * * 1" # Weekly on Monday at 6 AM
+
+permissions:
+  contents: write
 
 jobs:
   generate-cv:
@@ -16,6 +19,8 @@ jobs:
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
         
       - name: 📥 Download latest CV from sparesparrow/cv
         run: |
@@ -34,23 +39,19 @@ jobs:
             
       - name: 🔄 Convert Markdown to PDF
         run: |
-          mkdir -p dist
-          pandoc cv.md -o dist/cv.pdf \
+          mkdir -p public
+          pandoc cv.md -o public/cv.pdf \
             --pdf-engine=xelatex \
             --variable geometry:margin=1in \
             --variable fontsize=11pt \
-            || pandoc cv.md -o dist/cv.pdf --pdf-engine=xelatex
+            || pandoc cv.md -o public/cv.pdf --pdf-engine=xelatex
             
-      - name: 📤 Upload CV PDF artifact
-        uses: actions/upload-artifact@v4
+      - name: 💾 Commit CV PDF
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          name: cv-pdf-${{ github.sha }}
-          path: dist/cv.pdf
-          retention-days: 30
-          
-      - name: 📤 Upload to Pages
-        if: github.ref == "refs/heads/main"
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist/cv.pdf
+          commit_message: "docs(cv): update generated CV PDF"
+          file_pattern: public/cv.pdf
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
 

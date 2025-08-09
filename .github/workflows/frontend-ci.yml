@@ -34,8 +34,18 @@ jobs:
           node-version: '22'
           cache: 'pnpm'
 
+      - name: ♻️ Restore Astro cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .astro
+            node_modules/.cache
+          key: astro-ci-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            astro-ci-${{ runner.os }}-
+
       - name: 📦 Install dependencies
-        run: pnpm install # Removed --frozen-lockfile to allow lockfile generation if missing
+        run: pnpm install
 
       - name: 🔍 Security audit
         run: pnpm audit --audit-level high
@@ -47,13 +57,15 @@ jobs:
       - name: 🧪 Run unit tests
         run: pnpm run test
 
-      - name: 🎭 Install Playwright browsers
+      - name: 🎭 Install Playwright browsers (chromium)
         run: pnpm exec playwright install --with-deps chromium
+        if: ${{ always() && false }}
 
       - name: 🔨 Build application
         run: pnpm run build
         env:
           NODE_OPTIONS: '--max-old-space-size=4096'
+          NODE_ENV: test
 
       - name: 📤 Upload build artifacts
         uses: actions/upload-artifact@v4
