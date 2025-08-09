@@ -11,17 +11,7 @@
   },
   "author": "sparesparrow <sparesparrow@protonmail.ch>",
   "license": "MIT",
-  "keywords": [
-    "astro",
-    "react",
-    "tailwindcss",
-    "ai-tools",
-    "infographics",
-    "mermaid",
-    "chartjs",
-    "github-pages",
-    "static-site"
-  ],
+  "keywords": "[\"astro\", \"react\", \"tailwindcss\", \"ai-tools\", \"philosophy\", \"austrian-economics\", \"ai-safety\", \"neuroscience\", \"mcp\", \"infographics\", \"mermaid\", \"chartjs\", \"github-pages\", \"static-site\"]",
   "scripts": {
     "astro": "astro",
     "build": "astro check && astro build",

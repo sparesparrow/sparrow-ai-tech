@@ -1,0 +1,279 @@
+---
+import CyberpunkLayout from '../layouts/CyberpunkLayout.astro';
+import LanguageToggle from '../components/core/LanguageToggle.jsx';
+
+const lang = Astro.url.searchParams.get('lang') || 'cs';
+const t = {
+  en: {
+    title: 'Philosophy & Intellectual Framework',
+    subtitle: 'A synthesis of Austrian economics, AI safety, neuroscience, and pragmatic engineering',
+    thinkers: {
+      rothbard: {
+        name: 'Murray Rothbard',
+        domain: 'Anarcho-Capitalism & Austrian Economics',
+        keyIdeas: [
+          'The state as an institution of organized aggression',
+          'Praxeology as the logic of human action',
+          'Free market capitalism as the fullest expression of anarchism',
+          'Property rights as the foundation of liberty',
+        ],
+        influence:
+          'Shapes my approach to decentralized systems and skepticism of centralized control in AI governance.',
+        quote:
+          '"The only viable alternative to the State is a society based purely on voluntary action, entirely unhampered by violence or threats of violence."',
+      },
+      mises: {
+        name: 'Ludwig von Mises',
+        domain: 'Economic Calculation & Praxeology',
+        keyIdeas: [
+          'Economic calculation problem in socialist systems',
+          'Prices as carriers of information and knowledge',
+          'Methodological individualism',
+          'Spontaneous order emerging from individual actions',
+        ],
+        influence:
+          'Influences my understanding of how distributed systems coordinate without central planning, applicable to AI orchestration.',
+        quote: '"Rational economic activity is impossible in a socialist commonwealth."',
+      },
+      amodei: {
+        name: 'Dario Amodei',
+        domain: 'AI Safety & Constitutional AI',
+        keyIdeas: [
+          'Responsible scaling policies for AI development',
+          'Constitutional AI for value alignment',
+          'Interpretability research for AI transparency',
+          'Racing to understand AI capabilities vs. risks',
+        ],
+        influence:
+          'Guides my approach to building safe, interpretable AI systems with proper safeguards and evaluation.',
+        quote:
+          '"We\'re in a race to understand AI as it becomes more powerful. Our understanding has to keep up with our ability to build things."',
+      },
+      ng: {
+        name: 'Andrew Ng',
+        domain: 'Machine Learning & AI Deployment',
+        keyIdeas: [
+          'Data-centric AI development',
+          'AI as the new electricity',
+          'Democratizing AI access and education',
+          'Focus on practical AI applications',
+        ],
+        influence:
+          'Emphasizes the importance of getting AI systems into production and solving real problems rather than just research.',
+        quote:
+          '"AI is the new electricity. Just as electricity transformed industry after industry 100 years ago, AI will do the same."',
+      },
+      primeagen: {
+        name: 'ThePrimeagen',
+        domain: 'Software Engineering & Developer Experience',
+        keyIdeas: [
+          'Be an engineer, not a frameworker',
+          'Understand fundamentals before abstractions',
+          'Performance and efficiency matter',
+          'Developer tooling shapes thinking',
+        ],
+        influence:
+          'Reinforces focus on engineering fundamentals and building tools that amplify developer productivity.',
+        quote:
+          '"You should be learning about things like I/O and sockets and event loops and buffers and hash generation."',
+      },
+      fridman: {
+        name: 'Lex Fridman',
+        domain: 'AI Research & Human-Centric Technology',
+        keyIdeas: [
+          'Conversations as a path to understanding',
+          'Love and empathy in technology development',
+          'Long-term thinking about AI impact',
+          'Interdisciplinary approach to complex problems',
+        ],
+        influence:
+          'Inspires humanistic approach to technology and the importance of diverse perspectives in AI development.',
+        quote:
+          '"The most beautiful thing about engineering is that you\'re building tools that amplify human capability."',
+      },
+      huberman: {
+        name: 'Andrew Huberman',
+        domain: 'Neuroscience & Human Optimization',
+        keyIdeas: [
+          'Neuroplasticity triggered by focused attention',
+          'Protocols over motivation for behavior change',
+          'Science-based approach to optimization',
+          'Stress as a tool for adaptation',
+        ],
+        influence: 'Informs design of learning systems and human-AI interfaces that leverage neuroscience principles.',
+        quote: '"The mental strain you feel when you\'re learning something is the trigger for neuroplasticity."',
+      },
+      slush: {
+        name: 'Slush Ecosystem',
+        domain: 'Startup Culture & Innovation',
+        keyIdeas: [
+          'Build for real users with real problems',
+          'Nordic approach to sustainable innovation',
+          'Technology as a tool for societal improvement',
+          'Collaborative rather than zero-sum thinking',
+        ],
+        influence:
+          'Emphasizes the importance of market validation and building technology that serves genuine human needs.',
+        quote: '"Innovation without implementation is just expensive research."',
+      },
+      mrrobot: {
+        name: 'Mr. Robot Philosophy',
+        domain: 'Cybersecurity & Systems Thinking',
+        keyIdeas: [
+          'Understanding systems to change systems',
+          'Information security as social responsibility',
+          'Power structures reflected in technology',
+          'Individual agency within complex systems',
+        ],
+        influence:
+          'Drives security-first mindset and awareness of how technical decisions have broader social implications.',
+        quote:
+          '"The world is a dangerous place, not because of those who do evil, but because of those who look on and do nothing."',
+      },
+    },
+  },
+  cs: {
+    title: 'Filosofie & Intelektuální rámec',
+    subtitle: 'Syntéza rakouské ekonomie, bezpečnosti AI, neurověd a pragmatického inženýrství',
+    // Czech translations would go here
+  },
+}[lang];
+---
+
+<CyberpunkLayout title={t?.title || ''}>
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <!-- Language Toggle -->
+    <div class="fixed right-4 top-4 z-50">
+      <LanguageToggle client:load />
+    </div>
+
+    <!-- Header -->
+    <section class="pb-16 pt-20">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <h1
+            class="mb-6 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-4xl font-bold text-transparent md:text-6xl"
+          >
+            {t?.title}
+          </h1>
+          <p class="mx-auto max-w-3xl text-lg text-slate-300 md:text-xl">
+            {t?.subtitle}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Thinkers Grid -->
+    <section class="py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid gap-8 lg:grid-cols-2">
+          {
+            Object.entries(t?.thinkers || {}).map(([key, thinker]) => (
+              <div class="rounded-xl border border-slate-700/50 bg-slate-800/30 p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30">
+                <div class="mb-6">
+                  <h3 class="mb-2 text-2xl font-bold text-cyan-400">{thinker.name}</h3>
+                  <div class="font-medium text-slate-400">{thinker.domain}</div>
+                </div>
+
+                <div class="mb-6">
+                  <h4 class="mb-3 text-lg font-semibold text-white">Key Ideas:</h4>
+                  <ul class="space-y-2">
+                    {thinker.keyIdeas.map(idea => (
+                      <li class="flex items-start text-slate-300">
+                        <span class="mr-3 mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-purple-400" />
+                        <span>{idea}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div class="mb-6">
+                  <h4 class="mb-3 text-lg font-semibold text-white">Influence on My Work:</h4>
+                  <p class="leading-relaxed text-slate-300">{thinker.influence}</p>
+                </div>
+
+                <blockquote class="rounded-r-lg border-l-4 border-cyan-500/50 bg-slate-900/30 p-4 pl-4 italic text-slate-400">
+                  {thinker.quote}
+                </blockquote>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Synthesis Section -->
+    <section class="bg-slate-900/50 py-20">
+      <div class="container mx-auto px-6">
+        <div class="mb-16 text-center">
+          <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">Synthesis: Applied Philosophy</h2>
+          <p class="mx-auto max-w-4xl text-lg text-slate-300">
+            How these diverse intellectual influences converge into a coherent approach to building AI systems and
+            technology.
+          </p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2">
+          <div class="rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-900/30 to-yellow-900/30 p-8">
+            <h3 class="mb-6 text-2xl font-bold text-orange-400">Decentralized Intelligence</h3>
+            <p class="mb-4 text-slate-300">
+              Drawing from Austrian economics and cyberpunk philosophy, I advocate for AI systems that distribute rather
+              than concentrate power.
+            </p>
+            <ul class="space-y-2 text-slate-300">
+              <li>• Model Context Protocol enables agent coordination without central control</li>
+              <li>• Price signals → attention mechanisms and resource allocation</li>
+              <li>• Individual sovereignty → user control over AI interactions</li>
+            </ul>
+          </div>
+
+          <div class="rounded-xl border border-purple-500/30 bg-gradient-to-br from-purple-900/30 to-pink-900/30 p-8">
+            <h3 class="mb-6 text-2xl font-bold text-purple-400">Safety-First Engineering</h3>
+            <p class="mb-4 text-slate-300">
+              Combining Anthropic's safety research with security mindset from Mr. Robot philosophy.
+            </p>
+            <ul class="space-y-2 text-slate-300">
+              <li>• Constitutional AI principles embedded in system design</li>
+              <li>• Red teaming and adversarial evaluation as default practice</li>
+              <li>• Interpretability as a requirement, not an afterthought</li>
+            </ul>
+          </div>
+
+          <div class="rounded-xl border border-cyan-500/30 bg-gradient-to-br from-blue-900/30 to-cyan-900/30 p-8">
+            <h3 class="mb-6 text-2xl font-bold text-cyan-400">Human-Centered Optimization</h3>
+            <p class="mb-4 text-slate-300">
+              Applying Huberman's neuroscience protocols to human-AI interaction design.
+            </p>
+            <ul class="space-y-2 text-slate-300">
+              <li>• Focus-triggering interfaces that enhance neuroplasticity</li>
+              <li>• Stress optimization in learning environments</li>
+              <li>• Protocol-driven rather than motivation-dependent systems</li>
+            </ul>
+          </div>
+
+          <div class="rounded-xl border border-green-500/30 bg-gradient-to-br from-green-900/30 to-emerald-900/30 p-8">
+            <h3 class="mb-6 text-2xl font-bold text-green-400">Pragmatic Deployment</h3>
+            <p class="mb-4 text-slate-300">
+              Following ThePrimeagen's engineering principles and Slush's market validation approach.
+            </p>
+            <ul class="space-y-2 text-slate-300">
+              <li>• Fundamentals first: understand the system before abstractions</li>
+              <li>• Ship fast, iterate based on real user feedback</li>
+              <li>• Tools that amplify human capability, not replace it</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back Navigation -->
+    <section class="py-12 text-center">
+      <a
+        href="/sparrow-ai-tech/"
+        class="rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 px-8 py-3 font-medium text-white transition-all duration-300 hover:from-cyan-400 hover:to-purple-400"
+      >
+        ← Back to Homepage
+      </a>
+    </section>
+  </div>
+</CyberpunkLayout>

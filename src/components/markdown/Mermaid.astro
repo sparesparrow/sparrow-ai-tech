@@ -13,8 +13,10 @@ const { title, code } = Astro.props;
 </div>
 
 <script>
-  import mermaid from 'mermaid';
-  mermaid.initialize({ startOnLoad: true });
+  if (typeof window !== 'undefined') {
+    const mermaid = (await import('mermaid')).default;
+    mermaid.initialize({ startOnLoad: true });
+  }
 </script>
 
 <style>

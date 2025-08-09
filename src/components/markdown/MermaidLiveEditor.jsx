@@ -1,5 +1,6 @@
  
 import { useEffect, useState, useRef } from 'react';
+import GithubPeek from '../GithubPeek.jsx';
 
 const DEFAULT_MERMAID = `graph TD
   A[Start] --> B[Choice];
@@ -47,14 +48,18 @@ export default function MermaidLiveEditor() {
   }
 
   return (
-    <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
-      <textarea
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-        style={{ minHeight: 300, fontFamily: 'monospace' }}
-      />
-      <div dangerouslySetInnerHTML={{ __html: svg }} />
-      {error && <pre style={{ color: 'red' }}>{error}</pre>}
+    <section className="cyber-container" style={{ display: 'grid', gap: 24 }}>
+      <GithubPeek onPickMermaid={(block) => setCode(block)} />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+        <textarea
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          className="form-control"
+          style={{ minHeight: 300, fontFamily: 'monospace' }}
+        />
+        <div className="cyber-card" dangerouslySetInnerHTML={{ __html: svg }} />
+      </div>
+      {error && <pre style={{ color: 'var(--color-cyber-orange)' }}>{error}</pre>}
     </section>
   );
 }

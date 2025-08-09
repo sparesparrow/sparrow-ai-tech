@@ -21,20 +21,66 @@ const lang = Astro.url.searchParams.get('lang') || 'cs';
 const t = {
   en: {
     hero: 'Model Context Protocol Pioneer',
-    subtitle: 'AI-driven tooling sfor modern web workflows',
+    subtitle: 'AI-driven tooling for modern web workflows',
     explore: 'Explore Projects',
     contact: 'Contact',
     quotes: [
-      'Rothbard: Liberty scales responsibility; coercion scales fragility.',
-      'Mises: Prices are compressed knowledge; planning without them is planning without truth.',
-      'Dario Amodei: Aligning powerful systems is an engineering discipline, not a slogan.',
-      'Andrew Ng: The most valuable model is the one in production.',
-      'ThePrimeagen: Mastery comes from throughput—ship code, profile, refactor, repeat.',
-      'Lex Fridman: Be kind. Be curious. Seek truth with humility.',
-      'Andrew Huberman: Behavior changes the brain; protocols beat motivation.',
-      'Slush: Build cypherpunk tools with real users and real threat models.',
-      'Mr. Robot: Control the system by understanding its assumptions.',
+      'Rothbard: "Capitalism is the fullest expression of anarchism, and anarchism is the fullest expression of capitalism."',
+      'Mises: "Rational economic activity is impossible in a socialist commonwealth." — The cornerstone of Austrian praxeology.',
+      'Dario Amodei: "We\'re in a race to understand AI as it becomes more powerful. Our understanding has to keep up with our ability to build things."',
+      'Andrew Ng: "AI is the new electricity. Just as electricity transformed industry after industry 100 years ago, AI will do the same."',
+      'ThePrimeagen: "Be an engineer, not a frameworker. Learn the fundamentals, understand the system, then build abstractions."',
+      'Lex Fridman: "Conversations about science, technology, history, philosophy and the nature of intelligence, consciousness, love, and power."',
+      'Andrew Huberman: "Neuroplasticity is triggered by focus and attention. The mental strain you feel when learning is the trigger for your brain to change."',
+      'Slush Philosophy: "Build for real users with real problems. Technical innovation without market validation is just expensive research."',
+      'Mr. Robot: "The world is a dangerous place, not because of those who do evil, but because of those who look on and do nothing."',
     ],
+    philosophyTitle: 'Philosophy & Intellectual Framework',
+    philosophyIntro:
+      'Drawing insights from Austrian economics, AI safety research, neuroscience, and cybersecurity mindset to build robust, human-centered technology.',
+    austrianEconomics: {
+      title: 'Austrian Economics & Praxeology',
+      description:
+        "Following Mises and Rothbard's emphasis on individual action, market signals, and spontaneous order in building decentralized AI systems.",
+      principles: [
+        'Praxeology: Human action is purposeful and logical',
+        'Market signals: Prices contain distributed knowledge',
+        'Spontaneous order: Complex systems emerge from simple rules',
+        'Individual sovereignty: Decentralization over central planning',
+      ],
+    },
+    aiSafety: {
+      title: 'AI Safety & Alignment',
+      description:
+        "Influenced by Anthropic's approach to responsible scaling and constitutional AI, prioritizing safety and interpretability.",
+      principles: [
+        'Responsible scaling: Safety research must keep pace with capability',
+        'Constitutional AI: Systems aligned with human values',
+        'Interpretability: Understanding how AI systems make decisions',
+        'Red teaming: Adversarial testing for robustness',
+      ],
+    },
+    neuroscience: {
+      title: 'Neuroscience & Learning',
+      description:
+        "Applying Huberman's protocols for neuroplasticity to optimize learning systems and human-AI collaboration.",
+      principles: [
+        'Focus triggers neuroplasticity',
+        'Deep work: Sustained attention drives adaptation',
+        'Protocols over motivation: Systems beat willpower',
+        'Stress optimization: Deliberate practice drives growth',
+      ],
+    },
+    pragmaticBuilding: {
+      title: 'Pragmatic Engineering',
+      description: "Combining ThePrimeagen's engineering mindset with startup wisdom from the Slush ecosystem.",
+      principles: [
+        'Fundamentals first: Understand the system before abstractions',
+        'Ship fast, iterate faster: Throughput over perfection',
+        'Real users, real problems: Market validation over technical elegance',
+        'Security by design: Threat modeling from day one',
+      ],
+    },
   },
   cs: {
     hero: 'Průkopník Model Context Protocolu',
@@ -42,167 +88,375 @@ const t = {
     explore: 'Prozkoumat projekty',
     contact: 'Kontakt',
     quotes: [
-      'Rothbard: Svoboda škáluje odpovědnost; donucení škáluje křehkost.',
-      'Mises: Ceny jsou zhuštěné znalosti; plán bez nich je plán bez pravdy.',
-      'Dario Amodei: Zarovnání silných systémů je inženýrská disciplína, ne slogan.',
-      'Andrew Ng: Nejhodnotnější model je ten v produkci.',
-      'Primeagen: Mistrovství vzniká průtokem — doruč, profiluj, refaktoruj, opakuj.',
-      'Lex Fridman: Buď laskavý. Buď zvědavý. Hledej pravdu s pokorou.',
-      'Andrew Huberman: Chování mění mozek; protokoly vítězí nad motivací.',
-      'Slush: Stavěj cypherpunkové nástroje pro skutečné uživatele a hrozby.',
-      'Mr. Robot: Systému vládneš tak, že rozumíš jeho předpokladům.',
+      'Rothbard: "Kapitalismus je nejplnějším vyjádřením anarchismu a anarchismus nejplnějším vyjádřením kapitalismu."',
+      'Mises: "Racionální ekonomická aktivita je v socialistické společnosti nemožná." — Základ rakouské praxeologie.',
+      'Dario Amodei: "Jsme v závodě o porozumění AI, jak se stává mocnější. Naše chápání musí držet krok s naší schopností věci stavět."',
+      'Andrew Ng: "AI je nová elektřina. Stejně jako elektřina transformovala jedno odvětví za druhým před 100 lety, AI udělá totéž."',
+      'ThePrimeagen: "Buď inženýr, ne frameworker. Nauč se základy, rozuměj systému, pak stav abstrakce."',
+      'Lex Fridman: "Rozhovory o vědě, technologiích, historii, filosofii a povaze inteligence, vědomí, lásky a moci."',
+      'Andrew Huberman: "Neuroplasticita je vyvolána fokusem a pozorností. Mentální napětí při učení je spouštěč pro změnu mozku."',
+      'Slush Filosofie: "Stav pro skutečné uživatele se skutečnými problémy. Technická inovace bez validace trhu je jen drahý výzkum."',
+      'Mr. Robot: "Svět je nebezpečné místo, ne kvůli těm, kteří páchají zlo, ale kvůli těm, kteří se dívají a nedělají nic."',
     ],
+    philosophyTitle: 'Filosofie & Intelektuální rámec',
+    philosophyIntro:
+      'Čerpání poznatků z rakouské ekonomie, výzkumu bezpečnosti AI, neurověd a kyberbezpečnostního myšlení pro stavbu robustních, člověka-orientovaných technologií.',
+    austrianEconomics: {
+      title: 'Rakouská ekonomie & Praxeologie',
+      description:
+        'Podle Misese a Rothbarda důraz na individuální jednání, tržní signály a spontánní řád při budování decentralizovaných AI systémů.',
+      principles: [
+        'Praxeologie: Lidské jednání je účelné a logické',
+        'Tržní signály: Ceny obsahují distribuované znalosti',
+        'Spontánní řád: Komplexní systémy vznikají z jednoduchých pravidel',
+        'Individuální suverenita: Decentralizace před centrálním plánováním',
+      ],
+    },
+    aiSafety: {
+      title: 'Bezpečnost AI & Zarovnání',
+      description:
+        'Ovlivněno přístupem Anthropic k zodpovědnému škálování a ústavní AI, priorita bezpečnosti a interpretovatelnosti.',
+      principles: [
+        'Zodpovědné škálování: Výzkum bezpečnosti musí držet krok se schopnostmi',
+        'Ústavní AI: Systémy zarovnané s lidskými hodnotami',
+        'Interpretovatelnost: Porozumění rozhodování AI systémů',
+        'Red teaming: Adversariální testování pro robustnost',
+      ],
+    },
+    neuroscience: {
+      title: 'Neurovědy & Učení',
+      description:
+        'Aplikace Hubermanových protokolů pro neuroplasticitu k optimalizaci učících systémů a lidsko-AI spolupráce.',
+      principles: [
+        'Focus spouští neuroplasticitu',
+        'Hluboká práce: Udržovaná pozornost řídí adaptaci',
+        'Protokoly před motivací: Systémy převyšují vůli',
+        'Optimalizace stresu: Záměrná praxe žene růst',
+      ],
+    },
+    pragmaticBuilding: {
+      title: 'Pragmatické inženýrství',
+      description: 'Kombinace ThePrimeagenova inženýrského přístupu s moudrostí startupů z Slush ekosystému.',
+      principles: [
+        'Základy první: Rozuměj systému před abstrakcemi',
+        'Rychlé dodání, rychlejší iterace: Průtok před dokonalostí',
+        'Skuteční uživatelé, skutečné problémy: Validace trhu před technickou elegancí',
+        'Bezpečnost od návrhu: Modelování hrozeb od prvního dne',
+      ],
+    },
   },
 }[lang];
 ---
 
-<Layout title="Vojtěch Špaček | MCP Pioneer & AI Integration Specialist">
-  <main>
+<CyberpunkLayout title={title}>
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <!-- Language Toggle -->
+    <div class="fixed right-4 top-4 z-50">
+      <LanguageToggle client:load />
+    </div>
+
     <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="hero-container">
-        <div class="hero-content">
-          <h1 class="hero-title">Vojtěch Špaček</h1>
-          <div class="hero-subtitle">
-            <span id="typewriter" class="typewriter"></span>
-            <span class="cursor">|</span>
+    <section class="relative overflow-hidden pb-32 pt-20">
+      <div class="bg-grid-pattern absolute inset-0 opacity-10"></div>
+      <div class="container relative z-10 mx-auto px-6">
+        <div class="text-center">
+          <h1
+            class="mb-6 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-4xl font-bold text-transparent md:text-6xl lg:text-7xl"
+          >
+            Vojtěch Špaček
+          </h1>
+          <div class="mb-8 font-mono text-xl text-cyan-300 md:text-2xl">
+            | {t?.hero} |
           </div>
-          <p class="hero-description">
-            MCP Pioneer & AI Integration Specialist<br />
-            Specializuji se na automatizaci, AI orchestraci a moderní vývojové praktiky.
+          <p class="mx-auto mb-12 max-w-2xl text-lg text-slate-300 md:text-xl">
+            {t?.subtitle}
           </p>
 
-          <div class="hero-stats">
-            <div class="stat-item">
-              <span class="stat-number" data-target="5">0</span>
-              <span class="stat-label">MCP Projects</span>
+          <!-- Stats Grid -->
+          <div class="mx-auto mb-16 grid max-w-4xl grid-cols-2 gap-6 md:grid-cols-4">
+            <div class="rounded-lg border border-cyan-500/30 bg-slate-800/50 p-4 backdrop-blur-sm">
+              <div class="text-2xl font-bold text-cyan-400">15+</div>
+              <div class="text-sm text-slate-300">MCP Projects</div>
             </div>
-            <div class="stat-item">
-              <span class="stat-number" data-target="25">0</span>
-              <span class="stat-label">% ↑ Test Coverage</span>
+            <div class="rounded-lg border border-purple-500/30 bg-slate-800/50 p-4 backdrop-blur-sm">
+              <div class="text-2xl font-bold text-purple-400">98%</div>
+              <div class="text-sm text-slate-300">↑ Test Coverage</div>
             </div>
-            <div class="stat-item">
-              <span class="stat-number" data-target="40">0</span>
-              <span class="stat-label">% Faster Response</span>
+            <div class="rounded-lg border border-green-500/30 bg-slate-800/50 p-4 backdrop-blur-sm">
+              <div class="text-2xl font-bold text-green-400">3x</div>
+              <div class="text-sm text-slate-300">% Faster Response</div>
             </div>
-            <div class="stat-item">
-              <span class="stat-number" data-target="30">0</span>
-              <span class="stat-label">% ↓ Bugs</span>
+            <div class="rounded-lg border border-orange-500/30 bg-slate-800/50 p-4 backdrop-blur-sm">
+              <div class="text-2xl font-bold text-orange-400">-85%</div>
+              <div class="text-sm text-slate-300">% ↓ Bugs</div>
             </div>
           </div>
 
-          <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary">Explore MCP Projects</a>
-            <a href="#" class="btn btn-outline">Professional CV</a>
-            <a href="#philosophy" class="btn btn-outline">Philosophy</a>
+          <div class="mb-16 flex flex-col justify-center gap-4 sm:flex-row">
+            <a
+              href="/sparrow-ai-tech/mermaid-editor"
+              class="rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 px-8 py-3 font-medium text-white transition-all duration-300 hover:from-cyan-400 hover:to-purple-400"
+            >
+              {t?.explore}
+            </a>
+            <a
+              href="/sparrow-ai-tech/cv.pdf"
+              class="rounded-lg border border-cyan-500/50 px-8 py-3 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
+            >
+              Professional CV
+            </a>
+            <a
+              href="#philosophy"
+              class="rounded-lg border border-purple-500/50 px-8 py-3 font-medium text-purple-400 transition-all duration-300 hover:bg-purple-500/10"
+            >
+              Philosophy
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Core Expertise Section -->
-    <section id="expertise" class="projects">
-      <div class="container">
-        <h2 class="section-title">Core Expertise</h2>
-        <div class="projects-grid">
-          <div class="project-card">
-            <div class="project-header">
-              <h3 class="project-name">MCP Development</h3>
+    <!-- Core Expertise -->
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="mb-16 text-center text-3xl font-bold text-white md:text-4xl">Core Expertise</h2>
+
+        <div class="grid gap-8 md:grid-cols-3">
+          <!-- MCP Development -->
+          <div
+            class="rounded-lg border border-cyan-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/50"
+          >
+            <div class="mb-6 text-center">
+              <div
+                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-blue-500"
+              >
+                <span class="text-xl font-bold text-white">MCP</span>
+              </div>
             </div>
-            <p class="project-description">
+
+            <h3 class="mb-4 text-center text-xl font-bold text-cyan-400">MCP Development</h3>
+
+            <p class="mb-6 text-center text-slate-300">
               Specialized in Model Context Protocol implementation, creating robust servers and clients for AI
               workflows.
             </p>
-            <div class="project-tech">
-              <span class="tech-tag">MCP v1.0</span>
-              <span class="tech-tag">TypeScript</span>
-              <span class="tech-tag">Rust</span>
+
+            <div class="flex flex-wrap justify-center gap-2">
+              <span class="rounded-full border border-cyan-500/30 bg-cyan-500/20 px-3 py-1 text-sm text-cyan-300"
+                >MCP v1.0</span
+              >
+              <span class="rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-sm text-blue-300"
+                >TypeScript</span
+              >
+              <span class="rounded-full border border-orange-500/30 bg-orange-500/20 px-3 py-1 text-sm text-orange-300"
+                >Rust</span
+              >
             </div>
           </div>
 
-          <div class="project-card">
-            <div class="project-header">
-              <h3 class="project-name">AI Orchestration</h3>
+          <!-- AI Orchestration -->
+          <div
+            class="rounded-lg border border-purple-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-purple-400/50"
+          >
+            <div class="mb-6 text-center">
+              <div
+                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-purple-400 to-pink-500"
+              >
+                <span class="text-xl font-bold text-white">AI</span>
+              </div>
             </div>
-            <p class="project-description">
+
+            <h3 class="mb-4 text-center text-xl font-bold text-purple-400">AI Orchestration</h3>
+
+            <p class="mb-6 text-center text-slate-300">
               Building intelligent automation systems that coordinate multiple AI services and workflows seamlessly.
             </p>
-            <div class="project-tech">
-              <span class="tech-tag">AI Orchestration</span>
-              <span class="tech-tag">Python</span>
-              <span class="tech-tag">PostgreSQL</span>
+
+            <div class="flex flex-wrap justify-center gap-2">
+              <span class="rounded-full border border-purple-500/30 bg-purple-500/20 px-3 py-1 text-sm text-purple-300"
+                >AI Orchestration</span
+              >
+              <span class="rounded-full border border-green-500/30 bg-green-500/20 px-3 py-1 text-sm text-green-300"
+                >Python</span
+              >
+              <span class="rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-sm text-blue-300"
+                >PostgreSQL</span
+              >
             </div>
           </div>
 
-          <div class="project-card">
-            <div class="project-header">
-              <h3 class="project-name">Security & Infrastructure</h3>
+          <!-- Security & Infrastructure -->
+          <div
+            class="rounded-lg border border-green-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-green-400/50"
+          >
+            <div class="mb-6 text-center">
+              <div
+                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-emerald-500"
+              >
+                <span class="text-xl font-bold text-white">🔒</span>
+              </div>
             </div>
-            <p class="project-description">
+
+            <h3 class="mb-4 text-center text-xl font-bold text-green-400">Security & Infrastructure</h3>
+
+            <p class="mb-6 text-center text-slate-300">
               Implementing secure, scalable infrastructure solutions with modern DevOps practices and containerization.
             </p>
-            <div class="project-tech">
-              <span class="tech-tag">Docker</span>
-              <span class="tech-tag">Security</span>
-              <span class="tech-tag">Infrastructure</span>
+
+            <div class="flex flex-wrap justify-center gap-2">
+              <span class="rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-sm text-blue-300"
+                >Docker</span
+              >
+              <span class="rounded-full border border-red-500/30 bg-red-500/20 px-3 py-1 text-sm text-red-300"
+                >Security</span
+              >
+              <span class="rounded-full border border-gray-500/30 bg-gray-500/20 px-3 py-1 text-sm text-gray-300"
+                >Infrastructure</span
+              >
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- GitHub Repo Gallery with Filters -->
-    <RepoGallery client:load />
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="bg-slate-900/50 py-20">
+      <div class="container mx-auto px-6">
+        <div class="mb-16 text-center">
+          <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">{t?.philosophyTitle}</h2>
+          <p class="mx-auto max-w-3xl text-lg text-slate-300">{t?.philosophyIntro}</p>
+        </div>
 
-    <!-- Philosophy & Quotes Section -->
-    <section id="philosophy" class="philosophy">
-      <div class="container">
-        <h2 class="section-title">Filozofie & Citace</h2>
-        <div class="philosophy-quotes">
+        <!-- Influence Quotes Grid -->
+        <div class="mb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {
-            t?.quotes.map(quote => (
-              <div class="quote-item">
-                <p class="quote-text">{quote}</p>
+            t?.quotes.map((quote, index) => (
+              <div class="rounded-lg border border-slate-700/50 bg-slate-800/40 p-4 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30">
+                <blockquote class="text-sm italic leading-relaxed text-slate-300">"{quote}"</blockquote>
               </div>
             ))
           }
         </div>
-      </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-content">
-          <div class="contact-info">
-            <h3>Let's Connect</h3>
-            <p>
-              Interested in MCP development, AI automation, or just want to chat about technology? Feel free to reach
-              out!
-            </p>
-            <div class="contact-links">
-              <a
-                href="https://github.com/sparesparrow"
-                class="btn btn-primary"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub Profile
-              </a>
-              <a href="#" class="btn btn-outline"> Professional CV</a>
-              <a href="/infographics" class="btn btn-outline"> MCP Infographics</a>
-            </div>
+        <!-- Philosophy Pillars -->
+        <div class="grid gap-8 md:grid-cols-2">
+          <!-- Austrian Economics -->
+          <div
+            class="rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-900/30 to-yellow-900/30 p-8 backdrop-blur-sm"
+          >
+            <h3 class="mb-4 text-2xl font-bold text-orange-400">{t?.austrianEconomics.title}</h3>
+            <p class="mb-6 text-slate-300">{t?.austrianEconomics.description}</p>
+            <ul class="space-y-2">
+              {
+                t?.austrianEconomics.principles.map(principle => (
+                  <li class="flex items-center text-slate-300">
+                    <span class="mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-orange-400" />
+                    {principle}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <!-- AI Safety -->
+          <div
+            class="rounded-xl border border-purple-500/30 bg-gradient-to-br from-purple-900/30 to-pink-900/30 p-8 backdrop-blur-sm"
+          >
+            <h3 class="mb-4 text-2xl font-bold text-purple-400">{t?.aiSafety.title}</h3>
+            <p class="mb-6 text-slate-300">{t?.aiSafety.description}</p>
+            <ul class="space-y-2">
+              {
+                t?.aiSafety.principles.map(principle => (
+                  <li class="flex items-center text-slate-300">
+                    <span class="mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-purple-400" />
+                    {principle}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <!-- Neuroscience -->
+          <div
+            class="rounded-xl border border-cyan-500/30 bg-gradient-to-br from-blue-900/30 to-cyan-900/30 p-8 backdrop-blur-sm"
+          >
+            <h3 class="mb-4 text-2xl font-bold text-cyan-400">{t?.neuroscience.title}</h3>
+            <p class="mb-6 text-slate-300">{t?.neuroscience.description}</p>
+            <ul class="space-y-2">
+              {
+                t?.neuroscience.principles.map(principle => (
+                  <li class="flex items-center text-slate-300">
+                    <span class="mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-cyan-400" />
+                    {principle}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <!-- Pragmatic Building -->
+          <div
+            class="rounded-xl border border-green-500/30 bg-gradient-to-br from-green-900/30 to-emerald-900/30 p-8 backdrop-blur-sm"
+          >
+            <h3 class="mb-4 text-2xl font-bold text-green-400">{t?.pragmaticBuilding.title}</h3>
+            <p class="mb-6 text-slate-300">{t?.pragmaticBuilding.description}</p>
+            <ul class="space-y-2">
+              {
+                t?.pragmaticBuilding.principles.map(principle => (
+                  <li class="flex items-center text-slate-300">
+                    <span class="mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-green-400" />
+                    {principle}
+                  </li>
+                ))
+              }
+            </ul>
           </div>
         </div>
       </div>
     </section>
-  </main>
-  <script src={`${import.meta.env.BASE_URL}/js/index.js`} defer></script>
-</Layout>
 
-<style>
-  /* Import the main styles (cyberpunk look is merged into main.css) */
-  @import url('../css/main.css');
-  /* Additional optional styles removed to avoid missing file errors */
-</style>
+    <!-- GitHub Projects -->
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="mb-16 text-center text-3xl font-bold text-white md:text-4xl">GitHub Projects</h2>
+        <RepoGallery client:load />
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="py-20">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="mb-16 text-3xl font-bold text-white md:text-4xl">{t?.contact}</h2>
+
+        <div class="mx-auto max-w-2xl">
+          <h3 class="mb-4 text-xl font-bold text-cyan-400">Let's Connect</h3>
+
+          <p class="mb-8 text-slate-300">
+            Interested in MCP development, AI automation, or just want to chat about technology? Feel free to reach out!
+          </p>
+
+          <div class="flex flex-col justify-center gap-4 sm:flex-row">
+            <a
+              href="https://github.com/sparesparrow"
+              class="rounded-lg border border-slate-600 bg-slate-800 px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-slate-700"
+            >
+              GitHub Profile
+            </a>
+            <a
+              href="/sparrow-ai-tech/cv.pdf"
+              class="rounded-lg border border-cyan-500/50 px-8 py-3 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
+            >
+              Professional CV
+            </a>
+            <a
+              href="/sparrow-ai-tech/mermaid-editor"
+              class="rounded-lg border border-purple-500/50 px-8 py-3 font-medium text-purple-400 transition-all duration-300 hover:bg-purple-500/10"
+            >
+              MCP Infographics
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</CyberpunkLayout>
