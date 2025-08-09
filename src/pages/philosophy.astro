@@ -7,6 +7,14 @@ const t = {
   en: {
     title: 'Philosophy & Intellectual Framework',
     subtitle: 'A synthesis of Austrian economics, AI safety, neuroscience, and pragmatic engineering',
+    labels: {
+      keyIdeas: 'Key Ideas:',
+      influence: 'Influence on My Work:',
+      synthesisTitle: 'Synthesis: Applied Philosophy',
+      synthesisIntro:
+        'How these diverse intellectual influences converge into a coherent approach to building AI systems and technology.',
+      back: '← Back to Homepage',
+    },
     thinkers: {
       rothbard: {
         name: 'Murray Rothbard',
@@ -135,7 +143,139 @@ const t = {
   cs: {
     title: 'Filosofie & Intelektuální rámec',
     subtitle: 'Syntéza rakouské ekonomie, bezpečnosti AI, neurověd a pragmatického inženýrství',
-    // Czech translations would go here
+    labels: {
+      keyIdeas: 'Klíčové myšlenky:',
+      influence: 'Vliv na mou práci:',
+      synthesisTitle: 'Syntéza: Aplikovaná filosofie',
+      synthesisIntro:
+        'Jak se různé intelektuální vlivy propojují do uceleného přístupu k budování AI systémů a technologií.',
+      back: '← Zpět na hlavní stránku',
+    },
+    thinkers: {
+      rothbard: {
+        name: 'Murray Rothbard',
+        domain: 'Anarchokapitalismus & Rakouská ekonomie',
+        keyIdeas: [
+          'Stát jako instituce organizovaného násilí',
+          'Praxeologie jako logika lidského jednání',
+          'Svobodný trh jako plné vyjádření anarchismu',
+          'Vlastnická práva jako základ svobody',
+        ],
+        influence:
+          'Formuje můj přístup k decentralizovaným systémům a skepsi vůči centralizované správě v AI.',
+        quote:
+          '"Jedinou životaschopnou alternativou ke Státu je společnost založená čistě na dobrovolné akci, bez násilí a jeho hrozby."',
+      },
+      mises: {
+        name: 'Ludwig von Mises',
+        domain: 'Ekonomická kalkulace & Praxeologie',
+        keyIdeas: [
+          'Problém ekonomické kalkulace v socialistických systémech',
+          'Ceny jako nositelé informací a znalostí',
+          'Metodologický individualismus',
+          'Spontánní řád vznikající z individuálních akcí',
+        ],
+        influence:
+          'Ovlivňuje mé chápání koordinace distribuovaných systémů bez centrálního plánování — aplikovatelné na AI orchestraci.',
+        quote: '"Racionální ekonomická aktivita je v socialistické společnosti nemožná."',
+      },
+      amodei: {
+        name: 'Dario Amodei',
+        domain: 'Bezpečnost AI & Ústavní AI',
+        keyIdeas: [
+          'Zodpovědné škálování AI',
+          'Ústavní AI pro hodnotové zarovnání',
+          'Interpretovatelnost a transparentnost AI',
+          'Závod mezi chápáním a schopnostmi AI',
+        ],
+        influence:
+          'Směruje mě k návrhu bezpečných, interpretovatelných systémů s adekvátním vyhodnocením.',
+        quote:
+          '"Jsme v závodě porozumět AI, jak zesiluje. Naše porozumění musí držet krok s naší schopností stavět."',
+      },
+      ng: {
+        name: 'Andrew Ng',
+        domain: 'Strojové učení & Nasazování AI',
+        keyIdeas: [
+          'Datově-centristní vývoj AI',
+          'AI jako nová elektřina',
+          'Demokratizace přístupu k AI',
+          'Důraz na praktické aplikace',
+        ],
+        influence:
+          'Zdůrazňuje důležitost dostat AI do produkce a řešit reálné problémy — ne jen výzkum.',
+        quote:
+          '"AI je nová elektřina. Stejně jako elektřina transformovala průmysl za průmyslem před 100 lety, AI udělá totéž."',
+      },
+      primeagen: {
+        name: 'ThePrimeagen',
+        domain: 'Softwarové inženýrství & Developer Experience',
+        keyIdeas: [
+          'Buď inženýr, ne frameworkář',
+          'Pochop základy dřív než abstrakce',
+          'Výkon a efektivita jsou důležité',
+          'Nástroje formují myšlení vývojáře',
+        ],
+        influence:
+          'Posiluje důraz na základy a nástroje, které násobí produktivitu vývojáře.',
+        quote:
+          '"Měl bys rozumět věcem jako I/O, sockety, event loop, buffery a hashování."',
+      },
+      fridman: {
+        name: 'Lex Fridman',
+        domain: 'AI výzkum & Human‑centric technologie',
+        keyIdeas: [
+          'Rozhovory jako cesta k porozumění',
+          'Láska a empatie v technologiích',
+          'Dlouhodobé myšlení o dopadech AI',
+          'Interdisciplinární přístup',
+        ],
+        influence:
+          'Inspiruje humanistický přístup k technologiím a diverzitu perspektiv v AI.',
+        quote:
+          '"Nejkrásnější na inženýrství je, že stavíš nástroje, které násobí lidské schopnosti."',
+      },
+      huberman: {
+        name: 'Andrew Huberman',
+        domain: 'Neurověda & Lidská optimalizace',
+        keyIdeas: [
+          'Neuroplasticitu spouští soustředěná pozornost',
+          'Protokoly před motivací',
+          'Vědecky podložená optimalizace',
+          'Stres jako nástroj adaptace',
+        ],
+        influence:
+          'Informuje návrh učících systémů a HCI, které využívají principy neurovědy.',
+        quote: '"Mentální námaha při učení je spouštěč neuroplasticity."',
+      },
+      slush: {
+        name: 'Slush ekosystém',
+        domain: 'Startupová kultura & Inovace',
+        keyIdeas: [
+          'Stav pro skutečné uživatele se skutečnými problémy',
+          'Severský přístup k udržitelné inovaci',
+          'Technologie jako nástroj společenského zlepšení',
+          'Spolupráce místo zero-sum',
+        ],
+        influence:
+          'Zdůrazňuje validaci trhu a tvorbu technologií, které slouží skutečným potřebám.',
+        quote: '"Inovace bez implementace je jen drahý výzkum."',
+      },
+      mrrobot: {
+        name: 'Mr. Robot – filosofie',
+        domain: 'Kyberbezpečnost & Systémové myšlení',
+        keyIdeas: [
+          'Porozuměním systému můžeš systém měnit',
+          'InfoSec jako společenská odpovědnost',
+          'Mocenské struktury zrcadlící se v technologiích',
+          'Individuální agency v komplexních systémech',
+        ],
+        influence:
+          'Podněcuje bezpečnost‑first mindset a uvědomění si širších dopadů technických rozhodnutí.',
+        quote:
+          '"Svět je nebezpečné místo ne kvůli těm, co páchají zlo, ale kvůli těm, kteří se dívají a nic nedělají."',
+      },
+    },
   },
 }[lang];
 ---
@@ -164,7 +304,7 @@ const t = {
     </section>
 
     <!-- Thinkers Grid -->
-    <section class="py-12">
+    <section id="philosophy" class="py-12">
       <div class="container mx-auto px-6">
         <div class="grid gap-8 lg:grid-cols-2">
           {
@@ -176,7 +316,7 @@ const t = {
                 </div>
 
                 <div class="mb-6">
-                  <h4 class="mb-3 text-lg font-semibold text-white">Key Ideas:</h4>
+                  <h4 class="mb-3 text-lg font-semibold text-white">{t?.labels?.keyIdeas}</h4>
                   <ul class="space-y-2">
                     {thinker.keyIdeas.map(idea => (
                       <li class="flex items-start text-slate-300">
@@ -188,7 +328,7 @@ const t = {
                 </div>
 
                 <div class="mb-6">
-                  <h4 class="mb-3 text-lg font-semibold text-white">Influence on My Work:</h4>
+                  <h4 class="mb-3 text-lg font-semibold text-white">{t?.labels?.influence}</h4>
                   <p class="leading-relaxed text-slate-300">{thinker.influence}</p>
                 </div>
 
@@ -206,11 +346,8 @@ const t = {
     <section class="bg-slate-900/50 py-20">
       <div class="container mx-auto px-6">
         <div class="mb-16 text-center">
-          <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">Synthesis: Applied Philosophy</h2>
-          <p class="mx-auto max-w-4xl text-lg text-slate-300">
-            How these diverse intellectual influences converge into a coherent approach to building AI systems and
-            technology.
-          </p>
+          <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">{t?.labels?.synthesisTitle}</h2>
+          <p class="mx-auto max-w-4xl text-lg text-slate-300">{t?.labels?.synthesisIntro}</p>
         </div>
 
         <div class="grid gap-8 md:grid-cols-2">
@@ -272,7 +409,7 @@ const t = {
         href="/sparrow-ai-tech/"
         class="rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 px-8 py-3 font-medium text-white transition-all duration-300 hover:from-cyan-400 hover:to-purple-400"
       >
-        ← Back to Homepage
+        {t?.labels?.back}
       </a>
     </section>
   </div>

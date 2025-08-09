@@ -2,13 +2,14 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import { fileURLToPath } from 'node:url';
+import sitemap from '@astrojs/sitemap';
 
 function resolve(path) {
   return fileURLToPath(new URL(path, import.meta.url));
 }
 
 export default defineConfig({
-  integrations: [react(), tailwind({ applyBaseStyles: false })],
+  integrations: [react(), tailwind({ applyBaseStyles: false }), sitemap()],
   site: 'https://sparesparrow.github.io/sparrow-ai-tech',
   base: process.env.NODE_ENV === 'production' ? '/sparrow-ai-tech/' : '/',
   output: 'static',

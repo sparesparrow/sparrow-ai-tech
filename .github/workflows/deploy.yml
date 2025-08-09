@@ -48,6 +48,11 @@ jobs:
         env:
           NODE_OPTIONS: '--max-old-space-size=4096'
 
+      - name: 🔎 Verify build outputs
+        run: |
+          test -f dist/sitemap-index.xml || test -f dist/sitemap.xml || (echo "Missing sitemap" && exit 1)
+          test -f dist/robots.txt || echo -e "User-agent: *\nAllow: /" > dist/robots.txt
+
       - name: 📤 Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -35,7 +35,7 @@ jobs:
           cache: 'pnpm'
 
       - name: 📦 Install dependencies
-        run: pnpm install # Removed --frozen-lockfile to allow lockfile generation if missing
+        run: pnpm install --frozen-lockfile=false
 
       - name: 🔍 Security audit
         run: pnpm audit --audit-level high
@@ -44,11 +44,15 @@ jobs:
       - name: ✨ Run linting
         run: pnpm run lint
 
+      - name: 🧰 Type check
+        run: pnpm run check
+
       - name: 🧪 Run unit tests
         run: pnpm run test
 
-      - name: 🎭 Install Playwright browsers
-        run: pnpm exec playwright install --with-deps chromium
+      # Playwright not used; keep step commented for future e2e
+      # - name: 🎭 Install Playwright browsers
+      #   run: pnpm exec playwright install --with-deps chromium
 
       - name: 🔨 Build application
         run: pnpm run build

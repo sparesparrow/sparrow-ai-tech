@@ -13,6 +13,28 @@ const {
 } = Astro.props;
 
 const lang = Astro.url?.searchParams.get('lang') || 'en';
+const navT = {
+  en: {
+    home: 'Home',
+    expertise: 'Expertise',
+    projects: 'MCP Projects',
+    agentic: 'Agentic Workflows',
+    philosophy: 'Philosophy',
+    mermaid: 'Mermaid Editor',
+    chatbot: 'Chatbot',
+    contact: 'Contact',
+  },
+  cs: {
+    home: 'Domů',
+    expertise: 'Expertíza',
+    projects: 'MCP Projekty',
+    agentic: 'Agentní workflow',
+    philosophy: 'Filosofie',
+    mermaid: 'Mermaid Editor',
+    chatbot: 'Chatbot',
+    contact: 'Kontakt',
+  },
+}[lang];
 ---
 
 <!doctype html>
@@ -21,6 +43,8 @@ const lang = Astro.url?.searchParams.get('lang') || 'en';
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://sparesparrow.github.io/sparrow-ai-tech/" />
+    <meta name="robots" content="index, follow" />
 
     <meta
       name="keywords"
@@ -33,11 +57,13 @@ const lang = Astro.url?.searchParams.get('lang') || 'en';
     <meta property="og:url" content="https://sparesparrow.github.io/sparrow-ai-tech/" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Sparrow AI Tech" />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://sparesparrow.github.io/sparrow-ai-tech/" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+    <meta property="twitter:site" content="@sparesparrow" />
 
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
     <title>{title}</title>
@@ -67,14 +93,14 @@ const lang = Astro.url?.searchParams.get('lang') || 'en';
         </div>
 
         <div class="cyber-nav-links">
-          <a href="#home" class="cyber-nav-link active">Home</a>
-          <a href="#features" class="cyber-nav-link">Expertise</a>
-          <a href="#projects" class="cyber-nav-link">MCP Projects</a>
-          <a href="#agentic" class="cyber-nav-link">Agentic Workflows</a>
-          <a href="#philosophy" class="cyber-nav-link">Philosophy</a>
-          <a href={`${import.meta.env.BASE_URL}/mermaid-editor`} class="cyber-nav-link">Mermaid Editor</a>
-          <a href={`${import.meta.env.BASE_URL}/chatbot`} class="cyber-nav-link">Chatbot</a>
-          <a href="#contact" class="cyber-nav-link">Contact</a>
+          <a href="#home" class="cyber-nav-link active">{navT.home}</a>
+          <a href="#features" class="cyber-nav-link">{navT.expertise}</a>
+          <a href="#projects" class="cyber-nav-link">{navT.projects}</a>
+          <a href="#agentic" class="cyber-nav-link">{navT.agentic}</a>
+          <a href="#philosophy" class="cyber-nav-link">{navT.philosophy}</a>
+          <a href={`${import.meta.env.BASE_URL}/mermaid-editor`} class="cyber-nav-link">{navT.mermaid}</a>
+          <a href={`${import.meta.env.BASE_URL}/chatbot`} class="cyber-nav-link">{navT.chatbot}</a>
+          <a href="#contact" class="cyber-nav-link">{navT.contact}</a>
         </div>
       </div>
     </nav>

@@ -21,9 +21,14 @@ const lang = Astro.url.searchParams.get('lang') || 'cs';
 const t = {
   en: {
     hero: 'Model Context Protocol Pioneer',
-    subtitle: 'AI-driven tooling for modern web workflows',
+    subtitle: 'I build MCP servers/clients, agentic orchestration, and secure infra that ships.',
     explore: 'Explore Projects',
     contact: 'Contact',
+    letsConnectTitle: "Let's Connect",
+    letsConnectBody:
+      'Interested in MCP development, AI automation, or agentic workflows in production? Reach out.',
+    cvLabel: 'Professional CV',
+    infographicsLabel: 'MCP Infographics',
     quotes: [
       'Rothbard: "Capitalism is the fullest expression of anarchism, and anarchism is the fullest expression of capitalism."',
       'Mises: "Rational economic activity is impossible in a socialist commonwealth." — The cornerstone of Austrian praxeology.',
@@ -84,9 +89,14 @@ const t = {
   },
   cs: {
     hero: 'Průkopník Model Context Protocolu',
-    subtitle: 'AI nástroje pro moderní webové workflow',
+    subtitle: 'Stavím MCP servery/klienty, agentní orkestraci a bezpečnou infrastrukturu připravenou do provozu.',
     explore: 'Prozkoumat projekty',
     contact: 'Kontakt',
+    letsConnectTitle: 'Spojme se',
+    letsConnectBody:
+      'Zajímá vás MCP vývoj, AI automatizace nebo agentní workflow v produkci? Dejte vědět.',
+    cvLabel: 'Profesní CV',
+    infographicsLabel: 'MCP Infografiky',
     quotes: [
       'Rothbard: "Kapitalismus je nejplnějším vyjádřením anarchismu a anarchismus nejplnějším vyjádřením kapitalismu."',
       'Mises: "Racionální ekonomická aktivita je v socialistické společnosti nemožná." — Základ rakouské praxeologie.',
@@ -128,7 +138,7 @@ const t = {
       description:
         'Aplikace Hubermanových protokolů pro neuroplasticitu k optimalizaci učících systémů a lidsko-AI spolupráce.',
       principles: [
-        'Focus spouští neuroplasticitu',
+        'Fokus spouští neuroplasticitu',
         'Hluboká práce: Udržovaná pozornost řídí adaptaci',
         'Protokoly před motivací: Systémy převyšují vůli',
         'Optimalizace stresu: Záměrná praxe žene růst',
@@ -136,11 +146,11 @@ const t = {
     },
     pragmaticBuilding: {
       title: 'Pragmatické inženýrství',
-      description: 'Kombinace ThePrimeagenova inženýrského přístupu s moudrostí startupů z Slush ekosystému.',
+      description: 'Kombinace ThePrimeagenova inženýrského přístupu s moudrostí startupů z ekosystému Slush.',
       principles: [
         'Základy první: Rozuměj systému před abstrakcemi',
-        'Rychlé dodání, rychlejší iterace: Průtok před dokonalostí',
-        'Skuteční uživatelé, skutečné problémy: Validace trhu před technickou elegancí',
+        'Rychle doruč a ještě rychleji iteruj: Průtok před dokonalostí',
+        'Skuteční uživatelé, skutečné problémy: Validace trhu před elegancí',
         'Bezpečnost od návrhu: Modelování hrozeb od prvního dne',
       ],
     },
@@ -155,8 +165,8 @@ const t = {
       <LanguageToggle client:load />
     </div>
 
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden pb-32 pt-20">
+          <!-- Hero Section -->
+      <section id="home" class="relative overflow-hidden pb-32 pt-20">
       <div class="bg-grid-pattern absolute inset-0 opacity-10"></div>
       <div class="container relative z-10 mx-auto px-6">
         <div class="text-center">
@@ -203,7 +213,7 @@ const t = {
               href="/sparrow-ai-tech/cv.pdf"
               class="rounded-lg border border-cyan-500/50 px-8 py-3 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
             >
-              Professional CV
+              {t?.cvLabel}
             </a>
             <a
               href="#philosophy"
@@ -216,8 +226,11 @@ const t = {
       </div>
     </section>
 
+    <!-- Agentic Workflows Anchor -->
+    <section id="agentic" class="sr-only" aria-hidden="true"></section>
+
     <!-- Core Expertise -->
-    <section class="py-20">
+    <section id="features" class="py-20">
       <div class="container mx-auto px-6">
         <h2 class="mb-16 text-center text-3xl font-bold text-white md:text-4xl">Core Expertise</h2>
 
@@ -416,7 +429,7 @@ const t = {
     </section>
 
     <!-- GitHub Projects -->
-    <section class="py-20">
+    <section id="projects" class="py-20">
       <div class="container mx-auto px-6">
         <h2 class="mb-16 text-center text-3xl font-bold text-white md:text-4xl">GitHub Projects</h2>
         <RepoGallery client:load />
@@ -424,16 +437,14 @@ const t = {
     </section>
 
     <!-- Contact -->
-    <section class="py-20">
+    <section id="contact" class="py-20">
       <div class="container mx-auto px-6 text-center">
         <h2 class="mb-16 text-3xl font-bold text-white md:text-4xl">{t?.contact}</h2>
 
         <div class="mx-auto max-w-2xl">
-          <h3 class="mb-4 text-xl font-bold text-cyan-400">Let's Connect</h3>
+          <h3 class="mb-4 text-xl font-bold text-cyan-400">{t?.letsConnectTitle}</h3>
 
-          <p class="mb-8 text-slate-300">
-            Interested in MCP development, AI automation, or just want to chat about technology? Feel free to reach out!
-          </p>
+          <p class="mb-8 text-slate-300">{t?.letsConnectBody}</p>
 
           <div class="flex flex-col justify-center gap-4 sm:flex-row">
             <a
@@ -446,13 +457,21 @@ const t = {
               href="/sparrow-ai-tech/cv.pdf"
               class="rounded-lg border border-cyan-500/50 px-8 py-3 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
             >
-              Professional CV
+              {t?.cvLabel}
             </a>
             <a
               href="/sparrow-ai-tech/mermaid-editor"
               class="rounded-lg border border-purple-500/50 px-8 py-3 font-medium text-purple-400 transition-all duration-300 hover:bg-purple-500/10"
             >
-              MCP Infographics
+              {t?.infographicsLabel}
+            </a>
+            <a
+              href="https://stoky.urza.cz/autori/sparesparrow-937"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="rounded-lg border border-slate-500/50 px-8 py-3 font-medium text-slate-300 transition-all duration-300 hover:bg-slate-700/20"
+            >
+              Stoky Profile
             </a>
           </div>
         </div>

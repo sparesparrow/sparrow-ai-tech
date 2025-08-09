@@ -32,6 +32,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: "pip"
+          cache-dependency-path: |
+            backend/mcp-mermaid-generator/requirements.txt
+            mcp-mermaid-generator/requirements.txt
           
       - name: 📦 Install Python dependencies
         run: |
@@ -73,6 +76,8 @@ jobs:
           elif [ -f "mcp-mermaid-generator/Dockerfile" ]; then
             cd mcp-mermaid-generator
             docker build -t backend-test:latest .
+          else
+            echo "ℹ️ No Dockerfile found, skipping"
           fi
           
       - name: 🧪 Test Docker container
@@ -83,6 +88,8 @@ jobs:
           elif [ -f "mcp-mermaid-generator/Dockerfile" ]; then
             cd mcp-mermaid-generator  
             docker run --rm backend-test:latest python -m pytest tests/ -v || echo "No tests in container"
+          else
+            echo "ℹ️ No Docker image to test"
           fi
           
       - name: ✅ Docker build successful

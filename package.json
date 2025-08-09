@@ -62,7 +62,7 @@
     "yet-another-react-lightbox": "^3.25.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.4",
+    "@astrojs/sitemap": "^3.2.0",
     "@astrojs/svelte": "^7.1.0",
     "@babel/core": "^7.28.0",
     "@babel/eslint-parser": "^7.28.0",
