@@ -1,5 +1,3 @@
-import './css/main.css';
-
 document.addEventListener('DOMContentLoaded', function () {
   initTypewriter();
   initScrollAnimations();
@@ -732,3 +730,4 @@ function unnamedFunction() {
 }
 
 // Language toggle is handled by React component `LanguageToggle.jsx`
+
