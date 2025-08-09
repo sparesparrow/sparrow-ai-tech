@@ -11,3 +11,15 @@
   --spacing-lg: 2rem;
   --spacing-xl: 4rem;
 }
+
+.dark {
+  --color-background: #0b1220;
+  --color-surface: #0f172a;
+  --color-text: #e2e8f0;
+  --color-muted: #94a3b8;
+}
+
+html, body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}

@@ -1,4 +1,7 @@
 ---
+import LanguageToggle from '../components/core/LanguageToggle.jsx';
+import ThemeToggle from '../components/core/ThemeToggle.jsx';
+
 export interface Props {
   title: string;
   description?: string;
@@ -8,10 +11,12 @@ const {
   title,
   description = 'MCP Pioneer & AI Integration Specialist – Automatizační šílenec specializující se na Model Context Protocol, AI-driven development a bezpečnou správu serverů.',
 } = Astro.props;
+
+const lang = Astro.url?.searchParams.get('lang') || 'en';
 ---
 
 <!doctype html>
-<html lang="cs" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -56,6 +61,10 @@ const {
     <nav class="cyber-nav">
       <div class="cyber-nav-container">
         <div class="cyber-nav-logo cyber-glitch">🐦 sparesparrow</div>
+        <div class="cyber-nav-actions" style="display:flex; align-items:center; gap:.5rem;">
+          <LanguageToggle client:load />
+          <ThemeToggle client:load />
+        </div>
 
         <div class="cyber-nav-links">
           <a href="#home" class="cyber-nav-link active">Home</a>

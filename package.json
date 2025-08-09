@@ -79,6 +79,7 @@
     "@babel/preset-env": "^7.28.0",
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
+    "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
     "@testing-library/jest-dom": "^6.6.4",
     "@testing-library/react": "^16.3.0",
@@ -109,7 +110,7 @@
     "rehype-highlight": "^7.0.2",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",
-    "tailwindcss": "^4.1.11",
+    "tailwindcss": "^3.4.13",
     "typescript": "^5.9.2"
   },
   "engines": {
@@ -123,5 +124,5 @@
   "bugs": {
     "url": "https://github.com/sparesparrow/sparrow-ai-tech/issues"
   },
-  "packageManager": "pnpm@10.11.1"
+  "packageManager": "pnpm@10.14.0"
 }
