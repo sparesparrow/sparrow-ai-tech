@@ -3,6 +3,32 @@ import { useEffect, useMemo, useState } from 'react';
 const ALL_TECH = ['C++', 'JavaScript', 'Python', 'Rust', 'MCP', 'Linux', 'Docker'];
 const GITHUB_USER = 'sparesparrow';
 
+function getLang() {
+  if (typeof document !== 'undefined') {
+    return (document.documentElement.lang || 'cs').toLowerCase();
+  }
+  return 'cs';
+}
+
+const TEXT = {
+  en: {
+    title: 'GitHub Projects',
+    clear: 'Clear',
+    loading: 'Loading repositories...',
+    error: 'Error',
+    empty: 'No repositories match selected technologies.',
+    viewRepo: 'View Repo',
+  },
+  cs: {
+    title: 'GitHub projekty',
+    clear: 'Vymazat',
+    loading: 'Načítám repozitáře...',
+    error: 'Chyba',
+    empty: 'Žádné repozitáře neodpovídají zvoleným technologiím.',
+    viewRepo: 'Otevřít repo',
+  },
+};
+
 function useStreamingText(text, enabled = true, speedMs = 16) {
   const [output, setOutput] = useState('');
   useEffect(() => {
@@ -31,6 +57,9 @@ export default function RepoGallery() {
       return [];
     }
   });
+
+  const lang = getLang();
+  const t = TEXT[lang] || TEXT.cs;
 
   useEffect(() => {
     localStorage.setItem('selectedTech', JSON.stringify(selectedTech));
@@ -78,7 +107,7 @@ export default function RepoGallery() {
   return (
     <section id="projects" className="cyber-section">
       <div className="cyber-container">
-        <h2 className="cyber-section-title">GitHub Projects</h2>
+        <h2 className="cyber-section-title">{t.title}</h2>
 
         <div className="cyber-card" style={{ marginBottom: '1rem' }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
@@ -104,14 +133,14 @@ export default function RepoGallery() {
                 data-cy="tech-clear"
                 style={{ marginLeft: 'auto' }}
               >
-                Clear
+                {t.clear}
               </button>
             )}
           </div>
         </div>
 
-        {loading && <div>Loading repositories...</div>}
-        {error && <div style={{ color: 'var(--color-cyber-orange)' }}>Error: {error}</div>}
+        {loading && <div>{t.loading}</div>}
+        {error && <div style={{ color: 'var(--color-cyber-orange)' }}>{t.error}: {error}</div>}
 
         <div
           className="cyber-cards-grid"
@@ -119,11 +148,11 @@ export default function RepoGallery() {
           data-cy="repo-grid"
         >
           {filtered.map((repo) => (
-            <RepoCard key={repo.id} repo={repo} highlight={selectedTech} />
+            <RepoCard key={repo.id} repo={repo} highlight={selectedTech} lang={lang} />
           ))}
           {!loading && filtered.length === 0 && (
             <div className="cyber-card" style={{ gridColumn: '1 / -1' }}>
-              No repositories match selected technologies.
+              {t.empty}
             </div>
           )}
         </div>
@@ -132,7 +161,12 @@ export default function RepoGallery() {
   );
 }
 
-function RepoCard({ repo, highlight }) {
+function RepoCard({ repo, highlight, lang }) {
+  const TEXT = {
+    en: { viewRepo: 'View Repo' },
+    cs: { viewRepo: 'Otevřít repo' },
+  };
+  const t = TEXT[lang] || TEXT.cs;
   const title = useStreamingText(repo.name, true, 20);
   const description = useStreamingText(repo.description || '', true, 8);
   const topics = (repo.topics || []).slice(0, 6);
@@ -154,7 +188,7 @@ function RepoCard({ repo, highlight }) {
       </div>
       <div style={{ marginTop: '1rem' }}>
         <a className="cyber-btn cyber-btn-primary" href={repo.url} target="_blank" rel="noreferrer">
-          View Repo
+          {t.viewRepo}
         </a>
       </div>
     </div>

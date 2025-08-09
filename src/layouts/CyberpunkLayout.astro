@@ -12,7 +12,53 @@ const {
   description = 'MCP Pioneer & AI Integration Specialist – Automatizační šílenec specializující se na Model Context Protocol, AI-driven development a bezpečnou správu serverů.',
 } = Astro.props;
 
-const lang = Astro.url?.searchParams.get('lang') || 'en';
+const lang = Astro.url?.searchParams.get('lang') || 'cs';
+const t = {
+  en: {
+    nav: {
+      home: 'Home',
+      expertise: 'Expertise',
+      projects: 'MCP Projects',
+      agentic: 'Agentic Workflows',
+      philosophy: 'Philosophy',
+      mermaid: 'Mermaid Editor',
+      chatbot: 'Chatbot',
+      contact: 'Contact',
+    },
+    footer: {
+      mcpPioneer: 'MCP Pioneer',
+      specialization: 'Specialized in Model Context Protocol, AI orchestration and automation.',
+      technologies: 'Technologies',
+      links: 'Links',
+      github: 'GitHub',
+      cv: 'CV',
+      infographics: 'MCP Infographics',
+      copyright: 'Built with Astro & ❤️',
+    },
+  },
+  cs: {
+    nav: {
+      home: 'Domů',
+      expertise: 'Expertíza',
+      projects: 'MCP Projekty',
+      agentic: 'Agentní workflow',
+      philosophy: 'Filosofie',
+      mermaid: 'Mermaid Editor',
+      chatbot: 'Chatbot',
+      contact: 'Kontakt',
+    },
+    footer: {
+      mcpPioneer: 'MCP Průkopník',
+      specialization: 'Specializace na Model Context Protocol, AI orchestraci a automatizaci.',
+      technologies: 'Technologie',
+      links: 'Odkazy',
+      github: 'GitHub',
+      cv: 'CV',
+      infographics: 'MCP Infografiky',
+      copyright: 'Postaveno pomocí Astro & ❤️',
+    },
+  },
+}[lang as 'en' | 'cs'];
 ---
 
 <!doctype html>
@@ -39,7 +85,7 @@ const lang = Astro.url?.searchParams.get('lang') || 'en';
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
 
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <title>{title}</title>
 
     <!-- Fonts -->
@@ -67,14 +113,14 @@ const lang = Astro.url?.searchParams.get('lang') || 'en';
         </div>
 
         <div class="cyber-nav-links">
-          <a href="#home" class="cyber-nav-link active">Home</a>
-          <a href="#features" class="cyber-nav-link">Expertise</a>
-          <a href="#projects" class="cyber-nav-link">MCP Projects</a>
-          <a href="#agentic" class="cyber-nav-link">Agentic Workflows</a>
-          <a href="#philosophy" class="cyber-nav-link">Philosophy</a>
-          <a href={`${import.meta.env.BASE_URL}/mermaid-editor`} class="cyber-nav-link">Mermaid Editor</a>
-          <a href={`${import.meta.env.BASE_URL}/chatbot`} class="cyber-nav-link">Chatbot</a>
-          <a href="#contact" class="cyber-nav-link">Contact</a>
+          <a href="#home" class="cyber-nav-link active">{t.nav.home}</a>
+          <a href="#features" class="cyber-nav-link">{t.nav.expertise}</a>
+          <a href="#projects" class="cyber-nav-link">{t.nav.projects}</a>
+          <a href={`${import.meta.env.BASE_URL}agentic-workflow`} class="cyber-nav-link">{t.nav.agentic}</a>
+          <a href="#philosophy" class="cyber-nav-link">{t.nav.philosophy}</a>
+          <a href={`${import.meta.env.BASE_URL}mermaid-editor`} class="cyber-nav-link">{t.nav.mermaid}</a>
+          <a href={`${import.meta.env.BASE_URL}chatbot`} class="cyber-nav-link">{t.nav.chatbot}</a>
+          <a href="#contact" class="cyber-nav-link">{t.nav.contact}</a>
         </div>
       </div>
     </nav>
@@ -87,29 +133,29 @@ const lang = Astro.url?.searchParams.get('lang') || 'en';
       <div class="cyber-container">
         <div class="footer-content">
           <div class="footer-section">
-            <h4>MCP Pioneer</h4>
-            <p>Specializace na Model Context Protocol, AI orchestration a automatizaci workflow.</p>
+            <h4>{t.footer.mcpPioneer}</h4>
+            <p>{t.footer.specialization}</p>
           </div>
 
           <div class="footer-section">
-            <h4>Technologies</h4>
+            <h4>{t.footer.technologies}</h4>
             <div class="footer-tags">
               <span>Rust</span><span>TypeScript</span><span>MCP</span><span>AI</span><span>Docker</span>
             </div>
           </div>
 
           <div class="footer-section">
-            <h4>Links</h4>
+            <h4>{t.footer.links}</h4>
             <div class="footer-links">
-              <a href="https://github.com/sparesparrow" target="_blank" rel="noopener">GitHub</a>
-              <a href="https://sparesparrow.github.io/cv/" target="_blank" rel="noopener">CV</a>
-              <a href={`${import.meta.env.BASE_URL}/infographics/Infographic1/`}>MCP Infographics</a>
+              <a href="https://github.com/sparesparrow" target="_blank" rel="noopener">{t.footer.github}</a>
+              <a href="https://sparesparrow.github.io/cv/" target="_blank" rel="noopener">{t.footer.cv}</a>
+              <a href={`${import.meta.env.BASE_URL}infographics/Infographic1/`}>{t.footer.infographics}</a>
             </div>
           </div>
         </div>
 
         <div class="footer-bottom">
-          <p>&copy; 2025 Vojtěch Špaček – Built with Astro & ❤️</p>
+          <p>&copy; 2025 Vojtěch Špaček – {t.footer.copyright}</p>
         </div>
       </div>
     </footer>
