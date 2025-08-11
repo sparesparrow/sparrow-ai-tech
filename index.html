@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sparrow AI Tech</title>
+  <meta name="description" content="Modern Astro + React web project with i18n, Tailwind, Jest, Cypress, and GitHub Pages deployment." />
+  <link rel="preload" href="assets/hero-bg.jpg" as="image" imagesrcset="assets/hero-bg.jpg 1920w" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="assets/logo.svg" alt="Sparrow AI Tech logo" class="logo" onerror="this.src='assets/logo.png';this.onerror=null;">
+        <span class="brand-name">Sparrow AI Tech</span>
+      </div>
+      <nav class="site-nav" role="navigation" aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list" aria-label="Toggle navigation">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="docs/" aria-label="Open documentation">Docs</a></li>
+          <li><a href="https://github.com/sparesparrow/sparrow-ai-tech" rel="noopener" target="_blank">Source</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" role="region" aria-label="Hero">
+    <div class="hero-bg" role="img" aria-label="Abstract tech background"></div>
+    <div class="container hero-inner">
+      <h1>Build fast. Ship confidently.</h1>
+      <p>Static site optimized for GitHub Pages with modern developer tooling.</p>
+      <div class="hero-ctas">
+        <a class="btn primary" href="#projects">Explore Projects</a>
+        <a class="btn ghost" href="https://github.com/sparesparrow/sparrow-ai-tech" target="_blank" rel="noopener">View Source</a>
+      </div>
+    </div>
+  </section>
+
+  <main id="main" tabindex="-1">
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+        <p class="section-lead">Hover or focus a card to preview; press Enter to open.</p>
+        <div class="cards" role="list">
+          <!-- Example card: update hrefs and images to match actual repo resources -->
+          <article class="card" role="listitem">
+            <a class="card-link" href="https://github.com/sparesparrow/mcp-prompts" target="_blank" rel="noopener" aria-label="Open MCP Prompts repository">
+              <div class="card-media">
+                <img src="assets/card-mcp-prompts.jpg" alt="MCP Prompts preview" loading="lazy" />
+                <img class="hover-preview" src="assets/hover-mcp-prompts.jpg" alt="" aria-hidden="true" />
+              </div>
+              <div class="card-body">
+                <h3>MCP Prompts</h3>
+                <p>Model Context Protocol prompt server and templates.</p>
+                <div class="card-actions">
+                  <span class="chip">TypeScript</span>
+                  <span class="chip">MCP</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" role="listitem">
+            <a class="card-link" href="https://github.com/sparesparrow/mcp-project-orchestrator" target="_blank" rel="noopener" aria-label="Open MCP Project Orchestrator repository">
+              <div class="card-media">
+                <img src="assets/card-orchestrator.jpg" alt="Project Orchestrator preview" loading="lazy" />
+                <img class="hover-preview" src="assets/hover-orchestrator.jpg" alt="" aria-hidden="true" />
+              </div>
+              <div class="card-body">
+                <h3>MCP Project Orchestrator</h3>
+                <p>Orchestrates scaffolds and patterns from user intent.</p>
+                <div class="card-actions">
+                  <span class="chip">Node.js</span>
+                  <span class="chip">CLI</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" role="listitem">
+            <a class="card-link" href="https://github.com/sparesparrow/cursor-rules" target="_blank" rel="noopener" aria-label="Open Cursor Rules repository">
+              <div class="card-media">
+                <img src="assets/card-cursor-rules.jpg" alt="Cursor Rules preview" loading="lazy" />
+                <img class="hover-preview" src="assets/hover-cursor-rules.jpg" alt="" aria-hidden="true" />
+              </div>
+              <div class="card-body">
+                <h3>Cursor Rules</h3>
+                <p>Organized instructions for the Cursor IDE agent composer.</p>
+                <div class="card-actions">
+                  <span class="chip">Docs</span>
+                  <span class="chip">DevTools</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section">
+      <div class="container">
+        <h2>Gallery</h2>
+        <p class="section-lead">Visuals from the project assets.</p>
+        <div class="gallery" role="list">
+          <button class="gallery-item" role="listitem" data-full="assets/hero-bg.jpg" aria-label="Open hero background image">
+            <img src="assets/hero-bg.jpg" alt="Hero background" loading="lazy">
+          </button>
+          <button class="gallery-item" role="listitem" data-full="assets/card-mcp-prompts.jpg" aria-label="Open MCP Prompts image">
+            <img src="assets/card-mcp-prompts.jpg" alt="MCP Prompts card image" loading="lazy">
+          </button>
+          <button class="gallery-item" role="listitem" data-full="assets/card-orchestrator.jpg" aria-label="Open Orchestrator image">
+            <img src="assets/card-orchestrator.jpg" alt="Orchestrator card image" loading="lazy">
+          </button>
+          <button class="gallery-item" role="listitem" data-full="assets/card-cursor-rules.jpg" aria-label="Open Cursor Rules image">
+            <img src="assets/card-cursor-rules.jpg" alt="Cursor Rules card image" loading="lazy">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2>About</h2>
+        <p>This site showcases automation projects, philosophy, and contact routes, published via GitHub Pages.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+    <button class="lightbox-close" aria-label="Close viewer">&times;</button>
+    <img class="lightbox-img" alt="">
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Sparrow AI Tech</p>
+      <nav aria-label="Footer">
+        <ul class="footer-nav">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="docs/">Docs</a></li>
+          <li><a href="https://github.com/sparesparrow/sparrow-ai-tech" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
