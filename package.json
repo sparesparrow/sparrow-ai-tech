@@ -81,7 +81,7 @@
     "@typescript-eslint/eslint-plugin": "^8.39.0",
     "@typescript-eslint/parser": "^8.39.0",
     "autoprefixer": "^10.4.21",
-    "babel-jest": "^29.7.0",
+    "babel-jest": "^30.0.5",
     "browserslist": "^4.25.1",
     "cypress": "^13.17.0",
     "cypress-axe": "^1.6.0",
