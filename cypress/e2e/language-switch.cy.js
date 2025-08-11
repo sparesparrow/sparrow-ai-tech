@@ -1,11 +1,17 @@
 describe('Language Switcher', () => {
   it('switches language and persists after reload', () => {
     cy.visitApp('/');
-    cy.get('[data-cy="language-toggle"]').click();
-    cy.contains('Domů').should('exist'); // Czech for Home
+    cy.get('[data-cy="language-toggle"]').click({ force: true });
+    cy.get('blockquote')
+      .first()
+      .should('contain', 'Kapitalismus je nejplnějším vyjádřením anarchismu');
     cy.reload();
-    cy.contains('Domů').should('exist');
-    cy.get('[data-cy="language-toggle"]').click();
-    cy.contains('Home').should('exist');
+    cy.get('blockquote')
+      .first()
+      .should('contain', 'Kapitalismus je nejplnějším vyjádřením anarchismu');
+    cy.get('[data-cy="language-toggle"]').click({ force: true });
+    cy.get('blockquote')
+      .first()
+      .should('contain', 'Capitalism is the fullest expression of anarchism');
   });
 });

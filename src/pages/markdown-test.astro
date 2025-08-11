@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MarkdownViewer from '../components/markdown/MarkdownViewer.jsx';
+
+// Get the source file from query parameters
+const src = Astro.url.searchParams.get('src') || './articles/mermaid-test.md';
+const className = Astro.url.searchParams.get('className') || '';
+---
+
+<Layout title="Markdown Test - Mermaid Diagrams">
+  <div class="markdown-test-page">
+    <header class="page-header">
+      <h1>Markdown Test Page</h1>
+      <p>Testing Mermaid diagram rendering and Markdown features</p>
+      <div class="test-info">
+        <p><strong>Source:</strong> {src}</p>
+        {
+          className && (
+            <p>
+              <strong>Custom Class:</strong> {className}
+            </p>
+          )
+        }
+      </div>
+    </header>
+
+    <main class="page-content">
+      <MarkdownViewer src={src} className={className} client:load />
+    </main>
+
+    <footer class="page-footer">
+      <p>
+        <a href="/mermaid-editor" class="btn-primary">Open Mermaid Editor</a>
+        <a href="/" class="btn-secondary">Back to Home</a>
+      </p>
+    </footer>
+  </div>
+
+  <style>
+    .markdown-test-page {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 2rem;
+      color: white;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .page-header p {
+      font-size: 1.125rem;
+      opacity: 0.9;
+      margin-bottom: 1rem;
+    }
+
+    .test-info {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .test-info p {
+      margin: 0.5rem 0;
+      font-size: 0.875rem;
+    }
+
+    .page-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .page-footer {
+      text-align: center;
+      padding: 2rem;
+      color: white;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      margin: 0 0.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #007bff;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #0056b3;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .page-content {
+        padding: 1rem;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        display: block;
+        margin: 0.5rem auto;
+        max-width: 200px;
+      }
+    }
+  </style>
+</Layout>

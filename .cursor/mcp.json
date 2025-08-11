@@ -1,5 +1,9 @@
 {
   "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]
+    },
     "server-memory": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-memory"],
@@ -20,7 +24,7 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "/home/sparrow/Desktop/sparrow-ai-tech",
+        "/workspaces/sparrow-ai-tech",
         "--allow-all-origins",
         "--allow-all-methods",
         "--allow-all-headers",

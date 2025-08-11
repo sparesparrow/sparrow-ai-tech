@@ -1,8 +1,373 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import MermaidLiveEditor from '../components/markdown/MermaidLiveEditor.jsx';
+import Mermaid from '../components/markdown/Mermaid.astro';
 ---
 
-<Layout title="Mermaid Live Editor">
-  <MermaidLiveEditor client:load />
+<Layout title="Mermaid Live Editor - Interactive Diagram Creation">
+  <div class="mermaid-editor-page">
+    <header class="page-header">
+      <h1>Mermaid Live Editor</h1>
+      <p>Create, edit, and preview Mermaid diagrams in real-time with our interactive editor</p>
+      <div class="philosophy-intro">
+        <p>
+          <strong>Why diagrams matter:</strong> In a world of increasing complexity and state intervention, clear visual
+          communication becomes a tool of resistance. Diagrams help us understand complex systems—whether they're economic
+          relationships, technological architectures, or the flow of information in society. This editor empowers you to
+          create visual narratives that challenge centralized narratives and reveal the beauty of spontaneous order.
+        </p>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <!-- Interactive Editor Section -->
+      <section class="editor-section">
+        <h2>Interactive Editor</h2>
+        <p>Use the live editor below to create and edit Mermaid diagrams. Features include:</p>
+        <ul>
+          <li>Real-time preview with syntax highlighting</li>
+          <li>Built-in examples for different diagram types</li>
+          <li>Error handling and validation</li>
+          <li>Export to SVG format</li>
+          <li>GitHub integration for loading diagrams</li>
+        </ul>
+
+        <div class="editor-container">
+          <MermaidLiveEditor client:load />
+        </div>
+      </section>
+
+      <!-- Examples Section -->
+      <section class="examples-section">
+        <h2>Diagram Examples</h2>
+        <p>Explore different types of Mermaid diagrams that can help visualize complex concepts:</p>
+
+        <div class="examples-grid">
+          <!-- Flowchart Example -->
+          <div class="example-card">
+            <h3>Flowchart</h3>
+            <Mermaid
+              code={`graph TD
+    A[Start] --> B{Decision?};
+    B -->|Yes| C[Action 1];
+    B -->|No| D[Action 2];
+    C --> E[End];
+    D --> E;
+    
+    style A fill:#e1f5fe
+    style C fill:#e8f5e8
+    style D fill:#fff3e0`}
+            />
+          </div>
+
+          <!-- Sequence Diagram Example -->
+          <div class="example-card">
+            <h3>Sequence Diagram</h3>
+            <Mermaid
+              code={`sequenceDiagram
+    participant User
+    participant System
+    participant Database
+    
+    User->>System: Request Data
+    System->>Database: Query
+    Database-->>System: Results
+    System-->>User: Response`}
+            />
+          </div>
+
+          <!-- Class Diagram Example -->
+          <div class="example-card">
+            <h3>Class Diagram</h3>
+            <Mermaid
+              code={`classDiagram
+    class Animal {
+        +String name
+        +move()
+    }
+    class Dog {
+        +bark()
+    }
+    class Bird {
+        +fly()
+    }
+    Animal <|-- Dog
+    Animal <|-- Bird`}
+            />
+          </div>
+
+          <!-- Gantt Chart Example -->
+          <div class="example-card">
+            <h3>Gantt Chart</h3>
+            <Mermaid
+              code={`gantt
+    title Project Timeline
+    dateFormat  YYYY-MM-DD
+    section Phase 1
+    Planning    :plan, 2024-01-01, 30d
+    Design      :design, after plan, 20d
+    section Phase 2
+    Development :dev, after design, 45d
+    Testing     :test, after dev, 15d`}
+            />
+          </div>
+
+          <!-- Economic Flow Example -->
+          <div class="example-card">
+            <h3>Economic Flow</h3>
+            <Mermaid
+              code={`graph LR
+    A[Individuals] --> B[Voluntary Exchange]
+    B --> C[Market Prices]
+    C --> D[Resource Allocation]
+    D --> E[Spontaneous Order]
+    
+    style A fill:#e8f5e8
+    style E fill:#e1f5fe
+    style B fill:#fff3e0`}
+            />
+          </div>
+
+          <!-- Decentralized System Example -->
+          <div class="example-card">
+            <h3>Decentralized System</h3>
+            <Mermaid
+              code={`graph TD
+    A[Node 1] --- B[Node 2]
+    B --- C[Node 3]
+    C --- D[Node 4]
+    D --- A
+    A --- C
+    B --- D
+    
+    style A fill:#e8f5e8
+    style B fill:#e8f5e8
+    style C fill:#e8f5e8
+    style D fill:#e8f5e8`}
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Use Cases Section -->
+      <section class="use-cases-section">
+        <h2>Use Cases & Applications</h2>
+        <div class="use-cases-grid">
+          <div class="use-case-card">
+            <h3>Economic Analysis</h3>
+            <p>
+              Visualize market processes, price discovery mechanisms, and the flow of information in economic systems.
+              Show how spontaneous order emerges from individual actions.
+            </p>
+          </div>
+          <div class="use-case-card">
+            <h3>System Architecture</h3>
+            <p>
+              Design decentralized systems that resist single points of failure and state control. Map out protocols
+              that enable voluntary cooperation.
+            </p>
+          </div>
+          <div class="use-case-card">
+            <h3>Information Flow</h3>
+            <p>
+              Track how information moves through networks, revealing both the efficiency of market signals and the
+              dangers of centralized information control.
+            </p>
+          </div>
+          <div class="use-case-card">
+            <h3>Decision Trees</h3>
+            <p>
+              Model complex decision-making processes, from individual choices to organizational structures that respect
+              autonomy.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Philosophy Section -->
+      <section class="philosophy-section">
+        <h2>Why Visual Communication Matters</h2>
+        <div class="philosophy-content">
+          <p>
+            In an age of increasing complexity and state intervention, clear visual communication becomes a tool of
+            resistance. Diagrams help us understand complex systems—whether they're economic relationships,
+            technological architectures, or the flow of information in society.
+          </p>
+
+          <p>
+            This editor empowers you to create visual narratives that challenge centralized narratives and reveal the
+            beauty of spontaneous order. By making complex concepts accessible, we can better understand the world
+            around us and make informed decisions about our future.
+          </p>
+
+          <p>
+            Whether you're mapping out a decentralized protocol, visualizing market processes, or explaining complex
+            systems to others, clear diagrams are essential for effective communication and understanding.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
 </Layout>
+
+<style>
+  .mermaid-editor-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .page-header p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+  }
+
+  .philosophy-intro {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+    margin-top: 2rem;
+  }
+
+  .philosophy-intro p {
+    margin: 0;
+    color: #2c3e50;
+    line-height: 1.6;
+  }
+
+  .editor-section {
+    margin-bottom: 4rem;
+  }
+
+  .editor-section h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .editor-section ul {
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+  }
+
+  .editor-section li {
+    margin-bottom: 0.5rem;
+    color: #34495e;
+  }
+
+  .editor-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .examples-section {
+    margin-bottom: 4rem;
+  }
+
+  .examples-section h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .example-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background: white;
+  }
+
+  .example-card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .use-cases-section {
+    margin-bottom: 4rem;
+  }
+
+  .use-cases-section h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .use-case-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #27ae60;
+  }
+
+  .use-case-card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .use-case-card p {
+    color: #34495e;
+    line-height: 1.6;
+  }
+
+  .philosophy-section {
+    background: #ecf0f1;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .philosophy-section h2 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+  }
+
+  .philosophy-content p {
+    color: #34495e;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .philosophy-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .mermaid-editor-page {
+      padding: 1rem;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .examples-grid,
+    .use-cases-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

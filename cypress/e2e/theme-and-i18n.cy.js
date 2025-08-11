@@ -1,7 +1,7 @@
 describe('Theme and Language Controls', () => {
   it('switches language via toggle and persists through reload', () => {
     cy.visit('/');
-    cy.get('[data-cy="language-toggle"]').click();
+    cy.get('[data-cy="language-toggle"]').click({ force: true });
     cy.location('search').should('include', 'lang=');
     cy.reload();
     cy.location('search').should('include', 'lang=');

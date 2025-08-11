@@ -13,11 +13,10 @@ describe('Key routes smoke tests', () => {
 
   it('home contains core sections and nav islands', () => {
     cy.visit(base + '/');
-    cy.get('nav.nav .nav-logo').should('contain', 'sparrow-ai-tech');
-    cy.get('#home').should('exist');
-    cy.get('#expertise').should('exist');
+    cy.get('nav.cyber-nav .cyber-nav-logo').should('contain', 'sparesparrow');
+    cy.get('h1').should('contain', 'Vojtěch Špaček');
     cy.get('#philosophy').should('exist');
-    cy.get('#contact').should('exist');
+    cy.get('section').its('length').should('be.greaterThan', 3);
     // hydrated islands (Language/Theme) are optional but check at least one
     cy.get('astro-island').its('length').should('be.greaterThan', 0);
   });

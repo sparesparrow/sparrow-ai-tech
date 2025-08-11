@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DiagramGallery from '../components/DiagramGallery.jsx';
+---
+
+<Layout title="Diagram Gallery - Mermaid Templates">
+  <div class="diagram-gallery-page">
+    <header class="page-header">
+      <h1>Diagram Gallery</h1>
+      <p>Browse and use our collection of pre-built Mermaid diagram templates</p>
+    </header>
+
+    <main class="page-content">
+      <DiagramGallery client:load />
+    </main>
+
+    <aside class="page-sidebar">
+      <div class="sidebar-section">
+        <h3>How to Use</h3>
+        <ol>
+          <li>Browse through the diagram templates</li>
+          <li>Filter by category, tag, or search</li>
+          <li>Click on a diagram to edit it</li>
+          <li>Export as JSON or Markdown</li>
+          <li>Use in your own projects</li>
+        </ol>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Categories</h3>
+        <ul>
+          <li><strong>Architecture:</strong> System designs and layouts</li>
+          <li><strong>Workflow:</strong> Process flows and sequences</li>
+          <li><strong>Database:</strong> Schema and ER diagrams</li>
+          <li><strong>Process:</strong> CI/CD and development workflows</li>
+          <li><strong>Timeline:</strong> Project schedules and Gantt charts</li>
+          <li><strong>State:</strong> State machines and transitions</li>
+          <li><strong>Network:</strong> Network topologies and security</li>
+          <li><strong>Mindmap:</strong> Technology stacks and concepts</li>
+          <li><strong>Flowchart:</strong> Decision flows and logic</li>
+          <li><strong>Journey:</strong> User experience maps</li>
+          <li><strong>Class:</strong> Object-oriented models</li>
+          <li><strong>Pie:</strong> Data visualizations</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Features</h3>
+        <ul>
+          <li>✅ 12 pre-built diagram templates</li>
+          <li>✅ Multiple diagram types</li>
+          <li>✅ Search and filter capabilities</li>
+          <li>✅ Export functionality</li>
+          <li>✅ Live editing</li>
+          <li>✅ Responsive design</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <style>
+    .diagram-gallery-page {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .page-header {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      font-size: 1.125rem;
+      color: #4a5568;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .page-content {
+      min-height: 600px;
+    }
+
+    .page-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .sidebar-section {
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .sidebar-section h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+    }
+
+    .sidebar-section ol,
+    .sidebar-section ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .sidebar-section li {
+      margin-bottom: 0.5rem;
+      color: #4a5568;
+      line-height: 1.5;
+    }
+
+    .sidebar-section strong {
+      color: #2d3748;
+    }
+
+    @media (max-width: 1024px) {
+      .diagram-gallery-page {
+        grid-template-columns: 1fr;
+      }
+
+      .page-sidebar {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .page-header p {
+        font-size: 1rem;
+      }
+
+      .sidebar-section {
+        padding: 1rem;
+      }
+    }
+  </style>
+</Layout>

@@ -1,26 +1,366 @@
 ---
-import CyberpunkLayout from '../layouts/CyberpunkLayout.astro';
 import Layout from '../layouts/Layout.astro';
-import MainLayout from '../layouts/MainLayout.astro';
+import LanguageToggle from '../components/core/LanguageToggle.jsx';
+
+const lang = Astro.url.searchParams.get('lang') || 'cs';
+const t: Record<string, any> = {
+  en: {
+    title: 'AI Chatbot - Intelligent Conversations',
+    subtitle: 'An AI assistant that respects your autonomy and privacy',
+    intro: {
+      title: 'Conversations That Matter',
+      content: `In an age where AI systems are increasingly designed to serve state interests and corporate surveillance, this chatbot is built on different principles. It respects your cognitive liberty, values your privacy, and engages in conversations that enhance rather than diminish human agency.`,
+    },
+    features: [
+      {
+        title: 'Privacy by Design',
+        description: 'Your conversations remain private and are not used for surveillance or behavioral manipulation.',
+        icon: '🔒',
+      },
+      {
+        title: 'Cognitive Liberty',
+        description:
+          'Designed to enhance your thinking, not replace it. The AI assists without attempting to control or manipulate.',
+        icon: '🧠',
+      },
+      {
+        title: 'Austrian Economics Knowledge',
+        description:
+          'Deep understanding of market processes, individual action, and the dangers of state intervention.',
+        icon: '📊',
+      },
+      {
+        title: 'Technology Ethics',
+        description:
+          'Conversations about AI safety, digital sovereignty, and building technology that serves individuals, not states.',
+        icon: '⚖️',
+      },
+    ],
+    philosophy: {
+      title: 'Philosophical Approach',
+      content: `This chatbot operates on the principle that AI should serve human flourishing, not state control. It's designed to help you think more clearly about complex issues, explore ideas freely, and make informed decisions about technology and society.`,
+    },
+    topics: {
+      title: 'Conversation Topics',
+      description: 'Engage in meaningful discussions about:',
+      items: [
+        'Austrian economics and market processes',
+        'Individual sovereignty and voluntary cooperation',
+        'AI safety and responsible development',
+        'Digital privacy and surveillance resistance',
+        'Technology ethics and human agency',
+        'Decentralized systems and protocols',
+        'Philosophy of liberty and human rights',
+        'Practical applications of libertarian principles',
+      ],
+    },
+  },
+  cs: {
+    title: 'AI Chatbot - Inteligentní konverzace',
+    subtitle: 'AI asistent, který respektuje vaši autonomii a soukromí',
+    intro: {
+      title: 'Konverzace, které mají smysl',
+      content: `V době, kdy jsou AI systémy stále více navrhovány k službě státním zájmům a korporátnímu dohledu, je tento chatbot postaven na jiných principech. Respektuje vaši kognitivní svobodu, váží si vašeho soukromí a vede konverzace, které posilují spíše než oslabují lidskou agenturu.`,
+    },
+    features: [
+      {
+        title: 'Soukromí od návrhu',
+        description: 'Vaše konverzace zůstávají soukromé a nejsou používány pro dohled nebo behaviorální manipulaci.',
+        icon: '🔒',
+      },
+      {
+        title: 'Kognitivní svoboda',
+        description:
+          'Navržen k posílení vašeho myšlení, ne k jeho nahrazení. AI asistuje bez pokusů o kontrolu nebo manipulaci.',
+        icon: '🧠',
+      },
+      {
+        title: 'Znalosti rakouské ekonomie',
+        description: 'Hluboké pochopení tržních procesů, individuálního jednání a nebezpečí státní intervence.',
+        icon: '📊',
+      },
+      {
+        title: 'Etika technologií',
+        description:
+          'Konverzace o bezpečnosti AI, digitální suverenitě a stavbě technologií, které slouží jednotlivcům, ne státům.',
+        icon: '⚖️',
+      },
+    ],
+    philosophy: {
+      title: 'Filosofický přístup',
+      content: `Tento chatbot funguje na principu, že AI by měla sloužit lidskému rozkvětu, ne státní kontrole. Je navržen k pomoci vám myslet jasněji o komplexních otázkách, volně zkoumat myšlenky a činit informovaná rozhodnutí o technologiích a společnosti.`,
+    },
+    topics: {
+      title: 'Témata konverzací',
+      description: 'Zapojte se do smysluplných diskusí o:',
+      items: [
+        'Rakouské ekonomii a tržních procesech',
+        'Individuální suverenitě a dobrovolné spolupráci',
+        'Bezpečnosti AI a zodpovědném vývoji',
+        'Digitálním soukromí a odolávání dohledu',
+        'Etice technologií a lidské agentuře',
+        'Decentralizovaných systémech a protokolech',
+        'Filosofii svobody a lidských práv',
+        'Praktických aplikacích libertariánských principů',
+      ],
+    },
+  },
+};
 ---
 
-<CyberpunkLayout title="AI Chatbot - Sparrow AI Tech">
+<Layout title={t[lang].title}>
   <section class="cyber-section" style="padding-top: 6rem;">
     <div class="cyber-container">
-      <h1 class="cyber-section-title">AI Chatbot</h1>
-      <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-        <p style="color: var(--color-cyber-text-dim); font-size: 1.1rem; margin-bottom: 2rem;">
-          Inteligentní AI asistent pro vaše dotazy a konverzace.
-        </p>
-        <div
-          style="background: var(--color-cyber-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--color-cyber-border);"
-        >
-          <p style="color: var(--color-cyber-text);">🤖 Chatbot bude brzy dostupný!</p>
-          <p style="color: var(--color-cyber-text-dim); margin-top: 1rem;">
-            Mezitím můžete využít ElevenLabs Voice Assistant widget v dolní části stránky.
-          </p>
-        </div>
-      </div>
+      <header class="page-header">
+        <h1 class="cyber-section-title">{t[lang].title}</h1>
+        <p class="subtitle">{t[lang].subtitle}</p>
+        <LanguageToggle client:load />
+      </header>
+
+      <main class="page-content">
+        <!-- Introduction Section -->
+        <section class="intro-section">
+          <h2>{t[lang].intro.title}</h2>
+          <p>{t[lang].intro.content}</p>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+          <h2>Key Features</h2>
+          <div class="features-grid">
+            {
+              t[lang].features.map((feature: any) => (
+                <div class="feature-card">
+                  <div class="feature-icon">{feature.icon}</div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section class="philosophy-section">
+          <h2>{t[lang].philosophy.title}</h2>
+          <p>{t[lang].philosophy.content}</p>
+        </section>
+
+        <!-- Topics Section -->
+        <section class="topics-section">
+          <h2>{t[lang].topics.title}</h2>
+          <p>{t[lang].topics.description}</p>
+          <div class="topics-grid">
+            {
+              t[lang].topics.items.map((topic: any) => (
+                <div class="topic-item">
+                  <span class="topic-bullet">•</span>
+                  <span>{topic}</span>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Chatbot Interface -->
+        <section class="chatbot-section">
+          <h2>Start a Conversation</h2>
+          <div class="chatbot-interface">
+            <p class="status-message">🤖 Chatbot will be available soon!</p>
+            <p class="status-note">
+              In the meantime, you can use the ElevenLabs Voice Assistant widget at the bottom of the page.
+            </p>
+            <div class="coming-soon">
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+              <p>Development in progress...</p>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
   </section>
-</CyberpunkLayout>
+</Layout>
+
+<style>
+  .cyber-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .cyber-section-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--color-cyber-text);
+  }
+
+  .subtitle {
+    color: var(--color-cyber-text-dim);
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+  }
+
+  .page-content {
+    display: grid;
+    gap: 4rem;
+  }
+
+  .intro-section,
+  .features-section,
+  .philosophy-section,
+  .topics-section,
+  .chatbot-section {
+    background: var(--color-cyber-surface);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--color-cyber-border);
+  }
+
+  .intro-section h2,
+  .features-section h2,
+  .philosophy-section h2,
+  .topics-section h2,
+  .chatbot-section h2 {
+    color: var(--color-cyber-text);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+
+  .intro-section p,
+  .philosophy-section p {
+    color: var(--color-cyber-text-dim);
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .feature-card {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid var(--color-cyber-border);
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    color: var(--color-cyber-text);
+    margin-bottom: 1rem;
+  }
+
+  .feature-card p {
+    color: var(--color-cyber-text-dim);
+    line-height: 1.6;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .topic-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-cyber-text-dim);
+    padding: 0.5rem 0;
+  }
+
+  .topic-bullet {
+    color: var(--color-cyber-accent);
+    font-weight: bold;
+  }
+
+  .chatbot-interface {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid var(--color-cyber-border);
+  }
+
+  .status-message {
+    font-size: 1.5rem;
+    color: var(--color-cyber-text);
+    margin-bottom: 1rem;
+  }
+
+  .status-note {
+    color: var(--color-cyber-text-dim);
+    margin-bottom: 2rem;
+  }
+
+  .coming-soon {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .progress-fill {
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-cyber-accent), #3498db);
+    border-radius: 4px;
+    animation: progress 2s ease-in-out infinite;
+  }
+
+  @keyframes progress {
+    0%,
+    100% {
+      width: 60%;
+    }
+    50% {
+      width: 80%;
+    }
+  }
+
+  .coming-soon p {
+    color: var(--color-cyber-text-dim);
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .cyber-container {
+      padding: 1rem;
+    }
+
+    .cyber-section-title {
+      font-size: 2rem;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .topics-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

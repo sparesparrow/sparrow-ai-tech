@@ -1,0 +1,544 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LanguageToggle from '../components/core/LanguageToggle.jsx';
+
+const lang = Astro.url.searchParams.get('lang') || 'cs';
+const t = {
+  en: {
+    title: 'Publications & Writings',
+    subtitle: 'Selected articles exploring the intersection of technology, economics, and individual liberty',
+    intro: {
+      title: 'Writing for Freedom',
+      content: `My writings at Stoky Svobodného přístavu explore the critical issues of our time: the encroachment of state power on individual liberty, the dangers of centralized control in digital spaces, and the importance of voluntary cooperation in building a free society. These articles represent my ongoing analysis of how technology, economics, and human freedom intersect in the modern world.`,
+    },
+    publications: [
+      {
+        title: 'Následky státního školství',
+        date: '2025-04-30',
+        url: 'https://stoky.urza.cz/texty/nasledky-statniho-skolstvi-3160',
+        description:
+          'An analysis of how state-controlled education systems undermine individual autonomy and critical thinking, creating citizens who accept authority rather than question it.',
+        themes: ['Education', 'State Power', 'Individual Autonomy'],
+      },
+      {
+        title: 'Stát proti podnikání',
+        date: '2025-03-25',
+        url: 'https://stoky.urza.cz/texty/stat-proti-podnikani-3131',
+        description:
+          'Examining how government regulations and interventions systematically destroy entrepreneurial activity and voluntary cooperation in the marketplace.',
+        themes: ['Entrepreneurship', 'Regulation', 'Market Freedom'],
+      },
+      {
+        title: 'Jednejte, a bude vám sjednáno Pojednání o ekonomii',
+        date: '2025-03-07',
+        url: 'https://stoky.urza.cz/texty/jednejte-a-bude-vam-sjednano-pojednani-o-ekonomii-3113',
+        description:
+          'A treatise on economics that emphasizes the importance of individual action and voluntary exchange as the foundation of human prosperity.',
+        themes: ['Austrian Economics', 'Individual Action', 'Voluntary Exchange'],
+      },
+      {
+        title: 'Kyberkriminalita je klíčem ke státnímu dohledu nad kyberprostorem',
+        date: '2024-11-01',
+        url: 'https://stoky.urza.cz/texty/kyberkriminalita-je-klicem-ke-statnimu-dohledu-nad-kyberprostorem-3018',
+        description:
+          'How governments use cybersecurity threats as a pretext for expanding surveillance and control over digital spaces, threatening individual privacy and freedom.',
+        themes: ['Cybersecurity', 'Surveillance', 'Digital Privacy'],
+      },
+      {
+        title: 'Nebezpečnější než CBDC',
+        date: '2024-10-28',
+        url: 'https://stoky.urza.cz/texty/nebezpecnejsi-nez-cbdc-2946',
+        description:
+          'An analysis of threats more dangerous than Central Bank Digital Currencies, exploring the broader implications of state control over financial systems.',
+        themes: ['CBDC', 'Financial Freedom', 'State Control'],
+      },
+      {
+        title: 'O svobodě slova na X',
+        date: '2024-10-14',
+        url: 'https://stoky.urza.cz/texty/o-svobode-slova-na-x-2943',
+        description:
+          'Examining the state of free speech on social media platforms and the challenges of maintaining open discourse in an increasingly controlled digital environment.',
+        themes: ['Free Speech', 'Social Media', 'Digital Censorship'],
+      },
+      {
+        title: 'Pište do Stok a tvořte perly s jazykovými modely',
+        date: '2024-09-19',
+        url: 'https://stoky.urza.cz/texty/piste-do-stok-a-tvorte-perly-s-jazykovymi-modely-2942',
+        description:
+          'Exploring how language models can enhance creative writing and intellectual discourse while maintaining human agency and authenticity.',
+        themes: ['AI', 'Creative Writing', 'Human Agency'],
+      },
+      {
+        title: 'Ankap a jahody',
+        date: '2024-09-16',
+        url: 'https://stoky.urza.cz/texty/ankap-a-jahody-2941',
+        description:
+          'A metaphorical exploration of anarcho-capitalism using the simple example of strawberry production to illustrate the power of voluntary cooperation.',
+        themes: ['Anarcho-Capitalism', 'Voluntary Cooperation', 'Market Processes'],
+      },
+    ],
+    themes: {
+      title: 'Recurring Themes',
+      description:
+        'These articles explore several interconnected themes that are central to understanding the challenges of our time:',
+      items: [
+        {
+          title: 'Individual Sovereignty',
+          description:
+            'The fundamental right of individuals to control their own lives, property, and decisions without state interference.',
+        },
+        {
+          title: 'Voluntary Cooperation',
+          description:
+            'How free people can achieve more through voluntary exchange and cooperation than through state coercion.',
+        },
+        {
+          title: 'Digital Freedom',
+          description:
+            'The importance of maintaining individual autonomy in digital spaces and resisting surveillance capitalism.',
+        },
+        {
+          title: 'Market Processes',
+          description:
+            'Understanding how prices, competition, and entrepreneurship create wealth and solve problems without central planning.',
+        },
+        {
+          title: 'State Intervention',
+          description: 'How government interference in markets and society creates problems rather than solving them.',
+        },
+      ],
+    },
+    philosophy: {
+      title: 'Philosophical Foundation',
+      content: `These writings are grounded in the intellectual tradition of Austrian economics and classical liberalism, drawing particularly from the works of Ludwig von Mises, Murray Rothbard, and Friedrich Hayek. The central insight is that human freedom and voluntary cooperation are not just moral imperatives but practical necessities for human flourishing.`,
+    },
+  },
+  cs: {
+    title: 'Publikace & Texty',
+    subtitle: 'Vybrané články zkoumající průnik technologií, ekonomie a individuální svobody',
+    intro: {
+      title: 'Psaní pro svobodu',
+      content: `Moje texty na Stokách Svobodného přístavu zkoumají kritické otázky naší doby: zasahování státní moci do individuální svobody, nebezpečí centralizované kontroly v digitálních prostorech a důležitost dobrovolné spolupráce při budování svobodné společnosti. Tyto články představují mou průběžnou analýzu toho, jak se technologie, ekonomie a lidská svoboda protínají v moderním světě.`,
+    },
+    publications: [
+      {
+        title: 'Následky státního školství',
+        date: '2025-04-30',
+        url: 'https://stoky.urza.cz/texty/nasledky-statniho-skolstvi-3160',
+        description:
+          'Analýza toho, jak státem kontrolované vzdělávací systémy podkopávají individuální autonomii a kritické myšlení, vytvářejíce občany, kteří přijímají autoritu spíše než ji zpochybňují.',
+        themes: ['Vzdělávání', 'Státní moc', 'Individuální autonomie'],
+      },
+      {
+        title: 'Stát proti podnikání',
+        date: '2025-03-25',
+        url: 'https://stoky.urza.cz/texty/stat-proti-podnikani-3131',
+        description:
+          'Zkoumání toho, jak vládní regulace a zásahy systematicky ničí podnikatelskou aktivitu a dobrovolnou spolupráci na trhu.',
+        themes: ['Podnikání', 'Regulace', 'Tržní svoboda'],
+      },
+      {
+        title: 'Jednejte, a bude vám sjednáno Pojednání o ekonomii',
+        date: '2025-03-07',
+        url: 'https://stoky.urza.cz/texty/jednejte-a-bude-vam-sjednano-pojednani-o-ekonomii-3113',
+        description:
+          'Pojednání o ekonomii, které zdůrazňuje důležitost individuálního jednání a dobrovolné směny jako základu lidské prosperity.',
+        themes: ['Rakouská ekonomie', 'Individuální jednání', 'Dobrovolná směna'],
+      },
+      {
+        title: 'Kyberkriminalita je klíčem ke státnímu dohledu nad kyberprostorem',
+        date: '2024-11-01',
+        url: 'https://stoky.urza.cz/texty/kyberkriminalita-je-klicem-ke-statnimu-dohledu-nad-kyberprostorem-3018',
+        description:
+          'Jak vlády používají kyberbezpečnostní hrozby jako záminku pro rozšiřování dohledu a kontroly nad digitálními prostory, ohrožujíc individuální soukromí a svobodu.',
+        themes: ['Kyberbezpečnost', 'Dohled', 'Digitální soukromí'],
+      },
+      {
+        title: 'Nebezpečnější než CBDC',
+        date: '2024-10-28',
+        url: 'https://stoky.urza.cz/texty/nebezpecnejsi-nez-cbdc-2946',
+        description:
+          'Analýza hrozeb nebezpečnějších než digitální měny centrálních bank, zkoumající širší implikace státní kontroly nad finančními systémy.',
+        themes: ['CBDC', 'Finanční svoboda', 'Státní kontrola'],
+      },
+      {
+        title: 'O svobodě slova na X',
+        date: '2024-10-14',
+        url: 'https://stoky.urza.cz/texty/o-svobode-slova-na-x-2943',
+        description:
+          'Zkoumání stavu svobody slova na sociálních médiích a výzev udržení otevřené diskuse ve stále více kontrolovaném digitálním prostředí.',
+        themes: ['Svoboda slova', 'Sociální média', 'Digitální cenzura'],
+      },
+      {
+        title: 'Pište do Stok a tvořte perly s jazykovými modely',
+        date: '2024-09-19',
+        url: 'https://stoky.urza.cz/texty/piste-do-stok-a-tvorte-perly-s-jazykovymi-modely-2942',
+        description:
+          'Zkoumání toho, jak jazykové modely mohou posílit kreativní psaní a intelektuální diskusi při zachování lidské agentury a autenticity.',
+        themes: ['AI', 'Kreativní psaní', 'Lidská agentura'],
+      },
+      {
+        title: 'Ankap a jahody',
+        date: '2024-09-16',
+        url: 'https://stoky.urza.cz/texty/ankap-a-jahody-2941',
+        description:
+          'Metaforické zkoumání anarchokapitalismu pomocí jednoduchého příkladu produkce jahod k ilustraci síly dobrovolné spolupráce.',
+        themes: ['Anarchokapitalismus', 'Dobrovolná spolupráce', 'Tržní procesy'],
+      },
+    ],
+    themes: {
+      title: 'Opakující se témata',
+      description: 'Tyto články zkoumají několik propojených témat, která jsou klíčová pro pochopení výzev naší doby:',
+      items: [
+        {
+          title: 'Individuální suverenita',
+          description:
+            'Základní právo jednotlivců kontrolovat vlastní životy, majetek a rozhodnutí bez státního zasahování.',
+        },
+        {
+          title: 'Dobrovolná spolupráce',
+          description:
+            'Jak svobodní lidé mohou dosáhnout více prostřednictvím dobrovolné směny a spolupráce než státním nátlakem.',
+        },
+        {
+          title: 'Digitální svoboda',
+          description:
+            'Důležitost udržení individuální autonomie v digitálních prostorech a odolávání surveillance kapitalismu.',
+        },
+        {
+          title: 'Tržní procesy',
+          description:
+            'Pochopení toho, jak ceny, konkurence a podnikání vytvářejí bohatství a řeší problémy bez centrálního plánování.',
+        },
+        {
+          title: 'Státní intervence',
+          description: 'Jak vládní zasahování do trhů a společnosti vytváří problémy spíše než je řeší.',
+        },
+      ],
+    },
+    philosophy: {
+      title: 'Filosofický základ',
+      content: `Tyto texty jsou založeny na intelektuální tradici rakouské ekonomie a klasického liberalismu, čerpající zejména z děl Ludwiga von Misese, Murrayho Rothbarda a Friedricha Hayeka. Ústředním poznatkem je, že lidská svoboda a dobrovolná spolupráce nejsou jen morálními imperativy, ale praktickými nutnostmi pro lidský rozkvět.`,
+    },
+  },
+};
+---
+
+<Layout title={t[lang].title}>
+  <div class="publications-page">
+    <header class="page-header">
+      <div class="header-content">
+        <h1>{t[lang].title}</h1>
+        <p class="subtitle">{t[lang].subtitle}</p>
+        <LanguageToggle client:load />
+      </div>
+    </header>
+
+    <main class="page-content">
+      <!-- Introduction Section -->
+      <section class="intro-section">
+        <h2>{t[lang].intro.title}</h2>
+        <p>{t[lang].intro.content}</p>
+      </section>
+
+      <!-- Publications Grid -->
+      <section class="publications-section">
+        <h2>Articles</h2>
+        <div class="publications-grid">
+          {
+            t[lang].publications.map(pub => (
+              <article class="publication-card">
+                <div class="publication-header">
+                  <h3>
+                    <a href={pub.url} target="_blank" rel="noopener noreferrer">
+                      {pub.title}
+                    </a>
+                  </h3>
+                  <time datetime={pub.date}>{pub.date}</time>
+                </div>
+                <p class="publication-description">{pub.description}</p>
+                <div class="publication-themes">
+                  {pub.themes.map(theme => (
+                    <span class="theme-tag">{theme}</span>
+                  ))}
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Themes Section -->
+      <section class="themes-section">
+        <h2>{t[lang].themes.title}</h2>
+        <p>{t[lang].themes.description}</p>
+        <div class="themes-grid">
+          {
+            t[lang].themes.items.map(theme => (
+              <div class="theme-card">
+                <h3>{theme.title}</h3>
+                <p>{theme.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Philosophy Section -->
+      <section class="philosophy-section">
+        <h2>{t[lang].philosophy.title}</h2>
+        <p>{t[lang].philosophy.content}</p>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta-section">
+        <h2>Continue Reading</h2>
+        <p>Explore more articles and join the discussion at Stoky Svobodného přístavu.</p>
+        <a
+          href="https://stoky.urza.cz/autori/sparesparrow-937"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-button"
+        >
+          View All Publications
+        </a>
+      </section>
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .publications-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 3rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+  }
+
+  .header-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .intro-section {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #3498db;
+  }
+
+  .intro-section h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .intro-section p {
+    color: #34495e;
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+
+  .publications-section {
+    margin-bottom: 4rem;
+  }
+
+  .publications-section h2 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+
+  .publications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+  }
+
+  .publication-card {
+    background: white;
+    border: 1px solid #e1e8ed;
+    border-radius: 12px;
+    padding: 2rem;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .publication-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .publication-header {
+    margin-bottom: 1rem;
+  }
+
+  .publication-header h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .publication-header h3 a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .publication-header h3 a:hover {
+    color: #3498db;
+  }
+
+  .publication-header time {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+
+  .publication-description {
+    color: #34495e;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .publication-themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .theme-tag {
+    background: #e8f5e8;
+    color: #27ae60;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .themes-section {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+  }
+
+  .themes-section h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .themes-section > p {
+    color: #34495e;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .theme-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #27ae60;
+  }
+
+  .theme-card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .theme-card p {
+    color: #34495e;
+    line-height: 1.6;
+  }
+
+  .philosophy-section {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: #ecf0f1;
+    border-radius: 12px;
+  }
+
+  .philosophy-section h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .philosophy-section p {
+    color: #34495e;
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+  }
+
+  .cta-section h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  .cta-section p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: white;
+    color: #667eea;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .publications-page {
+      padding: 1rem;
+    }
+
+    .header-content h1 {
+      font-size: 2rem;
+    }
+
+    .publications-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .themes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

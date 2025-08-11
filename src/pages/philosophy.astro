@@ -7,6 +7,10 @@ const t = {
   en: {
     title: 'Philosophy & Intellectual Framework',
     subtitle: 'A synthesis of Austrian economics, AI safety, neuroscience, and pragmatic engineering',
+    introduction: {
+      title: 'The Intersection of Technology and Liberty',
+      content: `In an age where state surveillance masquerades as cybersecurity and central bank digital currencies threaten financial sovereignty, building technology that respects individual rights isn't just an engineering challenge—it's a moral imperative. My work draws from the intellectual traditions that understand the dangers of centralized control and the power of voluntary cooperation.`,
+    },
     thinkers: {
       rothbard: {
         name: 'Murray Rothbard',
@@ -16,9 +20,10 @@ const t = {
           'Praxeology as the logic of human action',
           'Free market capitalism as the fullest expression of anarchism',
           'Property rights as the foundation of liberty',
+          'The impossibility of voluntary state action',
         ],
         influence:
-          'Shapes my approach to decentralized systems and skepticism of centralized control in AI governance.',
+          'Shapes my approach to decentralized systems and skepticism of centralized control in AI governance. Every AI system I build must respect individual sovereignty.',
         quote:
           '"The only viable alternative to the State is a society based purely on voluntary action, entirely unhampered by violence or threats of violence."',
       },
@@ -30,9 +35,10 @@ const t = {
           'Prices as carriers of information and knowledge',
           'Methodological individualism',
           'Spontaneous order emerging from individual actions',
+          'The impossibility of rational economic planning without markets',
         ],
         influence:
-          'Influences my understanding of how distributed systems coordinate without central planning, applicable to AI orchestration.',
+          'Influences my understanding of how distributed systems coordinate without central planning, applicable to AI orchestration and decentralized networks.',
         quote: '"Rational economic activity is impossible in a socialist commonwealth."',
       },
       amodei: {
@@ -43,9 +49,10 @@ const t = {
           'Constitutional AI for value alignment',
           'Interpretability research for AI transparency',
           'Racing to understand AI capabilities vs. risks',
+          'The need for AI systems that respect human autonomy',
         ],
         influence:
-          'Guides my approach to building safe, interpretable AI systems with proper safeguards and evaluation.',
+          'Guides my approach to building safe, interpretable AI systems with proper safeguards and evaluation, while resisting state co-option.',
         quote:
           '"We\'re in a race to understand AI as it becomes more powerful. Our understanding has to keep up with our ability to build things."',
       },
@@ -57,9 +64,10 @@ const t = {
           'AI as the new electricity',
           'Democratizing AI access and education',
           'Focus on practical AI applications',
+          'The importance of AI literacy for individual empowerment',
         ],
         influence:
-          'Emphasizes the importance of getting AI systems into production and solving real problems rather than just research.',
+          'Emphasizes the importance of getting AI systems into production and solving real problems rather than just research, while ensuring they serve individuals, not states.',
         quote:
           '"AI is the new electricity. Just as electricity transformed industry after industry 100 years ago, AI will do the same."',
       },
@@ -71,9 +79,10 @@ const t = {
           'Understand fundamentals before abstractions',
           'Performance and efficiency matter',
           'Developer tooling shapes thinking',
+          'The importance of systems thinking in technology',
         ],
         influence:
-          'Reinforces focus on engineering fundamentals and building tools that amplify developer productivity.',
+          'Reinforces focus on engineering fundamentals and building tools that amplify developer productivity while maintaining system integrity.',
         quote:
           '"You should be learning about things like I/O and sockets and event loops and buffers and hash generation."',
       },
@@ -85,9 +94,10 @@ const t = {
           'Love and empathy in technology development',
           'Long-term thinking about AI impact',
           'Interdisciplinary approach to complex problems',
+          'The human element in technological progress',
         ],
         influence:
-          'Inspires humanistic approach to technology and the importance of diverse perspectives in AI development.',
+          'Inspires humanistic approach to technology and the importance of diverse perspectives in AI development, emphasizing human dignity.',
         quote:
           '"The most beautiful thing about engineering is that you\'re building tools that amplify human capability."',
       },
@@ -98,43 +108,89 @@ const t = {
           'Neuroplasticity triggered by focused attention',
           'Protocols over motivation for behavior change',
           'Science-based approach to optimization',
-          'Stress as a tool for adaptation',
-        ],
-        influence: 'Informs design of learning systems and human-AI interfaces that leverage neuroscience principles.',
-        quote: '"The mental strain you feel when you\'re learning something is the trigger for neuroplasticity."',
-      },
-      slush: {
-        name: 'Slush Ecosystem',
-        domain: 'Startup Culture & Innovation',
-        keyIdeas: [
-          'Build for real users with real problems',
-          'Nordic approach to sustainable innovation',
-          'Technology as a tool for societal improvement',
-          'Collaborative rather than zero-sum thinking',
+          'The importance of cognitive liberty',
+          'How state interference affects human potential',
         ],
         influence:
-          'Emphasizes the importance of market validation and building technology that serves genuine human needs.',
-        quote: '"Innovation without implementation is just expensive research."',
-      },
-      mrrobot: {
-        name: 'Mr. Robot Philosophy',
-        domain: 'Cybersecurity & Systems Thinking',
-        keyIdeas: [
-          'Understanding systems to change systems',
-          'Information security as social responsibility',
-          'Power structures reflected in technology',
-          'Individual agency within complex systems',
-        ],
-        influence:
-          'Drives security-first mindset and awareness of how technical decisions have broader social implications.',
+          'Informs my approach to building learning systems that respect cognitive autonomy and optimize for human flourishing.',
         quote:
-          '"The world is a dangerous place, not because of those who do evil, but because of those who look on and do nothing."',
+          '"Neuroplasticity is triggered by focus and attention. The mental strain you feel when learning is the trigger for your brain to change."',
       },
+    },
+    themes: {
+      title: 'Core Themes & Principles',
+      digitalSovereignty: {
+        title: 'Digital Sovereignty',
+        description:
+          'In a world where governments use "cybersecurity" as a pretext for surveillance, building systems that respect individual digital rights is crucial. Every technology decision must consider its impact on personal autonomy.',
+        principles: [
+          'Privacy by design, not as an afterthought',
+          'Decentralized architecture to prevent single points of control',
+          'Open source transparency to prevent backdoors',
+          'User control over data and algorithms',
+          'Resistance to surveillance capitalism and state monitoring',
+        ],
+      },
+      marketMechanisms: {
+        title: 'Market Mechanisms in Technology',
+        description:
+          'Just as prices coordinate economic activity without central planning, well-designed protocols can coordinate complex systems while preserving individual choice and preventing state capture.',
+        principles: [
+          'Incentive alignment over command and control',
+          'Competition as a discovery process',
+          'Spontaneous order in digital spaces',
+          'Resistance to regulatory capture',
+          'User choice as the ultimate arbiter',
+        ],
+      },
+      cognitiveLiberty: {
+        title: 'Cognitive Liberty',
+        description:
+          'The right to think freely without state interference is fundamental. AI systems must enhance, not restrict, human cognitive autonomy and decision-making capacity.',
+        principles: [
+          'Freedom to think without algorithmic manipulation',
+          'Transparency in AI decision-making processes',
+          'User control over AI recommendations',
+          'Resistance to cognitive behavioral modification',
+          'Preservation of human agency in AI interactions',
+        ],
+      },
+    },
+    applications: {
+      title: 'Applied Philosophy in Technology',
+      description:
+        'These principles guide every technical decision, from architecture choices to user interface design. The goal is technology that empowers individuals while resisting state control.',
+      examples: [
+        {
+          title: 'Decentralized AI Systems',
+          description:
+            "Building AI infrastructure that can't be easily co-opted by state actors, using distributed architectures and cryptographic guarantees.",
+        },
+        {
+          title: 'Privacy-Preserving Machine Learning',
+          description:
+            'Developing techniques that enable AI capabilities while maintaining user privacy and preventing surveillance.',
+        },
+        {
+          title: 'User-Controlled Data Ecosystems',
+          description:
+            'Creating systems where individuals own and control their data, rather than being the product of surveillance capitalism.',
+        },
+        {
+          title: 'Resistance to Digital Tyranny',
+          description:
+            'Building tools that help individuals maintain autonomy in an increasingly controlled digital environment.',
+        },
+      ],
     },
   },
   cs: {
     title: 'Filosofie & Intelektuální rámec',
     subtitle: 'Syntéza rakouské ekonomie, bezpečnosti AI, neurověd a pragmatického inženýrství',
+    introduction: {
+      title: 'Průnik technologií a svobody',
+      content: `V době, kdy se státní dohled maskuje jako kyberbezpečnost a digitální měny centrálních bank ohrožují finanční suverenitu, není stavba technologií, které respektují individuální práva, jen inženýrskou výzvou—je to morální imperativ. Moje práce čerpá z intelektuálních tradic, které chápou nebezpečí centralizované kontroly a sílu dobrovolné spolupráce.`,
+    },
     thinkers: {
       rothbard: {
         name: 'Murray Rothbard',
@@ -142,115 +198,168 @@ const t = {
         keyIdeas: [
           'Stát jako instituce organizované agrese',
           'Praxeologie jako logika lidského jednání',
-          'Svobodný trh jako nejplnější výraz anarchismu',
+          'Volnotržní kapitalismus jako nejplnější vyjádření anarchismu',
           'Vlastnická práva jako základ svobody',
+          'Nemožnost dobrovolné státní akce',
         ],
-        influence: 'Formuje můj přístup k decentralizovaným systémům a skepsi vůči centralizovanému řízení v AI.',
+        influence:
+          'Formuje můj přístup k decentralizovaným systémům a skepticismus vůči centralizované kontrole v AI správě. Každý AI systém, který stavím, musí respektovat individuální suverenitu.',
         quote:
-          '„Jedinou životaschopnou alternativou ke státu je společnost založená čistě na dobrovolné akci, zcela neomezovaná násilím či hrozbami násilí.“',
+          '"Jediná životaschopná alternativa ke státu je společnost založená čistě na dobrovolném jednání, zcela neomezeném násilím nebo hrozbami násilí."',
       },
       mises: {
         name: 'Ludwig von Mises',
-        domain: 'Ekonomická kalkulace & Praxeologie',
+        domain: 'Ekonomický kalkul & Praxeologie',
         keyIdeas: [
-          'Problém ekonomické kalkulace v socialistických systémech',
+          'Problém ekonomického kalkulu v socialistických systémech',
           'Ceny jako nositelé informací a znalostí',
           'Metodologický individualismus',
-          'Spontánní řád vznikající z individuálních jednání',
+          'Spontánní řád vznikající z individuálních akcí',
+          'Nemožnost racionálního ekonomického plánování bez trhů',
         ],
         influence:
-          'Ovlivňuje mé chápání koordinace distribuovaných systémů bez centrálního plánování, aplikovatelné na orchestrace AI.',
-        quote: '„Racionální ekonomická aktivita je v socialistickém společenství nemožná.“',
+          'Ovlivňuje mé chápání toho, jak se distribuované systémy koordinují bez centrálního plánování, aplikovatelné na AI orchestrace a decentralizované sítě.',
+        quote: '"Racionální ekonomická aktivita je v socialistické společnosti nemožná."',
       },
       amodei: {
         name: 'Dario Amodei',
         domain: 'Bezpečnost AI & Ústavní AI',
         keyIdeas: [
-          'Zodpovědné škálování AI',
-          'Ústavní AI pro hodnotové zarovnání',
-          'Interpretovatelnost pro transparentnost AI',
-          'Závod v porozumění schopnostem vs. rizikům',
+          'Zodpovědné škálovací politiky pro vývoj AI',
+          'Ústavní AI pro zarovnání hodnot',
+          'Výzkum interpretovatelnosti pro transparentnost AI',
+          'Závod o porozumění AI schopnostem vs. rizikům',
+          'Potřeba AI systémů, které respektují lidskou autonomii',
         ],
         influence:
-          'Směruje můj přístup k tvorbě bezpečných, interpretovatelných AI systémů s odpovídajícími zárukami a evaluací.',
+          'Vede můj přístup k budování bezpečných, interpretovatelných AI systémů s řádnými zárukami a evaluací, při odolávání státní kooptaci.',
         quote:
-          '„Jsme v závodě o porozumění AI, jak se stává mocnější. Naše chápání musí držet krok s naší schopností věci stavět.“',
+          '"Jsme v závodě o porozumění AI, jak se stává mocnější. Naše chápání musí držet krok s naší schopností věci stavět."',
       },
       ng: {
         name: 'Andrew Ng',
-        domain: 'Strojové učení & Nasazování AI',
+        domain: 'Strojové učení & Nasazení AI',
         keyIdeas: [
-          'Datově-centristní vývoj AI',
+          'Datově-centrický vývoj AI',
           'AI jako nová elektřina',
           'Demokratizace přístupu k AI a vzdělávání',
-          'Důraz na praktické aplikace AI',
+          'Zaměření na praktické AI aplikace',
+          'Důležitost AI gramotnosti pro individuální posílení',
         ],
-        influence: 'Zdůrazňuje důležitost dostávání AI do produkce a řešení reálných problémů, nejen výzkum.',
+        influence:
+          'Zdůrazňuje důležitost dostat AI systémy do produkce a řešit skutečné problémy spíše než jen výzkum, při zajištění, že slouží jednotlivcům, ne státům.',
         quote:
-          '„AI je nová elektřina. Stejně jako elektřina transformovala průmysl za průmyslem před 100 lety, AI udělá totéž.“',
+          '"AI je nová elektřina. Stejně jako elektřina transformovala jedno odvětví za druhým před 100 lety, AI udělá totéž."',
       },
       primeagen: {
         name: 'ThePrimeagen',
-        domain: 'Softwarové inženýrství & Developer Experience',
+        domain: 'Softwarové inženýrství & Vývojářská zkušenost',
         keyIdeas: [
           'Buď inženýr, ne frameworker',
-          'Porozumění základům před abstrakcemi',
-          'Výkon a efektivita jsou důležité',
-          'Nástroje pro vývojáře formují způsob myšlení',
+          'Rozuměj základům před abstrakcemi',
+          'Výkon a efektivita záleží',
+          'Vývojářské nástroje formují myšlení',
+          'Důležitost systémového myšlení v technologiích',
         ],
-        influence: 'Posiluje důraz na inženýrské základy a budování nástrojů, které násobí produktivitu vývojářů.',
-        quote: '„Měli byste se učit o věcech jako I/O, sokety, event loopy, buffery a generování hashů.“',
+        influence:
+          'Posiluje zaměření na inženýrské základy a budování nástrojů, které násobí produktivitu vývojářů při zachování integrity systému.',
+        quote: '"Měli byste se učit o věcech jako I/O a sockety a event loops a buffery a hash generování."',
       },
       fridman: {
         name: 'Lex Fridman',
-        domain: 'AI výzkum & Human‑centric technologie',
+        domain: 'AI výzkum & Lidsky-centrické technologie',
         keyIdeas: [
-          'Rozhovor jako cesta k porozumění',
-          'Láska a empatie v technologickém vývoji',
-          'Dlouhodobé přemýšlení o dopadech AI',
+          'Rozhovory jako cesta k porozumění',
+          'Láska a empatie ve vývoji technologií',
+          'Dlouhodobé myšlení o dopadu AI',
           'Interdisciplinární přístup ke komplexním problémům',
+          'Lidský element v technologickém pokroku',
         ],
-        influence: 'Inspiruje humanistický přístup k technologiím a důležitost různorodých perspektiv při vývoji AI.',
-        quote: '„Nejkrásnější na inženýrství je, že stavíte nástroje, které násobí lidské schopnosti.“',
+        influence:
+          'Inspiruje humanistický přístup k technologiím a důležitost různorodých perspektiv ve vývoji AI, zdůrazňující lidskou důstojnost.',
+        quote: '"Nejkrásnější věc na inženýrství je, že stavíte nástroje, které zesilují lidské schopnosti."',
       },
       huberman: {
         name: 'Andrew Huberman',
         domain: 'Neurovědy & Lidská optimalizace',
         keyIdeas: [
-          'Neuroplasticita spouštěná soustředěnou pozorností',
+          'Neuroplasticita vyvolaná zaměřenou pozorností',
           'Protokoly před motivací pro změnu chování',
-          'Vědecky podložený přístup k optimalizaci',
-          'Stres jako nástroj adaptace',
-        ],
-        influence: 'Informuje návrh učících systémů a rozhraní člověk–AI, které využívají principy neurověd.',
-        quote: '„Mentální námaha, kterou cítíte při učení, je spouštěčem neuroplasticity.“',
-      },
-      slush: {
-        name: 'Slush ekosystém',
-        domain: 'Startupová kultura & Inovace',
-        keyIdeas: [
-          'Stav pro skutečné uživatele se skutečnými problémy',
-          'Nordický přístup k udržitelné inovaci',
-          'Technologie jako nástroj společenského zlepšení',
-          'Spolupráce místo hry s nulovým součtem',
-        ],
-        influence: 'Zdůrazňuje význam validace trhu a tvorby technologií, které slouží skutečným lidským potřebám.',
-        quote: '„Inovace bez implementace je jen drahý výzkum.“',
-      },
-      mrrobot: {
-        name: 'Mr. Robot filosofie',
-        domain: 'Kyberbezpečnost & Systémové myšlení',
-        keyIdeas: [
-          'Pochop systémy, abys je mohl měnit',
-          'Informační bezpečnost jako společenská odpovědnost',
-          'Mocenské struktury se odrážejí v technologiích',
-          'Individuální agentnost v komplexních systémech',
+          'Vědecky založený přístup k optimalizaci',
+          'Důležitost kognitivní svobody',
+          'Jak státní zasahování ovlivňuje lidský potenciál',
         ],
         influence:
-          'Prosazuje bezpečnost‑first mindset a uvědomění, jak technická rozhodnutí mají širší společenské důsledky.',
+          'Informuje můj přístup k budování učících systémů, které respektují kognitivní autonomii a optimalizují pro lidský rozkvět.',
         quote:
-          '„Svět je nebezpečné místo, ne kvůli těm, kteří páchají zlo, ale kvůli těm, kteří se dívají a nedělají nic.“',
+          '"Neuroplasticita je vyvolána fokusem a pozorností. Mentální napětí při učení je spouštěč pro změnu mozku."',
       },
+    },
+    themes: {
+      title: 'Klíčová témata & Principy',
+      digitalSovereignty: {
+        title: 'Digitální suverenita',
+        description:
+          'Ve světě, kde vlády používají "kyberbezpečnost" jako záminku pro dohled, je stavba systémů, které respektují individuální digitální práva, klíčová. Každé technologické rozhodnutí musí zvážit svůj dopad na osobní autonomii.',
+        principles: [
+          'Soukromí od návrhu, ne jako dodatečná úvaha',
+          'Decentralizovaná architektura k prevenci bodů kontroly',
+          'Open source transparentnost k prevenci zadních vrátek',
+          'Uživatelská kontrola nad daty a algoritmy',
+          'Odolnost proti surveillance kapitalismu a státnímu monitorování',
+        ],
+      },
+      marketMechanisms: {
+        title: 'Tržní mechanismy v technologiích',
+        description:
+          'Stejně jako ceny koordinují ekonomickou aktivitu bez centrálního plánování, dobře navržené protokoly mohou koordinovat komplexní systémy při zachování individuální volby a prevenci státní kooptace.',
+        principles: [
+          'Zarovnání incentiv před příkazy a kontrolou',
+          'Konkurence jako objevovací proces',
+          'Spontánní řád v digitálních prostorech',
+          'Odolnost proti regulačnímu zachycení',
+          'Uživatelská volba jako konečný arbit',
+        ],
+      },
+      cognitiveLiberty: {
+        title: 'Kognitivní svoboda',
+        description:
+          'Právo myslet svobodně bez státního zasahování je fundamentální. AI systémy musí posilovat, ne omezovat, lidskou kognitivní autonomii a rozhodovací kapacitu.',
+        principles: [
+          'Svoboda myslet bez algoritmické manipulace',
+          'Transparentnost v AI rozhodovacích procesech',
+          'Uživatelská kontrola nad AI doporučeními',
+          'Odolnost proti kognitivní behaviorální modifikaci',
+          'Zachování lidské agentury v AI interakcích',
+        ],
+      },
+    },
+    applications: {
+      title: 'Aplikovaná filosofie v technologiích',
+      description:
+        'Tyto principy vedou každé technické rozhodnutí, od architektonických voleb po design uživatelského rozhraní. Cílem je technologie, která posiluje jednotlivce při odolávání státní kontrole.',
+      examples: [
+        {
+          title: 'Decentralizované AI systémy',
+          description:
+            'Stavba AI infrastruktury, která nemůže být snadno kooptována státními aktéry, pomocí distribuovaných architektur a kryptografických záruk.',
+        },
+        {
+          title: 'Soukromí zachovávající strojové učení',
+          description:
+            'Vývoj technik, které umožňují AI schopnosti při zachování uživatelského soukromí a prevenci dohledu.',
+        },
+        {
+          title: 'Uživatelsky kontrolované datové ekosystémy',
+          description:
+            'Vytváření systémů, kde jednotlivci vlastní a kontrolují svá data, spíše než být produktem surveillance kapitalismu.',
+        },
+        {
+          title: 'Odolnost proti digitální tyranii',
+          description:
+            'Stavba nástrojů, které pomáhají jednotlivcům udržet autonomii v stále více kontrolovaném digitálním prostředí.',
+        },
+      ],
     },
   },
 }[lang];
@@ -274,6 +383,20 @@ const t = {
           </h1>
           <p class="mx-auto max-w-3xl text-lg text-slate-300 md:text-xl">
             {t?.subtitle}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="bg-slate-900/50 py-20">
+      <div class="container mx-auto px-6">
+        <div class="mb-16 text-center">
+          <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">
+            {t?.introduction?.title}
+          </h2>
+          <p class="mx-auto max-w-4xl text-lg text-slate-300">
+            {t?.introduction?.content}
           </p>
         </div>
       </div>
@@ -318,66 +441,57 @@ const t = {
       </div>
     </section>
 
-    <!-- Synthesis Section -->
+    <!-- Themes Section -->
     <section class="bg-slate-900/50 py-20">
       <div class="container mx-auto px-6">
         <div class="mb-16 text-center">
-          <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">Synthesis: Applied Philosophy</h2>
+          <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">
+            {t?.themes?.title}
+          </h2>
           <p class="mx-auto max-w-4xl text-lg text-slate-300">
-            How these diverse intellectual influences converge into a coherent approach to building AI systems and
-            technology.
+            {t?.themes?.description}
+          </p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-3">
+          {
+            Object.entries(t?.themes || {}).map(([key, theme]) => (
+              <div class="rounded-xl border border-slate-700/50 bg-slate-800/30 p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30">
+                <h3 class="mb-6 text-2xl font-bold text-cyan-400">{theme.title}</h3>
+                <p class="mb-4 text-slate-300">{theme.description}</p>
+                <ul class="space-y-2 text-slate-300">
+                  {theme.principles.map(principle => (
+                    <li>• {principle}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section class="bg-slate-900/50 py-20">
+      <div class="container mx-auto px-6">
+        <div class="mb-16 text-center">
+          <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">
+            {t?.applications?.title}
+          </h2>
+          <p class="mx-auto max-w-4xl text-lg text-slate-300">
+            {t?.applications?.description}
           </p>
         </div>
 
         <div class="grid gap-8 md:grid-cols-2">
-          <div class="rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-900/30 to-yellow-900/30 p-8">
-            <h3 class="mb-6 text-2xl font-bold text-orange-400">Decentralized Intelligence</h3>
-            <p class="mb-4 text-slate-300">
-              Drawing from Austrian economics and cyberpunk philosophy, I advocate for AI systems that distribute rather
-              than concentrate power.
-            </p>
-            <ul class="space-y-2 text-slate-300">
-              <li>• Model Context Protocol enables agent coordination without central control</li>
-              <li>• Price signals → attention mechanisms and resource allocation</li>
-              <li>• Individual sovereignty → user control over AI interactions</li>
-            </ul>
-          </div>
-
-          <div class="rounded-xl border border-purple-500/30 bg-gradient-to-br from-purple-900/30 to-pink-900/30 p-8">
-            <h3 class="mb-6 text-2xl font-bold text-purple-400">Safety-First Engineering</h3>
-            <p class="mb-4 text-slate-300">
-              Combining Anthropic's safety research with security mindset from Mr. Robot philosophy.
-            </p>
-            <ul class="space-y-2 text-slate-300">
-              <li>• Constitutional AI principles embedded in system design</li>
-              <li>• Red teaming and adversarial evaluation as default practice</li>
-              <li>• Interpretability as a requirement, not an afterthought</li>
-            </ul>
-          </div>
-
-          <div class="rounded-xl border border-cyan-500/30 bg-gradient-to-br from-blue-900/30 to-cyan-900/30 p-8">
-            <h3 class="mb-6 text-2xl font-bold text-cyan-400">Human-Centered Optimization</h3>
-            <p class="mb-4 text-slate-300">
-              Applying Huberman's neuroscience protocols to human-AI interaction design.
-            </p>
-            <ul class="space-y-2 text-slate-300">
-              <li>• Focus-triggering interfaces that enhance neuroplasticity</li>
-              <li>• Stress optimization in learning environments</li>
-              <li>• Protocol-driven rather than motivation-dependent systems</li>
-            </ul>
-          </div>
-
-          <div class="rounded-xl border border-green-500/30 bg-gradient-to-br from-green-900/30 to-emerald-900/30 p-8">
-            <h3 class="mb-6 text-2xl font-bold text-green-400">Pragmatic Deployment</h3>
-            <p class="mb-4 text-slate-300">
-              Following ThePrimeagen's engineering principles and Slush's market validation approach.
-            </p>
-            <ul class="space-y-2 text-slate-300">
-              <li>• Fundamentals first: understand the system before abstractions</li>
-              <li>• Ship fast, iterate based on real user feedback</li>
-              <li>• Tools that amplify human capability, not replace it</li>
-            </ul>
-          </div>
+          {
+            t?.applications?.examples?.map((example, index) => (
+              <div class="rounded-xl border border-slate-700/50 bg-slate-800/30 p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30">
+                <h3 class="mb-6 text-2xl font-bold text-cyan-400">{example.title}</h3>
+                <p class="mb-4 text-slate-300">{example.description}</p>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>

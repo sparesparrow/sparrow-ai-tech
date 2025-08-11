@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import rehypeMermaid from 'rehype-mermaid';
 import { fileURLToPath } from 'node:url';
 
 function resolve(path) {
@@ -20,6 +21,18 @@ export default defineConfig({
         assetFileNames: '_astro/[name].[hash].[ext]',
       },
     },
+  },
+  markdown: {
+    rehypePlugins: [
+      // Add the rehype-mermaid plugin for SSR diagram rendering
+      [
+        rehypeMermaid,
+        {
+          // Use inline-svg strategy for better performance
+          strategy: 'inline-svg',
+        },
+      ],
+    ],
   },
   vite: {
     resolve: {

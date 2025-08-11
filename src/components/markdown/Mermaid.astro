@@ -2,28 +2,143 @@
 interface Props {
   title?: string;
   code: string;
+  theme?: 'default' | 'dark' | 'forest' | 'neutral';
+  className?: string;
 }
 
-const { title, code } = Astro.props;
+const { title, code, theme = 'default', className = '' } = Astro.props;
 ---
 
-<div class="mermaid-container">
-  {title && <h3>{title}</h3>}
-  <div class="mermaid">{code}</div>
+<div class={`mermaid-container ${className}`}>
+  {title && <h3 class="mermaid-title">{title}</h3>}
+  <div class="mermaid-wrapper">
+    <div class="mermaid" data-theme={theme}>
+      {code}
+    </div>
+  </div>
 </div>
 
 <script>
+  // Client-side Mermaid initialization for fallback
   if (typeof window !== 'undefined') {
-    const mermaid = (await import('mermaid')).default;
-    mermaid.initialize({ startOnLoad: true });
+    import('mermaid')
+      .then(({ default: mermaid }) => {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: document.querySelector('.mermaid')?.dataset.theme || 'default',
+          flowchart: {
+            useMaxWidth: true,
+            htmlLabels: true,
+            curve: 'basis',
+          },
+          themeVariables: {
+            primaryColor: '#4facfe',
+            primaryTextColor: '#333',
+            primaryBorderColor: '#007bff',
+            lineColor: '#666',
+            secondaryColor: '#f8f9fa',
+            tertiaryColor: '#e9ecef',
+          },
+        });
+      })
+      .catch(error => {
+        console.warn('Failed to load Mermaid:', error);
+      });
   }
 </script>
 
 <style>
   .mermaid-container {
-    margin: 1rem 0;
-    padding: 1rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
     border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    background: #fafafa;
+    transition: all 0.2s ease;
+  }
+
+  .mermaid-container:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .mermaid-title {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    text-align: center;
+  }
+
+  .mermaid-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    background: white;
     border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .mermaid {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mermaid svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Dark theme support */
+  .mermaid-container[data-theme='dark'] {
+    background: #1e293b;
+    border-color: #475569;
+  }
+
+  .mermaid-container[data-theme='dark'] .mermaid-title {
+    color: #f1f5f9;
+  }
+
+  .mermaid-container[data-theme='dark'] .mermaid-wrapper {
+    background: #334155;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .mermaid-container {
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .mermaid-title {
+      font-size: 1.125rem;
+    }
+
+    .mermaid-wrapper {
+      min-height: 150px;
+      padding: 0.75rem;
+    }
+  }
+
+  /* Loading state */
+  .mermaid:empty::before {
+    content: 'Loading diagram...';
+    color: #64748b;
+    font-style: italic;
+  }
+
+  /* Error state */
+  .mermaid-error {
+    color: #dc2626;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
   }
 </style>
