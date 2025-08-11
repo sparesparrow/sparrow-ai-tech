@@ -410,14 +410,14 @@ const t = {
             Object.entries(t?.thinkers || {}).map(([key, thinker]) => (
               <div class="rounded-xl border border-slate-700/50 bg-slate-800/30 p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30">
                 <div class="mb-6">
-                  <h3 class="mb-2 text-2xl font-bold text-cyan-400">{thinker.name}</h3>
-                  <div class="font-medium text-slate-400">{thinker.domain}</div>
+                  <h3 class="mb-2 text-2xl font-bold text-cyan-400">{thinker?.name || 'Unknown Thinker'}</h3>
+                  <div class="font-medium text-slate-400">{thinker?.domain || 'Unknown Domain'}</div>
                 </div>
 
                 <div class="mb-6">
                   <h4 class="mb-3 text-lg font-semibold text-white">Key Ideas:</h4>
                   <ul class="space-y-2">
-                    {thinker.keyIdeas.map(idea => (
+                    {(thinker?.keyIdeas || []).map(idea => (
                       <li class="flex items-start text-slate-300">
                         <span class="mr-3 mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-purple-400" />
                         <span>{idea}</span>
@@ -428,11 +428,11 @@ const t = {
 
                 <div class="mb-6">
                   <h4 class="mb-3 text-lg font-semibold text-white">Influence on My Work:</h4>
-                  <p class="leading-relaxed text-slate-300">{thinker.influence}</p>
+                  <p class="leading-relaxed text-slate-300">{thinker?.influence || 'No influence data available.'}</p>
                 </div>
 
                 <blockquote class="rounded-r-lg border-l-4 border-cyan-500/50 bg-slate-900/30 p-4 pl-4 italic text-slate-400">
-                  {thinker.quote}
+                  {thinker?.quote || 'No quote available.'}
                 </blockquote>
               </div>
             ))
@@ -455,17 +455,19 @@ const t = {
 
         <div class="grid gap-8 md:grid-cols-3">
           {
-            Object.entries(t?.themes || {}).map(([key, theme]) => (
-              <div class="rounded-xl border border-slate-700/50 bg-slate-800/30 p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30">
-                <h3 class="mb-6 text-2xl font-bold text-cyan-400">{theme.title}</h3>
-                <p class="mb-4 text-slate-300">{theme.description}</p>
-                <ul class="space-y-2 text-slate-300">
-                  {theme.principles.map(principle => (
-                    <li>• {principle}</li>
-                  ))}
-                </ul>
-              </div>
-            ))
+            Object.entries(t?.themes || {})
+              .filter(([key, theme]) => key !== 'title' && key !== 'description')
+              .map(([key, theme]) => (
+                <div class="rounded-xl border border-slate-700/50 bg-slate-800/30 p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30">
+                  <h3 class="mb-6 text-2xl font-bold text-cyan-400">{theme?.title || 'Unknown Theme'}</h3>
+                  <p class="mb-4 text-slate-300">{theme?.description || 'No description available.'}</p>
+                  <ul class="space-y-2 text-slate-300">
+                    {(theme?.principles || []).map((principle: string) => (
+                      <li>• {principle}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))
           }
         </div>
       </div>
@@ -485,10 +487,10 @@ const t = {
 
         <div class="grid gap-8 md:grid-cols-2">
           {
-            t?.applications?.examples?.map((example, index) => (
+            (t?.applications?.examples || []).map((example, index) => (
               <div class="rounded-xl border border-slate-700/50 bg-slate-800/30 p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30">
-                <h3 class="mb-6 text-2xl font-bold text-cyan-400">{example.title}</h3>
-                <p class="mb-4 text-slate-300">{example.description}</p>
+                <h3 class="mb-6 text-2xl font-bold text-cyan-400">{example?.title || 'Unknown Example'}</h3>
+                <p class="mb-4 text-slate-300">{example?.description || 'No description available.'}</p>
               </div>
             ))
           }
