@@ -9,14 +9,6 @@ import Mermaid from '../components/markdown/Mermaid.astro';
     <header class="page-header">
       <h1>Mermaid Live Editor</h1>
       <p>Create, edit, and preview Mermaid diagrams in real-time with our interactive editor</p>
-      <div class="philosophy-intro">
-        <p>
-          <strong>Why diagrams matter:</strong> In a world of increasing complexity and state intervention, clear visual
-          communication becomes a tool of resistance. Diagrams help us understand complex systems—whether they're economic
-          relationships, technological architectures, or the flow of information in society. This editor empowers you to
-          create visual narratives that challenge centralized narratives and reveal the beauty of spontaneous order.
-        </p>
-      </div>
     </header>
 
     <main class="page-content">
@@ -40,7 +32,7 @@ import Mermaid from '../components/markdown/Mermaid.astro';
       <!-- Examples Section -->
       <section class="examples-section">
         <h2>Diagram Examples</h2>
-        <p>Explore different types of Mermaid diagrams that can help visualize complex concepts:</p>
+        <p>Explore different types of Mermaid diagrams:</p>
 
         <div class="examples-grid">
           <!-- Flowchart Example -->
@@ -111,263 +103,294 @@ import Mermaid from '../components/markdown/Mermaid.astro';
     Testing     :test, after dev, 15d`}
             />
           </div>
+        </div>
+      </section>
 
-          <!-- Economic Flow Example -->
-          <div class="example-card">
-            <h3>Economic Flow</h3>
-            <Mermaid
-              code={`graph LR
-    A[Individuals] --> B[Voluntary Exchange]
-    B --> C[Market Prices]
-    C --> D[Resource Allocation]
-    D --> E[Spontaneous Order]
-    
-    style A fill:#e8f5e8
-    style E fill:#e1f5fe
-    style B fill:#fff3e0`}
-            />
+      <!-- Features Section -->
+      <section class="features-section">
+        <h2>Features & Capabilities</h2>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Real-time Preview</h3>
+            <p>See your diagrams update instantly as you type, with automatic error detection and validation.</p>
           </div>
 
-          <!-- Decentralized System Example -->
-          <div class="example-card">
-            <h3>Decentralized System</h3>
-            <Mermaid
-              code={`graph TD
-    A[Node 1] --- B[Node 2]
-    B --- C[Node 3]
-    C --- D[Node 4]
-    D --- A
-    A --- C
-    B --- D
-    
-    style A fill:#e8f5e8
-    style B fill:#e8f5e8
-    style C fill:#e8f5e8
-    style D fill:#e8f5e8`}
-            />
+          <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Multiple Themes</h3>
+            <p>Choose from various themes including default, dark, forest, and neutral to match your design.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Responsive Design</h3>
+            <p>Fully responsive interface that works seamlessly on desktop, tablet, and mobile devices.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔗</div>
+            <h3>GitHub Integration</h3>
+            <p>Load diagrams directly from GitHub repositories and save your work to version control.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">💾</div>
+            <h3>Export Options</h3>
+            <p>Export your diagrams as SVG files for use in documentation, presentations, or web applications.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">♿</div>
+            <h3>Accessibility</h3>
+            <p>Built with accessibility in mind, supporting keyboard navigation and screen readers.</p>
           </div>
         </div>
       </section>
 
-      <!-- Use Cases Section -->
-      <section class="use-cases-section">
-        <h2>Use Cases & Applications</h2>
-        <div class="use-cases-grid">
-          <div class="use-case-card">
-            <h3>Economic Analysis</h3>
-            <p>
-              Visualize market processes, price discovery mechanisms, and the flow of information in economic systems.
-              Show how spontaneous order emerges from individual actions.
-            </p>
-          </div>
-          <div class="use-case-card">
-            <h3>System Architecture</h3>
-            <p>
-              Design decentralized systems that resist single points of failure and state control. Map out protocols
-              that enable voluntary cooperation.
-            </p>
-          </div>
-          <div class="use-case-card">
-            <h3>Information Flow</h3>
-            <p>
-              Track how information moves through networks, revealing both the efficiency of market signals and the
-              dangers of centralized information control.
-            </p>
-          </div>
-          <div class="use-case-card">
-            <h3>Decision Trees</h3>
-            <p>
-              Model complex decision-making processes, from individual choices to organizational structures that respect
-              autonomy.
-            </p>
-          </div>
-        </div>
-      </section>
+      <!-- Usage Instructions -->
+      <section class="usage-section">
+        <h2>How to Use</h2>
 
-      <!-- Philosophy Section -->
-      <section class="philosophy-section">
-        <h2>Why Visual Communication Matters</h2>
-        <div class="philosophy-content">
-          <p>
-            In an age of increasing complexity and state intervention, clear visual communication becomes a tool of
-            resistance. Diagrams help us understand complex systems—whether they're economic relationships,
-            technological architectures, or the flow of information in society.
-          </p>
+        <div class="usage-steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Choose an Example</h3>
+              <p>Start with one of our built-in examples or create your own diagram from scratch.</p>
+            </div>
+          </div>
 
-          <p>
-            This editor empowers you to create visual narratives that challenge centralized narratives and reveal the
-            beauty of spontaneous order. By making complex concepts accessible, we can better understand the world
-            around us and make informed decisions about our future.
-          </p>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Edit the Code</h3>
+              <p>Modify the Mermaid syntax in the left panel. The preview will update automatically.</p>
+            </div>
+          </div>
 
-          <p>
-            Whether you're mapping out a decentralized protocol, visualizing market processes, or explaining complex
-            systems to others, clear diagrams are essential for effective communication and understanding.
-          </p>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Preview & Refine</h3>
+              <p>View your diagram in the right panel and make adjustments as needed.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>Export & Share</h3>
+              <p>Download your diagram as SVG or copy the code to use in your projects.</p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
   </div>
-</Layout>
 
-<style>
-  .mermaid-editor-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-
-  .page-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .page-header h1 {
-    font-size: 2.5rem;
-    color: #2c3e50;
-    margin-bottom: 1rem;
-  }
-
-  .page-header p {
-    font-size: 1.2rem;
-    color: #7f8c8d;
-    margin-bottom: 2rem;
-  }
-
-  .philosophy-intro {
-    background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border-left: 4px solid #3498db;
-    margin-top: 2rem;
-  }
-
-  .philosophy-intro p {
-    margin: 0;
-    color: #2c3e50;
-    line-height: 1.6;
-  }
-
-  .editor-section {
-    margin-bottom: 4rem;
-  }
-
-  .editor-section h2 {
-    color: #2c3e50;
-    margin-bottom: 1rem;
-  }
-
-  .editor-section ul {
-    margin-bottom: 2rem;
-    padding-left: 2rem;
-  }
-
-  .editor-section li {
-    margin-bottom: 0.5rem;
-    color: #34495e;
-  }
-
-  .editor-container {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .examples-section {
-    margin-bottom: 4rem;
-  }
-
-  .examples-section h2 {
-    color: #2c3e50;
-    margin-bottom: 1rem;
-  }
-
-  .examples-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .example-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1.5rem;
-    background: white;
-  }
-
-  .example-card h3 {
-    color: #2c3e50;
-    margin-bottom: 1rem;
-  }
-
-  .use-cases-section {
-    margin-bottom: 4rem;
-  }
-
-  .use-cases-section h2 {
-    color: #2c3e50;
-    margin-bottom: 1rem;
-  }
-
-  .use-cases-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .use-case-card {
-    background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border-left: 4px solid #27ae60;
-  }
-
-  .use-case-card h3 {
-    color: #2c3e50;
-    margin-bottom: 1rem;
-  }
-
-  .use-case-card p {
-    color: #34495e;
-    line-height: 1.6;
-  }
-
-  .philosophy-section {
-    background: #ecf0f1;
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-  }
-
-  .philosophy-section h2 {
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-  }
-
-  .philosophy-content p {
-    color: #34495e;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  .philosophy-content p:last-child {
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 768px) {
+  <style>
     .mermaid-editor-page {
-      padding: 1rem;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: white;
     }
 
     .page-header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .page-header p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .page-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .editor-section,
+    .examples-section,
+    .features-section,
+    .usage-section {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .editor-section h2,
+    .examples-section h2,
+    .features-section h2,
+    .usage-section h2 {
+      color: #2d3748;
+      margin-bottom: 1rem;
       font-size: 2rem;
     }
 
-    .examples-grid,
-    .use-cases-grid {
-      grid-template-columns: 1fr;
+    .editor-section p {
+      color: #4a5568;
+      margin-bottom: 1rem;
     }
-  }
-</style>
+
+    .editor-section ul {
+      color: #4a5568;
+      margin-bottom: 2rem;
+      padding-left: 1.5rem;
+    }
+
+    .editor-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .editor-container {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .example-card {
+      background: #f7fafc;
+      border-radius: 8px;
+      padding: 1.5rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    .example-card h3 {
+      color: #2d3748;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #f7fafc;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      transition: transform 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      color: #2d3748;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+
+    .feature-card p {
+      color: #4a5568;
+      line-height: 1.6;
+    }
+
+    .usage-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: #f7fafc;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .step-number {
+      width: 3rem;
+      height: 3rem;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .step-content h3 {
+      color: #2d3748;
+      margin-bottom: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .step-content p {
+      color: #4a5568;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .page-header p {
+        font-size: 1rem;
+      }
+
+      .page-content {
+        padding: 1rem;
+      }
+
+      .editor-section,
+      .examples-section,
+      .features-section,
+      .usage-section {
+        padding: 1.5rem;
+      }
+
+      .examples-grid,
+      .features-grid,
+      .usage-steps {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .step {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</Layout>
