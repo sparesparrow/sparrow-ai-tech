@@ -1,0 +1,312 @@
+---
+import CyberpunkLayout from '../layouts/CyberpunkLayout.astro';
+import Bibliography from '../components/citations/Bibliography.jsx';
+
+const title = 'Filozofie & Akademické základy | Sparrow AI Tech';
+const description = 'Aplikace rakouské ekonomie, AI safety výzkumu a praxeologie na vývoj moderních technologií';
+---
+
+<CyberpunkLayout title={title} description={description}>
+  <div class="min-h-screen bg-cyber-bg">
+    <!-- Hero Section -->
+    <section class="relative py-24 px-4">
+      <div class="max-w-6xl mx-auto text-center">
+        <h1 class="text-5xl md:text-7xl font-bold text-cyber-green mb-6">
+          Filozofie & Akademické základy
+        </h1>
+        <p class="text-xl text-cyber-text-dim max-w-3xl mx-auto leading-relaxed">
+          Syntéza rakouské ekonomie, AI safety výzkumu, neurovědy a kybernetické bezpečnosti 
+          pro budování robustních technologií respektujících lidskou autonomii
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-16 px-4">
+      <div class="max-w-4xl mx-auto">
+        
+        <!-- Austrian Economics Section -->
+        <div class="mb-16 bg-cyber-surface/30 border border-cyber-border rounded-lg p-8">
+          <h2 class="text-3xl font-bold text-cyber-blue mb-6">
+            Rakouská ekonomie & Praxeologie
+          </h2>
+          
+          <p class="text-cyber-text leading-relaxed mb-6">
+            Podle <a href="#ref-mises1949" class="text-cyber-orange hover:text-cyber-blue transition-colors"><sup>[1]</sup></a>
+            Ludwiga von Misese a Rothbarda je důraz na individuální jednání, tržní signály a spontánní řád 
+            při budování decentralizovaných AI systémů klíčový pro odolnost proti státnímu dohledu. 
+            Praxeologie jako "věda o lidském jednání" poskytuje teoretický základ pro pochopení toho, 
+            jak technologie mohou podporovat nebo narušovat lidskou svobodu.
+          </p>
+
+          <blockquote class="border-l-4 border-cyber-green pl-6 italic text-cyber-text-dim mb-6">
+            "Economics is not about things and tangible material objects; it is about men, 
+            their meanings and actions."
+            <footer class="mt-2 text-cyber-green text-sm">
+              — Ludwig von Mises, Human Action (1949) <a href="#ref-mises1949" class="text-cyber-orange hover:text-cyber-blue"><sup>[1]</sup></a>
+            </footer>
+          </blockquote>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="text-cyber-green font-semibold mb-3">Klíčové principy:</h4>
+              <ul class="space-y-2 text-cyber-text-dim">
+                <li class="flex items-start">
+                  <span class="text-cyber-green mr-2">▶</span>
+                  <strong>Praxeologie:</strong> Lidské jednání je účelové a logické
+                </li>
+                <li class="flex items-start">
+                  <span class="text-cyber-green mr-2">▶</span>
+                  <strong>Tržní signály:</strong> Ceny obsahují distribuované znalosti
+                </li>
+                <li class="flex items-start">
+                  <span class="text-cyber-green mr-2">▶</span>
+                  <strong>Spontánní řád:</strong> Komplexní systémy vznikají z jednoduchých pravidel
+                </li>
+                <li class="flex items-start">
+                  <span class="text-cyber-green mr-2">▶</span>
+                  <strong>Individuální suverenita:</strong> Decentralizace před centrálním plánováním
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 class="text-cyber-green font-semibold mb-3">Moderní aplikace:</h4>
+              <p class="text-cyber-text-dim text-sm leading-relaxed">
+                <a href="#ref-mises2025-psychology" class="text-cyber-orange hover:text-cyber-blue"><sup>[2]</sup></a>
+                Současný výzkum v psychologii potvrzuje Misesovy pozorování o racionalitě lidského jednání, 
+                což má důsledky pro design AI systémů, které respektují kognitivní architekturu člověka.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Safety Section -->
+        <div class="mb-16 bg-cyber-surface/30 border border-cyber-border rounded-lg p-8">
+          <h2 class="text-3xl font-bold text-cyber-blue mb-6">
+            Bezpečnost AI & Odpovědné škálování
+          </h2>
+          
+          <p class="text-cyber-text leading-relaxed mb-6">
+            Ovlivněno <a href="#ref-amodei2024" class="text-cyber-orange hover:text-cyber-blue"><sup>[3]</sup></a>
+            přístupem Anthropic k zodpovědnému škálování a ústavní AI, prioritizujeme bezpečnost 
+            a interpretovatelnost při zachování odolnosti proti státní kontrole. Dario Amodei zdůrazňuje 
+            potřebu "race to the top" strategie, kde konkurence v oblasti bezpečnosti AI vede k lepším výsledkům pro všechny.
+          </p>
+
+          <blockquote class="border-l-4 border-cyber-blue pl-6 italic text-cyber-text-dim mb-6">
+            "I think that most people are underestimating just how radical the upside of AI could be, 
+            just as I think most people are underestimating how bad the risks could be."
+            <footer class="mt-2 text-cyber-blue text-sm">
+              — Dario Amodei, CEO Anthropic <a href="#ref-amodei2024" class="text-cyber-orange hover:text-cyber-blue"><sup>[3]</sup></a>
+            </footer>
+          </blockquote>
+
+          <div class="grid md:grid-cols-3 gap-4 mt-8">
+            <div class="bg-cyber-bg/50 p-4 rounded border border-cyber-border">
+              <h5 class="text-cyber-orange font-semibold mb-2">Constitutional AI</h5>
+              <p class="text-xs text-cyber-text-dim">
+                Systémy zarovnané s lidskými hodnotami pomocí transparentních principů
+                <a href="#ref-amodei2024-cai" class="text-cyber-orange hover:text-cyber-blue ml-1"><sup>[4]</sup></a>
+              </p>
+            </div>
+            <div class="bg-cyber-bg/50 p-4 rounded border border-cyber-border">
+              <h5 class="text-cyber-orange font-semibold mb-2">Interpretovatelnost</h5>
+              <p class="text-xs text-cyber-text-dim">
+                Porozumění rozhodování AI systémů pro zachování lidské kontroly
+              </p>
+            </div>
+            <div class="bg-cyber-bg/50 p-4 rounded border border-cyber-border">
+              <h5 class="text-cyber-orange font-semibold mb-2">Soukromí od návrhu</h5>
+              <p class="text-xs text-cyber-text-dim">
+                Odolnost proti surveillance kapitalismu a státnímu dohledu
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Practical Applications Section -->
+        <div class="mb-16 bg-cyber-surface/30 border border-cyber-border rounded-lg p-8">
+          <h2 class="text-3xl font-bold text-cyber-blue mb-6">
+            Praktické aplikace v MCP ekosystému
+          </h2>
+          
+          <p class="text-cyber-text leading-relaxed mb-6">
+            <a href="#ref-ng2025-exeter" class="text-cyber-orange hover:text-cyber-blue"><sup>[5]</sup></a>
+            Andrew Ng upozorňuje, že "focus on impact" je klíčový princip - technologie by měly řešit skutečné problémy 
+            skutečných uživatelů. V kontextu 
+            <a href="#ref-anthropic-mcp" class="text-cyber-orange hover:text-cyber-blue"><sup>[6]</sup></a>
+            Model Context Protocol to znamená budování nástrojů, které skutečně 
+            zlepšují produktivitu vývojářů bez vytváření nových závislostí na centralizovaných systémech.
+          </p>
+
+          <blockquote class="border-l-4 border-cyber-green pl-6 italic text-cyber-text-dim mb-6">
+            "AI is the new electricity. Just as electricity transformed almost everything 100 years ago, 
+            I think AI will also now."
+            <footer class="mt-2 text-cyber-green text-sm">
+              — Andrew Ng, Stanford University <a href="#ref-ng2025-university" class="text-cyber-orange hover:text-cyber-blue"><sup>[7]</sup></a>
+            </footer>
+          </blockquote>
+
+          <div class="bg-cyber-bg/30 p-6 rounded-lg border border-cyber-border">
+            <h4 class="text-cyber-orange font-semibold mb-4">mcp-prompts: Praktická implementace principů</h4>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h5 class="text-cyber-blue text-sm font-medium mb-2">Respektování individuální volby</h5>
+                <ul class="text-xs text-cyber-text-dim space-y-1">
+                  <li>• Uživatelé si volí vlastní prompty a šablony</li>
+                  <li>• Žádné centrálně nařízené "správné" způsoby použití</li>
+                  <li>• Flexibilní architektura pro různé use cases</li>
+                </ul>
+              </div>
+              <div>
+                <h5 class="text-cyber-blue text-sm font-medium mb-2">Decentralizace znalostí</h5>
+                <ul class="text-xs text-cyber-text-dim space-y-1">
+                  <li>• Prompty jsou verzovány a distribuovány</li>
+                  <li>• "Prompt rot" řešen tržními principy</li>
+                  <li>• Znalosti blízko místa vzniku a použití</li>
+                </ul>
+              </div>
+            </div>
+            <p class="text-xs text-cyber-text-dim mt-4">
+              Více informací v dokumentaci projektu 
+              <a href="#ref-sparesparrow-mcp-prompts" class="text-cyber-orange hover:text-cyber-blue"><sup>[8]</sup></a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Knowledge Distribution Section -->
+        <div class="mb-16 bg-cyber-surface/30 border border-cyber-border rounded-lg p-8">
+          <h2 class="text-3xl font-bold text-cyber-blue mb-6">
+            Distribuované znalosti & Spontánní řád
+          </h2>
+          
+          <p class="text-cyber-text leading-relaxed mb-6">
+            <a href="#ref-hayek1945" class="text-cyber-orange hover:text-cyber-blue"><sup>[9]</sup></a>
+            Friedrich Hayek ve své klasické práci "The Use of Knowledge in Society" ukázal, že žádný centrální 
+            plánovač nemůže mít přístup ke všem relevantním informacím rozptýleným napříč společností. 
+            Tento princip je zásadní pro design AI systémů 21. století.
+          </p>
+
+          <blockquote class="border-l-4 border-cyber-orange pl-6 italic text-cyber-text-dim mb-6">
+            "The curious task of economics is to demonstrate to men how little they really know about what they imagine they can design."
+            <footer class="mt-2 text-cyber-orange text-sm">
+              — Friedrich A. Hayek, 1945 <a href="#ref-hayek1945" class="text-cyber-orange hover:text-cyber-blue"><sup>[9]</sup></a>
+            </footer>
+          </blockquote>
+
+          <div class="bg-gradient-to-r from-cyber-bg/50 to-cyber-surface/50 p-6 rounded-lg border border-cyber-border">
+            <h4 class="text-cyber-green font-semibold mb-3">Důsledky pro AI ekosystém:</h4>
+            <div class="space-y-3 text-sm text-cyber-text-dim">
+              <p>
+                <strong class="text-cyber-orange">Decentralizace před centralizací:</strong> 
+                AI systémy by měly být navrženy tak, aby využívaly lokální znalosti a preference uživatelů, 
+                ne aby je nahrazovaly centrálními rozhodnutími.
+              </p>
+              <p>
+                <strong class="text-cyber-orange">Emergentní standardy:</strong> 
+                Protokoly jako MCP umožňují vznik standardů organicky na základě skutečných potřeb, 
+                ne direktiv shora.
+              </p>
+              <p>
+                <strong class="text-cyber-orange">Tržní koordinace:</strong> 
+                Konkurence mezi různými implementacemi AI nástrojů vede k inovacím 
+                a lepšímu uspokojení uživatelských potřeb než regulační diktát.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- YouTube and Modern Resources -->
+        <div class="mb-16 bg-cyber-surface/30 border border-cyber-border rounded-lg p-8">
+          <h2 class="text-3xl font-bold text-cyber-blue mb-6">
+            Moderní zdroje & Praktické implementace
+          </h2>
+          
+          <p class="text-cyber-text leading-relaxed mb-6">
+            Kromě akademických zdrojů čerpáme také z moderních praktických zdrojů jako jsou 
+            YouTube tutoriály od expertů v oboru. 
+            <a href="#ref-berman2025-gpt5" class="text-cyber-orange hover:text-cyber-blue"><sup>[10]</sup></a>
+            Matthew Berman ve svém videu o GPT-5 ukazuje praktické techniky optimalizace 
+            promptů, které jsou klíčové pro efektivní využití reasoning modelů.
+          </p>
+
+          <div class="bg-cyber-bg/50 p-6 rounded-lg border border-cyber-border">
+            <h4 class="text-cyber-orange font-semibold mb-3">Klíčové pozorování z praktických zdrojů:</h4>
+            <blockquote class="border-l-2 border-cyber-blue pl-4 italic text-cyber-text-dim text-sm mb-4">
+              "In a reasoning model paradigm, you get better performance by spending more computing power when generating the answer."
+              <footer class="mt-2 text-cyber-blue text-xs">
+                — OpenAI Research on o1 models <a href="#ref-berman2025-gpt5" class="text-cyber-orange hover:text-cyber-blue"><sup>[10]</sup></a>
+              </footer>
+            </blockquote>
+            <p class="text-xs text-cyber-text-dim leading-relaxed">
+              Toto pozorování má významné důsledky pro design MCP serverů - místo optimalizace pouze pro rychlost 
+              by měly podporovat různé režimy výpočtu v závislosti na požadované kvalitě výstupu.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bibliography Section -->
+    <section class="py-16 px-4 bg-cyber-surface/10 border-t border-cyber-border">
+      <Bibliography client:load />
+    </section>
+
+  </div>
+</CyberpunkLayout>
+
+<style>
+  /* Enhanced styling for philosophy page */
+  .cyber-bg {
+    background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%);
+  }
+  
+  .cyber-surface {
+    background: rgba(45, 55, 72, 0.8);
+  }
+  
+  .cyber-border {
+    border-color: rgba(79, 209, 197, 0.3);
+  }
+  
+  .cyber-text {
+    color: #e2e8f0;
+  }
+  
+  .cyber-text-dim {
+    color: #a0aec0;
+  }
+  
+  .cyber-green {
+    color: #4fd1c5;
+  }
+  
+  .cyber-blue {
+    color: #63b3ed;
+  }
+  
+  .cyber-orange {
+    color: #fd7f47;
+  }
+  
+  a[href^="#ref-"] {
+    text-decoration: none;
+    padding: 1px 3px;
+    border-radius: 2px;
+    background: rgba(253, 127, 71, 0.1);
+    transition: all 0.2s ease;
+  }
+  
+  a[href^="#ref-"]:hover {
+    background: rgba(253, 127, 71, 0.2);
+    transform: scale(1.05);
+  }
+  
+  blockquote {
+    background: rgba(45, 55, 72, 0.3);
+    backdrop-filter: blur(10px);
+  }
+</style>
+</CyberpunkLayout>

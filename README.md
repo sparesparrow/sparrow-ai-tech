@@ -404,3 +404,32 @@ for details.
 [![Build Status](https://img.shields.io/github/actions/workflow/status/sparesparrow/sparrow-ai-tech/deploy.yml?branch=main)](https://github.com/sparesparrow/sparrow-ai-tech/actions)
 [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)](https://sparesparrow.github.io/sparrow-ai-tech/)
 [![License](https://img.shields.io/github/license/sparesparrow/sparrow-ai-tech)](LICENSE)
+
+## 📚 Recent Enhancement: Academic Citations (August 2025)
+
+### What's New
+- **Comprehensive Bibliography System**: Added complete academic reference system with 10+ primary sources
+- **Enhanced Philosophy Page**: New `/philosophy-enhanced` page with proper in-line citations  
+- **Citation Components**: React components for consistent citation formatting
+- **Academic Standards**: All sources follow scholarly citation practices
+
+### Key Sources Integrated
+1. **Dario Amodei (Anthropic)** - "Machines of Loving Grace" and Constitutional AI research
+2. **Andrew Ng (Stanford/DeepLearning.AI)** - University transformation and AI impact
+3. **Ludwig von Mises** - "Human Action" and modern praxeology applications  
+4. **Friedrich Hayek** - "The Use of Knowledge in Society" (1945)
+5. **Matthew Berman (YouTube)** - GPT-5 prompting techniques and best practices
+6. **Technical Documentation** - MCP specification and implementation details
+
+### New Pages
+- `/citations` - Complete bibliography with all academic references
+- `/philosophy-enhanced` - Philosophy section with inline citations and footnotes
+
+### Technical Implementation
+- **Citation Components**: `CitationLink.jsx` for inline citations
+- **Bibliography Component**: `Bibliography.jsx` with categorized references  
+- **Enhanced CSS**: Proper styling for academic formatting
+- **Responsive Design**: Citations work across all screen sizes
+
+All citations link to publicly available sources and follow academic integrity standards.
+

@@ -1,0 +1,68 @@
+---
+import CyberpunkLayout from '../layouts/CyberpunkLayout.astro';
+import Bibliography from '../components/citations/Bibliography.jsx';
+
+const title = 'Akademické reference | Sparrow AI Tech';
+const description = 'Kompletní seznam akademických referencí a zdrojů použitých v projektu';
+---
+
+<CyberpunkLayout title={title} description={description}>
+  <div class="min-h-screen bg-cyber-bg">
+    
+    <!-- Header -->
+    <section class="relative py-16 px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-cyber-green mb-6">
+          Akademické reference
+        </h1>
+        <p class="text-lg text-cyber-text-dim max-w-2xl mx-auto leading-relaxed">
+          Kompletní seznam zdrojů a akademických referencí použitých napříč projektem Sparrow AI Tech. 
+          Všechny citace následují akademické standardy a odkazují na ověřené primární zdroje.
+        </p>
+      </div>
+    </section>
+
+    <!-- Bibliography -->
+    <section class="pb-16">
+      <Bibliography showExpanded={true} client:load />
+    </section>
+
+    <!-- Methodology Note -->
+    <section class="py-8 px-4 bg-cyber-surface/20 border-t border-cyber-border">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-cyber-bg/30 border border-cyber-border rounded-lg p-8">
+          <h3 class="text-2xl font-semibold text-cyber-blue mb-4">Metodologie a standardy</h3>
+          
+          <div class="space-y-4 text-cyber-text-dim">
+            <p>
+              <strong class="text-cyber-green">Akademické standardy:</strong> 
+              Všechny reference následují standardy pro akademické citace s preferencí primárních zdrojů 
+              před sekundárními.
+            </p>
+            
+            <p>
+              <strong class="text-cyber-green">Aktuálnost:</strong> 
+              Pro technická témata upřednostňujeme aktuální zdroje (2020+), historické zdroje 
+              zachováváme pro foundational koncepty rakouské ekonomie a filozofie.
+            </p>
+            
+            <p>
+              <strong class="text-cyber-green">Ověřitelnost:</strong> 
+              Všechny citované zdroje jsou veřejně dostupné nebo obsahují odkazy na původní publikace.
+            </p>
+            
+            <p>
+              <strong class="text-cyber-green">Transparentnost:</strong> 
+              Zdrojový kód této stránky včetně všech citací je dostupný na 
+              <a href="https://github.com/sparesparrow/sparrow-ai-tech" target="_blank" 
+                 class="text-cyber-blue hover:text-cyber-green transition-colors">
+                GitHub
+              </a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</CyberpunkLayout>
