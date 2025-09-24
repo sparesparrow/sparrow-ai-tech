@@ -21,7 +21,7 @@ const lang = Astro.url.searchParams.get('lang') || 'cs';
 const t = {
   en: {
     hero: 'Model Context Protocol Pioneer',
-    subtitle: 'Building AI systems that respect individual sovereignty and market principles',
+    subtitle: 'Full-stack developer specializing in MCP, AWS, Android, embedded systems, and cybersecurity',
     explore: 'Explore Projects',
     contact: 'Contact',
     quotes: [
@@ -35,9 +35,7 @@ const t = {
       'Slush Philosophy: "Build for real users with real problems. Technical innovation without market validation is just expensive research."',
       'Mr. Robot: "The world is a dangerous place, not because of those who do evil, but because of those who look on and do nothing."',
     ],
-    philosophyTitle: 'Philosophy & Intellectual Framework',
-    philosophyIntro:
-      'Drawing insights from Austrian economics, AI safety research, neuroscience, and cybersecurity mindset to build robust, human-centered technology that respects individual sovereignty.',
+    
     austrianEconomics: {
       title: 'Austrian Economics & Praxeology',
       description:
@@ -128,7 +126,7 @@ const t = {
   },
   cs: {
     hero: 'Průkopník Model Context Protocolu',
-    subtitle: 'Stavba AI systémů, které respektují individuální suverenitu a tržní principy',
+    subtitle: 'Full-stack vývojář specializující se na MCP, AWS, Android, embedded systémy a kyberbezpečnost',
     explore: 'Prozkoumat projekty',
     contact: 'Kontakt',
     quotes: [
@@ -142,9 +140,7 @@ const t = {
       'Slush Filosofie: "Stav pro skutečné uživatele se skutečnými problémy. Technická inovace bez validace trhu je jen drahý výzkum."',
       'Mr. Robot: "Svět je nebezpečné místo, ne kvůli těm, kteří páchají zlo, ale kvůli těm, kteří se dívají a nedělají nic."',
     ],
-    philosophyTitle: 'Filosofie & Intelektuální rámec',
-    philosophyIntro:
-      'Čerpání poznatků z rakouské ekonomie, výzkumu bezpečnosti AI, neurověd a kyberbezpečnostního myšlení pro stavbu robustních, člověka-orientovaných technologií, které respektují individuální suverenitu.',
+    
     austrianEconomics: {
       title: 'Rakouská ekonomie & Praxeologie',
       description:
@@ -301,13 +297,7 @@ const t = {
               href="/sparrow-ai-tech/cv.pdf"
               class="rounded-lg border border-cyan-500/50 px-8 py-3 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
             >
-              Professional CV
-            </a>
-            <a
-              href="#philosophy"
-              class="rounded-lg border border-purple-500/50 px-8 py-3 font-medium text-purple-400 transition-all duration-300 hover:bg-purple-500/10"
-            >
-              Philosophy
+              Download CV
             </a>
           </div>
         </div>
@@ -413,119 +403,196 @@ const t = {
               >
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Philosophy Section with visual card -->
-    <section id="philosophy" class="bg-slate-900/50 py-20">
-      <div class="container mx-auto px-6">
-        <div class="mb-16 text-center">
-          <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">{t?.philosophyTitle}</h2>
-          <p class="mx-auto max-w-3xl text-lg text-slate-300">{t?.philosophyIntro}</p>
-        </div>
-
-        <div class="mx-auto mb-16 max-w-5xl">
-          <figure
-            class="rounded-xl border border-purple-500/30 bg-slate-800/40 p-4 text-center shadow-lg backdrop-blur-sm"
+          <!-- Containers & DevOps -->
+          <div
+            class="rounded-lg border border-blue-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-blue-400/50"
           >
-            <img
-              src="https://cdnl.tblsft.com/sites/default/files/inline-images/Inline-607-monosemanticity-fig1-01-2560x896.png"
-              alt="Anthropic neural feature map"
-              class="mx-auto h-auto max-h-64 w-auto"
-              loading="lazy"
-            />
-            <figcaption class="mt-3 text-sm text-slate-400">Anthropic research: neural feature map</figcaption>
-          </figure>
-        </div>
-
-        <!-- Influence Quotes Grid -->
-        <div class="mb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {
-            t?.quotes.map((quote, index) => (
-              <div class="rounded-lg border border-slate-700/50 bg-slate-800/40 p-4 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30">
-                <blockquote class="text-sm italic leading-relaxed text-slate-300">"{quote}"</blockquote>
+            <div class="mb-6 text-center">
+              <div
+                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-cyan-500"
+              >
+                <span class="text-xl font-bold text-white">🐳</span>
               </div>
-            ))
-          }
-        </div>
+            </div>
 
-        <!-- Philosophy Pillars -->
-        <div class="grid gap-8 md:grid-cols-2">
-          <!-- Austrian Economics -->
-          <div
-            class="rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-900/30 to-yellow-900/30 p-8 backdrop-blur-sm"
-          >
-            <h3 class="mb-4 text-2xl font-bold text-orange-400">{t?.austrianEconomics.title}</h3>
-            <p class="mb-6 text-slate-300">{t?.austrianEconomics.description}</p>
-            <ul class="space-y-2">
-              {
-                t?.austrianEconomics.principles.map(principle => (
-                  <li class="flex items-center text-slate-300">
-                    <span class="mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-orange-400" />
-                    {principle}
-                  </li>
-                ))
-              }
-            </ul>
+            <h3 class="mb-4 text-center text-xl font-bold text-blue-400">Containers & DevOps</h3>
+
+            <p class="mb-6 text-center text-slate-300">
+              Containerization with Docker, Kubernetes orchestration, and CI/CD pipelines for scalable deployments.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-2">
+              <span class="rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-sm text-blue-300"
+                >Docker</span
+              >
+              <span class="rounded-full border border-cyan-500/30 bg-cyan-500/20 px-3 py-1 text-sm text-cyan-300"
+                >Kubernetes</span
+              >
+              <span class="rounded-full border border-green-500/30 bg-green-500/20 px-3 py-1 text-sm text-green-300"
+                >CI/CD</span
+              >
+            </div>
           </div>
 
-          <!-- AI Safety -->
+          <!-- AWS Cloud Services -->
           <div
-            class="rounded-xl border border-purple-500/30 bg-gradient-to-br from-purple-900/30 to-pink-900/30 p-8 backdrop-blur-sm"
+            class="rounded-lg border border-orange-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-orange-400/50"
           >
-            <h3 class="mb-4 text-2xl font-bold text-purple-400">{t?.aiSafety.title}</h3>
-            <p class="mb-6 text-slate-300">{t?.aiSafety.description}</p>
-            <ul class="space-y-2">
-              {
-                t?.aiSafety.principles.map(principle => (
-                  <li class="flex items-center text-slate-300">
-                    <span class="mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-purple-400" />
-                    {principle}
-                  </li>
-                ))
-              }
-            </ul>
+            <div class="mb-6 text-center">
+              <div
+                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-yellow-500"
+              >
+                <span class="text-xl font-bold text-white">AWS</span>
+              </div>
+            </div>
+
+            <h3 class="mb-4 text-center text-xl font-bold text-orange-400">AWS Cloud Services</h3>
+
+            <p class="mb-6 text-center text-slate-300">
+              Expertise in Amazon Web Services including EC2, S3, Lambda, and cloud architecture design.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-2">
+              <span class="rounded-full border border-orange-500/30 bg-orange-500/20 px-3 py-1 text-sm text-orange-300"
+                >EC2</span
+              >
+              <span class="rounded-full border border-yellow-500/30 bg-yellow-500/20 px-3 py-1 text-sm text-yellow-300"
+                >S3</span
+              >
+              <span class="rounded-full border border-red-500/30 bg-red-500/20 px-3 py-1 text-sm text-red-300"
+                >Lambda</span
+              >
+            </div>
           </div>
 
-          <!-- Neuroscience -->
+          <!-- Android Development -->
           <div
-            class="rounded-xl border border-cyan-500/30 bg-gradient-to-br from-blue-900/30 to-cyan-900/30 p-8 backdrop-blur-sm"
+            class="rounded-lg border border-lime-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-lime-400/50"
           >
-            <h3 class="mb-4 text-2xl font-bold text-cyan-400">{t?.neuroscience.title}</h3>
-            <p class="mb-6 text-slate-300">{t?.neuroscience.description}</p>
-            <ul class="space-y-2">
-              {
-                t?.neuroscience.principles.map(principle => (
-                  <li class="flex items-center text-slate-300">
-                    <span class="mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-cyan-400" />
-                    {principle}
-                  </li>
-                ))
-              }
-            </ul>
+            <div class="mb-6 text-center">
+              <div
+                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-lime-400 to-green-500"
+              >
+                <span class="text-xl font-bold text-white">📱</span>
+              </div>
+            </div>
+
+            <h3 class="mb-4 text-center text-xl font-bold text-lime-400">Android Development</h3>
+
+            <p class="mb-6 text-center text-slate-300">
+              Building native Android applications with Kotlin and modern development practices.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-2">
+              <span class="rounded-full border border-lime-500/30 bg-lime-500/20 px-3 py-1 text-sm text-lime-300"
+                >Android</span
+              >
+              <span class="rounded-full border border-green-500/30 bg-green-500/20 px-3 py-1 text-sm text-green-300"
+                >Kotlin</span
+              >
+              <span class="rounded-full border border-emerald-500/30 bg-emerald-500/20 px-3 py-1 text-sm text-emerald-300"
+                >Mobile</span
+              >
+            </div>
           </div>
 
-          <!-- Pragmatic Building -->
+          <!-- Embedded Systems -->
           <div
-            class="rounded-xl border border-green-500/30 bg-gradient-to-br from-green-900/30 to-emerald-900/30 p-8 backdrop-blur-sm"
+            class="rounded-lg border border-indigo-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-indigo-400/50"
           >
-            <h3 class="mb-4 text-2xl font-bold text-green-400">{t?.pragmaticBuilding.title}</h3>
-            <p class="mb-6 text-slate-300">{t?.pragmaticBuilding.description}</p>
-            <ul class="space-y-2">
-              {
-                t?.pragmaticBuilding.principles.map(principle => (
-                  <li class="flex items-center text-slate-300">
-                    <span class="mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-green-400" />
-                    {principle}
-                  </li>
-                ))
-              }
-            </ul>
+            <div class="mb-6 text-center">
+              <div
+                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-indigo-400 to-purple-500"
+              >
+                <span class="text-xl font-bold text-white">⚙️</span>
+              </div>
+            </div>
+
+            <h3 class="mb-4 text-center text-xl font-bold text-indigo-400">Embedded Systems</h3>
+
+            <p class="mb-6 text-center text-slate-300">
+              Developing firmware for microcontrollers, RTOS integration, and IoT solutions.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-2">
+              <span class="rounded-full border border-indigo-500/30 bg-indigo-500/20 px-3 py-1 text-sm text-indigo-300"
+                >Microcontrollers</span
+              >
+              <span class="rounded-full border border-purple-500/30 bg-purple-500/20 px-3 py-1 text-sm text-purple-300"
+                >RTOS</span
+              >
+              <span class="rounded-full border border-pink-500/30 bg-pink-500/20 px-3 py-1 text-sm text-pink-300"
+                >IoT</span
+              >
+            </div>
+          </div>
+
+          <!-- Cybersecurity -->
+          <div
+            class="rounded-lg border border-red-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-red-400/50"
+          >
+            <div class="mb-6 text-center">
+              <div
+                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-red-400 to-pink-500"
+              >
+                <span class="text-xl font-bold text-white">🔐</span>
+              </div>
+            </div>
+
+            <h3 class="mb-4 text-center text-xl font-bold text-red-400">Cybersecurity</h3>
+
+            <p class="mb-6 text-center text-slate-300">
+              Implementing security best practices, threat modeling, and secure system design.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-2">
+              <span class="rounded-full border border-red-500/30 bg-red-500/20 px-3 py-1 text-sm text-red-300"
+                >Threat Modeling</span
+              >
+              <span class="rounded-full border border-pink-500/30 bg-pink-500/20 px-3 py-1 text-sm text-pink-300"
+                >Encryption</span
+              >
+              <span class="rounded-full border border-rose-500/30 bg-rose-500/20 px-3 py-1 text-sm text-rose-300"
+                >Security</span
+              >
+            </div>
+          </div>
+
+          <!-- Automotive Software -->
+          <div
+            class="rounded-lg border border-teal-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-teal-400/50"
+          >
+            <div class="mb-6 text-center">
+              <div
+                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-teal-400 to-cyan-500"
+              >
+                <span class="text-xl font-bold text-white">🚗</span>
+              </div>
+            </div>
+
+            <h3 class="mb-4 text-center text-xl font-bold text-teal-400">Automotive Software</h3>
+
+            <p class="mb-6 text-center text-slate-300">
+              Experience in automotive software development, CAN bus communication, and embedded automotive systems.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-2">
+              <span class="rounded-full border border-teal-500/30 bg-teal-500/20 px-3 py-1 text-sm text-teal-300"
+                >CAN Bus</span
+              >
+              <span class="rounded-full border border-cyan-500/30 bg-cyan-500/20 px-3 py-1 text-sm text-cyan-300"
+                >Automotive</span
+              >
+              <span class="rounded-full border border-sky-500/30 bg-sky-500/20 px-3 py-1 text-sm text-sky-300"
+                >Embedded</span
+              >
+            </div>
           </div>
         </div>
       </div>
     </section>
+
 
     <!-- GitHub Projects -->
     <section class="py-20">
