@@ -68,7 +68,7 @@ const lang = Astro.url.searchParams.get('lang') || 'cs';
           <a href="#features" class="cyber-nav-link">Expertise</a>
           <a href="#projects" class="cyber-nav-link">MCP Projects</a>
           <a href="#agentic" class="cyber-nav-link">Agentic Workflows</a>
-          <a href="#philosophy" class="cyber-nav-link">Philosophy</a>
+          
           <a href={`${import.meta.env.BASE_URL}mermaid-editor`} class="cyber-nav-link">Mermaid Editor</a>
           <a href={`${import.meta.env.BASE_URL}chatbot`} class="cyber-nav-link">Chatbot</a>
           <a href="#contact" class="cyber-nav-link">Contact</a>
@@ -125,7 +125,7 @@ const lang = Astro.url.searchParams.get('lang') || 'cs';
         initScrollAnimations();
         initNavigation();
         initProjectCards();
-        initPhilosophyQuotes();
+        
         initMatrixRain();
         initTerminalAnimation();
       });

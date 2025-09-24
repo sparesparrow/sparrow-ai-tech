@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
   initNavigation();
   initSkillBars();
   initProjectCards();
-  initPhilosophyQuotes();
   initMatrixRain();
   initTerminalAnimation();
   initFormHandling();
@@ -220,61 +219,7 @@ function initProjectCards() {
   });
 }
 
-// Philosophy quotes typewriter effect
-function initPhilosophyQuotes() {
-  const quotes = [
-    "Programuji nejčastěji tak, že večer spustím orchestrační skript s nekonečným cyklem instrukcí typu 'Pokračuj dalším bodem ve svém seznamu úkolů'. Ráno cyklus zastavím a objevujem nové změny na svém domácím počítači.",
-    'Automatizace pomocí různých nástrojů včetně AI mi umožňuje efektivně řešit komplexní problémy, které bych bez takových nástrojů řešit ani nezačal.',
-    'Svoboda je pro mě základním pilířem smyslu života a předpokladem pro efektivní učení se novým dovednostem.',
-    'Archetyp programátora, který sedí neustále u počítače, dnes podle mě neplatí. Moderní development je o orchestraci systémů a AI nástrojů.',
-  ];
-
-  const quoteElements = [
-    document.getElementById('quote1'),
-    document.getElementById('quote2'),
-    document.getElementById('quote3'),
-    document.getElementById('quote4'),
-  ];
-
-  // Observer for philosophy section
-  const philosophyObserver = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Start typing quotes with delays
-          quoteElements.forEach((element, index) => {
-            if (element) {
-              setTimeout(() => {
-                typeQuote(element, quotes[index]);
-              }, index * 1000);
-            }
-          });
-          philosophyObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
-
-  const philosophySection = document.getElementById('philosophy');
-  if (philosophySection) {
-    philosophyObserver.observe(philosophySection);
-  }
-
-  function typeQuote(element, text) {
-    let index = 0;
-    element.textContent = '';
-
-    function typeChar() {
-      if (index < text.length) {
-        element.textContent += text.charAt(index);
-        index++;
-        setTimeout(typeChar, 30);
-      }
-    }
-    typeChar();
-  }
-}
+// Philosophy section removed for a more professional homepage
 
 // Terminal animation for hero section
 function initTerminalAnimation() {
