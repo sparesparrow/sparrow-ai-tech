@@ -43,10 +43,10 @@
     "postinstall": "npx playwright install --with-deps"
   },
   "dependencies": {
-    "@astrojs/react": "^4.3.0",
-    "@astrojs/tailwind": "^5.1.5",
+    "@astrojs/react": "^4.4.0",
+    "@astrojs/tailwind": "^6.0.2",
     "@tippyjs/react": "^4.2.6",
-    "astro": "^5.12.8",
+    "astro": "^5.14.1",
     "chart.js": "^4.5.0",
     "framer-motion": "^12.23.12",
     "marked": "^4.3.0",
@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/svelte": "^7.1.0",
+    "@astrojs/svelte": "^7.2.0",
     "@babel/core": "^7.28.0",
     "@babel/eslint-parser": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
