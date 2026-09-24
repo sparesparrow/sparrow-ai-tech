@@ -1,0 +1,172 @@
+---
+/*
+  Bench architecture for the HIL case study: test runner → one thread per
+  instrument → controller under test, all stamped on one monotonic clock.
+  Plain HTML so it reflows on phones.
+*/
+const runner = [
+  { title: 'Planner', detail: 'Resolves a transition from the YAML catalogue' },
+  { title: 'Executor', detail: 'Arrange → act → assert' },
+  { title: 'Gates', detail: 'Eight independent checks on the evidence' },
+];
+
+const devices = [
+  { title: 'Programmable AC source', detail: 'pyvisa / USBTMC / SCPI — supply dips and frequency excursions' },
+  { title: 'Relay & input cards', detail: 'Modbus — thermostat demand, pressure switches, limits, injected faults' },
+  { title: 'Flame simulator', detail: 'Flame present / lost / weak, on command' },
+  { title: 'Serial-bus monitor', detail: 'State, alarms and telemetry reported by the controller' },
+];
+---
+
+<figure class="bench" aria-label="Bench architecture">
+  <div class="bench-grid">
+    <div class="col">
+      <div class="col-title">Test runner · Python</div>
+      {
+        runner.map(item => (
+          <div class="card">
+            <span class="card-title">{item.title}</span>
+            <span class="card-detail">{item.detail}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <div class="col">
+      <div class="col-title">One thread per instrument</div>
+      {
+        devices.map(item => (
+          <div class="card">
+            <span class="card-title">{item.title}</span>
+            <span class="card-detail">{item.detail}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="arrow" aria-hidden="true"></div>
+
+    <div class="col">
+      <div class="col-title">Unit under test</div>
+      <div class="card uut">
+        <span class="card-title">Ignition controller</span>
+        <span class="card-detail">
+          Outputs read back at the pins: igniter, gas valves, inducer, circulator, safety relay
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="clock">
+    Shared monotonic clock → one correlated JSONL timeline of every instrument command, signal edge and bus message
+  </div>
+</figure>
+
+<style>
+  .bench {
+    margin: 0;
+  }
+
+  .bench-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .col-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: rgb(34, 211, 238);
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    border: 1px solid rgba(100, 116, 139, 0.45);
+    border-radius: 0.5rem;
+    background: rgba(15, 23, 42, 0.7);
+    padding: 0.6rem 0.8rem;
+  }
+
+  .card.uut {
+    border-color: rgba(192, 132, 252, 0.6);
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .card-title {
+    font-weight: 600;
+    color: rgb(241, 245, 249);
+    font-size: 0.9rem;
+  }
+
+  .card-detail {
+    color: rgb(148, 163, 184);
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  /* Down arrow when stacked */
+  .arrow {
+    justify-self: center;
+    width: 2px;
+    height: 1.25rem;
+    background: rgba(34, 211, 238, 0.6);
+    position: relative;
+  }
+
+  .arrow::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid rgba(34, 211, 238, 0.8);
+  }
+
+  .clock {
+    margin-top: 0.75rem;
+    border: 1px dashed rgba(34, 211, 238, 0.5);
+    border-radius: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+    color: rgb(203, 213, 225);
+    text-align: center;
+  }
+
+  @media (min-width: 900px) {
+    .bench-grid {
+      grid-template-columns: 1fr 1.5rem 1.2fr 1.5rem 1fr;
+      align-items: stretch;
+    }
+
+    .arrow {
+      align-self: center;
+      width: 1.5rem;
+      height: 2px;
+    }
+
+    .arrow::after {
+      left: auto;
+      right: -2px;
+      bottom: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 6px solid rgba(34, 211, 238, 0.8);
+      border-right: 0;
+    }
+  }
+</style>

@@ -1,0 +1,480 @@
+---
+import CyberpunkLayout from '../../layouts/CyberpunkLayout.astro';
+import FlowSteps from '../../components/features/FlowSteps.astro';
+import BenchDiagram from '../../components/features/BenchDiagram.astro';
+import TimingDiagram from '../../components/features/TimingDiagram.astro';
+
+import '../../css/main.css';
+import '../../styles/home.css';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const stats = [
+  { value: '~290', label: 'tests generated from a 270+ transition catalogue' },
+  { value: '8', label: 'independent validation gates per test' },
+  { value: '148 → 0', label: 'cases where the stimulus window was never measured' },
+  { value: '25+', label: 'defects investigated, each with a repro script' },
+  { value: '15.7 s → 1.6 s', label: 'evidence report generation' },
+];
+
+const sequence = [
+  { title: 'Idle', detail: 'No heat demand' },
+  { title: 'Pressure-switch proving', detail: 'Inducer starts; switches must change state' },
+  { title: 'Prepurge', detail: 'Clear the combustion chamber' },
+  { title: 'Igniter warm-up', detail: 'Hot-surface igniter heats' },
+  { title: 'Trial for ignition', detail: 'Gas valve opens; flame must be proven in seconds' },
+  { title: 'Flame stabilisation', detail: 'Hold before declaring run' },
+  { title: 'Run', detail: 'Low or high fire' },
+  { title: 'Post-purge', detail: 'Inducer clears, back to idle' },
+];
+
+const aaa = [
+  {
+    step: 'Arrange',
+    text: 'Drive the controller into the source state through a data-driven navigation chain. Then ask the controller which state it is actually in, which catches the silent misroute where navigation reported success but the firmware had parked somewhere else.',
+  },
+  {
+    step: 'Act',
+    text: 'Apply the stimulus: a relay, a flame change or an AC-source excursion. Every observation the test expects is armed before the stimulus starts.',
+  },
+  {
+    step: 'Assert',
+    text: 'Eight independent gates run on the captured evidence. They all run even after one fails, so a single bench run gives the whole diagnostic picture.',
+  },
+];
+
+const gates = [
+  {
+    title: 'Preconditions',
+    text: 'Inputs, relays and active alarms are as required and the source state was validly reached before anything is stimulated.',
+  },
+  {
+    title: 'Stimulus timing',
+    text: 'The stimulus was applied and the response landed inside its not-before / not-after window.',
+  },
+  {
+    title: 'State sequence',
+    text: 'The controller reports the expected target state, confirmed by a live poll and by the captured message log.',
+  },
+  {
+    title: 'Alarms',
+    text: 'The expected fault codes are raised and cleared, and each alarm name matches the catalogue.',
+  },
+  {
+    title: 'Signal history',
+    text: 'Edge counts and timings of every output match the model. Outputs that are not expected on must stay off.',
+  },
+  {
+    title: 'Cross-layer consistency',
+    text: 'What the controller reports over the bus agrees with the output levels measured at its pins. Warning-only until calibrated over enough bench runs.',
+  },
+  {
+    title: 'Timer accuracy',
+    text: 'Timed transitions fire within max(2 s, 10 %) of the configured timer; a long timer that fires in under half its budget is flagged.',
+  },
+  {
+    title: 'Requirement traceability',
+    text: 'Each result maps back to the specification clauses it proves.',
+  },
+];
+
+const timingRules = [
+  {
+    title: 'Arm early',
+    text: 'Every observation in a sequence is armed before the first stimulus action, so an event that lands mid-stimulus is captured rather than missed.',
+  },
+  {
+    title: 'Deadline late',
+    text: 'Each deadline starts when the sequence reaches that expectation. Concurrent expectations share one clock, are waited tightest-deadline first, and the group fails fast.',
+  },
+  {
+    title: 'Latency at arrival',
+    text: 'Latency is measured from when the event arrived, not from when the waiter collected it. Otherwise one slow member of a group inflates its neighbours and fails deadlines they actually met.',
+  },
+  {
+    title: 'Deadlines are asserted',
+    text: 'A waiter could return “seen” after its deadline, so a run logged “MET after 7.391 s (timeout 7.0 s)” used to pass. Late now means missed; the only slack is 50 ms for thread scheduling.',
+  },
+  {
+    title: 'Honest precision',
+    text: 'Bus events are reported as measured latencies, polled pin levels as upper bounds (≤): one input-card read takes ~105 ms. A timeout under the 150 ms sampling floor is rejected when the test is defined, not discovered on the bench.',
+  },
+];
+
+const snippet = `# Illustrative only: simplified names, not client code.
+act = (
+    OpenSwitch("limit"),                           # drive the bench
+    ExpectFault("LIMIT_OPEN", within=2.0),         # observe, in sequence
+    (                                              # observe, concurrently
+        ExpectState("LIMIT_POSTPURGE", within=5.0),
+        ExpectOutput("igniter", level=False, within=1.0),
+    ),
+)
+engine.arm(act)   # every expectation armed before the first action runs
+run(act, engine)  # each deadline starts when the sequence reaches it`;
+
+const verdicts = [
+  {
+    name: 'PASS',
+    tone: 'text-green-300',
+    text: 'Target state, alarms, output signals and timing all verified.',
+  },
+  {
+    name: 'FAIL',
+    tone: 'text-red-300',
+    text: 'The firmware did not do what the catalogue says. Evidence goes to the firmware team with a repro script.',
+  },
+  {
+    name: 'ARRANGE FAIL',
+    tone: 'text-orange-300',
+    text: 'The source state was never validly reached. Kept separate from FAIL so bench and navigation noise never reads as a firmware regression; “helper missing” and “helper ran and failed” are distinct messages.',
+  },
+  {
+    name: 'SKIP',
+    tone: 'text-slate-300',
+    text: 'A documented bench limitation. New skip reasons need explicit approval, so a skip cannot quietly hide a regression.',
+  },
+  {
+    name: 'INCONCLUSIVE',
+    tone: 'text-yellow-300',
+    text: 'No reaction without a proven stimulus. “Nothing happened” is not a pass.',
+  },
+];
+
+const results = [
+  'Replaced hand-written, duplicated tests with ~290 generated from a catalogue of 270+ transitions, 38 states and 33 events.',
+  'Closed a ~148-case gap where the stimulus window was never actually measured, bringing it to zero.',
+  'Traced a “hardware fault” reported for months to a leaked USB handle, which unblocked an entire test family.',
+  'Investigated 25+ firmware and harness defects against the C/C++ firmware sources, each with a standalone reproduction script.',
+  'Delivered an unattended nightly pipeline and cut evidence report generation from 15.7 s to 1.6 s.',
+  'Moved a C#/.NET WinForms serial-bus monitor into version control, fixed a log-parser crash and reduced build and deployment to one command.',
+  'Owned delivery end to end: traceability, issue tracking, branch / PR workflow, Conan packaging, CI and monthly client reporting.',
+];
+
+const stack = [
+  'Python',
+  'C#',
+  'pyvisa / USBTMC / SCPI',
+  'Modbus',
+  'Serial-bus monitoring',
+  'YAML',
+  'openpyxl',
+  'Mermaid',
+  'Conan',
+  'CI',
+  'MCP / agent skills',
+];
+
+const h2 = 'mb-4 text-2xl font-bold text-white md:text-3xl';
+const h3 = 'mb-3 text-sm font-semibold uppercase tracking-wide text-cyan-400';
+const card = 'rounded-lg border border-slate-700/50 bg-slate-800/40 p-4';
+---
+
+<CyberpunkLayout
+  title="HIL Verification Case Study — Vojtěch Špaček"
+  description="How the hardware-in-the-loop bench for a safety-certified gas furnace ignition controller works: arrange-act-assert, eight validation gates, arm-early timing and verdicts that mean something."
+>
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <!-- Header -->
+    <section class="pb-12 pt-20">
+      <div class="container mx-auto max-w-5xl px-6">
+        <a href={`${base}case-studies`} class="font-mono text-sm text-cyan-400 hover:text-cyan-300"
+          >← All case studies</a
+        >
+        <div class="mb-3 mt-6 font-mono text-sm text-purple-300">
+          Resideo (Ademco) · 01/2026 – 09/2026 · contract via CoolPeople
+        </div>
+        <h1 class="mb-6 text-3xl font-bold text-white md:text-5xl">
+          Hardware-in-the-loop verification of a safety-certified ignition controller
+        </h1>
+        <p class="mb-10 max-w-3xl text-lg text-slate-300">
+          I owned the verification suite and the automated bench for a two-stage gas furnace ignition controller
+          certified to UL/CSA, ANSI Z21.20 and NFPA 54. This is how the bench works, how a single test decides
+          pass or fail, and why a green result on it means something.
+        </p>
+
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-5">
+          {
+            stats.map((s, i) => (
+              <div
+                class:list={[
+                  'rounded-lg border border-purple-500/30 bg-slate-800/50 p-4',
+                  { 'col-span-2 md:col-span-1': i === stats.length - 1 },
+                ]}
+              >
+                <div class="text-xl font-bold text-purple-300">{s.value}</div>
+                <div class="text-sm text-slate-300">{s.label}</div>
+              </div>
+            ))
+          }
+        </div>
+
+        <p class="mt-6 text-xs text-slate-400">
+          The client's firmware, state table and code are confidential. Names below are generic, code is
+          illustrative, and the numbers match my CV.
+        </p>
+      </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="bg-slate-900/40 py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>The problem</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <p class="text-slate-300">
+            A furnace ignition controller is a safety control. It sequences the inducer, pressure switches,
+            hot-surface igniter, gas valves and flame sensing, and it has to fail safe on every fault. The firmware
+            is a table-driven state machine, and every transition has to be demonstrated on real hardware with
+            evidence a certification reviewer can follow.
+          </p>
+          <p class="text-slate-300">
+            What I started with: hand-written, duplicated tests; a family of ~148 cases where the stimulus window
+            was never actually measured; and bench failures nobody could attribute to firmware, harness or
+            instrument.
+          </p>
+        </div>
+
+        <h3 class={`${h3} mt-10`}>Ignition sequence, simplified</h3>
+        <FlowSteps steps={sequence} label="Ignition sequence, simplified" perRow={4} />
+        <p class="mt-4 text-sm text-slate-400">
+          Every phase also has fault exits (limits, rollout, pressure switches, flame and gas-valve faults, supply
+          disturbances) into post-purge, soft lockout, hard lockout or wait-for-recovery. Those exits are most of
+          the 270+ transitions in the catalogue.
+        </p>
+      </div>
+    </section>
+
+    <!-- Bench -->
+    <section class="py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>The bench</h2>
+        <p class="mb-8 max-w-3xl text-slate-300">
+          Each instrument is owned by a single thread and stamped on one monotonic clock, so a command sent to the
+          AC source, a relay edge and a state change reported by the controller can be put on one axis. That
+          timeline is what made root-cause analysis across three independent devices possible.
+        </p>
+        <BenchDiagram />
+      </div>
+    </section>
+
+    <!-- AAA -->
+    <section class="bg-slate-900/40 py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>One test: arrange → act → assert</h2>
+        <div class="mb-8 grid gap-4 md:grid-cols-3">
+          {
+            aaa.map((a, i) => (
+              <div class={card}>
+                <div class="mb-1 font-mono text-xs text-cyan-400">{String(i + 1).padStart(2, '0')}</div>
+                <div class="mb-2 font-semibold text-slate-100">{a.step}</div>
+                <p class="text-sm text-slate-300">{a.text}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="rounded-lg border border-cyan-500/40 bg-cyan-500/5 p-5">
+          <div class="mb-2 font-semibold text-cyan-200">Short-lived source states</div>
+          <p class="text-sm text-slate-300">
+            Some source states last about five seconds. The gap between confirming arrival and firing the stimulus
+            measured ~1.9 s, most of that window. For those transitions the stimulus is handed to the navigation
+            step and fires the moment the state is confirmed. For transient source states the post-arrange check is
+            a 0.25 s probe, so the check itself doesn't use up the window.
+          </p>
+        </div>
+
+        <h3 class={`${h3} mt-12`}>The eight gates</h3>
+        <ol class="grid gap-3 sm:grid-cols-2">
+          {
+            gates.map((g, i) => (
+              <li class={card}>
+                <div class="mb-1 flex items-baseline gap-2">
+                  <span class="font-mono text-xs text-purple-300">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="font-semibold text-slate-100">{g.title}</span>
+                </div>
+                <p class="text-sm text-slate-300">{g.text}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <!-- Timing -->
+    <section class="py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Timing you can trust</h2>
+        <p class="mb-8 max-w-3xl text-slate-300">
+          A safety control is judged on <em>when</em> it reacts, not just whether it does. The expectation engine
+          makes every deadline in the suite an assertion.
+        </p>
+
+        <TimingDiagram />
+
+        <div class="mt-8 grid gap-3 md:grid-cols-2">
+          {
+            timingRules.map(r => (
+              <div class={card}>
+                <div class="mb-1 font-semibold text-slate-100">{r.title}</div>
+                <p class="text-sm text-slate-300">{r.text}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <h3 class={`${h3} mt-10`}>How a test states it</h3>
+        <pre
+          class="overflow-x-auto rounded-lg border border-slate-700/50 bg-slate-950/80 p-4 text-sm leading-relaxed text-slate-200"><code>{snippet}</code></pre>
+      </div>
+    </section>
+
+    <!-- Verdicts -->
+    <section class="bg-slate-900/40 py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Verdicts that mean something</h2>
+        <p class="mb-8 max-w-3xl text-slate-300">
+          A red result should point at the firmware, and a green one should be earned. Five verdicts keep those
+          apart.
+        </p>
+        <div class="grid gap-3">
+          {
+            verdicts.map(v => (
+              <div class={`${card} grid gap-2 sm:grid-cols-[10rem,1fr]`}>
+                <div class={`font-mono text-sm font-bold ${v.tone}`}>{v.name}</div>
+                <p class="text-sm text-slate-300">{v.text}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-2">
+          <div class="rounded-lg border border-yellow-500/40 bg-yellow-500/5 p-5">
+            <div class="mb-2 font-semibold text-yellow-200">Positive control before a negative claim</div>
+            <p class="text-sm text-slate-300">
+              Before a sweep may claim a state is unreachable under supply dips, the campaign has to prove the AC
+              source actually powers the controller. That gate found the source reading ~0.14 V while the controller
+              stayed powered, so the controller was not being fed from it. The campaign stopped there instead of
+              publishing a green negative sweep.
+            </p>
+          </div>
+          <div class="rounded-lg border border-yellow-500/40 bg-yellow-500/5 p-5">
+            <div class="mb-2 font-semibold text-yellow-200">Healthy relays, unhealthy rails</div>
+            <p class="text-sm text-slate-300">
+              Relay read-back can look fine while the controller's own supply rails are not. The rule is that this
+              precondition has to hold before any downstream result is classified, so one bad power-up cannot
+              contaminate a whole run's verdicts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unattended + defects -->
+    <section class="py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <div class="grid gap-10 md:grid-cols-2">
+          <div>
+            <h2 class={h2}>Running unattended</h2>
+            <ul class="list-disc space-y-3 pl-5 text-slate-300">
+              <li>
+                Nightly pipeline with per-key locking, crash and abort recovery, result journalling, Excel evidence
+                workbooks, bilingual HTML dashboards and Mermaid failure graphs. Report generation went from 15.7 s
+                to 1.6 s.
+              </li>
+              <li>
+                One instrument session per process, shared by every test. A failed open used to be cached for the
+                rest of the run, and one transient hiccup became 49 failures across 7 transitions. Now a failed
+                open is retried by the next test, while an instrument disabled by configuration stays off.
+              </li>
+              <li>
+                A “hardware fault” reported for months was a leaked USB handle. Fixing it restored a whole blocked
+                test family.
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 class={h2}>Defects and traceability</h2>
+            <ul class="list-disc space-y-3 pl-5 text-slate-300">
+              <li>
+                Every open issue that can be reproduced from the workspace has a standalone reproduction or
+                diagnostic script.
+              </li>
+              <li>
+                Each finding is classified before anyone acts on it: firmware defect, catalogue drift, bench
+                limitation or harness defect. Family-wide problems are narrowed by confirming one representative
+                transition per source state on the bench before any full sweep.
+              </li>
+              <li>
+                The state model is regenerated from the firmware's C state tables with a content hash per source
+                header, so drift between firmware and test catalogue shows up as a diff, not a bench surprise.
+              </li>
+              <li>Failing transitions are rendered as a Mermaid graph for triage.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Agentic -->
+    <section class="bg-slate-900/40 py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Agentic tooling on the bench</h2>
+        <p class="max-w-3xl text-slate-300">
+          Bench procedures are written down as agent skills and prompts, so AI-assisted work follows the same gates
+          as a person would. The supply-dip campaign prompt, for example, refuses to run a sweep until the
+          positive-control gate passes. The harness of agents, skills, policy hooks and MCP servers was part of
+          daily delivery.
+        </p>
+        <a
+          href={`${base}case-studies#agentic-tooling`}
+          class="mt-6 inline-block rounded-lg border border-cyan-500/50 px-4 py-2 text-sm font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
+        >
+          The agentic harness case study →
+        </a>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Results</h2>
+        <ul class="mb-8 list-disc space-y-2 pl-5 text-slate-300">
+          {results.map(r => <li>{r}</li>)}
+        </ul>
+        <div class="flex flex-wrap gap-2">
+          {
+            stack.map(s => (
+              <span class="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs text-cyan-200">
+                {s}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-slate-900/40 py-16">
+      <div class="container mx-auto max-w-3xl px-6 text-center">
+        <h2 class="mb-4 text-2xl font-bold text-white">Need this kind of verification?</h2>
+        <p class="mb-8 text-slate-300">Happy to walk through the bench and the evidence model on a call.</p>
+        <div class="flex flex-col justify-center gap-4 sm:flex-row">
+          <a
+            href="https://calendly.com/dallheimal"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 px-8 py-3 font-medium text-white transition-all duration-300 hover:from-cyan-400 hover:to-purple-400"
+          >
+            Schedule a call
+          </a>
+          <a
+            href={`${base}cv/Vojtech_Spacek_CV.pdf`}
+            class="rounded-lg border border-cyan-500/50 px-8 py-3 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
+          >
+            Download CV (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</CyberpunkLayout>

@@ -48,6 +48,7 @@ const cases = [
       'Owned delivery end to end: requirement traceability, issue tracking, branch / PR workflow, Conan packaging, CI and monthly client reporting.',
     ],
     stack: ['Python', 'C#', 'pyvisa / USBTMC / SCPI', 'CAN', 'Modbus', 'YAML', 'openpyxl', 'Mermaid', 'Conan', 'CI'],
+    detail: 'case-studies/hil-verification',
   },
   {
     id: 'agentic-tooling',
@@ -179,6 +180,21 @@ const cases = [
           <div class="container mx-auto max-w-5xl px-6">
             <div class="mb-2 font-mono text-sm text-purple-300">{c.kicker}</div>
             <h2 class="mb-8 text-2xl font-bold text-white md:text-3xl">{c.title}</h2>
+
+            {c.detail && (
+              <a
+                href={`${base}${c.detail}`}
+                class="mb-8 flex items-center justify-between gap-4 rounded-lg border border-cyan-400/50 bg-cyan-500/10 px-5 py-4 transition-colors duration-300 hover:bg-cyan-500/20"
+              >
+                <span>
+                  <span class="block font-semibold text-cyan-200">Read the full case study</span>
+                  <span class="block text-sm text-slate-300">
+                    The bench, the eight gates, arm-early timing and how verdicts are kept honest.
+                  </span>
+                </span>
+                <span class="text-xl text-cyan-300" aria-hidden="true">→</span>
+              </a>
+            )}
 
             <div class="mb-10 grid gap-6 md:grid-cols-2">
               <div>
