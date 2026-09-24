@@ -1,0 +1,284 @@
+---
+import CyberpunkLayout from '../../layouts/CyberpunkLayout.astro';
+import FlowSteps from '../../components/features/FlowSteps.astro';
+
+import '../../css/main.css';
+import '../../styles/home.css';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const repo = 'https://github.com/sparesparrow/mia';
+
+const stats = [
+  { value: '4', label: 'runtimes: Android, Raspberry Pi, ESP32 and Arduino' },
+  { value: '~270', label: 'commits since August 2025' },
+  { value: '600+', label: 'Python test functions, plus Android unit and instrumented tests' },
+  { value: '7', label: 'GitHub Actions workflows, triggered per platform' },
+];
+
+const layers = [
+  {
+    title: 'Android companion',
+    lang: 'Kotlin · Jetpack Compose · Hilt · Room',
+    text: 'Voice commands, live telemetry over WebSocket, mDNS discovery of the Pi, and a camera screen for number-plate recognition.',
+  },
+  {
+    title: 'Raspberry Pi backend',
+    lang: 'Python · FastAPI · ZeroMQ',
+    text: 'REST and WebSocket gateway on port 8000 in front of a ZeroMQ ROUTER broker (5555) and a PUB/SUB telemetry bus (5556). Workers for GPIO, serial, OBD and vehicle bridges run as systemd services.',
+  },
+  {
+    title: 'C++ voice and orchestration core',
+    lang: 'C++17 · FlatBuffers · MQTT · CMake / Conan',
+    text: 'TCP and MQTT servers over a job and message queue, speech-to-text and text-to-speech workers driven by a voice-control state machine, a hardware-control server, and FlatBuffers codecs shared with the Python side.',
+  },
+  {
+    title: 'Microcontrollers',
+    lang: 'ESP32 (ESP-IDF / PlatformIO) · Arduino',
+    text: 'Sensor and potentiometer telemetry over USB serial, a Wi-Fi bridge, OBD-II framing on the ESP32, an LED-strip controller and an ESP32 camera for plate capture.',
+  },
+  {
+    title: 'MCP modules',
+    lang: 'Python · Model Context Protocol',
+    text: 'Core orchestrator, service discovery, AI audio assistant (speech-to-text, text-to-speech), hardware bridge and vehicle bridges, exposed as tools an agent can call.',
+  },
+];
+
+const twin = [
+  { title: 'Potentiometers on an MCU', detail: 'Physical knobs stand in for throttle and road speed' },
+  { title: 'Serial bridge', detail: 'USB serial JSON → ZeroMQ PUB on mcu/telemetry' },
+  { title: 'OBD worker', detail: 'Maps ADC 0–1023 to RPM, speed and coolant, thread-safe car state' },
+  { title: 'ELM327 emulator', detail: 'Answers PIDs from the live state on a virtual serial port' },
+  { title: 'Real diagnostic apps', detail: 'Torque, OBD Eleven or VCDS connect as if to a car' },
+];
+
+const anpr = [
+  { title: 'Capture', detail: 'Phone camera or ESP32 camera frame' },
+  { title: 'Recognise', detail: 'Plate read and post-processed on the backend' },
+  { title: 'Look up', detail: 'Czech e-vignette status via the eDálnice service' },
+  { title: 'Cache', detail: 'In-memory and on-disk cache, 24 h TTL' },
+  { title: 'Show', detail: 'Result on the Android ANPR screen' },
+];
+
+const decisions = [
+  {
+    title: 'A broker, not point-to-point calls',
+    text: 'Every worker is a ZeroMQ DEALER behind one ROUTER. The broker tags requests with an id that workers echo back, tracks worker health, and persists pending messages in SQLite so a restarted worker can pick up where it left off.',
+  },
+  {
+    title: 'Simulation behind every hardware module',
+    text: 'I²C sensors, the serial bridge and the Arduino controller each take a tri-state simulation flag: auto-detect and fall back, force simulation, or require hardware. The simulated serial source produces idle RPM, coolant warm-up and voltage ripple, so CI and laptops run the same code paths as the car.',
+  },
+  {
+    title: 'One schema across languages',
+    text: 'FlatBuffers schemas define vehicle telemetry, GPIO commands and sensor messages once; generated bindings are used from Python and C++, and contract regression tests catch schema drift.',
+  },
+  {
+    title: 'Per-platform CI',
+    text: 'Path-based workflow triggers mean an Android change does not rebuild the C++ core. Native build failures are surfaced as annotations, and release builds publish artifacts.',
+  },
+];
+
+const safety = [
+  'Read-only by default: no transmit on the powertrain or comfort CAN, UDS polling off, and only read services 0x19 and 0x22 allowed.',
+  'No extended diagnostic session, no security access, no write services.',
+  'A forbidden-actuation list: convertible top, central locking, exterior lighting, immobiliser, airbag and pyrotechnic circuits.',
+  'Listen-only is enforced in hardware by leaving the CAN transceiver’s TXD line unconnected, because a controller’s listen-only bit is a register a software bug can overwrite.',
+  'Every interface in the vehicle survey carries a confidence level and stays blocked until it has been verified on the car.',
+];
+
+const status = [
+  { label: 'Working', items: ['ZeroMQ broker, FastAPI gateway and workers', 'OBD-II digital twin with an ELM327 emulator', 'Simulation fallback for every hardware module', 'Android companion app and ANPR flow', 'Per-platform CI and release artifacts'] },
+  { label: 'Designed, not yet built', items: ['Audi A4 Cabriolet 8H in-car install: power and ignition sense, passive comfort-CAN sniffing, CD-changer audio path', 'Vehicle interfaces stay blocked until verified on the car'] },
+];
+
+const stack = ['Python', 'FastAPI', 'ZeroMQ', 'SQLite', 'C++17', 'FlatBuffers', 'Kotlin', 'Jetpack Compose', 'ESP-IDF', 'PlatformIO', 'Arduino', 'OBD-II / ELM327', 'CAN', 'MCP', 'systemd', 'Docker', 'GitHub Actions'];
+
+const h2 = 'mb-4 text-2xl font-bold text-white md:text-3xl';
+const h3 = 'mb-3 text-sm font-semibold uppercase tracking-wide text-cyan-400';
+const card = 'rounded-lg border border-slate-700/50 bg-slate-800/40 p-4';
+---
+
+<CyberpunkLayout
+  title="MIA Case Study — Vojtěch Špaček"
+  description="MIA: an open-source vehicle telemetry and IoT platform spanning Android, Raspberry Pi, ESP32 and Arduino, with a ZeroMQ backbone, an OBD-II digital twin and MCP tooling."
+>
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <section class="pb-12 pt-20">
+      <div class="container mx-auto max-w-5xl px-6">
+        <a href={`${base}case-studies`} class="font-mono text-sm text-cyan-400 hover:text-cyan-300">← All case studies</a>
+        <div class="mb-3 mt-6 font-mono text-sm text-purple-300">Personal project · open source · 2025 – present</div>
+        <h1 class="mb-6 text-3xl font-bold text-white md:text-5xl">
+          MIA: vehicle telemetry and IoT control from phone to microcontroller
+        </h1>
+        <p class="mb-8 max-w-3xl text-lg text-slate-300">
+          MIA connects an Android app, a Raspberry Pi, ESP32 and Arduino boards and a car's diagnostic port into one
+          system an AI agent can drive through Model Context Protocol tools. The prototype car is a 2004 Audi A4
+          Cabriolet (8H). This page covers the architecture, the decisions that keep it testable without the car,
+          and the safety rules for touching a real vehicle.
+        </p>
+        <div class="mb-8 flex flex-wrap gap-3">
+          <a
+            href={repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 px-6 py-2 font-medium text-white transition-all duration-300 hover:from-cyan-400 hover:to-purple-400"
+          >
+            Source on GitHub ↗
+          </a>
+        </div>
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {
+            stats.map(s => (
+              <div class="rounded-lg border border-purple-500/30 bg-slate-800/50 p-4">
+                <div class="text-xl font-bold text-purple-300">{s.value}</div>
+                <div class="text-sm text-slate-300">{s.label}</div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-900/40 py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>The problem</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <p class="text-slate-300">
+            A car, a Raspberry Pi, a couple of microcontrollers and a phone all speak different languages: CAN and
+            OBD-II, USB serial, GPIO, Wi-Fi and HTTP. Getting them to cooperate usually means brittle point-to-point
+            scripts that only run when every device is plugged in.
+          </p>
+          <p class="text-slate-300">
+            The goal for MIA was one message bus and one schema across all of them, code that runs identically with
+            or without hardware attached, and a tool surface an AI agent can use — without ever giving that agent a
+            way to actuate anything safety-relevant in the car.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Architecture</h2>
+        <p class="mb-8 max-w-3xl text-slate-300">
+          Five layers, one monorepo. The Pi is the hub: HTTP and WebSocket at the edge, ZeroMQ inside.
+        </p>
+        <div class="grid gap-3 md:grid-cols-2">
+          {
+            layers.map(l => (
+              <div class={card}>
+                <div class="font-semibold text-slate-100">{l.title}</div>
+                <div class="mb-2 font-mono text-xs text-cyan-400">{l.lang}</div>
+                <p class="text-sm text-slate-300">{l.text}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-900/40 py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>An OBD-II digital twin</h2>
+        <p class="mb-8 max-w-3xl text-slate-300">
+          To develop against diagnostics without a running engine, physical potentiometers drive an ELM327 emulator.
+          Off-the-shelf diagnostic apps connect to it exactly as they would to a car and see the numbers move as the
+          knobs turn.
+        </p>
+        <FlowSteps steps={twin} label="OBD-II digital twin" />
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Design decisions</h2>
+        <div class="grid gap-3 md:grid-cols-2">
+          {
+            decisions.map(d => (
+              <div class={card}>
+                <div class="mb-1 font-semibold text-slate-100">{d.title}</div>
+                <p class="text-sm text-slate-300">{d.text}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-900/40 py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Safety posture for a real car</h2>
+        <p class="mb-6 max-w-3xl text-slate-300">
+          The vehicle profile is a machine-readable file, not a comment in the code. It sets what MIA may do on the
+          car, and the defaults say: listen, don't talk.
+        </p>
+        <ul class="grid gap-2">
+          {safety.map(s => <li class={`${card} text-sm text-slate-300`}>{s}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Latest feature: number-plate recognition</h2>
+        <p class="mb-8 max-w-3xl text-slate-300">
+          One feature cut across every layer: the Android app and an ESP32 camera capture a plate, the backend
+          reads it and checks the Czech electronic vignette, and the result comes back to the phone. The eDálnice
+          client has its own unit tests, and results are cached so repeated plates don't hit the service again.
+        </p>
+        <FlowSteps steps={anpr} label="Number-plate recognition flow" />
+      </div>
+    </section>
+
+    <section class="bg-slate-900/40 py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Where it stands</h2>
+        <div class="grid gap-4 md:grid-cols-2">
+          {
+            status.map(s => (
+              <div class={card}>
+                <h3 class={h3}>{s.label}</h3>
+                <ul class="list-disc space-y-1 pl-5 text-sm text-slate-300">
+                  {s.items.map(i => <li>{i}</li>)}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+        <p class="mt-6 max-w-3xl text-sm text-slate-400">
+          Much of the recent work was done with AI coding agents under the same review-and-CI flow as the rest of
+          the repository; the project's own agent skills and MCP modules are part of what it demonstrates.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Stack</h2>
+        <div class="mb-10 flex flex-wrap gap-2">
+          {
+            stack.map(s => (
+              <span class="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs text-cyan-200">{s}</span>
+            ))
+          }
+        </div>
+        <div class="flex flex-col gap-4 sm:flex-row">
+          <a
+            href={repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 px-8 py-3 text-center font-medium text-white transition-all duration-300 hover:from-cyan-400 hover:to-purple-400"
+          >
+            Browse the repository ↗
+          </a>
+          <a
+            href={`${base}case-studies`}
+            class="rounded-lg border border-cyan-500/50 px-8 py-3 text-center font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
+          >
+            Other case studies
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</CyberpunkLayout>
