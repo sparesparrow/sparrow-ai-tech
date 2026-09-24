@@ -1,0 +1,56 @@
+/*
+  Tailwind entry for pages rendered in CyberpunkLayout. The layout's own
+  cyberpunk styles stay in charge of nav/footer, so instead of Tailwind's
+  global preflight only the resets the utility classes depend on are applied,
+  scoped to <main>. These element selectors lose to Tailwind's class
+  selectors, so utilities still win.
+*/
+main *,
+main *::before,
+main *::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  /* Defaults normally emitted by @tailwind base; gradient and backdrop
+     utilities resolve to nothing without them. */
+  --tw-gradient-from-position: ;
+  --tw-gradient-via-position: ;
+  --tw-gradient-to-position: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+}
+
+main h1,
+main h2,
+main h3,
+main p,
+main figure {
+  margin: 0;
+}
+
+main ol,
+main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+main img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+main a {
+  text-decoration: none;
+}
+
+@tailwind components;
+@tailwind utilities;

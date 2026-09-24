@@ -29,7 +29,7 @@ const MockHeaderComponent = () => {
 };
 
 // Mock the Header component
-jest.mock('../Header.jsx', () => {
+jest.mock('../core/Header.jsx', () => {
   return {
     __esModule: true,
     default: MockHeaderComponent,
