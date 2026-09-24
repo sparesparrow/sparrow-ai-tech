@@ -1,17 +1,18 @@
 ---
 /*
   Horizontal pipeline diagram that stacks vertically on narrow screens.
-  Each step: { title, detail? }.
+  Each step: { title, detail? }. `perRow` wraps long pipelines on desktop.
 */
 export interface Props {
   steps: { title: string; detail?: string }[];
   label: string;
+  perRow?: number;
 }
 
-const { steps, label } = Astro.props;
+const { steps, label, perRow = steps.length } = Astro.props;
 ---
 
-<ol class="flow" aria-label={label}>
+<ol class="flow" aria-label={label} style={`--per-row: ${perRow}`}>
   {
     steps.map((step, i) => (
       <li class="flow-step">
@@ -20,7 +21,12 @@ const { steps, label } = Astro.props;
           <span class="flow-title">{step.title}</span>
           {step.detail && <span class="flow-detail">{step.detail}</span>}
         </div>
-        {i < steps.length - 1 && <span class="flow-arrow" aria-hidden="true" />}
+        {i < steps.length - 1 && (
+          <span class:list={['flow-arrow', { 'row-end': (i + 1) % perRow === 0 }]} aria-hidden="true" />
+        )}
+        {i === steps.length - 1 && perRow < steps.length && (
+          <span class="flow-arrow row-end trailing" aria-hidden="true" />
+        )}
       </li>
     ))
   }
@@ -92,16 +98,32 @@ const { steps, label } = Astro.props;
     border-top: 6px solid rgba(34, 211, 238, 0.8);
   }
 
+  /* Spacer that keeps the last wrapped column as wide as the others. */
+  .flow-arrow.trailing {
+    display: none;
+  }
+
   @media (min-width: 1024px) {
+    .flow-arrow.trailing {
+      display: block;
+    }
+
     .flow {
       flex-direction: row;
+      flex-wrap: wrap;
       align-items: stretch;
+      row-gap: 0.75rem;
     }
 
     .flow-step {
-      flex: 1 1 0;
+      flex: 0 0 calc(100% / var(--per-row));
       flex-direction: row;
       min-width: 0;
+    }
+
+    /* The last step of a wrapped row keeps its width but drops the arrow. */
+    .flow-arrow.row-end {
+      visibility: hidden;
     }
 
     .flow-box {

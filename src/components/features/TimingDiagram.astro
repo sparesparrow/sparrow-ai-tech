@@ -1,0 +1,167 @@
+---
+/*
+  Arm-early / deadline-late timeline for the HIL case study.
+  Wide by nature, so it scrolls horizontally inside its own box on phones
+  instead of shrinking the labels to nothing.
+*/
+---
+
+<figure class="timing">
+  <div class="timing-scroll">
+    <svg
+      viewBox="0 0 760 250"
+      role="img"
+      aria-labelledby="timing-title timing-desc"
+      class="timing-svg"
+    >
+      <title id="timing-title">Arm early, deadline late</title>
+      <desc id="timing-desc">
+        All expectations are armed before the stimulus starts. Deadlines start when the test sequence reaches
+        them. Expectation A's event arrives during the stimulus and is still captured. Expectation B's event
+        arrives inside its window and its latency is taken at arrival. Expectation C's event arrives after its
+        deadline and is reported as missed.
+      </desc>
+
+      <!-- guides -->
+      <line x1="100" y1="22" x2="100" y2="206" class="guide" />
+      <line x1="280" y1="22" x2="280" y2="206" class="guide" />
+      <text x="100" y="16" class="guide-label" text-anchor="middle">all armed</text>
+      <text x="280" y="16" class="guide-label" text-anchor="middle">deadlines start</text>
+
+      <!-- row labels -->
+      <text x="12" y="54" class="row-label">Stimulus</text>
+      <text x="12" y="99" class="row-label">Expect A</text>
+      <text x="12" y="139" class="row-label">Expect B</text>
+      <text x="12" y="179" class="row-label">Expect C</text>
+
+      <!-- stimulus -->
+      <rect x="100" y="38" width="180" height="24" rx="4" class="stimulus" />
+      <text x="190" y="54" class="bar-label" text-anchor="middle">e.g. hold a fault 3 s</text>
+
+      <!-- A: window after the stimulus, event arrived during it -->
+      <rect x="280" y="84" width="100" height="22" rx="4" class="window" />
+      <circle cx="180" cy="95" r="6" class="met" />
+      <text x="570" y="99" class="note">caught mid-stimulus → MET</text>
+
+      <!-- B: event inside its window -->
+      <rect x="280" y="124" width="240" height="22" rx="4" class="window" />
+      <circle cx="450" cy="135" r="6" class="met" />
+      <text x="570" y="139" class="note">MET, latency taken at arrival</text>
+
+      <!-- C: event after its window -->
+      <rect x="280" y="164" width="140" height="22" rx="4" class="window" />
+      <circle cx="480" cy="175" r="6" class="missed" />
+      <text x="570" y="179" class="note">late → MISSED, not "seen"</text>
+
+      <!-- axis -->
+      <line x1="90" y1="214" x2="555" y2="214" class="axis" />
+      <path d="M555 209 L563 214 L555 219 Z" class="axis-head" />
+      <text x="563" y="232" class="guide-label" text-anchor="end">time</text>
+
+      <!-- legend -->
+      <rect x="100" y="228" width="14" height="10" rx="2" class="window" />
+      <text x="120" y="237" class="legend">deadline window</text>
+      <circle cx="240" cy="233" r="5" class="met" />
+      <text x="250" y="237" class="legend">met</text>
+      <circle cx="290" cy="233" r="5" class="missed" />
+      <text x="300" y="237" class="legend">missed</text>
+    </svg>
+  </div>
+  <figcaption>
+    Every expectation is armed before the stimulus; each deadline starts when the sequence reaches it.
+    <span class="scroll-hint">Scroll sideways to see the whole timeline.</span>
+  </figcaption>
+</figure>
+
+<style>
+  .timing {
+    margin: 0;
+  }
+
+  .timing-scroll {
+    overflow-x: auto;
+    border: 1px solid rgba(100, 116, 139, 0.4);
+    border-radius: 0.5rem;
+    background: rgba(15, 23, 42, 0.7);
+    padding: 0.75rem;
+  }
+
+  .timing-svg {
+    display: block;
+    width: 100%;
+    min-width: 640px;
+    height: auto;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: rgb(148, 163, 184);
+  }
+
+  .scroll-hint {
+    display: none;
+  }
+
+  @media (max-width: 700px) {
+    .scroll-hint {
+      display: inline;
+    }
+  }
+
+  .guide {
+    stroke: rgba(148, 163, 184, 0.5);
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+  }
+
+  .guide-label,
+  .legend {
+    fill: rgb(148, 163, 184);
+    font-size: 11px;
+  }
+
+  .row-label {
+    fill: rgb(203, 213, 225);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .bar-label {
+    fill: rgb(236, 254, 255);
+    font-size: 11px;
+  }
+
+  .note {
+    fill: rgb(226, 232, 240);
+    font-size: 12px;
+  }
+
+  .stimulus {
+    fill: rgba(34, 211, 238, 0.25);
+    stroke: rgb(34, 211, 238);
+  }
+
+  .window {
+    fill: rgba(168, 85, 247, 0.22);
+    stroke: rgb(192, 132, 252);
+  }
+
+  .met {
+    fill: rgb(74, 222, 128);
+  }
+
+  .missed {
+    fill: rgb(248, 113, 113);
+  }
+
+  .axis {
+    stroke: rgb(148, 163, 184);
+    stroke-width: 1.5;
+  }
+
+  .axis-head {
+    fill: rgb(148, 163, 184);
+  }
+</style>
