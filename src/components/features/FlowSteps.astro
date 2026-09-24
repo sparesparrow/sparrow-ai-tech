@@ -1,0 +1,132 @@
+---
+/*
+  Horizontal pipeline diagram that stacks vertically on narrow screens.
+  Each step: { title, detail? }.
+*/
+export interface Props {
+  steps: { title: string; detail?: string }[];
+  label: string;
+}
+
+const { steps, label } = Astro.props;
+---
+
+<ol class="flow" aria-label={label}>
+  {
+    steps.map((step, i) => (
+      <li class="flow-step">
+        <div class="flow-box">
+          <span class="flow-index">{String(i + 1).padStart(2, '0')}</span>
+          <span class="flow-title">{step.title}</span>
+          {step.detail && <span class="flow-detail">{step.detail}</span>}
+        </div>
+        {i < steps.length - 1 && <span class="flow-arrow" aria-hidden="true" />}
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .flow-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    height: 100%;
+    border: 1px solid rgba(34, 211, 238, 0.35);
+    border-radius: 0.5rem;
+    background: rgba(15, 23, 42, 0.7);
+    padding: 0.75rem 0.9rem;
+  }
+
+  .flow-index {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: rgb(34, 211, 238);
+  }
+
+  .flow-title {
+    font-weight: 600;
+    color: rgb(241, 245, 249);
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+
+  .flow-detail {
+    color: rgb(148, 163, 184);
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  /* Down arrow between stacked boxes */
+  .flow-arrow {
+    align-self: center;
+    width: 2px;
+    height: 1.25rem;
+    background: rgba(34, 211, 238, 0.6);
+    position: relative;
+  }
+
+  .flow-arrow::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid rgba(34, 211, 238, 0.8);
+  }
+
+  @media (min-width: 1024px) {
+    .flow {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .flow-step {
+      flex: 1 1 0;
+      flex-direction: row;
+      min-width: 0;
+    }
+
+    .flow-box {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    /* Right arrow between side-by-side boxes */
+    .flow-arrow {
+      align-self: center;
+      flex: 0 0 1.25rem;
+      width: 1.25rem;
+      height: 2px;
+    }
+
+    .flow-arrow::after {
+      left: auto;
+      right: -2px;
+      bottom: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 6px solid rgba(34, 211, 238, 0.8);
+      border-right: 0;
+    }
+  }
+</style>

@@ -1,0 +1,280 @@
+---
+import CyberpunkLayout from '../layouts/CyberpunkLayout.astro';
+import FlowSteps from '../components/features/FlowSteps.astro';
+
+import '../css/main.css';
+import '../styles/home.css';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const cases = [
+  {
+    id: 'hil-verification',
+    kicker: 'Resideo (Ademco) · 2026 · contract',
+    title: 'Hardware-in-the-loop verification of a safety-certified ignition controller',
+    context:
+      'A two-stage gas furnace ignition controller certified to UL/CSA, ANSI Z21.20 and NFPA 54. I was the sole owner of the verification test suite and of the automated bench that drives the real hardware.',
+    problem:
+      'Tests were hand-written and duplicated, stimulus windows were not actually being measured for a large family of cases, and bench failures were hard to attribute to firmware, harness or instruments.',
+    flowLabel: 'Verification pipeline',
+    flow: [
+      { title: 'State-machine catalogue', detail: 'YAML: 270+ transitions, 38 states, 33 events' },
+      { title: 'Test generator', detail: '~290 executable tests, no hand-written duplication' },
+      { title: 'Bench device layer', detail: 'AC source (pyvisa/SCPI), CAN monitor, Modbus I/O — one thread per instrument, shared monotonic clock' },
+      { title: '8-gate validator', detail: 'Arrange / Act / Assert against the captured run' },
+      { title: 'JSONL timeline', detail: 'Every command, signal edge and bus message on one axis' },
+      { title: 'Evidence', detail: 'Excel workbooks, bilingual HTML dashboards, Mermaid failure graphs' },
+    ],
+    extraTitle: 'The eight validation gates',
+    extra: [
+      'Preconditions',
+      'Stimulus timing',
+      'State sequence',
+      'Alarms',
+      'Signal history',
+      'Cross-layer consistency',
+      'Timer accuracy',
+      'Requirement traceability',
+    ],
+    results: [
+      { value: '148 → 0', label: 'cases where the stimulus window was never measured' },
+      { value: '25+', label: 'firmware & harness defects, each with a standalone repro script' },
+      { value: '15.7 s → 1.6 s', label: 'evidence report generation' },
+      { value: 'Nightly', label: 'unattended runs with per-key locking and crash / abort recovery' },
+    ],
+    notes: [
+      'Traced a "hardware fault" reported for months to a leaked USB handle, which unblocked an entire test family.',
+      'Moved a C#/.NET WinForms serial-bus monitor into version control, fixed a log-parser crash and reduced build and deployment to one command.',
+      'Owned delivery end to end: requirement traceability, issue tracking, branch / PR workflow, Conan packaging, CI and monthly client reporting.',
+    ],
+    stack: ['Python', 'C#', 'pyvisa / USBTMC / SCPI', 'CAN', 'Modbus', 'YAML', 'openpyxl', 'Mermaid', 'Conan', 'CI'],
+  },
+  {
+    id: 'agentic-tooling',
+    kicker: 'Resideo delivery workflow · open source',
+    title: 'Agentic AI harness and Model Context Protocol servers',
+    context:
+      'Bringing LLM agents into a regulated engineering workflow without giving up traceability or control, and publishing the reusable parts as open source.',
+    problem:
+      'Ad-hoc prompting does not scale across a team or survive review: prompts rot, agents act without guardrails, and nothing is reproducible.',
+    flowLabel: 'Agent harness',
+    flow: [
+      { title: 'Engineer request', detail: 'Human in the loop sets the task and approves results' },
+      { title: 'Specialised agents & skills', detail: 'Scoped roles with versioned prompt workflows' },
+      { title: 'Policy hooks', detail: 'Guardrails on what agents may run or change' },
+      { title: 'MCP servers', detail: 'Prompt templates and project tools exposed over Model Context Protocol' },
+      { title: 'Reviewed output', detail: 'Code, reports and analysis back into the normal PR flow' },
+    ],
+    extraTitle: 'MCP-Prompts, the open-source part',
+    extra: [
+      'Server for storing and serving prompt templates to any MCP client',
+      'Published to npm, Docker Hub and MCP directories (Glama, MCP Market, PulseMCP)',
+      'Storage adapters and AWS deployment examples',
+      'Rust reimplementation (mcp-prompts-rs) on crates.io',
+    ],
+    results: [
+      { value: 'Daily', label: 'harness adopted as part of the delivery workflow' },
+      { value: '100+ ★', label: 'MCP-Prompts on GitHub' },
+      { value: '2', label: 'implementations: TypeScript and Rust' },
+    ],
+    notes: [],
+    links: [
+      { label: 'MCP-Prompts on GitHub', url: 'https://github.com/sparesparrow/mcp-prompts' },
+      { label: 'mcp-prompts-rs', url: 'https://github.com/sparesparrow/mcp-prompts-rs' },
+      { label: 'mcp-project-orchestrator', url: 'https://github.com/sparesparrow/mcp-project-orchestrator' },
+    ],
+    stack: ['TypeScript', 'Python', 'Rust', 'Model Context Protocol', 'Docker', 'AWS', 'Prompt engineering'],
+  },
+  {
+    id: 'aircraft-diagnostics',
+    kicker: 'Honeywell · 2022 – 2023',
+    title: 'Diagnostic test engine for an aircraft onboard maintenance system',
+    context:
+      'The Onboard Maintenance System monitors aircraft condition and diagnoses member systems during flight and maintenance operations, on ARM / RTOS targets under aviation standards.',
+    problem:
+      'Diagnostic tests must run asynchronously, never interfere with each other, and behave predictably on timeouts and failed preconditions.',
+    flowLabel: 'DiagTest engine',
+    flow: [
+      { title: 'Test request', detail: 'Data collection, passive, interactive or non-interactive mode' },
+      { title: 'Interference check', detail: 'Blocks conflicting tests from running together' },
+      { title: 'Job queue', detail: 'Jobs processed asynchronously through a message queue' },
+      { title: 'State machine', detail: '15+ operational states, preconditions and timeouts' },
+      { title: 'Monitoring & results', detail: 'Live parameter monitoring correlated with maintenance messages' },
+    ],
+    results: [
+      { value: '15+', label: 'states in the C++ diagnostic state machine' },
+      { value: '4', label: 'diagnostic test modes' },
+    ],
+    notes: [
+      'Python integration tests for communication protocols, state transitions and failure scenarios.',
+      'Flatbuffers serialisation, Conan dependencies, cross-compilation with Clang, UML in Enterprise Architect.',
+    ],
+    stack: ['C++', 'Python', 'ARM', 'RTOS', 'Flatbuffers', 'Conan', 'TeamCity', 'GitLab CI'],
+  },
+  {
+    id: 'network-security',
+    kicker: 'Trusted Network Solutions · 2020 – 2022 · open source follow-up',
+    title: 'Inspection proxy and dynamic firewall for the Kernun Adaptive Firewall',
+    context:
+      'Linux network security appliance: an HTTP/HTTPS forward proxy with TLS inspection, plus daemons that keep firewall rules in step with the network.',
+    problem:
+      'Inspect encrypted traffic and authenticate users without breaking clients, and react to address changes on interfaces without leaving the firewall in an inconsistent state.',
+    flowLabel: 'Proxy and firewall path',
+    flow: [
+      { title: 'Client', detail: 'Kerberos authentication, LDAP user / group lookup' },
+      { title: 'Forward proxy', detail: 'C++ on Linux, TLS inspection, generated CA and client certificates' },
+      { title: 'Certificate checks', detail: 'OCSP validation' },
+      { title: 'Security stack', detail: 'Suricata IDS, nftables, logs aggregated in PostgreSQL' },
+    ],
+    extraTitle: 'ipmon → rust-network-mgr',
+    extra: [
+      'ipmon: C++20 daemon watching IPv4 / IPv6 address changes over Netlink and updating nftables rules',
+      'RAII, thread-safe and atomic operations, Unix-socket IPC, systemd-hardened Debian packaging',
+      'rust-network-mgr: Rust redesign with atomic rule updates, lock-free structures and epoll',
+    ],
+    results: [
+      { value: 'C++20', label: 'ipmon Netlink daemon' },
+      { value: 'crates.io', label: 'rust-network-mgr published' },
+    ],
+    notes: [],
+    links: [{ label: 'rust-network-mgr on crates.io', url: 'https://crates.io/crates/rust-network-mgr' }],
+    stack: ['C++17/20', 'Linux', 'Netlink', 'nftables', 'TLS 1.3', 'Kerberos', 'LDAP', 'OCSP', 'PostgreSQL', 'Rust'],
+  },
+];
+---
+
+<CyberpunkLayout
+  title="Case Studies — Vojtěch Špaček"
+  description="How Vojtěch Špaček builds safety-critical verification, agentic AI tooling, aircraft diagnostics and network security software: context, architecture and results."
+>
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <section class="pb-12 pt-20">
+      <div class="container mx-auto max-w-5xl px-6">
+        <a href={base} class="font-mono text-sm text-cyan-400 hover:text-cyan-300">← Back to profile</a>
+        <h1 class="mb-4 mt-6 text-4xl font-bold text-white md:text-5xl">Case studies</h1>
+        <p class="max-w-3xl text-lg text-slate-300">
+          Four pieces of work, each with the problem, what I built and the results. Client code is confidential; the
+          architecture and numbers below match my CV.
+        </p>
+
+        <nav class="mt-8 grid gap-3 sm:grid-cols-2" aria-label="Case studies">
+          {
+            cases.map((c, i) => (
+              <a
+                href={`#${c.id}`}
+                class="block rounded-lg border border-slate-700/50 bg-slate-800/40 p-4 transition-colors duration-300 hover:border-cyan-400/40"
+              >
+                <div class="font-mono text-xs text-cyan-400">{String(i + 1).padStart(2, '0')}</div>
+                <div class="font-semibold text-slate-100">{c.title}</div>
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    </section>
+
+    {
+      cases.map((c, i) => (
+        <section id={c.id} class={`py-16 ${i % 2 === 0 ? 'bg-slate-900/40' : ''}`}>
+          <div class="container mx-auto max-w-5xl px-6">
+            <div class="mb-2 font-mono text-sm text-purple-300">{c.kicker}</div>
+            <h2 class="mb-8 text-2xl font-bold text-white md:text-3xl">{c.title}</h2>
+
+            <div class="mb-10 grid gap-6 md:grid-cols-2">
+              <div>
+                <h3 class="mb-2 text-sm font-semibold uppercase tracking-wide text-cyan-400">Context</h3>
+                <p class="text-slate-300">{c.context}</p>
+              </div>
+              <div>
+                <h3 class="mb-2 text-sm font-semibold uppercase tracking-wide text-cyan-400">Problem</h3>
+                <p class="text-slate-300">{c.problem}</p>
+              </div>
+            </div>
+
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wide text-cyan-400">{c.flowLabel}</h3>
+            <div class="mb-10">
+              <FlowSteps steps={c.flow} label={c.flowLabel} />
+            </div>
+
+            {c.extra && (
+              <div class="mb-10">
+                <h3 class="mb-3 text-sm font-semibold uppercase tracking-wide text-cyan-400">{c.extraTitle}</h3>
+                <ul class="grid gap-2 sm:grid-cols-2">
+                  {c.extra.map((item) => (
+                    <li class="rounded-md border border-slate-700/50 bg-slate-800/30 px-3 py-2 text-sm text-slate-300">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wide text-cyan-400">Results</h3>
+            <div class="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+              {c.results.map((r) => (
+                <div class="rounded-lg border border-purple-500/30 bg-slate-800/50 p-4">
+                  <div class="text-xl font-bold text-purple-300">{r.value}</div>
+                  <div class="text-sm text-slate-300">{r.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {c.notes.length > 0 && (
+              <ul class="mb-8 list-disc space-y-1 pl-5 text-sm text-slate-400">
+                {c.notes.map((n) => (
+                  <li>{n}</li>
+                ))}
+              </ul>
+            )}
+
+            <div class="flex flex-wrap items-center gap-2">
+              {c.stack.map((s) => (
+                <span class="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs text-cyan-200">
+                  {s}
+                </span>
+              ))}
+            </div>
+
+            {c.links && (
+              <div class="mt-6 flex flex-wrap gap-3">
+                {c.links.map((l) => (
+                  <a
+                    href={l.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="rounded-lg border border-cyan-500/50 px-4 py-2 text-sm font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
+                  >
+                    {l.label} ↗
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      ))
+    }
+
+    <section class="py-16">
+      <div class="container mx-auto max-w-3xl px-6 text-center">
+        <h2 class="mb-4 text-2xl font-bold text-white">Want the details?</h2>
+        <p class="mb-8 text-slate-300">Happy to walk through any of these on a call.</p>
+        <div class="flex flex-col justify-center gap-4 sm:flex-row">
+          <a
+            href="https://calendly.com/dallheimal"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 px-8 py-3 font-medium text-white transition-all duration-300 hover:from-cyan-400 hover:to-purple-400"
+          >
+            Schedule a call
+          </a>
+          <a
+            href={`${base}cv/Vojtech_Spacek_CV.pdf`}
+            class="rounded-lg border border-cyan-500/50 px-8 py-3 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
+          >
+            Download CV (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</CyberpunkLayout>

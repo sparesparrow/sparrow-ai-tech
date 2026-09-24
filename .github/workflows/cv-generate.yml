@@ -47,10 +47,3 @@ jobs:
           name: cv-pdf-${{ github.sha }}
           path: dist/cv.pdf
           retention-days: 30
-          
-      - name: 📤 Upload to Pages
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist/cv.pdf
-

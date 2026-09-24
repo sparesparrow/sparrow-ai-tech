@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 const ALL_TECH = ['C++', 'JavaScript', 'Python', 'Rust', 'MCP', 'Linux', 'Docker'];
 const GITHUB_USER = 'sparesparrow';
+const MAX_REPOS = 12;
 
 function useStreamingText(text, enabled = true, speedMs = 16) {
   const [output, setOutput] = useState('');
@@ -44,7 +45,10 @@ export default function RepoGallery() {
         return r.json();
       })
       .then((data) => {
-        const mapped = data.map((repo) => ({
+        const mapped = data
+          .filter((repo) => !repo.fork && !repo.archived)
+          .sort((a, b) => b.stargazers_count - a.stargazers_count || (b.pushed_at || '').localeCompare(a.pushed_at || ''))
+          .map((repo) => ({
           id: repo.id,
           name: repo.name,
           description: repo.description || '',
@@ -52,6 +56,7 @@ export default function RepoGallery() {
           language: repo.language || '',
           topics: repo.topics || [],
           pushed_at: repo.pushed_at,
+          stars: repo.stargazers_count,
         }));
         setRepos(mapped);
       })
@@ -60,7 +65,7 @@ export default function RepoGallery() {
   }, []);
 
   const filtered = useMemo(() => {
-    if (selectedTech.length === 0) return repos;
+    if (selectedTech.length === 0) return repos.slice(0, MAX_REPOS);
     const techLower = selectedTech.map((t) => t.toLowerCase());
     return repos.filter((r) => {
       const fields = [r.language, ...(r.topics || []), r.name, r.description]
@@ -68,7 +73,7 @@ export default function RepoGallery() {
         .join(' ')
         .toLowerCase();
       return techLower.every((t) => fields.includes(t));
-    });
+    }).slice(0, MAX_REPOS);
   }, [repos, selectedTech]);
 
   const toggleTech = (tech) => {
@@ -76,7 +81,7 @@ export default function RepoGallery() {
   };
 
   return (
-    <section id="projects" className="cyber-section">
+    <section id="github-repos" className="cyber-section">
       <div className="cyber-container">
         <h2 className="cyber-section-title">GitHub Projects</h2>
 
@@ -111,7 +116,15 @@ export default function RepoGallery() {
         </div>
 
         {loading && <div>Loading repositories...</div>}
-        {error && <div style={{ color: 'var(--color-cyber-orange)' }}>Error: {error}</div>}
+        {error && (
+          <div className="cyber-card">
+            Couldn&apos;t load repositories right now.{' '}
+            <a href={`https://github.com/${GITHUB_USER}?tab=repositories`} target="_blank" rel="noreferrer">
+              Browse them on GitHub
+            </a>
+            .
+          </div>
+        )}
 
         <div
           className="cyber-cards-grid"
@@ -121,7 +134,7 @@ export default function RepoGallery() {
           {filtered.map((repo) => (
             <RepoCard key={repo.id} repo={repo} highlight={selectedTech} />
           ))}
-          {!loading && filtered.length === 0 && (
+          {!loading && !error && filtered.length === 0 && (
             <div className="cyber-card" style={{ gridColumn: '1 / -1' }}>
               No repositories match selected technologies.
             </div>
@@ -145,6 +158,7 @@ function RepoCard({ repo, highlight }) {
         {description || repo.description}
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.5rem' }}>
+        {repo.stars > 0 && <span className="tech-tag">★ {repo.stars}</span>}
         {repo.language && <span className="tech-tag">{repo.language}</span>}
         {topics.map((t) => (
           <span key={t} className="feature-tag">

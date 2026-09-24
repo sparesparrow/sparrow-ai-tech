@@ -16,49 +16,49 @@ const base = rawBase.replace(/\/$/, '');
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Model Context Protocol Pioneer - AI-driven tooling for modern web workflows" />
+    <meta name="description" content="Vojtěch Špaček — AI/LLM integration engineer (Model Context Protocol) and senior C++ &amp; Python developer for safety-critical embedded systems, HIL verification, Linux and networking." />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href={` /favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <link rel="stylesheet" href={` /css/main.css`} />
+    <link rel="stylesheet" href={`${base}/css/main.css`} />
     <meta
       name="keywords"
-      content="MCP, Model Context Protocol, AI Integration, Vojtěch Špaček, Developer, JavaScript, Rust, Automation"
+      content="Vojtěch Špaček, Model Context Protocol, MCP, AI/LLM integration, C++, Python, hardware-in-the-loop, embedded, Linux"
     />
     <meta name="author" content="Vojtěch Špaček" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://sparesparrow.github.io/sparrow-ai-tech/" />
-    <meta property="og:title" content="Vojtěch Špaček | MCP Pioneer & AI Integration Specialist" />
+    <meta property="og:title" content="Vojtěch Špaček | AI/LLM Integration & Embedded Engineer" />
     <meta
       property="og:description"
-      content="Model Context Protocol Pioneer - AI-driven tooling for modern web workflows"
+      content="Vojtěch Špaček — AI/LLM integration engineer (Model Context Protocol) and senior C++ &amp; Python developer for safety-critical embedded systems, HIL verification, Linux and networking."
     />
     <meta property="og:image" content="https://sparesparrow.github.io/sparrow-ai-tech/og-image.png" />
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://sparesparrow.github.io/sparrow-ai-tech/" />
-    <meta property="twitter:title" content="Vojtěch Špaček | MCP Pioneer & AI Integration Specialist" />
+    <meta property="twitter:title" content="Vojtěch Špaček | AI/LLM Integration & Embedded Engineer" />
     <meta
       property="twitter:description"
-      content="Model Context Protocol Pioneer - AI-driven tooling for modern web workflows"
+      content="Vojtěch Špaček — AI/LLM integration engineer (Model Context Protocol) and senior C++ &amp; Python developer for safety-critical embedded systems, HIL verification, Linux and networking."
     />
     <meta property="twitter:image" content="https://sparesparrow.github.io/sparrow-ai-tech/og-image.png" />
   </head>
   <body>
     <nav class="nav">
       <div class="nav-container">
-        <div class="nav-logo">sparrow-ai-tech</div>
+        <a class="nav-logo" href={`${base}/`}>sparesparrow</a>
         <div class="nav-actions" style="display:flex; align-items:center; gap:.5rem;">
           <LanguageToggle client:load />
           <ThemeToggle client:load />
           <ThemeSelect client:load />
         </div>
         <div class="nav-links">
-          <a href="#home" class="nav-link">Home</a>
-          <a href="#expertise" class="nav-link">Expertise</a>
-          <a href="#projects" class="nav-link">MCP Projects</a>
-          <a href="#philosophy" class="nav-link">Philosophy</a>
-          <a href="#contact" class="nav-link">Contact</a>
+          <a href={`${base}/`} class="nav-link">Home</a>
+          <a href={`${base}/case-studies`} class="nav-link">Case Studies</a>
+          <a href={`${base}/#experience`} class="nav-link">Experience</a>
+          <a href={`${base}/#projects`} class="nav-link">Open Source</a>
+          <a href={`${base}/#contact`} class="nav-link">Contact</a>
         </div>
       </div>
     </nav>
@@ -72,9 +72,9 @@ const base = rawBase.replace(/\/$/, '');
           style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;"
         >
           <div>
-            <h4 style="color: var(--color-cyber-green); margin-bottom: 1rem;">MCP Pioneer</h4>
+            <h4 style="color: var(--color-cyber-green); margin-bottom: 1rem;">Vojtěch Špaček</h4>
             <p style="color: var(--color-cyber-text-dim); margin: 0;">
-              Specializuji se na Model Context Protocol, AI orchestraci a moderní vývojové praktiky.
+              AI/LLM integration (Model Context Protocol) for safety-critical embedded and HIL verification. Brno · remote.
             </p>
           </div>
           <div>
@@ -82,11 +82,11 @@ const base = rawBase.replace(/\/$/, '');
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
               <span
                 style="background: rgba(57, 255, 20, 0.1); color: var(--color-cyber-green); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;"
-                >Rust</span
+                >C++</span
               >
               <span
                 style="background: rgba(88, 166, 255, 0.1); color: var(--color-cyber-blue); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;"
-                >JavaScript</span
+                >Python</span
               >
               <span
                 style="background: rgba(210, 168, 255, 0.1); color: var(--color-cyber-purple); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;"
@@ -94,11 +94,11 @@ const base = rawBase.replace(/\/$/, '');
               >
               <span
                 style="background: rgba(248, 81, 73, 0.1); color: var(--color-cyber-orange); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;"
-                >AI</span
+                >HIL</span
               >
               <span
                 style="background: rgba(57, 255, 20, 0.1); color: var(--color-cyber-green); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;"
-                >Docker</span
+                >Linux</span
               >
             </div>
           </div>
@@ -108,17 +108,17 @@ const base = rawBase.replace(/\/$/, '');
               <a
                 href="https://github.com/sparesparrow"
                 style="color: var(--color-cyber-text-dim); text-decoration: none; transition: color 0.3s ease;"
-                >GitHub Profile</a
+                >GitHub</a
               >
               <a
-                href="#"
+                href={`${base}/cv/Vojtech_Spacek_CV.pdf`}
                 style="color: var(--color-cyber-text-dim); text-decoration: none; transition: color 0.3s ease;"
-                >Professional CV</a
+                >CV (PDF)</a
               >
               <a
-                href="#"
+                href={`${base}/case-studies`}
                 style="color: var(--color-cyber-text-dim); text-decoration: none; transition: color 0.3s ease;"
-                >MCP Infographics</a
+                >Case Studies</a
               >
             </div>
           </div>
@@ -126,7 +126,7 @@ const base = rawBase.replace(/\/$/, '');
         <p
           style="color: var(--color-cyber-text-dim); margin: 0; text-align: center; border-top: 1px solid var(--color-cyber-border); padding-top: 1rem;"
         >
-          © 2025 Vojtěch Špaček. All rights reserved.
+          © 2026 Vojtěch Špaček (sparesparrow)
         </p>
       </div>
     </footer>
