@@ -1,246 +1,192 @@
 ---
-import Layout from '../layouts/Layout.astro';
 import CyberpunkLayout from '../layouts/CyberpunkLayout.astro';
-import MainLayout from '../layouts/MainLayout.astro';
 import RepoGallery from '../components/RepoGallery.jsx';
 
-import { pageUrl, assetUrl } from '../utils/url.js';
-import { url } from '../utils/url.js';
-
-import LanguageToggle from '../components/core/LanguageToggle.jsx';
-
 import '../css/main.css';
+import '../styles/home.css';
 
 export interface Props {
   title?: string;
 }
 
-const { title = 'Sparrow AI Tech' } = Astro.props;
-const base = import.meta.env.BASE_URL || '/sparrow-ai-tech';
-const lang = Astro.url.searchParams.get('lang') || 'cs';
-const t = {
-  en: {
-    hero: 'Model Context Protocol Pioneer',
-    subtitle: 'Full-stack developer specializing in MCP, AWS, Android, embedded systems, and cybersecurity',
-    explore: 'Explore Projects',
-    contact: 'Contact',
-    quotes: [
-      'Rothbard: "Capitalism is the fullest expression of anarchism, and anarchism is the fullest expression of capitalism."',
-      'Mises: "Rational economic activity is impossible in a socialist commonwealth." — The cornerstone of Austrian praxeology.',
-      'Dario Amodei: "We\'re in a race to understand AI as it becomes more powerful. Our understanding has to keep up with our ability to build things."',
-      'Andrew Ng: "AI is the new electricity. Just as electricity transformed industry after industry 100 years ago, AI will do the same."',
-      'ThePrimeagen: "Be an engineer, not a frameworker. Learn the fundamentals, understand the system, then build abstractions."',
-      'Lex Fridman: "Conversations about science, technology, history, philosophy and the nature of intelligence, consciousness, love, and power."',
-      'Andrew Huberman: "Neuroplasticity is triggered by focus and attention. The mental strain you feel when learning is the trigger for your brain to change."',
-      'Slush Philosophy: "Build for real users with real problems. Technical innovation without market validation is just expensive research."',
-      'Mr. Robot: "The world is a dangerous place, not because of those who do evil, but because of those who look on and do nothing."',
-    ],
-    
-    austrianEconomics: {
-      title: 'Austrian Economics & Praxeology',
-      description:
-        "Following Mises and Rothbard's emphasis on individual action, market signals, and spontaneous order in building decentralized AI systems that resist state surveillance.",
-      principles: [
-        'Praxeology: Human action is purposeful and logical',
-        'Market signals: Prices contain distributed knowledge',
-        'Spontaneous order: Complex systems emerge from simple rules',
-        'Individual sovereignty: Decentralization over central planning',
-        'State intervention: The road to serfdom in digital spaces',
-      ],
-    },
-    aiSafety: {
-      title: 'AI Safety & Alignment',
-      description:
-        "Influenced by Anthropic's approach to responsible scaling and constitutional AI, prioritizing safety and interpretability while resisting state control.",
-      principles: [
-        'Responsible scaling: Safety research must keep pace with capability',
-        'Constitutional AI: Systems aligned with human values',
-        'Interpretability: Understanding how AI systems make decisions',
-        'Red teaming: Adversarial testing for robustness',
-        'Privacy by design: Resistance to surveillance capitalism',
-      ],
-    },
-    neuroscience: {
-      title: 'Neuroscience & Learning',
-      description:
-        "Applying Huberman's protocols for neuroplasticity to optimize learning systems and human-AI collaboration while preserving cognitive liberty.",
-      principles: [
-        'Focus triggers neuroplasticity',
-        'Deep work: Sustained attention drives adaptation',
-        'Protocols over motivation: Systems beat willpower',
-        'Stress optimization: Deliberate practice drives growth',
-        'Cognitive liberty: Freedom to think without state interference',
-      ],
-    },
-    pragmaticBuilding: {
-      title: 'Pragmatic Engineering',
-      description:
-        "Combining ThePrimeagen's engineering mindset with startup wisdom from the Slush ecosystem, building tools that empower rather than enslave.",
-      principles: [
-        'Fundamentals first: Understand the system before abstractions',
-        'Ship fast, iterate faster: Throughput over perfection',
-        'Real users, real problems: Market validation over technical elegance',
-        'Security by design: Threat modeling from day one',
-        'Decentralized architecture: Resistance to single points of failure',
-      ],
-    },
-    publications: {
-      title: 'Articles at Stoky Svobodného přístavu',
-      intro:
-        'Selected writings published under the author "sparesparrow" at Stoky Svobodného přístavu, exploring the intersection of technology, economics, and individual liberty.',
-      items: [
-        {
-          title: 'Následky státního školství',
-          date: '2025-04-30',
-          url: 'https://stoky.urza.cz/texty/nasledky-statniho-skolstvi-3160',
-        },
-        {
-          title: 'Stát proti podnikání',
-          date: '2025-03-25',
-          url: 'https://stoky.urza.cz/texty/stat-proti-podnikani-3131',
-        },
-        {
-          title: 'Jednejte, a bude vám sjednáno Pojednání o ekonomii',
-          date: '2025-03-07',
-          url: 'https://stoky.urza.cz/texty/jednejte-a-bude-vam-sjednano-pojednani-o-ekonomii-3113',
-        },
-        {
-          title: 'Kyberkriminalita je klíčem ke státnímu dohledu nad kyberprostorem',
-          date: '2024-11-01',
-          url: 'https://stoky.urza.cz/texty/kyberkriminalita-je-klicem-ke-statnimu-dohledu-nad-kyberprostorem-3018',
-        },
-        {
-          title: 'Nebezpečnější než CBDC',
-          date: '2024-10-28',
-          url: 'https://stoky.urza.cz/texty/nebezpecnejsi-nez-cbdc-2946',
-        },
-        {
-          title: 'O svobodě slova na X',
-          date: '2024-10-14',
-          url: 'https://stoky.urza.cz/texty/o-svobode-slova-na-x-2943',
-        },
-      ],
-      moreCta: 'View all on Stoky',
-      moreUrl: 'https://stoky.urza.cz/autori/sparesparrow-937',
-    },
+const { title = 'Vojtěch Špaček — AI/LLM & Embedded Engineer' } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const links = {
+  email: 'mailto:sparesparrow@protonmail.ch',
+  github: 'https://github.com/sparesparrow',
+  linkedin: 'https://www.linkedin.com/in/sparesparrow',
+  x: 'https://x.com/spare23sparrow',
+  calendly: 'https://calendly.com/dallheimal',
+  cv: `${base}cv/Vojtech_Spacek_CV.pdf`,
+};
+
+const stats = [
+  { value: '10 yrs', label: 'Aerospace, scientific instruments, network security', color: 'text-cyan-400', border: 'border-cyan-500/30' },
+  { value: '100+ ★', label: 'MCP-Prompts, a Model Context Protocol server on GitHub', color: 'text-purple-400', border: 'border-purple-500/30' },
+  { value: '~290', label: 'Tests generated from a 270+ transition state-machine catalogue', color: 'text-green-400', border: 'border-green-500/30' },
+  { value: '25+', label: 'Firmware & harness defects investigated with repro scripts', color: 'text-orange-400', border: 'border-orange-500/30' },
+];
+
+const expertise = [
+  {
+    badge: 'MCP',
+    title: 'AI/LLM Integration & Agentic Tooling',
+    color: 'cyan',
+    text: 'Agentic harnesses of specialised agents, skills, prompt workflows, policy hooks and Model Context Protocol servers — adopted as a daily part of a safety-critical delivery workflow.',
+    tags: ['Model Context Protocol', 'Prompt engineering', 'RAG & tool calling', 'Multi-agent workflows'],
   },
-  cs: {
-    hero: 'Průkopník Model Context Protocolu',
-    subtitle: 'Full-stack vývojář specializující se na MCP, AWS, Android, embedded systémy a kyberbezpečnost',
-    explore: 'Prozkoumat projekty',
-    contact: 'Kontakt',
-    quotes: [
-      'Rothbard: "Kapitalismus je nejplnějším vyjádřením anarchismu a anarchismus nejplnějším vyjádřením kapitalismu."',
-      'Mises: "Racionální ekonomická aktivita je v socialistické společnosti nemožná." — Základ rakouské praxeologie.',
-      'Dario Amodei: "Jsme v závodě o porozumění AI, jak se stává mocnější. Naše chápání musí držet krok s naší schopností věci stavět."',
-      'Andrew Ng: "AI je nová elektřina. Stejně jako elektřina transformovala jedno odvětví za druhým před 100 lety, AI udělá totéž."',
-      'ThePrimeagen: "Buď inženýr, ne frameworker. Nauč se základy, rozuměj systému, pak stav abstrakce."',
-      'Lex Fridman: "Rozhovory o vědě, technologiích, historii, filosofii a povaze inteligence, vědomí, lásky a moci."',
-      'Andrew Huberman: "Neuroplasticita je vyvolána fokusem a pozorností. Mentální napětí při učení je spouštěč pro změnu mozku."',
-      'Slush Filosofie: "Stav pro skutečné uživatele se skutečnými problémy. Technická inovace bez validace trhu je jen drahý výzkum."',
-      'Mr. Robot: "Svět je nebezpečné místo, ne kvůli těm, kteří páchají zlo, ale kvůli těm, kteří se dívají a nedělají nic."',
-    ],
-    
-    austrianEconomics: {
-      title: 'Rakouská ekonomie & Praxeologie',
-      description:
-        'Podle Misese a Rothbarda důraz na individuální jednání, tržní signály a spontánní řád při budování decentralizovaných AI systémů, které odolávají státnímu dohledu.',
-      principles: [
-        'Praxeologie: Lidské jednání je účelné a logické',
-        'Tržní signály: Ceny obsahují distribuované znalosti',
-        'Spontánní řád: Komplexní systémy vznikají z jednoduchých pravidel',
-        'Individuální suverenita: Decentralizace před centrálním plánováním',
-        'Státní intervence: Cesta k nevolnictví v digitálních prostorech',
-      ],
-    },
-    aiSafety: {
-      title: 'Bezpečnost AI & Zarovnání',
-      description:
-        'Ovlivněno přístupem Anthropic k zodpovědnému škálování a ústavní AI, priorita bezpečnosti a interpretovatelnosti při odolávání státní kontrole.',
-      principles: [
-        'Zodpovědné škálování: Výzkum bezpečnosti musí držet krok se schopnostmi',
-        'Ústavní AI: Systémy zarovnané s lidskými hodnotami',
-        'Interpretovatelnost: Porozumění rozhodování AI systémů',
-        'Red teaming: Adversariální testování pro robustnost',
-        'Soukromí od návrhu: Odolnost proti surveillance kapitalismu',
-      ],
-    },
-    neuroscience: {
-      title: 'Neurovědy & Učení',
-      description:
-        'Aplikace Hubermanových protokolů pro neuroplasticitu k optimalizaci učících systémů a lidsko-AI spolupráce při zachování kognitivní svobody.',
-      principles: [
-        'Focus spouští neuroplasticitu',
-        'Hluboká práce: Udržovaná pozornost řídí adaptaci',
-        'Protokoly před motivací: Systémy převyšují vůli',
-        'Optimalizace stresu: Záměrná praxe žene růst',
-        'Kognitivní svoboda: Svoboda myslet bez státního zasahování',
-      ],
-    },
-    pragmaticBuilding: {
-      title: 'Pragmatické inženýrství',
-      description:
-        'Kombinace ThePrimeagenova inženýrského přístupu s moudrostí startupů z Slush ekosystému, stavba nástrojů, které posilují spíše než zotročují.',
-      principles: [
-        'Základy první: Rozuměj systému před abstrakcemi',
-        'Rychlé dodání, rychlejší iterace: Průtok před dokonalostí',
-        'Skuteční uživatelé, skutečné problémy: Validace trhu před technickou elegancí',
-        'Bezpečnost od návrhu: Modelování hrozeb od prvního dne',
-        'Decentralizovaná architektura: Odolnost proti bodům selhání',
-      ],
-    },
-    publications: {
-      title: 'Publikace na Stokách Svobodného přístavu',
-      intro:
-        'Výběr textů publikovaných pod autorem „sparesparrow" na Stokách Svobodného přístavu, zkoumající průnik technologií, ekonomie a individuální svobody.',
-      items: [
-        {
-          title: 'Následky státního školství',
-          date: '2025-04-30',
-          url: 'https://stoky.urza.cz/texty/nasledky-statniho-skolstvi-3160',
-        },
-        {
-          title: 'Stát proti podnikání',
-          date: '2025-03-25',
-          url: 'https://stoky.urza.cz/texty/stat-proti-podnikani-3131',
-        },
-        {
-          title: 'Jednejte, a bude vám sjednáno Pojednání o ekonomii',
-          date: '2025-03-07',
-          url: 'https://stoky.urza.cz/texty/jednejte-a-bude-vam-sjednano-pojednani-o-ekonomii-3113',
-        },
-        {
-          title: 'Kyberkriminalita je klíčem ke státnímu dohledu nad kyberprostorem',
-          date: '2024-11-01',
-          url: 'https://stoky.urza.cz/texty/kyberkriminalita-je-klicem-ke-statnimu-dohledu-nad-kyberprostorem-3018',
-        },
-        {
-          title: 'Nebezpečnější než CBDC',
-          date: '2024-10-28',
-          url: 'https://stoky.urza.cz/texty/nebezpecnejsi-nez-cbdc-2946',
-        },
-        {
-          title: 'O svobodě slova na X',
-          date: '2024-10-14',
-          url: 'https://stoky.urza.cz/texty/o-svobode-slova-na-x-2943',
-        },
-      ],
-      moreCta: 'Zobrazit vše na Stokách',
-      moreUrl: 'https://stoky.urza.cz/autori/sparesparrow-937',
-    },
+  {
+    badge: 'HIL',
+    title: 'Safety-Critical Verification',
+    color: 'purple',
+    text: 'Hardware-in-the-loop benches and state-machine conformance testing for UL/CSA-certified products, with end-to-end requirement traceability and test evidence.',
+    tags: ['pyvisa / USBTMC / SCPI', 'CAN', 'Modbus', 'Traceability'],
   },
-}[lang];
+  {
+    badge: 'C++',
+    title: 'Embedded & Real-Time Software',
+    color: 'green',
+    text: 'Senior C++ and Python across aircraft onboard diagnostics, electron-microscopy detector software and FPGA-adjacent systems.',
+    tags: ['C++17/20', 'Python', 'ARM / RTOS', 'HAL & IPC', 'gRPC', 'Conan'],
+  },
+  {
+    badge: '🔐',
+    title: 'Linux, Networking & Security',
+    color: 'orange',
+    text: 'Inspection proxy and adaptive firewall on Linux: TLS inspection, Kerberos/LDAP/OCSP, Netlink and nftables, Suricata and PostgreSQL integration.',
+    tags: ['Linux', 'Netlink / nftables', 'TLS 1.3', 'Kerberos / LDAP'],
+  },
+];
+
+const colorClasses = {
+  cyan: { border: 'border-cyan-500/30 hover:border-cyan-400/50', title: 'text-cyan-400', badge: 'from-cyan-400 to-blue-500', tag: 'border-cyan-500/30 bg-cyan-500/20 text-cyan-300' },
+  purple: { border: 'border-purple-500/30 hover:border-purple-400/50', title: 'text-purple-400', badge: 'from-purple-400 to-pink-500', tag: 'border-purple-500/30 bg-purple-500/20 text-purple-300' },
+  green: { border: 'border-green-500/30 hover:border-green-400/50', title: 'text-green-400', badge: 'from-green-400 to-emerald-500', tag: 'border-green-500/30 bg-green-500/20 text-green-300' },
+  orange: { border: 'border-orange-500/30 hover:border-orange-400/50', title: 'text-orange-400', badge: 'from-orange-400 to-yellow-500', tag: 'border-orange-500/30 bg-orange-500/20 text-orange-300' },
+};
+
+const experience = [
+  {
+    company: 'Resideo (Ademco)',
+    via: 'CoolPeople contractor',
+    role: 'Test Automation Engineer (Python, C#)',
+    period: '01/2026 – 09/2026',
+    summary:
+      'Hardware-in-the-loop verification of a safety-certified two-stage gas furnace ignition controller (UL/CSA, ANSI Z21.20, NFPA 54), as sole owner of the verification suite and the automated bench that drives it.',
+    points: [
+      'Arrange/Act/Assert validation pipeline with eight independent gates, from preconditions and stimulus timing to requirement traceability.',
+      'Data-driven generator turning a YAML catalogue of 270+ transitions, 38 states and 33 events into ~290 executable tests.',
+      'Bench device layer with one thread per instrument on a shared monotonic clock (programmable AC source, CAN, Modbus), plus a correlated JSONL timeline for cross-device root-cause analysis.',
+      'Closed a ~148-case gap where stimulus windows were never measured; found a leaked USB handle misreported as a hardware fault for months.',
+      'Unattended nightly pipeline with crash recovery, Excel evidence workbooks and HTML dashboards; report generation cut from 15.7 s to 1.6 s.',
+      'Built the agentic AI harness (agents, skills, policy hooks, MCP servers) used daily in delivery.',
+    ],
+  },
+  {
+    company: 'Thermo Fisher Scientific',
+    via: 'Ixperta contractor',
+    role: 'Software Developer (C++)',
+    period: '2023 – 2024',
+    summary: 'Electron-microscopy software for high-resolution detector hardware operation and image acquisition.',
+    points: [
+      'Server-side C++ with hardware abstraction layers and COM/MIDL inter-process communication on Windows.',
+      'Embedded software for FPGA hardware over gRPC in C++, Python and Linux; C# WPF backend work.',
+      'Built vscode-automation, a VS Code extension combining TICS code-quality analysis with the OpenAI API for AI-assisted remediation; ran GitHub Copilot knowledge-sharing sessions.',
+    ],
+  },
+  {
+    company: 'Honeywell',
+    role: 'Software Engineer (C++)',
+    period: '2022 – 2023',
+    summary: 'Onboard Maintenance System that monitors aircraft condition and diagnoses issues in flight.',
+    points: [
+      'Architected DiagTest, a state-machine diagnostic test engine in C++ managing 15+ operational states.',
+      'Job-based asynchronous test orchestration with message-queue processing and test-interference management.',
+      'Python integration tests for protocols, state transitions and failure scenarios; ARM/RTOS, Flatbuffers, Conan.',
+    ],
+  },
+  {
+    company: 'Trusted Network Solutions',
+    role: 'Software Engineer (C++, Linux)',
+    period: '2020 – 2022',
+    summary: 'Kernun Adaptive Firewall — forward proxy and network components on Linux.',
+    points: [
+      'HTTP/HTTPS forward proxy with TLS inspection, OCSP validation, Kerberos authentication and LDAP lookup.',
+      'ipmon: C++20 Netlink daemon tracking IPv4/IPv6 changes and updating nftables rules.',
+      'Integration with Suricata and nftables, log aggregation in PostgreSQL; Perl test framework for protocol and auth testing.',
+    ],
+  },
+  {
+    company: 'IBM',
+    role: 'Automation Developer / IT Systems Specialist',
+    summary: 'Automation application replacing manual ticketing and server-administration work (Bash, PowerShell, JavaScript); Unix/Windows production monitoring.',
+    points: [],
+  },
+];
+
+const openSource = [
+  {
+    name: 'MCP-Prompts',
+    meta: '100+ ★ on GitHub',
+    text: 'Model Context Protocol server for prompt templates and LLM interactions. Published to npm, Docker Hub and MCP directories (Glama, MCP Market, PulseMCP); Rust port on crates.io.',
+    url: 'https://github.com/sparesparrow/mcp-prompts',
+  },
+  {
+    name: 'rust-network-mgr',
+    meta: 'Rust · crates.io',
+    text: 'Reimplementation of the C++20 ipmon daemon: drives nftables rules via Netlink with atomic updates, lock-free data structures and epoll.',
+    url: 'https://crates.io/crates/rust-network-mgr',
+  },
+  {
+    name: 'mcp-project-orchestrator',
+    meta: 'Python',
+    text: 'Template orchestration with design-pattern recognition, project scaffolding and Mermaid diagram generation.',
+    url: 'https://github.com/sparesparrow/mcp-project-orchestrator',
+  },
+  {
+    name: 'rtp-midi',
+    meta: 'Rust · Kotlin · ESP32',
+    text: 'Real-time MIDI, audio and LED control: RTP-MIDI for DAWs, OSC for LED devices, Android hub with Rust NDK and an ESP32 FreeRTOS visualiser.',
+    url: 'https://github.com/sparesparrow/rtp-midi',
+  },
+];
+
+const cvVariants = [
+  { label: 'Full CV (2026)', note: 'Complete detail, all roles and open source', file: 'Vojtech_Spacek_CV.pdf' },
+  { label: 'Czech contractor', note: 'IČO, Brno on-site / hybrid / remote', file: 'Vojtech_Spacek_CV_CZ_contractor.pdf' },
+  { label: 'Poland B2B', note: 'Embedded & real-time focus, remote-first', file: 'Vojtech_Spacek_CV_PL_B2B.pdf' },
+  { label: 'Switzerland dossier', note: 'Personal details and references section', file: 'Vojtech_Spacek_CV_CH_dossier.pdf' },
+];
+
+const publications = {
+  title: 'Articles at Stoky Svobodného přístavu',
+  intro: 'Czech-language essays published as "sparesparrow" on technology, economics and individual liberty.',
+  items: [
+    { title: 'Následky státního školství', date: '2025-04-30', url: 'https://stoky.urza.cz/texty/nasledky-statniho-skolstvi-3160' },
+    { title: 'Stát proti podnikání', date: '2025-03-25', url: 'https://stoky.urza.cz/texty/stat-proti-podnikani-3131' },
+    {
+      title: 'Jednejte, a bude vám sjednáno Pojednání o ekonomii',
+      date: '2025-03-07',
+      url: 'https://stoky.urza.cz/texty/jednejte-a-bude-vam-sjednano-pojednani-o-ekonomii-3113',
+    },
+    {
+      title: 'Kyberkriminalita je klíčem ke státnímu dohledu nad kyberprostorem',
+      date: '2024-11-01',
+      url: 'https://stoky.urza.cz/texty/kyberkriminalita-je-klicem-ke-statnimu-dohledu-nad-kyberprostorem-3018',
+    },
+    { title: 'Nebezpečnější než CBDC', date: '2024-10-28', url: 'https://stoky.urza.cz/texty/nebezpecnejsi-nez-cbdc-2946' },
+    { title: 'O svobodě slova na X', date: '2024-10-14', url: 'https://stoky.urza.cz/texty/o-svobode-slova-na-x-2943' },
+  ],
+  moreCta: 'View all on Stoky',
+  moreUrl: 'https://stoky.urza.cz/autori/sparesparrow-937',
+};
 ---
 
 <CyberpunkLayout title={title}>
   <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-    <!-- Language Toggle -->
-    <div class="fixed right-4 top-4 z-50">
-      <LanguageToggle client:load />
-    </div>
-
     <!-- Hero Section -->
-    <section class="relative overflow-hidden pb-32 pt-20">
+    <section id="home" class="relative overflow-hidden pb-24 pt-20">
       <div class="bg-grid-pattern absolute inset-0 opacity-10"></div>
       <div class="container relative z-10 mx-auto px-6">
         <div class="text-center">
@@ -249,55 +195,59 @@ const t = {
           >
             Vojtěch Špaček
           </h1>
-          <div class="mb-8 font-mono text-xl text-cyan-300 md:text-2xl">
-            | {t?.hero} |
+          <div class="mb-6 font-mono text-lg text-cyan-300 md:text-2xl">
+            AI/LLM integration engineer (MCP) · Senior C++ &amp; Python
           </div>
-          <div class="mx-auto mb-12 grid max-w-5xl items-center gap-8 md:grid-cols-[1fr,auto]">
-            <p class="text-lg text-slate-300 md:text-xl">{t?.subtitle}</p>
+          <div class="mx-auto mb-10 grid max-w-5xl items-center gap-8 md:grid-cols-[1fr,auto]">
+            <div class="text-left md:text-left">
+              <p class="mb-4 text-lg text-slate-200 md:text-xl">
+                I bring agentic-AI tooling (Model Context Protocol) into safety-critical engineering workflows —
+                embedded systems, hardware-in-the-loop verification, Linux and networking.
+              </p>
+              <p class="text-sm text-slate-400">
+                Brno, Czech Republic · EU citizen · independent contractor (IČO) · on-site, hybrid or remote ·
+                Czech &amp; Slovak native, English C1
+              </p>
+            </div>
             <figure
               class="justify-self-center rounded-xl border border-cyan-500/30 bg-slate-800/40 p-3 backdrop-blur-sm"
             >
-              <img
-                src={`${import.meta.env.BASE_URL}/assets/ai-hero.svg`}
-                alt="AI hero illustration"
-                class="h-24 w-auto md:h-28 lg:h-32"
-                loading="lazy"
-              />
+              <img src={`${base}assets/ai-hero.svg`} alt="" class="h-24 w-auto md:h-28 lg:h-32" loading="lazy" />
             </figure>
           </div>
 
           <!-- Stats Grid -->
-          <div class="mx-auto mb-16 grid max-w-4xl grid-cols-2 gap-6 md:grid-cols-4">
-            <div class="rounded-lg border border-cyan-500/30 bg-slate-800/50 p-4 backdrop-blur-sm">
-              <div class="text-2xl font-bold text-cyan-400">15+</div>
-              <div class="text-sm text-slate-300">MCP Projects</div>
-            </div>
-            <div class="rounded-lg border border-purple-500/30 bg-slate-800/50 p-4 backdrop-blur-sm">
-              <div class="text-2xl font-bold text-purple-400">98%</div>
-              <div class="text-sm text-slate-300">↑ Test Coverage</div>
-            </div>
-            <div class="rounded-lg border border-green-500/30 bg-slate-800/50 p-4 backdrop-blur-sm">
-              <div class="text-2xl font-bold text-green-400">3x</div>
-              <div class="text-sm text-slate-300">% Faster Response</div>
-            </div>
-            <div class="rounded-lg border border-orange-500/30 bg-slate-800/50 p-4 backdrop-blur-sm">
-              <div class="text-2xl font-bold text-orange-400">-85%</div>
-              <div class="text-sm text-slate-300">% ↓ Bugs</div>
-            </div>
+          <div class="mx-auto mb-12 grid max-w-5xl grid-cols-2 gap-4 md:grid-cols-4">
+            {
+              stats.map(stat => (
+                <div class={`rounded-lg border ${stat.border} bg-slate-800/50 p-4 backdrop-blur-sm`}>
+                  <div class={`text-2xl font-bold ${stat.color}`}>{stat.value}</div>
+                  <div class="text-sm text-slate-300">{stat.label}</div>
+                </div>
+              ))
+            }
           </div>
 
-          <div class="mb-16 flex flex-col justify-center gap-4 sm:flex-row">
+          <div class="flex flex-col justify-center gap-4 sm:flex-row">
             <a
-              href="/sparrow-ai-tech/mermaid-editor"
+              href={links.cv}
               class="rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 px-8 py-3 font-medium text-white transition-all duration-300 hover:from-cyan-400 hover:to-purple-400"
             >
-              {t?.explore}
+              Download CV (PDF)
             </a>
             <a
-              href="/sparrow-ai-tech/cv.pdf"
+              href={links.calendly}
+              target="_blank"
+              rel="noopener noreferrer"
               class="rounded-lg border border-cyan-500/50 px-8 py-3 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
             >
-              Download CV
+              Schedule a call
+            </a>
+            <a
+              href="#experience"
+              class="rounded-lg border border-purple-500/50 px-8 py-3 font-medium text-purple-400 transition-all duration-300 hover:bg-purple-500/10"
+            >
+              Experience
             </a>
           </div>
         </div>
@@ -305,299 +255,111 @@ const t = {
     </section>
 
     <!-- Core Expertise -->
-    <section class="py-20">
+    <section id="features" class="py-20">
       <div class="container mx-auto px-6">
         <h2 class="mb-16 text-center text-3xl font-bold text-white md:text-4xl">Core Expertise</h2>
 
-        <div class="grid gap-8 md:grid-cols-3">
-          <!-- MCP Development -->
-          <div
-            class="rounded-lg border border-cyan-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/50"
-          >
-            <div class="mb-6 text-center">
-              <div
-                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-blue-500"
-              >
-                <span class="text-xl font-bold text-white">MCP</span>
-              </div>
-            </div>
-
-            <h3 class="mb-4 text-center text-xl font-bold text-cyan-400">MCP Development</h3>
-
-            <p class="mb-6 text-center text-slate-300">
-              Specialized in Model Context Protocol implementation, creating robust servers and clients for AI
-              workflows.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-2">
-              <span class="rounded-full border border-cyan-500/30 bg-cyan-500/20 px-3 py-1 text-sm text-cyan-300"
-                >MCP v1.0</span
-              >
-              <span class="rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-sm text-blue-300"
-                >TypeScript</span
-              >
-              <span class="rounded-full border border-orange-500/30 bg-orange-500/20 px-3 py-1 text-sm text-orange-300"
-                >Rust</span
-              >
-            </div>
-          </div>
-
-          <!-- AI Orchestration -->
-          <div
-            class="rounded-lg border border-purple-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-purple-400/50"
-          >
-            <div class="mb-6 text-center">
-              <div
-                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-purple-400 to-pink-500"
-              >
-                <span class="text-xl font-bold text-white">AI</span>
-              </div>
-            </div>
-
-            <h3 class="mb-4 text-center text-xl font-bold text-purple-400">AI Orchestration</h3>
-
-            <p class="mb-6 text-center text-slate-300">
-              Building intelligent automation systems that coordinate multiple AI services and workflows seamlessly.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-2">
-              <span class="rounded-full border border-purple-500/30 bg-purple-500/20 px-3 py-1 text-sm text-purple-300"
-                >AI Orchestration</span
-              >
-              <span class="rounded-full border border-green-500/30 bg-green-500/20 px-3 py-1 text-sm text-green-300"
-                >Python</span
-              >
-              <span class="rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-sm text-blue-300"
-                >PostgreSQL</span
-              >
-            </div>
-          </div>
-
-          <!-- Security & Infrastructure -->
-          <div
-            class="rounded-lg border border-green-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-green-400/50"
-          >
-            <div class="mb-6 text-center">
-              <div
-                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-emerald-500"
-              >
-                <span class="text-xl font-bold text-white">🔒</span>
-              </div>
-            </div>
-
-            <h3 class="mb-4 text-center text-xl font-bold text-green-400">Security & Infrastructure</h3>
-
-            <p class="mb-6 text-center text-slate-300">
-              Implementing secure, scalable infrastructure solutions with modern DevOps practices and containerization.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-2">
-              <span class="rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-sm text-blue-300"
-                >Docker</span
-              >
-              <span class="rounded-full border border-red-500/30 bg-red-500/20 px-3 py-1 text-sm text-red-300"
-                >Security</span
-              >
-              <span class="rounded-full border border-gray-500/30 bg-gray-500/20 px-3 py-1 text-sm text-gray-300"
-                >Infrastructure</span
-              >
-            </div>
-          </div>
-
-          <!-- Containers & DevOps -->
-          <div
-            class="rounded-lg border border-blue-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-blue-400/50"
-          >
-            <div class="mb-6 text-center">
-              <div
-                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-cyan-500"
-              >
-                <span class="text-xl font-bold text-white">🐳</span>
-              </div>
-            </div>
-
-            <h3 class="mb-4 text-center text-xl font-bold text-blue-400">Containers & DevOps</h3>
-
-            <p class="mb-6 text-center text-slate-300">
-              Containerization with Docker, Kubernetes orchestration, and CI/CD pipelines for scalable deployments.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-2">
-              <span class="rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-sm text-blue-300"
-                >Docker</span
-              >
-              <span class="rounded-full border border-cyan-500/30 bg-cyan-500/20 px-3 py-1 text-sm text-cyan-300"
-                >Kubernetes</span
-              >
-              <span class="rounded-full border border-green-500/30 bg-green-500/20 px-3 py-1 text-sm text-green-300"
-                >CI/CD</span
-              >
-            </div>
-          </div>
-
-          <!-- AWS Cloud Services -->
-          <div
-            class="rounded-lg border border-orange-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-orange-400/50"
-          >
-            <div class="mb-6 text-center">
-              <div
-                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-yellow-500"
-              >
-                <span class="text-xl font-bold text-white">AWS</span>
-              </div>
-            </div>
-
-            <h3 class="mb-4 text-center text-xl font-bold text-orange-400">AWS Cloud Services</h3>
-
-            <p class="mb-6 text-center text-slate-300">
-              Expertise in Amazon Web Services including EC2, S3, Lambda, and cloud architecture design.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-2">
-              <span class="rounded-full border border-orange-500/30 bg-orange-500/20 px-3 py-1 text-sm text-orange-300"
-                >EC2</span
-              >
-              <span class="rounded-full border border-yellow-500/30 bg-yellow-500/20 px-3 py-1 text-sm text-yellow-300"
-                >S3</span
-              >
-              <span class="rounded-full border border-red-500/30 bg-red-500/20 px-3 py-1 text-sm text-red-300"
-                >Lambda</span
-              >
-            </div>
-          </div>
-
-          <!-- Android Development -->
-          <div
-            class="rounded-lg border border-lime-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-lime-400/50"
-          >
-            <div class="mb-6 text-center">
-              <div
-                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-lime-400 to-green-500"
-              >
-                <span class="text-xl font-bold text-white">📱</span>
-              </div>
-            </div>
-
-            <h3 class="mb-4 text-center text-xl font-bold text-lime-400">Android Development</h3>
-
-            <p class="mb-6 text-center text-slate-300">
-              Building native Android applications with Kotlin and modern development practices.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-2">
-              <span class="rounded-full border border-lime-500/30 bg-lime-500/20 px-3 py-1 text-sm text-lime-300"
-                >Android</span
-              >
-              <span class="rounded-full border border-green-500/30 bg-green-500/20 px-3 py-1 text-sm text-green-300"
-                >Kotlin</span
-              >
-              <span class="rounded-full border border-emerald-500/30 bg-emerald-500/20 px-3 py-1 text-sm text-emerald-300"
-                >Mobile</span
-              >
-            </div>
-          </div>
-
-          <!-- Embedded Systems -->
-          <div
-            class="rounded-lg border border-indigo-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-indigo-400/50"
-          >
-            <div class="mb-6 text-center">
-              <div
-                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-indigo-400 to-purple-500"
-              >
-                <span class="text-xl font-bold text-white">⚙️</span>
-              </div>
-            </div>
-
-            <h3 class="mb-4 text-center text-xl font-bold text-indigo-400">Embedded Systems</h3>
-
-            <p class="mb-6 text-center text-slate-300">
-              Developing firmware for microcontrollers, RTOS integration, and IoT solutions.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-2">
-              <span class="rounded-full border border-indigo-500/30 bg-indigo-500/20 px-3 py-1 text-sm text-indigo-300"
-                >Microcontrollers</span
-              >
-              <span class="rounded-full border border-purple-500/30 bg-purple-500/20 px-3 py-1 text-sm text-purple-300"
-                >RTOS</span
-              >
-              <span class="rounded-full border border-pink-500/30 bg-pink-500/20 px-3 py-1 text-sm text-pink-300"
-                >IoT</span
-              >
-            </div>
-          </div>
-
-          <!-- Cybersecurity -->
-          <div
-            class="rounded-lg border border-red-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-red-400/50"
-          >
-            <div class="mb-6 text-center">
-              <div
-                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-red-400 to-pink-500"
-              >
-                <span class="text-xl font-bold text-white">🔐</span>
-              </div>
-            </div>
-
-            <h3 class="mb-4 text-center text-xl font-bold text-red-400">Cybersecurity</h3>
-
-            <p class="mb-6 text-center text-slate-300">
-              Implementing security best practices, threat modeling, and secure system design.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-2">
-              <span class="rounded-full border border-red-500/30 bg-red-500/20 px-3 py-1 text-sm text-red-300"
-                >Threat Modeling</span
-              >
-              <span class="rounded-full border border-pink-500/30 bg-pink-500/20 px-3 py-1 text-sm text-pink-300"
-                >Encryption</span
-              >
-              <span class="rounded-full border border-rose-500/30 bg-rose-500/20 px-3 py-1 text-sm text-rose-300"
-                >Security</span
-              >
-            </div>
-          </div>
-
-          <!-- Automotive Software -->
-          <div
-            class="rounded-lg border border-teal-500/30 bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-teal-400/50"
-          >
-            <div class="mb-6 text-center">
-              <div
-                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-teal-400 to-cyan-500"
-              >
-                <span class="text-xl font-bold text-white">🚗</span>
-              </div>
-            </div>
-
-            <h3 class="mb-4 text-center text-xl font-bold text-teal-400">Automotive Software</h3>
-
-            <p class="mb-6 text-center text-slate-300">
-              Experience in automotive software development, CAN bus communication, and embedded automotive systems.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-2">
-              <span class="rounded-full border border-teal-500/30 bg-teal-500/20 px-3 py-1 text-sm text-teal-300"
-                >CAN Bus</span
-              >
-              <span class="rounded-full border border-cyan-500/30 bg-cyan-500/20 px-3 py-1 text-sm text-cyan-300"
-                >Automotive</span
-              >
-              <span class="rounded-full border border-sky-500/30 bg-sky-500/20 px-3 py-1 text-sm text-sky-300"
-                >Embedded</span
-              >
-            </div>
-          </div>
+        <div class="grid gap-8 md:grid-cols-2">
+          {
+            expertise.map(item => {
+              const c = colorClasses[item.color];
+              return (
+                <div class={`rounded-lg border ${c.border} bg-slate-800/30 p-6 backdrop-blur-sm transition-all duration-300`}>
+                  <div class="mb-4 flex items-center gap-4">
+                    <div
+                      class={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${c.badge}`}
+                    >
+                      <span class="text-lg font-bold text-white">{item.badge}</span>
+                    </div>
+                    <h3 class={`text-xl font-bold ${c.title}`}>{item.title}</h3>
+                  </div>
+                  <p class="mb-5 text-slate-300">{item.text}</p>
+                  <div class="flex flex-wrap gap-2">
+                    {item.tags.map(tag => (
+                      <span class={`rounded-full border px-3 py-1 text-sm ${c.tag}`}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })
+          }
         </div>
       </div>
     </section>
 
+    <!-- Experience -->
+    <section id="experience" class="bg-slate-900/40 py-20">
+      <div class="container mx-auto max-w-4xl px-6">
+        <h2 class="mb-16 text-center text-3xl font-bold text-white md:text-4xl">Experience</h2>
 
-    <!-- GitHub Projects -->
-    <section class="py-20">
+        <ol class="relative border-l border-cyan-500/30">
+          {
+            experience.map(job => (
+              <li class="mb-12 ml-6">
+                <span class="absolute -left-2 mt-2 h-4 w-4 rounded-full border border-cyan-400 bg-slate-900" />
+                <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                  <h3 class="text-xl font-bold text-cyan-300">
+                    {job.company}
+                    {job.via && <span class="text-base font-normal text-slate-400"> · {job.via}</span>}
+                  </h3>
+                  {job.period && <span class="font-mono text-sm text-slate-400">{job.period}</span>}
+                </div>
+                <div class="mb-2 font-medium text-purple-300">{job.role}</div>
+                <p class="mb-3 text-slate-300">{job.summary}</p>
+                {job.points.length > 0 && (
+                  <ul class="list-disc space-y-1 pl-5 text-sm text-slate-400">
+                    {job.points.map(point => (
+                      <li>{point}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))
+          }
+        </ol>
+
+        <div class="mt-4 rounded-lg border border-slate-700/50 bg-slate-800/30 p-6">
+          <h3 class="mb-2 text-lg font-bold text-white">Education &amp; training</h3>
+          <ul class="space-y-1 text-sm text-slate-300">
+            <li>
+              Masaryk University, Faculty of Informatics — Computer Science coursework (no degree awarded):
+              programming, Linux, networking.
+            </li>
+            <li>
+              Coursera / DeepLearning.AI — Deep Learning Specialization (Andrew Ng), data analysis, prompt engineering,
+              building LLM agents.
+            </li>
+            <li>Self-directed — design patterns and software architecture, Hack The Box.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Open Source -->
+    <section id="projects" class="py-20">
       <div class="container mx-auto px-6">
-        <h2 class="mb-16 text-center text-3xl font-bold text-white md:text-4xl">GitHub Projects</h2>
+        <h2 class="mb-16 text-center text-3xl font-bold text-white md:text-4xl">Open Source</h2>
+
+        <div class="mb-16 grid gap-6 md:grid-cols-2">
+          {
+            openSource.map(project => (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group block rounded-xl border border-slate-700/50 bg-slate-800/30 p-6 transition-colors duration-300 hover:border-cyan-400/40"
+              >
+                <div class="mb-1 flex items-baseline justify-between gap-4">
+                  <span class="text-lg font-semibold text-cyan-300 group-hover:text-cyan-200">{project.name}</span>
+                  <span class="font-mono text-xs text-slate-400">{project.meta}</span>
+                </div>
+                <p class="text-sm text-slate-300">{project.text}</p>
+              </a>
+            ))
+          }
+        </div>
+
+        <h3 class="mb-8 text-center text-2xl font-bold text-white">More on GitHub</h3>
         <RepoGallery client:load />
       </div>
     </section>
@@ -606,17 +368,18 @@ const t = {
     <section class="bg-slate-900/40 py-20">
       <div class="container mx-auto px-6">
         <div class="mb-10 text-center">
-          <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl">{t?.publications.title}</h2>
-          <p class="mx-auto max-w-3xl text-slate-300">{t?.publications.intro}</p>
+          <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl">{publications.title}</h2>
+          <p class="mx-auto max-w-3xl text-slate-300">{publications.intro}</p>
         </div>
 
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {
-            t?.publications.items.map(item => (
+            publications.items.map(item => (
               <a
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                lang="cs"
                 class="group block rounded-xl border border-slate-700/50 bg-slate-800/30 p-6 transition-colors duration-300 hover:border-cyan-400/40"
               >
                 <div class="mb-2 text-sm text-slate-400">{item.date}</div>
@@ -628,52 +391,74 @@ const t = {
 
         <div class="mt-10 text-center">
           <a
-            href={t?.publications.moreUrl}
+            href={publications.moreUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 px-8 py-3 font-medium text-white transition-all duration-300 hover:from-cyan-400 hover:to-purple-400"
           >
-            {t?.publications.moreCta}
+            {publications.moreCta}
           </a>
         </div>
       </div>
     </section>
 
     <!-- Contact -->
-    <section class="py-20">
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="mb-16 text-3xl font-bold text-white md:text-4xl">{t?.contact}</h2>
+    <section id="contact" class="py-20">
+      <div class="container mx-auto max-w-4xl px-6 text-center">
+        <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">Contact</h2>
+        <p class="mb-8 text-slate-300">
+          Available for contract work on AI/LLM integration, safety-critical verification and embedded or Linux
+          software. Brno on-site or remote.
+        </p>
 
-        <div class="mx-auto max-w-2xl">
-          <h3 class="mb-4 text-xl font-bold text-cyan-400">Let's Connect</h3>
+        <div class="mb-12 flex flex-col flex-wrap justify-center gap-4 sm:flex-row">
+          <a
+            href={links.email}
+            class="rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 px-8 py-3 font-medium text-white transition-all duration-300 hover:from-cyan-400 hover:to-purple-400"
+          >
+            sparesparrow@protonmail.ch
+          </a>
+          <a
+            href={links.calendly}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg border border-cyan-500/50 px-8 py-3 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
+          >
+            Schedule a call
+          </a>
+          <a
+            href={links.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg border border-slate-600 bg-slate-800 px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-slate-700"
+          >
+            LinkedIn
+          </a>
+          <a
+            href={links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg border border-slate-600 bg-slate-800 px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-slate-700"
+          >
+            GitHub
+          </a>
+        </div>
 
-          <p class="mb-8 text-slate-300">
-            Interested in MCP development, AI automation, or just want to chat about technology? Feel free to reach out!
-          </p>
-
-          <div class="flex flex-col justify-center gap-4 sm:flex-row">
-            <a
-              href="https://github.com/sparesparrow"
-              class="rounded-lg border border-slate-600 bg-slate-800 px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-slate-700"
-            >
-              GitHub Profile
-            </a>
-            <a
-              href="/sparrow-ai-tech/cv.pdf"
-              class="rounded-lg border border-cyan-500/50 px-8 py-3 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
-            >
-              Professional CV
-            </a>
-            <a
-              href="/sparrow-ai-tech/mermaid-editor"
-              class="rounded-lg border border-purple-500/50 px-8 py-3 font-medium text-purple-400 transition-all duration-300 hover:bg-purple-500/10"
-            >
-              MCP Infographics
-            </a>
-          </div>
+        <h3 class="mb-6 text-xl font-bold text-cyan-400">CV downloads</h3>
+        <div class="grid gap-4 text-left sm:grid-cols-2">
+          {
+            cvVariants.map(variant => (
+              <a
+                href={`${base}cv/${variant.file}`}
+                class="block rounded-lg border border-slate-700/50 bg-slate-800/30 p-4 transition-colors duration-300 hover:border-cyan-400/40"
+              >
+                <div class="font-semibold text-cyan-300">{variant.label} · PDF</div>
+                <div class="text-sm text-slate-400">{variant.note}</div>
+              </a>
+            ))
+          }
         </div>
       </div>
     </section>
   </div>
-  <script src="/sparrow-ai-tech/js/index.js" is:inline></script>
 </CyberpunkLayout>
