@@ -15,7 +15,7 @@ const {
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL || '/sparrow-ai-tech';
-const lang = Astro.url.searchParams.get('lang') || 'cs';
+const onCaseStudies = Astro.url.pathname.replace(/\/$/, '').endsWith('/case-studies');
 ---
 
 <!doctype html>
@@ -64,12 +64,11 @@ const lang = Astro.url.searchParams.get('lang') || 'cs';
       <div class="cyber-nav-container">
         <div class="cyber-nav-logo cyber-glitch">🐦 sparesparrow</div>
         <div class="cyber-nav-links">
-          <a href={`${import.meta.env.BASE_URL}#home`} class="cyber-nav-link active">Home</a>
+          <a href={`${import.meta.env.BASE_URL}#home`} class:list={['cyber-nav-link', { active: !onCaseStudies }]}>Home</a>
           <a href={`${import.meta.env.BASE_URL}#features`} class="cyber-nav-link">Expertise</a>
+          <a href={`${import.meta.env.BASE_URL}case-studies`} class:list={['cyber-nav-link', { active: onCaseStudies }]}>Case Studies</a>
           <a href={`${import.meta.env.BASE_URL}#experience`} class="cyber-nav-link">Experience</a>
           <a href={`${import.meta.env.BASE_URL}#projects`} class="cyber-nav-link">Open Source</a>
-          <a href={`${import.meta.env.BASE_URL}agentic-workflow`} class="cyber-nav-link">Agentic Workflows</a>
-          <a href={`${import.meta.env.BASE_URL}mermaid-editor`} class="cyber-nav-link">Mermaid Editor</a>
           <a href={`${import.meta.env.BASE_URL}#contact`} class="cyber-nav-link">Contact</a>
         </div>
       </div>
@@ -103,7 +102,7 @@ const lang = Astro.url.searchParams.get('lang') || 'cs';
               <a href="https://github.com/sparesparrow" target="_blank" rel="noopener noreferrer">GitHub</a>
               <a href={`${import.meta.env.BASE_URL}cv/Vojtech_Spacek_CV.pdf`}>CV (PDF)</a>
               <a href="https://www.linkedin.com/in/sparesparrow" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a href={`${import.meta.env.BASE_URL}infographics/Infographic1/`}>MCP Infographics</a>
+              <a href={`${import.meta.env.BASE_URL}case-studies`}>Case Studies</a>
             </div>
           </div>
         </div>
