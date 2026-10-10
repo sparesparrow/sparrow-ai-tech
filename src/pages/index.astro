@@ -97,7 +97,7 @@ const experience = [
   },
   {
     company: 'Honeywell',
-    role: 'Software Engineer (C++)',
+    role: 'Software Engineer II',
     period: '2022 – 2023',
     summary: 'Onboard Maintenance System that monitors aircraft condition and diagnoses issues in flight.',
     points: [
@@ -108,7 +108,7 @@ const experience = [
   },
   {
     company: 'Trusted Network Solutions',
-    role: 'Software Engineer (C++, Linux)',
+    role: 'Application Developer',
     period: '2020 – 2022',
     summary: 'Kernun Adaptive Firewall — forward proxy and network components on Linux.',
     points: [
@@ -120,6 +120,7 @@ const experience = [
   {
     company: 'IBM',
     role: 'Automation Developer / IT Systems Specialist',
+    period: '2014 – 2016',
     summary: 'Automation application replacing manual ticketing and server-administration work (Bash, PowerShell, JavaScript); Unix/Windows production monitoring.',
     points: [],
   },
@@ -129,7 +130,7 @@ const openSource = [
   {
     name: 'MCP-Prompts',
     meta: '100+ ★ on GitHub',
-    text: 'Model Context Protocol server for prompt templates and LLM interactions. Published to npm, Docker Hub and MCP directories (Glama, MCP Market, PulseMCP); Rust port on crates.io.',
+    text: 'Model Context Protocol server for prompt templates and LLM interactions. Published to npm, Docker Hub and MCP directories (Glama, MCP Market); Rust port mcp-prompts-rs.',
     url: 'https://github.com/sparesparrow/mcp-prompts',
   },
   {
@@ -149,6 +150,12 @@ const openSource = [
     meta: 'Rust · Kotlin · ESP32',
     text: 'Real-time MIDI, audio and LED control: RTP-MIDI for DAWs, OSC for LED devices, Android hub with Rust NDK and an ESP32 FreeRTOS visualiser.',
     url: 'https://github.com/sparesparrow/rtp-midi',
+  },
+  {
+    name: 'Citadela Resort',
+    meta: 'Client project · Next.js',
+    text: 'Bilingual booking site for a private villa near Brno: Booking.com iCal sync, staff and Google sign-in, and Ed25519-signed NFC door access and scooter rental.',
+    url: 'https://citadela-resort.cz',
   },
 ];
 
@@ -178,13 +185,6 @@ const caseStudies = [
     title: 'TLS-inspecting proxy and dynamic firewall',
     result: 'Forward proxy with Kerberos/LDAP/OCSP; Netlink → nftables daemon, later rewritten in Rust.',
   },
-];
-
-const cvVariants = [
-  { label: 'Full CV (2026)', note: 'Complete detail, all roles and open source', file: 'Vojtech_Spacek_CV.pdf' },
-  { label: 'Czech contractor', note: 'IČO, Brno on-site / hybrid / remote', file: 'Vojtech_Spacek_CV_CZ_contractor.pdf' },
-  { label: 'Poland B2B', note: 'Embedded & real-time focus, remote-first', file: 'Vojtech_Spacek_CV_PL_B2B.pdf' },
-  { label: 'Switzerland dossier', note: 'Personal details and references section', file: 'Vojtech_Spacek_CV_CH_dossier.pdf' },
 ];
 
 const publications = {
@@ -398,7 +398,7 @@ const publications = {
     <!-- Open Source -->
     <section id="projects" class="py-20">
       <div class="container mx-auto px-6">
-        <h2 class="mb-16 text-center text-3xl font-bold text-white md:text-4xl">Open Source</h2>
+        <h2 class="mb-16 text-center text-3xl font-bold text-white md:text-4xl">Projects &amp; Open Source</h2>
 
         <div class="mb-16 grid gap-6 md:grid-cols-2">
           {
@@ -503,20 +503,13 @@ const publications = {
           </a>
         </div>
 
-        <h3 class="mb-6 text-xl font-bold text-cyan-400">CV downloads</h3>
-        <div class="grid gap-4 text-left sm:grid-cols-2">
-          {
-            cvVariants.map(variant => (
-              <a
-                href={`${base}cv/${variant.file}`}
-                class="block rounded-lg border border-slate-700/50 bg-slate-800/30 p-4 transition-colors duration-300 hover:border-cyan-400/40"
-              >
-                <div class="font-semibold text-cyan-300">{variant.label} · PDF</div>
-                <div class="text-sm text-slate-400">{variant.note}</div>
-              </a>
-            ))
-          }
-        </div>
+        <a
+          href={links.cv}
+          class="mx-auto block max-w-md rounded-lg border border-slate-700/50 bg-slate-800/30 p-4 text-left transition-colors duration-300 hover:border-cyan-400/40"
+        >
+          <div class="font-semibold text-cyan-300">Download CV · PDF</div>
+          <div class="text-sm text-slate-400">Full CV: roles, open source and links to every project</div>
+        </a>
       </div>
     </section>
   </div>
