@@ -1,0 +1,54 @@
+---
+/**
+ * ElevenLabs Agents widget — single source of truth for every layout.
+ * Docs: https://elevenlabs.io/docs/eleven-agents/customization/widget
+ * The embed script is loaded once (guarded), async, and a plain-link fallback
+ * appears if it fails to load or JavaScript is off.
+ */
+interface Props {
+  agentId?: string;
+  fallbackHref?: string;
+}
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const { agentId = 'agent_01jwpatrdff2dsns5d56n0ardm', fallbackHref = `${base}chatbot/` } = Astro.props;
+---
+
+<elevenlabs-convai agent-id={agentId} dismissible="true"></elevenlabs-convai>
+<a id="convai-fallback" class="convai-fallback" href={fallbackHref} hidden>Voice assistant</a>
+<noscript><a class="convai-fallback" href={fallbackHref}>Voice assistant</a></noscript>
+<script is:inline>
+  (function () {
+    var SRC = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+    var els = document.querySelectorAll('elevenlabs-convai');
+    for (var i = 1; i < els.length; i++) els[i].remove();
+    if (customElements.get('elevenlabs-convai') || document.getElementById('convai-embed')) return;
+    var s = document.createElement('script');
+    s.id = 'convai-embed';
+    s.src = SRC;
+    s.async = true;
+    s.type = 'text/javascript';
+    s.onerror = function () {
+      var f = document.getElementById('convai-fallback');
+      if (f) f.hidden = false;
+    };
+    document.body.appendChild(s);
+  })();
+</script>
+
+<style is:global>
+  .convai-fallback {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 50;
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font: 600 0.9rem/1 system-ui, sans-serif;
+    text-decoration: none;
+  }
+  .convai-fallback[hidden] {
+    display: none;
+  }
+</style>
