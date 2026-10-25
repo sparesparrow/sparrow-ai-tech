@@ -18,8 +18,8 @@ const cases = [
       'Tests were hand-written and duplicated, stimulus windows were not actually being measured for a large family of cases, and bench failures were hard to attribute to firmware, harness or instruments.',
     flowLabel: 'Verification pipeline',
     flow: [
-      { title: 'State-machine catalogue', detail: 'YAML: 270+ transitions, 38 states, 33 events' },
-      { title: 'Test generator', detail: '~290 executable tests, no hand-written duplication' },
+      { title: 'State-machine catalogue', detail: 'YAML model of every state, event and transition' },
+      { title: 'Test generator', detail: 'A comprehensive executable suite, no hand-written duplication' },
       { title: 'Bench device layer', detail: 'AC source (pyvisa/SCPI), CAN monitor, Modbus I/O — one thread per instrument, shared monotonic clock' },
       { title: '8-gate validator', detail: 'Arrange / Act / Assert against the captured run' },
       { title: 'JSONL timeline', detail: 'Every command, signal edge and bus message on one axis' },
@@ -37,9 +37,9 @@ const cases = [
       'Requirement traceability',
     ],
     results: [
-      { value: '148 → 0', label: 'cases where the stimulus window was never measured' },
-      { value: '25+', label: 'firmware & harness defects, each with a standalone repro script' },
-      { value: '15.7 s → 1.6 s', label: 'evidence report generation' },
+      { value: 'Closed', label: 'a critical gap where the stimulus window was never measured' },
+      { value: 'Numerous', label: 'firmware & harness defects, each with a standalone repro script' },
+      { value: 'Faster', label: 'evidence report generation, dramatically' },
       { value: 'Nightly', label: 'unattended runs with per-key locking and crash / abort recovery' },
     ],
     notes: [

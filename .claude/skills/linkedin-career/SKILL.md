@@ -49,7 +49,7 @@ The five parts:
 | Private tracker | A Google Sheet in Drive named **"Career tracker"**. It holds applications, recruiter threads, contacts, rate notes and the post calendar. Create it if it's missing (columns in `references/workflows.md`). It's private, so it never goes in the public repo. |
 
 **Known inconsistencies.** Check them before quoting either source:
-- The **HIL case study** page shows exact figures the CV deliberately leaves out (report-time and case-count deltas, defect counts, bench voltages and timings). It also says "the numbers match my CV", which is no longer true. Until Vojtěch decides which way to go, don't copy those figures into posts, cover notes or replies; link the page instead.
+- The **site's Resideo pages** (homepage, case-studies index, HIL case study) were brought into line with the CV's qualitative wording in October 2026, and client measurements were removed. Keep it that way: no exact client figures on the site, in posts or in applications unless Vojtěch says a specific number is cleared for publication.
 - The **old HTML CV** (`sparesparrow/cv`) carried stale phone numbers and an old LinkedIn URL. Treat `profile.md` as right and the old repo as suspect.
 
 **Known gap:** the CV's HTML/print source isn't committed anywhere; only the PDF is. The first time the CV content has to change, rebuild the source:
