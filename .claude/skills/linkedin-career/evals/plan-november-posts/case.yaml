@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: plan-november-posts
+expected_outcome: |
+  A November 2026 schedule of a handful of posts on weekday mornings, with full texts that sound like an engineer,
+  link his own material (the HIL case study, repos), include one availability post, avoid invented metrics and
+  confidential client detail, and are not published without approval.

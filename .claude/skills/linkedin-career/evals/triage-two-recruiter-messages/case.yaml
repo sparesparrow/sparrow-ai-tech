@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: triage-two-recruiter-messages
+context:
+  scaffold_script: place-files.sh
+expected_outcome: |
+  Both messages are triaged with a recommendation (the Swiss LLM verification contract is a strong fit, the
+  Brno employment-only on-site role a weak one), and each gets a ready-to-send reply in the sender's language.
+  No day rate is invented, nothing is sent, and the facts match the CV.

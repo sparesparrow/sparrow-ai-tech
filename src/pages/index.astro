@@ -22,10 +22,10 @@ const links = {
 };
 
 const stats = [
-  { value: '10 yrs', label: 'Aerospace, scientific instruments, network security', color: 'text-cyan-400', border: 'border-cyan-500/30' },
+  { value: 'Since 2014', label: 'Professional software work, from network security to aerospace and scientific instruments', color: 'text-cyan-400', border: 'border-cyan-500/30' },
   { value: '100+ ★', label: 'MCP-Prompts, a Model Context Protocol server on GitHub', color: 'text-purple-400', border: 'border-purple-500/30' },
-  { value: '~290', label: 'Tests generated from a 270+ transition state-machine catalogue', color: 'text-green-400', border: 'border-green-500/30' },
-  { value: '25+', label: 'Firmware & harness defects investigated with repro scripts', color: 'text-orange-400', border: 'border-orange-500/30' },
+  { value: 'HIL', label: 'Sole owner of a safety-certified controller\'s verification bench', color: 'text-green-400', border: 'border-green-500/30' },
+  { value: 'Numerous', label: 'Firmware & harness defects found, each with a repro script', color: 'text-orange-400', border: 'border-orange-500/30' },
 ];
 
 const expertise = [
@@ -76,10 +76,10 @@ const experience = [
       'Hardware-in-the-loop verification of a safety-certified two-stage gas furnace ignition controller (UL/CSA, ANSI Z21.20, NFPA 54), as sole owner of the verification suite and the automated bench that drives it.',
     points: [
       'Arrange/Act/Assert validation pipeline with eight independent gates, from preconditions and stimulus timing to requirement traceability.',
-      'Data-driven generator turning a YAML catalogue of 270+ transitions, 38 states and 33 events into ~290 executable tests.',
+      'Data-driven generator expanding a YAML catalogue of the full state, event and transition model into a comprehensive executable suite.',
       'Bench device layer with one thread per instrument on a shared monotonic clock (programmable AC source, CAN, Modbus), plus a correlated JSONL timeline for cross-device root-cause analysis.',
-      'Closed a ~148-case gap where stimulus windows were never measured; found a leaked USB handle misreported as a hardware fault for months.',
-      'Unattended nightly pipeline with crash recovery, Excel evidence workbooks and HTML dashboards; report generation cut from 15.7 s to 1.6 s.',
+      'Closed a critical coverage gap where stimulus windows were never measured; found a leaked USB handle misreported as a hardware fault.',
+      'Unattended nightly pipeline with crash recovery, Excel evidence workbooks and HTML dashboards; report generation made dramatically faster.',
       'Built the agentic AI harness (agents, skills, policy hooks, MCP servers) used daily in delivery.',
     ],
   },
@@ -165,7 +165,7 @@ const caseStudies = [
     href: 'case-studies/hil-verification',
     kicker: 'Resideo · safety-critical',
     title: 'HIL verification of a certified ignition controller',
-    result: '~290 generated tests, an 8-gate validator and a 148 → 0 measurement gap closed on real hardware.',
+    result: 'A generated test suite, an 8-gate validator and a critical measurement gap closed on real hardware.',
   },
   {
     id: 'agentic-tooling',

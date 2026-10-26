@@ -10,11 +10,11 @@ import '../../styles/home.css';
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 
 const stats = [
-  { value: '~290', label: 'tests generated from a 270+ transition catalogue' },
+  { value: 'Generated', label: 'test suite expanded from the full state, event and transition catalogue' },
   { value: '8', label: 'independent validation gates per test' },
-  { value: '148 → 0', label: 'cases where the stimulus window was never measured' },
-  { value: '25+', label: 'defects investigated, each with a repro script' },
-  { value: '15.7 s → 1.6 s', label: 'evidence report generation' },
+  { value: 'Closed', label: 'a critical gap where the stimulus window was never measured' },
+  { value: 'Numerous', label: 'defects investigated, each with a repro script' },
+  { value: 'Faster', label: 'evidence report generation, dramatically' },
 ];
 
 const sequence = [
@@ -70,7 +70,7 @@ const gates = [
   },
   {
     title: 'Timer accuracy',
-    text: 'Timed transitions fire within max(2 s, 10 %) of the configured timer; a long timer that fires in under half its budget is flagged.',
+    text: 'Timed transitions fire within a tolerance of the configured timer; a long timer that fires far too early is flagged.',
   },
   {
     title: 'Requirement traceability',
@@ -93,11 +93,11 @@ const timingRules = [
   },
   {
     title: 'Deadlines are asserted',
-    text: 'A waiter could return “seen” after its deadline, so a run logged “MET after 7.391 s (timeout 7.0 s)” used to pass. Late now means missed; the only slack is 50 ms for thread scheduling.',
+    text: 'A waiter could return “seen” after its deadline, so an event that arrived late still counted as a pass. Late now means missed; the only slack is a small allowance for thread scheduling.',
   },
   {
     title: 'Honest precision',
-    text: 'Bus events are reported as measured latencies, polled pin levels as upper bounds (≤): one input-card read takes ~105 ms. A timeout under the 150 ms sampling floor is rejected when the test is defined, not discovered on the bench.',
+    text: 'Bus events are reported as measured latencies, polled pin levels as upper bounds (≤), because every input-card read takes time. A timeout shorter than the sampling floor is rejected when the test is defined, not discovered on the bench.',
   },
 ];
 
@@ -142,11 +142,11 @@ const verdicts = [
 ];
 
 const results = [
-  'Replaced hand-written, duplicated tests with ~290 generated from a catalogue of 270+ transitions, 38 states and 33 events.',
-  'Closed a ~148-case gap where the stimulus window was never actually measured, bringing it to zero.',
+  'Replaced hand-written, duplicated tests with a comprehensive suite generated from a YAML catalogue of the full state, event and transition model.',
+  'Closed a critical coverage gap where the stimulus window was never actually measured.',
   'Traced a “hardware fault” reported for months to a leaked USB handle, which unblocked an entire test family.',
-  'Investigated 25+ firmware and harness defects against the C/C++ firmware sources, each with a standalone reproduction script.',
-  'Delivered an unattended nightly pipeline and cut evidence report generation from 15.7 s to 1.6 s.',
+  'Investigated numerous firmware and harness defects against the C/C++ firmware sources, each with a standalone reproduction script.',
+  'Delivered an unattended nightly pipeline and made evidence report generation dramatically faster.',
   'Moved a C#/.NET WinForms serial-bus monitor into version control, fixed a log-parser crash and reduced build and deployment to one command.',
   'Owned delivery end to end: traceability, issue tracking, branch / PR workflow, Conan packaging, CI and monthly client reporting.',
 ];
@@ -211,7 +211,7 @@ const card = 'rounded-lg border border-slate-700/50 bg-slate-800/40 p-4';
 
         <p class="mt-6 text-xs text-slate-400">
           The client's firmware, state table and code are confidential. Names below are generic, code is
-          illustrative, and the numbers match my CV.
+          illustrative, and client measurements are left out; the claims are the ones on my CV.
         </p>
       </div>
     </section>
@@ -228,7 +228,7 @@ const card = 'rounded-lg border border-slate-700/50 bg-slate-800/40 p-4';
             evidence a certification reviewer can follow.
           </p>
           <p class="text-slate-300">
-            What I started with: hand-written, duplicated tests; a family of ~148 cases where the stimulus window
+            What I started with: hand-written, duplicated tests; a whole family of cases where the stimulus window
             was never actually measured; and bench failures nobody could attribute to firmware, harness or
             instrument.
           </p>
@@ -239,7 +239,7 @@ const card = 'rounded-lg border border-slate-700/50 bg-slate-800/40 p-4';
         <p class="mt-4 text-sm text-slate-400">
           Every phase also has fault exits (limits, rollout, pressure switches, flame and gas-valve faults, supply
           disturbances) into post-purge, soft lockout, hard lockout or wait-for-recovery. Those exits are most of
-          the 270+ transitions in the catalogue.
+          the transitions in the catalogue.
         </p>
       </div>
     </section>
@@ -276,10 +276,10 @@ const card = 'rounded-lg border border-slate-700/50 bg-slate-800/40 p-4';
         <div class="rounded-lg border border-cyan-500/40 bg-cyan-500/5 p-5">
           <div class="mb-2 font-semibold text-cyan-200">Short-lived source states</div>
           <p class="text-sm text-slate-300">
-            Some source states last about five seconds. The gap between confirming arrival and firing the stimulus
-            measured ~1.9 s, most of that window. For those transitions the stimulus is handed to the navigation
+            Some source states last only a few seconds, and the gap between confirming arrival and firing the
+            stimulus used up most of that window. For those transitions the stimulus is handed to the navigation
             step and fires the moment the state is confirmed. For transient source states the post-arrange check is
-            a 0.25 s probe, so the check itself doesn't use up the window.
+            a short probe, so the check itself doesn't use up the window.
           </p>
         </div>
 
@@ -352,8 +352,8 @@ const card = 'rounded-lg border border-slate-700/50 bg-slate-800/40 p-4';
             <div class="mb-2 font-semibold text-yellow-200">Positive control before a negative claim</div>
             <p class="text-sm text-slate-300">
               Before a sweep may claim a state is unreachable under supply dips, the campaign has to prove the AC
-              source actually powers the controller. That gate found the source reading ~0.14 V while the controller
-              stayed powered, so the controller was not being fed from it. The campaign stopped there instead of
+              source actually powers the controller. That gate showed the source barely registering while the
+              controller stayed powered, so the controller was not being fed from it. The campaign stopped there instead of
               publishing a green negative sweep.
             </p>
           </div>
@@ -378,12 +378,12 @@ const card = 'rounded-lg border border-slate-700/50 bg-slate-800/40 p-4';
             <ul class="list-disc space-y-3 pl-5 text-slate-300">
               <li>
                 Nightly pipeline with per-key locking, crash and abort recovery, result journalling, Excel evidence
-                workbooks, bilingual HTML dashboards and Mermaid failure graphs. Report generation went from 15.7 s
-                to 1.6 s.
+                workbooks, bilingual HTML dashboards and Mermaid failure graphs. Report generation became dramatically
+                faster.
               </li>
               <li>
                 One instrument session per process, shared by every test. A failed open used to be cached for the
-                rest of the run, and one transient hiccup became 49 failures across 7 transitions. Now a failed
+                rest of the run, and one transient hiccup cascaded into dozens of failures across unrelated transitions. Now a failed
                 open is retried by the next test, while an instrument disabled by configuration stays off.
               </li>
               <li>
