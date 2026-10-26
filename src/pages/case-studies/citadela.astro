@@ -1,0 +1,253 @@
+---
+import CyberpunkLayout from '../../layouts/CyberpunkLayout.astro';
+import FlowSteps from '../../components/features/FlowSteps.astro';
+
+import '../../css/main.css';
+import '../../styles/home.css';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const site = 'https://citadela-resort.cz';
+const repo = 'https://github.com/sparesparrow/citadela';
+
+const stats = [
+  { value: 'Live', label: 'citadela-resort.cz, in Czech and English' },
+  { value: 'Whole-villa', label: 'booking model: one unit, one occupancy calendar' },
+  { value: 'Two-way', label: 'Booking.com calendar sync without a public API' },
+  { value: 'Ed25519', label: 'signed NFC readers for doors and scooter docks' },
+];
+
+const delivered = [
+  {
+    title: 'Bilingual website',
+    lang: 'Next.js 15 · React 19 · TypeScript',
+    text: 'Presentation of the house, bedrooms, wellness and rates with cancellation terms, in Czech and English. Each language has its own URL with hreflang, so both are indexable and shareable.',
+  },
+  {
+    title: 'Inquiries and administration',
+    lang: 'Prisma 7 · PostgreSQL · Auth.js v5',
+    text: 'The inquiry form writes to the database. Staff confirm or release inquiries in an admin area, and guests can sign in with Google to see their own requests.',
+  },
+  {
+    title: 'Booking.com integration',
+    lang: 'iCal in and out · affiliate deep links',
+    text: 'Dates sold on Booking.com block the direct calendar, and directly confirmed stays are published back so Booking.com never resells them.',
+  },
+  {
+    title: 'NFC door access and scooter rental',
+    lang: 'Ed25519 · challenge–response · audit log',
+    text: 'Designed and implemented the server side for room doors and e-scooter docks: signed reader requests, replay protection, fail-closed decisions and per-minute rental billing, exercised by a reader simulator in CI.',
+  },
+  {
+    title: 'Brand identity',
+    lang: 'Logo suite · brand book · poster',
+    text: '"Gold light on dark water": matte black and rich gold, Italiana for the logotype, Playfair Display and Jost, and a five-star concierge voice used across the site copy.',
+  },
+  {
+    title: 'Deployment and CI',
+    lang: 'Vercel · Neon Postgres · GitHub Actions',
+    text: 'Production on Vercel with Neon Postgres and migrations applied on deploy. CI runs type check, unit tests and a production build, then boots the built server and runs signed-reader checks against it.',
+  },
+];
+
+const sync = [
+  { title: 'Booking.com Extranet', detail: 'Exports the property calendar as iCal' },
+  { title: 'Inbound sync', detail: 'Scheduled job replaces the Booking.com snapshot' },
+  { title: 'One availability check', detail: 'Booking.com and direct stays read together' },
+  { title: 'Staff confirm', detail: 'Occupancy written in one transaction' },
+  { title: 'Outbound feed', detail: 'Direct stays published back as iCal' },
+];
+
+const decisions = [
+  {
+    title: 'One unit, one calendar',
+    text: 'The villa is never let by the room, so the data model has a single rentable unit. Capacity, bedrooms and rates live in one typed site file; the words live in the dictionaries.',
+  },
+  {
+    title: 'A unique constraint, not a check',
+    text: 'Confirming an inquiry writes its nights and flips its status in one transaction, and a unique key on (unit, date, source) is what makes two simultaneous confirmations safe. Check-then-insert alone loses that race.',
+  },
+  {
+    title: 'Translations the compiler checks',
+    text: 'The English dictionary defines the type and the Czech one is declared against it, so a missing or extra key fails the build instead of shipping a blank label.',
+  },
+  {
+    title: 'Dates are calendar days',
+    text: 'The iCal parser returns all-day dates as local midnight while night expansion works in UTC. On a UTC server nothing shows; in Brno every block shifted a day. Converting the calendar day to UTC explicitly fixed it, and a check script proves a confirmed date now answers a second inquiry with 409, not 201.',
+  },
+];
+
+const access = [
+  'A card UID is not a secret. Authorization is always challenge–response: for cards the reader holds the key, for phones an Ed25519 signature covers a fresh challenge.',
+  'Readers sign every request with Ed25519 and the server stores only public keys, so a database dump contains nothing that can open a door.',
+  'Each request carries a nonce and a timestamp. A reused nonce or a clock more than a minute off is rejected and logged.',
+  'Decisions are made by pure, database-free rules that are unit-tested on their own, and they fail closed.',
+  'Every decision, allowed or denied, is written to an audit log. Those entries are personal data, so a scheduled job deletes them after a retention period.',
+  'Money is stored in haléře, never as floating point.',
+];
+
+const stack = ['Next.js 15', 'React 19', 'TypeScript', 'Prisma 7', 'PostgreSQL', 'Auth.js v5', 'iCal', 'Ed25519', 'Vitest', 'Vercel', 'Neon', 'GitHub Actions'];
+
+const h2 = 'mb-4 text-2xl font-bold text-white md:text-3xl';
+const card = 'rounded-lg border border-slate-700/50 bg-slate-800/40 p-4';
+const button =
+  'rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 px-6 py-2 font-medium text-white transition-all duration-300 hover:from-cyan-400 hover:to-purple-400';
+---
+
+<CyberpunkLayout
+  title="Citadela Resort Case Study — Vojtěch Špaček"
+  description="Citadela Resort: a bilingual website and booking back end for a private villa near Brno, with two-way Booking.com calendar sync, staff administration and Ed25519-signed NFC access."
+>
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <section class="pb-12 pt-20">
+      <div class="container mx-auto max-w-5xl px-6">
+        <a href={`${base}case-studies`} class="font-mono text-sm text-cyan-400 hover:text-cyan-300">← All case studies</a>
+        <div class="mb-3 mt-6 font-mono text-sm text-purple-300">Freelance client project · 08/2026 – 09/2026</div>
+        <h1 class="mb-6 text-3xl font-bold text-white md:text-5xl">
+          Citadela Resort: a booking site for a private villa near Brno
+        </h1>
+        <p class="mb-8 max-w-3xl text-lg text-slate-300">
+          Citadela Resort is a villa with wellness above the Brno Reservoir in Rozdrojovice, let as a whole to one
+          party at a time. I built its website and booking back end for the owner, a local accommodation business:
+          the bilingual site, inquiries and administration, calendar sync with Booking.com, the brand identity, and
+          the server side of NFC door access and scooter rental.
+        </p>
+        <div class="mb-8 flex flex-wrap gap-3">
+          <a href={site} target="_blank" rel="noopener noreferrer" class={button}>Visit citadela-resort.cz ↗</a>
+          <a
+            href={repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg border border-cyan-500/50 px-6 py-2 font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
+          >
+            Source on GitHub ↗
+          </a>
+        </div>
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {
+            stats.map(s => (
+              <div class="rounded-lg border border-purple-500/30 bg-slate-800/50 p-4">
+                <div class="text-xl font-bold text-purple-300">{s.value}</div>
+                <div class="text-sm text-slate-300">{s.label}</div>
+              </div>
+            ))
+          }
+        </div>
+        <a href={site} target="_blank" rel="noopener noreferrer" class="mt-8 block">
+          <img
+            src={`${base}case-studies/citadela-resort-home.jpg`}
+            alt="The English home page of citadela-resort.cz: the Citadela logotype in gold over an evening photo of the villa, with the line 'The whole villa. One party at a time.'"
+            width="1280"
+            height="760"
+            loading="lazy"
+            class="w-full rounded-lg border border-slate-700/50"
+          />
+        </a>
+      </div>
+    </section>
+
+    <section class="bg-slate-900/40 py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>The brief</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <p class="text-slate-300">
+            The owner had a striking art-deco page in a single HTML file and a Booking.com listing. The page was
+            English-only, hard to use on a phone, nearly invisible to search engines, and its inquiry form sent
+            nothing. Nothing stopped the same weekend being sold directly and on Booking.com at once, and the owner
+            also wanted NFC door access and e-scooter rental, which need a back end that can be trusted with real doors.
+          </p>
+          <p class="text-slate-300">
+            Booking.com offers no public API to a property this size, and no "sign in with Booking.com" for guests.
+            So the integration had to work with what is actually available: affiliate deep links and the iCal
+            calendars the Extranet already imports and exports.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>What I delivered</h2>
+        <div class="grid gap-3 md:grid-cols-2">
+          {
+            delivered.map(d => (
+              <div class={card}>
+                <div class="font-semibold text-slate-100">{d.title}</div>
+                <div class="mb-2 font-mono text-xs text-cyan-400">{d.lang}</div>
+                <p class="text-sm text-slate-300">{d.text}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-900/40 py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Selling each night once</h2>
+        <p class="mb-8 max-w-3xl text-slate-300">
+          Occupancy has two independent sources, Booking.com and direct stays, and every availability check reads
+          both. Booking.com stays the source of truth for its own sales; direct stays are ours to add and release.
+        </p>
+        <FlowSteps steps={sync} label="Booking.com calendar sync" />
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Design decisions</h2>
+        <div class="grid gap-3 md:grid-cols-2">
+          {
+            decisions.map(d => (
+              <div class={card}>
+                <div class="mb-1 font-semibold text-slate-100">{d.title}</div>
+                <p class="text-sm text-slate-300">{d.text}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-900/40 py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Doors are not a web form</h2>
+        <p class="mb-6 max-w-3xl text-slate-300">
+          The access layer opens real doors and starts paid scooter rentals, so it was built with the same habits as
+          the safety-critical work on my CV: explicit invariants, pure decision logic, and evidence for every outcome.
+        </p>
+        <ul class="grid gap-2">
+          {access.map(a => <li class={`${card} text-sm text-slate-300`}>{a}</li>)}
+        </ul>
+        <p class="mt-6 max-w-3xl text-sm text-slate-400">
+          Where it stands: the website, inquiries, administration and Booking.com sync are live. The access server
+          and its CI checks are done; reader heartbeats, device provisioning with key rotation and an offline door
+          credential come next, together with the hardware installation.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="container mx-auto max-w-5xl px-6">
+        <h2 class={h2}>Stack</h2>
+        <div class="mb-10 flex flex-wrap gap-2">
+          {
+            stack.map(s => (
+              <span class="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs text-cyan-200">{s}</span>
+            ))
+          }
+        </div>
+        <div class="flex flex-col gap-4 sm:flex-row">
+          <a href={site} target="_blank" rel="noopener noreferrer" class={`${button} px-8 py-3 text-center`}>
+            Visit citadela-resort.cz ↗
+          </a>
+          <a
+            href={`${base}case-studies`}
+            class="rounded-lg border border-cyan-500/50 px-8 py-3 text-center font-medium text-cyan-400 transition-all duration-300 hover:bg-cyan-500/10"
+          >
+            Other case studies
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</CyberpunkLayout>

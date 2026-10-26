@@ -100,11 +100,11 @@ const cases = [
       { title: 'Test request', detail: 'Data collection, passive, interactive or non-interactive mode' },
       { title: 'Interference check', detail: 'Blocks conflicting tests from running together' },
       { title: 'Job queue', detail: 'Jobs processed asynchronously through a message queue' },
-      { title: 'State machine', detail: '15+ operational states, preconditions and timeouts' },
+      { title: 'State machine', detail: 'An extensive set of operational states, preconditions and timeouts' },
       { title: 'Monitoring & results', detail: 'Live parameter monitoring correlated with maintenance messages' },
     ],
     results: [
-      { value: '15+', label: 'states in the C++ diagnostic state machine' },
+      { value: 'Extensive', label: 'set of operational states in the C++ state machine' },
       { value: '4', label: 'diagnostic test modes' },
     ],
     notes: [
@@ -141,6 +141,36 @@ const cases = [
     notes: [],
     links: [{ label: 'rust-network-mgr on crates.io', url: 'https://crates.io/crates/rust-network-mgr' }],
     stack: ['C++17/20', 'Linux', 'Netlink', 'nftables', 'TLS 1.3', 'Kerberos', 'LDAP', 'OCSP', 'PostgreSQL', 'Rust'],
+  },
+  {
+    id: 'citadela',
+    kicker: 'Freelance client project · 08/2026 – 09/2026',
+    title: 'Citadela Resort: a booking site for a private villa near Brno',
+    context:
+      'Website and booking back end for a villa above the Brno Reservoir that is let as a whole to one party at a time, built for the owner, a local accommodation business. Live at citadela-resort.cz.',
+    problem:
+      'The original single-file page was English-only, sent no inquiries and was nearly invisible to search engines, and nothing stopped a weekend being sold directly and on Booking.com at once. Booking.com offers no public API for a property this size.',
+    flowLabel: 'Booking.com calendar sync',
+    flow: [
+      { title: 'Booking.com Extranet', detail: 'Exports the property calendar as iCal' },
+      { title: 'Inbound sync', detail: 'Scheduled job replaces the Booking.com snapshot' },
+      { title: 'One availability check', detail: 'Booking.com and direct stays read together' },
+      { title: 'Staff confirm', detail: 'Occupancy written in one transaction' },
+      { title: 'Outbound feed', detail: 'Direct stays published back as iCal' },
+    ],
+    results: [
+      { value: 'Live', label: 'bilingual site with inquiries, staff admin and Google sign-in' },
+      { value: 'Two-way', label: 'Booking.com calendar sync that prevents double-selling' },
+      { value: 'Ed25519', label: 'signed NFC readers for doors and scooter docks, fail-closed' },
+    ],
+    notes: [],
+    links: [
+      { label: 'citadela-resort.cz', url: 'https://citadela-resort.cz' },
+      { label: 'Source on GitHub', url: 'https://github.com/sparesparrow/citadela' },
+    ],
+    stack: ['Next.js 15', 'TypeScript', 'Prisma 7', 'PostgreSQL', 'Auth.js', 'iCal', 'Ed25519', 'Vercel'],
+    detail: 'case-studies/citadela',
+    detailBlurb: 'The brief, what was delivered, the Booking.com sync, design decisions and the NFC access layer.',
   },
   {
     id: 'mia',
@@ -182,8 +212,8 @@ const cases = [
         <a href={base} class="font-mono text-sm text-cyan-400 hover:text-cyan-300">← Back to profile</a>
         <h1 class="mb-4 mt-6 text-4xl font-bold text-white md:text-5xl">Case studies</h1>
         <p class="max-w-3xl text-lg text-slate-300">
-          Five pieces of work, each with the problem, what I built and the results. Client code is confidential; the
-          architecture and numbers below match my CV.
+          Six pieces of work, each with the problem, what I built and the results. Client code is confidential, so
+          client work is described at the level of detail my CV uses.
         </p>
 
         <nav class="mt-8 grid gap-3 sm:grid-cols-2" aria-label="Case studies">
