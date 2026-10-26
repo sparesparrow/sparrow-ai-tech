@@ -84,6 +84,20 @@ const experience = [
     ],
   },
   {
+    company: 'Citadela Resort',
+    via: 'freelance client project',
+    role: 'Full-stack Developer (Next.js, TypeScript)',
+    period: '08/2026 – 09/2026',
+    summary:
+      'Website and booking back end for a private villa rental business near Brno, live at citadela-resort.cz.',
+    points: [
+      'Bilingual Czech/English Next.js 15 site whose translation dictionaries are type-checked against each other; single-unit booking model with inquiries stored in PostgreSQL through Prisma.',
+      'Booking.com integration without a public API: inbound iCal sync, an outbound iCal feed and affiliate deep links, with transactional confirmation that prevents double-selling.',
+      'NFC door access and e-scooter rental: Ed25519-signed reader requests, replay protection, fail-closed decisions and an audit log with GDPR retention.',
+      'Brand identity, deployment on Vercel with Neon Postgres, and CI that runs type check, tests, build and signed-reader checks.',
+    ],
+  },
+  {
     company: 'Thermo Fisher Scientific',
     via: 'Ixperta contractor',
     role: 'Software Developer (C++)',
@@ -101,7 +115,7 @@ const experience = [
     period: '2022 – 2023',
     summary: 'Onboard Maintenance System that monitors aircraft condition and diagnoses issues in flight.',
     points: [
-      'Architected DiagTest, a state-machine diagnostic test engine in C++ managing 15+ operational states.',
+      'Architected DiagTest, a state-machine diagnostic test engine in C++ managing an extensive set of operational states.',
       'Job-based asynchronous test orchestration with message-queue processing and test-interference management.',
       'Python integration tests for protocols, state transitions and failure scenarios; ARM/RTOS, Flatbuffers, Conan.',
     ],
@@ -168,6 +182,13 @@ const caseStudies = [
     result: 'A generated test suite, an 8-gate validator and a critical measurement gap closed on real hardware.',
   },
   {
+    id: 'citadela',
+    href: 'case-studies/citadela',
+    kicker: 'Client project · Brno',
+    title: 'Citadela Resort booking site',
+    result: 'Live bilingual site with two-way Booking.com sync, staff admin and Ed25519-signed NFC access.',
+  },
+  {
     id: 'agentic-tooling',
     kicker: 'Agentic AI · open source',
     title: 'Agentic harness and MCP servers',
@@ -177,7 +198,7 @@ const caseStudies = [
     id: 'aircraft-diagnostics',
     kicker: 'Honeywell · aerospace',
     title: 'Aircraft onboard diagnostic test engine',
-    result: 'C++ state machine with 15+ states, async job queue and test-interference management.',
+    result: 'C++ diagnostic state machine with an async job queue and test-interference management.',
   },
   {
     id: 'network-security',
