@@ -63,5 +63,23 @@ Useful LinkedIn URLs (logged in):
 - Invitations: `https://www.linkedin.com/mynetwork/invitation-manager/`
 - Post composer: the "Start a post" button on `https://www.linkedin.com/feed/`
 
+## Operating LinkedIn from Claude on the phone
+A cloud session (claude.ai/code, or the mobile app's cloud sessions) can't reach LinkedIn as him: it has no access to his login, and logging in from a datacenter IP triggers LinkedIn's checks. So the browser runs on his PC and the phone only steers it.
+
+One-time setup on the PC:
+1. Install Node.js 20+ and Google Chrome, then Claude Code (`npm i -g @anthropic-ai/claude-code`), and sign in with `claude`.
+2. Clone `sparesparrow/sparrow-ai-tech` and work in that folder. Its `.mcp.json` registers the Playwright MCP (`@playwright/mcp`, pinned). It runs with a persistent profile in `.linkedin-browser-profile/`, which is git-ignored; set `LINKEDIN_BROWSER_PROFILE` to keep it elsewhere. The `linkedin-career` skill loads from `.claude/skills/` in the same folder.
+3. Run `claude` once and approve the project's `playwright` server. Then ask it to open `https://www.linkedin.com/login` and **log in yourself** in the Chrome window that appears, including 2FA. The session cookie stays in the profile, so later runs start logged in.
+4. Start `claude remote-control` in that folder (or use the Claude Desktop app), and leave the PC on and awake.
+
+From the phone: open the Claude app → Code, pick the session running on the PC, and ask, e.g. "/linkedin-career check my LinkedIn inbox" or "apply the approved headline and About". Every Send, Post, Save and Submit still waits for his yes in the chat.
+
+Alternatives that need no PC:
+- **Claude in Chrome**: the browser extension in his own Chrome, driven from Claude Desktop or Claude Code on that machine. Same reach as the Playwright route.
+- **Zapier → LinkedIn** (already connected): publishes approved posts from any session, including the phone. It can't read the inbox or edit the profile.
+- **Taplio** or **Typefully** connectors (claude.ai → Connectors): drafts, scheduling and analytics for posts from the phone. Also posts only; no inbox and no profile edits.
+
+Don't log in to LinkedIn from a cloud browser (hosted Playwright, Browser Use Cloud, scraping services): his credentials would leave his machine, and a login from an unknown datacenter is the usual way accounts get restricted.
+
 ## No-tool fallback
 Everything still works as drafts. Put each item in its own fenced block with its target, and add a checklist of where to paste it.

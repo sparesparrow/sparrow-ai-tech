@@ -58,3 +58,6 @@ coverage/
 .DS_Store
 Thumbs.db
 .pnpm-store/
+
+# Persistent browser profile for the Playwright MCP (holds LinkedIn session cookies)
+.linkedin-browser-profile/
