@@ -30,7 +30,6 @@ This directory contains automated workflows for the sparrow-ai-tech project.
 - **`frontend-ci.yml`** - Runs quality checks, tests, and builds on code changes
 - **`deploy.yml`** - Deploys the site to GitHub Pages on main branch pushes
 - **`backend-ci.yml`** - Tests Python backend components and Docker builds
-- **`cv-generate.yml`** - Generates PDF from CV repository and deploys
 - **`content-sync.yml`** - Syncs documentation from external repositories
 
 ## Troubleshooting
