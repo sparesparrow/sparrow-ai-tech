@@ -1,8 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 
-const ALL_TECH = ['C++', 'JavaScript', 'Python', 'Rust', 'MCP', 'Linux', 'Docker'];
+const ALL_TECH = ['C++', 'Python', 'Rust', 'TypeScript', 'MCP', 'Linux', 'ESP32'];
 const GITHUB_USER = 'sparesparrow';
-const MAX_REPOS = 12;
+// Curated, in display order: the repos that show the work this site is about.
+const FEATURED_REPOS = [
+  'mcp-prompts', 'mcp-prompts-rs', 'mia', 'omarchy-agent-setup', 'mcp-project-orchestrator', 'human-action',
+  'ipmon', 'rust-network-mgr', 'siem', 'sparetools', 'rtp-midi', 'esp32-bpm-detector', 'gamepad-mapper',
+];
+const MAX_REPOS = FEATURED_REPOS.length;
 
 function useStreamingText(text, enabled = true, speedMs = 16) {
   const [output, setOutput] = useState('');
@@ -46,8 +51,8 @@ export default function RepoGallery() {
       })
       .then((data) => {
         const mapped = data
-          .filter((repo) => !repo.fork && !repo.archived)
-          .sort((a, b) => b.stargazers_count - a.stargazers_count || (b.pushed_at || '').localeCompare(a.pushed_at || ''))
+          .filter((repo) => !repo.fork && !repo.archived && FEATURED_REPOS.includes(repo.name))
+          .sort((a, b) => FEATURED_REPOS.indexOf(a.name) - FEATURED_REPOS.indexOf(b.name))
           .map((repo) => ({
           id: repo.id,
           name: repo.name,
@@ -140,6 +145,11 @@ export default function RepoGallery() {
             </div>
           )}
         </div>
+        <p style={{ marginTop: '1rem', textAlign: 'center' }}>
+          <a href={`https://github.com/${GITHUB_USER}?tab=repositories`} target="_blank" rel="noreferrer">
+            All repositories on GitHub →
+          </a>
+        </p>
       </div>
     </section>
   );

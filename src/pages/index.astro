@@ -170,34 +170,91 @@ const experience = [
 
 const openSource = [
   {
-    name: 'MCP-Prompts',
-    meta: '100+ ★ on GitHub',
-    text: 'Model Context Protocol server for prompt templates and LLM interactions. Published to npm, Docker Hub and MCP directories (Glama, MCP Market); Rust port mcp-prompts-rs.',
-    url: 'https://github.com/sparesparrow/mcp-prompts',
+    group: 'AI agents & Model Context Protocol',
+    items: [
+      {
+        name: 'MCP-Prompts',
+        meta: 'TypeScript · npm · Docker Hub',
+        text: 'Model Context Protocol server for prompt templates and LLM interactions; hexagonal design with memory, file and AWS storage adapters. Published to npm, Docker Hub and MCP directories (Glama, MCP Market); Rust port mcp-prompts-rs.',
+        url: 'https://github.com/sparesparrow/mcp-prompts',
+      },
+      {
+        name: 'omarchy-agent-setup',
+        meta: 'Python · multi-agent',
+        text: 'Multi-agent setup: Claude as orchestrator, Codex as executor, Grok as evaluator and Gemini as fallback.',
+        url: 'https://github.com/sparesparrow/omarchy-agent-setup',
+      },
+      {
+        name: 'mcp-project-orchestrator',
+        meta: 'Python · MCP',
+        text: 'Template orchestration with design-pattern recognition, project scaffolding and Mermaid diagram generation.',
+        url: 'https://github.com/sparesparrow/mcp-project-orchestrator',
+      },
+      {
+        name: 'human-action',
+        meta: 'Python · Claude · ElevenLabs',
+        text: 'PDF-to-audiobook pipeline for the Czech translation of “Human Action”, using Claude and ElevenLabs.',
+        url: 'https://github.com/sparesparrow/human-action',
+      },
+    ],
   },
   {
-    name: 'rust-network-mgr',
-    meta: 'Rust · crates.io',
-    text: 'Reimplementation of the C++20 ipmon daemon: drives nftables rules via Netlink with atomic updates, lock-free data structures and epoll.',
-    url: 'https://crates.io/crates/rust-network-mgr',
+    group: 'Linux, networking & security',
+    items: [
+      {
+        name: 'rust-network-mgr',
+        meta: 'Rust · crates.io',
+        text: 'Reimplementation of the C++20 ipmon daemon: drives nftables rules via Netlink with atomic updates, epoll-based event processing and an MCP server.',
+        url: 'https://github.com/sparesparrow/rust-network-mgr',
+      },
+      {
+        name: 'ipmon',
+        meta: 'C++20 · Linux',
+        text: 'Netlink daemon that tracks IPv4/IPv6 address changes and updates nftables rules; RAII, thread-safe atomics, Unix-socket IPC, Debian packaging with systemd hardening.',
+        url: 'https://github.com/sparesparrow/ipmon',
+      },
+      {
+        name: 'siem',
+        meta: 'Rust · exploratory',
+        text: 'Exploratory SIEM in Rust with ticket and task management.',
+        url: 'https://github.com/sparesparrow/siem',
+      },
+      {
+        name: 'sparetools',
+        meta: 'Python · Conan',
+        text: 'Shared tools and Conan recipes for C/C++ dependency management and cross-platform CI/CD.',
+        url: 'https://github.com/sparesparrow/sparetools',
+      },
+    ],
   },
   {
-    name: 'mcp-project-orchestrator',
-    meta: 'Python',
-    text: 'Template orchestration with design-pattern recognition, project scaffolding and Mermaid diagram generation.',
-    url: 'https://github.com/sparesparrow/mcp-project-orchestrator',
-  },
-  {
-    name: 'rtp-midi',
-    meta: 'Rust · Kotlin · ESP32',
-    text: 'Real-time MIDI, audio and LED control: RTP-MIDI for DAWs, OSC for LED devices, Android hub with Rust NDK and an ESP32 FreeRTOS visualiser.',
-    url: 'https://github.com/sparesparrow/rtp-midi',
-  },
-  {
-    name: 'Citadela Resort',
-    meta: 'Client project · Next.js',
-    text: 'Bilingual booking site for a private villa near Brno: Booking.com iCal sync, staff and Google sign-in, and Ed25519-signed NFC door access and scooter rental.',
-    url: 'https://citadela-resort.cz',
+    group: 'Embedded, IoT & real-time',
+    items: [
+      {
+        name: 'MIA',
+        meta: 'C++17 · ESP32 · Raspberry Pi · Android',
+        text: 'Vehicle telemetry and IoT platform with an OBD-II digital twin, a read-only vehicle safety profile and MCP tools for agents.',
+        url: 'https://sparesparrow.github.io/sparrow-ai-tech/case-studies/#mia',
+      },
+      {
+        name: 'rtp-midi',
+        meta: 'Rust · Kotlin · ESP32',
+        text: 'Real-time MIDI, audio and LED control: RTP-MIDI for DAWs, OSC for LED devices, Android hub with Rust NDK and an ESP32 FreeRTOS visualiser.',
+        url: 'https://github.com/sparesparrow/rtp-midi',
+      },
+      {
+        name: 'esp32-bpm-detector',
+        meta: 'C++ · ESP32 / Arduino',
+        text: 'Wireless beats-per-minute detector device based on an ESP32 or Arduino microcontroller.',
+        url: 'https://github.com/sparesparrow/esp32-bpm-detector',
+      },
+      {
+        name: 'gamepad-mapper',
+        meta: 'C++ · MCP',
+        text: 'Gamepad to keyboard/mouse input mapper with MCP support (core, input back ends, bindings).',
+        url: 'https://github.com/sparesparrow/gamepad-mapper',
+      },
+    ],
   },
 ];
 
@@ -449,24 +506,29 @@ const publications = {
       <div class="container mx-auto px-6">
         <h2 class="mb-16 text-center text-3xl font-bold text-white md:text-4xl">Projects &amp; Open Source</h2>
 
-        <div class="mb-16 grid gap-6 md:grid-cols-2">
-          {
-            openSource.map(project => (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="group block rounded-xl border border-slate-700/50 bg-slate-800/30 p-6 transition-colors duration-300 hover:border-cyan-400/40"
-              >
-                <div class="mb-1 flex items-baseline justify-between gap-4">
-                  <span class="text-lg font-semibold text-cyan-300 group-hover:text-cyan-200">{project.name}</span>
-                  <span class="font-mono text-xs text-slate-400">{project.meta}</span>
-                </div>
-                <p class="text-sm text-slate-300">{project.text}</p>
-              </a>
-            ))
-          }
-        </div>
+        {
+          openSource.map(section => (
+            <div class="mb-12">
+              <h3 class="mb-4 font-mono text-sm uppercase tracking-wider text-purple-300">{section.group}</h3>
+              <div class="grid gap-6 md:grid-cols-2">
+                {section.items.map(project => (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group block rounded-xl border border-slate-700/50 bg-slate-800/30 p-6 transition-colors duration-300 hover:border-cyan-400/40"
+                  >
+                    <div class="mb-1 flex items-baseline justify-between gap-4">
+                      <span class="text-lg font-semibold text-cyan-300 group-hover:text-cyan-200">{project.name}</span>
+                      <span class="font-mono text-xs text-slate-400">{project.meta}</span>
+                    </div>
+                    <p class="text-sm text-slate-300">{project.text}</p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))
+        }
 
         <RepoGallery client:load />
       </div>
